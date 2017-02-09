@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/02/09 15:14:11 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/02/09 15:24:32 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,8 +86,8 @@ SRCS		= $(addprefix $(DIR_S)/,$(SOURCES))
 
 OBJS		= $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
-opti: -j 8
-	@$(MAKE) all
+opti:
+	@$(MAKE) all -j
 
 all: temporary $(NAME)
 
@@ -134,14 +134,10 @@ fclean: clean
 	@make fclean -C $(LIBGNL)
 	@make fclean -C $(LIBCL)
 
-rs: 
-	@rm -rf $(DIR_O)
-	@$(MAKE) all -j 8
-
 delimg: fclean
 	@rm -rf $(IMG_DIR)
 
 re: fclean
-	@$(MAKE) all -j 8
+	@$(MAKE) all -j
 
 .PHONY: all, temporary, norme, clean, fclean, re
