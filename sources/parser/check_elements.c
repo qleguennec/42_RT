@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:19:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 17:09:42 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 20:03:36 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ int			check_camera(t_rt *rt, short i)
 		return (error(rt, 25));
 	if (!rt->prs->obj_tmp->n)
 		rt->prs->obj_tmp->n =
-		ft_strjoin("Camera ", ft_itoa(i), 'R');
-	if (rt->prs->obj_tmp->fl < 18 ||
-	rt->prs->obj_tmp->fl > 200)
+		(cl_char *)ft_strjoin("Camera ", ft_itoa(i), 'R');
+	if (rt->prs->obj_tmp->focal < 18 ||
+	rt->prs->obj_tmp->focal > 200)
 		return (error(rt, 16));
-	rt->prs->obj_tmp->e = 1;
-	rt->prs->obj_tmp->t = 'C';
+	rt->prs->obj_tmp->type = 'C';
 	rt->scn->o = lst_new_camera(rt, rt->scn->o, 1);
 	rt->prs->i += 9;
 	return (1);
@@ -53,17 +52,16 @@ int			check_light(t_rt *rt, short i)
 	(void)i;
 	if (rt->prs->obj_tmp->pos.x != rt->prs->obj_tmp->pos.x)
 		return (error(rt, 26));
-	if (rt->prs->obj_tmp->rgb.x != rt->prs->obj_tmp->rgb.x)
+	if (rt->prs->obj_tmp->clr.x != rt->prs->obj_tmp->clr.x)
 	{
-		rt->prs->obj_tmp->rgb.x = 255.0;
-		rt->prs->obj_tmp->rgb.y = 255.0;
-		rt->prs->obj_tmp->rgb.z = 255.0;
+		rt->prs->obj_tmp->clr.x = 255.0;
+		rt->prs->obj_tmp->clr.y = 255.0;
+		rt->prs->obj_tmp->clr.z = 255.0;
 	}
 	if (!rt->prs->obj_tmp->n)
 		rt->prs->obj_tmp->n =
-		ft_strjoin("Light ", ft_itoa(i), 'R');
-	rt->prs->obj_tmp->e = 1;
-	rt->prs->obj_tmp->t = 'L';
+		(cl_char *)ft_strjoin("Light ", ft_itoa(i), 'R');
+	rt->prs->obj_tmp->type = 'L';
 	rt->scn->o = lst_new_light(rt, rt->scn->o, 1);
 	rt->prs->i += 8;
 	return (1);
@@ -74,39 +72,36 @@ static void	add_name_object(t_rt *rt)
 	char	*tmp;
 
 	tmp = NULL;
-	++rt->scn->t[(int)rt->prs->obj_tmp->ot];
-	tmp = ft_itoa(rt->scn->t[(int)rt->prs->obj_tmp->ot]);
-	if (rt->prs->obj_tmp->ot == 1)
-		rt->prs->obj_tmp->n = ft_strjoin("Plane ", tmp, 'R');
+	++rt->scn->t[0];
+	tmp = ft_itoa(rt->scn->t[0]);
+	/*if (rt->prs->obj_tmp->ot == 1)
+		rt->prs->obj_tmp->n = (cl_char *)ft_strjoin("Plane ", tmp, 'R');
 	else if (rt->prs->obj_tmp->ot == 2)
-		rt->prs->obj_tmp->n = ft_strjoin("Sphere ", tmp, 'R');
+		rt->prs->obj_tmp->n = (cl_char *)ft_strjoin("Sphere ", tmp, 'R');
 	else if (rt->prs->obj_tmp->ot == 3)
-		rt->prs->obj_tmp->n = ft_strjoin("Cube ", tmp, 'R');
+		rt->prs->obj_tmp->n = (cl_char *)ft_strjoin("Cube ", tmp, 'R');
 	else if (rt->prs->obj_tmp->ot == 4)
-		rt->prs->obj_tmp->n = ft_strjoin("Cylinder ", tmp, 'R');
-	else if (rt->prs->obj_tmp->ot == 5)
-		rt->prs->obj_tmp->n = ft_strjoin("Cone ", tmp, 'R');
+		rt->prs->obj_tmp->n = (cl_char *)ft_strjoin("Cylinder ", tmp, 'R');
+	else if (rt->prs->obj_tmp->ot == 5)*/
+		rt->prs->obj_tmp->n = (cl_char *)ft_strjoin("Cone ", tmp, 'R');
 }
 
 int			check_object(t_rt *rt)
 {
 	if (rt->prs->obj_tmp->pos.x != rt->prs->obj_tmp->pos.x)
 		return (error(rt, 27));
-	if (rt->prs->obj_tmp->rgb.x != rt->prs->obj_tmp->rgb.x)
+	if (rt->prs->obj_tmp->clr.x != rt->prs->obj_tmp->clr.x)
 	{
-		rt->prs->obj_tmp->rgb.x = 255.0;
-		rt->prs->obj_tmp->rgb.y = 255.0;
-		rt->prs->obj_tmp->rgb.z = 255.0;
+		rt->prs->obj_tmp->clr.x = 255.0;
+		rt->prs->obj_tmp->clr.y = 255.0;
+		rt->prs->obj_tmp->clr.z = 255.0;
 	}
-	if (rt->prs->obj_tmp->ot == -1)
-		return (error(rt, 28));
-	if (rt->prs->obj_tmp->op < 0. ||
-	rt->prs->obj_tmp->op > 1.)
+	if (rt->prs->obj_tmp->opacity < 0. ||
+	rt->prs->obj_tmp->opacity > 1.)
 		return (error(rt, 23));
 	if (!rt->prs->obj_tmp->n)
 		add_name_object(rt);
-	rt->prs->obj_tmp->e = 1;
-	rt->prs->obj_tmp->t = 'O';
+	rt->prs->obj_tmp->type = 'O';
 	rt->scn->o = lst_new_object(rt, rt->scn->o, 1);
 	rt->prs->i += 9;
 	return (1);

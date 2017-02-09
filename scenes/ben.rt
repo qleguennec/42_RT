@@ -11,7 +11,7 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	//<focal>60</focal>
+	<focal>60</focal>
 	<position>12. 15. 14.</position>
 	<rotation>45. 175. 20.</rotation>
 </camera>
@@ -33,6 +33,6 @@
 	<rotation>0. 175. 20.</rotation>
 	<color-hex>0xFFFFFF </color-hex>
 	//<opacity>0.4</opacity>
-	<material>PhOnG</material>
+	//<material>PhOnG</material>
 	<type>sphere      </type>
 </object>

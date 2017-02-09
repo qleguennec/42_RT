@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:56:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/08 14:00:49 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 19:54:09 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ void		add_new_element(t_rt *rt, char type)
 	if (type == 'C')
 	{
 		rt->prs->obj_tmp->n =
-		ft_strjoin("Camera ", ft_itoa(rt->scn->n_cams), 'R');
+		(cl_char *)ft_strjoin("Camera ", ft_itoa(rt->scn->n_cams), 'R');
 		rt->scn->o = lst_new_camera(rt, rt->scn->o, 1);
 	}
 	else if (type == 'L')
 	{
 		rt->prs->obj_tmp->n =
-		ft_strjoin("Light ", ft_itoa(rt->scn->n_lgts), 'R');
+		(cl_char *)ft_strjoin("Light ", ft_itoa(rt->scn->n_lgts), 'R');
 		rt->scn->o = lst_new_light(rt, rt->scn->o, 1);
 	}
 	else if (type == 'O')
 	{
 		rt->prs->obj_tmp->n =
-		ft_strjoin("Object ", ft_itoa(rt->scn->n_objs), 'R');
+		(cl_char *)ft_strjoin("Object ", ft_itoa(rt->scn->n_objs), 'R');
 		rt->scn->o = lst_new_object(rt, rt->scn->o, 1);
 	}
 	rt->ui->area[4].h += 29;
