@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:42:55 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/02 19:32:27 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 13:29:05 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		handle_left_click_down(t_rt *rt)
 
 void		handle_right_click_down(t_rt *rt)
 {
-	if (rt->ui->c_down != -1 || rt->ui->c_hover == -1 ||
+	if (rt->ui->c_down != -1 || rt->ui->c_hover < 0 ||
 	rt->ui->c_elem->t == 'C')
 		return ;
 	rt->n_info = -2;

@@ -6,7 +6,8 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 14:22:54 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/09 14:31:57 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/09 13:31:14 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +32,13 @@
 # define BZERO(a)		ft_bzero(&a, sizeof(a))
 # define MEMCHR(a, b)	ft_memchr((a), (b), sizeof(a) - 1)
 # define VSPLIT(v, x)	ft_nsplit((v).data, (v).used, x, sizeof(x) - 1)
+
+typedef struct	s_vec3
+{
+	double		x;
+	double		y;
+	double		z;
+}				t_vec3;
 
 char			*ft_name(char *file, char *extension);
 
