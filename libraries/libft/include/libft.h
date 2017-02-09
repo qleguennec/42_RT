@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 14:31:57 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/09 14:35:51 by qle-guen         ###   ########.fr       */
 /*   Updated: 2017/02/09 13:31:14 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -56,7 +56,7 @@ char			*ft_edit_end(char *s1, char *s2);
 
 int				ft_checkstr(char *s1, char *s2);
 
-void			*ft_memcpy(void *dst, void *src, size_t len);
+void			*ft_memcpy(void *dst, const void *src, size_t len);
 
 void			*ft_memmove(void *dst, void *src, size_t len);
 
@@ -137,5 +137,8 @@ char			*comment(char *comment);
 
 unsigned char	**ft_nsplit(void *s, size_t n1, void *match, size_t n2);
 unsigned char	*ft_word(void **p, size_t *n1, void *match, size_t n2);
+
+int				vc(t_vec3 *vec1, t_vec3 vec2);
+int				h(t_vec3 *vec, unsigned hex);
 
 #endif
