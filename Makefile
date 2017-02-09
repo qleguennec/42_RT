@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/09 15:50:27 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/09 15:56:38 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ C			= clang
 
 NAME		= rt
 
-FLAGS		= -Wall -Wextra -Werror
+FLAGS		= -Wall -Wextra -Werror -O2
 
 OPENCL_F	= -framework OpenCL
 
@@ -96,7 +96,7 @@ SRCS		= $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS		= $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
 opti:
-	@$(MAKE) all
+	@$(MAKE) all -j
 
 all: temporary $(NAME)
 
@@ -146,14 +146,10 @@ fclean: clean
 	@make fclean -C $(LIBGNL)
 	@make fclean -C $(LIBCL)
 
-rs: 
-	@rm -rf $(DIR_O)
-	@$(MAKE) all -j 8
-
 delimg: fclean
 	@rm -rf $(IMG_DIR)
 
 re: fclean
-	@$(MAKE) all -j 8
+	@$(MAKE) all -j
 
 .PHONY: all, temporary, norme, clean, fclean, re
