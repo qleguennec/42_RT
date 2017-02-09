@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   vect_str_push.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 09:57:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/06/28 15:40:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2016/06/17 10:58:12 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/09 13:49:14 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libvect.h"
 #include "libft.h"
 
-void		ft_bzero
-	(void *s, size_t n)
+int			vect_str_push
+	(t_vect *v, char *s, size_t n)
 {
-	ft_memset(s, 0, n);
+	return (vect_push(v, s, ft_strlen(s), n));
 }

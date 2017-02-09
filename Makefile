@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/02/09 12:46:41 by lgatibel         ###   ########.fr        #
+#    Updated: 2017/02/09 16:01:33 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ C			= clang
 
 NAME		= rt
 
-FLAGS		= -Wall -Wextra -Werror
+FLAGS		= -Wall -Wextra -Werror -O2
 
 OPENCL_F	= -framework OpenCL
 
@@ -31,6 +31,12 @@ SDL2_IMG_I	= -I ./frameworks/SDL2_image.framework/Headers
 FSDL		= libraries/fsdl
 
 LIBFT		= libraries/libft
+
+LIBGNL		= libraries/libgnl
+
+LIBVECT		= libraries/libvect
+
+LIBCL		= libraries/libcl
 
 DIR_S		= sources
 
@@ -81,13 +87,16 @@ SRCS		= $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS		= $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
 opti:
-	@$(MAKE) all
+	@$(MAKE) all -j
 
 all: temporary $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C $(FSDL)
 	@make -C $(LIBFT)
+	@make -C $(LIBVECT)
+	@make -C $(LIBGNL)
+	@make -C $(LIBCL)
 	@$(CC) $(FLAGS) -L $(LIBFT) -lft -L $(FSDL) -lfsdl -lpthread -o $@ $^ $(OPENCL_F) $(SDL2_P) $(SDL2_F) $(SDL2_I) $(SDL2_TTF_I) $(SDL2_IMG_I)
 
 temporary: $(BUILD_DIR)
@@ -100,6 +109,9 @@ $(DIR_O)/%.o: $(DIR_S)/%.c $(HEADER)/$(NAME).h
 
 norme:
 	@make norme -C $(LIBFT)
+	@make norme -C $(LIBVECT)
+	@make norme -C $(LIBGNL)
+	@make norme -C $(LIBCL)
 	@echo
 	norminette ./$(HEADER)
 	@echo
@@ -109,21 +121,23 @@ clean:
 	@rm -f $(OBJS)
 	@make clean -C $(FSDL)
 	@make clean -C $(LIBFT)
+	@make clean -C $(LIBVECT)
+	@make clean -C $(LIBGNL)
+	@make clean -C $(LIBCL)
 	@rm -rf $(DIR_O)
 
 fclean: clean
 	@rm -f $(NAME)
 	@make fclean -C $(FSDL)
 	@make fclean -C $(LIBFT)
-
-rs: 
-	@rm -rf $(DIR_O)
-	@$(MAKE) all -j 8
+	@make fclean -C $(LIBVECT)
+	@make fclean -C $(LIBGNL)
+	@make fclean -C $(LIBCL)
 
 delimg: fclean
 	@rm -rf $(IMG_DIR)
 
 re: fclean
-	@$(MAKE) all -j 8
+	@$(MAKE) all -j
 
 .PHONY: all, temporary, norme, clean, fclean, re

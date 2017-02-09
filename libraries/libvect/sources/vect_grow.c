@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   vect_grow.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 09:57:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/06/28 15:40:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2016/06/16 23:04:21 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/09 13:47:56 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libvect.h"
+#include "malloc.h"
 #include "libft.h"
 
-void		ft_bzero
-	(void *s, size_t n)
+int			vect_grow
+	(t_vect *v, size_t n)
 {
-	ft_memset(s, 0, n);
+	void	*new;
+	size_t	new_total;
+
+	new_total = v->total * GROWTH_FACTOR * n;
+	MALLOC(new, new_total);
+	ft_memcpy(new, v->data, v->used);
+	free(v->data);
+	v->data = new;
+	v->total = new_total;
+	return (1);
 }

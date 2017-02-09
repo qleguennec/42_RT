@@ -6,13 +6,13 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:35:47 by bsouchet          #+#    #+#             */
-/*   Updated: 2016/11/19 02:41:54 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 14:36:38 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, void *src, size_t len)
+void	*ft_memcpy(void *dst, const void *src, size_t len)
 {
 	size_t	i;
 

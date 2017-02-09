@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   cl_write.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 09:57:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/06/28 15:40:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2016/12/03 01:14:42 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/09 07:19:10 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libcl.h"
 
-void		ft_bzero
-	(void *s, size_t n)
+cl_int
+	cl_write
+	(t_cl_info *cl
+	, cl_mem mem
+	, size_t size
+	, void *data)
 {
-	ft_memset(s, 0, n);
+	return (clEnqueueWriteBuffer(cl->cmd_queue
+		, mem
+		, CL_TRUE
+		, 0
+		, size
+		, data
+		, 0
+		, NULL
+		, NULL));
 }

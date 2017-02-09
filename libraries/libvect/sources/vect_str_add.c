@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   vect_str_add.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 09:57:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/06/28 15:40:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2016/06/17 11:00:19 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/09 13:46:38 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libvect.h"
 #include "libft.h"
 
-void		ft_bzero
-	(void *s, size_t n)
+int			vect_str_add
+	(t_vect *v, char *s)
 {
-	ft_memset(s, 0, n);
+	return (vect_add(v, s, ft_strlen(s)));
 }

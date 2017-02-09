@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   vect_wrap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 09:57:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/06/28 15:40:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2016/06/17 20:51:02 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/09 14:01:33 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libvect.h"
 #include "libft.h"
+#include "malloc.h"
 
-void		ft_bzero
-	(void *s, size_t n)
+t_vect			*vect_wrap
+	(void *data, size_t size)
 {
-	ft_memset(s, 0, n);
+	t_vect		*ret;
+
+	MALLOC1_ZERO(ret);
+	ret->total = size;
+	ret->used = size;
+	ret->data = data;
+	return (ret);
 }

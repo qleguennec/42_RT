@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
-#    Updated: 2017/02/02 18:36:53 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/02/09 15:59:22 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,12 @@ SOURCES = ft_atoi.c \
 		  ft_atof.c \
 		  ft_shtoi.c \
 		  ft_ftoa.c \
+		  ft_mempcpy.c \
+		  ft_memset.c \
+		  ft_short_bzero.c \
+		  ft_memchr.c \
+		  ft_nsplit.c \
+		  ft_word.c \
 		  ft_comment.c \
 		  ft_bzero.c \
 		  ft_itoa.c \
@@ -88,6 +94,9 @@ SUB_FOLDERS	= gnl ft_printf
 
 BUILD_DIR = $(addprefix $(DIR_O)/,$(SUB_FOLDERS))
 
+opti:
+	@$(MAKE) all -j 8
+
 all: temporary $(NAME)
 
 $(NAME): $(OBJS)
@@ -114,4 +123,4 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 
-re: fclean all
+re: fclean all -j 8

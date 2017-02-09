@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   cl_krl_exec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 09:57:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/06/28 15:40:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2016/12/03 02:06:54 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/09 14:23:07 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libcl.h"
+#include "malloc.h"
 
-void		ft_bzero
-	(void *s, size_t n)
+cl_int
+	cl_krl_exec
+	(t_cl_info *cl
+	, cl_kernel krl
+	, cl_uint work_dim
+	, size_t *work_size)
 {
-	ft_memset(s, 0, n);
+	return (clEnqueueNDRangeKernel(cl->cmd_queue
+		, krl, work_dim, NULL, work_size, NULL, 0, NULL, NULL));
 }

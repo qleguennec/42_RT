@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   vect_memmem.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 09:57:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/06/28 15:40:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2016/12/23 01:50:30 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/06 10:42:45 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libvect.h"
 
-void		ft_bzero
-	(void *s, size_t n)
+void	*vect_memmem(t_vect *a, unsigned char *s, size_t n)
 {
-	ft_memset(s, 0, n);
+	size_t				i;
+	unsigned char		*s1;
+
+	s1 = a->data;
+	while ((void *)s1 + n < a->data + a->used)
+	{
+		i = 0;
+		while (i < n && s1[i] == s[i])
+			i++;
+		if (i == n)
+			return (s1);
+		s1++;
+		s++;
+	}
+	return (NULL);
 }

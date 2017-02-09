@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   vect_new.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 09:57:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/06/28 15:40:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2016/11/27 14:52:14 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/09 13:47:43 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libvect.h"
+#include "malloc.h"
 
-void		ft_bzero
-	(void *s, size_t n)
+t_vect		*vect_new(void *data, size_t size)
 {
-	ft_memset(s, 0, n);
+	t_vect	*ret;
+
+	MALLOC1(ret);
+	vect_init(ret);
+	vect_add(ret, data, size);
+	return (ret);
 }

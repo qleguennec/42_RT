@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 09:57:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/06/28 15:40:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2015/11/25 14:45:27 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/01/16 15:50:16 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_bzero
-	(void *s, size_t n)
+void		*ft_memchr(const void *s, int c, size_t n)
 {
-	ft_memset(s, 0, n);
+	unsigned char	*p;
+	size_t			i;
+
+	p = (unsigned char *)s;
+	c = (unsigned char)c;
+	i = 0;
+	while (i < n)
+	{
+		if (p[i] == c)
+			return (p + i);
+		i++;
+	}
+	return (NULL);
 }

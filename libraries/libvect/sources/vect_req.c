@@ -1,19 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   vect_req.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 09:57:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/06/28 15:40:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2016/06/25 18:40:10 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/09 13:49:24 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libvect.h"
+#include "malloc.h"
 
-void		ft_bzero
-	(void *s, size_t n)
+int			vect_req
+	(t_vect *v, size_t size)
 {
-	ft_memset(s, 0, n);
+	size_t	n;
+
+	if (!v->total)
+	{
+		MALLOC(v->data, size);
+		v->total = size;
+		v->used = 0;
+	}
+	if (v->total >= v->used + size)
+		return (1);
+	if (v->total == 1)
+		v->total++;
+	n = 1;
+	while (v->total * n * GROWTH_FACTOR < v->used + size)
+		n++;
+	return (vect_grow(v, size));
 }

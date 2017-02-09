@@ -6,9 +6,10 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 13:31:14 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 16:32:14 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -28,13 +29,16 @@
 
 # define AO 0x000000
 
+# define BZERO(a)		ft_bzero(&a, sizeof(a))
+# define MEMCHR(a, b)	ft_memchr((a), (b), sizeof(a) - 1)
+# define VSPLIT(v, x)	ft_nsplit((v).data, (v).used, x, sizeof(x) - 1)
+
 typedef struct	s_vec3
 {
 	double		x;
 	double		y;
 	double		z;
 }				t_vec3;
-
 
 char			*ft_name(char *file, char *extension);
 
@@ -44,7 +48,7 @@ char			*ft_itoa(int n);
 
 unsigned int	ft_shtoi(const char *s);
 
-char			*ft_bzero(char *str, short size);
+void			ft_bzero(void *s, size_t n);
 
 short			*ft_short_bzero(short *array, short size);
 
@@ -52,9 +56,15 @@ char			*ft_edit_end(char *s1, char *s2);
 
 int				ft_checkstr(char *s1, char *s2);
 
-void			*ft_memcpy(void *dst, void *src, size_t len);
+void			*ft_memcpy(void *dst, const void *src, size_t len);
 
 void			*ft_memmove(void *dst, void *src, size_t len);
+
+void			*ft_memset(void *s, int c, size_t n);
+
+void			*ft_mempcpy(void *dest, const void *src, size_t len);
+
+void			*ft_memchr(const void *s, int c, size_t n);
 
 char			*ft_strchr(char *str, int c);
 
@@ -98,10 +108,6 @@ int				d(double *elem1, double elem2);
 
 int				s(char **elem1, char *elem2);
 
-int				vc(t_vec3 *vec1, t_vec3 vec2);
-
-int				h(t_vec3 *vec, unsigned hex);
-
 void			ft_putshort(short num);
 
 void			ft_putint(int num);
@@ -128,5 +134,11 @@ void			ft_putstr_fd(char const *str, int fd);
 void			ft_putendl_fd(char const *str, int fd);
 
 char			*comment(char *comment);
+
+unsigned char	**ft_nsplit(void *s, size_t n1, void *match, size_t n2);
+unsigned char	*ft_word(void **p, size_t *n1, void *match, size_t n2);
+
+int				vc(t_vec3 *vec1, t_vec3 vec2);
+int				h(t_vec3 *vec, unsigned hex);
 
 #endif

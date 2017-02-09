@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   vect_del.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 09:57:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/06/28 15:40:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2016/06/16 23:16:46 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/09 13:43:35 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libvect.h"
 #include "libft.h"
 
-void		ft_bzero
-	(void *s, size_t n)
+void		vect_del
+	(t_vect *v)
 {
-	ft_memset(s, 0, n);
+	if (!v)
+		return ;
+	if (v->total)
+		free(v->data);
+	free(v);
 }
