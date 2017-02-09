@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/09 14:21:17 by qle-guen         ###   ########.fr       *#
+#    Updated: 2017/02/09 15:59:36 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRCS		= $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS		= $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
 opti:
-	@$(MAKE) all -j
+	@$(MAKE) all -j 8
 
 all: $(NAME)
 
@@ -59,9 +59,9 @@ $(DIR_O)/%.o: $(DIR_S)/%.c
 	@$(CC) $(FLAGS) $(addprefix -I, $(HEADER)) -o $@ -c $<
 
 norme:
-	norminette ../fsdl/$(HEADER)
+	norminette ../libvect/$(HEADER)
 	@echo
-	norminette ../fsdl/$(DIR_S)
+	norminette ../libvect/$(DIR_S)
 
 clean:
 	@rm -f $(OBJS)
@@ -70,4 +70,4 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 
-re: fclean all
+re: fclean all -j 8
