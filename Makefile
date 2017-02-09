@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/09 14:25:37 by qle-guen         ###   ########.fr       *#
+#    Updated: 2017/02/09 15:14:11 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ C			= clang
 
 NAME		= rt
 
-FLAGS		= -Wall -Wextra -Werror
+FLAGS		= -Wall -Wextra -Werror -O2
 
 OPENCL_F	= -framework OpenCL
 
@@ -86,7 +86,7 @@ SRCS		= $(addprefix $(DIR_S)/,$(SOURCES))
 
 OBJS		= $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
-opti:
+opti: -j 8
 	@$(MAKE) all
 
 all: temporary $(NAME)

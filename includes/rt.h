@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 13:29:42 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 15:13:42 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,28 +268,6 @@ typedef	struct		s_obj
 }					t_obj;
 
 /*
-** ---------------------------- Multithreading ---------------------------------
-*/
-
-typedef struct		s_tharg
-{
-	t_rt			*rt;
-	t_scene			*scn;
-	int				*i;
-	int				*j;
-	int				*s;
-	t_vec3			***tab;
-}					t_tharg;
-
-typedef struct		s_thread
-{
-	pthread_t		thread;
-	pthread_attr_t	attr;
-	t_tharg			arg;
-	struct s_thread	*next;
-}					t_thread;
-
-/*
 ** -------------------------- Global Structures --------------------------------
 */
 
@@ -492,8 +470,6 @@ int					create_window(t_rt *rt);
 void				render_frame(t_rt *rt);
 void				render_loop(t_rt *rt);
 
-void				thread_render(t_tharg *arg);
-
 /*
 ** -----------------------------------------------------------------------------
 ** -------------------------------- Handle -------------------------------------
@@ -555,19 +531,8 @@ void				handle_motion_mouse(t_rt *rt);
 void				handle_keyboard(t_rt *rt);
 
 /*
-** -------------------------- Handle Multithread -------------------------------
-*/
-
-void				set_thread(t_thread *t, t_rt *rt, int *i, int *j, int *s);
-char				join_thread(t_thread *t);
-char				destroy_thread_attr(t_thread *t);
-
-/*
 ** ------------------------- Handle Linked Lints -------------------------------
 */
-
-t_iter				*lst_new_iter(t_iter **iter, int i, int x, int y);
-t_thread			*lst_new_thread(t_thread **thread);
 
 t_obj				*lst_new_camera(t_rt *rt, t_obj *objs, int type);
 t_obj				*lst_new_light(t_rt *rt, t_obj *objs, int type);
