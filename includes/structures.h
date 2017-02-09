@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 15:46:46 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 17:49:48 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef	struct		s_obj
 	t_vec3			rgb;
 	struct s_obj	*next;
 }					t_obj;
+
 
 /*
 ** -------------------------- Global Structures --------------------------------

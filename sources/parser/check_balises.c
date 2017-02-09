@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 22:15:26 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/01/09 09:39:03 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 17:09:45 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int			check_balises(t_rt *rt, char *b_o, char *b_c)
 	(rt->prs->buf[tmp] == 32 || rt->prs->buf[tmp] == 9))
 		tmp++;
 	if (rt->prs->buf[end] == 0 && (rt->prs->b_c = b_c))
-		return (error(rt, 7, 2));
+		return (error(rt, 7));
 	if ((rt->prs->i == end || end == tmp) && s(&rt->prs->b_o, b_o) &&
 	(rt->prs->b_c = b_c))
-		return (error(rt, 9, 2));
+		return (error(rt, 9));
 	return (end);
 }

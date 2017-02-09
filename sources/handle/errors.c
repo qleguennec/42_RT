@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_errors.c                                    :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:58:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/01/07 23:18:40 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 17:09:33 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,10 @@ void		init_errors(t_rt *r, int i)
 }
 
 /*
-** Function to free all malloced elements
-*/
-
-static int	error_free(t_rt *rt, int f)
-{
-	(void)rt;
-	(void)f;
-	return (-1);
-}
-
-/*
 ** Function to call and print the error associated with the number (int)t
 */
 
-int			error(t_rt *rt, int t, int f)
+int			error(t_rt *rt, int t)
 {
 	char	*s;
 
@@ -72,5 +61,6 @@ int			error(t_rt *rt, int t, int f)
 	(s) ? write(2, s, ft_strlen(s)) : 1;
 	if (s)
 		free(s);
-	return (error_free(rt, f));
+	exit(1);
+	return (1);
 }

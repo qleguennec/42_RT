@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 18:29:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/01/30 16:58:02 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 17:09:37 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			get_d(t_rt *rt, int b_end, char *st, char *e)
 		rt->prs->i++;
 	if ((start == end || rt->prs->i != b_end || rt->prs->t_i > 1) &&
 	(rt->prs->b_o = st) && s(&rt->prs->b_c, e))
-		return (error(rt, 14, 2) + 1);
+		return (error(rt, 14) + 1);
 	rt->prs->t_d = ft_atof(rt->prs->buf, start);
 	rt->prs->i = b_end + ft_strlen(e);
 	return (1);
@@ -69,7 +69,7 @@ int			get_i(t_rt *rt, int b_end, char *st, char *e)
 		rt->prs->i++;
 	if ((start == end || rt->prs->i != b_end) && s(&rt->prs->b_o, st) &&
 	s(&rt->prs->b_c, e))
-		return (error(rt, 14, 2) + 1);
+		return (error(rt, 14) + 1);
 	rt->prs->t_i = ft_atoi(rt->prs->buf, start);
 	rt->prs->i = b_end + ft_strlen(e);
 	return (1);
@@ -105,7 +105,7 @@ int			get_v(t_rt *rt, int b_e, char *st, char *e)
 			rt->prs->i++;
 		if ((z == end || rt->prs->t_i > 1) && s(&rt->prs->b_o, st) &&
 		s(&rt->prs->b_c, e))
-			return (error(rt, 14, 2) + 1);
+			return (error(rt, 14) + 1);
 		if (p == 0)
 			rt->prs->vec.x = ft_atof(rt->prs->buf, z);
 		else if (p == 1)
@@ -116,7 +116,7 @@ int			get_v(t_rt *rt, int b_e, char *st, char *e)
 	}
 	if ((rt->prs->i != b_e || p != 3) && s(&rt->prs->b_o, st) &&
 	s(&rt->prs->b_c, e))
-		return (error(rt, 14, 2) + 1);
+		return (error(rt, 14) + 1);
 	rt->prs->i = b_e + ft_strlen(e);
 	return (1);
 }
@@ -147,7 +147,7 @@ int			get_h(t_rt *rt, int b_end, char *st, char *e)
 		i++;
 	if ((str[i] != 0 || k != 6) && s(&rt->prs->b_o, st) &&
 	s(&rt->prs->b_c, e))
-		return (error(rt, 14, 2) + 1);
+		return (error(rt, 14) + 1);
 	rt->prs->t_u = ft_shtoi(str + j);
 	free(str);
 	rt->prs->i = b_end + ft_strlen(e);
@@ -175,7 +175,7 @@ int			get_b(t_rt *rt, int b_end, char *st, char *e)
 	free(str);
 	if ((rt->prs->t_i == -1) && s(&rt->prs->b_o, st) &&
 	s(&rt->prs->b_c, e))
-		return (error(rt, 14, 2) + 1);
+		return (error(rt, 14) + 1);
 	rt->prs->i = b_end + ft_strlen(e);
 	return (1);
 }

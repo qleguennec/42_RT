@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 02:06:16 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/02 18:19:56 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 17:09:48 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			set_scene(t_rt *rt, int b_end, int e)
 			i(&rt->scn->m_ref, rt->prs->t_i) : (e = -1);
 		else if (e > -1 && (rt->prs->b_o = BO_S) &&
 		(rt->prs->b_c = BC_S))
-			return (error(rt, 10, 2));
+			return (error(rt, 10));
 	}
 	return ((e != -1) ? check_scene(rt) : e);
 }
@@ -60,7 +60,7 @@ static int	add_element_parameters(t_rt *rt, int e, char type)
 		(rt->prs->obj_tmp->m = rt->prs->t_i) : i(&e, -1);
 	else if (e > -1 && (rt->prs->b_o = BO_C) &&
 	(rt->prs->b_c = BC_C))
-		return (error(rt, 10, 2));
+		return (error(rt, 10));
 	return (e);
 }
 
@@ -95,11 +95,11 @@ static int	add_global_parameters(t_rt *rt, int b_end, int e, char type)
 int			add_element(t_rt *rt, int b_end, int e, char type)
 {
 	if (type == 'C' && rt->scn->n_cams == N_CAMS)
-		e = error(rt, 20, 2);
+		e = error(rt, 20);
 	else if (type == 'L' && rt->scn->n_lgts == N_LGTS)
-		e = error(rt, 21, 2);
+		e = error(rt, 21);
 	else if (type == 'O' && rt->scn->n_objs == N_OBJS)
-		e = error(rt, 22, 2);
+		e = error(rt, 22);
 	rt->prs->obj_tmp = assign_default_obj_values(rt->prs->obj_tmp, type, 0);
 	if (e != -1 && add_global_parameters(rt, b_end, 0, type) != -1)
 	{

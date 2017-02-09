@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:19:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/01/30 16:52:06 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 17:09:42 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 int			check_scene(t_rt *rt)
 {
 	if (rt->scn->ambient < 0. || rt->scn->ambient > 1.)
-		return (error(rt, 11, 2));
+		return (error(rt, 11));
 	if (rt->scn->aa != 0 && rt->scn->aa != 2 && rt->scn->aa != 4
 		&& rt->scn->aa != 8 && rt->scn->aa != 16)
-		return (error(rt, 12, 2));
+		return (error(rt, 12));
 	if (rt->scn->m_ref < 0 || rt->scn->m_ref > 10)
-		return (error(rt, 13, 2));
+		return (error(rt, 13));
 	rt->prs->i += 8;
 	return (1);
 }
@@ -32,15 +32,15 @@ int			check_scene(t_rt *rt)
 int			check_camera(t_rt *rt, short i)
 {
 	if (rt->prs->obj_tmp->pos.x != rt->prs->obj_tmp->pos.x)
-		return (error(rt, 24, 2));
+		return (error(rt, 24));
 	if (rt->prs->obj_tmp->rot.x != rt->prs->obj_tmp->rot.x)
-		return (error(rt, 25, 2));
+		return (error(rt, 25));
 	if (!rt->prs->obj_tmp->n)
 		rt->prs->obj_tmp->n =
 		ft_strjoin("Camera ", ft_itoa(i), 'R');
 	if (rt->prs->obj_tmp->fl < 18 ||
 	rt->prs->obj_tmp->fl > 200)
-		return (error(rt, 16, 2));
+		return (error(rt, 16));
 	rt->prs->obj_tmp->e = 1;
 	rt->prs->obj_tmp->t = 'C';
 	rt->scn->o = lst_new_camera(rt, rt->scn->o, 1);
@@ -52,7 +52,7 @@ int			check_light(t_rt *rt, short i)
 {
 	(void)i;
 	if (rt->prs->obj_tmp->pos.x != rt->prs->obj_tmp->pos.x)
-		return (error(rt, 26, 2));
+		return (error(rt, 26));
 	if (rt->prs->obj_tmp->rgb.x != rt->prs->obj_tmp->rgb.x)
 	{
 		rt->prs->obj_tmp->rgb.x = 255.0;
@@ -91,7 +91,7 @@ static void	add_name_object(t_rt *rt)
 int			check_object(t_rt *rt)
 {
 	if (rt->prs->obj_tmp->pos.x != rt->prs->obj_tmp->pos.x)
-		return (error(rt, 27, 2));
+		return (error(rt, 27));
 	if (rt->prs->obj_tmp->rgb.x != rt->prs->obj_tmp->rgb.x)
 	{
 		rt->prs->obj_tmp->rgb.x = 255.0;
@@ -99,10 +99,10 @@ int			check_object(t_rt *rt)
 		rt->prs->obj_tmp->rgb.z = 255.0;
 	}
 	if (rt->prs->obj_tmp->ot == -1)
-		return (error(rt, 28, 2));
+		return (error(rt, 28));
 	if (rt->prs->obj_tmp->op < 0. ||
 	rt->prs->obj_tmp->op > 1.)
-		return (error(rt, 23, 2));
+		return (error(rt, 23));
 	if (!rt->prs->obj_tmp->n)
 		add_name_object(rt);
 	rt->prs->obj_tmp->e = 1;

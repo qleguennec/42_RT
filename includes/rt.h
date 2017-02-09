@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 15:44:08 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 17:09:30 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ t_obj				*lst_new_object(t_rt *rt, t_obj *objs, int type);
 */
 
 void				init_errors(t_rt *r, int i);
-int					error(t_rt *rt, int t, int f);
+int					error(t_rt *rt, int t);
 
 /*
 ** --------------------------- Handle Info Bar ---------------------------------
