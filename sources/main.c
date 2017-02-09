@@ -6,11 +6,12 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/01/29 13:56:47 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 15:31:01 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "cl.h"
 
 static int	check(t_rt *rt, int end)
 {
@@ -62,7 +63,9 @@ static int	execute(t_rt *rt, int fd)
 int			main(int ac, char **av)
 {
 	t_rt	*rt;
+	t_cl	cl;
 
+	rt_cl_init(&cl);
 	if (!(rt = (t_rt *)malloc(sizeof(t_rt))))
 		return (error(rt, 0, 0));
 	init_errors(rt, 0);

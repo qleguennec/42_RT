@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 14:35:51 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/09 15:45:51 by qle-guen         ###   ########.fr       */
 /*   Updated: 2017/02/09 13:31:14 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -21,6 +21,10 @@
 # include <errno.h>
 # include <math.h>
 
+# include <stdbool.h>
+
+# include "types.h"
+
 # include "ft_printf.h"
 
 # define BUFF_SIZE 1
@@ -32,6 +36,11 @@
 # define BZERO(a)		ft_bzero(&a, sizeof(a))
 # define MEMCHR(a, b)	ft_memchr((a), (b), sizeof(a) - 1)
 # define VSPLIT(v, x)	ft_nsplit((v).data, (v).used, x, sizeof(x) - 1)
+# define STRTOB10(s, x)	fmt_atoi(s, (unsigned long *)&x, 10, 0)
+
+# define MIN(a,b)	((a <= b) ? a : b)
+# define MAX(a,b)	((a > b) ? a : b)
+# define ABS(x)		(((x) < 0) ? (-x) : (x))
 
 typedef struct	s_vec3
 {
