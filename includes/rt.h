@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/08 16:34:18 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 13:29:42 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 # include "../libraries/fsdl/include/fsdl.h"
 # include "../libraries/libft/include/libft.h"
-# include "../libraries/libvec/include/libvec.h"
 
 # include "../frameworks/SDL2.framework/headers/SDL.h"
 # include "../frameworks/SDL2_ttf.framework/headers/SDL_ttf.h"

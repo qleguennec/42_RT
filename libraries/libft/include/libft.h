@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/02 18:14:52 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 13:31:14 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,20 @@
 # include <math.h>
 
 # include "ft_printf.h"
-# include "../../libvec/include/libvec.h"
 
 # define BUFF_SIZE 1
 
 # define D (double)
 
 # define AO 0x000000
+
+typedef struct	s_vec3
+{
+	double		x;
+	double		y;
+	double		z;
+}				t_vec3;
+
 
 char			*ft_name(char *file, char *extension);
 
