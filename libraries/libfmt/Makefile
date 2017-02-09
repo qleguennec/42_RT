@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/09 15:46:02 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/09 16:42:04 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,9 @@ SOURCES		= fmt_int.c \
 	fmt_int_sign_64.c \
 	fmt_int_unsign.c \
 	fmt_print.c \
-	fmt_vect.c
+	fmt_vect.c \
+	fmt_fmt.c \
+	fmt_atoi.c
 
 SUB_FOLDERS	=
 

@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/09 15:56:38 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/09 16:55:15 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ DIR_O		= temporary
 
 IMG_DIR		= saved_images
 
-HEADER		= includes \
+HEADER		= include \
 		  libraries/libft/include \
 		  libraries/libvect/include \
 		  libraries/libgnl/include \
@@ -105,8 +105,8 @@ $(NAME): $(OBJS)
 	@make -C $(LIBFT)
 	@make -C $(LIBVECT)
 	@make -C $(LIBGNL)
-	@make -C $(LIBDMT)
 	@make -C $(LIBCL)
+	@make -C $(LIBFMT)
 	@$(CC) $(FLAGS) -L $(LIBFT) -lft -L $(FSDL) -lfsdl -lpthread -L $(LIBVECT) -lvect -L $(LIBFMT) -lfmt -L $(LIBGNL) -lgnl -L $(LIBCL) -lcl -o $@ $^ $(OPENCL_F) $(SDL2_P) $(SDL2_F) $(SDL2_I) $(SDL2_TTF_I) $(SDL2_IMG_I)
 
 temporary: $(BUILD_DIR)
@@ -135,6 +135,7 @@ clean:
 	@make clean -C $(LIBVECT)
 	@make clean -C $(LIBGNL)
 	@make clean -C $(LIBCL)
+	@make clean -C $(LIBFMT)
 	@rm -rf $(DIR_O)
 
 fclean: clean
@@ -142,9 +143,9 @@ fclean: clean
 	@make fclean -C $(FSDL)
 	@make fclean -C $(LIBFT)
 	@make fclean -C $(LIBVECT)
-	@make fclean -C $(LIBFMT)
 	@make fclean -C $(LIBGNL)
 	@make fclean -C $(LIBCL)
+	@make fclean -C $(LIBFMT)
 
 delimg: fclean
 	@rm -rf $(IMG_DIR)

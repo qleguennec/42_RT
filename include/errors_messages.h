@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:28:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 15:30:31 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 17:04:32 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@
 # define MSG30	"error: Failed to create the SDL window struct.\n"
 # define MSG31	"error: Failed to create the SDL renderer struct.\n"
 # define MSD32	"error: Failed to find or import image.\n"
+
 
 #endif

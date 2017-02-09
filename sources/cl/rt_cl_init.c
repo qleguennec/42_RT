@@ -6,13 +6,14 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:08:54 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/09 15:53:44 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/09 16:58:34 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cl.h"
 #include "libvect.h"
 #include "libfmt.h"
+#include "parameters.h"
 
 #define FILENAME	"rt_ray_send.cl"
 #define KRLNAME		"rt_ray_send"
@@ -41,13 +42,12 @@ int
 	int		fd;
 	t_vect	build_line;
 
-	cl = &rt->cl;
 	if ((fd = open(FILENAME, O_RDONLY)) < 0)
 		return (0);
 	cl_init(&cl->info);
 	cl_krl_init(&cl->ray_send_krl, 1);
 	cl->ray_send_krl.sizes[0] = WIDTH * HEIGHT * sizeof(int);
-	cl_build_line(rt, &build_line);
+	cl_build_line(&build_line);
 	if (cl_krl_build(&cl->info
 		, &cl->ray_send_krl
 		, fd

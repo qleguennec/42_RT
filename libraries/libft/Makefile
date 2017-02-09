@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/09 14:40:51 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/09 16:42:53 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,9 @@ SOURCES = ft_atoi.c \
 		  ft_printf/ft_sitoa.c\
 		  ft_printf/ft_maths.c\
 		  ft_printf/ft_nbrlen.c\
-		  gnl/get_next_line.c
+		  gnl/get_next_line.c \
+		  ft_malloc_err.c \
+		  ft_isdigit.c
 
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
