@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_mempcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 09:57:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/06/28 15:40:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2015/12/30 11:27:18 by qle-guen          #+#    #+#             */
+/*   Updated: 2015/12/31 04:21:38 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_bzero
-	(void *s, size_t n)
+void		*ft_mempcpy(void *dest, const void *src, size_t n)
 {
-	ft_memset(s, 0, n);
+	return (ft_memcpy(dest, src, n) + n);
 }

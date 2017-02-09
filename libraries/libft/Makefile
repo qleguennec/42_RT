@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
-#    Updated: 2017/02/02 18:36:53 by bsouchet         ###   ########.fr        #
+#*   Updated: 2017/02/09 14:22:01 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,11 @@ SOURCES = ft_atoi.c \
 		  ft_atof.c \
 		  ft_shtoi.c \
 		  ft_ftoa.c \
+		  ft_mempcpy.c \
+		  ft_memset.c \
+		  ft_memchr.c \
+		  ft_nsplit.c \
+		  ft_word.c \
 		  ft_comment.c \
 		  ft_bzero.c \
 		  ft_itoa.c \

@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_word.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 09:57:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/06/28 15:40:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2016/11/28 19:32:03 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/08 10:30:22 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_bzero
-	(void *s, size_t n)
+unsigned char	*ft_word(void **p, size_t *n1, void *match, size_t n2)
 {
-	ft_memset(s, 0, n);
+	unsigned char	*r;
+	unsigned char	**s;
+
+	s = (unsigned char **)p;
+	while (*n1 && ft_memchr(match, (int)**s, n2))
+	{
+		(*n1)--;
+		(*s)++;
+	}
+	r = *s;
+	while (*n1 && !ft_memchr(match, (int)**s, n2))
+	{
+		(*n1)--;
+		(*s)++;
+	}
+	return (r == *s ? NULL : r);
 }
