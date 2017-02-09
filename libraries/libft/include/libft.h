@@ -6,10 +6,10 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 14:35:51 by qle-guen         ###   ########.fr       */
-/*   Updated: 2017/02/09 13:31:14 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 16:32:14 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef LIBFT_H
 # define LIBFT_H

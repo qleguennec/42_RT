@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cl_krl_build.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 22:17:19 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/09 14:20:16 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/09 16:34:48 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 #include "libcl.h"
 #include <unistd.h>
 
-//TODO remove debug
+/*
+** TODO remove debug
+*/
+
 #include <stdio.h>
 
 #define LOG_BUFSIZ 20480
