@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/10 11:39:23 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/10 13:32:49 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,15 +85,15 @@ SOURCES		= main.c \
 			  renderer/start_renderer.c \
 			  misc/verbose_mode.c \
 			  misc/free_elements.c \
-			  cl_krl/cl_main_krl_exec.c \
-			  cl_krl/cl_main_krl_init.c \
-			  cl_krl/cl_main_krl_update_buffers.c \
-			  cl_krl/cl_main_krl_update_camera.c \
-			  cl_krl/cpy_lgt.c \
-			  cl_krl/cpy_obj.c \
-			  cl_krl/cl_test_krl.c \
+			  cl_build/cl_main_krl_exec.c \
+			  cl_build/cl_main_krl_init.c \
+			  cl_build/cl_main_krl_update_buffers.c \
+			  cl_build/cl_main_krl_update_camera.c \
+			  cl_build/cpy_lgt.c \
+			  cl_build/cpy_obj.c \
+			  cl_build/cl_test_krl.c \
 
-SUB_FOLDERS	= gui handle misc parser renderer cl_krl
+SUB_FOLDERS	= gui handle misc parser renderer cl_build
 
 BUILD_DIR	= $(addprefix $(DIR_O)/,$(SUB_FOLDERS))
 
