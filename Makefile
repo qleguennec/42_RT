@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/10 08:36:56 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/10 10:02:58 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,9 +85,13 @@ SOURCES		= main.c \
 			  renderer/start_renderer.c \
 			  misc/verbose_mode.c \
 			  misc/free_elements.c \
-			  cl_krl/cl_krl_init.c \
+			  cl_krl/cl_main_krl_exec.c \
+			  cl_krl/cl_main_krl_init.c \
+			  cl_krl/cl_main_krl_update_buffers.c \
+			  cl_krl/cpy_lgt.c \
+			  cl_krl/cpy_obj.c \
 
-SUB_FOLDERS	= gui handle misc parser renderer cl cl_krl
+SUB_FOLDERS	= gui handle misc parser renderer cl_krl
 
 BUILD_DIR	= $(addprefix $(DIR_O)/,$(SUB_FOLDERS))
 

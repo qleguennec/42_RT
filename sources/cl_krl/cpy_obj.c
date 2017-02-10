@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cl.h                                               :+:      :+:    :+:   */
+/*   cpy_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/09 15:06:29 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 10:17:07 by qle-guen         ###   ########.fr       */
+/*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/10 10:08:19 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CL_H
-# define CL_H
+#include "cl_interface.h"
+#include "rt.h"
 
-# include "libcl.h"
+// TODO remove debug includes
+#include <assert.h>
 
-typedef struct	s_cl
+
+#define CPY(a) cl_obj->a = obj->a
+
+void
+	cpy_obj
+	(t_cl_obj *cl_obj
+	, t_obj *obj)
 {
-	t_cl_info	info;
-	t_cl_krl	ray_send_krl;
-	cl_mem		objs;
-	cl_mem		lgts;
-	short		n_objs;
-	short		n_lgts;
-}				t_cl;
-
-bool			cl_main_krl_init(t_cl *cl);
-bool			cl_main_krl_exec(t_cl *cl, t_scene *scene);
-
-#endif
+	assert(obj->type == 'O');
+	CPY(type);
+	CPY(pos);
+	CPY(rot);
+	CPY(clr);
+	CPY(opacity);
+	CPY(width);
+	CPY(radius);
+	CPY(width);
+	CPY(height);
+	CPY(specolor);
+	CPY(reflex);
+	CPY(refract);
+}

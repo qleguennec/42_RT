@@ -14,8 +14,8 @@
 
 kernel void
 	rt_ray_send
-	(global unsigned int *rays
-	, global t_obj *objs
+	(global unsigned int *img_buffer
+	, global t_cl_obj *objs
 	, size_t nobjs)
 {
 	double3		ray_origin;
@@ -38,5 +38,5 @@ kernel void
 	ray_origin = cam.pos;
 	ray_dir = - 10 * ray_origin.z + u * ray_origin.x + v * ray_origin.y;
 	obj_dist = ray_origin - sphere.pos;
-	delta = 
+	delta = ;
 }
