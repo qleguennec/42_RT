@@ -6,12 +6,15 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 10:37:00 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/10 12:10:25 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJ_H
 # define OBJ_H
+
+# define TYPE_SPHERE	1
+# define TYPE_CUBE		2
 
 typedef struct		s_obj
 {
