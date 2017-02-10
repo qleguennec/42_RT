@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:06:29 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 10:55:54 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/10 11:42:23 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,14 @@ typedef struct	s_cl
 {
 	t_cl_info	info;
 	t_cl_krl	main_krl;
+	t_cl_krl	test_krl;
 	cl_mem		objs;
 	cl_mem		lgts;
 	short		n_objs;
 	short		n_lgts;
 }				t_cl;
+
+bool			cl_test_krl(t_rt *rt, t_cl *cl);
 
 /*
 ** needs to be call once at the start of the program

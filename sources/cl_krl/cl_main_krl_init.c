@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:08:54 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 10:58:11 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/10 11:25:21 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void
 	(t_vect *build_line)
 {
 	vect_init(build_line);
-	VECT_STRADD(build_line, "rt_ray_send:");
+	VECT_STRADD(build_line, KRLNAME ":");
 	VECT_STRADD(build_line, "-I sources/cl ");
 	FMT_VECT(build_line, "-D WIDTH=%a ", WIN_W);
 	FMT_VECT(build_line, "-D HEIGHT=%a ", WIN_H);

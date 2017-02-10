@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/10 10:51:09 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/10 11:39:23 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,7 @@ SOURCES		= main.c \
 			  cl_krl/cl_main_krl_update_camera.c \
 			  cl_krl/cpy_lgt.c \
 			  cl_krl/cpy_obj.c \
+			  cl_krl/cl_test_krl.c \
 
 SUB_FOLDERS	= gui handle misc parser renderer cl_krl
 
