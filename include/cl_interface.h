@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cl.h                                               :+:      :+:    :+:   */
+/*   rt_cl_interface.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/09 15:06:29 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 08:36:28 by qle-guen         ###   ########.fr       */
+/*   Created: 2017/02/08 07:55:11 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/10 08:23:04 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CL_H
-# define CL_H
+#ifndef RT_CL_INTERFACE_H
+# define RT_CL_INTERFACE_H
 
-# include "libcl.h"
-
-typedef struct	s_cl
+typedef struct		s_obj
 {
-	t_cl_info	info;
-	t_cl_krl	ray_send_krl;
-	cl_mem		objs;
-	size_t		nobjs;
-}				t_cl;
-
-int				cl_krl_init(t_cl *cl);
-int				cl_krl_exec(t_cl *cl);
+	short			type;
+	short			visibility;
+	float3			pos;
+	float3			rot;
+	float3			clr;
+	float			opacity;
+	float			width;
+	float			height;
+	float			radius;
+	float			intensity;
+	float			shineness;
+	float			mshineness;
+	float			specolor;
+	float			reflex;
+	float			refract;
+}					t_obj;
 
 #endif

@@ -6,11 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2017/02/09 17:06:21 by qle-guen         ###   ########.fr       */
-=======
-/*   Updated: 2017/02/09 17:50:37 by bsouchet         ###   ########.fr       */
->>>>>>> bsouchet
+/*   Updated: 2017/02/10 08:18:28 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,28 +63,19 @@ static int	execute(t_rt *rt, int fd)
 
 int			main(int ac, char **av)
 {
-<<<<<<< HEAD
-	t_rt	*rt;
 	t_cl	cl;
-=======
 	t_rt	rt;
->>>>>>> bsouchet
 
 	init_errors(&rt, 0);
 	if (init_structures(&rt) != 0)
 		return (-1);
 	if ((ac != 2 && ac != 3) ||
 		(ac == 3 && !ft_lcmp(av[2], "-v") && !ft_lcmp(av[2], "-verbose")))
-<<<<<<< HEAD
+		return (error(&rt, 1));
 	ft_bzero(&cl, sizeof(cl));
 	if (!rt_cl_init(&cl))
 		return (ERR("error failed: to initialize opencl", 1, 0));
-		return (error(rt, 1, 1));
-	rt->verbose = (ac == 3) ? 1 : 0;
-=======
-		return (error(&rt, 1));
 	rt.verbose = (ac == 3) ? 1 : 0;
->>>>>>> bsouchet
 	if (!ft_strchr_end(av[1], ".rt"))
 		return (error(&rt, 2));
 	if ((ac = open(av[1], O_RDONLY)) == -1)

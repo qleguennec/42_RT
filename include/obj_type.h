@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_cl_interface.h                                  :+:      :+:    :+:   */
+/*   obj_type.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/08 07:55:11 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 08:06:28 by qle-guen         ###   ########.fr       */
+/*   Created: 2017/02/10 08:39:07 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/10 08:40:37 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_CL_INTERFACE_H
-# define RT_CL_INTERFACE_H
+#ifndef OBJ_TYPE_H
+# define OBJ_TYPE_H
 
-# include "rt_obj_types.h"
-
-typedef struct		s_obj
-{
-	short			type;
-	double3			pos;
-	double			radius;
-}					t_obj;
+# define TYPE_SPHERE	1
+# define TYPE_CUBE		2
 
 #endif
