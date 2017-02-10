@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 10:21:37 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/10 10:54:01 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,11 @@ static bool
 		return (true);
 	if (cl->n_lgts)
 		clReleaseMemObject(cl->lgts);
-	cl->lgts = clCreateBuffer(cl->info.ctxt
-		, 0
-		, n * sizeof(t_cl_obj)
-		, NULL
+	cl->lgts = clCreateBuffer(cl->info.ctxt, 0, n * sizeof(t_cl_obj), NULL
 		, &ret);
 	cl->n_lgts = n;
+	CL_KRL_ARG(cl->main_krl.krl, 2, cl->lgts);
+	CL_KRL_ARG(cl->main_krl.krl, 5, cl->n_lgts);
 	if (ret != CL_SUCCESS)
 		return (false);
 	vect_req(buf, n * sizeof(t_cl_lgt));
@@ -74,6 +73,8 @@ static bool
 		, NULL
 		, &ret);
 	cl->n_objs = n;
+	CL_KRL_ARG(cl->main_krl.krl, 1, cl->objs);
+	CL_KRL_ARG(cl->main_krl.krl, 3, cl->n_objs);
 	if (ret != CL_SUCCESS)
 		return (false);
 	vect_req(buf, n * sizeof(t_cl_obj));

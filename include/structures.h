@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/10 10:05:09 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/10 10:42:39 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct		s_obj
 	cl_float3		rot;		//Rotation
 	cl_float3		clr;		//Couleur
 	cl_float		opacity;	//opacité de l'élément
-	cl_short		focal;		//Focal de la camera
+	cl_short		focal;		//Focal de la camera (qle-guen) plutot type float?
 	cl_float		radius;		//Radius pour sphere, cylindre, cone
 	cl_float		width;		//Pour plane
 	cl_float 		height;		//Pour cone et cylindre

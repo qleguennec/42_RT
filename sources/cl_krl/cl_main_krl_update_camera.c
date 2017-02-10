@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cl_main_krl_exec.c                                 :+:      :+:    :+:   */
+/*   cl_main_krl_update_camera.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/08 12:07:51 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 10:58:35 by qle-guen         ###   ########.fr       */
+/*   Created: 2017/02/10 10:39:33 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/10 10:48:35 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "cl.h"
 #include "cl_interface.h"
 
 bool
-	cl_main_krl_exec
+	cl_main_krl_update_camera
 	(t_cl *cl
-	, t_scene *scene)
+	, cl_float3 pos
+	, cl_float3 rot
+	, short focal)
 {
-	size_t		work_size[2];
+	t_cam	cam;
 
-	if (!cl_main_krl_update_buffers(cl, scene))
-		return (false);
-	work_size[0] = WIN_W;
-	work_size[1] = WIN_H;
-	return (cl_krl_exec(&cl->info
-		, cl->main_krl.krl
-		, 2
-		, work_size) == CL_SUCCESS);
+	cam.pos = pos;
+	cam.rot = rot;
+	cam.focal = focal;
+	return (CL_KRL_ARG(cl->main_krl.krl, 3, cam) == CL_SUCCESS);
 }

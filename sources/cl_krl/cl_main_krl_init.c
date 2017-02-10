@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:08:54 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 10:16:06 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/10 10:58:11 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,8 @@
 #include "libfmt.h"
 #include "parameters.h"
 
-#define FILENAME	"rt_ray_send.cl"
-#define KRLNAME		"rt_ray_send"
-
-#define WIDTH		1
-#define HEIGHT		1
+#define FILENAME	"main.cl"
+#define KRLNAME		"main"
 
 static void
 	cl_build_line
@@ -27,7 +24,7 @@ static void
 {
 	vect_init(build_line);
 	VECT_STRADD(build_line, "rt_ray_send:");
-	VECT_STRADD(build_line, "-I. ");
+	VECT_STRADD(build_line, "-I sources/cl ");
 	FMT_VECT(build_line, "-D WIDTH=%a ", WIN_W);
 	FMT_VECT(build_line, "-D HEIGHT=%a ", WIN_H);
 	FMT_VECT(build_line, "-D AREA=%a ", WIN_W * WIN_H);
@@ -45,11 +42,11 @@ bool
 	if ((fd = open(FILENAME, O_RDONLY)) < 0)
 		return (false);
 	cl_init(&cl->info);
-	cl_krl_init(&cl->ray_send_krl, 1);
-	cl->ray_send_krl.sizes[0] = WIDTH * HEIGHT * sizeof(int);
+	cl_krl_init(&cl->main_krl, 1);
+	cl->main_krl.sizes[0] = WIN_W * WIN_H * sizeof(int);
 	cl_build_line(&build_line);
 	if (cl_krl_build(&cl->info
-		, &cl->ray_send_krl
+		, &cl->main_krl
 		, fd
 		, &build_line) != CL_SUCCESS)
 		return (false);
