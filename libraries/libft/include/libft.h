@@ -6,10 +6,10 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 16:41:39 by qle-guen         ###   ########.fr       */
-/*   Updated: 2017/02/09 13:31:14 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/10 08:10:52 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -20,11 +20,19 @@
 # include <stdint.h>
 # include <errno.h>
 # include <math.h>
+<<<<<<< HEAD
 
 # include <stdbool.h>
 
 # include "types.h"
 
+=======
+# ifdef __APPLE__
+#  include "OpenCL/opencl.h"
+# else
+#  include "CL/cl.h"
+# endif
+>>>>>>> bsouchet
 # include "ft_printf.h"
 
 # define BUFF_SIZE 1
@@ -150,5 +158,7 @@ unsigned char	*ft_word(void **p, size_t *n1, void *match, size_t n2);
 int				vc(t_vec3 *vec1, t_vec3 vec2);
 int				h(t_vec3 *vec, unsigned hex);
 int				ft_isdigit(int c);
+int				vc(cl_float3 *vec1, cl_float3 vec2);
+int				h(cl_float3 *vec, unsigned hex);
 
 #endif

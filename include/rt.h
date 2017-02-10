@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 15:44:08 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 19:27:11 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@
 # include <errno.h>
 # include <stdio.h>
 # include <pthread.h>
+
+/*
+** --------------------------------- OpenCL ------------------------------------
+*/
+
+# ifdef __APPLE__
+#  include "OpenCL/opencl.h"
+# else
+#  include "CL/cl.h"
+# endif
 
 /*
 ** -------------------------- Internal Libraries -------------------------------
@@ -47,16 +57,6 @@
 # include "errors_messages.h"
 # include "xml_elements.h"
 # include "structures.h"
-
-/*
-** --------------------------------- OpenCL ------------------------------------
-*/
-
-# ifdef __APPLE__
-#  include "OpenCL/opencl.h"
-# else
-#  include "CL/cl.h"
-# endif
 
 /*
 ** -----------------------------------------------------------------------------
@@ -213,7 +213,7 @@ t_obj				*lst_new_object(t_rt *rt, t_obj *objs, int type);
 */
 
 void				init_errors(t_rt *r, int i);
-int					error(t_rt *rt, int t, int f);
+int					error(t_rt *rt, int t);
 
 /*
 ** --------------------------- Handle Info Bar ---------------------------------

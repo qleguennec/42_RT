@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 10:41:16 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/02 19:10:29 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 19:53:06 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_obj		*lst_new_camera(t_rt *rt, t_obj *objs, int type)
 		return (new_cam);
 	}
 	nav_list = objs;
-	while (nav_list->next != NULL && nav_list->next->t == 'C')
+	while (nav_list->next != NULL && nav_list->next->type == 'C')
 		nav_list = nav_list->next;
 	new_cam->next = nav_list->next;
 	nav_list->next = new_cam;
@@ -59,7 +59,7 @@ t_obj		*lst_new_light(t_rt *rt, t_obj *objs, int type)
 		return (new_light);
 	}
 	nav_list = objs;
-	while (nav_list->next != NULL && nav_list->next->t < 79)
+	while (nav_list->next != NULL && nav_list->next->type < 79)
 		nav_list = nav_list->next;
 	new_light->next = nav_list->next;
 	nav_list->next = new_light;

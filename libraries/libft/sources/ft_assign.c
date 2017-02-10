@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 02:27:05 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/01/26 10:42:44 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 21:12:14 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int			d(double *elem1, double elem2)
 	return (1);
 }
 
-int			h(t_vec3 *vec, unsigned hex)
+int			h(cl_float3 *vec, unsigned hex)
 {
 	vec->x = ((hex >> 16) & 0xFF);
 	vec->y = ((hex >> 8) & 0xFF);
@@ -32,7 +32,7 @@ int			h(t_vec3 *vec, unsigned hex)
 	return (1);
 }
 
-int			vc(t_vec3 *vec1, t_vec3 vec2)
+int			vc(cl_float3 *vec1, cl_float3 vec2)
 {
 	vec1->x = vec2.x;
 	vec1->y = vec2.y;

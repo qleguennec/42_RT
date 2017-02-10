@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:56:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/01/07 11:13:01 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 17:09:39 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			get_m(t_rt *rt, int b_end, char *s, char *e)
 		rt->prs->t_i = 4;
 	free(str);
 	rt->prs->i = b_end + ft_strlen(e);
-	return ((rt->prs->t_i == -1) ? (error(rt, 14, 2) + 1) : 1);
+	return ((rt->prs->t_i == -1) ? (error(rt, 14) + 1) : 1);
 }
 
 /*
@@ -74,5 +74,5 @@ int			get_t(t_rt *rt, int b_end, char *s, char *e)
 		rt->prs->t_i = 5;
 	free(str);
 	rt->prs->i = b_end + ft_strlen(e);
-	return ((rt->prs->t_i == -1) ? (error(rt, 14, 2) + 1) : 1);
+	return ((rt->prs->t_i == -1) ? (error(rt, 14) + 1) : 1);
 }

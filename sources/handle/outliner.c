@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 21:00:30 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/08 15:31:46 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 19:52:30 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		handle_outliner_down(t_rt *rt)
 	rt->ui->c_down = rt->ui->c_hover;
 	rt->s_elem = rt->ui->c_elem;
 	(rt->ui->b_state[17] == 2) ? draw_selected_element(rt) : 1;
-	if (rt->ui->c_elem->t == 'O')
+	if (rt->ui->c_elem->type == 'O')
 		(!rt->ui->m_visible) ? draw_materials(rt, 'E') : 1;
 	else if (rt->ui->m_visible)
 		draw_materials(rt, 'D');
@@ -55,7 +55,7 @@ void		handle_outliner_down(t_rt *rt)
 int			handle_top_nav_button(t_rt *rt)
 {
 	rt->ui->c_hover = -1;
-	if (rt->scn->b_outliner->n == NULL && rt->scn->b_outliner->t == 'C')
+	if (rt->scn->b_outliner->n == NULL && rt->scn->b_outliner->type == 'C')
 		return (1);
 	rt->ui->c_hover = -2;
 	rt->ui->r_hover = (SDL_Rect){13, 223, 188, 16};

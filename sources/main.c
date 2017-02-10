@@ -6,7 +6,11 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2017/02/09 17:06:21 by qle-guen         ###   ########.fr       */
+=======
+/*   Updated: 2017/02/09 17:50:37 by bsouchet         ###   ########.fr       */
+>>>>>>> bsouchet
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +35,11 @@ static int	check(t_rt *rt, int end)
 		else if (end != -1 && (end = check_balises(rt, BO_O, BC_O)) > 0)
 			end = add_element(rt, end, 0, 'O');
 		else if (end > -1)
-			return (error(rt, 8, 2));
+			return (error(rt, 8));
 	}
-	end = (end != -1 && rt->scn->n_cams == 0) ? error(rt, 17, 2) : end;
-	end = (end != -1 && rt->scn->n_lgts == 0) ? error(rt, 18, 2) : end;
-	end = (end != -1 && rt->scn->n_objs == 0) ? error(rt, 19, 2) : end;
+	end = (end != -1 && rt->scn->n_cams == 0) ? error(rt, 17) : end;
+	end = (end != -1 && rt->scn->n_lgts == 0) ? error(rt, 18) : end;
+	end = (end != -1 && rt->scn->n_objs == 0) ? error(rt, 19) : end;
 	if (end != -1 && !rt->scn->name)
 		rt->scn->name = ft_name(rt->filename, ".rt");
 	rt->scn->c_cam = rt->scn->o->next;
@@ -46,14 +50,14 @@ static int	check(t_rt *rt, int end)
 static int	execute(t_rt *rt, int fd)
 {
 	if (!(rt->prs->buf = (char *)malloc(sizeof(char))))
-		return (error(rt, 0, 1));
+		return (error(rt, 0));
 	rt->prs->buf[0] = 0;
 	while (get_next_line(fd, &rt->prs->line) > 0)
 		if ((rt->prs->line =
 		clear_line(rt->prs, rt->prs->line, 0, 0)) != NULL)
 			rt->prs->buf = ft_strjoin(rt->prs->buf, rt->prs->line, 'B');
 	if (close(fd) == -1)
-		return (error(rt, 3, 2));
+		return (error(rt, 3));
 	if (check(rt, 0) == -1)
 		return (-1);
 	if (rt->verbose)
@@ -63,25 +67,32 @@ static int	execute(t_rt *rt, int fd)
 
 int			main(int ac, char **av)
 {
+<<<<<<< HEAD
 	t_rt	*rt;
 	t_cl	cl;
+=======
+	t_rt	rt;
+>>>>>>> bsouchet
 
-	if (!(rt = (t_rt *)malloc(sizeof(t_rt))))
-		return (error(rt, 0, 0));
-	init_errors(rt, 0);
-	if (init_structures(rt) != 0)
+	init_errors(&rt, 0);
+	if (init_structures(&rt) != 0)
 		return (-1);
 	if ((ac != 2 && ac != 3) ||
 		(ac == 3 && !ft_lcmp(av[2], "-v") && !ft_lcmp(av[2], "-verbose")))
+<<<<<<< HEAD
 	ft_bzero(&cl, sizeof(cl));
 	if (!rt_cl_init(&cl))
 		return (ERR("error failed: to initialize opencl", 1, 0));
 		return (error(rt, 1, 1));
 	rt->verbose = (ac == 3) ? 1 : 0;
+=======
+		return (error(&rt, 1));
+	rt.verbose = (ac == 3) ? 1 : 0;
+>>>>>>> bsouchet
 	if (!ft_strchr_end(av[1], ".rt"))
-		return (error(rt, 2, 1));
+		return (error(&rt, 2));
 	if ((ac = open(av[1], O_RDONLY)) == -1)
-		return (error(rt, 3, 1));
-	rt->filename = av[1];
-	return (execute(rt, ac));
+		return (error(&rt, 3));
+	rt.filename = av[1];
+	return (execute(&rt, ac));
 }
