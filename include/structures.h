@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/10 13:30:56 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/11 15:41:15 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct		s_parser
 struct				s_scene
 {
 	int				aa;
-	double			ambient; // float?
+	double			ambient; // float3
 	int				m_ref;
 	char			*name;
 	t_obj			*o;

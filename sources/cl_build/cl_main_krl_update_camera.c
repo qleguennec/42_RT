@@ -6,23 +6,31 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:39:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 10:48:35 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/11 11:07:42 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cl_interface.h"
+#include "rt.h"
+
+// TODO remove debug includes
+#include <assert.h>
 
 bool
 	cl_main_krl_update_camera
 	(t_cl *cl
-	, cl_float3 pos
-	, cl_float3 rot
-	, short focal)
+	, t_obj *obj)
 {
 	t_cam	cam;
 
-	cam.pos = pos;
-	cam.rot = rot;
-	cam.focal = focal;
-	return (CL_KRL_ARG(cl->main_krl.krl, 3, cam) == CL_SUCCESS);
+	assert(obj->type == 'C');
+	cam.pos.x = obj->pos.x;
+	cam.pos.y = obj->pos.y;
+	cam.pos.z = obj->pos.z;
+	cam.rot.x = obj->rot.x;
+	cam.rot.y = obj->rot.y;
+	cam.rot.z = obj->rot.z;
+	cam.focal = obj->focal;
+	CL_KRL_ARG(cl->main_krl.krl, 3, cam);
+	return (true);
 }

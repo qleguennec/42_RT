@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_cl_interface.h"
+#include "obj_def.h"
 
 void
 	print_cam
@@ -62,7 +62,7 @@ kernel void
 	test
 	(global unsigned int *img_buffer
 	, global t_obj *objs
-	, global t_lgts *lgts
+	, global t_lgt *lgts
 	, t_cam cam
 	, short nobjs
 	, short nlgts)

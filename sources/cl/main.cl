@@ -33,5 +33,5 @@ kernel void
 	v -= 3 / HEIGHT * v;
 	v += 0.5 + get_local_id(1);
 	ray_origin = cam.pos;
-	ray_dir = - cam.flocal * ray_origin.z + u * ray_origin.x + v * ray_origin.y;
+	ray_dir.z = - cam.flocal * ray_origin.z + u * ray_origin.x + v * ray_origin.y;
 }

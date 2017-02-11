@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/10 13:32:49 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/10 14:58:28 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ C			= clang
 
 NAME		= rt
 
-FLAGS		= -Wall -Wextra -Werror -O2
+FLAGS		= -Wall -Wextra -Werror -O2 -g
 
 OPENCL_F	= -framework OpenCL
 

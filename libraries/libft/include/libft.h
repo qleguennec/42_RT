@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/10 08:15:56 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/10 14:43:31 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,8 @@ char			*comment(char *comment);
 unsigned char	**ft_nsplit(void *s, size_t n1, void *match, size_t n2);
 unsigned char	*ft_word(void **p, size_t *n1, void *match, size_t n2);
 
-int				vc(t_vec3 *vec1, t_vec3 vec2);
-int				h(t_vec3 *vec, unsigned hex);
+int				vc(cl_float3 *vec1, cl_float3 vec2);
+int				h(cl_float3 *vec, unsigned hex);
 int				ft_isdigit(int c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 11:00:05 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 11:46:44 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/11 15:40:35 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ static bool
 	FMT_VECT(&build_line, "-D AREA=%a ", WIN_W * WIN_H);
 	FMT_VECT(&build_line, "-D XCENTER=%a ", WIN_W / 2);
 	FMT_VECT(&build_line, "-D YCENTER=%a ", WIN_H / 2);
+	VECHO(&build_line);
 	if ((ret = cl_krl_build(info
 		, test_krl
 		, fd
 		, &build_line)) != CL_SUCCESS)
-		return (ERR("cannot build kernel, opencl error %d", false, ret));
+		return (ERR("cannot build kernel, opencl error %a", false, ret));
 	close(fd);
 	free(build_line.data);
 	return (true);
@@ -52,24 +53,24 @@ static bool
 
 bool
 	cl_test_krl
-	(t_rt *rt
-	, t_cl *cl)
+	(t_rt *rt)
 {
 	int			ret;
 	size_t		work_size;
-	cl_float3	placeholder;
+	t_cl		cl;
 
-	test_krl_init(&cl->info, &cl->test_krl);
-	placeholder.x = 0;
-	placeholder.y = 0;
-	placeholder.z = 0;
-	if (!cl_main_krl_update_camera(cl, placeholder, placeholder, 0))
+	cl_init(&cl.info);
+	if (!test_krl_init(&cl.info, &cl.main_krl))
+		return (ERR("failed to init kernel", false, 0));
+	free(cl.main_krl.args);
+	free(cl.main_krl.sizes);
+	if (!cl_main_krl_update_camera(&cl, rt->scn->c_cam))
 		return (ERR("cannot set camera arg in kernel", false, 0));
-	if (!cl_main_krl_update_buffers(cl, rt->scn))
+	if (!cl_main_krl_update_buffers(&cl, rt->scn))
 		return (ERR("cannot update buffers", false, 0));
 	work_size = 1;
-	if ((ret = cl_krl_exec(&cl->info, cl->test_krl.krl, 1, &work_size))
+	if ((ret = cl_krl_exec(&cl.info, cl.main_krl.krl, 1, &work_size))
 		!= CL_SUCCESS)
-		return (ERR("cannot execute kernel, opencl error %d", false, ret));
+		return (ERR("cannot execute kernel, opencl error %a", false, ret));
 	return (true);
 }

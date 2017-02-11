@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/10 11:49:32 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/10 15:55:48 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ int			main(int ac, char **av)
 		(ac == 3 && !ft_lcmp(av[2], "-v") && !ft_lcmp(av[2], "-verbose")))
 		return (error(&rt, 1));
 	ft_bzero(&cl, sizeof(cl));
-	cl_test_krl(&rt, &cl);
+	if (cl_init(&cl.info) != CL_SUCCESS)
+		return (ERR("cannot init kernel", 1, 0));
+	if (!cl_test_krl(&rt))
+		return (ERR("error: test kernel", 1, 0));
 	//if (!cl_main_krl_init(&cl))
 	//	return (ERR("error failed: to initialize opencl", 1, 0));
 	rt.verbose = (ac == 3) ? 1 : 0;

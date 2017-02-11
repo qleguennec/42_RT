@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 10:54:01 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/10 16:01:18 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,18 @@ static bool
 		clReleaseMemObject(cl->lgts);
 	cl->lgts = clCreateBuffer(cl->info.ctxt, 0, n * sizeof(t_cl_obj), NULL
 		, &ret);
+	if (ret != CL_SUCCESS)
+		return (false);
 	cl->n_lgts = n;
 	CL_KRL_ARG(cl->main_krl.krl, 2, cl->lgts);
 	CL_KRL_ARG(cl->main_krl.krl, 5, cl->n_lgts);
-	if (ret != CL_SUCCESS)
-		return (false);
 	vect_req(buf, n * sizeof(t_cl_lgt));
 	i = 0;
 	while (lgts)
 	{
 		cpy_lgt((t_cl_lgt *)buf->data + i++, lgts);
+		//TODO remove
+		printf("%f\n", ((t_cl_lgt *)buf->data)[i - 1].pos.x);
 		lgts = lgts->next;
 	}
 	return (cl_write(&cl->info, cl->lgts, buf->used, buf->data)
@@ -67,16 +69,13 @@ static bool
 		return (true);
 	if (cl->n_objs)
 		clReleaseMemObject(cl->objs);
-	cl->objs = clCreateBuffer(cl->info.ctxt
-		, 0
-		, n * sizeof(t_cl_obj)
-		, NULL
-		, &ret);
+	cl->objs = clCreateBuffer(cl->info.ctxt, 0
+		, n * sizeof(t_cl_obj), NULL, &ret);
+	if (ret != CL_SUCCESS)
+		return (false);
 	cl->n_objs = n;
 	CL_KRL_ARG(cl->main_krl.krl, 1, cl->objs);
 	CL_KRL_ARG(cl->main_krl.krl, 3, cl->n_objs);
-	if (ret != CL_SUCCESS)
-		return (false);
 	vect_req(buf, n * sizeof(t_cl_obj));
 	i = 0;
 	while (objs)
