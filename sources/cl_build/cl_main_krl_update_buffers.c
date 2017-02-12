@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/12 16:27:02 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/12 16:37:58 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static bool
 {
 	int			ret;
 	size_t		i;
+	t_cl_obj	*test;
 
 	if (n == cl->n_objs)
 		return (true);
@@ -80,7 +81,9 @@ static bool
 	i = 0;
 	while (objs)
 	{
+		test = buf->data + i;
 		cpy_obj(((t_cl_obj *)buf->data) + i++, objs);
+		printf("POS: %f %f %f\n", test->pos.x, test->pos.y, test->pos.z);
 		objs = objs->next;
 	}
 	return (cl_write(&cl->info, cl->objs, buf->used, buf->data)

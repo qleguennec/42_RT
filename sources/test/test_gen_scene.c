@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/12 14:16:41 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/12 16:26:29 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/12 16:40:57 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void
 		MALLOC1(obj);
 		obj->next = scene->b_objs;
 		scene->b_objs = obj;
-		rand_obj(obj);
+		rand_obj(scene->b_objs);
 		i++;
 	}
 	i = 0;
@@ -84,7 +84,7 @@ void
 		MALLOC1(lgt);
 		lgt->next = scene->b_lgts;
 		scene->b_lgts = lgt;
-		rand_lgt(lgt);
+		rand_lgt(scene->b_lgts);
 		i++;
 	}
 	scene->n_objs = TESTSCENE_N_OBJS;
