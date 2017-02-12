@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 10:08:19 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/12 14:57:54 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void
 	(t_cl_obj *cl_obj
 	, t_obj *obj)
 {
-	assert(obj->type == 'O');
+	//assert(obj->type == 'O');
 	CPY(type);
 	CPY(pos);
 	CPY(rot);

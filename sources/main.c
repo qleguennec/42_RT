@@ -6,13 +6,14 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/10 15:55:48 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/12 16:18:58 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "cl.h"
 #include "libfmt.h"
+#include "test_krl.h"
 
 static int	check(t_rt *rt, int end)
 {
@@ -63,22 +64,17 @@ static int	execute(t_rt *rt, int fd)
 
 int			main(int ac, char **av)
 {
-	t_cl	cl;
 	t_rt	rt;
 
+	if (!cl_test_krl())
+		return (ERR("test_krl failed", 1, 0));
+	return (0);
 	init_errors(&rt, 0);
 	if (init_structures(&rt) != 0)
 		return (-1);
 	if ((ac != 2 && ac != 3) ||
 		(ac == 3 && !ft_lcmp(av[2], "-v") && !ft_lcmp(av[2], "-verbose")))
 		return (error(&rt, 1));
-	ft_bzero(&cl, sizeof(cl));
-	if (cl_init(&cl.info) != CL_SUCCESS)
-		return (ERR("cannot init kernel", 1, 0));
-	if (!cl_test_krl(&rt))
-		return (ERR("error: test kernel", 1, 0));
-	//if (!cl_main_krl_init(&cl))
-	//	return (ERR("error failed: to initialize opencl", 1, 0));
 	rt.verbose = (ac == 3) ? 1 : 0;
 	if (!ft_strchr_end(av[1], ".rt"))
 		return (error(&rt, 2));

@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cpy_lgt.c                                          :+:      :+:    :+:   */
+/*   test_krl.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/12 14:57:48 by qle-guen         ###   ########.fr       */
+/*   Created: 2017/02/12 14:28:20 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/12 14:43:19 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cl_interface.h"
+#ifndef TEST_KRL_H
+# define TEST_KRL_H
+
 #include "rt.h"
+#include <stdbool.h>
 
-// TODO remove debug includes
-#include <assert.h>
+void		test_gen_scene(t_scene *scene);
+bool		cl_test_krl(void);
 
-#define CPY(a) cl_lgt->a = obj->a
-
-void
-	cpy_lgt
-	(t_cl_lgt *cl_lgt
-	, t_obj *obj)
-{
-	//assert(obj->type == 'L');
-	CPY(pos);
-	CPY(rot);
-	CPY(intensity);
-	CPY(shiness);
-	CPY(mshiness);
-}
+#endif

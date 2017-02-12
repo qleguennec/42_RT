@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:06:29 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/11 15:36:32 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/12 14:46:37 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ typedef struct	s_cl
 	short		n_objs;
 	short		n_lgts;
 }				t_cl;
-
-bool			cl_test_krl(t_rt *rt);
 
 /*
 ** needs to be call once at the start of the program

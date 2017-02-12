@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/10 14:58:28 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/12 15:50:20 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ C			= clang
 
 NAME		= rt
 
-FLAGS		= -Wall -Wextra -Werror -O2 -g
+FLAGS		= -Wall -Wextra -Werror -g
 
 OPENCL_F	= -framework OpenCL
 
@@ -91,9 +91,10 @@ SOURCES		= main.c \
 			  cl_build/cl_main_krl_update_camera.c \
 			  cl_build/cpy_lgt.c \
 			  cl_build/cpy_obj.c \
-			  cl_build/cl_test_krl.c \
+			  test/cl_test_krl.c \
+			  test/test_gen_scene.c
 
-SUB_FOLDERS	= gui handle misc parser renderer cl_build
+SUB_FOLDERS	= test gui handle misc parser renderer cl_build
 
 BUILD_DIR	= $(addprefix $(DIR_O)/,$(SUB_FOLDERS))
 

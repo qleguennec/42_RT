@@ -60,7 +60,7 @@ void
 
 kernel void
 	test
-	(global unsigned int *img_buffer
+	(global uint *img_buffer
 	, global t_obj *objs
 	, global t_lgt *lgts
 	, t_cam cam
@@ -69,6 +69,8 @@ kernel void
 {
 	short	i;
 
+	printf("nobjs: %d\n", nobjs);
+	printf("nlgts: %d\n", nlgts);
 	printf("active camera:\n");
 	print_cam(cam);
 	i = 0;
@@ -76,11 +78,13 @@ kernel void
 	{
 		printf("object %d:\n", i);
 		print_obj(objs[i]);
+		i++;
 	}
 	i = 0;
 	while (i < nlgts)
 	{
 		printf("light %d:\n", i);
 		print_light(lgts[i]);
+		i++;
 	}
 }

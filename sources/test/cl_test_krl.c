@@ -6,17 +6,22 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 11:00:05 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/11 15:40:35 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/12 16:18:13 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cl.h"
-#include "cl_interface.h"
+#include "../cl_build/cl_interface.h"
+#include "test_krl.h"
 #include "libvect.h"
 #include "libfmt.h"
 #include "parameters.h"
+#include "obj_type.h"
 
-#define FILENAME	"sources/cl/test.cl"
+#include <stdlib.h>
+#include <limits.h>
+
+#define FILENAME	"sources/test/test.cl"
 #define KRLNAME		"test"
 
 static bool
@@ -32,7 +37,7 @@ static bool
 	if ((fd = open(FILENAME, O_RDONLY)) < 0)
 		return (ERR("cannot open file " FILENAME, false, 0));
 	cl_krl_init(test_krl, 1);
-	test_krl->sizes[0] = 1;
+	test_krl->sizes[0] = sizeof(cl_uint);
 	VECT_STRADD(&build_line, KRLNAME ":");
 	VECT_STRADD(&build_line, "-I sources/cl ");
 	FMT_VECT(&build_line, "-D WIDTH=%a ", WIN_W);
@@ -53,24 +58,30 @@ static bool
 
 bool
 	cl_test_krl
-	(t_rt *rt)
+	(void)
 {
-	int			ret;
+	cl_int		ret;
 	size_t		work_size;
 	t_cl		cl;
+	t_cl_cam	cam;
+	t_scene		scene;
 
+	BZERO(scene);
+	BZERO(cam);
 	cl_init(&cl.info);
 	if (!test_krl_init(&cl.info, &cl.main_krl))
 		return (ERR("failed to init kernel", false, 0));
 	free(cl.main_krl.args);
 	free(cl.main_krl.sizes);
-	if (!cl_main_krl_update_camera(&cl, rt->scn->c_cam))
-		return (ERR("cannot set camera arg in kernel", false, 0));
-	if (!cl_main_krl_update_buffers(&cl, rt->scn))
+	if (CL_KRL_ARG(cl.main_krl.krl, 3, cam) != CL_SUCCESS)
+		return (ERR("cannot set camera", false, 0));
+	test_gen_scene(&scene);
+	if (!cl_main_krl_update_buffers(&cl, &scene))
 		return (ERR("cannot update buffers", false, 0));
 	work_size = 1;
 	if ((ret = cl_krl_exec(&cl.info, cl.main_krl.krl, 1, &work_size))
 		!= CL_SUCCESS)
 		return (ERR("cannot execute kernel, opencl error %a", false, ret));
+	clFinish(cl.info.cmd_queue);
 	return (true);
 }

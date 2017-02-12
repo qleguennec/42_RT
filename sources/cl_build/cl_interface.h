@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 07:55:11 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/11 11:04:14 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/12 16:09:08 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ typedef struct		s_cl_lgt
 	cl_float		mshiness;
 }					t_cl_lgt;
 
-typedef struct		s_cam
+typedef struct		s_cl_cam
 {
 	cl_float3		pos;
 	cl_float3		rot;
 	cl_short		focal;
-}					t_cam;
+}					t_cl_cam;
 
 bool		cl_main_krl_update_buffers(t_cl *cl, t_scene *scene);
 

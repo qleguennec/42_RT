@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:39:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/11 11:07:42 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/12 16:10:09 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool
 	(t_cl *cl
 	, t_obj *obj)
 {
-	t_cam	cam;
+	t_cl_cam	cam;
 
 	assert(obj->type == 'C');
 	cam.pos.x = obj->pos.x;
