@@ -26,7 +26,7 @@ unsigned get_lighting(global t_obj *objs, global t_obj *lights,
 	while (i < n_lgts)
 	{
 		lightdir = normalize(ray_pos - lights[i]->pos);
-		rd_light += is_light(lightdir, b_objs, b_lgts[i],
+		rd_light += is_light(lights[i]->pos, lightdir, b_objs, b_lgts[i],
 		n_lgts, n_objs, calcul_normale(objs[obj_ind], ray_pos), obj_ind);
 		i++;
 	}
@@ -35,12 +35,12 @@ unsigned get_lighting(global t_obj *objs, global t_obj *lights,
 		(rd_light.z & 0xff));
 }
 
-float3	is_light(float3 lightdir, global t_obj *objs, global t_obj *light,
+float3	is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_obj *light,
 	short n_objs, short n_lights, float3 normale, short obj_ind)
 {
 	short	index;
 
-	check(objs, n_objs, lightdir, &index);
+	index = touch_object(objs, n_objs, lightpos, lightdir, &index);
 	if (index == obj_ind)
 		return (calcul_light(lightdir, normale, light, objs[obj_ind]));
 	else
