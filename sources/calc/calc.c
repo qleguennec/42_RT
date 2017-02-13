@@ -6,10 +6,21 @@
 /*   By: lgatibel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 17:50:51 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/02/10 15:58:09 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/02/10 16:45:41 by lgatibel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+float		delta(float a, float b, float c)
+{
+	float	t0;
+	float	t1;
+
+	t0 = (-b + sqrt(b * b - (4 * a * c) / (2 * a));
+	t1 = (-b - sqrt(b * b - (4 * a * c) / (2 * a));
+	if (t1 > 0 && t1 < t0)
+		return (t1);
+	return (t0);
+}
 
 
 float	object_dist(global t_obj *objs, float3 ray_pos, float3 ray_dir)
@@ -25,7 +36,7 @@ float	object_dist(global t_obj *objs, float3 ray_pos, float3 ray_dir)
 	return (-1);
 }
 
-void	touch_object(t_obj *objs, short nobjs, float3 ray_pos, float3 ray_dir, short *index)
+void	touch_object(t_obj *objs, short nobjs, float3 ray_pos, float3 ray_dir, short *index, float *t)
 {
 	short	i;
 	short	index;
@@ -53,12 +64,11 @@ void calc(global t_obj *objs, short nobjs, global t_obj *lgts, short nblgts, flo
 {
     short	index;
     float3	intesection;
-    float3	dist;
+	float	t;
 
-	dist = -1
-    index = calc_obj_dist(objs, nobjs, ray_pos, ray_dir, &dist);
+    index = calc_obj_dist(objs, nobjs, ray_pos, ray_dir, &t);
 
-    intersetion = ray * dist;
+    intersetion = ray_pos + ray_dir * t;
 
     get_lighting(objs, lgts, nobjs, nlgts, ambiant, ray_pos, ray_dir, index);
 }
