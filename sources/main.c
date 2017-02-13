@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/11 18:26:22 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 11:41:41 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	check(t_rt *rt, int end)
 	end = (end != -1 && rt->scn->n_lgts == 0) ? error(rt, 18) : end;
 	end = (end != -1 && rt->scn->n_objs == 0) ? error(rt, 19) : end;
 	if (end != -1 && !rt->scn->name)
-		rt->scn->name = ft_name(rt->filename, ".rt");
+		rt->scn->name = (cl_char *)ft_name(rt->filename, ".rt");
 	rt->scn->c_cam = rt->scn->o->next;
 	rt->scn->b_outliner = rt->scn->o;
 	return (end);

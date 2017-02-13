@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 11:09:22 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 11:46:58 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,10 @@ int				i(int *elem1, int elem2);
 int				d(double *elem1, double elem2);
 
 int				s(char **elem1, char *elem2);
+
+int				cf(cl_float *elem1, double elem2);
+
+int				ci(cl_short *elem1, int elem2);
 
 void			ft_putshort(short num);
 

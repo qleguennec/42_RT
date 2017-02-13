@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
-#    Updated: 2017/02/09 15:59:22 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/02/13 11:47:19 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SOURCES = ft_atoi.c \
 		  ft_itoa.c \
 		  ft_putnbr.c \
 		  ft_assign.c \
+		  ft_assign_opencl.c \
 		  ft_strcmp.c \
 		  ft_getstr.c \
 		  ft_checkstr.c \

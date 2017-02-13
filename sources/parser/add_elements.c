@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 02:06:16 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/11 14:51:25 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 11:47:33 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ int			set_scene(t_rt *rt, int b_end, int e)
 	while (e != -1 && rt->prs->i < b_end)
 	{
 		if ((e = check_tags(rt, BO_N, BC_N)) > 1)
-			rt->scn->name = get_s(rt->prs, e, 7);
+			rt->scn->name = (cl_char *)get_s(rt->prs, e, 7);
 		else if (e > -1 && (e = check_tags(rt, BO_A, BC_A)) > 1)
 			(get_d(rt, e, BO_A, BC_A)) ?
-			d(&rt->scn->ambient, rt->prs->t_d) : (e = -1);
+			cf(&rt->scn->ambient, rt->prs->t_d) : (e = -1);
 		else if (e > -1 && (e = check_tags(rt, BO_AA, BC_AA)) > 1)
 			(get_i(rt, e, BO_AA, BC_AA)) ?
-			i(&rt->scn->aa, rt->prs->t_i) : (e = -1);
+			ci(&rt->scn->aa, rt->prs->t_i) : (e = -1);
 		else if (e > -1 && (e = check_tags(rt, BO_MR, BC_MR)) > 1)
 			(get_i(rt, e, BO_MR, BC_MR)) ?
-			i(&rt->scn->m_ref, rt->prs->t_i) : (e = -1);
+			ci(&rt->scn->m_ref, rt->prs->t_i) : (e = -1);
 		else if (e > -1 && (rt->prs->b_o = BO_S) &&
 		(rt->prs->b_c = BC_S))
 			return (error(rt, 10));

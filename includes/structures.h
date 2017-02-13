@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 11:19:28 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 11:39:27 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,24 @@ typedef struct		s_parser
 
 struct				s_scene
 {
-	int				aa;
-	double			ambient;
-	int				m_ref;
-	char			*name;
+	cl_short		aa;
+	cl_float		ambient;
+	cl_short		m_ref;
+	cl_char			*name;
 	t_obj			*o;
 	t_obj			*b_lgts;
 	t_obj			*b_objs;
-	short			n_cams;
-	short			n_lgts;
-	short			n_objs;
-	short			n_elms;
+	cl_short		n_cams;
+	cl_short		n_lgts;
+	cl_short		n_objs;
+	cl_short		n_elms;
 	t_obj			*b_outliner;
 	t_obj			*s_elem;
 	t_obj			*c_cam;
-	char			sp_mode;
-	char			t[15];
-	short			ot[10];
-	short			lt[5];
+	cl_short		sp_mode;
+	cl_short		t[15];
+	cl_short		ot[10];
+	cl_short		lt[5];
 };
 
 typedef struct		s_ui
