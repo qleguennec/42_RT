@@ -18,7 +18,7 @@ unsigned get_lighting(global t_obj *objs, global t_obj *lights,
 	short obj_ind)
 {
 	short	i = 0;
-	floast3	rd_light;
+	float3	rd_light;
 	float	size;
 	float3	lightdir;
 
