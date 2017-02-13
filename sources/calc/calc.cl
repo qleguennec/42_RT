@@ -6,7 +6,7 @@
 /*   By: lgatibel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 17:50:51 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/02/13 11:03:11 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/02/13 11:10:55 by lgatibel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ float		delta(float a, float b, float c)
 float	ray_norm(global t_obj *objs, float3 ray_pos, float3 ray_dir)
 {
 	if (objs->type == PLANE)
-		return (calc_sphere_dist(objs, ray_pos, ray_dir));
+		return (ray_sphere_norm(objs, ray_pos, ray_dir));
 	else if (objs->type == CONE)
-		return (calc_cone_dist(objs, ray_pos, ray_dir));
+		return (ray_cone_norm(objs, ray_pos, ray_dir));
 	else if (objs->type == CYLINDER)
-		return (calc_cylinder_dist(objs, ray_pos, ray_dir));
+		return (ray_cylinder_norm(objs, ray_pos, ray_dir));
 	else if (objs->type == SPHERE)
-		return (calc_sphere_dist(objs, ray_pos, ray_dir));
+		return (ray_sphere_norm(objs, ray_pos, ray_dir));
 	return (-1);
 }
 

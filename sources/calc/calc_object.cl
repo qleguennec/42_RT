@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calc_object.cl                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgatibel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/13 11:11:30 by lgatibel          #+#    #+#             */
+/*   Updated: 2017/02/13 11:11:39 by lgatibel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 float			norm(t_obj *obj, float delta, float3 ray_pos, float3 ray_dir)
 {
 	obj->inter = ray_pos * ray_dir;
@@ -8,8 +20,7 @@ float			float3_to_float(float3 v){
 	return (v.x + v.y + v.z);
 }
 
-
-float			calc_plane_dist(t_objs *obj, float3 ray_pos, float3 ray_dir)
+float			ray_plane_norm(t_objs *obj, float3 ray_pos, float3 ray_dir)
 {
 	float	a;
 	float	b;
@@ -24,7 +35,7 @@ float			calc_plane_dist(t_objs *obj, float3 ray_pos, float3 ray_dir)
 
 }
 
-float			calc_cone_dist(t_objs *obj, float3 ray_pos, float3 ray_dir)
+float			ray_cone_norm(t_objs *obj, float3 ray_pos, float3 ray_dir)
 {
 	float	a;
 	float	b;
@@ -49,7 +60,7 @@ float			calc_cone_dist(t_objs *obj, float3 ray_pos, float3 ray_dir)
 	return (-1);
 }
 
-float			calc_cylinder_dist(t_objs *obj, float3 ray_pos, float3 ray_dir)
+float			ray_cylinder_norm(t_objs *obj, float3 ray_pos, float3 ray_dir)
 {
 	float	a;
 	float	b;
@@ -71,7 +82,7 @@ float			calc_cylinder_dist(t_objs *obj, float3 ray_pos, float3 ray_dir)
 	return (-1);
 }
 
-float			calc_sphere_dist(t_objs *obj, float3 ray_pos, float3 ray_dir)
+float			ray_sphere_norm(t_objs *obj, float3 ray_pos, float3 ray_dir)
 {
 	float	a;
 	float	b;
