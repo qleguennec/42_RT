@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 11:41:41 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 17:15:09 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,27 @@ static int	check(t_rt *rt, int end)
 	return (end);
 }
 
+static int	debug(t_rt *rt)
+{
+	t_obj	*objs;
+
+	objs = rt->scn->o;
+	while (objs != NULL)
+	{
+		printf("id : %i\n", objs->id);
+		printf("type : %c\n", objs->type);
+		printf("title : %i\n", objs->title);
+		printf("\n");
+		objs = objs->next;
+	}
+	printf("Number of cams : %i\n", rt->scn->n_cams);
+	printf("Number of lgts : %i\n", rt->scn->n_lgts);
+	printf("Number of objs : %i\n", rt->scn->n_objs);
+	printf("\n");
+	printf("Number of elms : %i\n", rt->scn->n_elms);
+	return (1);
+}
+
 static int	execute(t_rt *rt, int fd)
 {
 	if (!(rt->prs->buf = (char *)malloc(sizeof(char))))
@@ -54,6 +75,7 @@ static int	execute(t_rt *rt, int fd)
 		return (error(rt, 3));
 	if (check(rt, 0) == -1)
 		return (-1);
+	debug(rt);
 	if (rt->verbose)
 		print_verbose(rt);
 	return (create_window(rt));

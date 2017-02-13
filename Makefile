@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/02/11 22:15:22 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/02/13 15:11:38 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ SOURCES		= main.c \
 			  gui/draw_panels.c \
 			  gui/draw_scene_parameters.c \
 			  gui/save_to_png.c \
+			  gui/export_config.c \
 			  handle/elements.c \
 			  handle/events.c \
 			  handle/errors.c \

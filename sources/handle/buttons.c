@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:56:06 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 10:21:41 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 15:18:50 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		edit_buttons_state(t_rt *rt, int i)
 void		execute_button(t_rt *rt, int button)
 {
 	if (button == 2 && (rt->n_info = -1) != 0)
-		;
+		export_config_file(rt);
 	if (button == 3 && (rt->n_info = 1) != 0)
 		add_new_camera(rt, rt->prs->obj_tmp);
 	else if (button == 4 && (rt->n_info = 2) != 0)

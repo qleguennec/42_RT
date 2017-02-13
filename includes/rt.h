@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 11:22:23 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 18:50:52 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int					add_object(t_rt *rt, int b_end);
 
 char				*light_type(short type);
 char				*shape_object(short shape);
+int					export_shape_object(short shape, int fd);
 
 t_obj				*set_default_parameters(t_obj *obj, char type, int title);
 t_obj				*set_element_parameters(t_obj *obj, t_obj *tmp, char type,
@@ -140,6 +141,8 @@ void				draw_materials(t_rt *rt, char type);
 void				draw_special_mode(t_rt *rt, int r_num, int type);
 
 void				save_to_png(t_rt *rt);
+
+void				export_config_file(t_rt *rt);
 
 /*
 ** -----------------------------------------------------------------------------
