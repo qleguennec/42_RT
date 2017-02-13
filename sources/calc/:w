@@ -26,36 +26,35 @@ float		delta(float a, float b, float c)
 float	ray_norm(global t_obj *objs, float3 ray_pos, float3 ray_dir)
 {
 	if (objs->type == PLANE)
-		return ((obj->t = ray_sphere_norm(objs, ray_pos, ray_dir)));
+		return (ray_sphere_norm(objs, ray_pos, ray_dir));
 	else if (objs->type == CONE)
-		return ((obj->t = ray_cone_norm(objs, ray_pos, ray_dir)));
+		return (ray_cone_norm(objs, ray_pos, ray_dir));
 	else if (objs->type == CYLINDER)
-		return ((obj->t = ray_cylinder_norm(objs, ray_pos, ray_dir)));
+		return (ray_cylinder_norm(objs, ray_pos, ray_dir));
 	else if (objs->type == SPHERE)
-		return ((obj->t = ray_sphere_norm(objs, ray_pos, ray_dir)));
+		return (ray_sphere_norm(objs, ray_pos, ray_dir));
 	return (-1);
 }
 
-void	touch_object(t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, short *index, float *t)
+void	touch_object(t_obj *objs, short nobjs, float3 ray_pos, float3 ray_dir, short *index)
 {
 	short	i;
 	short	index;
 	float	small_dist;
 	float	tmp;
-	float	tmp_t;
 
 	i = -1;
 	index = -1;
 	small_dist = -1;
 	while(i++ <  nobjs)
 	{
-		obj = tab_objs[i];
-		tmp = ray_norm(obj, ray_pos, ray_dir);
+		tmp = ray_norm(objs, ray_pos, ray_dir);
 		if (tmp > 0 && (tmp < small_dist || small_dist < 0))
 		{
 			index = i;
-			*t = obj->t;
+			closest
 		}
+		objs = objs->next;
 	}
 	*dist = small_dist;
 	return (index);

@@ -12,7 +12,6 @@
 
 float			norm(t_obj *obj, float delta, float3 ray_pos, float3 ray_dir)
 {
-	obj->inter = ray_pos * ray_dir;
 	return (obj->inter - ray_pos);
 }
 
@@ -44,11 +43,6 @@ float			ray_cone_norm(t_objs *obj, float3 ray_pos, float3 ray_dir)
 	float3	offset;
 
 	offset = ray_pos - obj->pos;
-	a = ray_dir.x * ray_dir.x + ray_dir.y * ray_dir.y + ray_dir.z * ray_dir.z;
-	b = 2 * (ray_dir.x * offset.x - ray_dir.y * offset + ray_dir.z * offset);
-	- obj->radius * obj->raius; // not sure of that!!
-	c = offset * offset - obj->radius * obj->radius;
-
 	a = float3_to_float(ray_dir * ray_dir);
 	b = 2 * float3_to_float(ray_dir * offset);
 	c = float3_to_float(offset * offset) - obj->radius * obj->radius;
