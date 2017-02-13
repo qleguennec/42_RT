@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 13:30:37 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/13 14:06:26 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ int			main(int ac, char **av)
 {
 	t_rt	rt;
 
-	if (!cl_test_krl())
-		return (ERR("test_krl failed", 1, 0));
-	return (0);
 	init_errors(&rt, 0);
 	if (init_structures(&rt) != 0)
 		return (-1);

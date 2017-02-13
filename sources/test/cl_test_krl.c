@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 11:00:05 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/13 12:25:21 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/13 14:21:06 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static bool
 	test_krl_build
 	(t_cl_info *info
 	, t_cl_krl *test_krl
-	, t_cl_cam *cam
+	, t_obj *cam
 	, t_vect *build_line)
 {
 	int			fd;
@@ -72,24 +72,19 @@ static bool
 
 bool
 	cl_test_krl
-	(void)
+	(t_scene *scn)
 {
 	cl_int		ret;
 	size_t		work_size;
 	t_cl		cl;
-	t_cl_cam	cam;
-	t_scene		scene;
 	t_vect		build_line;
 
-	BZERO(scene);
-	BZERO(cam);
 	cl_init(&cl.info);
 	if (!test_krl_init(&cl.main_krl, &build_line))
 		return (ERR("failed to init kernel", false, 0));
-	test_gen_scene(&scene);
-	if (!test_krl_build(&cl.info, &cl.main_krl, &cam, &build_line))
+	if (!test_krl_build(&cl.info, &cl.main_krl, scn->c_cam, &build_line))
 		return (ERR("cannot build kernel", false, 0));
-	if (!cl_main_krl_update_buffers(&cl, &scene))
+	if (!cl_main_krl_update_buffers(&cl, scn))
 		return (ERR("cannot update buffers", false, 0));
 	work_size = 1;
 	if ((ret = cl_krl_exec(&cl.info, cl.main_krl.krl, 1, &work_size))
