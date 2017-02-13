@@ -11,7 +11,7 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<focal>60</focal>
+	<focal>22</focal>
 	<position>12. 15. 14.</position>
 	<rotation>45. 175. 20.</rotation>
 </camera>
@@ -20,7 +20,8 @@
 
 <light>
 	//<name> Prout </name>
-	//<visibility>false</visibility>
+	<type> diffuse </type>
+	<visibility>false</visibility>
 	<intensity>5</intensity>
 	//<color-rgb>122 145 210</color-rgb>
 	<position>12. 15. 14</position>
@@ -32,7 +33,9 @@
 	<position>12. 15. 14</position>
 	<rotation>0. 175. 20.</rotation>
 	<color-hex>0xFFFFFF </color-hex>
-	//<opacity>0.4</opacity>
-	//<material>PhOnG</material>
+	<opacity>0.4</opacity>
+	<visibility> OFF </visibility>
+	<material>PhOnG</material>
 	<type>sphere      </type>
+	<radius>12</radius>
 </object>

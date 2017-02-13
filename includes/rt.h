@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 19:27:11 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 10:20:12 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,16 @@ void				init_light(t_rt *rt, short pos, short t);
 void				init_object(t_rt *rt, short pos, short t);
 int					init_structures(t_rt *rt);
 
+int					reset_tags(t_parser *p);
+
 char				*clear_line(t_parser *p, char *str, int i, int n);
 
-int					check_balises(t_rt *rt, char *b_open, char *b_close);
+int					check_tags(t_rt *rt, char *b_open, char *b_close);
 
 int					check_scene(t_rt *rt);
-int					check_camera(t_rt *rt, short i);
-int					check_light(t_rt *rt, short i);
-int					check_object(t_rt *rt);
+int					check_camera(t_rt *rt, t_obj *tmp, short i);
+int					check_light(t_rt *rt, t_obj *tmp, short i);
+int					check_object(t_rt *rt, t_obj *tmp, short i);
 
 int					get_i(t_rt *rt, int b_end, char *s, char *e);
 int					get_d(t_rt *rt, int b_end, char *s, char *e);
@@ -87,13 +89,23 @@ int					get_h(t_rt *rt, int b_end, char *s, char *e);
 char				*get_s(t_parser *r, int b_end, int b_size);
 int					get_m(t_rt *rt, int b_end, char *s, char *e);
 int					get_t(t_rt *rt, int b_end, char *s, char *e);
+int					get_lt(t_rt *rt, int b_end, char *s, char *e);
 
 int					set_scene(t_rt *rt, int b_end, int e);
-int					add_element(t_rt *rt, int b_end, int e, char type);
+int					add_camera(t_rt *rt, int b_end);
+int					add_light(t_rt *rt, int b_end);
+int					add_object(t_rt *rt, int b_end);
 
-t_obj				*assign_default_obj_values(t_obj *obj, char t, int type);
-t_obj				*assign_obj_values(t_obj *obj, t_obj *tmp, char t,
-					int type);
+char				*light_type(short type);
+char				*shape_object(short shape);
+
+t_obj				*set_default_parameters(t_obj *obj, char type, int title);
+t_obj				*set_element_parameters(t_obj *obj, t_obj *tmp, char type, int title);
+
+int					add_global_parameters(t_rt *rt, t_parser *p, t_obj *obj, int e);
+int					add_camera_parameters(t_rt *rt, t_obj *obj, int b_end, int e);
+int					add_light_parameters(t_rt *rt, t_obj *obj, int b_end, int e);
+int					add_object_parameters(t_rt *rt, t_obj *obj, int b_end, int e);
 
 /*
 ** -----------------------------------------------------------------------------
@@ -155,9 +167,11 @@ void				handle_events(t_rt *rt);
 /*
 ** --------------------------- Handle Elements ---------------------------------
 */
-
-void				add_new_element(t_rt *rt, char type);
-
+char				*shape_object(short shape);
+void				add_new_camera(t_rt *rt, t_obj *tmp);
+void				add_new_light(t_rt *rt, t_obj *tmp, short type);
+void				add_new_object(t_rt *rt, t_obj *tmp, short type);
+void				add_new_shader(t_obj *obj, short type);
 /*
 ** ------------------------------ Handle GUI -----------------------------------
 */
@@ -204,9 +218,9 @@ void				handle_keyboard(t_rt *rt);
 ** ------------------------- Handle Linked Lints -------------------------------
 */
 
-t_obj				*lst_new_camera(t_rt *rt, t_obj *objs, int type);
-t_obj				*lst_new_light(t_rt *rt, t_obj *objs, int type);
-t_obj				*lst_new_object(t_rt *rt, t_obj *objs, int type);
+t_obj				*lst_new_camera(t_rt *rt, t_obj *objs, int title);
+t_obj				*lst_new_light(t_rt *rt, t_obj *objs, int title);
+t_obj				*lst_new_object(t_rt *rt, t_obj *objs, int title, int type);
 
 /*
 ** ---------------------------- Handle Errors ----------------------------------

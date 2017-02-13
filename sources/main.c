@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 17:50:37 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/11 18:26:22 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ static int	check(t_rt *rt, int end)
 	rt->ui->id = 0;
 	rt->scn->o = lst_new_camera(rt, rt->scn->o, -1);
 	rt->scn->o = lst_new_light(rt, rt->scn->o, -2);
-	rt->scn->o = lst_new_object(rt, rt->scn->o, -3);
+	rt->scn->o = lst_new_object(rt, rt->scn->o, -3, 0);
 	while (end != -1 && rt->prs->buf[rt->prs->i] != 0)
 	{
-		if ((end = check_balises(rt, BO_S, BC_S)) > 0)
+		if ((end = check_tags(rt, BO_S, BC_S)) > 0)
 			end = set_scene(rt, end, 0);
-		else if (end != -1 && (end = check_balises(rt, BO_C, BC_C)) > 0)
-			end = add_element(rt, end, 0, 'C');
-		else if (end != -1 && (end = check_balises(rt, BO_L, BC_L)) > 0)
-			end = add_element(rt, end, 0, 'L');
-		else if (end != -1 && (end = check_balises(rt, BO_O, BC_O)) > 0)
-			end = add_element(rt, end, 0, 'O');
+		else if (end != -1 && (end = check_tags(rt, BO_C, BC_C)) > 0)
+			end = add_camera(rt, end);
+		else if (end != -1 && (end = check_tags(rt, BO_L, BC_L)) > 0)
+			end = add_light(rt, end);
+		else if (end != -1 && (end = check_tags(rt, BO_O, BC_O)) > 0)
+			end = add_object(rt, end);
 		else if (end > -1)
 			return (error(rt, 8));
 	}

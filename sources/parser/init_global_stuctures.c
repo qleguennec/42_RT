@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 13:55:32 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 17:09:34 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/11 19:45:09 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 /*
 ** Functions to malloc all structures & initilize the scene
 */
+
+int		reset_tags(t_parser *p)
+{
+	p->t_i = 0;
+	while (p->t_i < 15)
+		p->t[p->t_i++] = 0;
+	return (1);
+}
 
 void	init_elements(t_rt *rt)
 {
@@ -28,8 +36,14 @@ void	init_elements(t_rt *rt)
 	rt->scn->n_objs = 0;
 	rt->scn->sp_mode = 0;
 	rt->scn->o = NULL;
-	while (rt->prs->t_i < 6)
-		rt->scn->t[rt->prs->t_i++] = 0;
+	while (rt->prs->t_i < 15)
+		rt->prs->t[rt->prs->t_i++] = 0;
+	rt->prs->t_i = 0;
+	while (rt->prs->t_i < 5)
+		rt->scn->lt[rt->prs->t_i++] = 0;
+	rt->prs->t_i = 0;
+	while (rt->prs->t_i < 10)
+		rt->scn->ot[rt->prs->t_i++] = 0;
 	rt->prs->t_i = 0;
 }
 

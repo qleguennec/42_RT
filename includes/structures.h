@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 21:08:42 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/11 18:59:52 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct		s_obj
 	cl_short		active;		//Pour GUI, 1 si c'est la cam active sinon 0
 	cl_char			type;		//Type d'élément ('C' pour Camera, 'L' pour Light et 'O' pour object)
 	cl_short		forme;		//Type d'objet ()
+	cl_short		material;	//Pour Parsing uniquement
 	cl_float3		pos;		//Position
 	cl_float3		rot;		//Rotation
 	cl_float3		clr;		//Couleur
@@ -82,7 +83,7 @@ typedef struct		s_parser
 	char			*buf;
 	char			*line;
 	short			n[50];
-	short			t[6];
+	short			t[15]; // don't re-use it '
 	char			*b_o;
 	char			*b_c;
 	t_obj			*obj_tmp;
@@ -105,7 +106,9 @@ struct				s_scene
 	t_obj			*s_elem;
 	t_obj			*c_cam;
 	char			sp_mode;
-	char			t[10];
+	char			t[15];
+	short			ot[10];
+	short			lt[5];
 };
 
 typedef struct		s_ui

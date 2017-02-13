@@ -6,13 +6,13 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 10:41:16 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 19:53:06 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/11 18:26:11 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-t_obj		*lst_new_camera(t_rt *rt, t_obj *objs, int type)
+t_obj		*lst_new_camera(t_rt *rt, t_obj *objs, int title)
 {
 	t_obj	*new_cam;
 	t_obj	*nav_list;
@@ -20,7 +20,7 @@ t_obj		*lst_new_camera(t_rt *rt, t_obj *objs, int type)
 	new_cam = NULL;
 	if (!(new_cam = (t_obj *)malloc(sizeof(t_obj))))
 		return (NULL);
-	new_cam = assign_obj_values(new_cam, rt->prs->obj_tmp, 'C', type);
+	new_cam = set_element_parameters(new_cam, rt->prs->obj_tmp, 'C', title);
 	new_cam->next = NULL;
 	if (objs == NULL && ++rt->scn->n_cams)
 	{
@@ -41,7 +41,7 @@ t_obj		*lst_new_camera(t_rt *rt, t_obj *objs, int type)
 	return (objs);
 }
 
-t_obj		*lst_new_light(t_rt *rt, t_obj *objs, int type)
+t_obj		*lst_new_light(t_rt *rt, t_obj *objs, int title)
 {
 	t_obj	*new_light;
 	t_obj	*nav_list;
@@ -49,7 +49,7 @@ t_obj		*lst_new_light(t_rt *rt, t_obj *objs, int type)
 	new_light = NULL;
 	if (!(new_light = (t_obj *)malloc(sizeof(t_obj))))
 		return (NULL);
-	new_light = assign_obj_values(new_light, rt->prs->obj_tmp, 'L', type);
+	new_light = set_element_parameters(new_light, rt->prs->obj_tmp, 'L', title);
 	new_light->next = NULL;
 	if (objs == NULL && ++rt->scn->n_lgts)
 	{
@@ -70,15 +70,16 @@ t_obj		*lst_new_light(t_rt *rt, t_obj *objs, int type)
 	return (objs);
 }
 
-t_obj		*lst_new_object(t_rt *rt, t_obj *objs, int type)
+t_obj		*lst_new_object(t_rt *rt, t_obj *objs, int title, int type)
 {
 	t_obj	*new_obj;
 	t_obj	*nav_list;
 
+	(void)type;
 	new_obj = NULL;
 	if (!(new_obj = (t_obj *)malloc(sizeof(t_obj))))
 		return (NULL);
-	new_obj = assign_obj_values(new_obj, rt->prs->obj_tmp, 'O', type);
+	new_obj = set_element_parameters(new_obj, rt->prs->obj_tmp, 'O', title);
 	new_obj->next = NULL;
 	if (objs == NULL && ++rt->scn->n_objs)
 	{

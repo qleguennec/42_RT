@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/02/09 16:01:33 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/02/11 22:15:22 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,12 +49,14 @@ HEADER		= includes
 SOURCES		= main.c \
 			  parser/init_global_stuctures.c \
 			  parser/clear_buffer.c \
-			  parser/check_balises.c \
+			  parser/check_tags.c \
 			  parser/check_elements.c \
 			  parser/get_numbers.c \
 			  parser/get_informations.c \
-			  parser/assign_values.c \
+			  parser/get_type_elements.c \
 			  parser/add_elements.c \
+			  parser/add_elements_parameters.c \
+			  parser/set_elements_parameters.c \
 			  gui/init_structure.c \
 			  gui/draw_elements.c \
 			  gui/draw_info_and_state.c \
