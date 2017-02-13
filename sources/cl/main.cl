@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_cl_interface.h"
+#include "obj_def.h"
 
 kernel void
 	main
@@ -21,17 +21,29 @@ kernel void
 	, short nobjs
 	, short nlgts)
 {
-	double3		ray_origin;
-	double		ray_dir;
-	double		u;
-	double		v;
+	float3		ray_origin;
+	float3		ray_dir;
+	float		u;
+	float		v;
+	size_t		i;
+	size_t		j;
 
+	i = get_local_id(0);
+	j = get_local_id(1);
 	u = cam.pos.x;
 	u -= 3 / WIDTH * u;
-	u += 0.5 + get_local_id(0);
+	u += 0.5 + i;
 	u = cam.pos.y;
 	v -= 3 / HEIGHT * v;
-	v += 0.5 + get_local_id(1);
+	v += 0.5 + j;
 	ray_origin = cam.pos;
-	ray_dir.z = - cam.flocal * ray_origin.z + u * ray_origin.x + v * ray_origin.y;
+	ray_dir.x = ray_origin.x * u;
+	ray_dir.y = ray_origin.y *
+	ray_dir.z = - cam.focal * ray_origin.z;
+	calc(obj + i * WIDTH * sizeof(*objs) + j * sizeof(*objs)
+		, objs
+		, lgts
+		, nobjs
+		, cam
+		, ngts);
 }
