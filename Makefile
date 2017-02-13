@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/13 13:46:38 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/13 16:14:29 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,7 @@ SOURCES		= main.c \
 			parser/set_elements_parameters.c \
 			renderer/init_renderer.c \
 			renderer/start_renderer.c \
+			renderer/scene_init_rendering.c \
 			test/cl_test_krl.c \
 			test/test_gen_scene.c
 
@@ -107,7 +108,7 @@ SRCS		= $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS		= $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
 opti:
-	@$(MAKE) all -j
+	@$(MAKE) all
 
 all: temporary $(NAME)
 

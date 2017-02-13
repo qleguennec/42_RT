@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:39:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/13 12:26:37 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/13 16:03:02 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool
 
 	//assert(obj->type = 'C');
 	cpy_cam(&cam, obj);
-	if ((ret = cl_write(&cl->info, cl->main_krl.args[0], sizeof(cam), &cam))
+	if ((ret = cl_write(&cl->info, cl->main_krl.args[1], sizeof(cam), &cam))
 		!= CL_SUCCESS)
 		return (ERR("cannot set camera, err %a", false, ret));
 	return (true);

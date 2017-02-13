@@ -6,12 +6,14 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 11:39:27 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 15:07:12 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
+
+#include "libcl.h"
 
 typedef struct s_scene	t_scene;
 typedef struct s_rt		t_rt;
@@ -169,5 +171,15 @@ struct				s_rt
 
 	char			render;
 };
+
+typedef struct		s_cl
+{
+	t_cl_info		info;
+	t_cl_krl		main_krl;
+	cl_mem			objs;
+	cl_mem			lgts;
+	short			n_objs;
+	short			n_lgts;
+}					t_cl;
 
 #endif

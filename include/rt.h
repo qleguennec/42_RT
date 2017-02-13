@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 13:35:04 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/13 15:06:51 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,28 @@ void				draw_materials(t_rt *rt, char type);
 void				draw_special_mode(t_rt *rt, int r_num, int type);
 
 void				save_to_png(t_rt *rt);
+/*
+** -----------------------------------------------------------------------------
+** -------------------------------- OpenCL- ------------------------------------
+** -----------------------------------------------------------------------------
+*/
+
+/*
+** needs to be call once at the start of the program
+*/
+bool				cl_main_krl_init(t_cl *cl);
+
+/*
+** needs to be call each time the scene needs to be rendered
+*/
+bool				cl_main_krl_exec(t_cl *cl, t_scene *scene);
+
+/*
+** needs to be call each time the camera is changed
+** AND at the start of the program after
+** cl_main_krl_init
+*/
+bool				cl_main_krl_update_camera(t_cl *cl, t_obj *obj);
 
 /*
 ** -----------------------------------------------------------------------------
@@ -153,6 +175,8 @@ int					create_window(t_rt *rt);
 
 void				render_frame(t_rt *rt);
 void				render_loop(t_rt *rt);
+
+bool				scene_init_rendering(t_rt *rt, t_cl *cl);
 
 /*
 ** -----------------------------------------------------------------------------

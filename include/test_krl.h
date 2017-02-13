@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/12 14:28:20 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/13 14:06:20 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/13 15:08:28 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "rt.h"
 #include <stdbool.h>
 
-bool		cl_test_krl(t_scene *scene);
-void		test_gen_scene(t_scene *scene);
+bool		cl_test_krl(t_cl *cl, t_scene *scene);
 
 #endif

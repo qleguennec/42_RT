@@ -6,12 +6,11 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 14:06:26 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/13 15:09:01 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#include "cl.h"
 #include "libfmt.h"
 #include "test_krl.h"
 
@@ -44,7 +43,7 @@ static int	check(t_rt *rt, int end)
 	return (end);
 }
 
-static int	execute(t_rt *rt, int fd)
+static int	execute(t_rt *rt, t_cl *cl, int fd)
 {
 	if (!(rt->prs->buf = (char *)malloc(sizeof(char))))
 		return (error(rt, 0));
@@ -57,6 +56,7 @@ static int	execute(t_rt *rt, int fd)
 		return (error(rt, 3));
 	if (check(rt, 0) == -1)
 		return (-1);
+	scene_init_rendering(rt, cl);
 	if (rt->verbose)
 		print_verbose(rt);
 	return (create_window(rt));
@@ -64,6 +64,7 @@ static int	execute(t_rt *rt, int fd)
 
 int			main(int ac, char **av)
 {
+	t_cl	cl;
 	t_rt	rt;
 
 	init_errors(&rt, 0);
@@ -78,5 +79,5 @@ int			main(int ac, char **av)
 	if ((ac = open(av[1], O_RDONLY)) == -1)
 		return (error(&rt, 3));
 	rt.filename = av[1];
-	return (execute(&rt, ac));
+	return (execute(&rt, &cl, ac));
 }

@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 07:55:11 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/13 12:25:57 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/13 15:05:56 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include <OpenCL/opencl.h>
 #include "rt.h"
-#include "cl.h"
 
 typedef struct		s_cl_obj
 {

@@ -6,16 +6,18 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/13 12:26:03 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/13 16:22:16 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#include "cl.h"
 #include "cl_interface.h"
 #include "libvect.h"
 #include "libcl.h"
 #include "libfmt.h"
+
+// TODO remove debug includes
+#include <assert.h>
 
 /*
 ** updates GPU memory
@@ -51,8 +53,7 @@ static bool
 		VECT_ADD(buf, lgt_tmp);
 		lgts = lgts->next;
 	}
-	return (cl_write(&cl->info, cl->lgts, buf->used, buf->data)
-		== CL_SUCCESS);
+	return (true);
 }
 
 static bool
@@ -76,7 +77,7 @@ static bool
 	cl->n_objs = n;
 	if (!((ret = CL_KRL_ARG(cl->main_krl.krl, 2, cl->objs)) == CL_SUCCESS
 		&& (ret = CL_KRL_ARG(cl->main_krl.krl, 4, cl->n_objs)) == CL_SUCCESS))
-		return (ERR("cannot set lgts & n_lgts args in kernel, err %a"
+		return (ERR("cannot set objs & n_objs args in kernel, err %a"
 			, false, ret));
 	while (objs)
 	{
@@ -84,8 +85,7 @@ static bool
 		VECT_ADD(buf, obj_tmp);
 		objs = objs->next;
 	}
-	return (cl_write(&cl->info, cl->objs, buf->used, buf->data)
-		== CL_SUCCESS);
+	return (true);
 }
 
 bool
@@ -93,14 +93,24 @@ bool
 	(t_cl *cl
 	, t_scene *scene)
 {
+	int		ret;
 	t_vect	buf;
 
+	assert(cl->main_krl.sizes[1] == sizeof(t_cl_cam));
 	vect_init(&buf);
-	if (!krl_update_lgts(cl, &buf, scene->b_lgts, scene->n_lgts))
+	if (!krl_update_lgts(cl, &buf, scene->b_lgts->next, scene->n_lgts - 1))
 		return (false);
+	if ((ret = cl_write(&cl->info, cl->lgts
+		, cl->n_lgts * sizeof(t_cl_lgt), buf.data))
+		!= CL_SUCCESS)
+		return (ERR("cannot write to light buffer, err %a", false, ret));
 	buf.used = 0;
-	if (!krl_update_objs(cl, &buf, scene->b_objs, scene->n_objs))
+	if (!krl_update_objs(cl, &buf, scene->b_objs->next, scene->n_objs - 1))
 		return (false);
+	if ((ret = cl_write(&cl->info, cl->objs
+		, cl->n_objs * sizeof(t_cl_obj), buf.data))
+		!= CL_SUCCESS)
+		return (ERR("cannot write to object buffer, err %a", false, ret));
 	free(buf.data);
 	return (true);
 }
