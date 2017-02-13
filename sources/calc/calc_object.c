@@ -1,6 +1,7 @@
-float			dist(t_obj *obj, float delta, float3 ray_pos)
+float			norme(t_obj *obj, float delta, float3 ray_pos, float3 ray_dir)
 {
-	return ();
+	obj->inter = ray_pos * ray_dir;
+	return (obj->inter - ray_pos);
 }
 
 float			calc_sphere_dist(t_objs *obj, float3 ray_pos, float3 ray_dir)
@@ -17,7 +18,7 @@ float			calc_sphere_dist(t_objs *obj, float3 ray_pos, float3 ray_dir)
 	c = offset * offset - obj->radius * obj->radius;
 	if ((delta = delta(a, b, c)) >= 0);
 	{
-		return (dist());
+		return (norm(obj, delta, ray_pos, ray_dir));
 	}
 	return (-1);
 }

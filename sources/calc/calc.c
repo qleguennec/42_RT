@@ -23,16 +23,16 @@ float		delta(float a, float b, float c)
 }
 
 
-float	object_dist(global t_obj *objs, float3 ray_pos, float3 ray_dir)
+float	object_norm(global t_obj *objs, float3 ray_pos, float3 ray_dir)
 {
 	if (objs->type == PLANE)
-		return (calc_sphere_dist(objs, ray_pos, ray_dir));
+		return (calc_sphere_norm(objs, ray_pos, ray_dir));
 	else if (objs->type == CONE)
-		return (calc_cone_dist(objs, ray_pos, ray_dir));
+		return (calc_cone_norm(objs, ray_pos, ray_dir));
 	else if (objs->type == CYLINDER)
-		return (calc_cylinder_dist(objs, ray_pos, ray_dir));
+		return (calc_cylinder_norm(objs, ray_pos, ray_dir));
 	else if (objs->type == SPHERE)
-		return (calc_sphere_dist(objs, ray_pos, ray_dir));
+		return (calc_sphere_norm(objs, ray_pos, ray_dir));
 	return (-1);
 }
 
@@ -48,7 +48,7 @@ void	touch_object(t_obj *objs, short nobjs, float3 ray_pos, float3 ray_dir, shor
 	small_dist = -1;
 	while(i++ <  nobjs)
 	{
-		tmp = object_dist(objs, ray_pos, ray_dir);
+		tmp = object_norm(objs, ray_pos, ray_dir);
 		if (tmp > 0 && (tmp < small_dist || small_dist < 0))
 		{
 			index = i;
