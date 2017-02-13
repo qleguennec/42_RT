@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_balises.c                                    :+:      :+:    :+:   */
+/*   check_tags.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/09 22:15:26 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 17:09:45 by bsouchet         ###   ########.fr       */
+/*   Created: 2017/02/10 19:05:12 by bsouchet          #+#    #+#             */
+/*   Updated: 2017/02/10 19:05:20 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int			check_balises(t_rt *rt, char *b_o, char *b_c)
+int			check_tags(t_rt *rt, char *b_o, char *b_c)
 {
 	int		end;
 	int		tmp;

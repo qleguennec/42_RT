@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:56:06 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/08 16:34:23 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 10:21:41 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,17 @@ void		execute_button(t_rt *rt, int button)
 	if (button == 2 && (rt->n_info = -1) != 0)
 		;
 	if (button == 3 && (rt->n_info = 1) != 0)
-		add_new_element(rt, 'C');
+		add_new_camera(rt, rt->prs->obj_tmp);
 	else if (button == 4 && (rt->n_info = 2) != 0)
-		add_new_element(rt, 'L');
+		add_new_light(rt, rt->prs->obj_tmp, T_DIFFUSE);
 	else if (button == 5 && (rt->n_info = 3) != 0)
-		add_new_element(rt, 'L');
+		add_new_light(rt, rt->prs->obj_tmp, T_DIRECTIONAL);
 	else if (button == 6 && (rt->n_info = 4) != 0)
-		add_new_element(rt, 'L');
+		add_new_light(rt, rt->prs->obj_tmp, T_SPOT);
 	else if (button >= 7 && button <= 11 && (rt->n_info = (button - 2)) != 0)
-		add_new_element(rt, 'O');
+		add_new_object(rt, rt->prs->obj_tmp, (button - 7));
 	else if (button >= 12 && button <= 15 && (rt->n_info = (button + 2)) != 0)
-		printf("Assign a Shader to the current selected object.\n");
+		add_new_shader(rt->scn->s_elem, (button - 12));
 	else if (button == 18 && (rt->n_info = 21) != 0)
 		save_to_png(rt);
 	edit_buttons_state(rt, 0);

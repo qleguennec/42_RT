@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:31:43 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 15:33:40 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 13:31:26 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,14 @@
 
 # define BO_CH	"<color-hex>"
 # define BC_CH	"</color-hex>"
+
+# define BO_RA	"<radius>"
+# define BC_RA	"</radius>"
+
+# define BO_WT	"<width>"
+# define BC_WT	"</width>"
+
+# define BO_HT	"<height>"
+# define BC_HT	"</height>"
 
 #endif

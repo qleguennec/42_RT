@@ -6,15 +6,26 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:19:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 20:03:36 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 11:13:01 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
 /*
-** Fonctions to check all elements (balises, cameras, lights, objects)
+** Fonctions to check all elements (cameras, lights & objects).
 */
+
+int			check_rgb_color(cl_float3 clr)
+{
+	if (clr.x < .0 || clr.x > 255.0)
+		return (0);
+	if (clr.y < .0 || clr.y > 255.0)
+		return (0);
+	if (clr.z < .0 || clr.z > 255.0)
+		return (0);
+	return (1);
+}
 
 int			check_scene(t_rt *rt)
 {
@@ -29,80 +40,71 @@ int			check_scene(t_rt *rt)
 	return (1);
 }
 
-int			check_camera(t_rt *rt, short i)
+int			check_camera(t_rt *rt, t_obj *tmp, short i)
 {
-	if (rt->prs->obj_tmp->pos.x != rt->prs->obj_tmp->pos.x)
+	tmp->title = 0;
+	if (!tmp->n)
+		tmp->n = (cl_char *)ft_strjoin("Camera ", ft_itoa(i), 'R');
+	if (rt->prs->t[1] != 0)
+		return (error(rt, 33));
+	if (rt->prs->t[2] == 0)
 		return (error(rt, 24));
-	if (rt->prs->obj_tmp->rot.x != rt->prs->obj_tmp->rot.x)
+	if (rt->prs->t[3] == 0)
 		return (error(rt, 25));
-	if (!rt->prs->obj_tmp->n)
-		rt->prs->obj_tmp->n =
-		(cl_char *)ft_strjoin("Camera ", ft_itoa(i), 'R');
-	if (rt->prs->obj_tmp->focal < 18 ||
-	rt->prs->obj_tmp->focal > 200)
+	if (rt->prs->t[4] != 0)
+		return (error(rt, 34));
+	if (rt->prs->t[5] != 0 && (tmp->focal < 18 || tmp->focal > 200))
 		return (error(rt, 16));
-	rt->prs->obj_tmp->type = 'C';
-	rt->scn->o = lst_new_camera(rt, rt->scn->o, 1);
+	rt->scn->o = lst_new_camera(rt, rt->scn->o, 0);
+	reset_tags(rt->prs);
 	rt->prs->i += 9;
 	return (1);
 }
 
-int			check_light(t_rt *rt, short i)
+int			check_light(t_rt *rt, t_obj *tmp, short i)
 {
-	(void)i;
-	if (rt->prs->obj_tmp->pos.x != rt->prs->obj_tmp->pos.x)
+	tmp->title = 0;
+	if (rt->prs->t[8] == 0)
+		return (error(rt, 41));
+	i = ++rt->scn->lt[tmp->forme];
+	if (!tmp->n)
+		tmp->n = (cl_char *)ft_strjoin(light_type(tmp->forme), ft_itoa(i), 'R');
+	if (rt->prs->t[1] == 0)
+		rt->prs->obj_tmp->clr = (cl_float3){{255., 219., 74., 255.}};
+	if (rt->prs->t[1] != 0 && !check_rgb_color(tmp->clr))
+		return (error(rt, 36));
+	if (rt->prs->t[2] == 0)
 		return (error(rt, 26));
-	if (rt->prs->obj_tmp->clr.x != rt->prs->obj_tmp->clr.x)
-	{
-		rt->prs->obj_tmp->clr.x = 255.0;
-		rt->prs->obj_tmp->clr.y = 255.0;
-		rt->prs->obj_tmp->clr.z = 255.0;
-	}
-	if (!rt->prs->obj_tmp->n)
-		rt->prs->obj_tmp->n =
-		(cl_char *)ft_strjoin("Light ", ft_itoa(i), 'R');
-	rt->prs->obj_tmp->type = 'L';
-	rt->scn->o = lst_new_light(rt, rt->scn->o, 1);
+	if (rt->prs->t[6] != 0 && (tmp->intensity < 0. || tmp->intensity > 50.))
+		return (error(rt, 35));
+	rt->scn->o = lst_new_light(rt, rt->scn->o, 0);
+	reset_tags(rt->prs);
 	rt->prs->i += 8;
 	return (1);
 }
 
-static void	add_name_object(t_rt *rt)
+int			check_object(t_rt *rt, t_obj *tmp, short i)
 {
-	char	*tmp;
-
-	tmp = NULL;
-	++rt->scn->t[0];
-	tmp = ft_itoa(rt->scn->t[0]);
-	/*if (rt->prs->obj_tmp->ot == 1)
-		rt->prs->obj_tmp->n = (cl_char *)ft_strjoin("Plane ", tmp, 'R');
-	else if (rt->prs->obj_tmp->ot == 2)
-		rt->prs->obj_tmp->n = (cl_char *)ft_strjoin("Sphere ", tmp, 'R');
-	else if (rt->prs->obj_tmp->ot == 3)
-		rt->prs->obj_tmp->n = (cl_char *)ft_strjoin("Cube ", tmp, 'R');
-	else if (rt->prs->obj_tmp->ot == 4)
-		rt->prs->obj_tmp->n = (cl_char *)ft_strjoin("Cylinder ", tmp, 'R');
-	else if (rt->prs->obj_tmp->ot == 5)*/
-		rt->prs->obj_tmp->n = (cl_char *)ft_strjoin("Cone ", tmp, 'R');
-}
-
-int			check_object(t_rt *rt)
-{
-	if (rt->prs->obj_tmp->pos.x != rt->prs->obj_tmp->pos.x)
+	tmp->title = 0;
+	if (rt->prs->t[8] == 0)
+		return (error(rt, 28));
+	i = ++rt->scn->ot[tmp->forme];
+	if (!tmp->n)
+		tmp->n = (cl_char *)ft_strjoin(shape_object(tmp->forme), ft_itoa(i), 'R');
+	if (rt->prs->t[1] != 0 && !check_rgb_color(tmp->clr))
+		return (error(rt, 37));
+	if (rt->prs->t[2] == 0)
 		return (error(rt, 27));
-	if (rt->prs->obj_tmp->clr.x != rt->prs->obj_tmp->clr.x)
-	{
-		rt->prs->obj_tmp->clr.x = 255.0;
-		rt->prs->obj_tmp->clr.y = 255.0;
-		rt->prs->obj_tmp->clr.z = 255.0;
-	}
-	if (rt->prs->obj_tmp->opacity < 0. ||
-	rt->prs->obj_tmp->opacity > 1.)
-		return (error(rt, 23));
-	if (!rt->prs->obj_tmp->n)
-		add_name_object(rt);
-	rt->prs->obj_tmp->type = 'O';
-	rt->scn->o = lst_new_object(rt, rt->scn->o, 1);
+	if (rt->prs->t[7] != 0 && (tmp->opacity < .0 || tmp->opacity > 1.0))
+		return (error(rt, 10));
+	if (rt->prs->t[9] != 0 && (tmp->radius < .0 || tmp->radius > 200.0))
+		return (error(rt, 38));
+	if (rt->prs->t[10] != 0 && (tmp->width < .0 || tmp->width > 200.0))
+		return (error(rt, 39));
+	if (rt->prs->t[11] != 0 && (tmp->height < .0 || tmp->height > 200.0))
+		return (error(rt, 40));
+	rt->scn->o = lst_new_object(rt, rt->scn->o, 0, 0);
+	reset_tags(rt->prs);
 	rt->prs->i += 9;
 	return (1);
 }

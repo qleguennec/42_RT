@@ -6,10 +6,9 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/10 14:43:31 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/13 13:31:16 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -47,13 +46,6 @@
 # define MIN(a,b)	((a <= b) ? a : b)
 # define MAX(a,b)	((a > b) ? a : b)
 # define ABS(x)		(((x) < 0) ? (-x) : (x))
-
-typedef struct	s_vec3
-{
-	double		x;
-	double		y;
-	double		z;
-}				t_vec3;
 
 char			*ft_name(char *file, char *extension);
 
@@ -122,6 +114,10 @@ int				i(int *elem1, int elem2);
 int				d(double *elem1, double elem2);
 
 int				s(char **elem1, char *elem2);
+
+int				cf(cl_float *elem1, double elem2);
+
+int				ci(cl_short *elem1, int elem2);
 
 void			ft_putshort(short num);
 
