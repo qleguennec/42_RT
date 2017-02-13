@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/11 18:59:52 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 11:19:28 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,52 +20,32 @@ typedef struct s_rt		t_rt;
 ** ---------------------------- Scene Elements ---------------------------------
 */
 
-/*typedef	struct		s_obj
-{
-	short			id;
-	short			e;
-	char			t;
-	short			title;
-	short			ot;
-	short			m;
-	short			v;
-	short			i;
-	short			fl;
-	char			*n;
-	double			op;
-	SDL_Rect		r_ol;
-	t_vec3			pos;
-	t_vec3			rot;
-	t_vec3			rgb;
-	struct s_obj	*next;
-}					t_obj;*/
-
 typedef struct		s_obj
 {
 	cl_short		id;
-	cl_char			*n;			//Nom de l'élément, reécupéré par parsing
-	cl_short		title;		//Pour GUI, BOOL pour savoir si c'est un separateur entre type d'élément
-	cl_short		active;		//Pour GUI, 1 si c'est la cam active sinon 0
-	cl_char			type;		//Type d'élément ('C' pour Camera, 'L' pour Light et 'O' pour object)
-	cl_short		forme;		//Type d'objet ()
-	cl_short		material;	//Pour Parsing uniquement
-	cl_float3		pos;		//Position
-	cl_float3		rot;		//Rotation
-	cl_float3		clr;		//Couleur
-	cl_float		opacity;	//opacité de l'élément
-	cl_short		focal;		//Focal de la camera
-	cl_float		radius;		//Radius pour sphere, cylindre, cone
-	cl_float		width;		//Pour plane
-	cl_float 		height;		//Pour cone et cylindre
-	cl_short		visibility;	//Lumiere visible ou non
-	cl_float		intensity;	//Intensité de la lumière
-	cl_float		shiness;	//Brillance de l'objet. 0 = null & 1 = max
-	cl_float		mshiness;	//Puissance de brillance utiliser avec le paramettre precedent
-	cl_float		specolor;	//Specular color rattachée a la brillance
-	cl_float		reflex;		//Coefficient de reflextion de l'objet
-	cl_float		refract;	//Coefficient de refraction de l'objet
-	SDL_Rect		r_ol;		//Pour GUI, Rectangle pour Outliner
-	struct s_obj	*next;		//Next element of the linked list
+	cl_char			*n;
+	cl_short		title;
+	cl_short		active;
+	cl_char			type;
+	cl_short		forme;
+	cl_short		material;
+	cl_float3		pos;
+	cl_float3		rot;
+	cl_float3		clr;
+	cl_float		opacity;
+	cl_short		focal;
+	cl_float		radius;
+	cl_float		width;
+	cl_float		height;
+	cl_short		visibility;
+	cl_float		intensity;
+	cl_float		shiness;
+	cl_float		mshiness;
+	cl_float		specolor;
+	cl_float		reflex;
+	cl_float		refract;
+	SDL_Rect		r_ol;
+	struct s_obj	*next;
 }					t_obj;
 
 /*
@@ -83,7 +63,7 @@ typedef struct		s_parser
 	char			*buf;
 	char			*line;
 	short			n[50];
-	short			t[15]; // don't re-use it '
+	short			t[15];
 	char			*b_o;
 	char			*b_c;
 	t_obj			*obj_tmp;

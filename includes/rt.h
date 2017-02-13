@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 10:20:12 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 11:22:23 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,14 @@ char				*light_type(short type);
 char				*shape_object(short shape);
 
 t_obj				*set_default_parameters(t_obj *obj, char type, int title);
-t_obj				*set_element_parameters(t_obj *obj, t_obj *tmp, char type, int title);
+t_obj				*set_element_parameters(t_obj *obj, t_obj *tmp, char type,
+					int title);
 
-int					add_global_parameters(t_rt *rt, t_parser *p, t_obj *obj, int e);
-int					add_camera_parameters(t_rt *rt, t_obj *obj, int b_end, int e);
-int					add_light_parameters(t_rt *rt, t_obj *obj, int b_end, int e);
-int					add_object_parameters(t_rt *rt, t_obj *obj, int b_end, int e);
+int					add_global_parameters(t_rt *r, t_parser *p, t_obj *obj,
+					int e);
+int					add_camera_parameters(t_rt *rt, t_obj *obj, int b_e, int e);
+int					add_light_parameters(t_rt *rt, t_obj *obj, int b_e, int e);
+int					add_object_parameters(t_rt *rt, t_obj *obj, int b_e, int e);
 
 /*
 ** -----------------------------------------------------------------------------

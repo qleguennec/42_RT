@@ -6,10 +6,9 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 21:16:24 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 11:09:22 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -36,13 +35,6 @@
 # define BZERO(a)		ft_bzero(&a, sizeof(a))
 # define MEMCHR(a, b)	ft_memchr((a), (b), sizeof(a) - 1)
 # define VSPLIT(v, x)	ft_nsplit((v).data, (v).used, x, sizeof(x) - 1)
-
-typedef struct	s_vec3
-{
-	double		x;
-	double		y;
-	double		z;
-}				t_vec3;
 
 char			*ft_name(char *file, char *extension);
 

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:56:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/11 22:06:12 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 11:14:08 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,3 @@ int			get_lt(t_rt *rt, int b_end, char *s, char *e)
 	rt->prs->i = b_end + ft_strlen(e);
 	return ((rt->prs->t_i == -1) ? (error(rt, 14) + 1) : 1);
 }
-

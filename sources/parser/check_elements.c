@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:19:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/11 22:14:35 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 11:13:01 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int			check_camera(t_rt *rt, t_obj *tmp, short i)
 	if (!tmp->n)
 		tmp->n = (cl_char *)ft_strjoin("Camera ", ft_itoa(i), 'R');
 	if (rt->prs->t[1] != 0)
-		return (error(rt, 33)); // "Balise <color> not necessary in <camera>.\n"
+		return (error(rt, 33));
 	if (rt->prs->t[2] == 0)
-		return (error(rt, 24)); // "Balise <position> is needed in every <camera>.\n"
+		return (error(rt, 24));
 	if (rt->prs->t[3] == 0)
-		return (error(rt, 25)); // "Balise <rotation> is needed in every <camera>.\n"
+		return (error(rt, 25));
 	if (rt->prs->t[4] != 0)
-		return (error(rt, 34)); // "Balise <visibility> not necessary in <camera>.\n"
+		return (error(rt, 34));
 	if (rt->prs->t[5] != 0 && (tmp->focal < 18 || tmp->focal > 200))
 		return (error(rt, 16));
 	rt->scn->o = lst_new_camera(rt, rt->scn->o, 0);
@@ -74,9 +74,9 @@ int			check_light(t_rt *rt, t_obj *tmp, short i)
 	if (rt->prs->t[1] != 0 && !check_rgb_color(tmp->clr))
 		return (error(rt, 36));
 	if (rt->prs->t[2] == 0)
-		return (error(rt, 26)); // "Balise <position> is needed in every <light>.\n"
+		return (error(rt, 26));
 	if (rt->prs->t[6] != 0 && (tmp->intensity < 0. || tmp->intensity > 50.))
-		return (error(rt, 35)); // "Balise <intensity> as to be between 0.0 && 50.0.\n"
+		return (error(rt, 35));
 	rt->scn->o = lst_new_light(rt, rt->scn->o, 0);
 	reset_tags(rt->prs);
 	rt->prs->i += 8;
@@ -87,16 +87,16 @@ int			check_object(t_rt *rt, t_obj *tmp, short i)
 {
 	tmp->title = 0;
 	if (rt->prs->t[8] == 0)
-		return (error(rt, 28)); // "Balise <type> is needed in every <object>.\n"
+		return (error(rt, 28));
 	i = ++rt->scn->ot[tmp->forme];
 	if (!tmp->n)
 		tmp->n = (cl_char *)ft_strjoin(shape_object(tmp->forme), ft_itoa(i), 'R');
 	if (rt->prs->t[1] != 0 && !check_rgb_color(tmp->clr))
-		return (error(rt, 37)); // Invalid color
+		return (error(rt, 37));
 	if (rt->prs->t[2] == 0)
-		return (error(rt, 27)); // "Balise <position> is needed in every <object>.\n"
+		return (error(rt, 27));
 	if (rt->prs->t[7] != 0 && (tmp->opacity < .0 || tmp->opacity > 1.0))
-		return (error(rt, 10)); // "Balise <opacity> as to be between 0.0 && 1.0.\n"
+		return (error(rt, 10));
 	if (rt->prs->t[9] != 0 && (tmp->radius < .0 || tmp->radius > 200.0))
 		return (error(rt, 38));
 	if (rt->prs->t[10] != 0 && (tmp->width < .0 || tmp->width > 200.0))

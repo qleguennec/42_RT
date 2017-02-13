@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 15:13:44 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/11 22:18:14 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 11:13:47 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ t_obj		*set_default_parameters(t_obj *obj, char type, int title)
 	return (obj);
 }
 
-t_obj		*set_element_parameters(t_obj *obj, t_obj *tmp, char type, int title)
+t_obj		*set_element_parameters(t_obj *obj, t_obj *tmp, char t, int title)
 {
 	if (title != 0)
-		return (set_default_parameters(obj, type, title));
+		return (set_default_parameters(obj, t, title));
 	obj->n = (tmp->n) ? tmp->n : NULL;
 	obj->type = tmp->type;
 	obj->title = tmp->title;
