@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:08:54 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 11:25:21 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/13 10:03:40 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void
 	FMT_VECT(build_line, "-D AREA=%a ", WIN_W * WIN_H);
 	FMT_VECT(build_line, "-D XCENTER=%a ", WIN_W / 2);
 	FMT_VECT(build_line, "-D YCENTER=%a ", WIN_H / 2);
+	PRINT(FILENAME ":", 0);
+	VECHO(&build_line);
 }
 
 bool

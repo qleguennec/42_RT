@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/12 16:37:58 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/13 12:26:03 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "cl_interface.h"
 #include "libvect.h"
 #include "libcl.h"
+#include "libfmt.h"
 
 /*
 ** updates GPU memory
@@ -29,25 +30,25 @@ static bool
 	, short n)
 {
 	int			ret;
-	size_t		i;
+	t_cl_lgt	lgt_tmp;
 
 	if (n == cl->n_lgts)
 		return (true);
 	if (cl->n_lgts)
 		clReleaseMemObject(cl->lgts);
-	cl->lgts = clCreateBuffer(cl->info.ctxt, 0, n * sizeof(t_cl_obj), NULL
-		, &ret);
+	cl->lgts = clCreateBuffer(cl->info.ctxt, 0
+		, n * sizeof(t_cl_lgt), NULL, &ret);
 	if (ret != CL_SUCCESS)
-		return (false);
+		return (ERR("cannot create buffer for lgts, err %a", false, ret));
 	cl->n_lgts = n;
-	if (!(CL_KRL_ARG(cl->main_krl.krl, 2, cl->lgts) == CL_SUCCESS
-		&& CL_KRL_ARG(cl->main_krl.krl, 5, cl->n_lgts) == CL_SUCCESS))
-		return (false);
-	vect_req(buf, n * sizeof(t_cl_lgt));
-	i = 0;
+	if (!((ret = CL_KRL_ARG(cl->main_krl.krl, 3, cl->lgts)) == CL_SUCCESS
+		&& (ret = CL_KRL_ARG(cl->main_krl.krl, 5, cl->n_lgts)) == CL_SUCCESS))
+		return (ERR("cannot set lgts & n_lgts args in kernel, err %a"
+			, false, ret));
 	while (lgts)
 	{
-		cpy_lgt(((t_cl_lgt *)buf->data) + i++, lgts);
+		cpy_lgt(&lgt_tmp, lgts);
+		VECT_ADD(buf, lgt_tmp);
 		lgts = lgts->next;
 	}
 	return (cl_write(&cl->info, cl->lgts, buf->used, buf->data)
@@ -62,8 +63,7 @@ static bool
 	, short n)
 {
 	int			ret;
-	size_t		i;
-	t_cl_obj	*test;
+	t_cl_obj	obj_tmp;
 
 	if (n == cl->n_objs)
 		return (true);
@@ -72,18 +72,16 @@ static bool
 	cl->objs = clCreateBuffer(cl->info.ctxt, 0
 		, n * sizeof(t_cl_obj), NULL, &ret);
 	if (ret != CL_SUCCESS)
-		return (false);
+		return (ERR("cannot create buffer for objs, err %a", false, ret));
 	cl->n_objs = n;
-	if (!(CL_KRL_ARG(cl->main_krl.krl, 1, cl->objs) == CL_SUCCESS
-		&& CL_KRL_ARG(cl->main_krl.krl, 4, cl->n_objs) == CL_SUCCESS))
-		return (false);
-	vect_req(buf, n * sizeof(t_cl_obj));
-	i = 0;
+	if (!((ret = CL_KRL_ARG(cl->main_krl.krl, 2, cl->objs)) == CL_SUCCESS
+		&& (ret = CL_KRL_ARG(cl->main_krl.krl, 4, cl->n_objs)) == CL_SUCCESS))
+		return (ERR("cannot set lgts & n_lgts args in kernel, err %a"
+			, false, ret));
 	while (objs)
 	{
-		test = buf->data + i;
-		cpy_obj(((t_cl_obj *)buf->data) + i++, objs);
-		printf("POS: %f %f %f\n", test->pos.x, test->pos.y, test->pos.z);
+		cpy_obj(&obj_tmp, objs);
+		VECT_ADD(buf, obj_tmp);
 		objs = objs->next;
 	}
 	return (cl_write(&cl->info, cl->objs, buf->used, buf->data)

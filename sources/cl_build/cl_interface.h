@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 07:55:11 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/12 16:09:08 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/13 12:25:57 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,15 @@ typedef struct		s_cl_cam
 }					t_cl_cam;
 
 bool		cl_main_krl_update_buffers(t_cl *cl, t_scene *scene);
+bool		cl_main_krl_update_camera(t_cl *cl, t_obj *obj);
 
 /*
 ** implementation of these two functions needs to be reviewed
 ** each time data structures are modified
 */
 
-void		cpy_lgt(t_cl_lgt *cl_obj, t_obj *obj);
-void		cpy_obj(t_cl_obj *cl_obj, t_obj *obj);
+void		cpy_cam(t_cl_cam *dest, t_obj *src);
+void		cpy_lgt(t_cl_lgt *dest, t_obj *src);
+void		cpy_obj(t_cl_obj *dest, t_obj *src);
 
 #endif

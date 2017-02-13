@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/12 15:50:20 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/13 12:23:24 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,7 @@ SOURCES		= main.c \
 			  cl_build/cl_main_krl_update_camera.c \
 			  cl_build/cpy_lgt.c \
 			  cl_build/cpy_obj.c \
+			  cl_build/cpy_cam.c \
 			  test/cl_test_krl.c \
 			  test/test_gen_scene.c
 

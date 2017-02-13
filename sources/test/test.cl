@@ -14,20 +14,20 @@
 
 void
 	print_cam
-	(t_cam cam)
+	(global t_cam *cam)
 {
-	printf("\tpos: %f %f %f\n", cam.pos);
-	printf("\trot: %f %f %f\n", cam.rot);
-	printf("\tfocal: %d\n", cam.focal);
+	printf("\tpos: %f %f %f\n", cam->pos.x, cam->pos.y, cam->pos.z);
+	printf("\trot: %f %f %f\n", cam->rot.x, cam->pos.y, cam->pos.z);
+	printf("\tfocal: %d\n", cam->focal);
 }
 
 void
 	print_obj
 	(t_obj obj)
 {
-	printf("\tpos: %f %f %f\n", obj.pos);
-	printf("\trot: %f %f %f\n", obj.rot);
-	printf("\tclr: %f %f %f\n", obj.clr);
+	printf("\tpos: %f %f %f\n", obj.pos.x, obj.pos.y, obj.pos.z);
+	printf("\trot: %f %f %f\n", obj.rot.x, obj.rot.y, obj.rot.z);
+	printf("\tclr: %f %f %f\n", obj.clr.x, obj.clr.y, obj.clr.z);
 	printf("\topacity: %f\n", obj.opacity);
 	printf("\tspecolor: %f\n", obj.specolor);
 	printf("\treflex: %f\n", obj.reflex);
@@ -41,7 +41,7 @@ void
 	{
 		printf("\ttype: cube\n");
 		printf("\t\twidth: %d", obj.width);
-		printf("\t\height: %d", obj.height);
+		printf("\theight: %d", obj.height);
 	}
 	else
 		printf("\ttype: unknown\n");
@@ -51,8 +51,8 @@ void
 	print_light
 	(t_lgt lgt)
 {
-	printf("\tpos: %f %f %f\n", lgt.pos);
-	printf("\trot: %f %f %f\n", lgt.rot);
+	printf("\tpos: %f %f %f\n", lgt.pos.x, lgt.pos.y, lgt.pos.z);
+	printf("\trot: %f %f %f\n", lgt.rot.x, lgt.pos.y, lgt.pos.z);
 	printf("\tintensity: %f\n", lgt.intensity);
 	printf("\tshiness: %f\n", lgt.shiness);
 	printf("\tmshiness: %f\n", lgt.mshiness);
@@ -61,9 +61,9 @@ void
 kernel void
 	test
 	(global uint *img_buffer
+	, global t_cam *cam
 	, global t_obj *objs
 	, global t_lgt *lgts
-	, t_cam cam
 	, short nobjs
 	, short nlgts)
 {
@@ -78,6 +78,7 @@ kernel void
 	{
 		printf("object %d:\n", i);
 		print_obj(objs[i]);
+		printf("\n");
 		i++;
 	}
 	i = 0;

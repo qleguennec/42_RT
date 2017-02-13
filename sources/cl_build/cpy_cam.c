@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cpy_obj.c                                          :+:      :+:    :+:   */
+/*   cpy_cam.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/13 12:13:25 by qle-guen         ###   ########.fr       */
+/*   Created: 2017/02/13 12:17:28 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/13 12:23:30 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,11 @@
 #define CPY(a) dest->a = src->a
 
 void
-	cpy_obj
-	(t_cl_obj *dest
+	cpy_cam
+	(t_cl_cam *dest
 	, t_obj *src)
 {
-	//assert(obj->type == 'O');
-	ft_bzero(dest, sizeof(*dest));
-	dest->type = TYPE_SPHERE;
 	CPY(pos);
 	CPY(rot);
-	CPY(clr);
-	CPY(opacity);
-	CPY(width);
-	CPY(height);
-	CPY(radius);
-	CPY(specolor);
-	CPY(reflex);
-	CPY(refract);
+	CPY(focal);
 }
