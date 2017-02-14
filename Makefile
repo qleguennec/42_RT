@@ -166,4 +166,7 @@ delimg: fclean
 re: fclean
 	@$(MAKE) all -j
 
+r: $(OBJS)
+	@$(CC) $(FLAGS) -L $(LIBFT) -lft -L $(FSDL) -lfsdl -lpthread -L $(LIBVECT) -lvect -L $(LIBFMT) -lfmt -L $(LIBGNL) -lgnl -L $(LIBCL) -lcl -o $@ $^ $(OPENCL_F) $(SDL2_P) $(SDL2_F) $(SDL2_I) $(SDL2_TTF_I) $(SDL2_IMG_I)
+
 .PHONY: all, temporary, norme, clean, fclean, re
