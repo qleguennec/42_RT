@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:28:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/02 18:32:59 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/14 14:15:54 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void		init_gui_structure(t_rt *rt)
 	rt->ui->c_clr[0] = (SDL_Color){47, 47, 47, 255};
 	rt->ui->c_clr[1] = (SDL_Color){55, 55, 55, 255};
 	rt->ui->c_clr[2] = (SDL_Color){38, 38, 38, 255};
-	init_gui_areas(rt->ui, rt->scn->n_elms);
+	init_gui_areas(rt->ui, rt->scn->n_elms + 3);
 	init_informations(rt, 0);
 	SDL_LowerBlit(rt->ui->s_ui, &rt->ui->area[0], rt->s_back, &rt->ui->area[0]);
 	SDL_LowerBlit(rt->ui->s_ui, &rt->ui->area[2], rt->s_back, &rt->ui->area[2]);
