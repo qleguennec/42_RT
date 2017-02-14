@@ -44,7 +44,7 @@ static float	ray_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 	return (-1);
 }
 
-float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, float *t, short *id)
+float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, short *id)
 {
 	short			i;
 	float			smallest_norm;
@@ -75,11 +75,10 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 void calc(global unsigned int *pixel, global t_obj *tab_objs, global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir, global t_cam *cam)
 {
     short	id;
-    float	t;
 	float3	intersect;
 
 	/*
-    touch_object(tab_objs, nobjs, ray_pos, ray_dir, &t, &id);
+    touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
 	if (id > -1)
 	{
 		*pixel = 0x00ff00;
