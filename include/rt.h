@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 14:35:16 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 15:18:44 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,10 +160,14 @@ bool				cl_main_krl_exec(t_cl *cl, t_scene *scene);
 
 /*
 ** needs to be call each time the camera is changed
-** AND at the start of the program after
 ** cl_main_krl_init
 */
 bool				cl_main_krl_update_camera(t_cl *cl, t_obj *obj);
+
+/*
+** needs to be call each time objects are modified
+*/
+bool				cl_main_krl_update_buffers(t_cl *cl, t_scene *scene);
 
 void				export_config_file(t_rt *rt);
 

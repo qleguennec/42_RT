@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 07:55:11 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/14 12:48:42 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 15:19:06 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,8 @@ typedef struct		s_cl_cam
 	cl_short		focal;
 }					t_cl_cam;
 
-bool		cl_main_krl_update_buffers(t_cl *cl, t_scene *scene);
-bool		cl_main_krl_update_camera(t_cl *cl, t_obj *obj);
-
 /*
-** implementation of these two functions needs to be reviewed
+** implementation of these three functions needs to be reviewed
 ** each time data structures are modified
 */
 
