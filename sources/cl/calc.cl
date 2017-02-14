@@ -14,9 +14,11 @@ float		delta(float a, float b, float c)
 {
 	float	t0;
 	float	t1;
+	float	tmp;
 
-	t0 = (-b + sqrt(b * b - (4 * a * c) / (2 * a));
-	t1 = (-b - sqrt(b * b - (4 * a * c) / (2 * a));
+	tmp = sqrt(b * b - (4 * a * c) / (2 * a));
+	t0 = (-b + tmp);
+	t1 = (-b - tmp);
 	if (t1 > 0 && t1 < t0)
 		return (t1);
 	return (t0);
@@ -67,6 +69,7 @@ void calc(global t_obj *objs, short nobjs, global t_obj *lgts, short nblgts, flo
     float	t;
 	float3	intersect;
 
+	printf("ok gros");
     index = touch_object(objs, nobjs, ray_pos, ray_dir, intersect, &t);
 	intersect = ray_pos + ray_dir * t
     get_lighting(objs, lgts, nobjs, nlgts, ambiant, intersect, ray_dir, index);
