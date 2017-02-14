@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "obj_def.h"
+#include "calc.cl"
 
 kernel void
-	main
+	kernel_entry
 	(global unsigned int *img_buffer
 	, global t_obj *objs
-	, global t_lgts *lgts
-	, t_cam cam
+	, global t_lgt *lgts
+	, global t_cam *cam
 	, short nobjs
 	, short nlgts)
 {
@@ -30,20 +31,22 @@ kernel void
 
 	i = get_local_id(0);
 	j = get_local_id(1);
-	u = cam.pos.x;
+	u = cam->pos.x;
 	u -= 3 / WIDTH * u;
 	u += 0.5 + i;
-	u = cam.pos.y;
+	u = cam->pos.y;
 	v -= 3 / HEIGHT * v;
 	v += 0.5 + j;
-	ray_origin = cam.pos;
+	ray_origin = cam->pos;
 	ray_dir.x = ray_origin.x * u;
-	ray_dir.y = ray_origin.y *
-	ray_dir.z = - cam.focal * ray_origin.z;
+	ray_dir.y = ray_origin.y * v;
+	ray_dir.z = - cam->focal * ray_origin.z;
+	/* call calc
 	calc(obj + i * WIDTH * sizeof(*objs) + j * sizeof(*objs)
 		, objs
 		, lgts
 		, nobjs
 		, cam
 		, ngts);
+	*/
 }
