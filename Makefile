@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/14 10:02:32 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/14 12:08:07 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,6 @@ SOURCES		= \
 			misc/verbose_mode.c \
 			parser/add_elements.c \
 			parser/add_elements_parameters.c \
-			parser/assign_values.c \
 			parser/check_elements.c \
 			parser/check_tags.c \
 			parser/clear_buffer.c \
