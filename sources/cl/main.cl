@@ -38,9 +38,8 @@ kernel void
 
 	x = get_local_id(0);
 	y = get_local_id(1);
-	basis.x = cam->pos.x;
-	basis.y = cam->pos.y;
-	basis += 0.5 * (1 + basis / size2);
+	basis = cam->pos + basis + 0.5 - (cam->pos / size_2)
+		* (basis - 0.5 * cam->pos);
 	origin = cam->pos;
 	direction.x = x * basis.x;
 	direction.y = y * basis.y;
