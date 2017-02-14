@@ -42,24 +42,24 @@ void	touch_object(t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, 
 {
 	short	i;
 	short	index;
-	float	small_dist;
-	float	tmp;
-	float	tmp_t;
+	float	smallest_norm;
+	float	norm;
 
 	i = -1;
 	index = -1;
-	small_dist = -1;
+	norm = -1;
+	smallest_norm = -1;
 	while(i++ <  nobjs)
 	{
 		obj = tab_objs[i];
-		tmp = ray_norm(obj, ray_pos, ray_dir);
-		if (tmp > 0 && (tmp < small_dist || small_dist < 0))
+		norm = ray_norm(obj, ray_pos, ray_dir);
+		if (norm > 0 && (norm < small_dist || small_dist == -1))
 		{
+			smallest_norm = norm;
 			index = i;
 			*t = obj->t;
 		}
 	}
-	*dist = small_dist;
 	return (index);
 }
 
@@ -71,6 +71,6 @@ void calc(global t_obj *objs, short nobjs, global t_obj *lgts, short nblgts, flo
 
 	printf("ok gros");
     index = touch_object(objs, nobjs, ray_pos, ray_dir, intersect, &t);
-	intersect = ray_pos + ray_dir * t
+	intersect = ray_pos + ray_dir * t;
     get_lighting(objs, lgts, nobjs, nlgts, ambiant, intersect, ray_dir, index);
 }
