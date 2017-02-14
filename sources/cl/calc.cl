@@ -29,7 +29,7 @@ float		delta(float a, float b, float c)
 }
 
 
-static float	ray_norm(t_obj *obj, float3 ray_pos, float3 ray_dir)
+static float	ray_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 {
 	if (obj->type == T_PLANE)
 		return ((obj->t = ray_sphere_norm(obj, ray_pos, ray_dir)));
@@ -42,13 +42,13 @@ static float	ray_norm(t_obj *obj, float3 ray_pos, float3 ray_dir)
 	return (-1);
 }
 
-short	touch_object(t_obj tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, float *t)
+short	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, float *t)
 {
 	short	i;
 	short	index;
 	float	smallest_norm;
 	float	norm;
-	t_obj	*obj;
+	global t_obj	*obj;
 
 	i = -1;
 	index = -1;
@@ -56,7 +56,7 @@ short	touch_object(t_obj tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, 
 	smallest_norm = -1;
 	while(i++ <  nobjs)
 	{
-		obj = &tab_objs + i;
+		obj = tab_objs + i;
 		norm = ray_norm(obj, ray_pos, ray_dir);
 		if (norm > 0 && (norm < smallest_norm || smallest_norm == -1))
 		{
@@ -68,7 +68,7 @@ short	touch_object(t_obj tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, 
 	return (index);
 }
 
-void calc(int *pixel, t_obj tab_objs, t_obj *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir)
+void calc(global unsigned int *pixel, global t_obj *tab_objs, global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir, global t_cam *cam)
 {
     short	index;
     float	t;
@@ -78,9 +78,9 @@ void calc(int *pixel, t_obj tab_objs, t_obj *lgts, short nobjs, short nlgts, flo
     if ((index = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &t)) > -1)
 	{
 		intersect = ray_pos + ray_dir * t;
-		pixel = 0x00ff00;
+		*pixel = 0x00ff00;
 	//get_lighting(tab_objs, lgts, nobjs, nlgts, ambiant, intersect, ray_dir, index);
 	}
 	else
-		pixel = 0x00000000;
+		*pixel = 0x00000000;
 }

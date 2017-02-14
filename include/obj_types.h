@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_type.h                                         :+:      :+:    :+:   */
+/*   obj_types.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/10 08:39:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 08:40:37 by qle-guen         ###   ########.fr       */
+/*   Created: 2017/02/14 14:36:46 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/02/14 14:36:48 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OBJ_TYPE_H
-# define OBJ_TYPE_H
+#ifndef OBJ_TYPES_H
+# define OBJ_TYPES_H
 
-# define TYPE_SPHERE	1
-# define TYPE_CUBE		2
+# define T_SPHERE		0
+# define T_CUBE			1
+# define T_CYLINDER		2
+# define T_PLANE		3
+# define T_CONE			4
+# define T_TORUS		5
+# define T_PYRAMID		6
+# define T_TETRAHEDRON	7
+# define T_OCTAHEDRON	8
+# define T_MOEBIUS		9
+
+# define T_DIFFUSE		0
+# define T_DIRECTIONAL	1
+# define T_SPOT			2
+
+# define T_LAMBERT		0
+# define T_BLINN    	1
+# define T_PHONG		2
+# define T_CUSTOM		3
 
 #endif

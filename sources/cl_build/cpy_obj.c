@@ -6,12 +6,12 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/14 12:48:52 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 14:42:39 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cl_interface.h"
-#include "obj_type.h"
+#include "obj_types.h"
 #include "rt.h"
 
 // TODO remove debug includes
@@ -26,7 +26,7 @@ void
 {
 	//assert(obj->type == 'O');
 	ft_bzero(dest, sizeof(*dest));
-	dest->type = TYPE_SPHERE;
+	dest->type = src->forme;
 	CPY(pos);
 	CPY(rot);
 	CPY(t);
