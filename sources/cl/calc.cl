@@ -12,6 +12,7 @@
 
 #include "obj_def.h"
 #include "calc.h"
+//#include "light.h"
 
 float		delta(float a, float b, float c)
 {
@@ -41,7 +42,7 @@ static float	ray_norm(t_obj *obj, float3 ray_pos, float3 ray_dir)
 	return (-1);
 }
 
-static short	touch_object(t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, float *t)
+short	touch_object(t_obj tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, float *t)
 {
 	short	i;
 	short	index;
@@ -55,7 +56,7 @@ static short	touch_object(t_obj *tab_objs, short nobjs, float3 ray_pos, float3 r
 	smallest_norm = -1;
 	while(i++ <  nobjs)
 	{
-		obj = &tab_objs[i];
+		obj = &tab_objs + i;
 		norm = ray_norm(obj, ray_pos, ray_dir);
 		if (norm > 0 && (norm < smallest_norm || smallest_norm == -1))
 		{
@@ -67,14 +68,19 @@ static short	touch_object(t_obj *tab_objs, short nobjs, float3 ray_pos, float3 r
 	return (index);
 }
 
-void calc( ,global t_obj objs, global t_obj *lgts, short nobjs, short nlgts,// float3 ray_pos)
+void calc(int *pixel, t_obj tab_objs, t_obj *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir)
 {
     short	index;
     float	t;
 	float3	intersect;
 
 	printf("ok gros");
-    index = touch_object(objs, nobjs, ray_pos, ray_dir, intersect, &t);
-	intersect = ray_pos + ray_dir * t;
-    get_lighting(objs, lgts, nobjs, nlgts, ambiant, intersect, ray_dir, index);
+    if ((index = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &t)) > -1)
+	{
+		intersect = ray_pos + ray_dir * t;
+		pixel = 0x00ff00;
+	//get_lighting(tab_objs, lgts, nobjs, nlgts, ambiant, intersect, ray_dir, index);
+	}
+	else
+		pixel = 0x00000000;
 }
