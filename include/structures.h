@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 09:56:37 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 12:48:23 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct		s_obj
 	cl_float		specolor;
 	cl_float		reflex;
 	cl_float		refract;
+	cl_float		t;
 	SDL_Rect		r_ol;
 	struct s_obj	*next;
 }					t_obj;

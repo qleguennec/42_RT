@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/13 12:13:25 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 12:48:52 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void
 	dest->type = TYPE_SPHERE;
 	CPY(pos);
 	CPY(rot);
+	CPY(t);
 	CPY(clr);
 	CPY(opacity);
 	CPY(width);

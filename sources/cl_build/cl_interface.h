@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 07:55:11 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/13 15:05:56 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 12:48:42 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_cl_obj
 	cl_float		width;
 	cl_float		height;
 	cl_float		radius;
+	cl_float		t;
 	cl_float		specolor;
 	cl_float		reflex;
 	cl_float		refract;
