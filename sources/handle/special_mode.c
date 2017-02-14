@@ -6,13 +6,13 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 12:55:32 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/01/23 13:05:00 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/14 15:42:18 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		handle_special_modes_down(t_rt *rt)
+void		handle_special_modes_down(t_rt *rt, t_cl *cl)
 {
 	SDL_LowerBlit(rt->ui->s_ui, &rt->ui->ra_rect[0], rt->s_back,
 	&rt->ui->ra_rect[(int)rt->scn->sp_mode + 3]);
@@ -22,6 +22,11 @@ void		handle_special_modes_down(t_rt *rt)
 	rt->scn->sp_mode = rt->ui->ra_down - 3;
 	rt->ui->ra_hover = -1;
 	rt->n_info = 24 + rt->scn->sp_mode;
+	/*
+	** Pas de gestion des mode speciaux pour le moment
+	*/
+	cl_main_krl_update_buffers(cl, rt->scn);
+	cl_main_krl_exec(cl, rt->scn);
 	draw_info_bar(rt);
 }
 

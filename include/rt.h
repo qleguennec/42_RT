@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 15:18:44 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 19:11:47 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ void				export_config_file(t_rt *rt);
 
 void				init_renderer(t_rt *rt);
 
-int					create_window(t_rt *rt);
+int					create_window(t_rt *rt, t_cl *cl);
 
 void				render_frame(t_rt *rt);
 void				render_loop(t_rt *rt);
@@ -196,7 +196,7 @@ bool				scene_init_rendering(t_rt *rt, t_cl *cl);
 ** ---------------------------- Handle Events ----------------------------------
 */
 
-void				handle_events(t_rt *rt);
+void				handle_events(t_rt *rt, t_cl *cl);
 
 /*
 ** --------------------------- Handle Elements ---------------------------------
@@ -211,9 +211,9 @@ void				add_new_shader(t_obj *obj, short type);
 */
 
 void				handle_buttons(t_rt *rt);
-void				handle_buttons_down(t_rt *rt);
+void				handle_buttons_down(t_rt *rt, t_cl *cl);
 
-void				execute_button(t_rt *rt, int button);
+void				execute_button(t_rt *rt, int button, t_cl *cl);
 
 /*
 ** --------------------------- Handle Outliner ---------------------------------
@@ -226,7 +226,7 @@ void				handle_outliner_down(t_rt *rt);
 ** ------------------------- Handle Special Mode -------------------------------
 */
 
-void				handle_special_modes_down(t_rt *rt);
+void				handle_special_modes_down(t_rt *rt, t_cl *cl);
 void				handle_special_mode(t_rt *rt, int i);
 
 /*
@@ -234,11 +234,11 @@ void				handle_special_mode(t_rt *rt, int i);
 */
 
 void				handle_left_click_up(t_rt *rt);
-void				handle_left_click_down(t_rt *rt);
+void				handle_left_click_down(t_rt *rt, t_cl *cl);
 
-void				handle_right_click_down(t_rt *rt);
+void				handle_right_click_down(t_rt *rt, t_cl *cl);
 
-void				handle_double_click_down(t_rt *rt);
+void				handle_double_click_down(t_rt *rt, t_cl *cl);
 
 void				handle_motion_mouse(t_rt *rt);
 
@@ -246,7 +246,7 @@ void				handle_motion_mouse(t_rt *rt);
 ** --------------------------- Handle Keyboard ---------------------------------
 */
 
-void				handle_keyboard(t_rt *rt);
+void				handle_keyboard(t_rt *rt, t_cl *cl);
 
 /*
 ** ------------------------- Handle Linked Lints -------------------------------

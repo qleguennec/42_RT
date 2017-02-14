@@ -6,13 +6,13 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:42:55 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 19:53:17 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/14 15:43:01 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		handle_double_click_down(t_rt *rt)
+void		handle_double_click_down(t_rt *rt, t_cl *cl)
 {
 	if (rt->ui->c_down != -1 || rt->ui->c_hover == -1 || rt->ui->c_hover == 'C'
 	|| rt->ui->c_elem == rt->scn->c_cam)
@@ -21,6 +21,9 @@ void		handle_double_click_down(t_rt *rt)
 	rt->scn->c_cam = rt->ui->c_elem;
 	draw_current_camera_name(rt, 1);
 	rt->ui->tmp = ft_strf(INF33, rt->scn->c_cam->n);
+	/* A Voir */
+	cl_main_krl_update_camera(cl, rt->scn->c_cam);
+	cl_main_krl_exec(cl, rt->scn);
 	draw_info_bar(rt);
 	free(rt->ui->tmp);
 }
@@ -45,20 +48,20 @@ void		handle_left_click_up(t_rt *rt)
 	rt->ui->ra_down = -1;
 }
 
-void		handle_left_click_down(t_rt *rt)
+void		handle_left_click_down(t_rt *rt, t_cl *cl)
 {
 	rt->n_info = -1;
 	draw_info_bar(rt);
 	rt->ui->t_c = rt->ui->b_state[(int)rt->ui->b_hover];
 	if (rt->ui->b_down == -1 && rt->ui->b_hover != -1 && rt->ui->t_c < 3)
-		handle_buttons_down(rt);
+		handle_buttons_down(rt, cl);
 	else if (rt->ui->c_down == -1 && rt->ui->c_hover != -1)
 		handle_outliner_down(rt);
 	else if (rt->ui->ra_down == -1 && rt->ui->ra_hover != -1)
-		handle_special_modes_down(rt);
+		handle_special_modes_down(rt, cl);
 }
 
-void		handle_right_click_down(t_rt *rt)
+void		handle_right_click_down(t_rt *rt, t_cl *cl)
 {
 	if (rt->ui->c_down != -1 || rt->ui->c_hover < 0 ||
 	rt->ui->c_elem->type == 'C')
@@ -72,6 +75,8 @@ void		handle_right_click_down(t_rt *rt)
 	else if ((rt->ui->c_elem->visibility = 0) != -1)
 		rt->ui->tmp = ft_strf(INF34, rt->ui->c_elem->n);
 	draw_outliner_element(rt, rt->ui->c_elem, 1);
+	cl_main_krl_update_buffers(cl, rt->scn);
+	cl_main_krl_exec(cl, rt->scn);
 	draw_info_bar(rt);
 	free(rt->ui->tmp);
 }
