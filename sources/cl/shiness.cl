@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+include "light.h"
+
 
 float3	is_shining(float3 normale, float3 lightdir, float int_specul,
 	float pow_specul, float3 dif_color, float3 lightcolor)
