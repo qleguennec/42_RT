@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/14 09:54:16 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/14 10:02:32 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ HEADER		= include \
 		  libraries/libfmt/include
 
 
-SOURCES		= main.c \
+SOURCES		= \
 			cl_build/cl_main_krl_exec.c \
 			cl_build/cl_main_krl_init.c \
 			cl_build/cl_main_krl_update_buffers.c \
@@ -67,6 +67,7 @@ SOURCES		= main.c \
 			gui/draw_outliner.c \
 			gui/draw_panels.c \
 			gui/draw_scene_parameters.c \
+			gui/export_config.c \
 			gui/init_structure.c \
 			gui/save_to_png.c \
 			handle/buttons.c \
@@ -81,10 +82,12 @@ SOURCES		= main.c \
 			handle/scene_parameters.c \
 			handle/special_mode.c \
 			handle/threads.c \
+			main.c \
 			misc/free_elements.c \
 			misc/verbose_mode.c \
 			parser/add_elements.c \
 			parser/add_elements_parameters.c \
+			parser/assign_values.c \
 			parser/check_elements.c \
 			parser/check_tags.c \
 			parser/clear_buffer.c \
@@ -94,10 +97,10 @@ SOURCES		= main.c \
 			parser/init_global_stuctures.c \
 			parser/set_elements_parameters.c \
 			renderer/init_renderer.c \
-			renderer/start_renderer.c \
 			renderer/scene_init_rendering.c \
+			renderer/start_renderer.c \
 			test/cl_test_krl.c \
-			test/test_gen_scene.c
+			test/test_gen_scene.c \
 
 SUB_FOLDERS	= test gui handle misc parser renderer cl_build
 

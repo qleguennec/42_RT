@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 09:51:45 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 09:59:28 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	debug(t_rt *rt)
 	return (1);
 }
 
-static int	execute(t_rt *rt, int fd)
+static int	execute(t_rt *rt, t_cl *cl, int fd)
 {
 	if (!(rt->prs->buf = (char *)malloc(sizeof(char))))
 		return (error(rt, 0));

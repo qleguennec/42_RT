@@ -6,11 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-<<<<<<< HEAD:include/structures.h
-/*   Updated: 2017/02/13 15:07:12 by qle-guen         ###   ########.fr       */
-=======
-/*   Updated: 2017/02/13 15:17:45 by bsouchet         ###   ########.fr       */
->>>>>>> db274b82c1465e324fc25405b0eca64d7d82e460:includes/structures.h
+/*   Updated: 2017/02/14 09:56:37 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
