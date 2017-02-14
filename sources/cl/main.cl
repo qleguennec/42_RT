@@ -47,15 +47,10 @@ kernel void
 	direction.z = - cam->focal;
 	calc(img_buffer + WIDTH * y + x
 		, objs
-		, nobjs
-<<<<<<< HEAD
 		, lgts
+		, nobjs
 		, nlgts
 		, origin
 		, direction);
-=======
-		, cam
-		, nlgts);
-	*/
->>>>>>> 28d484cec8384f5b52d74fc10b59fbe4a96723ab
+		, cam);
 }
