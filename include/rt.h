@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 12:32:27 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 14:35:16 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int					add_object(t_rt *rt, int b_end);
 char				*light_type(short type);
 char				*shape_object(short shape);
 int					export_shape_object(short shape, int fd);
+int					export_material_object(short material, int fd);
 
 t_obj				*set_default_parameters(t_obj *obj, char type, int title);
 t_obj				*set_element_parameters(t_obj *obj, t_obj *tmp, char type,

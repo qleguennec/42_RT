@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 22:09:34 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 18:51:32 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/14 11:18:18 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,19 @@ int			export_shape_object(short shape, int fd)
 	else if (shape == T_MOEBIUS)
 		return (write(fd, "Moebius", 7));
 	return (write(fd, "Object", 6));
+}
+
+int			export_material_object(short material, int fd)
+{
+	if (material == T_LAMBERT)
+		return (write(fd, "Lambert", 7));
+	else if (material == T_BLINN)
+		return (write(fd, "Blinn", 5));
+	else if (material == T_PHONG)
+		return (write(fd, "Phong", 5));
+	else if (material == T_CUSTOM)
+		return (write(fd, "Custom", 6));
+	return (write(fd, "Custom", 6));
 }
 
 char		*light_type(short type)

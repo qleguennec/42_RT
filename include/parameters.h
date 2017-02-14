@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:35:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/11 20:12:06 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/14 11:12:55 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,10 @@
 # define T_DIFFUSE		0
 # define T_DIRECTIONAL	1
 # define T_SPOT			2
+
+# define T_LAMBERT		0
+# define T_BLINN    	1
+# define T_PHONG		2
+# define T_CUSTOM		3
 
 #endif
