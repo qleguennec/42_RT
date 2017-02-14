@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 include "light.h";
-include "ray.h"
+include "calc.h"
 
 unsigned get_lighting(global t_obj *objs, global t_obj *lights,
 	short n_objs, short n_lights, float ambiant, float3 ray_pos, float3 ray_dir,
@@ -66,11 +66,11 @@ float3	calcul_normale(t_obj *obj, float3 point)
 	float3	normale;
 	float3 pos_temp;
 
-	if (obj->form == PLAN)
+	if (obj->type == PLAN)
 		normale = obj->rot;
-	if (obj->form == SPHERE)
+	if (obj->type == SPHERE)
 		normale = obj->pos - point;
-	if (obj->form == CYLINDER)
+	if (obj->type == CYLINDER)
 	{
 		pos_temp = (obj->pos.x, 0, obj.pos.z);
 		normale = pos_temp - point;
