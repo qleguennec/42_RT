@@ -12,8 +12,9 @@
 
 #include "obj_def.h"
 #include "calc.h"
-//#include "light.h"
+#include "light.h"
 
+#include "light.cl"
 #include "calc_object.cl"
 
 float		calc_delta(float a, float b, float c)
@@ -78,15 +79,11 @@ void calc(global unsigned int *pixel, global t_obj *tab_objs, global t_lgt *lgts
     float	t;
 	float3	intersect;
 
-	/*
     touch_object(tab_objs, nobjs, ray_pos, ray_dir, &t, &id);
 	if (id > -1)
 	{
-		*pixel = 0x00ff00;
-	//get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
+		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else
 		*pixel = 0x00000000;
-	*/
-	*pixel = 0xffffff;
 }

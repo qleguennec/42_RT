@@ -10,30 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-include "light.h";
-include "calc.h"
-include "obj_types.h"
+
+// #include "calc.cl"
+#include "light.h"
+#include "calc.h"
+#include "obj_def.h"
 
 unsigned get_lighting(global t_obj *objs, global t_obj *lights,
-	short n_objs, short n_lights, float ambiant, float3 ray_pos, float3 ray_dir,
+	short n_objs, short n_lights, /*float ambiant, */float3 ray_pos, float3 ray_dir,
 	short obj_ind)
 {
 	short	i = 0;
 	float3	rd_light;
 	float	size;
 	float3	lightdir;
+	float	ambiant = 0.0f;
 
-	rd_light.xyz = (ambiant, ambiant, ambiant);
-	while (i < n_lgts)
+	rd_light.xyz = (float3)(ambiant, ambiant, ambiant);
+	while (i < n_lights)
 	{
-		lightdir = normalize(ray_pos - lights[i]->pos);
-		rd_light += is_light(lights[i]->pos, lightdir, b_objs, b_lgts[i],
-		n_lgts, n_objs, calcul_normale(objs[obj_ind], ray_pos), obj_ind);
+		lightdir = normalize(ray_pos - lights[i].pos);
+		rd_light += is_light(lights[i].pos, lightdir, objs, lights[i],
+		n_lights, n_objs, calcul_normale(objs[obj_ind], ray_pos), obj_ind);
 		i++;
 	}
 	rd_light = rd_light / (float)(n_lights + ambiant);
-	return (((rd_light.x & 0xff) << 16) + ((rd_light.y & 0xff) << 8) +
-		(rd_light.z & 0xff));
+
+	return ();
 }
 
 float3	is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_obj *light,
@@ -54,12 +57,12 @@ float3	calcul_light(float3 *ray, float3 *normale, global t_obj *light,
 	float	cosinus;
 
 	cosinus = my_dot(ray, normale);
-	return((float3)(light->col * cosinus * obj->col));
+	return((float3)(light.clr * cosinus * obj.clr));
 }
 
 float	my_dot(float3 *v1, float3 *v2)
 {
-	return (ray->x * normale->x + ray->y * normale->y + ray->z * normale->z);
+	return (v1->x * v2->x + v1->y * v2->y + v1->z * v2->z);
 }
 
 float3	calcul_normale(t_obj *obj, float3 point)
