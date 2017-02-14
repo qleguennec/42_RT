@@ -35,17 +35,17 @@ float		calc_delta(float a, float b, float c)
 static float	ray_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 {
 	if (obj->type == T_PLANE)
-		return ((obj->t = ray_sphere_norm(obj, ray_pos, ray_dir)));
+		return (ray_sphere_norm(obj, ray_pos, ray_dir));
 	else if (obj->type == T_CONE)
-		return ((obj->t = ray_cone_norm(obj, ray_pos, ray_dir)));
+		return (ray_cone_norm(obj, ray_pos, ray_dir));
 	else if (obj->type == T_CYLINDER)
-		return ((obj->t = ray_cylinder_norm(obj, ray_pos, ray_dir)));
+		return (ray_cylinder_norm(obj, ray_pos, ray_dir));
 	else if (obj->type == T_SPHERE)
-		return ((obj->t = ray_sphere_norm(obj, ray_pos, ray_dir)));
+		return (ray_sphere_norm(obj, ray_pos, ray_dir));
 	return (-1);
 }
 
-float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, float *t, short *id)
+float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, short *id)
 {
 	short			i;
 	float			smallest_norm;
@@ -73,13 +73,14 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 	return (intersect);
 }
 
-void calc(global unsigned int *pixel, global t_obj *tab_objs, global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir, global t_cam *cam)
+void calc(global unsigned int *pixel, global t_obj *tab_objs,
+	global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos,
+	float3 ray_dir, global t_cam *cam)
 {
     short	id;
-    float	t;
 	float3	intersect;
 
-    touch_object(tab_objs, nobjs, ray_pos, ray_dir, &t, &id);
+    touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
 	if (id > -1)
 	{
 		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);

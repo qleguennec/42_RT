@@ -6,7 +6,7 @@
 /*   By: lgatibel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:37 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/02/14 16:40:09 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/02/14 17:22:33 by lgatibel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define CALC_H
 float			calc_delta(float a, float b, float c);
 float			norm(global t_obj *obj, float delta, float3 ray_pos, float3 ray_dir);
-float3			touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, float *t, short *id);
+float3			touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, short *id);
 float			ray_plane_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir);
 float			ray_cone_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir);
 float			ray_cylinder_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir);
