@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/13 16:35:06 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 12:26:50 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,14 @@ bool
 
 	assert(cl->main_krl.sizes[1] == sizeof(t_cl_cam));
 	vect_init(&buf);
-	if (!krl_update_lgts(cl, &buf, scene->b_lgts, scene->n_lgts))
+	if (!krl_update_lgts(cl, &buf, scene->b_lgts->next, scene->n_lgts))
 		return (false);
 	if ((ret = cl_write(&cl->info, cl->lgts
 		, cl->n_lgts * sizeof(t_cl_lgt), buf.data))
 		!= CL_SUCCESS)
 		return (ERR("cannot write to light buffer, err %a", false, ret));
 	buf.used = 0;
-	if (!krl_update_objs(cl, &buf, scene->b_objs, scene->n_objs))
+	if (!krl_update_objs(cl, &buf, scene->b_objs->next, scene->n_objs))
 		return (false);
 	if ((ret = cl_write(&cl->info, cl->objs
 		, cl->n_objs * sizeof(t_cl_obj), buf.data))
