@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/14 12:08:07 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/14 14:41:44 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,6 @@ SOURCES		= \
 			renderer/scene_init_rendering.c \
 			renderer/start_renderer.c \
 			test/cl_test_krl.c \
-			test/test_gen_scene.c \
 
 SUB_FOLDERS	= test gui handle misc parser renderer cl_build
 
