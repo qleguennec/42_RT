@@ -47,6 +47,6 @@ kernel void
 		, lgts
 		, nobjs
 		, cam
-		, ngts);
+		, nlgts);
 	*/
 }
