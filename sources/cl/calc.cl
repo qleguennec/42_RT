@@ -14,6 +14,8 @@
 #include "calc.h"
 //#include "light.h"
 
+#include "calc_object.cl"
+
 float		delta(float a, float b, float c)
 {
 	float	t0;
