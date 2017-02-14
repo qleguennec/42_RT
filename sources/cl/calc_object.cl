@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "obj_def.h"
+#include "calc.h"
+
 float			norm(t_obj *obj, float delta, float3 ray_pos, float3 ray_dir)
 {
 	return (obj->inter - ray_pos);
@@ -19,7 +22,7 @@ float			float3_to_float(float3 v){
 	return (v.x + v.y + v.z);
 }
 
-float			ray_plane_norm(t_objs *obj, float3 ray_pos, float3 ray_dir)
+float			ray_plane_norm(t_obj *obj, float3 ray_pos, float3 ray_dir)
 {
 	float	a;
 	float	b;
@@ -34,7 +37,7 @@ float			ray_plane_norm(t_objs *obj, float3 ray_pos, float3 ray_dir)
 
 }
 
-float			ray_cone_norm(t_objs *obj, float3 ray_pos, float3 ray_dir)
+float			ray_cone_norm(t_obj *obj, float3 ray_pos, float3 ray_dir)
 {
 	float	a;
 	float	b;
@@ -54,7 +57,7 @@ float			ray_cone_norm(t_objs *obj, float3 ray_pos, float3 ray_dir)
 	return (-1);
 }
 
-float			ray_cylinder_norm(t_objs *obj, float3 ray_pos, float3 ray_dir)
+float			ray_cylinder_norm(t_obj *obj, float3 ray_pos, float3 ray_dir)
 {
 	float	a;
 	float	b;
@@ -76,7 +79,7 @@ float			ray_cylinder_norm(t_objs *obj, float3 ray_pos, float3 ray_dir)
 	return (-1);
 }
 
-float			ray_sphere_norm(t_objs *obj, float3 ray_pos, float3 ray_dir)
+float			ray_sphere_norm(t_obj *obj, float3 ray_pos, float3 ray_dir)
 {
 	float	a;
 	float	b;
