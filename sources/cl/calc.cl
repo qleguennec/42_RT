@@ -34,13 +34,13 @@ float		calc_delta(float a, float b, float c)
 static float	ray_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 {
 	if (obj->type == T_PLANE)
-		return ((obj->t = ray_sphere_norm(obj, ray_pos, ray_dir)));
+		return (ray_sphere_norm(obj, ray_pos, ray_dir));
 	else if (obj->type == T_CONE)
-		return ((obj->t = ray_cone_norm(obj, ray_pos, ray_dir)));
+		return (ray_cone_norm(obj, ray_pos, ray_dir));
 	else if (obj->type == T_CYLINDER)
-		return ((obj->t = ray_cylinder_norm(obj, ray_pos, ray_dir)));
+		return (ray_cylinder_norm(obj, ray_pos, ray_dir));
 	else if (obj->type == T_SPHERE)
-		return ((obj->t = ray_sphere_norm(obj, ray_pos, ray_dir)));
+		return (ray_sphere_norm(obj, ray_pos, ray_dir));
 	return (-1);
 }
 
