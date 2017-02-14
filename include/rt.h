@@ -6,7 +6,11 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
+<<<<<<< HEAD:include/rt.h
 /*   Updated: 2017/02/13 15:06:51 by qle-guen         ###   ########.fr       */
+=======
+/*   Updated: 2017/02/13 18:50:52 by bsouchet         ###   ########.fr       */
+>>>>>>> db274b82c1465e324fc25405b0eca64d7d82e460:includes/rt.h
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +102,7 @@ int					add_object(t_rt *rt, int b_end);
 
 char				*light_type(short type);
 char				*shape_object(short shape);
+int					export_shape_object(short shape, int fd);
 
 t_obj				*set_default_parameters(t_obj *obj, char type, int title);
 t_obj				*set_element_parameters(t_obj *obj, t_obj *tmp, char type,
@@ -162,6 +167,8 @@ bool				cl_main_krl_exec(t_cl *cl, t_scene *scene);
 ** cl_main_krl_init
 */
 bool				cl_main_krl_update_camera(t_cl *cl, t_obj *obj);
+
+void				export_config_file(t_rt *rt);
 
 /*
 ** -----------------------------------------------------------------------------

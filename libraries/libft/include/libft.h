@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 13:31:16 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 09:52:35 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,16 @@ int				cf(cl_float *elem1, double elem2);
 int				ci(cl_short *elem1, int elem2);
 
 void			ft_putshort(short num);
+void			ft_putshort_fd(short num, int fd);
 
 void			ft_putint(int num);
+void			ft_putint_fd(int num, int fd);
 
 void			ft_putfloat(float num);
+void			ft_putfloat_fd(float num, int fd);
 
 void			ft_putdouble(double num);
+void			ft_putdouble_fd(double num, int fd);
 
 size_t			ft_strlen_w(wchar_t *str);
 void			ft_putnbrlong(long long int nb);

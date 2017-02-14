@@ -19,11 +19,11 @@
 <!------------ Light(s) -------------->
 
 <light>
-	//<name> Prout </name>
+	<name> Prout </name>
 	<type> diffuse </type>
 	<visibility>false</visibility>
 	<intensity>5</intensity>
-	//<color-rgb>122 145 210</color-rgb>
+	<color-rgb>122 145 210</color-rgb>
 	<position>12. 15. 14</position>
 </light>
 

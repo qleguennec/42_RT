@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 22:19:54 by qfremeau          #+#    #+#             */
-/*   Updated: 2015/12/02 14:57:09 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/02/13 18:07:01 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,104 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	else
 		ft_putchar_fd(x + '0', fd);
+}
+
+void		ft_putshort_fd(short num, int fd)
+{
+	short	tmp;
+	short	size;
+	char	*str;
+
+	size = 0;
+	tmp = num;
+	if (num == 0 && write(1, "0", 1))
+		return ;
+	(num < .0 && (tmp *= -1.) > 0) ? ++size : 1;
+	num = tmp;
+	while (tmp != 0 && ++size != 0)
+		tmp /= 10;
+	if (!(str = (char *)malloc((size + 1) * sizeof(char))))
+		return ;
+	str[size--] = 0;
+	while (num != 0 && (str[size--] = (num % 10) + '0') != 0)
+		num /= 10;
+	(size == 0) ? str[0] = '-' : 1;
+	write(fd, str, ft_strlen(str));
+}
+
+void		ft_putint_fd(int num, int fd)
+{
+	int		tmp;
+	int		size;
+	char	*str;
+
+	size = 0;
+	tmp = num;
+	if (num == 0 && write(fd, "0", 1))
+		return ;
+	(num < .0 && (tmp *= -1.) > 0) ? ++size : 1;
+	num = tmp;
+	while (tmp != 0 && ++size != 0)
+		tmp /= 10;
+	if (!(str = (char *)malloc((size + 1) * sizeof(char))))
+		return ;
+	str[size--] = 0;
+	while (num != 0 && (str[size--] = (num % 10) + '0') != 0)
+		num /= 10;
+	(size == 0) ? str[0] = '-' : 1;
+	write(fd, str, ft_strlen(str));
+}
+
+void		ft_putfloat_fd(float num, int fd)
+{
+	short	i;
+	int		tmp;
+	short	size;
+	char	*str;
+
+	i = 0;
+	size = 1;
+	tmp = (int)round(num * 100);
+	if (num == .0 && write(fd, "0.00", 4))
+		return ;
+	(num < .0 && (tmp *= -1.) > 0) ? ++size : 1;
+	num = tmp;
+	while (tmp != 0 && ++size != 0)
+		tmp /= 10;
+	if (!(str = (char *)malloc((size + 1) * sizeof(char))))
+		return ;
+	str[size--] = 0;
+	while ((int)num != 0 && ++i > 0)
+		(i != 3 && (str[size--] = ((int)num % 10) + '0')) ?
+		(num /= 10) : (str[size--] = '.');
+	(size == 0 && i == 2) ? str[0] = '.' : 1;
+	(size == 0 && i != 2) ? str[0] = '-' : 1;
+	write(fd, str, ft_strlen(str));
+}
+
+void		ft_putdouble_fd(double num, int fd)
+{
+	short	i;
+	int		tmp;
+	short	size;
+	char	*str;
+
+	i = 0;
+	size = 1;
+	tmp = (int)round(num * 100);
+	if (num == .0 && write(fd, "0.00", 4))
+		return ;
+	(num < .0 && (tmp *= -1.) > 0) ? ++size : 1;
+	num = tmp;
+	while (tmp != 0 && ++size != 0)
+		tmp /= 10;
+	if (!(str = (char *)malloc((size + 1) * sizeof(char))))
+		return ;
+	str[size--] = 0;
+	while ((int)num != 0 && ++i > 0)
+		(i != 3 && (str[size--] = ((int)num % 10) + '0')) ?
+		(num /= 10) : (str[size--] = '.');
+	(size == 0 && i == 2) ? str[0] = '.' : 1;
+	(size == 0 && i != 2) ? str[0] = '-' : 1;
+	write(fd, str, ft_strlen(str));
 }

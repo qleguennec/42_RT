@@ -6,8 +6,12 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
+<<<<<<< HEAD
 #*   Updated: 2017/02/13 13:48:03 by qle-guen         ###   ########.fr       *#
 #    Updated: 2017/02/13 11:47:19 by bsouchet         ###   ########.fr        #
+=======
+#    Updated: 2017/02/13 15:50:05 by bsouchet         ###   ########.fr        #
+>>>>>>> db274b82c1465e324fc25405b0eca64d7d82e460
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +41,7 @@ SOURCES = ft_atoi.c \
 		  ft_bzero.c \
 		  ft_itoa.c \
 		  ft_putnbr.c \
+		  ft_putnbr_fd.c \
 		  ft_assign.c \
 		  ft_assign_opencl.c \
 		  ft_strcmp.c \
