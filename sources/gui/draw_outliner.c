@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 18:43:06 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/08 15:14:02 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 20:06:12 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void		draw_outliner_element(t_rt *rt, t_obj *obj, int state)
 	int		t;
 	char	*tmp;
 
-	t = (obj->next == NULL || obj->t != obj->next->t) ? 282 : 253;
+	t = (obj->next == NULL || obj->type != obj->next->type) ? 282 : 253;
 	t += (state > 0) ? 58 : 0;
 	t += (state > 1) ? 58 : 0;
 	SDL_LowerBlit(rt->ui->s_ui, &(SDL_Rect){13, t, obj->r_ol.w, 29},
 	rt->s_back, &(SDL_Rect){13, obj->r_ol.y, obj->r_ol.w, 29});
-	tmp = ft_strunc(obj->n, 21);
-	if (obj->v == 1)
+	tmp = ft_strunc((char *)obj->n, 21);
+	if (obj->visibility == 1)
 		fsdl_fill_rect(rt->s_back, (SDL_Rect){173, obj->r_ol.y + 8, 15, 13},
 		fsdl_clr_to_size_t(rt->ui->c_clr[state]));
 	rt->ui->s_tmp = TTF_RenderText_Shaded(rt->ui->font[1], tmp,
@@ -105,7 +105,7 @@ void		draw_nav_element(t_rt *rt, int state)
 	list = rt->scn->b_outliner;
 	if (rt->ui->c_hover == -2)
 	{
-		if (rt->scn->b_outliner->n == NULL && rt->scn->b_outliner->t == 'C')
+		if (rt->scn->b_outliner->n == NULL && rt->scn->b_outliner->type == 'C')
 			state = -1;
 		draw_top_nav_button(rt, state);
 	}

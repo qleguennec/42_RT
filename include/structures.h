@@ -6,12 +6,14 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 15:46:46 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/14 12:48:23 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
+
+#include "libcl.h"
 
 typedef struct s_scene	t_scene;
 typedef struct s_rt		t_rt;
@@ -20,23 +22,32 @@ typedef struct s_rt		t_rt;
 ** ---------------------------- Scene Elements ---------------------------------
 */
 
-typedef	struct		s_obj
+typedef struct		s_obj
 {
-	short			id;
-	short			e;
-	char			t;
-	short			title;
-	short			ot;
-	short			m;
-	short			v;
-	short			i;
-	short			fl;
-	char			*n;
-	double			op;
+	cl_short		id;
+	cl_char			*n;
+	cl_short		title;
+	cl_short		active;
+	cl_char			type;
+	cl_short		forme;
+	cl_short		material;
+	cl_float3		pos;
+	cl_float3		rot;
+	cl_float3		clr;
+	cl_float		opacity;
+	cl_short		focal;
+	cl_float		radius;
+	cl_float		width;
+	cl_float		height;
+	cl_short		visibility;
+	cl_float		intensity;
+	cl_float		shiness;
+	cl_float		mshiness;
+	cl_float		specolor;
+	cl_float		reflex;
+	cl_float		refract;
+	cl_float		t;
 	SDL_Rect		r_ol;
-	t_vec3			pos;
-	t_vec3			rot;
-	t_vec3			rgb;
 	struct s_obj	*next;
 }					t_obj;
 
@@ -51,11 +62,11 @@ typedef struct		s_parser
 	double			t_d;
 	unsigned		t_u;
 	int				copy;
-	t_vec3			vec;
+	cl_float3		vec;
 	char			*buf;
 	char			*line;
 	short			n[50];
-	short			t[6];
+	short			t[15];
 	char			*b_o;
 	char			*b_c;
 	t_obj			*obj_tmp;
@@ -63,22 +74,24 @@ typedef struct		s_parser
 
 struct				s_scene
 {
-	int				aa;
-	double			ambient;
-	int				m_ref;
-	char			*name;
+	cl_short		aa;
+	cl_float		ambient;
+	cl_short		m_ref;
+	cl_char			*name;
 	t_obj			*o;
 	t_obj			*b_lgts;
 	t_obj			*b_objs;
-	short			n_cams;
-	short			n_lgts;
-	short			n_objs;
-	short			n_elms;
+	cl_short		n_cams;
+	cl_short		n_lgts;
+	cl_short		n_objs;
+	cl_short		n_elms;
 	t_obj			*b_outliner;
 	t_obj			*s_elem;
 	t_obj			*c_cam;
-	char			sp_mode;
-	char			t[10];
+	cl_short		sp_mode;
+	cl_short		t[15];
+	cl_short		ot[10];
+	cl_short		lt[5];
 };
 
 typedef struct		s_ui
@@ -159,5 +172,15 @@ struct				s_rt
 
 	char			render;
 };
+
+typedef struct		s_cl
+{
+	t_cl_info		info;
+	t_cl_krl		main_krl;
+	cl_mem			objs;
+	cl_mem			lgts;
+	short			n_objs;
+	short			n_lgts;
+}					t_cl;
 
 #endif

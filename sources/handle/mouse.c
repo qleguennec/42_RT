@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:42:55 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 13:29:05 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 19:53:17 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,15 @@ void		handle_left_click_down(t_rt *rt)
 void		handle_right_click_down(t_rt *rt)
 {
 	if (rt->ui->c_down != -1 || rt->ui->c_hover < 0 ||
-	rt->ui->c_elem->t == 'C')
+	rt->ui->c_elem->type == 'C')
 		return ;
 	rt->n_info = -2;
-	if (rt->ui->c_elem->v == 0)
+	if (rt->ui->c_elem->visibility == 0)
 	{
-		rt->ui->c_elem->v = 1;
+		rt->ui->c_elem->visibility = 1;
 		rt->ui->tmp = ft_strf(INF35, rt->ui->c_elem->n);
 	}
-	else if ((rt->ui->c_elem->v = 0) != -1)
+	else if ((rt->ui->c_elem->visibility = 0) != -1)
 		rt->ui->tmp = ft_strf(INF34, rt->ui->c_elem->n);
 	draw_outliner_element(rt, rt->ui->c_elem, 1);
 	draw_info_bar(rt);

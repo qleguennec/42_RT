@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 15:44:08 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/14 12:32:27 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@
 # include <errno.h>
 # include <stdio.h>
 # include <pthread.h>
+
+/*
+** --------------------------------- OpenCL ------------------------------------
+*/
+
+# ifdef __APPLE__
+#  include "OpenCL/opencl.h"
+# else
+#  include "CL/cl.h"
+# endif
 
 /*
 ** -------------------------- Internal Libraries -------------------------------
@@ -49,16 +59,6 @@
 # include "structures.h"
 
 /*
-** --------------------------------- OpenCL ------------------------------------
-*/
-
-# ifdef __APPLE__
-#  include "OpenCL/opencl.h"
-# else
-#  include "CL/cl.h"
-# endif
-
-/*
 ** -----------------------------------------------------------------------------
 ** --------------------------------- Parser ------------------------------------
 ** -----------------------------------------------------------------------------
@@ -69,14 +69,16 @@ void				init_light(t_rt *rt, short pos, short t);
 void				init_object(t_rt *rt, short pos, short t);
 int					init_structures(t_rt *rt);
 
+int					reset_tags(t_parser *p);
+
 char				*clear_line(t_parser *p, char *str, int i, int n);
 
-int					check_balises(t_rt *rt, char *b_open, char *b_close);
+int					check_tags(t_rt *rt, char *b_open, char *b_close);
 
 int					check_scene(t_rt *rt);
-int					check_camera(t_rt *rt, short i);
-int					check_light(t_rt *rt, short i);
-int					check_object(t_rt *rt);
+int					check_camera(t_rt *rt, t_obj *tmp, short i);
+int					check_light(t_rt *rt, t_obj *tmp, short i);
+int					check_object(t_rt *rt, t_obj *tmp, short i);
 
 int					get_i(t_rt *rt, int b_end, char *s, char *e);
 int					get_d(t_rt *rt, int b_end, char *s, char *e);
@@ -87,13 +89,26 @@ int					get_h(t_rt *rt, int b_end, char *s, char *e);
 char				*get_s(t_parser *r, int b_end, int b_size);
 int					get_m(t_rt *rt, int b_end, char *s, char *e);
 int					get_t(t_rt *rt, int b_end, char *s, char *e);
+int					get_lt(t_rt *rt, int b_end, char *s, char *e);
 
 int					set_scene(t_rt *rt, int b_end, int e);
-int					add_element(t_rt *rt, int b_end, int e, char type);
+int					add_camera(t_rt *rt, int b_end);
+int					add_light(t_rt *rt, int b_end);
+int					add_object(t_rt *rt, int b_end);
 
-t_obj				*assign_default_obj_values(t_obj *obj, char t, int type);
-t_obj				*assign_obj_values(t_obj *obj, t_obj *tmp, char t,
-					int type);
+char				*light_type(short type);
+char				*shape_object(short shape);
+int					export_shape_object(short shape, int fd);
+
+t_obj				*set_default_parameters(t_obj *obj, char type, int title);
+t_obj				*set_element_parameters(t_obj *obj, t_obj *tmp, char type,
+					int title);
+
+int					add_global_parameters(t_rt *r, t_parser *p, t_obj *obj,
+					int e);
+int					add_camera_parameters(t_rt *rt, t_obj *obj, int b_e, int e);
+int					add_light_parameters(t_rt *rt, t_obj *obj, int b_e, int e);
+int					add_object_parameters(t_rt *rt, t_obj *obj, int b_e, int e);
 
 /*
 ** -----------------------------------------------------------------------------
@@ -126,6 +141,30 @@ void				draw_materials(t_rt *rt, char type);
 void				draw_special_mode(t_rt *rt, int r_num, int type);
 
 void				save_to_png(t_rt *rt);
+/*
+** -----------------------------------------------------------------------------
+** -------------------------------- OpenCL- ------------------------------------
+** -----------------------------------------------------------------------------
+*/
+
+/*
+** needs to be call once at the start of the program
+*/
+bool				cl_main_krl_init(t_cl *cl);
+
+/*
+** needs to be call each time the scene needs to be rendered
+*/
+bool				cl_main_krl_exec(t_cl *cl, t_scene *scene);
+
+/*
+** needs to be call each time the camera is changed
+** AND at the start of the program after
+** cl_main_krl_init
+*/
+bool				cl_main_krl_update_camera(t_cl *cl, t_obj *obj);
+
+void				export_config_file(t_rt *rt);
 
 /*
 ** -----------------------------------------------------------------------------
@@ -139,6 +178,8 @@ int					create_window(t_rt *rt);
 
 void				render_frame(t_rt *rt);
 void				render_loop(t_rt *rt);
+
+bool				scene_init_rendering(t_rt *rt, t_cl *cl);
 
 /*
 ** -----------------------------------------------------------------------------
@@ -155,9 +196,11 @@ void				handle_events(t_rt *rt);
 /*
 ** --------------------------- Handle Elements ---------------------------------
 */
-
-void				add_new_element(t_rt *rt, char type);
-
+char				*shape_object(short shape);
+void				add_new_camera(t_rt *rt, t_obj *tmp);
+void				add_new_light(t_rt *rt, t_obj *tmp, short type);
+void				add_new_object(t_rt *rt, t_obj *tmp, short type);
+void				add_new_shader(t_obj *obj, short type);
 /*
 ** ------------------------------ Handle GUI -----------------------------------
 */
@@ -204,16 +247,16 @@ void				handle_keyboard(t_rt *rt);
 ** ------------------------- Handle Linked Lints -------------------------------
 */
 
-t_obj				*lst_new_camera(t_rt *rt, t_obj *objs, int type);
-t_obj				*lst_new_light(t_rt *rt, t_obj *objs, int type);
-t_obj				*lst_new_object(t_rt *rt, t_obj *objs, int type);
+t_obj				*lst_new_camera(t_rt *rt, t_obj *objs, int title);
+t_obj				*lst_new_light(t_rt *rt, t_obj *objs, int title);
+t_obj				*lst_new_object(t_rt *rt, t_obj *objs, int title, int type);
 
 /*
 ** ---------------------------- Handle Errors ----------------------------------
 */
 
 void				init_errors(t_rt *r, int i);
-int					error(t_rt *rt, int t, int f);
+int					error(t_rt *rt, int t);
 
 /*
 ** --------------------------- Handle Info Bar ---------------------------------

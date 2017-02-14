@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:28:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 15:30:31 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/13 13:33:00 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,19 @@
 # define MSG29	"error: Failed to initialize the SDL Framework.\n"
 # define MSG30	"error: Failed to create the SDL window struct.\n"
 # define MSG31	"error: Failed to create the SDL renderer struct.\n"
-# define MSD32	"error: Failed to find or import image.\n"
+# define MSG32	"error: Failed to find or import image.\n"
+
+# define MSG33	"error: Tag <color> isn't necessary in camera.\n"
+# define MSG34	"error: Tag <visibility> isn't necessary in camera.\n"
+# define MSG35	"error: <intensity> value must be set between 0.0 and 50.0.\n"
+# define MSG36	"error: Invalid value in <color-rgb> inside <light>.\n"
+# define MSG37	"error: Invalid value in <color-rgb> inside <object>.\n"
+
+# define MSG38	"error: <radius> value must be set between 0.0 and 200.0.\n"
+# define MSG39	"error: <width> value must be set between 0.0 and 200.0.\n"
+# define MSG40	"error: <height> value must be set between 0.0 and 200.0.\n"
+
+# define MSG41	"error: Tag <type> is needed for every light.\n"
+
 
 #endif
