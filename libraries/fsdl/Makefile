@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
-#    Updated: 2017/02/03 18:41:25 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/02/09 16:00:08 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRCS		= $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS		= $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
 opti:
-	@$(MAKE) all -j
+	@$(MAKE) all -j 8
 
 all: temporary $(NAME)
 
@@ -64,4 +64,4 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 
-re: fclean all
+re: fclean all -j 8

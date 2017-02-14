@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
-#    Updated: 2017/02/02 18:36:53 by bsouchet         ###   ########.fr        #
+#*   Updated: 2017/02/14 09:56:15 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ C = clang
 
 NAME = libft.a
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 DIR_S = sources
 
@@ -26,11 +26,19 @@ SOURCES = ft_atoi.c \
 		  ft_atof.c \
 		  ft_shtoi.c \
 		  ft_ftoa.c \
+		  ft_mempcpy.c \
+		  ft_memset.c \
+		  ft_short_bzero.c \
+		  ft_memchr.c \
+		  ft_nsplit.c \
+		  ft_word.c \
 		  ft_comment.c \
 		  ft_bzero.c \
 		  ft_itoa.c \
 		  ft_putnbr.c \
+		  ft_putnbr_fd.c \
 		  ft_assign.c \
+		  ft_assign_opencl.c \
 		  ft_strcmp.c \
 		  ft_getstr.c \
 		  ft_checkstr.c \
@@ -77,7 +85,9 @@ SOURCES = ft_atoi.c \
 		  ft_printf/ft_sitoa.c\
 		  ft_printf/ft_maths.c\
 		  ft_printf/ft_nbrlen.c\
-		  gnl/get_next_line.c
+		  gnl/get_next_line.c \
+		  ft_malloc_err.c \
+		  ft_isdigit.c
 
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
@@ -87,6 +97,9 @@ OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 SUB_FOLDERS	= gnl ft_printf
 
 BUILD_DIR = $(addprefix $(DIR_O)/,$(SUB_FOLDERS))
+
+opti:
+	@$(MAKE) all -j 8
 
 all: temporary $(NAME)
 
@@ -114,4 +127,4 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 
-re: fclean all
+re: fclean all -j 8

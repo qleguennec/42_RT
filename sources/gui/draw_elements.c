@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:37:49 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/08 13:58:12 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 20:07:11 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ void		draw_materials(t_rt *rt, char type)
 
 void		draw_selected_element(t_rt *rt)
 {
-	if (rt->s_elem->t == 'C')
+	if (rt->s_elem->type == 'C')
 		fsdl_fill_rect(rt->s_back, rt->ui->area[8], WHITE_BG);
-	else if (rt->s_elem->t == 'L')
+	else if (rt->s_elem->type == 'L')
 		fsdl_fill_rect(rt->s_back, rt->ui->area[8], YELLOW_BG);
-	else if (rt->s_elem->t == 'O')
+	else if (rt->s_elem->type == 'O')
 		fsdl_fill_rect(rt->s_back, rt->ui->area[8], BLUE_BG);
 }
 
@@ -68,7 +68,7 @@ void		draw_current_camera_name(t_rt *rt, short type)
 		rt->ui->r_dim = ft_strjoin(ft_strjoin(ft_strjoin(" (",
 		ft_itoa(rt->r_view.w), 'R'), ft_strjoin(" x ",
 		ft_itoa(rt->r_view.h), 'R'), 'B'), ")", 'L');
-	rt->ui->c_name = ft_strunc(rt->scn->c_cam->n,
+	rt->ui->c_name = ft_strunc((char *)rt->scn->c_cam->n,
 	(24 - ft_strlen(rt->ui->r_dim)));
 	rt->ui->tmp = ft_strjoin(rt->ui->c_name, rt->ui->r_dim, 'N');
 	rt->ui->s_tmp = TTF_RenderText_Shaded(rt->ui->font[0], rt->ui->tmp,

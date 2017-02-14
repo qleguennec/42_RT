@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 14:49:22 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/02 18:39:46 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/09 17:52:00 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int			free_elements(t_rt *rt)
 	SDL_FreeSurface(rt->s_process);
 	TTF_Quit();
 	SDL_Quit();
-	free(rt);
 	exit(0);
 	return (0);
 }
