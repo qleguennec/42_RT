@@ -6,19 +6,18 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 19:25:30 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/14 19:44:06 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-/*static int	add_render_frame(t_rt *rt)
+int			add_render_frame(t_rt *rt)
 {
 	SDL_LowerBlit(rt->s_rend, &(SDL_Rect){(rt->r_view.x - 18), 0, rt->r_view.w,
 	rt->r_view.h}, rt->s_back, &rt->r_view);
-	rt->render = 0;
 	return (1);
-}*/
+}
 
 static int	global_loop(t_rt *rt, t_cl *cl)
 {
@@ -26,7 +25,6 @@ static int	global_loop(t_rt *rt, t_cl *cl)
 	{
 		if (SDL_PollEvent(&rt->event))
 			handle_events(rt, cl);
-		//(rt->render) ? add_render_frame(rt) : 1;
 		SDL_UpdateWindowSurface(rt->win);
 		fsdl_fps_limit(rt->fps);
 		fsdl_fps_counter(rt->fps);
@@ -48,6 +46,17 @@ int			create_window(t_rt *rt, t_cl *cl)
 	SDL_SetWindowIcon(rt->win, rt->w_icon);
 	free(rt->w_title);
 	init_renderer(rt);
+	/*
+	** I don't know what i'm doing guys !
+	** vvvv Ajouter ces lignes pour tester le rendu vvvv
+	*/
 	cl->img_buffer = rt->s_rend->pixels;
+	//cl_main_krl_update_buffers(cl, rt->scn);
+	//cl_main_krl_update_camera(cl, rt->scn);
+	//cl_main_krl_exec(cl, rt->scn);
+	//add_render_frame(rt);
+	/*
+	** End of the lol
+	*/
 	return (global_loop(rt, cl));
 }
