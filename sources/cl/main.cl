@@ -11,6 +11,14 @@
 /* ************************************************************************** */
 
 #include "obj_def.h"
+
+#define PRINT3(v, a) printf(a ": %f %f %f\n", (v).x, (v).y, (v).z);
+
+constant float2	size2	= (float2){WIDTH, HEIGHT};
+constant float2	size2_2	= (float2){XCENTER, YCENTER};
+constant float3	size3	= (float3){WIDTH, HEIGHT, 0};
+constant float3	size3_2	= (float3){XCENTER, YCENTER, 0};
+
 #include "calc.cl"
 
 kernel void
@@ -22,31 +30,26 @@ kernel void
 	, short nobjs
 	, short nlgts)
 {
-	float3		ray_origin;
-	float3		ray_dir;
-	float		u;
-	float		v;
-	size_t		i;
-	size_t		j;
+	float2	basis;
+	float3	direction;
+	float3	origin;
+	size_t	x;
+	size_t	y;
 
-	i = get_local_id(0);
-	j = get_local_id(1);
-	u = cam->pos.x;
-	u -= 3 / WIDTH * u;
-	u += 0.5 + i;
-	u = cam->pos.y;
-	v -= 3 / HEIGHT * v;
-	v += 0.5 + j;
-	ray_origin = cam->pos;
-	ray_dir.x = ray_origin.x * u;
-	ray_dir.y = ray_origin.y * v;
-	ray_dir.z = - cam->focal * ray_origin.z;
-	/* call calc
-	calc(obj + i * WIDTH * sizeof(*objs) + j * sizeof(*objs)
+	x = get_local_id(0);
+	y = get_local_id(1);
+	basis.x = cam->pos.x;
+	basis.y = cam->pos.y;
+	basis += 0.5 * (1 + basis / size2_2);
+	origin = cam->pos;
+	direction.x = x * basis.x;
+	direction.y = y * basis.y;
+	direction.z = - cam->focal;
+	calc(img_buffer + WIDTH * y + x
 		, objs
-		, lgts
 		, nobjs
-		, cam
-		, ngts);
-	*/
+		, lgts
+		, nlgts
+		, origin
+		, direction);
 }
