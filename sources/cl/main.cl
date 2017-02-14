@@ -43,7 +43,7 @@ kernel void
 	origin = cam->pos;
 	direction.x = x * basis.x;
 	direction.y = y * basis.y;
-	direction.z = - cam->focal;
+	direction.z = - cam->focal * cam->pos.z;
 	calc(img_buffer + WIDTH * y + x
 		, objs
 		, lgts
