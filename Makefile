@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/14 14:41:44 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/14 16:38:07 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ SOURCES		= \
 			cl_build/cpy_cam.c \
 			cl_build/cpy_lgt.c \
 			cl_build/cpy_obj.c \
+			cl_build/cl_copy_image_buffer.c \
 			gui/draw_elements.c \
 			gui/draw_info_and_state.c \
 			gui/draw_outliner.c \
