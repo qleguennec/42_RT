@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:19:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 11:13:01 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/14 13:07:38 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int			check_light(t_rt *rt, t_obj *tmp, short i)
 	i = ++rt->scn->lt[tmp->forme];
 	if (!tmp->n)
 		tmp->n = (cl_char *)ft_strjoin(light_type(tmp->forme), ft_itoa(i), 'R');
-	if (rt->prs->t[1] == 0)
+	if (rt->prs->t[0] == 0 && rt->prs->t[1] == 0)
 		rt->prs->obj_tmp->clr = (cl_float3){{255., 219., 74., 255.}};
-	if (rt->prs->t[1] != 0 && !check_rgb_color(tmp->clr))
+	if (rt->prs->t[0] != 0 && !check_rgb_color(tmp->clr))
 		return (error(rt, 36));
 	if (rt->prs->t[2] == 0)
 		return (error(rt, 26));
