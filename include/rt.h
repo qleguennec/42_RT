@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 12:32:27 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 15:18:44 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int					add_object(t_rt *rt, int b_end);
 char				*light_type(short type);
 char				*shape_object(short shape);
 int					export_shape_object(short shape, int fd);
+int					export_material_object(short material, int fd);
 
 t_obj				*set_default_parameters(t_obj *obj, char type, int title);
 t_obj				*set_element_parameters(t_obj *obj, t_obj *tmp, char type,
@@ -159,10 +160,14 @@ bool				cl_main_krl_exec(t_cl *cl, t_scene *scene);
 
 /*
 ** needs to be call each time the camera is changed
-** AND at the start of the program after
 ** cl_main_krl_init
 */
 bool				cl_main_krl_update_camera(t_cl *cl, t_obj *obj);
+
+/*
+** needs to be call each time objects are modified
+*/
+bool				cl_main_krl_update_buffers(t_cl *cl, t_scene *scene);
 
 void				export_config_file(t_rt *rt);
 

@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 11:00:05 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/13 16:24:39 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 14:42:17 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libvect.h"
 #include "libfmt.h"
 #include "parameters.h"
-#include "obj_type.h"
+#include "obj_types.h"
 
 #include <stdlib.h>
 #include <limits.h>

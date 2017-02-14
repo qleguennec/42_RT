@@ -6,12 +6,12 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 12:17:28 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/13 12:23:30 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 14:40:32 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cl_interface.h"
-#include "obj_type.h"
+#include "obj_types.h"
 #include "rt.h"
 
 // TODO remove debug includes
