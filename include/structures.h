@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 12:48:23 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/14 15:34:02 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,7 @@ typedef struct		s_cl
 	cl_mem			lgts;
 	short			n_objs;
 	short			n_lgts;
+	unsigned int	img_buffer;
 }					t_cl;
 
 #endif
