@@ -1,0 +1,42 @@
+<!--------- Global Settings ---------->
+
+<scene>
+	<name>420 blaze it</name>
+	<ambient>.20</ambient>
+	<anti-aliasing>2</anti-aliasing>
+	<max-reflexion>1</max-reflexion>
+</scene>
+
+<!------------ Camera(s) ------------->
+
+<camera>
+	<name>0123456789012345678</name>
+	<position>12.00 15.00 14.00</position>
+	<rotation>45.00 175.00 20.00</rotation>
+	<focal>22</focal>
+</camera>
+
+<!------------ Light(s) -------------->
+
+<light>
+	<name>Prout</name>
+	<type>Diffuse</type>
+	<visibility>False</visibility>
+	<position>12.00 15.00 14.00</position>
+	<color-rgb>255.00 219.00 74.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
+<!------------ Object(s) ------------->
+
+<object>
+	<name>Sphere 1</name>
+	<type>Sphere</type>
+	<visibility>False</visibility>
+	<position>12.00 15.00 14.00</position>
+	<rotation>0.00 175.00 20.00</rotation>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<opacity>.40</opacity>
+	<radius>12.00</radius>
+</object>
+
