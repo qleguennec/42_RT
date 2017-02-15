@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 19:11:47 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/15 10:24:28 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,12 @@ bool				cl_main_krl_update_camera(t_cl *cl, t_obj *obj);
 ** needs to be call each time objects are modified
 */
 bool				cl_main_krl_update_buffers(t_cl *cl, t_scene *scene);
+
+/*
+** needs to be called each time the scene has been re-renderer
+** the image buffer is assumed to be of size WIDTH * HEIGHT * sizeof(int)
+*/
+bool				cl_copy_image_buffer(t_cl *cl, void *buffer);
 
 void				export_config_file(t_rt *rt);
 
