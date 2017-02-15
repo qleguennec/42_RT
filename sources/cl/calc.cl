@@ -12,11 +12,12 @@
 
 #include "obj_def.h"
 #include "calc.h"
-//#include "light.h"
+#include "light.h"
 
+#include "light.cl"
 #include "calc_object.cl"
 
-float		delta(float a, float b, float c)
+float		calc_delta(float a, float b, float c)
 {
 	float	t0;
 	float	t1;
@@ -34,54 +35,55 @@ float		delta(float a, float b, float c)
 static float	ray_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 {
 	if (obj->type == T_PLANE)
-		return ((obj->t = ray_sphere_norm(obj, ray_pos, ray_dir)));
+		return (ray_sphere_norm(obj, ray_pos, ray_dir));
 	else if (obj->type == T_CONE)
-		return ((obj->t = ray_cone_norm(obj, ray_pos, ray_dir)));
+		return (ray_cone_norm(obj, ray_pos, ray_dir));
 	else if (obj->type == T_CYLINDER)
-		return ((obj->t = ray_cylinder_norm(obj, ray_pos, ray_dir)));
+		return (ray_cylinder_norm(obj, ray_pos, ray_dir));
 	else if (obj->type == T_SPHERE)
-		return ((obj->t = ray_sphere_norm(obj, ray_pos, ray_dir)));
+		return (ray_sphere_norm(obj, ray_pos, ray_dir));
 	return (-1);
 }
 
-short	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, float *t)
+float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, short *id)
 {
-	short	i;
-	short	index;
-	float	smallest_norm;
-	float	norm;
+	short			i;
+	float			smallest_norm;
+	float			norm;
+	float3			intersect;
+	float3			tmp_intersect;
 	global t_obj	*obj;
 
 	i = -1;
-	index = -1;
+	*id = -1;
 	norm = -1;
 	smallest_norm = -1;
 	while(i++ <  nobjs)
 	{
 		obj = tab_objs + i;
-		norm = ray_norm(obj, ray_pos, ray_dir);
+		tmp_intersect = ray_norm(obj, ray_pos, ray_dir);
+		norm = float3_to_float(tmp_intersect - ray_pos);
 		if (norm > 0 && (norm < smallest_norm || smallest_norm == -1))
 		{
+			intersect = tmp_intersect;
 			smallest_norm = norm;
-			index = i;
-			*t = obj->t;
+			*id = i;
 		}
 	}
-	return (index);
+	return (intersect);
 }
 
-void calc(global unsigned int *pixel, global t_obj *tab_objs, global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir, global t_cam *cam)
+void calc(global unsigned int *pixel, global t_obj *tab_objs,
+	global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos,
+	float3 ray_dir, global t_cam *cam)
 {
-    short	index;
-    float	t;
+    short	id;
 	float3	intersect;
 
-	printf("ok gros");
-    if ((index = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &t)) > -1)
+    touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
+	if (id > -1)
 	{
-		intersect = ray_pos + ray_dir * t;
-		*pixel = 0x00ff00;
-	//get_lighting(tab_objs, lgts, nobjs, nlgts, ambiant, intersect, ray_dir, index);
+		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else
 		*pixel = 0x00000000;
