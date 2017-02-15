@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/14 16:38:07 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/02/15 16:22:46 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -168,6 +168,6 @@ re: fclean
 	@$(MAKE) all -j
 
 r: $(OBJS)
-	@$(CC) $(FLAGS) -L $(LIBFT) -lft -L $(FSDL) -lfsdl -lpthread -L $(LIBVECT) -lvect -L $(LIBFMT) -lfmt -L $(LIBGNL) -lgnl -L $(LIBCL) -lcl -o $@ $^ $(OPENCL_F) $(SDL2_P) $(SDL2_F) $(SDL2_I) $(SDL2_TTF_I) $(SDL2_IMG_I)
+	@$(CC) $(FLAGS) -L $(LIBFT) -lft -L $(FSDL) -lfsdl -lpthread -L $(LIBVECT) -lvect -L $(LIBFMT) -lfmt -L $(LIBGNL) -lgnl -L $(LIBCL) -lcl -o $(NAME) $^ $(OPENCL_F) $(SDL2_P) $(SDL2_F) $(SDL2_I) $(SDL2_TTF_I) $(SDL2_IMG_I)
 
 .PHONY: all, temporary, norme, clean, fclean, re
