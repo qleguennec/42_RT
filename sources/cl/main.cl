@@ -51,6 +51,6 @@ kernel void
 		, nobjs
 		, nlgts
 		, origin
-		, direction);
+		, direction;
 		, cam);
 }
