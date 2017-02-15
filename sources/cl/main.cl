@@ -51,6 +51,10 @@ kernel void
 		, nobjs
 		, nlgts
 		, origin
+<<<<<<< HEAD
 		, direction
+=======
+		, direction;
+>>>>>>> origin/qle-guen
 		, cam);
 }
