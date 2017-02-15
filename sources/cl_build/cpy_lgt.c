@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/13 12:26:27 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/15 10:20:27 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void
 	//assert(obj->type == 'L');
 	CPY(pos);
 	CPY(rot);
+	CPY(clr);
 	CPY(intensity);
-	CPY(shiness);
-	CPY(mshiness);
 }

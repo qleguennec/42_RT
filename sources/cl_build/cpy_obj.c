@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/14 14:42:39 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/15 10:17:47 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void
 	dest->type = src->forme;
 	CPY(pos);
 	CPY(rot);
-	CPY(t);
 	CPY(clr);
 	CPY(opacity);
 	CPY(width);
@@ -38,4 +37,6 @@ void
 	CPY(specolor);
 	CPY(reflex);
 	CPY(refract);
+	CPY(shiness);
+	CPY(mshiness);
 }
