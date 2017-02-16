@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:37 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 11:31:27 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 11:49:54 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		init_renderer(t_rt *rt)
 	rt->run = 1;
 	rt->n_info = 0;
 	rt->t_info = 0;
-	rt->s_elem = NULL;
+	rt->scn->s_elem = NULL;
 	init_fps_structure(rt);
 	fsdl_fps_limit(rt->fps);
 	init_window_elements(rt);
