@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:58:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 14:47:17 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/16 22:40:53 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,7 @@ int			error(t_rt *rt, int t)
 		s = ft_strjoin(ft_strjoin(ft_strjoin("error : ", rt->prs->b_o, 'N'),
 		ft_strjoin(MSG15A, rt->prs->b_c, 'N'), 'B'), MSG15B, 'L');
 	(!s) ? write(2, rt->err[t], ft_strlen(rt->err[t])) : 1;
-	(s) ? write(2, s, ft_strlen(s)) : 1;
-	(s) ? write(2, ".\n", 2) : 1;
-	if (s)
-		free(s);
+	(s) ? write(2, s, ft_strlen(s) && write(2, ".\n", 2)) : 1;
 	exit(1);
 	return (1);
 }

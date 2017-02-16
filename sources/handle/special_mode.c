@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 12:55:32 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 11:11:12 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/16 21:47:03 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ void		handle_special_modes_down(t_rt *rt, t_cl *cl)
 	rt->scn->sp_mode = rt->ui->ra_down - 3;
 	rt->ui->ra_hover = -1;
 	rt->n_info = 24 + rt->scn->sp_mode;
-	/*
-	** Pas de gestion des mode speciaux pour le moment
-	*/
-	cl_main_krl_update_buffers(cl, rt->scn);
 	cl_main_krl_exec(cl, rt->scn);
 	cl_copy_image_buffer(cl, rt->s_rend->pixels);
 	add_render_frame(rt);
