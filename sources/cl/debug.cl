@@ -78,6 +78,6 @@ void
 	printf("active camera:\n");
 	PRINT3((*cam).pos, "pos");
 	PRINT3((*cam).rot, "rot");
-	PRINT1((*cam).focal, "focal");
+	printf("focal: %d\n", cam->focal);
 	printf("-----------\n");
 }
