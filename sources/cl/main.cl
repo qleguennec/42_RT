@@ -51,7 +51,8 @@ kernel void
 	direction.x = x * basis.x;
 	direction.y = y * basis.y;
 	direction.z = - cam->focal;
-	calc(img_buffer + WIDTH * y + x
+	calc((DEBUG && x == 0 && y == 0)
+		, img_buffer + WIDTH * y + x
 		, objs
 		, lgts
 		, nobjs
