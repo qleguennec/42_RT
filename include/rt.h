@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/15 10:24:28 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 11:13:53 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ void				init_renderer(t_rt *rt);
 
 int					create_window(t_rt *rt, t_cl *cl);
 
-void				render_frame(t_rt *rt);
+int					add_render_frame(t_rt *rt);
 void				render_loop(t_rt *rt);
 
 bool				scene_init_rendering(t_rt *rt, t_cl *cl);

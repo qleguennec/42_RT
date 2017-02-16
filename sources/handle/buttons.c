@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:56:06 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 15:42:03 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/16 11:12:49 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void		execute_button(t_rt *rt, int button, t_cl *cl)
 	{
 		cl_main_krl_update_buffers(cl, rt->scn);
 		cl_main_krl_exec(cl, rt->scn);
+		cl_copy_image_buffer(cl, rt->s_rend->pixels);
+		add_render_frame(rt);
 	}
 	draw_info_bar(rt);
 }
