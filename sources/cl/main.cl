@@ -35,16 +35,16 @@ void
 	while (i < nobjs)
 	{
 		printf("obj %d\n", i);
-		PRINT3((*objs).pos, "pos");
-		PRINT3((*objs).rot, "rot");
+		PRINT3(objs[i].pos, "pos");
+		PRINT3(objs[i].rot, "rot");
 		i++;
 	}
 	i = 0;
 	while (i < nlgts)
 	{
 		printf("lgt %d\n", i);
-		PRINT3((*lgts).pos, "pos");
-		PRINT3((*lgts).rot, "rot");
+		PRINT3(lgts[i].pos, "pos");
+		PRINT3(lgts[i].rot, "rot");
 		i++;
 	}
 	printf("active camera:\n");
