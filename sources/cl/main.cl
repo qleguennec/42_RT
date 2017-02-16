@@ -21,12 +21,44 @@ constant float3	size3_2	= (float3){XCENTER, YCENTER, 0};
 
 #include "calc.cl"
 
+void
+	debug
+	(global t_obj *objs
+	, global t_lgt *lgts
+	, global t_cam *cam
+	, short nobjs
+	, short nlgts)
+{
+	short	i;
+
+	i = 0;
+	while (i < nobjs)
+	{
+		printf("obj %d\n", i);
+		PRINT3((*objs).pos, "pos");
+		PRINT3((*objs).rot, "rot");
+		i++;
+	}
+	i = 0;
+	while (i < nlgts)
+	{
+		printf("lgt %d\n", i);
+		PRINT3((*lgts).pos, "pos");
+		PRINT3((*lgts).rot, "rot");
+		i++;
+	}
+	printf("active camera:\n");
+	PRINT3((*cam).pos, "pos");
+	PRINT3((*cam).rot, "rot");
+	printf("-----------\n");
+}
+
 kernel void
 	kernel_entry
 	(global unsigned int *img_buffer
+	, global t_cam *cam
 	, global t_obj *objs
 	, global t_lgt *lgts
-	, global t_cam *cam
 	, short nobjs
 	, short nlgts)
 {
@@ -38,6 +70,8 @@ kernel void
 
 	x = get_global_id(0);
 	y = get_global_id(1);
+	if (x == 0 && y == 0)
+		debug(objs, lgts, cam, nobjs, nlgts);
 	basis.x = cam->pos.x;
 	basis.y = cam->pos.y;
 	basis += 0.5 * (1 + basis / size2);
