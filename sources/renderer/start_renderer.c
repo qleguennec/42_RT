@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 13:19:25 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 14:47:39 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,11 @@ int			create_window(t_rt *rt, t_cl *cl)
 	SDL_SetWindowIcon(rt->win, rt->w_icon);
 	free(rt->w_title);
 	init_renderer(rt);
-	/*
-	** I don't know what i'm doing guys !
-	** vvvv Ajouter ces lignes pour tester le rendu vvvv
-	*/
-	cl_main_krl_update_buffers(cl, rt->scn);
-	cl_main_krl_update_camera(cl, rt->scn->c_cam);
-	cl_main_krl_exec(cl, rt->scn);
-	cl_copy_image_buffer(cl, rt->s_rend->pixels);
+	if (!cl_main_krl_update_buffers(cl, rt->scn) ||
+		!cl_main_krl_update_camera(cl, rt->scn->c_cam) ||
+		!cl_main_krl_exec(cl, rt->scn) ||
+		!cl_copy_image_buffer(cl, rt->s_rend->pixels))
+		return (error(rt, 42));
 	add_render_frame(rt);
-	/*
-	** End of the lol
-	*/
 	return (global_loop(rt, cl));
 }
