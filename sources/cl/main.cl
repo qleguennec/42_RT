@@ -12,46 +12,18 @@
 
 #include "obj_def.h"
 
+#define DEBUG 1
+
 #define PRINT3(v, a) printf(a ": %f %f %f\n", (v).x, (v).y, (v).z);
+#define PRINT1(v, a) printf(a ": %f\n", (v));
 
 constant float2	size2	= (float2){WIDTH, HEIGHT};
 constant float2	size2_2	= (float2){XCENTER, YCENTER};
 constant float3	size3	= (float3){WIDTH, HEIGHT, 0};
 constant float3	size3_2	= (float3){XCENTER, YCENTER, 0};
 
+#include "debug.cl"
 #include "calc.cl"
-
-void
-	debug
-	(global t_obj *objs
-	, global t_lgt *lgts
-	, global t_cam *cam
-	, short nobjs
-	, short nlgts)
-{
-	short	i;
-
-	i = 0;
-	while (i < nobjs)
-	{
-		printf("obj %d\n", i);
-		PRINT3(objs[i].pos, "pos");
-		PRINT3(objs[i].rot, "rot");
-		i++;
-	}
-	i = 0;
-	while (i < nlgts)
-	{
-		printf("lgt %d\n", i);
-		PRINT3(lgts[i].pos, "pos");
-		PRINT3(lgts[i].rot, "rot");
-		i++;
-	}
-	printf("active camera:\n");
-	PRINT3((*cam).pos, "pos");
-	PRINT3((*cam).rot, "rot");
-	printf("-----------\n");
-}
 
 kernel void
 	kernel_entry
@@ -70,7 +42,7 @@ kernel void
 
 	x = get_global_id(0);
 	y = get_global_id(1);
-	if (x == 0 && y == 0)
+	if (DEBUG && x == 0 && y == 0)
 		debug(objs, lgts, cam, nobjs, nlgts);
 	basis.x = cam->pos.x;
 	basis.y = cam->pos.y;
