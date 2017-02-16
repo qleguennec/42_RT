@@ -23,10 +23,13 @@ float		calc_delta(float a, float b, float c)
 	float	t1;
 	float	tmp;
 
-	tmp = sqrt(b * b - (4 * a * c) / (2 * a));
-	t0 = (-b + tmp);
-	t1 = (-b - tmp);
-	if (t0 > 0 && (t0 < t1 || t1 <= 0))
+	if ((tmp = (b * b) - (4.0f * a * c)) < 0.0f);
+		return (-1);
+	tmp = sqrt(tmp);
+	printf ("tmp\n", tmp);
+	t0 = ((-b + tmp) / (2 * a));
+	t1 = ((-b - tmp) / (2 * a));
+	if (t0 > 0.0f && (t0 < t1 || t1 <= 0.0f))
 		return (t0);
 	return (t1);
 }
@@ -63,21 +66,21 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 		obj = &tab_objs[i];
 		tmp_intersect = ray_norm(obj, ray_pos, ray_dir);
 		norm = float3_to_float(tmp_intersect - ray_pos);
-		if (norm > 0 && (norm < smallest_norm || smallest_norm == -1))
+		if (norm > 0.0f)
+			printf("norm > 0");
+///		else
+//			PRINT3(tmp_intersect,"intersect");
+		if (norm > 0.0f && (norm < smallest_norm || smallest_norm == -1))
 		{
 			intersect = tmp_intersect;
 			smallest_norm = norm;
 			*id = i;
 		}
 	}
-//		printf("obj->type [%u] et index = [%u]\n",obj->type,i);
-		printf("radius = %f\n", obj->radius);
-//		PRINT3(obj->pos, "posobj");
-//		printf("index = [%u]\n",i);
 	return (intersect);
 }
 
-void calc(global unsigned int *pixel, global t_obj *tab_objs,
+void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 	global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos,
 	float3 ray_dir, global t_cam *cam)
 {
@@ -85,9 +88,11 @@ void calc(global unsigned int *pixel, global t_obj *tab_objs,
 	float3	intersect;
 
 	id = -1;
-	ray_dir = normalize(ray_dir);
+	if (debug == 1)
+	{
+		PRINT3(ray_dir,"ray_dir");
+	}
     intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
-//	printf("x[%f], y[%f], z[%f]\n", intersect.x, intersect.y, intersect.z);
 
 	if (id > -1)
 	{

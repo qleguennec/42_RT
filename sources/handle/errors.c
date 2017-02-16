@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:58:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 13:30:47 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 14:47:17 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void		init_errors(t_rt *r, int i)
 	s(&r->err[30], MSG30) && s(&r->err[31], MSG31) && s(&r->err[32], MSG32) &&
 	s(&r->err[33], MSG33) && s(&r->err[34], MSG34) && s(&r->err[35], MSG35) &&
 	s(&r->err[36], MSG36) && s(&r->err[37], MSG37) && s(&r->err[38], MSG38) &&
-	s(&r->err[39], MSG39) && s(&r->err[40], MSG40) && s(&r->err[41], MSG41))
+	s(&r->err[39], MSG39) && s(&r->err[40], MSG40) && s(&r->err[41], MSG41) &&
+	s(&r->err[42], MSG42))
 	? 1 : 1;
 }
 

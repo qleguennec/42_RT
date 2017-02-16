@@ -61,6 +61,7 @@ void
 		PRINT1(objs[i].refract, "refract")
 		PRINT1(objs[i].shiness, "shiness")
 		PRINT1(objs[i].mshiness, "mshiness")
+		printf("type = [%u]\n",objs[i].type);
 		printf("---\n");
 		i++;
 	}
