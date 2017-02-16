@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:56:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 11:50:39 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/16 12:04:06 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		add_new_object(t_rt *rt, t_obj *tmp, short type)
 	tmp->forme = type;
 	rt->scn->o = lst_new_object(rt, rt->scn->o, 0, 0);
 	rt->ui->area[4].h += 29;
-	(rt->scn->n_elms >= 15) ? (rt->ui->nav_state = 1) : 1;
+	(rt->scn->n_elms >= 12) ? (rt->ui->nav_state = 1) : 1;
 	(rt->r_view.x != 18) ? draw_outliner(rt, -1, 0) : 1;
 }
 
