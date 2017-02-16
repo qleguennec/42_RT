@@ -36,8 +36,8 @@ kernel void
 	size_t	x;
 	size_t	y;
 
-	x = get_local_id(0);
-	y = get_local_id(1);
+	x = get_global_id(0);
+	y = get_global_id(1);
 	basis.x = cam->pos.x;
 	basis.y = cam->pos.y;
 	basis += 0.5 * (1 + basis / size2_2);
@@ -45,7 +45,8 @@ kernel void
 	direction.x = x * basis.x;
 	direction.y = y * basis.y;
 	direction.z = - cam->focal;
-	*(img_buffer + WIDTH * y + x) = 0xFFFFFF;
+	*(img_buffer + WIDTH * y + x) = -1;
+	//printf("testing\n");
 	/*
 	calc(img_buffer + WIDTH * y + x
 		, objs

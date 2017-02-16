@@ -6,11 +6,14 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 11:35:09 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 12:05:48 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+// TODO remove debug includes
+#include <assert.h>
 
 int			add_render_frame(t_rt *rt)
 {
