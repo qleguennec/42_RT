@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 11:25:36 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/16 15:16:50 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ static int	execute(t_rt *rt, t_cl *cl, int fd)
 		return (-1);
 	if (rt->verbose)
 		print_verbose(rt);
-	cl_main_krl_init(cl);
+	if (!cl_main_krl_init(cl))
+		return (error(rt, 42));
 	return (create_window(rt, cl));
 }
 
