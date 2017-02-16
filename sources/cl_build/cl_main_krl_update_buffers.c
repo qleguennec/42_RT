@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/16 12:17:38 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 13:06:28 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,16 @@ static bool
 		return (ERR("cannot create buffer for lgts, err %a", false, ret));
 	cl->n_lgts = n;
 	if (!((ret = CL_KRL_ARG(cl->main_krl.krl, 3, cl->lgts)) == CL_SUCCESS
-		&& (ret = CL_KRL_ARG(cl->main_krl.krl, 5, cl->n_lgts)) == CL_SUCCESS))
+		&& (ret = CL_KRL_ARG(cl->main_krl.krl, 5, n)) == CL_SUCCESS))
 		return (ERR("cannot set lgts & n_lgts args in kernel, err %a"
 			, false, ret));
-	while (lgts)
+	cl->n_lgts = 0;
+	while (cl->n_lgts < n)
 	{
 		cpy_lgt(&lgt_tmp, lgts);
 		VECT_ADD(buf, lgt_tmp);
 		lgts = lgts->next;
+		cl->n_lgts++;
 	}
 	return (true);
 }
@@ -74,16 +76,17 @@ static bool
 		, n * sizeof(t_cl_obj), NULL, &ret);
 	if (ret != CL_SUCCESS)
 		return (ERR("cannot create buffer for objs, err %a", false, ret));
-	cl->n_objs = n;
 	if (!((ret = CL_KRL_ARG(cl->main_krl.krl, 2, cl->objs)) == CL_SUCCESS
-		&& (ret = CL_KRL_ARG(cl->main_krl.krl, 4, cl->n_objs)) == CL_SUCCESS))
+		&& (ret = CL_KRL_ARG(cl->main_krl.krl, 4, n)) == CL_SUCCESS))
 		return (ERR("cannot set objs & n_objs args in kernel, err %a"
 			, false, ret));
-	while (objs)
+	cl->n_objs = 0;
+	while (cl->n_objs < n)
 	{
 		cpy_obj(&obj_tmp, objs);
 		VECT_ADD(buf, obj_tmp);
 		objs = objs->next;
+		cl->n_objs++;
 	}
 	return (true);
 }
