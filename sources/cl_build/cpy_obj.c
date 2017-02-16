@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/16 09:50:01 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 13:56:13 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,14 @@ void
 {
 	assert(src->type == 'O');
 	ft_bzero(dest, sizeof(*dest));
+	dest->pos.x = src->pos.x;
+	dest->pos.y = src->pos.y;
+	dest->pos.z = src->pos.z;
+	dest->rot.x = src->rot.x;
+	dest->rot.y = src->rot.y;
+	dest->rot.z = src->rot.z;
+/*
 	dest->type = src->forme;
-	CPY(pos);
-	CPY(rot);
 	CPY(clr);
 	CPY(opacity);
 	CPY(width);
@@ -39,4 +44,5 @@ void
 	CPY(refract);
 	CPY(shiness);
 	CPY(mshiness);
+*/
 }

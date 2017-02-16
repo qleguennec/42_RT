@@ -14,7 +14,7 @@
 #include "calc.h"
 #include "light.h"
 
-#include "light.cl"
+//#include "light.cl"
 #include "calc_object.cl"
 
 float		calc_delta(float a, float b, float c)
@@ -26,9 +26,9 @@ float		calc_delta(float a, float b, float c)
 	tmp = sqrt(b * b - (4 * a * c) / (2 * a));
 	t0 = (-b + tmp);
 	t1 = (-b - tmp);
-	if (t1 > 0 && t1 < t0)
-		return (t1);
-	return (t0);
+	if (t0 > 0 && (t0 < t1 || t1 <= 0))
+		return (t0);
+	return (t1);
 }
 
 
@@ -58,9 +58,9 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 	*id = -1;
 	norm = -1;
 	smallest_norm = -1;
-	while(i++ <  nobjs)
+	while(++i <  nobjs)
 	{
-		obj = tab_objs + i;
+		obj = &tab_objs[i];
 		tmp_intersect = ray_norm(obj, ray_pos, ray_dir);
 		norm = float3_to_float(tmp_intersect - ray_pos);
 		if (norm > 0 && (norm < smallest_norm || smallest_norm == -1))
@@ -70,6 +70,10 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 			*id = i;
 		}
 	}
+//		printf("obj->type [%u] et index = [%u]\n",obj->type,i);
+		printf("radius = %f\n", obj->radius);
+//		PRINT3(obj->pos, "posobj");
+//		printf("index = [%u]\n",i);
 	return (intersect);
 }
 
@@ -80,11 +84,16 @@ void calc(global unsigned int *pixel, global t_obj *tab_objs,
     short	id;
 	float3	intersect;
 
-    touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
+	id = -1;
+	ray_dir = normalize(ray_dir);
+    intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
+//	printf("x[%f], y[%f], z[%f]\n", intersect.x, intersect.y, intersect.z);
+
 	if (id > -1)
 	{
-		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
+		*pixel = 0x00FF00FF;
+//		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else
-		*pixel = 0x00000000;
+		*pixel = 0x000000FF;
 }
