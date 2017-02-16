@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:56:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 12:04:06 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/16 12:09:18 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		add_new_camera(t_rt *rt, t_obj *tmp)
 	tmp->rot.z = rt->scn->c_cam->rot.z;
 	rt->scn->o = lst_new_camera(rt, rt->scn->o, 0);
 	rt->ui->area[4].h += 29;
-	(rt->scn->n_elms >= 15) ? (rt->ui->nav_state = 1) : 1;
+	(rt->scn->n_elms >= 12) ? (rt->ui->nav_state = 1) : 1;
 	(rt->r_view.x != 18) ? draw_outliner(rt, -1, 0) : 1;
 }
 
@@ -47,7 +47,7 @@ void		add_new_light(t_rt *rt, t_obj *tmp, short type)
 	tmp->clr = (cl_float3){{255., 219., 74., 255.}};
 	rt->scn->o = lst_new_light(rt, rt->scn->o, 0);
 	rt->ui->area[4].h += 29;
-	(rt->scn->n_elms >= 15) ? (rt->ui->nav_state = 1) : 1;
+	(rt->scn->n_elms >= 12) ? (rt->ui->nav_state = 1) : 1;
 	(rt->r_view.x != 18) ? draw_outliner(rt, -1, 0) : 1;
 }
 
