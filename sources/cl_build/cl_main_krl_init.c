@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:08:54 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/16 09:59:29 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 11:33:52 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static void
 	vect_init(build_line);
 	VECT_STRADD(build_line, KRLNAME ":");
 	VECT_STRADD(build_line, "-I sources/cl ");
-	FMT_VECT(build_line, "-D WIDTH=%a ", WIN_W);
-	FMT_VECT(build_line, "-D HEIGHT=%a ", WIN_H);
-	FMT_VECT(build_line, "-D AREA=%a ", WIN_W * WIN_H);
-	FMT_VECT(build_line, "-D XCENTER=%a ", WIN_W / 2);
-	FMT_VECT(build_line, "-D YCENTER=%a ", WIN_H / 2);
+	FMT_VECT(build_line, "-D WIDTH=%a ", REND_W);
+	FMT_VECT(build_line, "-D HEIGHT=%a ", REND_H);
+	FMT_VECT(build_line, "-D AREA=%a ", REND_W * REND_H);
+	FMT_VECT(build_line, "-D XCENTER=%a ", REND_W / 2);
+	FMT_VECT(build_line, "-D YCENTER=%a ", REND_H / 2);
 	PRINT(FILENAME ":", 0);
 	VECHO(build_line);
 }
@@ -47,7 +47,7 @@ bool
 		return (ERR("cannot open " FILENAME, false, 0));
 	cl_init(&cl->info);
 	cl_krl_init(&cl->main_krl, 2);
-	cl->main_krl.sizes[0] = WIN_W * WIN_H * sizeof(int);
+	cl->main_krl.sizes[0] = REND_W * REND_H * sizeof(int);
 	cl->main_krl.sizes[1] = sizeof(t_cl_cam);
 	cl_build_line(&build_line);
 	if ((ret = cl_krl_build(&cl->info

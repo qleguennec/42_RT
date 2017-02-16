@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:35:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 14:38:58 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 11:31:55 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@
 # define WHITE_BG (unsigned)0xFFbdbdbd
 # define YELLOW_BG (unsigned)0xFFffd500
 # define BLUE_BG (unsigned)0xFF006fff
+
+# define REND_W 1244
+# define REND_H 588
 
 # define WIN_W 1280
 # define WIN_H 720
