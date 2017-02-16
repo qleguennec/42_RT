@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/15 10:28:04 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 09:57:57 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static int	global_loop(t_rt *rt, t_cl *cl)
 {
 	while (rt->run)
 	{
-		cl_main_krl_exec(cl, rt->scn);
-		cl_copy_image_buffer(cl, rt->s_rend->pixels);
 		if (SDL_PollEvent(&rt->event))
 			handle_events(rt, cl);
 		SDL_UpdateWindowSurface(rt->win);
@@ -52,9 +50,10 @@ int			create_window(t_rt *rt, t_cl *cl)
 	** I don't know what i'm doing guys !
 	** vvvv Ajouter ces lignes pour tester le rendu vvvv
 	*/
-	//cl_main_krl_update_buffers(cl, rt->scn);
-	//cl_main_krl_update_camera(cl, rt->scn);
-	//cl_main_krl_exec(cl, rt->scn);
+	cl_main_krl_update_buffers(cl, rt->scn);
+	cl_main_krl_update_camera(cl, rt->scn->c_cam);
+	cl_main_krl_exec(cl, rt->scn);
+	cl_copy_image_buffer(cl, rt->s_rend->pixels);
 	//add_render_frame(rt);
 	/*
 	** End of the lol

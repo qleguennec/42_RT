@@ -19,7 +19,7 @@ constant float2	size2_2	= (float2){XCENTER, YCENTER};
 constant float3	size3	= (float3){WIDTH, HEIGHT, 0};
 constant float3	size3_2	= (float3){XCENTER, YCENTER, 0};
 
-#include "calc.cl"
+//#include "calc.cl"
 
 kernel void
 	kernel_entry
@@ -38,18 +38,22 @@ kernel void
 
 	x = get_local_id(0);
 	y = get_local_id(1);
-	basis = cam->pos + basis + 0.5 - (cam->pos / size_2)
-		* (basis - 0.5 * cam->pos);
+	basis.x = cam->pos.x;
+	basis.y = cam->pos.y;
+	basis += 0.5 * (1 + basis / size2_2);
 	origin = cam->pos;
 	direction.x = x * basis.x;
 	direction.y = y * basis.y;
-	direction.z = - cam->focal * cam->pos.z;
+	direction.z = - cam->focal;
+	*(img_buffer + WIDTH * y + x) = 0xFFFFFF;
+	/*
 	calc(img_buffer + WIDTH * y + x
 		, objs
 		, lgts
 		, nobjs
 		, nlgts
 		, origin
-		, direction
+		, direction;
 		, cam);
+	*/
 }
