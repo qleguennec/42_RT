@@ -15,14 +15,6 @@
 	<rotation>0.00 0.00 0.00</rotation>
 	<focal>22</focal>
 </camera>
-
-<camera>
-	<name>Camera 1</name>
-	<position>4.00 5.00 6.00</position>
-	<rotation>45.00 175.00 20.00</rotation>
-	<focal>22</focal>
-</camera>
-
 <!------------ Light(s) -------------->
 
 <light>
@@ -41,7 +33,7 @@
 	<type>plane</type>
 	<material>Phong</material>
 	<visibility>False</visibility>
-	<position>80.00 80.00 50.00</position>
+	<position>0.00 0.00 50.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>.40</opacity>

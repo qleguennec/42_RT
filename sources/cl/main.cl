@@ -77,8 +77,9 @@ kernel void
 	if (x == 0 && y == 0)
 		debug(objs, lgts, cam, nobjs, nlgts);
 #endif
-	direction.xy = size2_2 - (float2){x - .5, y - .5};
-	direction.z = 55;
+//	direction.xy = size2_2 - (float2){x - .5, y - .5};
+	direction.xy = (float2){1.244 / WIDTH, .588f / HEIGHT} -(float2){x / 1244 , y /.588 };
+	direction.z = 1/ 55;
 	direction = normalize(direction);
 	if (x == 0 && y == 0)
 		PRINT3(direction, "direction");
