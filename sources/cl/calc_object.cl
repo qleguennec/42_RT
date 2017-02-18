@@ -19,7 +19,7 @@ float			float3_to_float(float3 v){
 
 float3			norm(float delta, float3 ray_pos, float3 ray_dir)
 {
-	return ((ray_pos + ray_dir) * delta);
+	return (ray_pos + ray_dir * delta);
 }
 
 float3			ray_plane_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
@@ -30,7 +30,7 @@ float3			ray_plane_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 	offset = ray_pos - obj->pos;
 	if ((div = float3_to_float(obj->rot * ray_dir)) == 0.0f)
 		return (-1);
-	return (norm((-float3_to_float(obj->rot * offset)) / div, ray_pos, ray_dir));
+	return (norm((-dot(obj->rot, offset)) / div, ray_pos, ray_dir));
 }
 
 float3			ray_cone_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
