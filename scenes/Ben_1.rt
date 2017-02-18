@@ -11,7 +11,14 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<position>12.00 15.00 14.00</position>
+	<position>4.00 5.00 6.00</position>
+	<rotation>45.00 175.00 20.00</rotation>
+	<focal>22</focal>
+</camera>
+
+<camera>
+	<name>Camera 1</name>
+	<position>4.00 5.00 6.00</position>
 	<rotation>45.00 175.00 20.00</rotation>
 	<focal>22</focal>
 </camera>
@@ -21,8 +28,13 @@
 <light>
 	<name>Prout</name>
 	<type>Diffuse</type>
+<<<<<<< HEAD
 	<visibility>True</visibility>
 	<position>12.00 15.00 14.00</position>
+=======
+	<visibility>False</visibility>
+	<position>1.00 2.00 3.00</position>
+>>>>>>> lgatibel
 	<color-rgb>122.00 145.00 210.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -33,8 +45,13 @@
 	<name>Sphere 1</name>
 	<type>Sphere</type>
 	<material>Phong</material>
+<<<<<<< HEAD
 	<visibility>True</visibility>
 	<position>12.00 15.00 14.00</position>
+=======
+	<visibility>False</visibility>
+	<position>7.00 8.00 9.00</position>
+>>>>>>> lgatibel
 	<rotation>0.00 175.00 20.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>.40</opacity>
@@ -53,6 +70,7 @@
 	<radius>.50</radius>
 </object>
 
+<<<<<<< HEAD
 <object>
 	<name>Cylinder 1</name>
 	<type>Cylinder</type>
@@ -76,3 +94,5 @@
 	<opacity>1.00</opacity>
 </object>
 
+=======
+>>>>>>> lgatibel

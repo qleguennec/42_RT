@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/13 12:26:27 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 14:16:14 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void
 	(t_cl_lgt *dest
 	, t_obj *src)
 {
-	//assert(obj->type == 'L');
+	assert(src->type == 'L');
+	ft_bzero(dest, sizeof(*dest));
 	CPY(pos);
 	CPY(rot);
+	CPY(clr);
 	CPY(intensity);
-	CPY(shiness);
-	CPY(mshiness);
 }

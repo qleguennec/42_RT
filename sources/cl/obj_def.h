@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/16 13:09:25 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/02/18 13:49:16 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct		s_obj
 	float			refract;
 	float			shiness;
 	float			mshiness;
-	float			t;
 }					t_obj;
 
 typedef struct		s_lgt

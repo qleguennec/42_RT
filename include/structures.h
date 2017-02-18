@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/15 13:36:28 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/02/18 13:54:36 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,6 @@ struct				s_rt
 	char			verbose;
 	char			**err;
 	char			**inf;
-
-	t_obj			*s_elem;
 
 	char			run;
 

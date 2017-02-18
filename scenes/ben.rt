@@ -24,18 +24,18 @@
 	<visibility>false</visibility>
 	<intensity>5</intensity>
 	<color-rgb>122 145 210</color-rgb>
-	<position>12. 15. 14</position>
+	<position>1. 2. 3.</position>
 </light>
 
 <!------------ Object(s) ------------->
 
 <object>
-	<position>12. 15. 150</position>
+	<position>10. 10. 150.</position>
 	<rotation>0. 175. 20.</rotation>
 	<color-hex>0xFFFFFF </color-hex>
 	<opacity>0.4</opacity>
 	<visibility> OFF </visibility>
 	<material>PhOnG</material>
 	<type>sphere      </type>
-	<radius>12</radius>
+	<radius>120</radius>
 </object>

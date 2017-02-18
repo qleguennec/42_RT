@@ -14,7 +14,8 @@
 #include "calc.h"
 #include "light.h"
 
-// #include "light.cl"
+
+//#include "light.cl"
 #include "calc_object.cl"
 
 float		calc_delta(float a, float b, float c)
@@ -23,12 +24,15 @@ float		calc_delta(float a, float b, float c)
 	float	t1;
 	float	tmp;
 
-	tmp = sqrt(b * b - (4 * a * c) / (2 * a));
-	t0 = (-b + tmp);
-	t1 = (-b - tmp);
-	if (t1 > 0 && t1 < t0)
-		return (t1);
-	return (t0);
+	if ((tmp = (b * b) - (4.0f * a * c)) < 0.0f);
+		return (-1);
+	tmp = sqrt(tmp);
+	printf ("tmp\n", tmp);
+	t0 = ((-b + tmp) / (2 * a));
+	t1 = ((-b - tmp) / (2 * a));
+	if (t0 > 0.0f && (t0 < t1 || t1 <= 0.0f))
+		return (t0);
+	return (t1);
 }
 
 
@@ -58,12 +62,16 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 	*id = -1;
 	norm = -1;
 	smallest_norm = -1;
-	while(i++ <  nobjs)
+	while(++i <  nobjs)
 	{
-		obj = tab_objs + i;
+		obj = &tab_objs[i];
 		tmp_intersect = ray_norm(obj, ray_pos, ray_dir);
 		norm = float3_to_float(tmp_intersect - ray_pos);
-		if (norm > 0 && (norm < smallest_norm || smallest_norm == -1))
+		if (norm > 0.0f)
+			printf("norm > 0");
+///		else
+//			PRINT3(tmp_intersect,"intersect");
+		if (norm > 0.0f && (norm < smallest_norm || smallest_norm == -1))
 		{
 			intersect = tmp_intersect;
 			smallest_norm = norm;
@@ -73,18 +81,25 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 	return (intersect);
 }
 
-void calc(global unsigned int *pixel, global t_obj *tab_objs,
+void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 	global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos,
 	float3 ray_dir, global t_cam *cam)
 {
     short	id;
 	float3	intersect;
 
-    touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
+	id = -1;
+	if (debug == 1)
+	{
+		PRINT3(ray_dir,"ray_dir");
+	}
+    intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
+
 	if (id > -1)
 	{
-		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
+		*pixel = 0xFFFFFFFF;
+//		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else
-		*pixel = 0x00000000;
+		*pixel = 0x000000FF;
 }

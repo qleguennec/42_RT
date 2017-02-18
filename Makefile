@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/14 16:38:07 by qle-guen         ###   ########.fr       *#
+#    Updated: 2017/02/16 22:32:24 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,10 +65,11 @@ SOURCES		= \
 			cl_build/cl_copy_image_buffer.c \
 			gui/draw_elements.c \
 			gui/draw_info_and_state.c \
+			gui/draw_outliner_nav_buttons.c \
+			gui/draw_outliner_elements.c \
 			gui/draw_outliner.c \
 			gui/draw_panels.c \
 			gui/draw_scene_parameters.c \
-			gui/export_config.c \
 			gui/init_structure.c \
 			gui/save_to_png.c \
 			handle/buttons.c \
@@ -79,6 +80,7 @@ SOURCES		= \
 			handle/keyboard.c \
 			handle/linked_lists.c \
 			handle/mouse.c \
+			handle/mouse_clicks.c \
 			handle/outliner.c \
 			handle/scene_parameters.c \
 			handle/special_mode.c \
@@ -99,9 +101,13 @@ SOURCES		= \
 			renderer/init_renderer.c \
 			renderer/scene_init_rendering.c \
 			renderer/start_renderer.c \
+			export/export_config.c \
+			export/cameras.c \
+			export/lights.c \
+			export/objects.c \
 			test/cl_test_krl.c \
 
-SUB_FOLDERS	= test gui handle misc parser renderer cl_build
+SUB_FOLDERS	= test gui handle misc parser renderer cl_build export
 
 BUILD_DIR	= $(addprefix $(DIR_O)/,$(SUB_FOLDERS))
 
@@ -168,6 +174,6 @@ re: fclean
 	@$(MAKE) all -j
 
 r: $(OBJS)
-	@$(CC) $(FLAGS) -L $(LIBFT) -lft -L $(FSDL) -lfsdl -lpthread -L $(LIBVECT) -lvect -L $(LIBFMT) -lfmt -L $(LIBGNL) -lgnl -L $(LIBCL) -lcl -o $@ $^ $(OPENCL_F) $(SDL2_P) $(SDL2_F) $(SDL2_I) $(SDL2_TTF_I) $(SDL2_IMG_I)
+	@$(CC) $(FLAGS) -L $(LIBFT) -lft -L $(FSDL) -lfsdl -lpthread -L $(LIBVECT) -lvect -L $(LIBFMT) -lfmt -L $(LIBGNL) -lgnl -L $(LIBCL) -lcl -o $(NAME) $^ $(OPENCL_F) $(SDL2_P) $(SDL2_F) $(SDL2_I) $(SDL2_TTF_I) $(SDL2_IMG_I)
 
 .PHONY: all, temporary, norme, clean, fclean, re

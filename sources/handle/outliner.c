@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 21:00:30 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 19:52:30 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/16 11:46:38 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		handle_outliner_down(t_rt *rt)
 	rt->ui->tmp = ft_strf(INF32, rt->ui->c_elem->n);
 	draw_outliner_element(rt, rt->ui->c_elem, 2);
 	rt->ui->c_down = rt->ui->c_hover;
-	rt->s_elem = rt->ui->c_elem;
+	rt->scn->s_elem = rt->ui->c_elem;
 	(rt->ui->b_state[17] == 2) ? draw_selected_element(rt) : 1;
 	if (rt->ui->c_elem->type == 'O')
 		(!rt->ui->m_visible) ? draw_materials(rt, 'E') : 1;

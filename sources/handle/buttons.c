@@ -6,18 +6,18 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:56:06 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 15:18:50 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/16 11:47:18 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		handle_buttons_down(t_rt *rt)
+void		handle_buttons_down(t_rt *rt, t_cl *cl)
 {
 	if (rt->ui->t_c < 2)
 		draw_button(rt, rt->ui->b_hover, 2);
 	if (rt->ui->t_c == 0)
-		execute_button(rt, rt->ui->b_hover);
+		execute_button(rt, rt->ui->b_hover, cl);
 	if (rt->ui->t_c == 1 && (rt->ui->b_state[(int)rt->ui->b_hover] += 1) != 0)
 		draw_panel(rt, rt->ui->b_hover, 1);
 	else if (rt->ui->t_c == 2 &&
@@ -45,7 +45,7 @@ void		edit_buttons_state(t_rt *rt, int i)
 	}
 }
 
-void		execute_button(t_rt *rt, int button)
+void		execute_button(t_rt *rt, int button, t_cl *cl)
 {
 	if (button == 2 && (rt->n_info = -1) != 0)
 		export_config_file(rt);
@@ -64,6 +64,13 @@ void		execute_button(t_rt *rt, int button)
 	else if (button == 18 && (rt->n_info = 21) != 0)
 		save_to_png(rt);
 	edit_buttons_state(rt, 0);
+	if (button > 2 && button < 16)
+	{
+		cl_main_krl_update_buffers(cl, rt->scn);
+		cl_main_krl_exec(cl, rt->scn);
+		cl_copy_image_buffer(cl, rt->s_rend->pixels);
+		add_render_frame(rt);
+	}
 	draw_info_bar(rt);
 }
 

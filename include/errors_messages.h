@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:28:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 13:33:00 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 14:46:33 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@
 
 # define MSG41	"error: Tag <type> is needed for every light.\n"
 
+# define MSG42  "error: Initialization of OpenCL failed.\n"
 
 #endif

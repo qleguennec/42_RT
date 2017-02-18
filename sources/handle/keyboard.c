@@ -6,13 +6,14 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 17:08:04 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/01/23 18:01:03 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/14 15:33:13 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		handle_keyboard(t_rt *rt)
+void		handle_keyboard(t_rt *rt, t_cl *cl)
 {
 	(void)rt;
+	(void)cl;
 }

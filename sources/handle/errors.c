@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:58:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 13:30:47 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 22:40:53 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void		init_errors(t_rt *r, int i)
 	s(&r->err[30], MSG30) && s(&r->err[31], MSG31) && s(&r->err[32], MSG32) &&
 	s(&r->err[33], MSG33) && s(&r->err[34], MSG34) && s(&r->err[35], MSG35) &&
 	s(&r->err[36], MSG36) && s(&r->err[37], MSG37) && s(&r->err[38], MSG38) &&
-	s(&r->err[39], MSG39) && s(&r->err[40], MSG40) && s(&r->err[41], MSG41))
+	s(&r->err[39], MSG39) && s(&r->err[40], MSG40) && s(&r->err[41], MSG41) &&
+	s(&r->err[42], MSG42))
 	? 1 : 1;
 }
 
@@ -62,10 +63,7 @@ int			error(t_rt *rt, int t)
 		s = ft_strjoin(ft_strjoin(ft_strjoin("error : ", rt->prs->b_o, 'N'),
 		ft_strjoin(MSG15A, rt->prs->b_c, 'N'), 'B'), MSG15B, 'L');
 	(!s) ? write(2, rt->err[t], ft_strlen(rt->err[t])) : 1;
-	(s) ? write(2, s, ft_strlen(s)) : 1;
-	(s) ? write(2, ".\n", 2) : 1;
-	if (s)
-		free(s);
+	(s) ? write(2, s, ft_strlen(s) && write(2, ".\n", 2)) : 1;
 	exit(1);
 	return (1);
 }

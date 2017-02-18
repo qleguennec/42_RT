@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/15 09:48:06 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 22:30:57 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ void				draw_scene_parameters(t_rt *rt);
 
 void				draw_outliner(t_rt *rt, int i, int max);
 void				draw_outliner_element(t_rt *rt, t_obj *obj, int state);
+void				draw_outliner_title(t_rt *rt, int i);
 void				draw_nav_element(t_rt *rt, int state);
 void				draw_top_nav_button(t_rt *rt, int state);
 void				draw_bottom_nav_button(t_rt *rt, int state);
@@ -144,7 +145,7 @@ void				draw_special_mode(t_rt *rt, int r_num, int type);
 void				save_to_png(t_rt *rt);
 /*
 ** -----------------------------------------------------------------------------
-** -------------------------------- OpenCL- ------------------------------------
+** --------------------------------- OpenCL ------------------------------------
 ** -----------------------------------------------------------------------------
 */
 
@@ -175,8 +176,6 @@ bool				cl_main_krl_update_buffers(t_cl *cl, t_scene *scene);
 */
 bool				cl_copy_image_buffer(t_cl *cl, void *buffer);
 
-void				export_config_file(t_rt *rt);
-
 /*
 ** -----------------------------------------------------------------------------
 ** ------------------------------- Renderer ------------------------------------
@@ -185,9 +184,9 @@ void				export_config_file(t_rt *rt);
 
 void				init_renderer(t_rt *rt);
 
-int					create_window(t_rt *rt);
+int					create_window(t_rt *rt, t_cl *cl);
 
-void				render_frame(t_rt *rt);
+int					add_render_frame(t_rt *rt);
 void				render_loop(t_rt *rt);
 
 bool				scene_init_rendering(t_rt *rt, t_cl *cl);
@@ -202,7 +201,7 @@ bool				scene_init_rendering(t_rt *rt, t_cl *cl);
 ** ---------------------------- Handle Events ----------------------------------
 */
 
-void				handle_events(t_rt *rt);
+void				handle_events(t_rt *rt, t_cl *cl);
 
 /*
 ** --------------------------- Handle Elements ---------------------------------
@@ -217,9 +216,9 @@ void				add_new_shader(t_obj *obj, short type);
 */
 
 void				handle_buttons(t_rt *rt);
-void				handle_buttons_down(t_rt *rt);
+void				handle_buttons_down(t_rt *rt, t_cl *cl);
 
-void				execute_button(t_rt *rt, int button);
+void				execute_button(t_rt *rt, int button, t_cl *cl);
 
 /*
 ** --------------------------- Handle Outliner ---------------------------------
@@ -232,7 +231,7 @@ void				handle_outliner_down(t_rt *rt);
 ** ------------------------- Handle Special Mode -------------------------------
 */
 
-void				handle_special_modes_down(t_rt *rt);
+void				handle_special_modes_down(t_rt *rt, t_cl *cl);
 void				handle_special_mode(t_rt *rt, int i);
 
 /*
@@ -240,11 +239,11 @@ void				handle_special_mode(t_rt *rt, int i);
 */
 
 void				handle_left_click_up(t_rt *rt);
-void				handle_left_click_down(t_rt *rt);
+void				handle_left_click_down(t_rt *rt, t_cl *cl);
 
-void				handle_right_click_down(t_rt *rt);
+void				handle_right_click_down(t_rt *rt, t_cl *cl);
 
-void				handle_double_click_down(t_rt *rt);
+void				handle_double_click_down(t_rt *rt, t_cl *cl);
 
 void				handle_motion_mouse(t_rt *rt);
 
@@ -252,7 +251,7 @@ void				handle_motion_mouse(t_rt *rt);
 ** --------------------------- Handle Keyboard ---------------------------------
 */
 
-void				handle_keyboard(t_rt *rt);
+void				handle_keyboard(t_rt *rt, t_cl *cl);
 
 /*
 ** ------------------------- Handle Linked Lints -------------------------------
@@ -274,6 +273,18 @@ int					error(t_rt *rt, int t);
 */
 
 void				init_informations(t_rt *r, int i);
+
+/*
+** -----------------------------------------------------------------------------
+** -------------------------------- Export -------------------------------------
+** -----------------------------------------------------------------------------
+*/
+
+void				export_camera(t_obj *cam, int fd);
+void				export_light(t_obj *light, int fd);
+void				export_object(t_obj *obj, int fd);
+
+void				export_config_file(t_rt *rt);
 
 /*
 ** -----------------------------------------------------------------------------

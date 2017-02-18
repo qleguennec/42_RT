@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/14 14:42:39 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 14:16:09 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ void
 	(t_cl_obj *dest
 	, t_obj *src)
 {
-	//assert(obj->type == 'O');
+	assert(src->type == 'O');
 	ft_bzero(dest, sizeof(*dest));
 	dest->type = src->forme;
 	CPY(pos);
 	CPY(rot);
-	CPY(t);
 	CPY(clr);
 	CPY(opacity);
 	CPY(width);
@@ -38,4 +37,6 @@ void
 	CPY(specolor);
 	CPY(reflex);
 	CPY(refract);
+	CPY(shiness);
+	CPY(mshiness);
 }

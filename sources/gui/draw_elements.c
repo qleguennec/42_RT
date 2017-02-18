@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:37:49 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 20:07:11 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/16 11:50:36 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ void		draw_materials(t_rt *rt, char type)
 
 void		draw_selected_element(t_rt *rt)
 {
-	if (rt->s_elem->type == 'C')
+	if (rt->scn->s_elem->type == 'C')
 		fsdl_fill_rect(rt->s_back, rt->ui->area[8], WHITE_BG);
-	else if (rt->s_elem->type == 'L')
+	else if (rt->scn->s_elem->type == 'L')
 		fsdl_fill_rect(rt->s_back, rt->ui->area[8], YELLOW_BG);
-	else if (rt->s_elem->type == 'O')
+	else if (rt->scn->s_elem->type == 'O')
 		fsdl_fill_rect(rt->s_back, rt->ui->area[8], BLUE_BG);
 }
 

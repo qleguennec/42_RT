@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:56:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 13:01:37 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/16 22:42:27 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,11 @@ int			get_m(t_rt *rt, int b_end, char *s, char *e)
 ** Function to get the type of a object from a position in my buffer
 */
 
-int			get_t(t_rt *rt, int b_end, char *s, char *e)
+int			get_t(t_rt *rt, int b_end, char *st, char *e)
 {
 	char	*str;
 
-	rt->prs->t_i = -1;
-	rt->prs->b_o = s;
-	rt->prs->b_c = e;
+	((rt->prs->t_i = -1) == -1 && s(&rt->prs->b_o, st)) ? s(&rt->prs->b_c, e) : 1;
 	str = ft_getstr(rt->prs->buf, rt->prs->i, b_end);
 	if (ft_strlcmp(str, "sphere"))
 		rt->prs->t_i = T_SPHERE;
@@ -106,4 +104,30 @@ int			get_lt(t_rt *rt, int b_end, char *s, char *e)
 	free(str);
 	rt->prs->i = b_end + ft_strlen(e);
 	return ((rt->prs->t_i == -1) ? (error(rt, 14) + 1) : 1);
+}
+
+/*
+** Function to get a boolean value from a position in my buffer (v->buf)
+*/
+
+int			get_b(t_rt *rt, int b_end, char *st, char *e)
+{
+	char	*str;
+
+	rt->prs->t_i = -1;
+	rt->prs->b_o = st;
+	rt->prs->b_c = e;
+	str = ft_getstr(rt->prs->buf, rt->prs->i, b_end);
+	if (ft_strlcmp(str, "1") || ft_strlcmp(str, "on") ||
+	ft_strlcmp(str, "true"))
+		rt->prs->t_i = 1;
+	else if (ft_strlcmp(str, "0") || ft_strlcmp(str, "off") ||
+	ft_strlcmp(str, "false"))
+		rt->prs->t_i = 0;
+	free(str);
+	if ((rt->prs->t_i == -1) && s(&rt->prs->b_o, st) &&
+	s(&rt->prs->b_c, e))
+		return (error(rt, 14) + 1);
+	rt->prs->i = b_end + ft_strlen(e);
+	return (1);
 }
