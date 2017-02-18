@@ -68,7 +68,6 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 		obj = &tab_objs[i];
 		tmp_intersect = ray_norm(obj, ray_pos, ray_dir, &ok);
 		norm = float3_to_float(tmp_intersect - ray_pos);
-//		norm = float3_to_float(normalize(tmp_intersect - ray_pos));
 		if (ok == 1 && norm > 0.0f && (norm < smallest_norm || smallest_norm == -1))
 		{
 			intersect = tmp_intersect;
@@ -94,7 +93,8 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 	}
     intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
 	if (id > -1)
-	{
+	{	
+		//*pixel = 0xff0000FF;
 		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else
