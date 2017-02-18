@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 11:13:53 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/16 22:30:57 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ void				draw_scene_parameters(t_rt *rt);
 
 void				draw_outliner(t_rt *rt, int i, int max);
 void				draw_outliner_element(t_rt *rt, t_obj *obj, int state);
+void				draw_outliner_title(t_rt *rt, int i);
 void				draw_nav_element(t_rt *rt, int state);
 void				draw_top_nav_button(t_rt *rt, int state);
 void				draw_bottom_nav_button(t_rt *rt, int state);
@@ -144,7 +145,7 @@ void				draw_special_mode(t_rt *rt, int r_num, int type);
 void				save_to_png(t_rt *rt);
 /*
 ** -----------------------------------------------------------------------------
-** -------------------------------- OpenCL- ------------------------------------
+** --------------------------------- OpenCL ------------------------------------
 ** -----------------------------------------------------------------------------
 */
 
@@ -174,8 +175,6 @@ bool				cl_main_krl_update_buffers(t_cl *cl, t_scene *scene);
 ** the image buffer is assumed to be of size WIDTH * HEIGHT * sizeof(int)
 */
 bool				cl_copy_image_buffer(t_cl *cl, void *buffer);
-
-void				export_config_file(t_rt *rt);
 
 /*
 ** -----------------------------------------------------------------------------
@@ -274,6 +273,18 @@ int					error(t_rt *rt, int t);
 */
 
 void				init_informations(t_rt *r, int i);
+
+/*
+** -----------------------------------------------------------------------------
+** -------------------------------- Export -------------------------------------
+** -----------------------------------------------------------------------------
+*/
+
+void				export_camera(t_obj *cam, int fd);
+void				export_light(t_obj *light, int fd);
+void				export_object(t_obj *obj, int fd);
+
+void				export_config_file(t_rt *rt);
 
 /*
 ** -----------------------------------------------------------------------------

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 10:41:16 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 09:52:10 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/16 21:48:12 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_obj		*lst_new_light(t_rt *rt, t_obj *objs, int title)
 	new_light = set_element_parameters(new_light, rt->prs->obj_tmp, 'L', title);
 	new_light->next = NULL;
 	nav_list = objs;
-	while (nav_list->next != NULL && 
+	while (nav_list->next != NULL &&
 	(nav_list->next->type == 'C' || nav_list->next->type == 'L'))
 		nav_list = nav_list->next;
 	new_light->next = nav_list->next;

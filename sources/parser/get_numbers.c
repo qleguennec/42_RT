@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 18:29:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 17:09:37 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/16 22:42:21 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,32 +150,6 @@ int			get_h(t_rt *rt, int b_end, char *st, char *e)
 		return (error(rt, 14) + 1);
 	rt->prs->t_u = ft_shtoi(str + j);
 	free(str);
-	rt->prs->i = b_end + ft_strlen(e);
-	return (1);
-}
-
-/*
-** Function to get a boolean value from a position in my buffer (v->buf)
-*/
-
-int			get_b(t_rt *rt, int b_end, char *st, char *e)
-{
-	char	*str;
-
-	rt->prs->t_i = -1;
-	rt->prs->b_o = st;
-	rt->prs->b_c = e;
-	str = ft_getstr(rt->prs->buf, rt->prs->i, b_end);
-	if (ft_strlcmp(str, "1") || ft_strlcmp(str, "on") ||
-	ft_strlcmp(str, "true"))
-		rt->prs->t_i = 1;
-	else if (ft_strlcmp(str, "0") || ft_strlcmp(str, "off") ||
-	ft_strlcmp(str, "false"))
-		rt->prs->t_i = 0;
-	free(str);
-	if ((rt->prs->t_i == -1) && s(&rt->prs->b_o, st) &&
-	s(&rt->prs->b_c, e))
-		return (error(rt, 14) + 1);
 	rt->prs->i = b_end + ft_strlen(e);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:19:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 13:07:38 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/16 21:42:56 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,25 +83,25 @@ int			check_light(t_rt *rt, t_obj *tmp, short i)
 	return (1);
 }
 
-int			check_object(t_rt *rt, t_obj *tmp, short i)
+int			check_object(t_rt *rt, t_obj *t, short i)
 {
-	tmp->title = 0;
+	t->title = 0;
 	if (rt->prs->t[8] == 0)
 		return (error(rt, 28));
-	i = ++rt->scn->ot[tmp->forme];
-	if (!tmp->n)
-		tmp->n = (cl_char *)ft_strjoin(shape_object(tmp->forme), ft_itoa(i), 'R');
-	if (rt->prs->t[1] != 0 && !check_rgb_color(tmp->clr))
+	i = ++rt->scn->ot[t->forme];
+	if (!t->n)
+		t->n = (cl_char *)ft_strjoin(shape_object(t->forme), ft_itoa(i), 'R');
+	if (rt->prs->t[1] != 0 && !check_rgb_color(t->clr))
 		return (error(rt, 37));
 	if (rt->prs->t[2] == 0)
 		return (error(rt, 27));
-	if (rt->prs->t[7] != 0 && (tmp->opacity < .0 || tmp->opacity > 1.0))
+	if (rt->prs->t[7] != 0 && (t->opacity < .0 || t->opacity > 1.0))
 		return (error(rt, 10));
-	if (rt->prs->t[9] != 0 && (tmp->radius < .0 || tmp->radius > 200.0))
+	if (rt->prs->t[9] != 0 && (t->radius < .0 || t->radius > 200.0))
 		return (error(rt, 38));
-	if (rt->prs->t[10] != 0 && (tmp->width < .0 || tmp->width > 200.0))
+	if (rt->prs->t[10] != 0 && (t->width < .0 || t->width > 200.0))
 		return (error(rt, 39));
-	if (rt->prs->t[11] != 0 && (tmp->height < .0 || tmp->height > 200.0))
+	if (rt->prs->t[11] != 0 && (t->height < .0 || t->height > 200.0))
 		return (error(rt, 40));
 	rt->scn->o = lst_new_object(rt, rt->scn->o, 0, 0);
 	reset_tags(rt->prs);
