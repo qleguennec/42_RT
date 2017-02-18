@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ray.h"
+include "light.h";
+include "ray.h"
 
-#include "light.h"
-
-unsigned get_lighting(global t_obj *objs, global t_lgt *lights,
-	short n_objs, short n_lights, /*float ambiant, */float3 ray_pos, float3 ray_dir,
+unsigned get_lighting(global t_obj *objs, global t_obj *lights,
+	short n_objs, short n_lights, float ambiant, float3 ray_pos, float3 ray_dir,
 	short obj_ind)
 {
 	short	i = 0;

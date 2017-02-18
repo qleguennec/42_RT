@@ -15,7 +15,7 @@
 #include "light.h"
 
 
-//#include "light.cl"
+#include "light.cl"
 #include "calc_object.cl"
 
 float		calc_delta(float a, float b, float c)
@@ -94,8 +94,8 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 
 	if (id > -1)
 	{
-		*pixel = 0xFFFFFFFF;
-//		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
+		// *pixel = 0xFFFFFFFF;
+		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else
 		*pixel = 0x000000FF;
