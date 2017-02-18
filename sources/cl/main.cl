@@ -12,7 +12,7 @@
 
 #include "obj_def.h"
 
-#define DEBUG 1
+#define DEBUG 0
 
 #define PRINT3(v, a) printf(a ": %f %f %f\n", (v).x, (v).y, (v).z);
 #define PRINT1(v, a) printf(a ": %f\n", (v));
@@ -43,8 +43,8 @@ void
 	float3	center;
 	float	radius;
 
-	center = (float3){50, 50, 0};
-	radius = 100.0;
+	center = (float3){0, 20, -10};
+	radius = 10.0;
 	delta = dot(d, cam->pos - center);
 	delta *= delta;
 	delta -= dot(d, d) * (dot(cam->pos - center, cam->pos - center) - radius * radius);
@@ -75,18 +75,15 @@ kernel void
 	if (x == 0 && y == 0)
 		debug(objs, lgts, cam, nobjs, nlgts);
 #endif
-	direction.x = cam->pos.x - (x + 0.5);
-	direction.y = cam->pos.y - (y + 0.5);
+	direction.xy = size2_2 - (float2){x - 0.5, y - 0.5};
 	direction.z = - cam->focal;
-	direction = fast_normalize(direction * cam->pos);
-	/*
+	direction = normalize(direction);
 	if (x == 0 && y == 0)
 		PRINT3(direction, "direction");
 	if (x == XCENTER && y == YCENTER)
 		PRINT3(direction, "direction");
 	if (x == WIDTH - 1 && y == HEIGHT - 1)
 		PRINT3(direction, "direction");
-	*/
 	test_sphere_intersection(img_buffer + WIDTH * y + x
 		, cam
 		, objs

@@ -11,9 +11,9 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<focal>22</focal>
-	<position>622. 299. 1.</position>
-	<rotation>45. 175. 20.</rotation>
+	<focal>50</focal>
+	<position>1. 1. 1.</position>
+	<rotation>0. 0. 1.</rotation>
 </camera>
 
 <!------------ Light(s) -------------->
