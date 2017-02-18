@@ -12,7 +12,7 @@
 
 #include "obj_def.h"
 
-#define DEBUG 0
+#define DEBUG 1
 
 #define PRINT3(v, a) printf(a ": %f %f %f\n", (v).x, (v).y, (v).z);
 #define PRINT1(v, a) printf(a ": %f\n", (v));
@@ -79,12 +79,14 @@ kernel void
 	direction.y = cam->pos.y - (y + 0.5);
 	direction.z = - cam->focal;
 	direction = fast_normalize(direction * cam->pos);
+	/*
 	if (x == 0 && y == 0)
 		PRINT3(direction, "direction");
 	if (x == XCENTER && y == YCENTER)
 		PRINT3(direction, "direction");
 	if (x == WIDTH - 1 && y == HEIGHT - 1)
 		PRINT3(direction, "direction");
+	*/
 	test_sphere_intersection(img_buffer + WIDTH * y + x
 		, cam
 		, objs

@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/16 14:01:15 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/18 12:16:51 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,6 @@ static bool
 		cpy_obj(&obj_tmp, objs);
 		VECT_ADD(buf, obj_tmp);
 		objs = objs->next;
-		t_cl_obj *test;
-		test = buf->data;
-		test += buf->used - sizeof(t_cl_obj);
 		cl->n_objs++;
 	}
 	return (true);
