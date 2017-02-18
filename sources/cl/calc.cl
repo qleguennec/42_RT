@@ -13,8 +13,6 @@
 #include "obj_def.h"
 #include "calc.h"
 #include "light.h"
-
-
 #include "light.cl"
 #include "calc_object.cl"
 
