@@ -11,9 +11,9 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<focal>22</focal>
-	<position>12. 15. 14.</position>
-	<rotation>45. 175. 20.</rotation>
+	<focal>55</focal>
+	<position>10. 10. 10.</position>
+	<rotation>0. 0. 1.</rotation>
 </camera>
 
 <!------------ Light(s) -------------->
@@ -30,7 +30,7 @@
 <!------------ Object(s) ------------->
 
 <object>
-	<position>12. 15. 14</position>
+	<position>12. 15. 150</position>
 	<rotation>0. 175. 20.</rotation>
 	<color-hex>0xFFFFFF </color-hex>
 	<opacity>0.4</opacity>
