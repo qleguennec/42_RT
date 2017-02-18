@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/18 13:49:16 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/02/18 14:53:33 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_obj
 	float			width;
 	float			height;
 	float			radius;
+	float			specolor;
 	float			reflex;
 	float			refract;
 	float			shiness;

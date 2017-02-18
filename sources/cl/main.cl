@@ -60,9 +60,9 @@ kernel void
 	indent.y = basis.y / HEIGHT;
 	indent.x = basis.x / WIDTH;
 
-	origin.x = cam->pos.x + (cam->focal / 55 * cam->rot.x) - basis.x / 2.0f;
-	origin.y = cam->pos.y + (cam->focal / 55 * cam->rot.y) - basis.y / 2.0f;
-	origin.z = cam->pos.z + (cam->focal / 55 * cam->rot.z);
+	origin.x = cam->pos.x + (cam->focal / 27.5f * cam->rot.x) - basis.x / 2.0f;
+	origin.y = cam->pos.y + (cam->focal / 27.5f * cam->rot.y) - basis.y / 2.0f;
+	origin.z = cam->pos.z + (cam->focal / 27.5f * cam->rot.z);
 
 //	basis.x = cam->pos.x - WIDTH;
 //	basis.y = cam->pos.y - HEIGHT;
