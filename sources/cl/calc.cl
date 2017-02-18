@@ -37,7 +37,7 @@ float		calc_delta(float a, float b, float c)
 }
 
 
-static float	ray_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
+static float3	ray_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 {
 	if (obj->type == T_PLANE)
 		return (ray_sphere_norm(obj, ray_pos, ray_dir));
@@ -95,7 +95,7 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 
 	if (id > -1)
 	{
-		 *pixel = 0xFFFFFFFF;
+		 *pixel = 0x00FF00FF;
 //		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else
