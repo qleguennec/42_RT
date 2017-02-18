@@ -25,12 +25,17 @@ float3			norm(float delta, float3 ray_pos, float3 ray_dir)
 float3			ray_plane_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 {
 	float	div;
+	float	t;
 	float3	offset;
 
 	offset = ray_pos - obj->pos;
-	if ((div = float3_to_float(obj->rot * ray_dir)) == 0.0f)
+	div = dot(obj->rot, ray_dir);
+	if (div == 0.0f)
 		return (-1);
-	return (norm((-dot(obj->rot, offset)) / div, ray_pos, ray_dir));
+	t = (-dot(obj->rot, offset)) / div;
+	if (t < 0.0f)
+		return (-1);
+	return (norm(t, ray_pos, ray_dir));
 }
 
 float3			ray_cone_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
@@ -43,9 +48,12 @@ float3			ray_cone_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 
 	offset = ray_pos - obj->pos;
 	a = dot(ray_dir.xz, ray_dir.xz) - dot(ray_dir.y, ray_dir.y);
-	b = 2 * (dot(ray_dir.xz, offset.xz) - dot(ray_dir.y, ray_dir.y)) - (float)
-	obj->radius * obj->radius;
+
+	b = 2 * (dot(ray_dir.xz, offset.xz) - dot(ray_dir.y, ray_dir.y)) -
+		(float)obj->radius * obj->radius;
+
 	c = dot(offset.xz, offset.xz) - dot(offset.y, offset.y);
+
 	if ((delta = calc_delta(a, b, c)) >= 0)
 		return (norm(delta, ray_pos, ray_dir));
 	return (-1);

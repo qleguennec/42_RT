@@ -15,7 +15,7 @@
 #include "light.h"
 
 
-//#include "light.cl"
+#include "light.cl"
 #include "calc_object.cl"
 
 float		calc_delta(float a, float b, float c)
@@ -40,7 +40,7 @@ float		calc_delta(float a, float b, float c)
 static float3	ray_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 {
 	if (obj->type == T_PLANE)
-		return (ray_sphere_norm(obj, ray_pos, ray_dir));
+		return (ray_plane_norm(obj, ray_pos, ray_dir));
 	else if (obj->type == T_CONE)
 		return (ray_cone_norm(obj, ray_pos, ray_dir));
 	else if (obj->type == T_CYLINDER)
@@ -92,11 +92,10 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 		PRINT3(ray_dir,"ray_dir");
 	}
     intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
-
 	if (id > -1)
 	{
-		 *pixel = 0x00FF00FF;
-//		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
+//		 *pixel = 0x00FF00FF;
+		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else
 		*pixel = 0x000000FF;
