@@ -39,7 +39,7 @@ unsigned	get_lighting(global t_obj *objs, global t_lgt *lights,
 	rd_light = rd_light / (float)(n_lights + ambiant);
 
 	// return(calcul_rendu_light(objs[obj_ind].clr, 1));
-	return (calcul_rendu_light(rd_light, n_lights));
+	return (calcul_rendu_light(rd_light, n_lights, ambiant));
 }
 /*
 unsigned	twocolor_lerp(float3 a, unsigned b, short pc)
@@ -55,11 +55,11 @@ unsigned	twocolor_lerp(float3 a, unsigned b, short pc)
 			(((unsigned int)color.z) & 0x0000ff));
 }
 */
-unsigned	calcul_rendu_light(float3 light, short n_lights)
+unsigned	calcul_rendu_light(float3 light, short n_lights, float ambiant)
 {
 	float3	clr;
 
-	clr =  (light / n_lights) * 127.0f;
+	clr =  (light / (n_lights + ambiant)) * 255.0f;
 	return ((((unsigned)clr.x & 0xff) << 24) + (((unsigned)clr.y & 0xff) << 16)
 		+ (((unsigned)clr.z & 0xff) << 8) + ((unsigned)255 & 0xff));
 }
@@ -71,8 +71,8 @@ float3		is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_
 
 	// PRINT3(lightdir, "lightdir");
 	touch_object(objs, n_objs, lightpos, lightdir, &index);
-	printf("index 1 : %d\n", obj_ind);
-	printf("index 2 : %d\n", index);
+	// printf("index 1 : %d\n", obj_ind);
+	// printf("index 2 : %d\n", index);
 	if (index == obj_ind)
 		return (calcul_light(lightdir, normale, light, &objs[obj_ind]));
 	else
