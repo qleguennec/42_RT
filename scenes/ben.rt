@@ -12,7 +12,7 @@
 <camera>
 	<name>0123456789012345678</name>
 	<focal>55</focal>
-	<position>10. 10. 10.</position>
+	<position>0. 0. 0.</position>
 	<rotation>0. 0. 1.</rotation>
 </camera>
 
@@ -24,18 +24,18 @@
 	<visibility>false</visibility>
 	<intensity>5</intensity>
 	<color-rgb>1.0 1.0 1.0</color-rgb>
-	<position>1. 2. 130.</position>
+	<position>0. 0. 100.</position>
 </light>
 
 <!------------ Object(s) ------------->
 
 <object>
-	<position>40. 30. 150.</position>
+	<position>25. 50. 500.</position>
 	<rotation>0. 175. 20.</rotation>
 	<color-rgb>1.0 1.0 1.0 </color-rgb>
 	<opacity>0.4</opacity>
-	<visibility> OFF </visibility>
+	<visibility> ON </visibility>
 	<material>PhOnG</material>
-	<type>cone      </type>
-	<radius>12</radius>
+	<type>sphere      </type>
+	<radius>50.0</radius>
 </object>

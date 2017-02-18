@@ -22,7 +22,7 @@ float3			norm(float delta, float3 ray_pos, float3 ray_dir)
 	return (ray_pos + ray_dir * delta);
 }
 
-float3			ray_plane_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
+float3			ray_plane_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir, short *ok)
 {
 	float	div;
 	float	t;
@@ -31,14 +31,14 @@ float3			ray_plane_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 	offset = ray_pos - obj->pos;
 	div = dot(obj->rot, ray_dir);
 	if (div == 0.0f)
-		return (-1);
+		*ok = -1;
 	t = (-dot(obj->rot, offset)) / div;
 	if (t < 0.0f)
-		return (-1);
+		*ok = -1;
 	return (norm(t, ray_pos, ray_dir));
 }
 
-float3			ray_cone_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
+float3			ray_cone_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir, short *ok)
 {
 	float	a;
 	float	b;
@@ -48,18 +48,15 @@ float3			ray_cone_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 
 	offset = ray_pos - obj->pos;
 	a = dot(ray_dir.xz, ray_dir.xz) - dot(ray_dir.y, ray_dir.y);
-
 	b = 2 * (dot(ray_dir.xz, offset.xz) - dot(ray_dir.y, ray_dir.y)) -
 		(float)obj->radius * obj->radius;
-
 	c = dot(offset.xz, offset.xz) - dot(offset.y, offset.y);
-
 	if ((delta = calc_delta(a, b, c)) >= 0)
-		return (norm(delta, ray_pos, ray_dir));
-	return (-1);
+		*ok = -1;
+	return (norm(delta, ray_pos, ray_dir));
 }
 
-float3			ray_cylinder_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
+float3			ray_cylinder_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir, short *ok)
 {
 	float	a;
 	float	b;
@@ -74,11 +71,11 @@ float3			ray_cylinder_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 	b = 2.0f * dot(ray_dir, offset);
 	c = dot(offset, offset) - (float)obj->radius * obj->radius;
 	if ((delta = calc_delta(a, b, c)) >= 0)
-		return (norm(delta, ray_pos, ray_dir));
-	return (-1);
+		*ok = -1;
+	return (norm(delta, ray_pos, ray_dir));
 }
 
-float3			ray_sphere_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
+float3			ray_sphere_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir, short *ok)
 {
 	float	a;
 	float	b;
@@ -91,6 +88,6 @@ float3			ray_sphere_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 	b = 2.0f * dot(ray_dir, offset);
 	c = dot(offset, offset) - (float)(obj->radius * obj->radius);
 	if ((delta = calc_delta(a, b, c)) >= 0.0f)
-		return (norm(delta, ray_pos, ray_dir));
-	return (-1);
+		*ok = -1;
+	return (norm(delta, ray_pos, ray_dir));
 }
