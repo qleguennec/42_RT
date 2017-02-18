@@ -22,7 +22,7 @@ constant float2	size2_2	= (float2){XCENTER, YCENTER};
 constant float3	size3	= (float3){WIDTH, HEIGHT, 0};
 constant float3	size3_2	= (float3){XCENTER, YCENTER, 0};
 
-//# include "calc.cl"
+# include "calc.cl"
 
 #if DEBUG
 # include "debug.cl"
