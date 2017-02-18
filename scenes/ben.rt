@@ -11,8 +11,8 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<focal>50</focal>
-	<position>1. 1. 1.</position>
+	<focal>20</focal>
+	<position>10. 10. 10.</position>
 	<rotation>0. 0. 1.</rotation>
 </camera>
 
@@ -30,7 +30,7 @@
 <!------------ Object(s) ------------->
 
 <object>
-	<position>7. 8. 9.</position>
+	<position>80. 60. 150.</position>
 	<rotation>0. 175. 20.</rotation>
 	<color-hex>0xFFFFFF </color-hex>
 	<opacity>0.4</opacity>

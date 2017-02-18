@@ -12,7 +12,7 @@
 <camera>
 	<name>0123456789012345678</name>
 	<position>0.00 0.00 0.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
+	<rotation>0.00 0.00 1.00</rotation>
 	<focal>22</focal>
 </camera>
 <!------------ Light(s) -------------->
@@ -30,10 +30,10 @@
 
 <object>
 	<name>Sphere 1</name>
-	<type>plane</type>
+	<type>cone</type>
 	<material>Phong</material>
 	<visibility>False</visibility>
-	<position>0.00 0.00 50.00</position>
+	<position>0.00 0.00 150.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>.40</opacity>
