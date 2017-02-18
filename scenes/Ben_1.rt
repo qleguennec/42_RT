@@ -11,8 +11,15 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<position>0.00 0.00 0.00</position>
-	<rotation>0.00 0.00 1.00</rotation>
+	<position>4.00 5.00 6.00</position>
+	<rotation>45.00 175.00 20.00</rotation>
+	<focal>22</focal>
+</camera>
+
+<camera>
+	<name>Camera 1</name>
+	<position>4.00 5.00 6.00</position>
+	<rotation>45.00 175.00 20.00</rotation>
 	<focal>22</focal>
 </camera>
 
@@ -22,11 +29,7 @@
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>False</visibility>
-<<<<<<< HEAD
-	<position>12.00 15.00 14.00</position>
-=======
 	<position>1.00 2.00 3.00</position>
->>>>>>> b059ce56f1177a19cac0d1541600bdf0e1b1acc2
 	<color-rgb>122.00 145.00 210.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -34,17 +37,6 @@
 <!------------ Object(s) ------------->
 
 <object>
-<<<<<<< HEAD
-	<name>Plane 1</name>
-	<type>Sphere</type>
-	<material>Phong</material>
-	<visibility>False</visibility>
-	<position>0.00 0.00 100.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>255.00 255.00 255.00</color-rgb>
-	<opacity>.40</opacity>
-	<radius>40.00</radius>
-=======
 	<name>Sphere 1</name>
 	<type>Sphere</type>
 	<material>Phong</material>
@@ -66,6 +58,5 @@
 	<color-rgb>128.00 128.00 128.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>.50</radius>
->>>>>>> b059ce56f1177a19cac0d1541600bdf0e1b1acc2
 </object>
 
