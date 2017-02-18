@@ -14,7 +14,7 @@
 // #include "calc.cl"
 #include "light.h"
 #include "calc.h"
-#include "obj_def.h"
+// #include "obj_def.h"
 #include "lib.h"
 
 unsigned	get_lighting(global t_obj *objs, global t_lgt *lights,
@@ -31,14 +31,16 @@ unsigned	get_lighting(global t_obj *objs, global t_lgt *lights,
 	while (i < n_lights)
 	{
 		lightdir = normalize(ray_pos - lights[i].pos);
+		PRINT3(ray_pos, "ray_pos");
 		rd_light += is_light(lights[i].pos, lightdir, objs, &lights[i],
 		n_lights, n_objs, calcul_normale(&objs[obj_ind], ray_pos), obj_ind);
 		i++;
 	}
 	rd_light = rd_light / (float)(n_lights + ambiant);
 
-	return(0xFF0000FF);
-	// return (calcul_rendu_light(rd_light, n_lights));
+	// return(0xFF0000FF);
+	// PRINT3(rd_light,"rd_light");
+	return (calcul_rendu_light(rd_light, n_lights));
 }
 
 unsigned	calcul_rendu_light(float3 light, short n_lights)
@@ -55,7 +57,10 @@ float3		is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_
 {
 	short	index;
 
+	// PRINT3(lightdir, "lightdir");
 	touch_object(objs, n_objs, lightpos, lightdir, &index);
+	// printf("index 1 : %d\n", obj_ind);
+	// printf("index 2 : %d\n", index);
 	if (index == obj_ind)
 		return (calcul_light(lightdir, normale, light, &objs[obj_ind]));
 	else

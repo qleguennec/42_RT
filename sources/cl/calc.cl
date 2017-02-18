@@ -35,7 +35,7 @@ float		calc_delta(float a, float b, float c)
 }
 
 
-static float	ray_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
+static float3	ray_norm(global t_obj *obj, float3 ray_pos, float3 ray_dir)
 {
 	if (obj->type == T_PLANE)
 		return (ray_sphere_norm(obj, ray_pos, ray_dir));
