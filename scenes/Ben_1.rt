@@ -11,8 +11,8 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<position>4.00 5.00 6.00</position>
-	<rotation>45.00 175.00 20.00</rotation>
+	<position>0.00 0.00 0.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
 	<focal>22</focal>
 </camera>
 
@@ -38,25 +38,12 @@
 
 <object>
 	<name>Sphere 1</name>
-	<type>Sphere</type>
+	<type>plane</type>
 	<material>Phong</material>
 	<visibility>False</visibility>
-	<position>7.00 8.00 9.00</position>
-	<rotation>0.00 175.00 20.00</rotation>
+	<position>80.00 80.00 50.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>.40</opacity>
-	<radius>12.00</radius>
+	<radius>40.00</radius>
 </object>
-
-<object>
-	<name>Sphere 2</name>
-	<type>Sphere</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 0.00 0.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>128.00 128.00 128.00</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>.50</radius>
-</object>
-

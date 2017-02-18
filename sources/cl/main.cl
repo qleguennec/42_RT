@@ -12,19 +12,50 @@
 
 #include "obj_def.h"
 
-#define DEBUG 1
+#define DEBUG 0
 
 #define PRINT3(v, a) printf(a ": %f %f %f\n", (v).x, (v).y, (v).z);
 #define PRINT1(v, a) printf(a ": %f\n", (v));
 
 constant float2	size2	= (float2){WIDTH, HEIGHT};
 constant float2	size2_2	= (float2){XCENTER, YCENTER};
-constant float3	size3	= (float3){WIDTH, HEIGHT, 0};
-constant float3	size3_2	= (float3){XCENTER, YCENTER, 0};
+constant float3	size3	= (float3){WIDTH, HEIGHT, 1};
+constant float3	size3_2	= (float3){XCENTER, YCENTER, 1};
 
-#include "debug.cl"
-#include "calc.cl"
+# include "calc.cl"
 
+#if DEBUG
+# include "debug.cl"
+#endif
+/*
+void
+	test_sphere_intersection
+	(global unsigned int *img_buffer
+	, global t_cam *cam
+	, global t_obj *objs
+	, global t_lgt *lgts
+	, short nobjs
+	, short nlgts
+	, float3 o
+	, float3 d)
+{
+	float	delta;
+	float3	center;
+	float	radius;
+	float3 offset;
+
+	center = (float3){-50, 50, -10};
+	offset = cam->pos - center;
+	radius = 10.0;
+	delta = dot(d, offset);
+	delta *= delta;
+	delta -= dot(d, d) * (dot(offset, offset) - radius * radius);
+	if (delta >= 0)
+	{
+		*img_buffer = 0xffffffff;
+	}
+}
+*/
 kernel void
 	kernel_entry
 	(global unsigned int *img_buffer
@@ -37,53 +68,40 @@ kernel void
 	float2	basis;
 	float2	indent;
 	float3	direction;
-	float3	origin;
 	size_t	x;
 	size_t	y;
 
 	x = get_global_id(0);
 	y = get_global_id(1);
-	if (DEBUG && x == 0 && y == 0)
+#if DEBUG
+	if (x == 0 && y == 0)
 		debug(objs, lgts, cam, nobjs, nlgts);
+#endif
+	direction.xy = size2_2 - (float2){x - .5, y - .5};
+	direction.z = 55;
+	direction = normalize(direction);
+	if (x == 0 && y == 0)
+		PRINT3(direction, "direction");
+	if (x == XCENTER && y == YCENTER)
+		PRINT3(direction, "direction");
+	if (x == WIDTH - 1 && y == HEIGHT - 1)
+		PRINT3(direction, "direction");
 /*
-	basis.x = cam->pos.x;
-	basis.y = cam->pos.y;
-	basis += 0.5 * (1 + basis / size2);
-	origin = cam->pos;
-	direction.x = x * basis.x;
-	direction.y = y * basis.y;
-	direction.z = - cam->focal;
-*/
-	basis.y = HEIGHT / 20.0f;
-	basis.x = WIDTH / 20.0f;
-
-	indent.y = basis.y / HEIGHT;
-	indent.x = basis.x / HEIGHT;
-
-	origin.x = cam->pos.x + (cam->focal / 20.0f * cam->rot.x) - basis.x / 2.0f;
-	origin.y = cam->pos.y + (cam->focal / 20.0f * cam->rot.y) - basis.y / 2.0f;
-	origin.z = cam->pos.z + (cam->focal / 20.0f * cam->rot.z);
-
-//	basis.x = cam->pos.x - WIDTH;
-//	basis.y = cam->pos.y - HEIGHT;
-//	basis = (float2){1.244f/WIDTH, .544f/HEIGHT};
-//	origin = cam->pos;
-
-	direction.x = origin.x + (x * indent.x) - cam->pos.x;
-	direction.y = origin.y + (y * indent.y) - cam->pos.y;
-	direction.z = origin.z - cam->pos.z;
-
-//	direction.x = x * basis.x;
-//	direction.y = y * basis.y;
-//	direction.z = - cam->focal;
-	*(img_buffer + WIDTH * y + x) = -1;
-	calc((DEBUG && ((x == 0 && y == 0) || (x == WIDTH - 1  && y == HEIGHT -1)))
-		, img_buffer + WIDTH * y + x
+	test_sphere_intersection(img_buffer + WIDTH * y + x
+		, cam
 		, objs
 		, lgts
 		, nobjs
 		, nlgts
 		, cam->pos
-		, normalize(direction)
+		, direction);
+*/
+	calc(0,img_buffer + WIDTH * y + x
+		, objs
+		, lgts
+		, nobjs
+		, nlgts
+		, cam->pos
+		, direction
 		, cam);
 }
