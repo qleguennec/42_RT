@@ -13,7 +13,7 @@
 	<name>0123456789012345678</name>
 	<focal>50</focal>
 	<position>1. 1. 1.</position>
-	<rotation>0. 0. 1.</rotation>
+	<rotation>1. 1. 1.</rotation>
 </camera>
 
 <!------------ Light(s) -------------->

@@ -43,12 +43,12 @@ void
 	float3	center;
 	float	radius;
 
-	center = (float3){0, 20, -10};
-	radius = 10.0;
+	center = (float3){0, 10, 5};
+	radius = 5.0;
 	delta = dot(d, cam->pos - center);
 	delta *= delta;
 	delta -= dot(d, d) * (dot(cam->pos - center, cam->pos - center) - radius * radius);
-	if (delta >= 0)
+	if (delta > 0)
 	{
 		*img_buffer = 0xffffffff;
 	}
@@ -77,7 +77,7 @@ kernel void
 #endif
 	direction.xy = size2_2 - (float2){x - 0.5, y - 0.5};
 	direction.z = - cam->focal;
-	direction = normalize(direction);
+	direction = normalize(direction * cam->pos);
 	if (x == 0 && y == 0)
 		PRINT3(direction, "direction");
 	if (x == XCENTER && y == YCENTER)
