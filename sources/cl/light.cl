@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 
-// #include "calc.cl"
+#include "calc.cl"
 #include "light.h"
 #include "calc.h"
 #include "obj_def.h"
