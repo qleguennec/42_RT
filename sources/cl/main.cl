@@ -51,7 +51,6 @@ void
 	if (delta >= 0)
 	{
 		*img_buffer = 0xffffffff;
-		PRINT1(delta, "delta");
 	}
 }
 
@@ -64,6 +63,8 @@ kernel void
 	, short nobjs
 	, short nlgts)
 {
+	float2	basis;
+	float2	indent;
 	float3	direction;
 	size_t	x;
 	size_t	y;
