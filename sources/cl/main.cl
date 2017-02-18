@@ -45,15 +45,6 @@ kernel void
 	y = get_global_id(1);
 	if (DEBUG && x == 0 && y == 0)
 		debug(objs, lgts, cam, nobjs, nlgts);
-/*
-	basis.x = cam->pos.x;
-	basis.y = cam->pos.y;
-	basis += 0.5 * (1 + basis / size2);
-	origin = cam->pos;
-	direction.x = x * basis.x;
-	direction.y = y * basis.y;
-	direction.z = - cam->focal;
-*/
 	basis.y = 1.0f;
 	basis.x = WIDTH / HEIGHT;
 
@@ -64,19 +55,17 @@ kernel void
 	origin.y = cam->pos.y + (cam->focal / 27.5f * cam->rot.y) - basis.y / 2.0f;
 	origin.z = cam->pos.z + (cam->focal / 27.5f * cam->rot.z);
 
-//	basis.x = cam->pos.x - WIDTH;
-//	basis.y = cam->pos.y - HEIGHT;
-//	basis = (float2){1.244f/WIDTH, .544f/HEIGHT};
-//	origin = cam->pos;
-
 	direction.x = origin.x + (x * indent.x) - cam->pos.x;
 	direction.y = origin.y + (y * indent.y) - cam->pos.y;
 	direction.z = origin.z - cam->pos.z;
 
-//	direction.x = x * basis.x;
-//	direction.y = y * basis.y;
-//	direction.z = - cam->focal;
 	*(img_buffer + WIDTH * y + x) = -1;
+	if (x == 0 && y == 0)
+		PRINT3(normalize(direction), "direction");
+	if (x == XCENTER && y == YCENTER)
+		PRINT3(normalize(direction), "direction");
+	if (x == WIDTH - 1 && y == HEIGHT - 1)
+		PRINT3(normalize(direction), "direction");
 	calc((DEBUG && ((x == 0 && y == 0) || (x == WIDTH - 1 && y == HEIGHT - 1)))
 		, img_buffer + WIDTH * y + x
 		, objs

@@ -26,7 +26,7 @@ unsigned	get_lighting(global t_obj *objs, global t_lgt *lights,
 	float	size;
 	float3	lightdir;
 	float	ambiant = 0.0f;
-
+	PRINT3(ray_pos,"ray_pos");
 	rd_light.xyz = (float3)(ambiant, ambiant, ambiant);
 	while (i < n_lights)
 	{
@@ -39,7 +39,6 @@ unsigned	get_lighting(global t_obj *objs, global t_lgt *lights,
 	rd_light = rd_light / (float)(n_lights + ambiant);
 
 	// return(0xFF0000FF);
-	// PRINT3(rd_light,"rd_light");
 	return (calcul_rendu_light(rd_light, n_lights));
 }
 
@@ -47,9 +46,9 @@ unsigned	calcul_rendu_light(float3 light, short n_lights)
 {
 	float3	clr;
 
-	clr = light * 255;
+	clr = light * 255.0f;
 	return ((((unsigned)clr.x & 0xff) << 24) + (((unsigned)clr.y & 0xff) << 16)
-		+ (((unsigned)clr.z & 0xff)  << 8) + ((unsigned)255 & 0xff));
+		+ (((unsigned)clr.z & 0xff) << 8) + ((unsigned)255 & 0xff));
 }
 
 float3		is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_lgt *light,
@@ -87,10 +86,12 @@ float3		calcul_normale(global t_obj *obj, float3 point)
 		normale = obj->pos - point;
 	if (obj->type == T_CYLINDER)
 	{
-		pos_temp = (obj->pos.x, 0, obj->pos.z);
-		normale = pos_temp - point;
+		normale = obj->pos - point;
+		normale.y = 0.0f;
 		// normale = rotate_ray(normale, obj->rot);
 	}
+	if (obj->type == T_CONE)
+		normale = (float3){0.0f, 0.0f, 1.0f};
 	normale = normalize(normale);
 	return (normale);
 }

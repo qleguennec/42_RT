@@ -86,13 +86,14 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 	id = -1;
 	if (debug == 1)
 	{
+		printf("type de lobjet %u\n", tab_objs[0].type);
 		PRINT3(ray_dir,"ray_dir");
 	}
     intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
 
 	if (id > -1)
 	{
-		// *pixel = 0xFFFFFFFF;
+		//  *pixel = 0x00FF00FF;
 		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else
