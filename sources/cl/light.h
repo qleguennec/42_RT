@@ -6,7 +6,7 @@
 /*   By: erodrigu <erodrigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:00 by erodrigu          #+#    #+#             */
-/*   Updated: 2017/02/14 18:01:35 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/02/16 11:26:36 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ float3	is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_l
 	short n_objs, short n_lights, float3 normale, short obj_ind);
 float3	calcul_light(float3 ray, float3 normale, global t_lgt *light,
 	global t_obj *obj);
-
-float	my_dot(float3 v1, float3 v2);
+unsigned	calcul_rendu_light(float3 light, short n_lights);
 float3	calcul_normale(global t_obj *obj, float3 point);
-
 float3	is_shining(float3 normale, float3 lightdir, float int_specul,
 	float pow_specul, float3 dif_color, float3 lightcolor);

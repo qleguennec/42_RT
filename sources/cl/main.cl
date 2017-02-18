@@ -12,47 +12,21 @@
 
 #include "obj_def.h"
 
-#define DEBUG 0
+#define DEBUG 1
 
 #define PRINT3(v, a) printf(a ": %f %f %f\n", (v).x, (v).y, (v).z);
 #define PRINT1(v, a) printf(a ": %f\n", (v));
 
 constant float2	size2	= (float2){WIDTH, HEIGHT};
 constant float2	size2_2	= (float2){XCENTER, YCENTER};
-constant float3	size3	= (float3){WIDTH, HEIGHT, 1};
-constant float3	size3_2	= (float3){XCENTER, YCENTER, 1};
+constant float3	size3	= (float3){WIDTH, HEIGHT, 0};
+constant float3	size3_2	= (float3){XCENTER, YCENTER, 0};
 
 //# include "calc.cl"
 
 #if DEBUG
 # include "debug.cl"
 #endif
-
-void
-	test_sphere_intersection
-	(global unsigned int *img_buffer
-	, global t_cam *cam
-	, global t_obj *objs
-	, global t_lgt *lgts
-	, short nobjs
-	, short nlgts
-	, float3 o
-	, float3 d)
-{
-	float	delta;
-	float3	center;
-	float	radius;
-
-	center = (float3){0, 10, 5};
-	radius = 5.0;
-	delta = dot(d, cam->pos - center);
-	delta *= delta;
-	delta -= dot(d, d) * (dot(cam->pos - center, cam->pos - center) - radius * radius);
-	if (delta > 0)
-	{
-		*img_buffer = 0xffffffff;
-	}
-}
 
 kernel void
 	kernel_entry
@@ -66,30 +40,32 @@ kernel void
 	float2	basis;
 	float2	indent;
 	float3	direction;
+	float3	origin;
 	size_t	x;
 	size_t	y;
 
 	x = get_global_id(0);
 	y = get_global_id(1);
-#if DEBUG
-	if (x == 0 && y == 0)
+	if (DEBUG && x == 0 && y == 0)
 		debug(objs, lgts, cam, nobjs, nlgts);
-#endif
-	direction.xy = size2_2 - (float2){x - 0.5, y - 0.5};
-	direction.z = - cam->focal;
-	direction = normalize(direction * cam->pos);
-	if (x == 0 && y == 0)
-		PRINT3(direction, "direction");
-	if (x == XCENTER && y == YCENTER)
-		PRINT3(direction, "direction");
-	if (x == WIDTH - 1 && y == HEIGHT - 1)
-		PRINT3(direction, "direction");
-	test_sphere_intersection(img_buffer + WIDTH * y + x
-		, cam
+	basis.y = 1.0f;
+	basis.x = WIDTH / HEIGHT;
+	indent.y = basis.y / HEIGHT;
+	indent.x = basis.x / WIDTH;
+	origin.x = cam->pos.x + (cam->focal / 27.5f * cam->rot.x) - basis.x / 2.0f;
+	origin.y = cam->pos.y + (cam->focal / 27.5f * cam->rot.y) - basis.y / 2.0f;
+	origin.z = cam->pos.z + (cam->focal / 27.5f * cam->rot.z);
+	direction.x = origin.x + (x * indent.x) - cam->pos.x;
+	direction.y = origin.y + (y * indent.y) - cam->pos.y;
+	direction.z = origin.z - cam->pos.z;
+	*(img_buffer + WIDTH * y + x) = -1;
+	calc((DEBUG && ((x == 0 && y == 0) || (x == WIDTH - 1 && y == HEIGHT - 1)))
+		, img_buffer + WIDTH * y + x
 		, objs
 		, lgts
 		, nobjs
 		, nlgts
 		, cam->pos
-		, direction);
+		, normalize(direction)
+		, cam);
 }
