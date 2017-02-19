@@ -35,18 +35,20 @@ unsigned	get_lighting(global t_obj *objs, global t_lgt *lights,
 	while (clearness > 0.0f)
 	{
 		new_pos = touch_object(objs, n_objs, ray_dir, new_pos, &index);
+		// PRINT3(new_pos, "new_pos");
 		if (index == obj_ind)
 			new_pos = touch_object(objs, n_objs, ray_dir, new_pos, &index);
 		if (index == -1)
 		{
 			rd_light += (float3){1.0f, 1.0f, 1.0f} * clearness;
 			clearness == 0.0f;
+			printf("ici\n");
 		}
 		else
 		{
-			obj_ind = index;
-			rd_light += check_all_light(lights, n_lights, objs, n_objs, obj_ind, ambiant,
-			ray_dir, new_pos) * clearness;
+			obj_ind = index;                     //boucle infini dans ce else;
+			rd_light += (check_all_light(lights, n_lights, objs, n_objs, obj_ind, ambiant,
+			ray_dir, new_pos) * clearness);
 			clearness -= (objs[obj_ind].opacity + PREC);
 		}
 	}
