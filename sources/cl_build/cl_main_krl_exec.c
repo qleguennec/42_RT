@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 12:07:51 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/16 11:57:27 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/19 16:44:19 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,33 @@
 
 // TODO remove debug includes
 #include <assert.h>
+
+static bool
+	main_krl_exec_benchmark
+	(t_cl *cl
+	, size_t *work_size)
+{
+	cl_event	ev;
+	cl_ulong	end;
+	cl_ulong	start;
+	double		total;
+	int			ret;
+
+	ret = clEnqueueNDRangeKernel(cl->info.cmd_queue
+		, cl->main_krl.krl, 2, NULL, work_size, NULL, 0, NULL, &ev);
+	if (ret != CL_SUCCESS)
+		return (ERR("cannot exec kernel, err %a\n", false, ret));
+	clWaitForEvents(1, &ev);
+	clFinish(cl->info.cmd_queue);
+	clGetEventProfilingInfo(ev, CL_PROFILING_COMMAND_START
+		, sizeof(start), &start, NULL);
+	clGetEventProfilingInfo(ev, CL_PROFILING_COMMAND_END
+		, sizeof(end), &end, NULL);
+	total = (end - start) / 1000000.0;
+	printf("render time: %lfs ", 1.0 / total);
+	printf("fps: %lf\n", total);
+	return (true);
+}
 
 bool
 	cl_main_krl_exec
@@ -29,8 +56,13 @@ bool
 	assert(cl->n_objs == scn->n_objs);
 	work_size[0] = REND_W;
 	work_size[1] = REND_H;
-	if ((ret = cl_krl_exec(&cl->info, cl->main_krl.krl, 2, work_size))
-		!= CL_SUCCESS)
-		return (ERR("cannot exec kernel, err %a", false, ret));
+	if (BENCHMARK_KRL == 1)
+		return (main_krl_exec_benchmark(cl, work_size));
+	else
+	{
+		if ((ret = cl_krl_exec(&cl->info, cl->main_krl.krl, 2, work_size))
+			!= CL_SUCCESS)
+			return (ERR("cannot exec kernel, err %a\n", false, ret));
+	}
 	return (true);
 }

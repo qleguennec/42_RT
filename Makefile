@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/02/19 16:00:19 by lgatibel         ###   ########.fr        #
+#*   Updated: 2017/02/19 16:19:50 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,9 @@ HEADER		= include \
 		  libraries/libgnl/include \
 		  libraries/libcl/include \
 		  libraries/libfmt/include
+
+# Compilation options
+BENCHMARK_KRL	?=	0
 
 
 SOURCES		= \
@@ -135,7 +138,7 @@ $(BUILD_DIR):
 	@mkdir -p $@
 
 $(DIR_O)/%.o: $(DIR_S)/%.c
-	@$(CC) $(FLAGS) $(addprefix -I, $(HEADER)) -c -o $@ $<
+	@$(CC) $(FLAGS) -D BENCHMARK_KRL=$(BENCHMARK_KRL) $(addprefix -I, $(HEADER)) -c -o $@ $<
 
 norme:
 	@make norme -C $(LIBFT)
@@ -175,5 +178,9 @@ re: fclean
 
 r: $(OBJS)
 	@$(CC) $(FLAGS) -L $(LIBFT) -lft -L $(FSDL) -lfsdl -lpthread -L $(LIBVECT) -lvect -L $(LIBFMT) -lfmt -L $(LIBGNL) -lgnl -L $(LIBCL) -lcl -o $(NAME) $^ $(OPENCL_F) $(SDL2_P) $(SDL2_F) $(SDL2_I) $(SDL2_TTF_I) $(SDL2_IMG_I)
+
+benchmark_krl: clean
+	BENCHMARK_KRL=1 make
+
 
 .PHONY: all, temporary, norme, clean, fclean, re

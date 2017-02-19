@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/11 15:18:43 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/09 08:18:46 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/19 16:22:04 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ cl_int
 	cl->ctxt = clCreateContext(NULL, 1, &cl->dev_id, NULL, NULL, &ret);
 	if (ret != CL_SUCCESS)
 		return (ret);
-	cl->cmd_queue = clCreateCommandQueue(cl->ctxt, cl->dev_id, 0, &ret);
+	cl->cmd_queue = clCreateCommandQueue(cl->ctxt, cl->dev_id
+		, CL_QUEUE_PROFILING_ENABLE, &ret);
 	return (ret);
 }
