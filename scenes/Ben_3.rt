@@ -15,13 +15,14 @@
 	<rotation>0.00 0.00 1.00</rotation>
 	<focal>55</focal>
 </camera>
+
 <!------------ Light(s) -------------->
 
 <light>
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>False</visibility>
-	<position>50.00 -80.00 180.00</position>
+	<position>0.00 0.00 10.00</position>
 	<color-rgb>1.00 1.00 1.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -30,36 +31,36 @@
 
 <object>
 	<name>Sphere 1</name>
-	<type>sphere</type>
-	<material>Lambert</material>
-	<visibility>False</visibility>
-	<position>0.00 0.00 290.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>0.00 1.00 0.00</color-rgb>
+	<type>Sphere</type>
+	<material>Phong</material>
+	<visibility>True</visibility>
+	<position>25.00 50.00 500.00</position>
+	<rotation>0.00 175.00 20.00</rotation>
+	<color-rgb>1.00 1.00 1.00</color-rgb>
 	<opacity>.40</opacity>
-	<radius>30</radius>
+	<radius>50.00</radius>
 </object>
 
 <object>
-	<name>Sphere 1</name>
-	<type>cylinder</type>
+	<name>Cylinder 1</name>
+	<type>Cylinder</type>
 	<material>Lambert</material>
-	<visibility>False</visibility>
-	<position>0.00 20.00 290.00</position>
+	<visibility>True</visibility>
+	<position>10.00 10.00 1000.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>1.00 0.00 0.00</color-rgb>
-	<opacity>.40</opacity>
-	<radius>25</radius>
+	<color-rgb>1.00 1.00 1.00</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>20.0</radius>
 </object>
 
 <object>
-	<name>Sphere 1</name>
-	<type>plane</type>
+	<name>Sphere 2</name>
+	<type>Sphere</type>
 	<material>Lambert</material>
-	<visibility>False</visibility>
-	<position>10.00 20.00 290.00</position>
-	<rotation>0.00 1.00 0.00</rotation>
-	<color-rgb>0.00 0.00 1.00</color-rgb>
-	<opacity>.40</opacity>
-	<radius>25</radius>
+	<visibility>True</visibility>
+	<position>100.00 10.00 550.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>1.00 1.00 1.00</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>25.0</radius>
 </object>
