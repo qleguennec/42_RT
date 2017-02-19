@@ -21,7 +21,7 @@
 <light>
 	<name> Prout </name>
 	<type> diffuse </type>
-	<visibility>false</visibility>
+	<visibility>true</visibility>
 	<intensity>5</intensity>
 	<color-rgb>1.0 1.0 1.0</color-rgb>
 	<position>0. 0. 100.</position>
@@ -34,7 +34,7 @@
 	<rotation>0. 175. 20.</rotation>
 	<color-rgb>1.0 1.0 1.0 </color-rgb>
 	<opacity>0.4</opacity>
-	<visibility> ON </visibility>
+	<visibility>false</visibility>
 	<material>PhOnG</material>
 	<type>sphere      </type>
 	<radius>50.0</radius>

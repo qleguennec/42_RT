@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/18 12:22:12 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/19 17:37:29 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,27 @@ static bool
 	int			ret;
 	t_cl_lgt	lgt_tmp;
 
-	if (n == cl->n_lgts)
-		return (true);
 	if (cl->n_lgts)
 		clReleaseMemObject(cl->lgts);
-	cl->lgts = clCreateBuffer(cl->info.ctxt, 0
-		, n * sizeof(t_cl_lgt), NULL, &ret);
+	while (n)
+	{
+		if (lgts->visibility)
+		{
+			cpy_lgt(&lgt_tmp, lgts);
+			VECT_ADD(buf, lgt_tmp);
+		}
+		n--;
+		lgts = lgts->next;
+	}
+	if (!(cl->n_lgts = buf->used / sizeof(lgt_tmp)))
+		return (true);
+	cl->lgts = clCreateBuffer(cl->info.ctxt, 0, buf->used, NULL, &ret);
 	if (ret != CL_SUCCESS)
 		return (ERR("cannot create buffer for lgts, err %a", false, ret));
 	if (!((ret = CL_KRL_ARG(cl->main_krl.krl, 3, cl->lgts)) == CL_SUCCESS
-		&& (ret = CL_KRL_ARG(cl->main_krl.krl, 5, n)) == CL_SUCCESS))
+		&& (ret = CL_KRL_ARG(cl->main_krl.krl, 5, cl->n_lgts)) == CL_SUCCESS))
 		return (ERR("cannot set lgts & n_lgts args in kernel, err %a"
 			, false, ret));
-	cl->n_lgts = 0;
-	while (cl->n_lgts < n)
-	{
-		cpy_lgt(&lgt_tmp, lgts);
-		VECT_ADD(buf, lgt_tmp);
-		lgts = lgts->next;
-		cl->n_lgts++;
-	}
 	return (true);
 }
 
@@ -67,26 +68,27 @@ static bool
 	int			ret;
 	t_cl_obj	obj_tmp;
 
-	if (n == cl->n_objs)
-		return (true);
 	if (cl->n_objs)
 		clReleaseMemObject(cl->objs);
-	cl->objs = clCreateBuffer(cl->info.ctxt, 0
-		, n * sizeof(t_cl_obj), NULL, &ret);
+	while (n)
+	{
+		if (objs->visibility)
+		{
+			cpy_obj(&obj_tmp, objs);
+			VECT_ADD(buf, obj_tmp);
+		}
+		n--;
+		objs = objs->next;
+	}
+	if (!(cl->n_objs = buf->used / sizeof(obj_tmp)))
+		return (true);
+	cl->objs = clCreateBuffer(cl->info.ctxt, 0, buf->used, NULL, &ret);
 	if (ret != CL_SUCCESS)
 		return (ERR("cannot create buffer for objs, err %a", false, ret));
 	if (!((ret = CL_KRL_ARG(cl->main_krl.krl, 2, cl->objs)) == CL_SUCCESS
-		&& (ret = CL_KRL_ARG(cl->main_krl.krl, 4, n)) == CL_SUCCESS))
+		&& (ret = CL_KRL_ARG(cl->main_krl.krl, 4, cl->n_objs)) == CL_SUCCESS))
 		return (ERR("cannot set objs & n_objs args in kernel, err %a"
 			, false, ret));
-	cl->n_objs = 0;
-	while (cl->n_objs < n)
-	{
-		cpy_obj(&obj_tmp, objs);
-		VECT_ADD(buf, obj_tmp);
-		objs = objs->next;
-		cl->n_objs++;
-	}
 	return (true);
 }
 
@@ -104,7 +106,6 @@ bool
 	{
 		if (!krl_update_lgts(cl, &buf, scene->b_lgts->next, scene->n_lgts))
 			return (false);
-		assert(scene->n_lgts == buf.used / sizeof(t_cl_lgt));
 		if ((ret = cl_write(&cl->info, cl->lgts, buf.used, buf.data))
 			!= CL_SUCCESS)
 			return (ERR("cannot write to light buffer, err %a", false, ret));
@@ -114,7 +115,6 @@ bool
 	{
 		if (!krl_update_objs(cl, &buf, scene->b_objs->next, scene->n_objs))
 			return (false);
-		assert(scene->n_objs == buf.used / sizeof(t_cl_obj));
 		if ((ret = cl_write(&cl->info, cl->objs, buf.used, buf.data))
 			!= CL_SUCCESS)
 			return (ERR("cannot write to object buffer, err %a", false, ret));
