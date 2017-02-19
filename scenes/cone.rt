@@ -11,18 +11,17 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<position> 0.00 0.00 00.00</position>
-	<rotation>0. 0. 1.</rotation>
+	<position>0.00 0.00 1.00</position>
+	<rotation>0.00 0.00 1.00</rotation>
 	<focal>55</focal>
 </camera>
-
 <!------------ Light(s) -------------->
 
 <light>
 	<name>Prout</name>
 	<type>Diffuse</type>
-	<visibility>True</visibility>
-	<position>10.00 10.00 1.00</position>
+	<visibility>False</visibility>
+	<position>0.00 0.00 10.00</position>
 	<color-rgb>1.00 1.00 1.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -30,25 +29,13 @@
 <!------------ Object(s) ------------->
 
 <object>
-	<name>Sphere 1</name>
-	<type>Sphere</type>
+	<name>Cone 1</name>
+	<type>Cone</type>
 	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>20.00 00.00 100.00</position>
-	<rotation>0.00 175.00 20.00</rotation>
+	<visibility>False</visibility>
+	<position>0.00 0.00 100.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>1.00 0.00 0.00</color-rgb>
 	<opacity>.40</opacity>
-	<radius>10.00</radius>
-</object>
-
-<object>
-	<name>Sphere 2</name>
-	<type>Sphere</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>20.00 20.00 100.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>1.00 0.00 1.00</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>15.0</radius>
+	<radius>0</radius>
 </object>

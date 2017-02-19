@@ -71,8 +71,8 @@ float3		is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_
 
 	// PRINT3(lightdir, "lightdir");
 	touch_object(objs, n_objs, lightpos, lightdir, &index);
-	// printf("index 1 : %d\n", obj_ind);
-	// printf("index 2 : %d\n", index);
+//	printf("index 1 : %d\n", obj_ind);
+//	printf("index 2 : %d\n", index);
 	if (index == obj_ind)
 		return (calcul_light(lightdir, normale, light, &objs[obj_ind]));
 	else
