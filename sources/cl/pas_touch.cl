@@ -48,3 +48,29 @@ float3		check_all_light(global t_lgt *lights, short n_lights,
 	}
 	return((rd_light / (float)(n_lights + ambiant)) * objs[obj_ind]->opacity);
 }
+
+
+unsigned	get_lighting(global t_obj *objs, global t_lgt *lights,
+	short n_objs, short n_lights, /*float ambiant, */float3 ray_pos,
+	float3 ray_dir, short obj_ind)
+{
+	short	i = 0;
+	float3	rd_light;
+	float	size;
+	float3	lightdir;
+	float	ambiant = 0.20f;
+	// PRINT3(ray_pos,"ray_pos");
+	rd_light.xyz = (float3)(ambiant, ambiant, ambiant);
+	while (i < n_lights)
+	{
+		lightdir = normalize(ray_pos - lights[i].pos);
+		// PRINT3(ray_pos, "ray_pos");
+		rd_light += is_light(lights[i].pos, lightdir, objs, &lights[i],
+		n_objs, n_lights, calcul_normale(&objs[obj_ind], ray_pos), obj_ind);
+		i++;
+	}
+	rd_light = rd_light / (float)(n_lights + ambiant);
+
+	// return(calcul_rendu_light(objs[obj_ind].clr, 1));
+	return (calcul_rendu_light(rd_light, n_lights, ambiant));
+}
