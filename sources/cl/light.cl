@@ -17,7 +17,7 @@
 // #include "obj_def.h"
 #include "lib.h"
 
-unsigned	get_lighting(global t_obj *objs, global t_lgt *lights,
+unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
 	short n_objs, short n_lights, /*float ambiant, */float3 ray_pos, float3 ray_dir,
 	short obj_ind)
 {
@@ -25,28 +25,34 @@ unsigned	get_lighting(global t_obj *objs, global t_lgt *lights,
 	float	ambiant = 0.25f;
 	float	clearness = 1.0f;
 	short	index;
-	float3	new_pos;
+	float3	new_pos = ray_pos;
 	float3	rd_light = (float3){0.0f, 0.0f, 0.0f};
 
 	rd_light += check_all_light(lights, n_lights, objs, n_objs, obj_ind, ambiant,
 		ray_dir, ray_pos);
 	clearness -= (objs[obj_ind].opacity + PREC);
-	new_pos = ray_pos;
 	while (clearness > 0.0f)
 	{
-		new_pos = touch_object(objs, n_objs, ray_dir, new_pos, &index);
-		// PRINT3(new_pos, "new_pos");
+		if (debug == 1)
+			PRINT3(new_pos, "ray_pos light");
+		if (debug == 1)
+			PRINT3(new_pos, "new_pos light");
 		if (index == obj_ind)
+		{
 			new_pos = touch_object(objs, n_objs, ray_dir, new_pos, &index);
+			if (debug == 1)
+				printf("index = %d  obj_ind = %d\n", index, obj_ind);
+			if (debug == 1)
+				PRINT3(new_pos, "new_pos2 light");
+		}
 		if (index == -1)
 		{
 			rd_light += (float3){1.0f, 1.0f, 1.0f} * clearness;
-			clearness == 0.0f;
-			printf("ici\n");
+			clearness = -1.0f;
 		}
 		else
 		{
-			obj_ind = index;                     //boucle infini dans ce else;
+			obj_ind = index;
 			rd_light += (check_all_light(lights, n_lights, objs, n_objs, obj_ind, ambiant,
 			ray_dir, new_pos) * clearness);
 			clearness -= (objs[obj_ind].opacity + PREC);

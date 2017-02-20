@@ -73,7 +73,7 @@ kernel void
 		PRINT3(normalize(direction), "direction");
 	if (x == WIDTH - 1 && y == HEIGHT - 1)
 		PRINT3(normalize(direction), "direction");
-	calc((DEBUG && ((x == 0 && y == 0) || (x == WIDTH - 1 && y == HEIGHT - 1)))
+	calc((DEBUG && ((x == 0 && y == 0) || (x == XCENTER && y == YCENTER)))
 		, img_buffer + WIDTH * y + x
 		, objs
 		, lgts

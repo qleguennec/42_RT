@@ -6,11 +6,11 @@
 /*   By: erodrigu <erodrigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:00 by erodrigu          #+#    #+#             */
-/*   Updated: 2017/02/19 16:33:24 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/02/20 17:28:44 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned get_lighting(global t_obj *objs, global t_lgt *lights,
+unsigned get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
 	short n_objs, short n_lights,/* float ambiant,*/ float3 ray_pos, float3 ray_dir,
 	short obj_ind);
 float3	is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_lgt *light,

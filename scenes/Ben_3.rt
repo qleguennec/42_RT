@@ -34,7 +34,7 @@
 	<type>Sphere</type>
 	<material>Phong</material>
 	<visibility>True</visibility>
-	<position>25.00 50.00 500.00</position>
+	<position>0.00 00.00 500.00</position>
 	<rotation>0.00 175.00 20.00</rotation>
 	<color-rgb>.00 .40 .45</color-rgb>
 	<opacity>.40</opacity>
@@ -46,7 +46,7 @@
 	<type>Cylinder</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>10.00 10.00 1000.00</position>
+	<position>0.00 0.00 1000.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>1.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
