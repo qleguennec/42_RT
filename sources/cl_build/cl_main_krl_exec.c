@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 12:07:51 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/19 16:44:19 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/20 08:12:49 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 // TODO remove debug includes
 #include <assert.h>
 
-static bool
+#define N_BENCH 2000
+
+static double
 	main_krl_exec_benchmark
 	(t_cl *cl
 	, size_t *work_size)
@@ -24,23 +26,17 @@ static bool
 	cl_event	ev;
 	cl_ulong	end;
 	cl_ulong	start;
-	double		total;
 	int			ret;
 
 	ret = clEnqueueNDRangeKernel(cl->info.cmd_queue
 		, cl->main_krl.krl, 2, NULL, work_size, NULL, 0, NULL, &ev);
-	if (ret != CL_SUCCESS)
-		return (ERR("cannot exec kernel, err %a\n", false, ret));
 	clWaitForEvents(1, &ev);
 	clFinish(cl->info.cmd_queue);
 	clGetEventProfilingInfo(ev, CL_PROFILING_COMMAND_START
 		, sizeof(start), &start, NULL);
 	clGetEventProfilingInfo(ev, CL_PROFILING_COMMAND_END
 		, sizeof(end), &end, NULL);
-	total = (end - start) / 1000000.0;
-	printf("render time: %lfs ", 1.0 / total);
-	printf("fps: %lf\n", total);
-	return (true);
+	return ((end - start) / 1000000000.0);
 }
 
 bool
@@ -49,7 +45,9 @@ bool
 	, t_scene *scn)
 // TODO remove scn ptr from parameters
 {
+	double		total;
 	int			ret;
+	size_t		i;
 	size_t		work_size[2];
 
 	assert(cl->n_lgts == scn->n_lgts);
@@ -57,7 +55,18 @@ bool
 	work_size[0] = REND_W;
 	work_size[1] = REND_H;
 	if (BENCHMARK_KRL == 1)
-		return (main_krl_exec_benchmark(cl, work_size));
+	{
+		i = 0;
+		total = 0;
+		while (i < N_BENCH)
+		{
+			total += main_krl_exec_benchmark(cl, work_size);
+			i++;
+		}
+		total /= N_BENCH;
+		printf("render time: %lfs ", total);
+		printf("fps: %lf\n", 1.0 / total);
+	}
 	else
 	{
 		if ((ret = cl_krl_exec(&cl->info, cl->main_krl.krl, 2, work_size))
