@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 12:07:51 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/20 08:12:49 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/20 08:36:44 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,13 @@ static double
 
 bool
 	cl_main_krl_exec
-	(t_cl *cl
-	, t_scene *scn)
-// TODO remove scn ptr from parameters
+	(t_cl *cl)
 {
 	double		total;
 	int			ret;
 	size_t		i;
 	size_t		work_size[2];
 
-	assert(cl->n_lgts == scn->n_lgts);
-	assert(cl->n_objs == scn->n_objs);
 	work_size[0] = REND_W;
 	work_size[1] = REND_H;
 	if (BENCHMARK_KRL == 1)
