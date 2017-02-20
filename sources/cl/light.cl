@@ -24,8 +24,8 @@ unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
 	float	size;
 	float	ambiant = 0.25f;
 	float	clearness = 1.0f;
-	short	index;
-	float3	new_pos = ray_pos;
+	short	index = obj_ind;
+	float3	new_pos = ray_pos - (ray_dir * 2);
 	float3	rd_light = (float3){0.0f, 0.0f, 0.0f};
 
 	rd_light += check_all_light(lights, n_lights, objs, n_objs, obj_ind, ambiant,
@@ -33,27 +33,17 @@ unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
 	clearness -= (objs[obj_ind].opacity + PREC);
 	while (clearness > 0.0f)
 	{
-		if (debug == 1)
-			PRINT3(new_pos, "ray_pos light");
-		if (debug == 1)
-			PRINT3(new_pos, "new_pos light");
 		if (index == obj_ind)
-		{
-			new_pos = touch_object(objs, n_objs, ray_dir, new_pos, &index);
-			if (debug == 1)
-				printf("index = %d  obj_ind = %d\n", index, obj_ind);
-			if (debug == 1)
-				PRINT3(new_pos, "new_pos2 light");
-		}
-		if (index == -1)
+			new_pos = touch_object(objs, n_objs, new_pos, ray_dir, &index);
+		else if (index == -1)
 		{
 			rd_light += (float3){1.0f, 1.0f, 1.0f} * clearness;
-			clearness = -1.0f;
+			clearness = 0.0f;
 		}
 		else
 		{
 			obj_ind = index;
-			rd_light += (check_all_light(lights, n_lights, objs, n_objs, obj_ind, ambiant,
+			rd_light += (check_all_light(lights, n_lights, objs, n_objs, index, ambiant,
 			ray_dir, new_pos) * clearness);
 			clearness -= (objs[obj_ind].opacity + PREC);
 		}
@@ -84,7 +74,8 @@ unsigned	calcul_rendu_light(float3 light, short n_lights, float ambiant)
 {
 	float3	clr;
 
-	clr =  (light / (n_lights + ambiant)) * 255.0f;
+	ambiant = 0;
+	clr =  light * 255.0f;
 	return ((((unsigned)clr.x & 0xff) << 24) + (((unsigned)clr.y & 0xff) << 16)
 		+ (((unsigned)clr.z & 0xff) << 8) + ((unsigned)255 & 0xff));
 }

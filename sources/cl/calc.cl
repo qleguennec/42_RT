@@ -115,5 +115,5 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 	}
 	else
 		//*pixel = 0xFFFFFFFF;
-		*pixel = 0x000000FF;
+		*pixel = 0xFFFFFFFF;
 }
