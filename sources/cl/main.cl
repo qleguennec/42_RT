@@ -12,7 +12,7 @@
 
 #include "obj_def.h"
 
-#define DEBUG 1
+#define DEBUG 0
 
 #define PRINT3(v, a) printf(a ": %f %f %f\n", (v).x, (v).y, (v).z);
 #define PRINT1(v, a) printf(a ": %f\n", (v));
@@ -58,21 +58,6 @@ kernel void
 	direction.x = origin.x + (x * indent.x) - cam->pos.x;
 	direction.y = origin.y + (y * indent.y) - cam->pos.y;
 	direction.z = origin.z - cam->pos.z;
-
-	if (x == 0 && y == 0)
-		PRINT3(direction, "direction");
-	if (x == XCENTER && y == YCENTER)
-		PRINT3(direction, "direction");
-	if (x == WIDTH - 1 && y == HEIGHT - 1)
-		PRINT3(direction, "direction");
-
-	*(img_buffer + WIDTH * y + x) = -1;
-	if (x == 0 && y == 0)
-		PRINT3(normalize(direction), "direction");
-	if (x == XCENTER && y == YCENTER)
-		PRINT3(normalize(direction), "direction");
-	if (x == WIDTH - 1 && y == HEIGHT - 1)
-		PRINT3(normalize(direction), "direction");
 	calc((DEBUG && ((x == 0 && y == 0) || (x == WIDTH - 1 && y == HEIGHT - 1)))
 		, img_buffer + WIDTH * y + x
 		, objs
