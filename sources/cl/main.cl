@@ -60,7 +60,7 @@ kernel void
 	direction.z = origin.z - cam->pos.z;
 
 	*(img_buffer + WIDTH * y + x) = -1;
-	calc((DEBUG && ((x == 0 && y == 0) || (x == XCENTER && y == YCENTER)))
+	calc((DEBUG && ((x == XCENTER && y == YCENTER) || (x == XCENTER && y == YCENTER)))
 		, img_buffer + WIDTH * y + x
 		, objs
 		, lgts

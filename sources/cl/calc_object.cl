@@ -92,7 +92,7 @@ float3			ray_sphere_intersection(global t_obj *obj, float3 ray_pos, float3 ray_d
 //	offset.z = ray_pos.z - (obj->pos.z + 200);
 	offset = ray_pos - obj->pos;
 	a = dot(ray_dir, ray_dir);
-	b = 2.0f * dot(ray_dir, offset);
+	b = (2.0f * dot(ray_dir.x, offset.x)) + (2.0f * dot(ray_dir.y, offset.y)) + (2.0f * dot(ray_dir.z, offset.z));
 	c = dot(offset, offset) - (obj->radius * obj->radius);
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		*ok = -1;
