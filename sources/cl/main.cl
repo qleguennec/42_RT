@@ -46,8 +46,6 @@ kernel void
 
 	x = get_global_id(0);
 	y = get_global_id(1);
-	if (DEBUG && x == 0 && y == 0)
-		debug(objs, lgts, cam, nobjs, nlgts);
 	basis.y = 1.0f;
 	basis.x = WIDTH / HEIGHT;
 	indent.y = basis.y / HEIGHT;
@@ -58,7 +56,7 @@ kernel void
 	direction.x = origin.x + (x * indent.x) - cam->pos.x;
 	direction.y = origin.y + (y * indent.y) - cam->pos.y;
 	direction.z = origin.z - cam->pos.z;
-	calc((DEBUG && ((x == 0 && y == 0) || (x == WIDTH - 1 && y == HEIGHT - 1)))
+	calc((DEBUG && ((x == 0 && y == 0) || (x == XCENTER && y == YCENTER)))
 		, img_buffer + WIDTH * y + x
 		, objs
 		, lgts

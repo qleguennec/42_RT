@@ -13,6 +13,8 @@
 #include "obj_def.h"
 #include "calc.h"
 
+#define SUM(v) ((v).x + (v).y + (v).z)
+
 float			float3_to_float(float3 v){
 	return (v.x + v.y + v.z);
 }
@@ -38,6 +40,7 @@ float3			ray_plane_intersection(global t_obj *obj, float3 ray_pos, float3 ray_di
 	return (norm(t, ray_pos, ray_dir));
 }
 
+/*
 float3			ray_cone_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir, short *ok)
 {
 	float	a;
@@ -55,6 +58,31 @@ float3			ray_cone_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir
 
 	c = dot(offset.xz, offset.xz) - dot(offset.y, offset.y);
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
+		*ok = -1;
+	return (norm(delta, ray_pos, ray_dir));
+}
+*/
+
+float3			ray_cone_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir, short *ok)
+{
+	float		angle;
+	float3		A;
+	float3		B;
+	float3		a;
+	float3		b;
+	float3		c;
+	float		delta;
+
+	angle = 35;
+	A.x = cos(angle);
+	A.y = A.x;
+	A.z = 1;
+	B = (float3){1, 1, sin(angle)};
+	a = A * ray_dir;
+	b = dot(2 * a, ray_pos - obj->pos) + B * ray_dir;
+	c = A * (dot(ray_pos, ray_pos) - 2 * dot(ray_pos, obj->pos) - dot(obj->pos, obj->pos))
+		- B * (ray_pos + obj->pos);
+	if ((delta = calc_delta(SUM(a), SUM(b), SUM(c)) < 0.0f)
 		*ok = -1;
 	return (norm(delta, ray_pos, ray_dir));
 }
