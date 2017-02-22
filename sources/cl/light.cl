@@ -95,7 +95,7 @@ float3		is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_
 
 	light_clr = light->clr;
 	new_pos	= touch_object(objs, n_objs, lightpos, lightdir, &index);
-	while (index != obj_ind && objs[index].opacity < 1.0f)
+	while (index > -1 && (index != obj_ind && objs[index].opacity < 1.0f))
 	{
 		light_clr = calcul_light(light_clr, &objs[index]);
 		new_pos = touch_object(objs, n_objs, new_pos, lightdir, &index);
