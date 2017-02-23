@@ -33,7 +33,7 @@ unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
 	clearness -= (objs[obj_ind].opacity + PREC);
 	while (clearness > 0.0f)
 	{
-		PRINT3(new_pos,"newpos: ");
+//		PRINT3(new_pos,"newpos: ");
 		if (index == obj_ind)
 			new_pos = touch_object(objs, n_objs, new_pos, ray_dir, &index);
 		else if (index == -1)
