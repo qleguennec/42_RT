@@ -19,7 +19,7 @@ float			float3_to_float(float3 v){
 
 float3			norm(float delta, float3 ray_pos, float3 ray_dir)
 {
-	return ((ray_pos + ray_dir) * delta);
+	return (ray_pos + (ray_dir * delta));
 }
 
 float3			ray_plane_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir, short *ok)
