@@ -51,7 +51,7 @@ float3			ray_cone_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir
 		- dot(ray_dir.y, ray_dir.y);
 
 	b = 2.0f * (dot(ray_dir.x, offset.x) + dot(ray_dir.z, offset.z) - 
-			 dot(ray_dir.y, ray_dir.y));
+			 dot(ray_dir.y, offset.y)) - obj->radius * obj->radius;
 
 	c = dot(offset.x, offset.x) + dot(offset.z, offset.z) - dot(offset.y, offset.y);
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
@@ -70,14 +70,25 @@ float3			ray_cylinder_intersection(global t_obj *obj, float3 ray_pos, float3 ray
 
 	offset = ray_pos - obj->pos;
 	offset.y = 0;
+
+	float	rad;
+	rad = 90.0f * (M_PI / 180);
 	rdir = ray_dir;
+	//rotation sur x
+//		ray_dir.y = rdir.y * cos(rad) + rdir.z * -sin(rad);
+//		ray_dir.z = rdir.y * sin(rad) + rdir.z * cos(rad);
+	//rotation sur z
+		ray_dir.y = rdir.x * cos(rad) - rdir.y * sin(rad);
+		ray_dir.x = rdir.x * cos(rad) + rdir.y * sin(rad);
+	rdir = ray_dir;
+
 	ray_dir.y = 0;
 	a = dot(ray_dir, ray_dir);
 	b = 2.0f * dot(ray_dir, offset);
 	c = dot(offset, offset) - obj->radius * obj->radius;
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		*ok = -1;
-	return (norm(delta, ray_pos, rdir));
+	return (norm(delta, ray_pos, ray_dir));
 }
 
 float3			ray_sphere_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir, short *ok)

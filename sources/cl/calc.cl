@@ -91,20 +91,22 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 	id = -1;
 	if (debug == 1)
 	{
-	/*	float3 t;
+//	/*
+		float3 t;
 		float3 t2;
 		float t3;
 		t = (float3){2, 3, 4};
 		t2 = (float3){5, 6, 7};
-		t3 = dot(t.xy, t2.xy);
+		t3 = dot(t.x, t2.x);
 		printf("t3 = [%f]\n",t3);
-	*/	printf("type de lobjet %u\n", tab_objs[0].type);
+//	*/
+		printf("type de lobjet %u\n", tab_objs[0].type);
 		PRINT3(ray_dir,"ray_dir");
 	}
     intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
 	if (id > -1)
 	{
-	//	/*
+//		/*
 		if (id == 1)
 		*pixel = 0xff0000FF;
 		else if (id == 2)
@@ -117,8 +119,8 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 		*pixel = 0xffff00FF;
 		else
 		*pixel = 0xff00ffFF;
-	//	*/
-	//	*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
+//		*/
+		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else
 		//*pixel = 0xFFFFFFFF;
