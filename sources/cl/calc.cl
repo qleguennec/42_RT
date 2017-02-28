@@ -25,12 +25,12 @@ float		calc_delta(float a, float b, float c)
 
 	tmp = (b * b) - (4.0f * a * c);
 	if(tmp < 0.0f)
-		return (-8);
+		return (-1);
 	tmp = sqrt(tmp);
 //	printf ("tmp\n", tmp);
 	t0 = ((-b + tmp) / (2.0f * a));
 	t1 = ((-b - tmp) / (2.0f * a));
-	if (t0 > 0.0f && (t0 < t1 || t1 < 0.0f))
+	if (t0 > 0.0f && (t0 < t1 || t1 <= 0.0f))
 		return (t0);
 	return (t1);
 }
@@ -64,17 +64,19 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 	*id = -1;
 	norm = -1;
 	smallest_norm = -1;
+	intersect = -1;
 	while(++i <  nobjs)
 	{
 		ok = 1;
 		obj = &tab_objs[i];
 		tmp_intersect = ray_intersection(obj, ray_pos, ray_dir, &ok);
 		norm = float3_to_float(tmp_intersect - ray_pos);
-		if (norm > 0.0f && (norm < smallest_norm || smallest_norm == -1))
+		if (ok == 1 && norm > 0.0f && (norm < smallest_norm || smallest_norm == -1))
 		{
-			intersect = tmp_intersect;
-			smallest_norm = norm;
-			*id = i;
+//			if (obj->type == T_PLANE && dot(tmp_intersect - obj->pos, tmp_intersect - obj->pos) < obj->radius * obj->radius) // formule du disque
+				intersect = tmp_intersect;
+				smallest_norm = norm;
+				*id = i;
 		}
 	}
 	return (intersect);
@@ -88,31 +90,9 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 	float3	intersect;
 
 	id = -1;
-	if (debug == 1)
-	{
-	/*	float3 t;
-		float3 t2;
-		float t3;
-		t = (float3){2, 3, 4};
-		t2 = (float3){5, 6, 7};
-		t3 = dot(t.xy, t2.xy);
-		printf("t3 = [%f]\n",t3);
-	*/
-	}
-    intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
+   	intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
 	if (id > -1)
-	{
-		/*
-		if (id == 1)
-		*pixel = 0xff0000FF;
-		else if (id == 2)
-		*pixel = 0x00ff00FF;
-		else
-		*pixel = 0x0000ffFF;
-		*/
-		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
-	}
+		*pixel = get_lighting(debug, tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	else
-		//*pixel = 0xFFFFFFFF;
-		*pixel = 0x000000FF;
+		*pixel = 0xFFFFFFFF;
 }

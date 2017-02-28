@@ -52,13 +52,15 @@ kernel void
 	basis.x = WIDTH / HEIGHT;
 	indent.y = basis.y / HEIGHT;
 	indent.x = basis.x / WIDTH;
+
 	origin.x = cam->pos.x + (cam->focal / 27.5f * cam->rot.x) - basis.x / 2.0f;
 	origin.y = cam->pos.y + (cam->focal / 27.5f * cam->rot.y) - basis.y / 2.0f;
 	origin.z = cam->pos.z + (cam->focal / 27.5f * cam->rot.z);
 	direction.x = origin.x + (x * indent.x) - cam->pos.x;
 	direction.y = origin.y + (y * indent.y) - cam->pos.y;
 	direction.z = origin.z - cam->pos.z;
-	calc((DEBUG && ((x == 0 && y == 0) || (x == WIDTH - 1 && y == HEIGHT - 1)))
+	*(img_buffer + WIDTH * y + x) = -1;
+	calc((DEBUG && ((x == XCENTER && y == YCENTER) || (x == XCENTER && y == YCENTER)))
 		, img_buffer + WIDTH * y + x
 		, objs
 		, lgts

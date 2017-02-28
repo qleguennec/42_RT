@@ -11,8 +11,8 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<position>0.00 0.00 0.00</position>
-	<rotation>0.00 0.00 1.00</rotation>
+	<position>00.00 0.00 0.00</position>
+	<rotation>0.00 0.00 1.</rotation>
 	<focal>55</focal>
 </camera>
 <!------------ Light(s) -------------->
@@ -21,7 +21,7 @@
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>False</visibility>
-	<position>0.00 0.00 10.00</position>
+	<position>50.00 -80.00 180.00</position>
 	<color-rgb>1.00 1.00 1.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -29,13 +29,13 @@
 <!------------ Object(s) ------------->
 
 <object>
-	<name>Cone 1</name>
-	<type>Cone</type>
+	<name>Sphere 1</name>
+	<type>plane</type>
 	<material>Lambert</material>
 	<visibility>False</visibility>
-	<position>0.00 2.00 100.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>1.00 0.00 0.00</color-rgb>
-	<opacity>1</opacity>
-	<radius>0</radius>
+	<position>10.00 20.00 290.00</position>
+	<rotation>0.00 0.00 1.00</rotation>
+	<color-rgb>0.00 0.00 1.00</color-rgb>
+	<opacity>.40</opacity>
+	<radius>25</radius>
 </object>

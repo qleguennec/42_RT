@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/18 18:19:08 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/02/19 16:23:57 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define OBJ_DEF_H
 
 # include "../../include/obj_types.h"
-# define PREC 0.0000001f;
+
+# define PREC 0.0000001f
 
 typedef struct		s_obj
 {
