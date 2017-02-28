@@ -11,7 +11,7 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<position>0.00 00.00 0.00</position>
+	<position>0.00 0.00 0.00</position>
 	<rotation>0.00 0.00 1.00</rotation>
 	<focal>55</focal>
 </camera>
@@ -22,7 +22,7 @@
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>False</visibility>
-	<position>0.00 0.00 0.00</position>
+	<position>0.00 0.00 10.00</position>
 	<color-rgb>1.00 1.00 1.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -36,8 +36,8 @@
 	<visibility>True</visibility>
 	<position>0.00 00.00 500.00</position>
 	<rotation>0.00 175.00 20.00</rotation>
-	<color-rgb>0.0 0.0 .80</color-rgb>
-	<opacity>.50</opacity>
+	<color-rgb>1.00 1.0 1.</color-rgb>
+	<opacity>.45</opacity>
 	<radius>50.00</radius>
 </object>
 
@@ -48,7 +48,7 @@
 	<visibility>True</visibility>
 	<position>0.00 0.00 1000.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>1.00 .00 0.00</color-rgb>
+	<color-rgb>1.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>20.0</radius>
 </object>
@@ -60,6 +60,18 @@
 	<visibility>True</visibility>
 	<position>100.00 10.00 550.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>.50 .3 .1</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>25.0</radius>
+</object>
+
+<object>
+	<name>Sphere 2</name>
+	<type>plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>00.00 0.00 600.00</position>
+	<rotation>0.00 1.00 0.00</rotation>
 	<color-rgb>.50 .3 .1</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>25.0</radius>

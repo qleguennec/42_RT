@@ -24,9 +24,10 @@ unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
 	float	ambiant = 0.25f;
 	float	clearness = 1.0f;
 	short	index = obj_ind;
-	float3	new_pos = ray_pos - (ray_dir * 2);
+	float3	new_pos = ray_pos;
 	float3	rd_light = (float3){0.0f, 0.0f, 0.0f}; //set a la couleur de fondy
 
+//		PRINT3(new_pos,"test position");
 	rd_light += check_all_light(lights, n_lights, objs, n_objs, obj_ind, ambiant,
 		ray_dir, ray_pos);
 	clearness -= (objs[obj_ind].opacity + PREC);
@@ -42,15 +43,8 @@ unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
 		else
 		{
 			obj_ind = index;
-			if (debug)
-			PRINT3(rd_light, "rd_light1");
-			if (debug)
-			PRINT3(check_all_light(lights, n_lights, objs, n_objs, index, ambiant,
-			ray_dir, new_pos), );
 			rd_light += (check_all_light(lights, n_lights, objs, n_objs, index, ambiant,
 			ray_dir, new_pos) * clearness);
-			if (debug)
-			PRINT3(rd_light, "rd_light2");
 			clearness -= (objs[obj_ind].opacity + PREC);
 		}
 	}
@@ -92,12 +86,17 @@ float3		is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_
 	short	index;
 	float3	new_pos;
 	float3 light_clr;
+	char	cal_light = 0;
 
 	light_clr = light->clr;
 	new_pos	= touch_object(objs, n_objs, lightpos, lightdir, &index);
-	while (index > -1 && (index != obj_ind && objs[index].opacity < 1.0f))
+	while (index > -1 && index != obj_ind && objs[index].opacity < 1.0f)
 	{
+		if (cal_light == 0)
+		{
 		light_clr = calcul_light(light_clr, &objs[index]);
+		cal_light = 1;
+		}
 		new_pos = touch_object(objs, n_objs, new_pos, lightdir, &index);
 	}
 	if (index == obj_ind)
