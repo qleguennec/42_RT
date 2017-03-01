@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/19 17:37:29 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/01 16:18:23 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ bool
 	{
 		if (!krl_update_lgts(cl, &buf, scene->b_lgts->next, scene->n_lgts))
 			return (false);
-		if ((ret = cl_write(&cl->info, cl->lgts, buf.used, buf.data))
-			!= CL_SUCCESS)
+		if (buf.used && (ret =
+			cl_write(&cl->info, cl->lgts, buf.used, buf.data))!= CL_SUCCESS)
 			return (ERR("cannot write to light buffer, err %a", false, ret));
 		buf.used = 0;
 	}
@@ -115,8 +115,8 @@ bool
 	{
 		if (!krl_update_objs(cl, &buf, scene->b_objs->next, scene->n_objs))
 			return (false);
-		if ((ret = cl_write(&cl->info, cl->objs, buf.used, buf.data))
-			!= CL_SUCCESS)
+		if (buf.used && (ret =
+			cl_write(&cl->info, cl->objs, buf.used, buf.data)) != CL_SUCCESS)
 			return (ERR("cannot write to object buffer, err %a", false, ret));
 	}
 	if (buf.data)

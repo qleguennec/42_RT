@@ -46,6 +46,11 @@ kernel void
 
 	x = get_global_id(0);
 	y = get_global_id(1);
+	if (nobjs == 0 || nlgts == 0)
+	{
+		img_buffer[WIDTH * y + x] = 0;
+		return ;
+	}
 	basis.y = 1.0f;
 	basis.x = WIDTH / HEIGHT;
 	indent.y = basis.y / HEIGHT;
