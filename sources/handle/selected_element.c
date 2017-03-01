@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 21:18:20 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 15:08:01 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/01 20:11:18 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void			handle_selected_element_down(t_rt *rt, t_cl *cl)
 	rt->ui->b_se_down = rt->ui->b_se_hover;
 	rt->ui->case_active = rt->ui->b_se_hover;
 	draw_se_button(rt, rt->ui->b_se_hover, rt->scn->s_elem->type, 2);
-	redraw_case_active(rt, cl, 1);
+	redraw_case_active(rt, 1);
 	rt->ui->case_rect = rt->ui->b_se_rect;
 }
 

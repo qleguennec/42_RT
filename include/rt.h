@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 19:52:50 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/01 20:11:42 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void				draw_dimensions_parameter(t_rt *rt, t_obj *o);
 
 void				redraw_current_element(t_rt *rt, t_cl *cl, char *str);
 
-void				redraw_case_active(t_rt *rt, t_cl *cl, int mode);
+void				redraw_case_active(t_rt *rt, int mode);
 void				draw_case_active(t_rt *rt, char *tmp, SDL_Rect rect, int t);
 
 void				draw_materials(t_rt *rt, char type);

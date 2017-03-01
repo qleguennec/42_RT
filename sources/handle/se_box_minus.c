@@ -6,13 +6,13 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 16:41:58 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 18:02:28 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/01 20:21:38 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void	update_se_camera_box(t_rt *rt, t_cl *cl)
+static void	update_se_camera_box(t_rt *rt)
 {
 	if (rt->ui->case_active == 1 && rt->scn->s_elem->focal > 18)
 		rt->scn->s_elem->focal -= 1;
@@ -28,10 +28,10 @@ static void	update_se_camera_box(t_rt *rt, t_cl *cl)
 		rt->scn->s_elem->rot.y -= 1.0;
 	else if (rt->ui->case_active == 7 && rt->scn->s_elem->rot.z > 0.0)
 		rt->scn->s_elem->rot.z -= 1.0;
-	redraw_case_active(rt, cl, 1);
+	redraw_case_active(rt, 1);
 }
 
-static void	update_se_light_box(t_rt *rt, t_cl *cl)
+static void	update_se_light_box(t_rt *rt)
 {
 	if (rt->ui->case_active == 1 && rt->scn->s_elem->intensity > 0)
 		rt->scn->s_elem->intensity -= 1;
@@ -55,10 +55,10 @@ static void	update_se_light_box(t_rt *rt, t_cl *cl)
 		rt->scn->s_elem->rot.y -= 1.0;
 	else if (rt->ui->case_active == 11 && rt->scn->s_elem->rot.z > 0.0)
 		rt->scn->s_elem->rot.z -= 1.0;
-	redraw_case_active(rt, cl, 1);
+	redraw_case_active(rt, 1);
 }
 
-static void	update_se_object_box(t_rt *rt, t_cl *cl)
+static void	update_se_object_box(t_rt *rt)
 {
 	if (rt->ui->case_active == 1 && rt->scn->s_elem->opacity >= 0.05)
 		rt->scn->s_elem->opacity -= 0.05;
@@ -82,15 +82,22 @@ static void	update_se_object_box(t_rt *rt, t_cl *cl)
 		rt->scn->s_elem->rot.y -= 1.0;
 	else if (rt->ui->case_active == 17 && rt->scn->s_elem->rot.z > 0.0)
 		rt->scn->s_elem->rot.z -= 1.0;
-	redraw_case_active(rt, cl, 1);
+	redraw_case_active(rt, 1);
 }
 
 void		update_se_box_minus(t_rt *rt, t_cl *cl)
 {
 	if (rt->scn->s_elem->type == 'C')
-		update_se_camera_box(rt, cl);
+		update_se_camera_box(rt);
 	else if (rt->scn->s_elem->type == 'L')
-		update_se_light_box(rt, cl);
+		update_se_light_box(rt);
 	else
-		update_se_object_box(rt, cl);
+		update_se_object_box(rt);
+	if (rt->scn->s_elem == rt->scn->c_cam)
+		cl_main_krl_update_camera(cl, rt->scn->c_cam);
+	else
+		cl_main_krl_update_buffers(cl, rt->scn);
+	cl_main_krl_exec(cl);
+	cl_copy_image_buffer(cl, rt->s_rend->pixels);
+	add_render_frame(rt);
 }

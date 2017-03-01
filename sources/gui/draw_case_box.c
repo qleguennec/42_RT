@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 17:29:24 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/28 22:11:29 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/01 20:11:59 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,8 @@ static void	redraw_case_box_object(t_rt *rt, t_obj *obj, int m)
 		draw_case_active(rt, ft_dtoa(obj->rot.z), rt->ui->obj_b_rect[17], m);
 }
 
-void		redraw_case_active(t_rt *rt, t_cl *cl, int mode)
+void		redraw_case_active(t_rt *rt, int mode)
 {
-	(void)cl;
 	if (rt->scn->s_elem->type == 'C')
 		redraw_case_box_camera(rt, rt->scn->s_elem, mode);
 	else if (rt->scn->s_elem->type == 'L')

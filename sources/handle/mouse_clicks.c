@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 21:44:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 19:53:26 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/01 20:11:11 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void		handle_left_click_down(t_rt *rt, t_cl *cl)
 	else if (rt->ui->case_active != -1 && !(rt->ui->case_rect = NULL))
 	{
 		draw_se_button(rt, rt->ui->case_active, rt->scn->s_elem->type, 4);
-		redraw_case_active(rt, cl, 0);
+		redraw_case_active(rt, 0);
 		rt->ui->case_active = -1;
 	}
 	handle_left_click_down_part2(rt, cl);
