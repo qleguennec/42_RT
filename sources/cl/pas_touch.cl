@@ -33,10 +33,9 @@ float3	reflex_calcul(int debug, global t_obj *objs, global t_lgt *lights,
 	short n_objs, short n_lights, float3 ray_pos, float3 ray_dir,
 	short obj_ind)
 {
-	float3	rd_light;
 
-	rd_light = get_color();
-	rd_light * (1.0f - objs[obj_ind]->reflex);
+	rd_light += check_all_light(lights, n_lights, objs, n_objs, obj_ind, ambiant,
+		ray_dir, ray_pos) * (1.0f - objs[obj_ind]->reflex);
 	light_power *= objs[obj_ind]->reflex;
 	calcul_reflex_ray();
 }
