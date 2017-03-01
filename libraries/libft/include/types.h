@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 13:19:18 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/08 11:22:39 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/28 21:55:00 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ typedef struct			s_u32_v4
 # endif
 
 # ifdef T_V3
-# define V3(t, a, b, c) ((t##_v3){a, b, c})
+#  define V3(t, a, b, c) ((t##_v3){a, b, c})
 # endif
 
 # ifdef T_V4
@@ -147,7 +147,6 @@ typedef struct			s_u32_v4
 #  define V4(t, a, b, c, d) ((t##_v4){a, b, c, d})
 
 #  ifdef T_V2
-
 #   define V4_V2(t, x, f) f(t, V2(t, (x).a, (x).b), V2(t, (x).c, (x).d))
 #  endif
 

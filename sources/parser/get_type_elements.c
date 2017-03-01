@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 22:09:34 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 11:18:18 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/22 18:22:53 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,29 @@ char		*shape_object(short shape)
 	return ("Object ");
 }
 
-int			export_shape_object(short shape, int fd)
+char		*shape_object_ws(short shape)
 {
 	if (shape == T_SPHERE)
-		return (write(fd, "Sphere", 6));
+		return ("Sphere");
 	else if (shape == T_CUBE)
-		return (write(fd, "Cube", 4));
+		return ("Cube");
 	else if (shape == T_CYLINDER)
-		return (write(fd, "Cylinder", 8));
+		return ("Cylinder");
 	else if (shape == T_PLANE)
-		return (write(fd, "Plane", 5));
+		return ("Plane");
 	else if (shape == T_CONE)
-		return (write(fd, "Cone", 4));
+		return ("Cone");
 	else if (shape == T_TORUS)
-		return (write(fd, "Torus", 5));
+		return ("Torus");
 	else if (shape == T_PYRAMID)
-		return (write(fd, "Pyramid", 7));
+		return ("Pyramid");
 	else if (shape == T_TETRAHEDRON)
-		return (write(fd, "Tetrahedron", 11));
+		return ("Tetrahedron");
 	else if (shape == T_OCTAHEDRON)
-		return (write(fd, "Octahedron", 10));
+		return ("Octahedron");
 	else if (shape == T_MOEBIUS)
-		return (write(fd, "Moebius", 7));
-	return (write(fd, "Object", 6));
+		return ("Moebius");
+	return ("Object");
 }
 
 int			export_material_object(short material, int fd)

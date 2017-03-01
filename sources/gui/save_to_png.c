@@ -26,7 +26,6 @@ void		save_to_png(t_rt *rt)
 	}
 	free(rt->ui->tmp);
 	rt->ui->n_save = ft_strf("%s%d.bmp", IMG, id);
-	rt->s_temp = SDL_ConvertSurfaceFormat(rt->s_rend, SDL_PIXELFORMAT_RGB24, 0);
 	rt->ui->tmp = ft_strjoin("temporary/", rt->ui->n_save, 'N');
 	SDL_SaveBMP(rt->s_temp, rt->ui->tmp);
 	free(rt->ui->tmp);
@@ -35,6 +34,7 @@ void		save_to_png(t_rt *rt)
 	system(rt->ui->tmp);
 	free(rt->ui->tmp);
 	rt->ui->tmp = ft_strf("rm temporary/%s", rt->ui->n_save);
+	free(rt->ui->n_save);
 	system(rt->ui->tmp);
 	free(rt->ui->tmp);
 	SDL_FreeSurface(rt->s_temp);

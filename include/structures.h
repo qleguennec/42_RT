@@ -6,14 +6,14 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/19 16:52:58 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/28 21:59:59 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-#include "libcl.h"
+# include "libcl.h"
 
 typedef struct s_scene	t_scene;
 typedef struct s_rt		t_rt;
@@ -37,9 +37,11 @@ typedef struct		s_obj
 	cl_float		opacity;
 	cl_short		focal;
 	cl_float		radius;
+	cl_float		lenght;
 	cl_float		width;
 	cl_float		height;
 	cl_short		visibility;
+	cl_short		flare_v;
 	cl_float		intensity;
 	cl_float		shiness;
 	cl_float		mshiness;
@@ -103,6 +105,9 @@ typedef struct		s_ui
 	char			*r_dim;
 	char			m_visible;
 	char			b_hover;
+	char			b_se_hover;
+	char			b_se_down;
+	char			case_active;
 	char			b_down;
 	char			c_hover;
 	char			c_down;
@@ -117,14 +122,19 @@ typedef struct		s_ui
 	SDL_Point		p_tmp;
 	SDL_Rect		t_rect;
 	SDL_Color		c_clr[3];
-	SDL_Rect		area[13];
+	SDL_Rect		area[16];
 	SDL_Rect		ra_rect[7];
 	SDL_Rect		b_rect[20];
+	SDL_Rect		cam_b_rect[8];
+	SDL_Rect		lgt_b_rect[12];
+	SDL_Rect		obj_b_rect[18];
+	SDL_Rect		*b_se_rect;
+	SDL_Rect		*case_rect;
 	SDL_Rect		r_hover;
 	SDL_Surface		*s_tmp;
 	SDL_Surface		*s_ui;
-	SDL_Surface		*s_ver;
 	SDL_Surface		*s_cam;
+	SDL_Surface		*s_ver;
 	TTF_Font		**font;
 }					t_ui;
 
@@ -154,7 +164,7 @@ struct				s_rt
 	SDL_Rect		r_info;
 	int				t_info;
 
-	SDL_Cursor		**cursor;
+	SDL_Cursor		*cursor;
 
 	SDL_Surface		*w_icon;
 

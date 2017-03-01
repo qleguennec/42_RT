@@ -59,8 +59,6 @@ int		init_structures(t_rt *rt)
 		return (error(rt, 0));
 	if (!(rt->prs->obj_tmp = (t_obj *)malloc(sizeof(t_obj))))
 		return (error(rt, 0));
-	if (!(rt->cursor = (SDL_Cursor **)malloc(sizeof(SDL_Cursor *) * 2)))
-		return (error(rt, 0));
 	if (!(rt->ui->font = (TTF_Font **)malloc(sizeof(TTF_Font *) * 2)))
 		return (error(rt, 0));
 	init_elements(rt);

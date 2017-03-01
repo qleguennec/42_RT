@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:31:43 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 13:31:26 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/23 17:41:33 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@
 # define BO_V	"<visibility>"
 # define BC_V	"</visibility>"
 
+# define BO_F	"<flare-visibility>"
+# define BC_F	"</flare-visibility>"
+
 # define BO_I	"<intensity>"
 # define BC_I	"</intensity>"
 
@@ -70,10 +73,25 @@
 # define BO_RA	"<radius>"
 # define BC_RA	"</radius>"
 
+# define BO_LT	"<lenght>"
+# define BC_LT	"</lenght>"
+
 # define BO_WT	"<width>"
 # define BC_WT	"</width>"
 
 # define BO_HT	"<height>"
 # define BC_HT	"</height>"
+
+# define BO_RE	"<reflection>"
+# define BC_RE	"</reflection>"
+
+# define BO_RF	"<refraction>"
+# define BC_RF	"</refraction>"
+
+# define BO_SP	"<specular>"
+# define BC_SP	"</specular>"
+
+# define BO_TX	"<texture>"
+# define BC_TX	"</texture>"
 
 #endif

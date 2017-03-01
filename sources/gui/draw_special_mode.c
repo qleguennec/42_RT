@@ -1,13 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib.h                                              :+:      :+:    :+:   */
+/*   draw_special_mode.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erodrigu <erodrigu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 11:18:14 by erodrigu          #+#    #+#             */
-/*   Updated: 2017/02/16 11:18:16 by erodrigu         ###   ########.fr       */
+/*   Created: 2017/02/22 19:07:05 by bsouchet          #+#    #+#             */
+/*   Updated: 2017/02/22 19:07:33 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-float	my_dot(float3 v1, float3 v2);
+#include "rt.h"
+
+void		draw_special_mode(t_rt *rt, int r_num, int type)
+{
+	SDL_LowerBlit(rt->ui->s_ui, &rt->ui->ra_rect[type], rt->s_back,
+	&rt->ui->ra_rect[r_num]);
+	(type == 0) ? (rt->ui->ra_hover = -1) : 1;
+}

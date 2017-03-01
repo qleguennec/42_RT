@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:01:42 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/03 18:40:42 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/28 21:57:04 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ typedef struct	s_line
 ** -------------------------------- Timer --------------------------------------
 */
 
-typedef	struct		s_timer
+typedef	struct	s_timer
 {
-	int				fps;
-	int				current;
-	int				update;
-	int				limit;
-	char			title[128];
-	unsigned		framelimit;
-}					t_timer;
+	int			fps;
+	int			current;
+	int			update;
+	int			limit;
+	char		title[128];
+	unsigned	framelimit;
+}				t_timer;
 
 /*
 ** -----------------------------------------------------------------------------
@@ -59,7 +59,7 @@ void			fsdl_draw_pt(SDL_Surface *dst, size_t clr, int x, int y);
 //void			fsdl_draw_line(SDL_Surface *dst, t_line *l, size_t clr);
 //void			fsdl_draw_lines(SDL_Surface *dst, t_line *l, size_t clr);
 
-//void			fsdl_draw_rect(SDL_Surface *dst, SDL_rect *r, size_t clr);
+void			fsdl_draw_rect(SDL_Surface *dst, SDL_Rect rect, size_t clr);
 //void			fsdl_draw_rects(SDL_Surface *dst, SDL_rect *r, size_t clr);
 
 void			fsdl_fill_rect(SDL_Surface *dst, SDL_Rect r, size_t clr);

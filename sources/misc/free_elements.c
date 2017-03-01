@@ -17,7 +17,6 @@ static void	free_gui(t_rt *rt)
 	free(rt->ui->c_name);
 	free(rt->ui->r_dim);
 	SDL_FreeSurface(rt->ui->s_ui);
-	SDL_FreeSurface(rt->ui->s_ver);
 	SDL_FreeSurface(rt->ui->s_cam);
 	TTF_CloseFont(rt->ui->font[0]);
 	TTF_CloseFont(rt->ui->font[1]);
@@ -38,9 +37,7 @@ int			free_elements(t_rt *rt)
 	free(rt->prs->buf);
 	free(rt->prs);
 	free(rt->fps);
-	SDL_FreeCursor(rt->cursor[1]);
-	SDL_FreeCursor(rt->cursor[0]);
-	free(rt->cursor);
+	SDL_FreeCursor(rt->cursor);
 	free_gui(rt);
 	free_scene(rt);
 	SDL_FreeSurface(rt->w_icon);

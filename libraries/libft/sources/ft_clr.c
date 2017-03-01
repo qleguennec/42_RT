@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   threads.c                                          :+:      :+:    :+:   */
+/*   ft_clr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 13:44:28 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/02 18:35:31 by bsouchet         ###   ########.fr       */
+/*   Created: 2017/03/01 15:21:04 by bsouchet          #+#    #+#             */
+/*   Updated: 2017/03/01 17:59:07 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "libft.h"
 
-/*
-** Need sufficient malloc on each pthread #pthread_attr_getstack()
-** Need also a pthread_mutex handling as rt->tab is shared between threads
-*/
+int			check_rgb_clr(cl_float3 clr)
+{
+	if (clr.x < .0 || clr.x > 255.0)
+		return (0);
+	if (clr.y < .0 || clr.y > 255.0)
+		return (0);
+	if (clr.z < .0 || clr.z > 255.0)
+		return (0);
+	return (1);
+}
+
+void		divide_clr(cl_float3 *clr)
+{
+	clr->x /= 255.0f;
+	clr->y /= 255.0f;
+	clr->z /= 255.0f;
+}

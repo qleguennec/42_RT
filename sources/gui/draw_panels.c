@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 18:43:50 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 11:50:14 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/25 18:15:40 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ static void	draw_right_panel(t_rt *rt)
 {
 	fsdl_fill_rect(rt->s_back, (SDL_Rect){1048, 84, 18, 588}, WIN_BG);
 	fsdl_fill_rect(rt->s_back, (SDL_Rect){1065, 690, 1, 30}, WIN_BG);
-	(rt->scn->s_elem) ? draw_selected_element(rt) : 1;
 	SDL_LowerBlit(rt->ui->s_ui, &rt->ui->ra_rect[2], rt->s_back,
 	&rt->ui->ra_rect[rt->scn->sp_mode + 3]);
+	draw_selected_element(rt);
 }
 
 void		draw_panel(t_rt *rt, int p, int type)
 {
-	p = (p == 16) ? 2 : 7;
+	p = (p == 15) ? 2 : 7;
 	if (type == 0)
 		fsdl_fill_rect(rt->s_back, rt->ui->area[p], WIN_BG);
 	else

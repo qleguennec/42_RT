@@ -6,11 +6,36 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 22:06:56 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 22:07:05 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/23 20:06:58 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+int			export_shape_object(short shape, int fd)
+{
+	if (shape == T_SPHERE)
+		return (write(fd, "Sphere", 6));
+	else if (shape == T_CUBE)
+		return (write(fd, "Cube", 4));
+	else if (shape == T_CYLINDER)
+		return (write(fd, "Cylinder", 8));
+	else if (shape == T_PLANE)
+		return (write(fd, "Plane", 5));
+	else if (shape == T_CONE)
+		return (write(fd, "Cone", 4));
+	else if (shape == T_TORUS)
+		return (write(fd, "Torus", 5));
+	else if (shape == T_PYRAMID)
+		return (write(fd, "Pyramid", 7));
+	else if (shape == T_TETRAHEDRON)
+		return (write(fd, "Tetrahedron", 11));
+	else if (shape == T_OCTAHEDRON)
+		return (write(fd, "Octahedron", 10));
+	else if (shape == T_MOEBIUS)
+		return (write(fd, "Moebius", 7));
+	return (write(fd, "Object", 6));
+}
 
 static void	export_object_part2(t_obj *obj, int fd)
 {
@@ -22,11 +47,11 @@ static void	export_object_part2(t_obj *obj, int fd)
 	ft_putfloat_fd((float)obj->rot.z, fd);
 	write(fd, "</rotation>\n", 12);
 	write(fd, "\t<color-rgb>", 12);
-	ft_putfloat_fd((float)obj->clr.x, fd);
+	ft_putfloat_fd((float)obj->clr.x * 255., fd);
 	write(fd, " ", 1);
-	ft_putfloat_fd((float)obj->clr.y, fd);
+	ft_putfloat_fd((float)obj->clr.y * 255., fd);
 	write(fd, " ", 1);
-	ft_putfloat_fd((float)obj->clr.z, fd);
+	ft_putfloat_fd((float)obj->clr.z * 255., fd);
 	write(fd, "</color-rgb>\n", 13);
 	write(fd, "\t<opacity>", 10);
 	ft_putfloat_fd((float)obj->opacity, fd);

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:19:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 21:42:56 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/01 17:59:56 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 /*
 ** Fonctions to check all elements (cameras, lights & objects).
 */
-
-int			check_rgb_color(cl_float3 clr)
-{
-	if (clr.x < .0 || clr.x > 255.0)
-		return (0);
-	if (clr.y < .0 || clr.y > 255.0)
-		return (0);
-	if (clr.z < .0 || clr.z > 255.0)
-		return (0);
-	return (1);
-}
 
 int			check_scene(t_rt *rt)
 {
@@ -70,9 +59,11 @@ int			check_light(t_rt *rt, t_obj *tmp, short i)
 	if (!tmp->n)
 		tmp->n = (cl_char *)ft_strjoin(light_type(tmp->forme), ft_itoa(i), 'R');
 	if (rt->prs->t[0] == 0 && rt->prs->t[1] == 0)
-		rt->prs->obj_tmp->clr = (cl_float3){{255., 219., 74., 255.}};
-	if (rt->prs->t[0] != 0 && !check_rgb_color(tmp->clr))
+		rt->prs->obj_tmp->clr =
+		(cl_float3){{1.0f, (255. / 219.), (255. / 74.), 1.0f}};
+	if (rt->prs->t[0] != 0 && !check_rgb_clr(tmp->clr))
 		return (error(rt, 36));
+	divide_clr(&tmp->clr);
 	if (rt->prs->t[2] == 0)
 		return (error(rt, 26));
 	if (rt->prs->t[6] != 0 && (tmp->intensity < 0. || tmp->intensity > 50.))
@@ -91,8 +82,9 @@ int			check_object(t_rt *rt, t_obj *t, short i)
 	i = ++rt->scn->ot[t->forme];
 	if (!t->n)
 		t->n = (cl_char *)ft_strjoin(shape_object(t->forme), ft_itoa(i), 'R');
-	if (rt->prs->t[1] != 0 && !check_rgb_color(t->clr))
+	if (rt->prs->t[1] != 0 && !check_rgb_clr(t->clr))
 		return (error(rt, 37));
+	divide_clr(&t->clr);
 	if (rt->prs->t[2] == 0)
 		return (error(rt, 27));
 	if (rt->prs->t[7] != 0 && (t->opacity < .0 || t->opacity > 1.0))

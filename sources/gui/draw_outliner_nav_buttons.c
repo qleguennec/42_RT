@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 22:27:52 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 22:29:23 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/22 13:17:38 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 void		draw_top_nav_button(t_rt *rt, int state)
 {
 	if (state == -1)
-		state = 536;
+		state = 545;
 	else if (state == 0)
-		state = 552;
+		state = 561;
 	else if (state == 1)
-		state = 568;
+		state = 577;
 	SDL_LowerBlit(rt->ui->s_ui, &(SDL_Rect){13, state, 188, 16},
-	rt->s_back, &(SDL_Rect){13, 223, 188, 16});
+	rt->s_back, &(SDL_Rect){13, 232, 188, 16});
 	rt->ui->area[12].y += 15;
 }
 
 void		draw_bottom_nav_button(t_rt *rt, int state)
 {
 	if (state == -1)
-		state = 584;
+		state = 593;
 	else if (state == 0)
-		state = 600;
+		state = 609;
 	else if (state == 1)
-		state = 616;
+		state = 625;
 	SDL_LowerBlit(rt->ui->s_ui, &(SDL_Rect){13, state, 188, 16},
-	rt->s_back, &(SDL_Rect){13, 616, 188, 16});
+	rt->s_back, &(SDL_Rect){13, 625, 188, 16});
 }
 
 void		draw_nav_element(t_rt *rt, int state)

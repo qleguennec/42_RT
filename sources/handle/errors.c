@@ -62,8 +62,8 @@ int			error(t_rt *rt, int t)
 	else if (t == 15)
 		s = ft_strjoin(ft_strjoin(ft_strjoin("error : ", rt->prs->b_o, 'N'),
 		ft_strjoin(MSG15A, rt->prs->b_c, 'N'), 'B'), MSG15B, 'L');
-	(!s) ? write(2, rt->err[t], ft_strlen(rt->err[t])) : 1;
-	(s) ? write(2, s, ft_strlen(s) && write(2, ".\n", 2)) : 1;
+	(!s && t != 3) ? write(2, rt->err[t], ft_strlen(rt->err[t])) : 1;
+	(s) ? (write(2, s, ft_strlen(s)) && write(2, ".\n", 2)) : 1;
 	exit(1);
 	return (1);
 }
