@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/19 16:23:57 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/03/01 18:25:30 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,5 @@ typedef struct		s_cam
 	float3			rot;
 	short			focal;
 }					t_cam;
-
-//rajouter ambiant dans cam;
 
 #endif

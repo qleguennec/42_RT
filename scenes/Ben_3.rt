@@ -64,3 +64,27 @@
 	<opacity>1.00</opacity>
 	<radius>25.0</radius>
 </object>
+
+<object>
+	<name>Sphere 3</name>
+	<type>Sphere</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>50.00 50.00 200.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>.50 .5 .5</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>20.0</radius>
+</object>
+
+<object>
+	<name>Sphere 4</name>
+	<type>Sphere</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>-50.00 10.00 200.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>.8 .2 .6</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>20.0</radius>
+</object>

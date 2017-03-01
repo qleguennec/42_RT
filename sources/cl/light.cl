@@ -94,7 +94,7 @@ float3		is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_
 	{
 		if (cal_light == 0)
 		{
-		light_clr = calcul_light(light_clr, &objs[index]);
+		calcul_light(&light_clr, &objs[index]);
 		cal_light = 1;
 		}
 		new_pos = touch_object(objs, n_objs, new_pos, lightdir, &index);
@@ -105,16 +105,15 @@ float3		is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_
 		return ((float3)(0.0f, 0.0f, 0.0f));
 }
 
-float3		calcul_light(float3 light_clr, global t_obj *obj)
+void		calcul_light(float3 *light_clr, global t_obj *obj)
 {
-	light_clr -= (1.0f - obj->clr) * obj->opacity;
-	if (light_clr.x < 0.0f)
-		light_clr.x = 0.0f;
-	if (light_clr.y < 0.0f)
-		light_clr.y = 0.0f;
-	if (light_clr.z < 0.0f)
-		light_clr.z = 0.0f;
-	return (light_clr);
+	*light_clr -= (1.0f - obj->clr) * obj->opacity;
+	if (light_clr->x < 0.0f)
+		light_clr->x = 0.0f;
+	if (light_clr->y < 0.0f)
+		light_clr->y = 0.0f;
+	if (light_clr->z < 0.0f)
+		light_clr->z = 0.0f;
 }
 
 float3		calcul_clr(float3 ray, float3 normale, float3 light,
