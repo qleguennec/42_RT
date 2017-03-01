@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:35:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/28 21:31:34 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/01 22:11:32 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define WIN_TITLE "Raytracer Renderer - Scene : "
 
-# define WIN_VERSION "Version : ALPHA 0.71.4"
+# define WIN_VERSION "Version : ALPHA 0.71.7"
 
 # define WIN_ICON "./assets/images/icon.png"
 

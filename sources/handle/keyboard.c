@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 17:08:04 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/28 22:08:37 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/01 22:01:47 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void		handle_keyboard_se(t_rt *rt, t_cl *cl)
 {
+	static int	num = 0;
+
+	++num;
 	if (CK_DOWN == SDLK_KP_ENTER || CK_DOWN == SDLK_RETURN ||
 	CK_DOWN == SDLK_RETURN2 || CK_DOWN == SDLK_END)
 	{
@@ -24,6 +27,8 @@ void		handle_keyboard_se(t_rt *rt, t_cl *cl)
 		rt->ui->case_active = -1;
 		rt->ui->case_rect = NULL;
 	}
+	if (num & 1)
+		return ;
 	if (CK_DOWN == SDLK_EQUALS || CK_DOWN == SDLK_KP_PLUS)
 		update_se_box_plus(rt, cl);
 	if (CK_DOWN == SDLK_MINUS || CK_DOWN == SDLK_KP_MINUS)
