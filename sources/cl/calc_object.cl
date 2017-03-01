@@ -67,13 +67,14 @@ float3			ray_cylinder_intersection(global t_obj *obj, float3 ray_pos, float3 ray
 	float	b;
 	float	c;
 	float	delta;
+	float	height;
 	float3	offset;
 
 	offset = ray_pos - obj->pos;
 	offset.y = 0;
 
-	if (ray_dir.y > obj->height * 0.5f /obj->pos.z ||
-			ray_dir.y < -obj->height * 0.5f / obj->pos.z)
+	if (ray_dir.y > (obj->height + obj->pos.y) * 0.5f /obj->pos.z ||
+			ray_dir.y < -(obj->height - obj->pos.y) * 0.5f / obj->pos.z)
 		*ok = 0;
 	ray_dir.y = 0;
 
