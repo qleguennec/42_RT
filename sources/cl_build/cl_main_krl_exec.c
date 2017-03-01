@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 12:07:51 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/20 08:40:24 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/01 16:46:57 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,27 @@ static double
 	return ((end - start) / 1000000000.0);
 }
 
+static void
+	handle_null_buffers
+	(t_cl *cl)
+{
+	cl_short	ns;
+	cl_mem		nm;
+
+	ns = 0;
+	nm = 0;
+	if (cl->n_lgts == 0)
+	{
+		CL_KRL_ARG(cl->main_krl.krl, 5, ns);
+		CL_KRL_ARG(cl->main_krl.krl, 3, nm);
+	}
+	if (cl->n_objs == 0)
+	{
+		CL_KRL_ARG(cl->main_krl.krl, 4, ns);
+		CL_KRL_ARG(cl->main_krl.krl, 2, nm);
+	}
+}
+
 bool
 	cl_main_krl_exec
 	(t_cl *cl)
@@ -50,15 +71,13 @@ bool
 
 	work_size[0] = REND_W;
 	work_size[1] = REND_H;
+	handle_null_buffers(cl);
 	if (BENCHMARK_KRL == 1)
 	{
-		i = 0;
+		i = -1;
 		total = 0;
-		while (i < N_BENCH)
-		{
+		while (++i < N_BENCH)
 			total += main_krl_exec_benchmark(cl, work_size);
-			i++;
-		}
 		total /= N_BENCH;
 		printf("render time: %lfs ", total);
 		printf("fps: %lf\n", 1.0 / total);

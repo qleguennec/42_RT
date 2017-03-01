@@ -55,31 +55,30 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 	short			i;
 	float			smallest_norm;
 	float			norm;
+	float3			closest_intersect;
 	float3			intersect;
-	float3			tmp_intersect;
 	short			ok;
-	global t_obj	*obj;
 
 	i = -1;
 	*id = -1;
-	norm = -1;
 	smallest_norm = -1;
 	intersect = -1;
 	while(++i <  nobjs)
 	{
 		ok = 1;
-		obj = &tab_objs[i];
-		tmp_intersect = ray_intersection(obj, ray_pos, ray_dir, &ok);
-		norm = float3_to_float(tmp_intersect - ray_pos);
-		if (ok == 1 && norm > 0.0f && (norm < smallest_norm || smallest_norm == -1))
+		intersect = ray_intersection(&tab_objs[i], ray_pos, ray_dir, &ok);
+		if (!ok)
+			continue;
+		norm = float3_to_float(intersect - ray_pos);
+		if (norm > 0.0f && (norm < smallest_norm || smallest_norm == -1))
 		{
 //			if (obj->type == T_PLANE && dot(tmp_intersect - obj->pos, tmp_intersect - obj->pos) < obj->radius * obj->radius) // formule du disque
-				intersect = tmp_intersect;
+				closest_intersect = intersect;
 				smallest_norm = norm;
 				*id = i;
 		}
 	}
-	return (intersect);
+	return (closest_intersect);
 }
 
 void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
@@ -90,9 +89,39 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 	float3	intersect;
 
 	id = -1;
-   	intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
+	if (debug)
+	{
+//	/*
+		float3 t;
+		float3 t2;
+		float t3;
+		t = (float3){2, 3, 4};
+		t2 = (float3){5, 6, 7};
+		t3 = dot(t.x, t2.x);
+		printf("t3 = [%f]\n",t3);
+//	*/
+		printf("type de lobjet %u\n", tab_objs[0].type);
+		PRINT3(ray_dir,"ray_dir");
+	}
+    intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
 	if (id > -1)
-		*pixel = get_lighting(debug, tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
+	{
+//		/*
+		if (id == 0)
+		*pixel = 0xff0000FF;
+		else if (id == 1)
+		*pixel = 0x00ff00FF;
+		else if (id == 2)
+		*pixel = 0x00ffffFF;
+		else if (id == 3)
+		*pixel = 0xffffffFF;
+		else if (id == 4)
+		*pixel = 0xffff00FF;
+		else
+		*pixel = 0xff00ffFF;
+//		*/
+//		*pixel = get_lighting(debug, tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
+	}
 	else
 		*pixel = 0xFFFFFFFF;
 }

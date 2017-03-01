@@ -13,6 +13,8 @@
 #include "obj_def.h"
 #include "calc.h"
 
+#define SUM(v) ((v).x + (v).y + (v).z)
+
 float			float3_to_float(float3 v){
 	return (v.x + v.y + v.z);
 }
