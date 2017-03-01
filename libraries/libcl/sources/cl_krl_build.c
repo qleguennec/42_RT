@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 22:17:19 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 15:04:07 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/02/20 09:29:16 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,12 @@ static void
 	char	**split;
 
 	split = (char **)VSPLIT(*build_line, ":");
-	*krlname = split[0];
-	*opts = split[1];
+	*krlname = ft_strdup(split[0]);
+	*opts = ft_strdup(split[1]);
+	free(split[0]);
+	free(split[1]);
 	free(split[2]);
+	free(split);
 }
 
 static void
@@ -72,6 +75,7 @@ static void
 		free(((char **)lines.data)[i]);
 		i++;
 	}
+	free(lines.data);
 }
 
 cl_int

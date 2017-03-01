@@ -10,10 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "obj_def.h"
+//#include "obj_def.h"
 #include "calc.h"
 #include "light.h"
 #include "light.cl"
+
 #include "calc_object.cl"
 
 float		calc_delta(float a, float b, float c)
@@ -24,12 +25,12 @@ float		calc_delta(float a, float b, float c)
 
 	tmp = (b * b) - (4.0f * a * c);
 	if(tmp < 0.0f)
-		return (-8);
+		return (-1);
 	tmp = sqrt(tmp);
 //	printf ("tmp\n", tmp);
 	t0 = ((-b + tmp) / (2.0f * a));
 	t1 = ((-b - tmp) / (2.0f * a));
-	if (t0 > 0.0f && (t0 < t1 || t1 < 0.0f))
+	if (t0 > 0.0f && (t0 < t1 || t1 <= 0.0f))
 		return (t0);
 	return (t1);
 }
@@ -89,7 +90,7 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 	float3	intersect;
 
 	id = -1;
-	if (debug == 1)
+	if (debug)
 	{
 //	/*
 		float3 t;
@@ -120,9 +121,8 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 		else
 		*pixel = 0xff00ffFF;
 //		*/
-		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
+		*pixel = get_lighting(debug,tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else
-		//*pixel = 0xFFFFFFFF;
-		*pixel = 0x000000FF;
+		*pixel = 0xFFFFFFFF;
 }

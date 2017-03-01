@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 22:30:57 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/20 08:29:50 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ bool				cl_main_krl_init(t_cl *cl);
 /*
 ** needs to be call each time the scene needs to be rendered
 */
-bool				cl_main_krl_exec(t_cl *cl, t_scene *scene);
+bool				cl_main_krl_exec(t_cl *cl);
 
 /*
 ** needs to be call each time the camera is changed
@@ -188,8 +188,6 @@ int					create_window(t_rt *rt, t_cl *cl);
 
 int					add_render_frame(t_rt *rt);
 void				render_loop(t_rt *rt);
-
-bool				scene_init_rendering(t_rt *rt, t_cl *cl);
 
 /*
 ** -----------------------------------------------------------------------------

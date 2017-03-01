@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 21:44:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 21:44:59 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/20 08:28:27 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		handle_double_click_down(t_rt *rt, t_cl *cl)
 	draw_current_camera_name(rt, 1);
 	rt->ui->tmp = ft_strf(INF33, rt->scn->c_cam->n);
 	cl_main_krl_update_camera(cl, rt->scn->c_cam);
-	cl_main_krl_exec(cl, rt->scn);
+	cl_main_krl_exec(cl);
 	cl_copy_image_buffer(cl, rt->s_rend->pixels);
 	add_render_frame(rt);
 	draw_info_bar(rt);
@@ -77,7 +77,7 @@ void		handle_right_click_down(t_rt *rt, t_cl *cl)
 		rt->ui->tmp = ft_strf(INF34, rt->ui->c_elem->n);
 	draw_outliner_element(rt, rt->ui->c_elem, 1);
 	cl_main_krl_update_buffers(cl, rt->scn);
-	cl_main_krl_exec(cl, rt->scn);
+	cl_main_krl_exec(cl);
 	cl_copy_image_buffer(cl, rt->s_rend->pixels);
 	add_render_frame(rt);
 	draw_info_bar(rt);
