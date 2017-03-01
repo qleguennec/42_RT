@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cl_main_krl_update_buffers.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/03/01 16:18:23 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/01 21:48:04 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 #include "libvect.h"
 #include "libcl.h"
 #include "libfmt.h"
-
-// TODO remove debug includes
-#include <assert.h>
 
 /*
 ** updates GPU memory
@@ -52,9 +49,9 @@ static bool
 	if (ret != CL_SUCCESS)
 		return (ERR("cannot create buffer for lgts, err %a", false, ret));
 	if (!((ret = CL_KRL_ARG(cl->main_krl.krl, 3, cl->lgts)) == CL_SUCCESS
-		&& (ret = CL_KRL_ARG(cl->main_krl.krl, 5, cl->n_lgts)) == CL_SUCCESS))
-		return (ERR("cannot set lgts & n_lgts args in kernel, err %a"
-			, false, ret));
+	&& (ret = CL_KRL_ARG(cl->main_krl.krl, 5, cl->n_lgts)) == CL_SUCCESS))
+		return (ERR("cannot set lgts & n_lgts args in kernel, err %a",
+		false, ret));
 	return (true);
 }
 
@@ -86,9 +83,9 @@ static bool
 	if (ret != CL_SUCCESS)
 		return (ERR("cannot create buffer for objs, err %a", false, ret));
 	if (!((ret = CL_KRL_ARG(cl->main_krl.krl, 2, cl->objs)) == CL_SUCCESS
-		&& (ret = CL_KRL_ARG(cl->main_krl.krl, 4, cl->n_objs)) == CL_SUCCESS))
-		return (ERR("cannot set objs & n_objs args in kernel, err %a"
-			, false, ret));
+	&& (ret = CL_KRL_ARG(cl->main_krl.krl, 4, cl->n_objs)) == CL_SUCCESS))
+		return (ERR("cannot set objs & n_objs args in kernel, err %a",
+		false, ret));
 	return (true);
 }
 
@@ -107,7 +104,7 @@ bool
 		if (!krl_update_lgts(cl, &buf, scene->b_lgts->next, scene->n_lgts))
 			return (false);
 		if (buf.used && (ret =
-			cl_write(&cl->info, cl->lgts, buf.used, buf.data))!= CL_SUCCESS)
+			cl_write(&cl->info, cl->lgts, buf.used, buf.data)) != CL_SUCCESS)
 			return (ERR("cannot write to light buffer, err %a", false, ret));
 		buf.used = 0;
 	}

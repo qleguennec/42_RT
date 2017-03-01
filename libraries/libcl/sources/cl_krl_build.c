@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cl_krl_build.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 22:17:19 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/20 09:29:16 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/01 21:51:37 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 #include "malloc.h"
 #include "libgnl.h"
 #include "libcl.h"
-#include <unistd.h>
 
-//TODO remove debug
+/*
+** To remove <stdio.h>
+*/
+
 #include <stdio.h>
 
 #define LOG_BUFSIZ 20480
@@ -94,12 +96,12 @@ cl_int
 	krl_get_opts(build_line, &krlname, &opts);
 	vect_init(&lines);
 	gnl_lines(fd, &lines, GNL_APPEND_CHAR);
-	cl->prog = clCreateProgramWithSource(cl->ctxt , lines.used / sizeof(void *)
-		, (const char **)lines.data, NULL, &ret);
+	cl->prog = clCreateProgramWithSource(cl->ctxt, lines.used / sizeof(void *),
+		(const char **)lines.data, NULL, &ret);
 	if (ret != CL_SUCCESS)
 		return (ret);
-	if ((ret = clBuildProgram(cl->prog
-		, cl->dev_num, &cl->dev_id, opts, NULL, NULL)) != CL_SUCCESS)
+	if ((ret = clBuildProgram(cl->prog,
+		cl->dev_num, &cl->dev_id, opts, NULL, NULL)) != CL_SUCCESS)
 	{
 		clGetProgramBuildInfo(cl->prog, cl->dev_id, CL_PROGRAM_BUILD_LOG
 			, LOG_BUFSIZ, buffer, NULL);

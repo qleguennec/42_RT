@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cl_interface.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 07:55:11 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/16 14:29:22 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/01 21:49:23 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CL_INTERFACE_H
 # define CL_INTERFACE_H
 
-#include <OpenCL/opencl.h>
-#include "rt.h"
+# include "rt.h"
 
 typedef struct		s_cl_obj
 {
@@ -53,8 +52,8 @@ typedef struct		s_cl_cam
 ** each time data structures are modified
 */
 
-void		cpy_cam(t_cl_cam *dest, t_obj *src);
-void		cpy_lgt(t_cl_lgt *dest, t_obj *src);
-void		cpy_obj(t_cl_obj *dest, t_obj *src);
+void				cpy_cam(t_cl_cam *dest, t_obj *src);
+void				cpy_lgt(t_cl_lgt *dest, t_obj *src);
+void				cpy_obj(t_cl_obj *dest, t_obj *src);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_def.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/19 16:23:57 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/03/01 21:45:04 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct		s_cam
 	short			focal;
 }					t_cam;
 
-//rajouter ambiant dans cam;
+/*
+** Penser a ajouter ambent dans cam
+*/
 
 #endif

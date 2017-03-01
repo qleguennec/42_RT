@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cpy_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/18 12:21:27 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/01 21:42:34 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cl_interface.h"
 #include "obj_types.h"
 #include "rt.h"
-
-// TODO remove debug includes
-#include <assert.h>
 
 #define CPY(a) dest->a = src->a
 

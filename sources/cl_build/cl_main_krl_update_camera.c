@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cl_main_krl_update_camera.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:39:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/16 13:18:11 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/01 21:42:22 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cl_interface.h"
 #include "libfmt.h"
 #include "rt.h"
-
-// TODO remove debug includes
-#include <assert.h>
 
 bool
 	cl_main_krl_update_camera

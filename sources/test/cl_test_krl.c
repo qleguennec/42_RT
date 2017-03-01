@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cl_test_krl.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 11:00:05 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/14 14:42:17 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/01 21:42:48 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 
 #include <stdlib.h>
 #include <limits.h>
-
-// TODO remove debug includes
-#include <assert.h>
 
 #define FILENAME	"sources/test/test.cl"
 #define KRLNAME		"test"
@@ -64,7 +61,6 @@ static bool
 	free(build_line->data);
 	return (true);
 }
-
 
 bool
 	cl_test_krl

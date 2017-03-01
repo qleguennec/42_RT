@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cl_main_krl_exec.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 12:07:51 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/03/01 16:46:57 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/01 21:42:12 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libfmt.h"
-
-// TODO remove debug includes
-#include <assert.h>
 
 #define N_BENCH 2000
 

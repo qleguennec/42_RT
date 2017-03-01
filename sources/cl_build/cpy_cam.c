@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cpy_cam.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 12:17:28 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/16 14:26:26 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/01 21:42:26 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cl_interface.h"
 #include "obj_types.h"
 #include "rt.h"
-
-// TODO remove debug includes
-#include <assert.h>
 
 #define CPY(a) dest->a = src->a
 

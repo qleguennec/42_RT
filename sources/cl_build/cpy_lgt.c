@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cpy_lgt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/16 14:16:14 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/01 21:42:30 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cl_interface.h"
 #include "rt.h"
-
-// TODO remove debug includes
-#include <assert.h>
 
 #define CPY(a) dest->a = src->a
 

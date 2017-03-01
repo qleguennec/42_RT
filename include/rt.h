@@ -6,12 +6,18 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 20:11:42 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/01 21:43:45 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
+
+/*
+** <assert.h> to delete , actually used for debug purpose only
+*/
+
+# include <assert.h>
 
 /*
 ** -------------------------- External Headers ---------------------------------
