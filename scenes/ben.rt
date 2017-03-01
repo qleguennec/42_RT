@@ -1,8 +1,8 @@
 <!--------- Global Settings ---------->
 
 <scene>
-	<name>420 blaze it</name>
-	<ambient>.2</ambient>
+	<name>Sphere test</name>
+	<ambient>.20</ambient>
 	<anti-aliasing>2</anti-aliasing>
 	<max-reflexion>1</max-reflexion>
 </scene>
@@ -10,32 +10,35 @@
 <!------------ Camera(s) ------------->
 
 <camera>
-	<name>0123456789012345678</name>
+	<name>Main Camera</name>
+	<position>0.00 0.00 -210.00</position>
+	<rotation>0.00 0.00 1.00</rotation>
 	<focal>55</focal>
-	<position>0. 0. 0.</position>
-	<rotation>0. 0. 1.</rotation>
 </camera>
 
 <!------------ Light(s) -------------->
 
 <light>
-	<name> Prout </name>
-	<type> diffuse </type>
-	<visibility>true</visibility>
-	<intensity>5</intensity>
-	<color-rgb>1.0 1.0 1.0</color-rgb>
-	<position>0. 0. 100.</position>
+	<name>Diffuse</name>
+	<type>Diffuse</type>
+	<visibility>True</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>0.00 115.00 115.00</position>
+	<color-rgb>127.50 127.50 127.50</color-rgb>
+	<intensity>10.00</intensity>
 </light>
 
 <!------------ Object(s) ------------->
 
 <object>
-	<position>25. 50. 500.</position>
-	<rotation>0. 175. 20.</rotation>
-	<color-rgb>1.0 1.0 1.0 </color-rgb>
-	<opacity>0.4</opacity>
-	<visibility>false</visibility>
-	<material>PhOnG</material>
-	<type>sphere      </type>
-	<radius>50.0</radius>
+	<name>Red Sphere</name>
+	<type>Sphere</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 0.00 0.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>127.50 127.50 127.50</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>25.00</radius>
 </object>
+
