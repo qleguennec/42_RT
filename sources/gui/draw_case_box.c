@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 17:29:24 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 20:11:59 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/02 20:43:54 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static void	redraw_case_box_light(t_rt *rt, t_obj *obj, char *tmp, int m)
 	else if (rt->ui->case_active == 11)
 		draw_case_active(rt, ft_dtoa(obj->rot.z), rt->ui->lgt_b_rect[11], m);
 }
+
+lol tu dois modifier cça PD
 
 static void	redraw_case_box_object(t_rt *rt, t_obj *obj, int m)
 {

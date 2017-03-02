@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:28:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 14:46:33 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/02 19:46:11 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,19 @@
 # define MSG36	"error: Invalid value in <color-rgb> inside <light>.\n"
 # define MSG37	"error: Invalid value in <color-rgb> inside <object>.\n"
 
-# define MSG38	"error: <radius> value must be set between 0.0 and 200.0.\n"
-# define MSG39	"error: <width> value must be set between 0.0 and 200.0.\n"
-# define MSG40	"error: <height> value must be set between 0.0 and 200.0.\n"
+# define MSG38	"error: <radius> value must be set between 0.0 and 500.0.\n"
+# define MSG39	"error: <width> value must be set between 0.0 and 1000.0.\n"
+# define MSG40	"error: <height> value must be set between 0.0 and 1000.0.\n"
 
 # define MSG41	"error: Tag <type> is needed for every light.\n"
 
 # define MSG42  "error: Initialization of OpenCL failed.\n"
+
+# define MSG43	"error: <lenght> value must be set between 0.0 and 1000.0.\n"
+
+# define MSG44	"error: <reflection> value must be set between 0.0 and 1.0.\n"
+# define MSG45	"error: <refraction_index> value not set between 1.0 and 2.8.\n"
+# define MSG46	"error: <refraction_intensity> not set between 0.0 and 1.0.\n"
+# define MSG47	"error: <specular> value must be set between 0.0 and 1.0.\n"
 
 #endif

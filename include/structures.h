@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/28 21:59:59 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/02 20:13:20 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct		s_obj
 	cl_short		id;
 	cl_char			*n;
 	cl_short		title;
-	cl_short		active;
 	cl_char			type;
 	cl_short		forme;
 	cl_short		material;
@@ -43,12 +42,16 @@ typedef struct		s_obj
 	cl_short		visibility;
 	cl_short		flare_v;
 	cl_float		intensity;
-	cl_float		shiness;
-	cl_float		mshiness;
-	cl_float		specolor;
+	cl_float		shiness; // Will Be Useless One Day
+	cl_float		mshiness; // Will Be Useless One Day
+	cl_float		specular;
+	cl_float		specolor; // Will Be Useless One Day
 	cl_float		reflex;
-	cl_float		refract;
-	cl_float		t;
+	cl_float		refract; // Will Be Useless One Day
+	cl_float		refrac_i;
+	cl_float		refrac_y;
+	cl_short		p_texture;
+	SDL_Surface		*texture;
 	SDL_Rect		r_ol;
 	struct s_obj	*next;
 }					t_obj;
@@ -68,7 +71,7 @@ typedef struct		s_parser
 	char			*buf;
 	char			*line;
 	short			n[50];
-	short			t[15];
+	short			t[20];
 	char			*b_o;
 	char			*b_c;
 	t_obj			*obj_tmp;

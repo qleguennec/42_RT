@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 15:37:50 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 22:09:11 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/02 20:41:55 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ static void	update_se_light_box(t_rt *rt)
 		rt->scn->s_elem->intensity += 1;
 	else if (rt->ui->case_active == 2 && rt->scn->s_elem->flare_v < 1)
 		rt->scn->s_elem->flare_v += 1;
-	else if (rt->ui->case_active == 3 && rt->scn->s_elem->clr.x <= 0.95)
+	else if (rt->ui->case_active == 3 && rt->scn->s_elem->clr.x <= 0.998)
 		rt->scn->s_elem->clr.x += 0.002;
-	else if (rt->ui->case_active == 4 && rt->scn->s_elem->clr.y <= 0.95)
+	else if (rt->ui->case_active == 4 && rt->scn->s_elem->clr.y <= 0.998)
 		rt->scn->s_elem->clr.y += 0.002;
-	else if (rt->ui->case_active == 5 && rt->scn->s_elem->clr.z <= 0.95)
+	else if (rt->ui->case_active == 5 && rt->scn->s_elem->clr.z <= 0.998)
 		rt->scn->s_elem->clr.z += 0.002;
 	else if (rt->ui->case_active == 6 && rt->scn->s_elem->pos.x <= 999.5)
 		rt->scn->s_elem->pos.x += 0.5;
@@ -58,17 +58,29 @@ static void	update_se_light_box(t_rt *rt)
 	redraw_case_active(rt, 1);
 }
 
+static void	update_se_object_box_part2(t_rt *rt)
+{
+	if (rt->ui->case_active == 3 && rt->scn->s_elem->reflex <= 0.95)
+		rt->scn->s_elem->reflex += 0.05;
+	else if (rt->ui->case_active == 4 && rt->scn->s_elem->refrac_y <= 0.95)
+		rt->scn->s_elem->refrac_y += 0.05;
+	else if (rt->ui->case_active == 5 && rt->scn->s_elem->radius <= 499.0)
+		rt->scn->s_elem->radius += 1.0;
+}
+
 static void	update_se_object_box(t_rt *rt)
 {
 	if (rt->ui->case_active == 1 && rt->scn->s_elem->opacity <= 0.95)
 		rt->scn->s_elem->opacity += 0.05;
-	else if (rt->ui->case_active == 5 && rt->scn->s_elem->radius <= 399.0)
-		rt->scn->s_elem->radius += 1.0;
-	else if (rt->ui->case_active == 9 && rt->scn->s_elem->clr.x <= 0.95)
+	else if (rt->ui->case_active == 2 && rt->scn->s_elem->specular <= 0.95)
+		rt->scn->s_elem->specular += 0.05;
+	else if (rt->ui->case_active > 2 && rt->ui->case_active < 9)
+		update_se_object_box_part2(rt);
+	else if (rt->ui->case_active == 9 && rt->scn->s_elem->clr.x <= 0.998)
 		rt->scn->s_elem->clr.x += 0.002;
-	else if (rt->ui->case_active == 10 && rt->scn->s_elem->clr.y <= 0.95)
+	else if (rt->ui->case_active == 10 && rt->scn->s_elem->clr.y <= 0.998)
 		rt->scn->s_elem->clr.y += 0.002;
-	else if (rt->ui->case_active == 11 && rt->scn->s_elem->clr.z <= 0.95)
+	else if (rt->ui->case_active == 11 && rt->scn->s_elem->clr.z <= 0.998)
 		rt->scn->s_elem->clr.z += 0.002;
 	else if (rt->ui->case_active == 12 && rt->scn->s_elem->pos.x <= 999.5)
 		rt->scn->s_elem->pos.x += 0.5;
