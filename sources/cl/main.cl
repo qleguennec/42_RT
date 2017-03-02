@@ -48,7 +48,7 @@ kernel void
 	y = get_global_id(1);
 	if (nobjs == 0 || nlgts == 0)
 	{
-		img_buffer[WIDTH * y + x] = 0;
+		img_buffer[WIDTH * y + x] = 0xff;
 		return ;
 	}
 	basis.y = 1.0f;
