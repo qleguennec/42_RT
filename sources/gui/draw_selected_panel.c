@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 19:09:43 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/28 22:01:29 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/03 22:49:11 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		draw_case_active(t_rt *rt, char *tmp, SDL_Rect rect, int type)
 
 void		draw_parameter(t_rt *rt, char *tmp, SDL_Rect rect, int type)
 {
+	unsigned	bg_clr2;
 	SDL_Color	bg_clr;
 	SDL_Color	font_clr;
 
@@ -47,6 +48,8 @@ void		draw_parameter(t_rt *rt, char *tmp, SDL_Rect rect, int type)
 	(SDL_Color){42, 52, 64, 255} : (SDL_Color){45, 56, 69, 255};
 	font_clr = (type == 2) ?
 	(SDL_Color){109, 125, 145, 255} : (SDL_Color){135, 136, 137, 255};
+	bg_clr2 = (type == 2) ? 0xFF2a3440 : 0xFF2d3845;
+	fsdl_fill_rect(rt->s_back, rect, bg_clr2);
 	rt->ui->s_tmp = TTF_RenderText_Shaded(rt->ui->font[1], tmp,
 	font_clr, bg_clr);
 	SDL_LowerBlit(rt->ui->s_tmp,

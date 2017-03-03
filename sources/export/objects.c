@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 22:06:56 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/23 20:06:58 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/03 23:15:53 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,38 @@ int			export_shape_object(short shape, int fd)
 	return (write(fd, "Object", 6));
 }
 
+static void	export_object_part3(t_obj *obj, int fd)
+{
+	if (obj->forme == T_PLANE || obj->forme == T_CUBE)
+	{
+		write(fd, "\t<lenght>", 9);
+		ft_putfloat_fd((float)obj->lenght, fd);
+		write(fd, "</lenght>\n", 10);
+		write(fd, "\t<width>", 8);
+		ft_putfloat_fd((float)obj->width, fd);
+		write(fd, "</width>\n", 9);
+	}
+	if (obj->forme == T_CUBE || obj->forme == T_CYLINDER ||
+	obj->forme == T_CONE || obj->forme == T_TORUS)
+	{
+		write(fd, "\t<height>", 8);
+		ft_putfloat_fd((float)obj->height, fd);
+		write(fd, "</height>\n", 9);
+	}
+	write(fd, "\t<reflection>", 13);
+	ft_putfloat_fd((float)obj->reflex, fd);
+	write(fd, "</reflection>\n", 14);
+	write(fd, "\t<refraction-index>", 19);
+	ft_putfloat_fd((float)obj->refrac_i, fd);
+	write(fd, "</refraction-index>\n", 20);
+	write(fd, "\t<specular>", 11);
+	ft_putfloat_fd((float)obj->refrac_y, fd);
+	write(fd, "</specular>\n", 12);
+	write(fd, "</object>\n\n", 11);
+}
+
 static void	export_object_part2(t_obj *obj, int fd)
 {
-	write(fd, "\t<rotation>", 11);
 	ft_putfloat_fd((float)obj->rot.x, fd);
 	write(fd, " ", 1);
 	ft_putfloat_fd((float)obj->rot.y, fd);
@@ -63,7 +92,7 @@ static void	export_object_part2(t_obj *obj, int fd)
 		ft_putfloat_fd((float)obj->radius, fd);
 		write(fd, "</radius>\n", 10);
 	}
-	write(fd, "</object>\n\n", 11);
+	export_object_part3(obj, fd);
 }
 
 void		export_object(t_obj *obj, int fd)
@@ -88,5 +117,6 @@ void		export_object(t_obj *obj, int fd)
 	write(fd, " ", 1);
 	ft_putfloat_fd((float)obj->pos.z, fd);
 	write(fd, "</position>\n", 12);
+	write(fd, "\t<rotation>", 11);
 	export_object_part2(obj, fd);
 }

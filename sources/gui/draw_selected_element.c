@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 19:02:51 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/02 20:23:13 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/03 22:37:55 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,9 @@ void		draw_selected_object(t_rt *rt, t_obj *obj)
 	draw_parameter(rt, ft_dtoa(obj->refrac_y), rt->ui->obj_b_rect[4], 2);
 	if (obj->forme == T_SPHERE || obj->forme == T_CYLINDER ||
 	obj->forme == T_CONE || obj->forme == T_TORUS)
-		tmp = ft_dtoa(obj->radius);
+		draw_parameter(rt, ft_dtoa(obj->radius), rt->ui->obj_b_rect[5], 2);
 	else
-		tmp = ft_strf("---------");
-	draw_parameter(rt, tmp, rt->ui->obj_b_rect[5], 2);
+		draw_parameter(rt, ft_strf("---------"), rt->ui->obj_b_rect[5], 1);
 	draw_dimensions_parameter(rt, obj);
 	draw_selected_object_part2(rt, obj);
 }
