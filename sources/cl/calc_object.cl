@@ -47,11 +47,9 @@ float3			ray_cone_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir
 	float	c;
 	float	delta;
 	float3	offset;
+	float3	intersect;
 
 	offset = ray_pos - obj->pos;
-//	if (ray_dir.y > (0.0f + obj->pos.y))// || /* 0.5 / obj->pos.z ||*/
-//			ray_dir.y < -(obj->height - obj->pos.y));// * 0.5 / obj->pos.z)
-//		*ok = 0;
 	a = dot(ray_dir.xz, ray_dir.xz) - dot(ray_dir.y, ray_dir.y);
 
 	b = 2.0f * (dot(ray_dir.xz, offset.xz) - dot(ray_dir.y, offset.y)) -
@@ -60,7 +58,14 @@ float3			ray_cone_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir
 	c = dot(offset.xz, offset.xz) - dot(offset.y, offset.y);
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		*ok = 0;
-	return (norm(delta, ray_pos, ray_dir));
+
+	intersect = norm(delta, ray_pos, ray_dir);
+	if (obj->pos.y - intersect.y < 0 ||
+		obj->pos.y - intersect.y > obj->height)
+	{
+		*ok = 0;
+	}
+	return (intersect);
 }
 
 float3			ray_cylinder_intersection(global t_obj *obj, float3 ray_pos,
@@ -71,20 +76,30 @@ float3			ray_cylinder_intersection(global t_obj *obj, float3 ray_pos,
 	float	c;
 	float	delta;
 	float3	offset;
+	float3	intersect;
 
 	offset = ray_pos - obj->pos;
 	offset.y = 0;
 
-//	if (ray_dir.y > (obj->height + obj->pos.y) * 0.5f /obj->pos.z ||
-//			ray_dir.y < -(obj->height - obj->pos.y) * 0.5f / obj->pos.z)
-//		*ok = 0;
+	float3 rdir;
+	rdir = ray_dir;
+
 	ray_dir.y = 0;
 	a = dot(ray_dir, ray_dir);
 	b = 2.0f * (dot(ray_dir.xz, offset.xz) - dot(ray_dir.y, offset.y));
 	c = dot(offset, offset) - obj->radius * obj->radius;
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		*ok = 0;
-	return (norm(delta, ray_pos, ray_dir));
+/*	else
+	{
+	}
+*/	intersect = norm(delta, ray_pos, rdir);
+	if (obj->pos.y - intersect.y > obj->height ||
+			obj->pos.y + intersect.y > obj->height)
+	{
+		*ok = 0;
+	}
+	return (intersect);
 }
 
 float3			ray_sphere_intersection(global t_obj *obj, float3 ray_pos,
