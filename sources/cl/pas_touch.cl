@@ -9,23 +9,21 @@ unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
 	float3	rd_light = (float3){0.0f, 0.0f, 0.0f};
 	short	safe = 0;
 
-	get_color(*objs, *lights, n_objs, n_lights, ray_pos, ray_dir,
+	get_color(*objs, *lights, n_objs, n_lights, &ray_pos, &ray_dir,
 			obj_ind, &light_power, &rd_light);
 	return(calcul_rendu_light(rd_light, n_lights, ambiant));
 }
 
 void	get_color(global t_obj *objs, global t_lgt *lights,
-	short n_objs, short n_lights, float3 ray_pos, float3 ray_dir,
+	short n_objs, short n_lights, float3 *ray_pos, float3 *ray_dir,
 	short obj_ind, float3 *light_power, float3 *rd_light)
 {
-	float3	new_pos = ray_pos;
-
 	safe++;
 	if (light_power > 0.0f && objs[obj_ind]->reflex > 0.0f && safe < SAFE)
-		rd_light += reflex_calcul(objs, lights, n_objs, n_lights, ray_pos,
-	 		ray_dir, ray_dir, obj_ind, &clearness, &rd_light);
+		*rd_light += reflex_calcul(objs, lights, n_objs, n_lights, ray_pos,
+	 		ray_dir, ray_dir, obj_ind, clearness, rd_light);
 	if (light_power > 0.0f && safe < SAFE)
-		rd_light += clearness_calcul(objs, lights, n_objs, n_lights, ray_pos,
+		*rd_light += clearness_calcul(objs, lights, n_objs, n_lights, ray_pos,
 	 		ray_dir, ray_dir, obj_ind, light_power, rd_light);
 }
 

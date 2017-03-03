@@ -11,17 +11,18 @@
 /* ************************************************************************** */
 
 
-// #include "calc.cl"
+// #include "reflex.cl"
+// #include "transparency.cl"
 #include "light.h"
 #include "calc.h"
-// #include "obj_def.h"
+#include "obj_def.h"
 #include "lib.h"
 
 unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
 	short n_objs, short n_lights, /*float ambiant, */float3 ray_pos, float3 ray_dir,
 	short obj_ind)
 {
-	float	ambiant = 0.25f;
+	float	ambiant = 0.15f;
 	float	clearness = 1.0f;
 	short	index = obj_ind;
 	float3	new_pos = ray_pos;
@@ -37,7 +38,7 @@ unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
 			new_pos = touch_object(objs, n_objs, new_pos, ray_dir, &index);
 		else if (index == -1)
 		{
-			rd_light += (float3){1.0f, 1.0f, 1.0f} * clearness;
+			rd_light += (float3){0.0f, 0.0f, 0.0f} * clearness;
 			clearness = 0.0f;
 		}
 		else
