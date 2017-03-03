@@ -29,6 +29,7 @@ short			ray_plane_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir
 	float3	offset;
 
 	offset = ray_pos - obj->pos;
+		return (0);
 	div = dot(obj->rot, ray_dir);
 	if (div == 0.0f)
 		return (0);
@@ -47,8 +48,11 @@ short			ray_cone_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir,
 	float	delta;
 	float3	offset;
 
+	float	rad;
+	rad = 45.0f * (M_PI / 180);
+
 	offset = ray_pos - obj->pos;
-	a = dot(ray_dir.xz, ray_dir.xz) - dot(ray_dir.y, ray_dir.y);
+	a = (dot(ray_dir.xz, ray_dir.xz) - dot(ray_dir.y, ray_dir.y)) * tan(rad);
 
 	b = 2.0f * (dot(ray_dir.xz, offset.xz) - dot(ray_dir.y, offset.y)) -
 		obj->radius * obj->radius;
@@ -58,8 +62,9 @@ short			ray_cone_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir,
 		return (0);
 
 	norm(delta, ray_pos, ray_dir, intersect);
-//	obj->height = obj->height * 2.0f;
+
 	float test = 1.0f;
+
 	if (obj->height > 0.0f && (sqrt(dot(*intersect - obj->pos,
 					*intersect - obj->pos)) > sqrt((test * obj->height) * (test * obj->height) + obj->radius  * obj->radius) ||
 			dot(*intersect, obj->pos) < 0.0f))
@@ -110,12 +115,13 @@ short			ray_sphere_intersection(global t_obj *obj, float3 ray_pos,
 	float3	offset;
 
 	offset = ray_pos - obj->pos;
-	a = dot(ray_dir, ray_dir);
-	b = (2.0f * dot(ray_dir.x, offset.x)) + (2.0f * dot(ray_dir.y, offset.y)) +
-		(2.0f * dot(ray_dir.z, offset.z));
-	c = dot(offset, offset) - (obj->radius * obj->radius);
-	if ((delta = calc_delta(a, b, c)) < 0.0f)
+	a = 1.0f;
+	b = dot(ray_dir, offset);
+	c = dot(offset, offset) - obj->radius * obj->radius;
+	if ((delta = (b * b) - a *c) < 0.0f)
 		return (0);
+	delta = sqrt(delta);
+	delta = (-(b + delta) < 0.0f) ? -(b - delta): -(b + delta);
 	norm(delta, ray_pos, ray_dir, intersect);
 	return (1);
 }
