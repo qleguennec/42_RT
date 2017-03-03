@@ -64,6 +64,7 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 	*id = -1;
 	norm = -1;
 	smallest_norm = -1;
+	intersect = -1;
 	while(++i <  nobjs)
 	{
 		ok = 1;
@@ -72,9 +73,10 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 		norm = float3_to_float(tmp_intersect - ray_pos);
 		if (ok == 1 && norm > 0.0f && (norm < smallest_norm || smallest_norm == -1))
 		{
-			intersect = tmp_intersect;
-			smallest_norm = norm;
-			*id = i;
+//			if (obj->type == T_PLANE && dot(tmp_intersect - obj->pos, tmp_intersect - obj->pos) < obj->radius * obj->radius) // formule du disque
+				intersect = tmp_intersect;
+				smallest_norm = norm;
+				*id = i;
 		}
 	}
 	return (intersect);
@@ -103,14 +105,20 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
     intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
 	if (id > -1)
 	{
-		/*
+	//	/*
 		if (id == 1)
 		*pixel = 0xff0000FF;
 		else if (id == 2)
 		*pixel = 0x00ff00FF;
+		else if (id == 3)
+		*pixel = 0x00ffffFF;
+		else if (id == 3)
+		*pixel = 0xffffffFF;
+		else if (id == 0)
+		*pixel = 0xffff00FF;
 		else
 		*pixel = 0x0000ffFF;
-		*/
+//		*/
 //		PRINT3(intersect,"########inter");
 		*pixel = get_lighting(debug, tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
