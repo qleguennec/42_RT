@@ -14,7 +14,6 @@
 #include "calc.h"
 #include "light.h"
 #include "light.cl"
-
 #include "calc_object.cl"
 
 float		calc_delta(float a, float b, float c)
@@ -83,7 +82,7 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 
 void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 	global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos,
-	float3 ray_dir, global t_cam *cam)
+	float3 ray_dir, global t_cam *cam, short x, short y)
 {
     short	id;
 	float3	intersect;
@@ -91,7 +90,7 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 	id = -1;
 	if (debug)
 	{
-//	/*
+	/*
 		float3 t;
 		float3 t2;
 		float t3;
@@ -99,14 +98,15 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 		t2 = (float3){5, 6, 7};
 		t3 = dot(t.x, t2.x);
 		printf("t3 = [%f]\n",t3);
-//	*/
+	*/
 		printf("type de lobjet %u\n", tab_objs[0].type);
 		PRINT3(ray_dir,"ray_dir");
+		printf("x[%u] et y[%u]\n",x,y);
 	}
     intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
 	if (id > -1)
 	{
-//		/*
+		/*
 		if (id == 0)
 		*pixel = 0xff0000FF;
 		else if (id == 1)
@@ -119,8 +119,8 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 		*pixel = 0xffff00FF;
 		else
 		*pixel = 0xff00ffFF;
-//		*/
-//		*pixel = get_lighting(debug, tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
+		*/
+		*pixel = get_lighting(debug, tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else
 		*pixel = 0xFFFFFFFF;

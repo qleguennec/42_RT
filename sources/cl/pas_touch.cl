@@ -17,7 +17,7 @@ unsigned	get_lighting(global t_obj *objs, global t_lgt *lights,
 	while (clearness <= 0.0f)
 	{
 		rd_light += check_all_light(lights, n_lights, objs, obj_ind, ambiant,
-			ray_dir, ray_pos)) * clearness;
+			ray_dir, ray_pos) * clearness;
  		clearness -= ((objs[obj_ind]->opacity + PREC) * clearness); // tester sans le "* clearness" pour un test.
 		if (clearness <= 0.0f)
 		{
@@ -25,7 +25,7 @@ unsigned	get_lighting(global t_obj *objs, global t_lgt *lights,
 			if (index == obj_ind)
 				touch_object(objs, n_objs, ray_dir, new_pos, &index);
 		rd_light += check_all_light(lights, n_lights, objs, obj_ind, ambiant,
-			ray_dir, ray_pos)) * clearness;
+			ray_dir, ray_pos) * clearness;
 		}
 	return(calcul_rendu_light(rd_light, n_lights);
 }

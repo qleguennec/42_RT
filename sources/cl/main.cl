@@ -56,8 +56,8 @@ kernel void
 	origin.x = cam->pos.x + (cam->focal / 27.5f * cam->rot.x) - basis.x / 2.0f;
 	origin.y = cam->pos.y + (cam->focal / 27.5f * cam->rot.y) - basis.y / 2.0f;
 	origin.z = cam->pos.z + (cam->focal / 27.5f * cam->rot.z);
-	direction.x = origin.x + (x * indent.x) - cam->pos.x;
-	direction.y = origin.y + (y * indent.y) - cam->pos.y;
+	direction.x = origin.x + ((float)x * indent.x) - cam->pos.x;
+	direction.y = origin.y + ((float)y * indent.y) - cam->pos.y;
 	direction.z = origin.z - cam->pos.z;
 	*(img_buffer + WIDTH * y + x) = -1;
 	calc((DEBUG && ((x == XCENTER && y == YCENTER) || (x == XCENTER && y == YCENTER)))
@@ -68,5 +68,5 @@ kernel void
 		, nlgts
 		, cam->pos
 		, normalize(direction)
-		, cam);
+		, cam, x, y);
 }
