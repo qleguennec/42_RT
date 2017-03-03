@@ -35,18 +35,18 @@ float		calc_delta(float a, float b, float c)
 }
 
 
-static float3	ray_intersection(global t_obj *obj, float3 ray_pos,
-		float3 ray_dir, short *ok)
+static short	ray_intersection(global t_obj *obj, float3 ray_pos,
+		float3 ray_dir, float3 *intersect)
 {
 	if (obj->type == T_PLANE)
-		return (ray_plane_intersection(obj, ray_pos, ray_dir, ok));
+		return (ray_plane_intersection(obj, ray_pos, ray_dir, intersect));
 	else if (obj->type == T_CONE)
-		return (ray_cone_intersection(obj, ray_pos, ray_dir, ok));
+		return (ray_cone_intersection(obj, ray_pos, ray_dir, intersect));
 	else if (obj->type == T_CYLINDER)
-		return (ray_cylinder_intersection(obj, ray_pos, ray_dir, ok));
+		return (ray_cylinder_intersection(obj, ray_pos, ray_dir, intersect));
 	else if (obj->type == T_SPHERE)
-		return (ray_sphere_intersection(obj, ray_pos, ray_dir, ok));
-	return (-1);
+		return (ray_sphere_intersection(obj, ray_pos, ray_dir, intersect));
+	return (0);
 }
 
 float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, short *id)
@@ -56,26 +56,21 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 	float			norm;
 	float3			closest_intersect;
 	float3			intersect;
-	short			ok;
 
 	i = -1;
 	*id = -1;
 	smallest_norm = -1;
-	intersect = -1;
+//			if (obj->type == T_PLANE && dot(tmp_intersect - obj->pos, tmp_intersect - obj->pos) < obj->radius * obj->radius) // formule du disque
 	while(++i <  nobjs)
 	{
-		ok = 1;
-		intersect = ray_intersection(&tab_objs[i], ray_pos, ray_dir, &ok);
-		if (!ok)
-			continue;
-		norm = float3_to_float(intersect - ray_pos);
-		if (norm > 0.0f && (norm < smallest_norm || smallest_norm == -1))
-		{
-//			if (obj->type == T_PLANE && dot(tmp_intersect - obj->pos, tmp_intersect - obj->pos) < obj->radius * obj->radius) // formule du disque
+		if (ray_intersection(&tab_objs[i], ray_pos, ray_dir, &intersect))
+			if((norm = float3_to_float(intersect - ray_pos)) > 0.0f &&
+				(norm < smallest_norm || smallest_norm == -1))
+			{
 				closest_intersect = intersect;
 				smallest_norm = norm;
 				*id = i;
-		}
+			}
 	}
 	return (closest_intersect);
 }
