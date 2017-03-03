@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:19:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/02 20:03:40 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:01:43 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int			check_object(t_rt *rt, t_obj *t, short i)
 		return (error(rt, 40));
 	if (rt->prs->t[15] != 0 && (t->reflex < .0 || t->reflex > 1.0))
 		return (error(rt, 44));
-	if (rt->prs->t[16] != 0 && (t->refrac_i < 1.0 || t->refrac_i > 2.8))
+	if (rt->prs->t[16] != 0 && (t->refrac_i < 1.0 || t->refrac_i > 2.80))
 		return (error(rt, 45));
 	if (rt->prs->t[17] != 0 && (t->refrac_y < .0 || t->refrac_y > 1.0))
 		return (error(rt, 46));

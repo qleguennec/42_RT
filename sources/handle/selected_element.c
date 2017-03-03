@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 21:18:20 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 20:11:18 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/03 19:24:42 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,23 @@ static void		handle_selected_light(t_rt *rt)
 	draw_se_button(rt, rt->ui->b_se_hover, 'L', 1);
 }
 
-static void		handle_selected_object(t_rt *rt)
+static void		handle_selected_object(t_rt *rt, t_obj *obj)
 {
 	rt->ui->t_c = 0;
 	while (rt->ui->t_c < 18 &&
 	!fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[(int)rt->ui->t_c]))
 		rt->ui->t_c++;
+	if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[5]) &&
+	(obj->forme == T_CUBE || obj->forme == T_PLANE))
+		return ;
+	if ((fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[6]) ||
+	fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[7])) &&
+	(obj->forme == T_CYLINDER || obj->forme == T_CONE ||
+	obj->forme == T_TORUS || obj->forme == T_SPHERE))
+	return ;
+	if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[8]) &&
+		(obj->forme == T_SPHERE || obj->forme == T_PLANE))
+	return ;
 	if ((rt->ui->t_c == 18 || rt->ui->t_c == rt->ui->case_active) &&
 	(rt->ui->b_se_hover = -1) != 0)
 		return ;
@@ -106,5 +117,5 @@ void			handle_selected_element(t_rt *rt)
 	fsdl_pt_in_rect(&rt->m_pos, rt->ui->area[15]))
 		handle_selected_light(rt);
 	else if (rt->scn->s_elem->type == 'O')
-		handle_selected_object(rt);
+		handle_selected_object(rt, rt->scn->s_elem);
 }

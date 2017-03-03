@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 17:29:24 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/02 20:43:54 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/03 15:24:27 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,25 @@ static void	redraw_case_box_light(t_rt *rt, t_obj *obj, char *tmp, int m)
 		draw_case_active(rt, ft_dtoa(obj->rot.z), rt->ui->lgt_b_rect[11], m);
 }
 
-lol tu dois modifier cça PD
+static int	redraw_case_box_object_part2(t_rt *rt, t_obj *obj, int m)
+{
+	if (rt->ui->case_active == 3)
+		draw_case_active(rt, ft_dtoa(obj->reflex), rt->ui->obj_b_rect[3], m);
+	else if (rt->ui->case_active == 4)
+		draw_case_active(rt, ft_dtoa(obj->refrac_y), rt->ui->obj_b_rect[4], m);
+	else if (rt->ui->case_active == 5)
+		draw_case_active(rt, ft_dtoa(obj->radius), rt->ui->obj_b_rect[5], m);
+	return (1);
+}
 
 static void	redraw_case_box_object(t_rt *rt, t_obj *obj, int m)
 {
 	if (rt->ui->case_active == 1)
 		draw_case_active(rt, ft_dtoa(obj->opacity), rt->ui->obj_b_rect[1], m);
-	else if (rt->ui->case_active == 5)
-		draw_case_active(rt, ft_dtoa(obj->radius), rt->ui->obj_b_rect[5], m);
+	else if (rt->ui->case_active == 2)
+		draw_case_active(rt, ft_dtoa(obj->specular), rt->ui->obj_b_rect[2], m);
+	else if (rt->ui->case_active > 2 && rt->ui->case_active < 9)
+		redraw_case_box_object_part2(rt, obj, m);
 	else if (rt->ui->case_active == 9)
 		DRAW_C(rt, ft_dtoa(obj->clr.x * 255.0), rt->ui->obj_b_rect[9], m);
 	else if (rt->ui->case_active == 10)

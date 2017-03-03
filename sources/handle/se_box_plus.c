@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 15:37:50 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/02 20:41:55 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/03 19:46:16 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ static void	update_se_camera_box(t_rt *rt)
 	if (rt->ui->case_active == 1 && rt->scn->s_elem->focal < 200)
 		rt->scn->s_elem->focal += 1;
 	else if (rt->ui->case_active == 2 && rt->scn->s_elem->pos.x <= 999.5)
-		rt->scn->s_elem->pos.x += 0.5;
+		rt->scn->s_elem->pos.x += 0.50;
 	else if (rt->ui->case_active == 3 && rt->scn->s_elem->pos.y <= 999.5)
-		rt->scn->s_elem->pos.y += 0.5;
+		rt->scn->s_elem->pos.y += 0.50;
 	else if (rt->ui->case_active == 4 && rt->scn->s_elem->pos.z <= 999.5)
-		rt->scn->s_elem->pos.z += 0.5;
+		rt->scn->s_elem->pos.z += 0.50;
 	else if (rt->ui->case_active == 5 && rt->scn->s_elem->rot.x <= 999.5)
-		rt->scn->s_elem->rot.x += 0.5;
+		rt->scn->s_elem->rot.x += 0.50;
 	else if (rt->ui->case_active == 6 && rt->scn->s_elem->rot.y <= 359.5)
-		rt->scn->s_elem->rot.y += 0.5;
+		rt->scn->s_elem->rot.y += 0.50;
 	else if (rt->ui->case_active == 7 && rt->scn->s_elem->rot.z <= 359.5)
-		rt->scn->s_elem->rot.z += 0.5;
+		rt->scn->s_elem->rot.z += 0.50;
 	redraw_case_active(rt, 1);
 }
 
@@ -38,62 +38,68 @@ static void	update_se_light_box(t_rt *rt)
 	else if (rt->ui->case_active == 2 && rt->scn->s_elem->flare_v < 1)
 		rt->scn->s_elem->flare_v += 1;
 	else if (rt->ui->case_active == 3 && rt->scn->s_elem->clr.x <= 0.998)
-		rt->scn->s_elem->clr.x += 0.002;
+		rt->scn->s_elem->clr.x += 0.0020;
 	else if (rt->ui->case_active == 4 && rt->scn->s_elem->clr.y <= 0.998)
-		rt->scn->s_elem->clr.y += 0.002;
+		rt->scn->s_elem->clr.y += 0.0020;
 	else if (rt->ui->case_active == 5 && rt->scn->s_elem->clr.z <= 0.998)
-		rt->scn->s_elem->clr.z += 0.002;
+		rt->scn->s_elem->clr.z += 0.0020;
 	else if (rt->ui->case_active == 6 && rt->scn->s_elem->pos.x <= 999.5)
-		rt->scn->s_elem->pos.x += 0.5;
+		rt->scn->s_elem->pos.x += 0.50;
 	else if (rt->ui->case_active == 7 && rt->scn->s_elem->pos.y <= 999.5)
-		rt->scn->s_elem->pos.y += 0.5;
+		rt->scn->s_elem->pos.y += 0.50;
 	else if (rt->ui->case_active == 8 && rt->scn->s_elem->pos.z <= 999.5)
-		rt->scn->s_elem->pos.z += 0.5;
+		rt->scn->s_elem->pos.z += 0.50;
 	else if (rt->ui->case_active == 9 && rt->scn->s_elem->rot.x <= 359.5)
-		rt->scn->s_elem->rot.x += 0.5;
+		rt->scn->s_elem->rot.x += 0.50;
 	else if (rt->ui->case_active == 10 && rt->scn->s_elem->rot.y <= 359.5)
-		rt->scn->s_elem->rot.y += 0.5;
+		rt->scn->s_elem->rot.y += 0.50;
 	else if (rt->ui->case_active == 11 && rt->scn->s_elem->rot.z <= 359.5)
-		rt->scn->s_elem->rot.z += 0.5;
+		rt->scn->s_elem->rot.z += 0.50;
 	redraw_case_active(rt, 1);
 }
 
 static void	update_se_object_box_part2(t_rt *rt)
 {
 	if (rt->ui->case_active == 3 && rt->scn->s_elem->reflex <= 0.95)
-		rt->scn->s_elem->reflex += 0.05;
-	else if (rt->ui->case_active == 4 && rt->scn->s_elem->refrac_y <= 0.95)
-		rt->scn->s_elem->refrac_y += 0.05;
+		rt->scn->s_elem->reflex += 0.050;
+	else if (rt->ui->case_active == 4 && rt->scn->s_elem->refrac_y <= 0.959)
+		rt->scn->s_elem->refrac_y += 0.050;
 	else if (rt->ui->case_active == 5 && rt->scn->s_elem->radius <= 499.0)
-		rt->scn->s_elem->radius += 1.0;
+		rt->scn->s_elem->radius += 1.00;
+	else if (rt->ui->case_active == 6 && rt->scn->s_elem->radius <= 999.5)
+		rt->scn->s_elem->radius += 0.50;
+	else if (rt->ui->case_active == 7 && rt->scn->s_elem->radius <= 999.5)
+		rt->scn->s_elem->radius += 0.50;
+	else if (rt->scn->s_elem->radius <= 999.5)
+		rt->scn->s_elem->radius += 0.50;
 }
 
 static void	update_se_object_box(t_rt *rt)
 {
 	if (rt->ui->case_active == 1 && rt->scn->s_elem->opacity <= 0.95)
-		rt->scn->s_elem->opacity += 0.05;
+		rt->scn->s_elem->opacity += 0.050;
 	else if (rt->ui->case_active == 2 && rt->scn->s_elem->specular <= 0.95)
-		rt->scn->s_elem->specular += 0.05;
+		rt->scn->s_elem->specular += 0.050;
 	else if (rt->ui->case_active > 2 && rt->ui->case_active < 9)
 		update_se_object_box_part2(rt);
 	else if (rt->ui->case_active == 9 && rt->scn->s_elem->clr.x <= 0.998)
-		rt->scn->s_elem->clr.x += 0.002;
+		rt->scn->s_elem->clr.x += 0.0020;
 	else if (rt->ui->case_active == 10 && rt->scn->s_elem->clr.y <= 0.998)
-		rt->scn->s_elem->clr.y += 0.002;
+		rt->scn->s_elem->clr.y += 0.0020;
 	else if (rt->ui->case_active == 11 && rt->scn->s_elem->clr.z <= 0.998)
-		rt->scn->s_elem->clr.z += 0.002;
+		rt->scn->s_elem->clr.z += 0.0020;
 	else if (rt->ui->case_active == 12 && rt->scn->s_elem->pos.x <= 999.5)
-		rt->scn->s_elem->pos.x += 0.5;
+		rt->scn->s_elem->pos.x += 0.50;
 	else if (rt->ui->case_active == 13 && rt->scn->s_elem->pos.y <= 999.5)
-		rt->scn->s_elem->pos.y += 0.5;
+		rt->scn->s_elem->pos.y += 0.50;
 	else if (rt->ui->case_active == 14 && rt->scn->s_elem->pos.z <= 999.5)
-		rt->scn->s_elem->pos.z += 0.5;
+		rt->scn->s_elem->pos.z += 0.50;
 	else if (rt->ui->case_active == 15 && rt->scn->s_elem->rot.x <= 359.5)
-		rt->scn->s_elem->rot.x += 0.5;
+		rt->scn->s_elem->rot.x += 0.50;
 	else if (rt->ui->case_active == 16 && rt->scn->s_elem->rot.y <= 359.5)
-		rt->scn->s_elem->rot.y += 0.5;
+		rt->scn->s_elem->rot.y += 0.50;
 	else if (rt->ui->case_active == 17 && rt->scn->s_elem->rot.z <= 359.5)
-		rt->scn->s_elem->rot.z += 0.5;
+		rt->scn->s_elem->rot.z += 0.50;
 	redraw_case_active(rt, 1);
 }
 

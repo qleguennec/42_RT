@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:35:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 22:11:32 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:06:57 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 
 # define RECT_OUTLINER rt->ui->c_elem->r_ol
 
-# define CK_DOWN rt->event.key.keysym.sym
+# define CK_DW rt->event.key.keysym.sym
 
 # define DRAW_C draw_case_active
 

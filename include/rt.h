@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 21:43:45 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/03 18:47:17 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,13 +261,15 @@ void				handle_special_mode(t_rt *rt, int i);
 */
 
 void				handle_left_click_up(t_rt *rt);
-void				handle_left_click_down(t_rt *rt, t_cl *cl);
+int					handle_left_click_down(t_rt *rt, t_cl *cl);
 
 void				handle_right_click_down(t_rt *rt, t_cl *cl);
 
 void				handle_double_click_down(t_rt *rt, t_cl *cl);
 
 void				handle_motion_mouse(t_rt *rt);
+
+int					check_mouse_in_render_frame(t_rt *rt);
 
 /*
 ** ------------------------ Handle Selected Element ----------------------------
@@ -283,7 +285,7 @@ void				delete_current_element(t_rt *rt, t_cl *cl,
 ** --------------------------- Handle Keyboard ---------------------------------
 */
 
-void				handle_keyboard(t_rt *rt, t_cl *cl);
+int					handle_keyboard(t_rt *rt, t_cl *cl);
 void				update_se_box_plus(t_rt *rt, t_cl *cl);
 void				update_se_box_minus(t_rt *rt, t_cl *cl);
 
