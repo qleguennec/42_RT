@@ -49,22 +49,20 @@ short			ray_cone_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir,
 	float3	offset;
 
 	float	rad;
-	rad = 45.0f * (M_PI / 180);
+	rad = 20.0f * (M_PI / 180);
 
 	offset = ray_pos - obj->pos;
-	a = (dot(ray_dir.xz, ray_dir.xz) - dot(ray_dir.y, ray_dir.y)) * tan(rad);
+	a = dot(ray_dir.xz, ray_dir.xz) - (dot(ray_dir.y, ray_dir.y) * tan(rad));
 
-	b = 2.0f * (dot(ray_dir.xz, offset.xz) - dot(ray_dir.y, offset.y)) -
-		obj->radius * obj->radius;
+	b = 2.0f * (dot(ray_dir.xz, offset.xz) - dot(ray_dir.y, offset.y) * tan(rad));// -
+//		obj->radius * obj->radius;
 
-	c = dot(offset.xz, offset.xz) - dot(offset.y, offset.y);
+	c = dot(offset.xz, offset.xz) - dot(offset.y, offset.y) * (tan(rad));
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
-
 	norm(delta, ray_pos, ray_dir, intersect);
 
 	float test = 1.0f;
-
 	if (obj->height > 0.0f && (sqrt(dot(*intersect - obj->pos,
 					*intersect - obj->pos)) > sqrt((test * obj->height) * (test * obj->height) + obj->radius  * obj->radius) ||
 			dot(*intersect, obj->pos) < 0.0f))
