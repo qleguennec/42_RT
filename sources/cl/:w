@@ -60,10 +60,8 @@ float3			ray_cone_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir
 		*ok = 0;
 
 	intersect = norm(delta, ray_pos, ray_dir);
-	if (obj->height > 0.0f && sqrt(dot(intersect - obj->pos,
-					intersect - obj->pos)) > sqrt(obj->height * obj->height +
-						obj->radius  * obj->radius) ||
-			dot(intersect, obj->pos) < 0.0f)
+	if (obj->height > 0.0f && (obj->pos.y - intersect.y < 0.0f ||
+		obj->pos.y - intersect.y > obj->height))
 	{
 		*ok = 0;
 	}
@@ -88,7 +86,7 @@ float3			ray_cylinder_intersection(global t_obj *obj, float3 ray_pos,
 //////////////////////////////
 	float	rad;
 	rad = 90.0f * (M_PI / 180);
-//	ray_dir.x = cos(rad) * rdir.x - sin(rad) * rdir.y;
+	ray_dir.x = cos(rad) * rdir.x - sin(rad) * rdir.y;
 //////////////////////////////
 	ray_dir.y = 0;
 	a = dot(ray_dir, ray_dir);
@@ -98,9 +96,9 @@ float3			ray_cylinder_intersection(global t_obj *obj, float3 ray_pos,
 		*ok = 0;
 
 	intersect = norm(delta, ray_pos, rdir);
-	if (obj->height > 0.0f && sqrt(dot(intersect - obj->pos,
-		intersect - obj->pos)) >sqrt(obj->height * obj->height +
-		obj->radius * obj->radius))
+//	if (float3_to_float(intersect - obj->pos) > obj->height)
+	if (obj->height > 0.0f && (obj->pos.y - intersect.y > obj->height ||
+			obj->pos.y + intersect.y > obj->height))
 	{
 		*ok = 0;
 	}
