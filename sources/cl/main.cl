@@ -51,11 +51,14 @@ kernel void
 		img_buffer[WIDTH * y + x] = 0xff;
 		return ;
 	}
+#if (DEBUG)
+	if ((x == 0 && y == 0))
+		debug(objs, lgts, cam, nobjs, nlgts);
+#endif
 	basis.y = 1.0f;
 	basis.x = WIDTH / HEIGHT;
 	indent.y = basis.y / HEIGHT;
 	indent.x = basis.x / WIDTH;
-
 	origin.x = cam->pos.x + (cam->focal / 27.5f * cam->rot.x) - basis.x / 2.0f;
 	origin.y = cam->pos.y + (cam->focal / 27.5f * cam->rot.y) - basis.y / 2.0f;
 	origin.z = cam->pos.z + (cam->focal / 27.5f * cam->rot.z);
