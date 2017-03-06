@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/03/01 21:48:04 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/06 10:46:48 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,23 +99,17 @@ bool
 
 	assert(cl->main_krl.sizes[1] == sizeof(t_cl_cam));
 	vect_init(&buf);
-	if (cl->n_lgts != scene->n_lgts)
-	{
-		if (!krl_update_lgts(cl, &buf, scene->b_lgts->next, scene->n_lgts))
-			return (false);
-		if (buf.used && (ret =
-			cl_write(&cl->info, cl->lgts, buf.used, buf.data)) != CL_SUCCESS)
-			return (ERR("cannot write to light buffer, err %a", false, ret));
-		buf.used = 0;
-	}
-	if (cl->n_objs != scene->n_objs)
-	{
-		if (!krl_update_objs(cl, &buf, scene->b_objs->next, scene->n_objs))
-			return (false);
-		if (buf.used && (ret =
-			cl_write(&cl->info, cl->objs, buf.used, buf.data)) != CL_SUCCESS)
-			return (ERR("cannot write to object buffer, err %a", false, ret));
-	}
+	if (!krl_update_lgts(cl, &buf, scene->b_lgts->next, scene->n_lgts))
+		return (false);
+	if (buf.used && (ret =
+		cl_write(&cl->info, cl->lgts, buf.used, buf.data)) != CL_SUCCESS)
+		return (ERR("cannot write to light buffer, err %a", false, ret));
+	buf.used = 0;
+	if (!krl_update_objs(cl, &buf, scene->b_objs->next, scene->n_objs))
+		return (false);
+	if (buf.used && (ret =
+		cl_write(&cl->info, cl->objs, buf.used, buf.data)) != CL_SUCCESS)
+		return (ERR("cannot write to object buffer, err %a", false, ret));
 	if (buf.data)
 		free(buf.data);
 	return (true);
