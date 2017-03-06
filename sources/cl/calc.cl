@@ -16,6 +16,8 @@
 #include "light.cl"
 #include "calc_object.cl"
 
+#define COLOR 1
+
 float		calc_delta(float a, float b, float c)
 {
 	float	t0;
@@ -26,7 +28,6 @@ float		calc_delta(float a, float b, float c)
 	if(tmp < 0.0f)
 		return (-1);
 	tmp = sqrt(tmp);
-//	printf ("tmp\n", tmp);
 	t0 = ((-b + tmp) / (2.0f * a));
 	t1 = ((-b - tmp) / (2.0f * a));
 	if (t0 > 0.0f && (t0 < t1 || t1 <= 0.0f))
@@ -99,9 +100,8 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 		printf("x[%u] et y[%u]\n",x,y);
 	}
     intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
-	if (id > -1)
+	if (id > -1 && COLOR)
 	{
-		/*
 		if (id == 0)
 		*pixel = 0xff0000FF;
 		else if (id == 1)
@@ -114,7 +114,9 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 		*pixel = 0xffff00FF;
 		else
 		*pixel = 0xff00ffFF;
-		*/
+	}
+	else if (id > -1 && !COLOR)
+	{
 		*pixel = get_lighting(debug, tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else

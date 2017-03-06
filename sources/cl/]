@@ -52,12 +52,12 @@ short			ray_cone_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir,
 */
 
 	float	rad;
-	rad = 178.0f * (M_PI / 360.0f);
+	rad = 1.0f * (M_PI / 360);
 
 	offset = ray_pos - obj->pos;
 	a = dot(ray_dir.xz, ray_dir.xz) - dot(ray_dir.y, ray_dir.y) * tan(rad);
 
-	b = 2.0f * (dot(ray_dir.xz, offset.xz) - dot(ray_dir.y, offset.y) * tan(rad));// -
+	b = 2.0f * (dot(ray_dir.xz, offset.xz) - dot(ray_dir.y, offset.y));// * tan(rad));// -
 //		obj->radius * obj->radius;
 
 	c = dot(offset.xz, offset.xz) - dot(offset.y, offset.y) * (tan(rad));
