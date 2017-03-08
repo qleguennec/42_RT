@@ -27,6 +27,7 @@ void	get_color(global t_obj *objs, global t_lgt *lights,
 	 		ray_dir, ray_dir, obj_ind, light_power, rd_light);
 }
 
+// si recursive ne marche pas, reflechir a de l'iteratif.
 /*float3	get_color(int debug, global t_obj *objs, global t_lgt *lights,
 	short n_objs, short n_lights, float3 ray_pos, float3 ray_dir,
 	short obj_ind)
@@ -51,3 +52,36 @@ void	get_color(global t_obj *objs, global t_lgt *lights,
 	 		ray_dir, ray_dir, obj_ind, &light_power);
 	return (rd_color)
 }*/
+
+unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
+	short n_objs, short n_lights, /*float ambiant, */float3 ray_pos, float3 ray_dir,
+	short obj_ind)
+{
+	float	ambiant = 0.15f;
+	float	clearness = 1.0f;
+	short	index = obj_ind;
+	float3	new_pos = ray_pos;
+	float3	rd_light = (float3){0.0f, 0.0f, 0.0f}; //set a la couleur de fondy
+
+	rd_light += check_all_light(lights, n_lights, objs, n_objs, obj_ind, ambiant,
+		ray_dir, ray_pos);
+	clearness -= (objs[obj_ind].opacity + PREC);
+	while (clearness > 0.0f)
+	{
+		if (index == obj_ind)
+			new_pos = touch_object(objs, n_objs, new_pos, ray_dir, &index);
+		else if (index == -1)
+		{
+			rd_light += (float3){0.0f, 0.0f, 0.0f} * clearness;
+			clearness = 0.0f;
+		}
+		else
+		{
+			obj_ind = index;
+			rd_light += (check_all_light(lights, n_lights, objs, n_objs, index, ambiant,
+			ray_dir, new_pos) * clearness);
+			clearness -= (objs[obj_ind].opacity + PREC);
+		}
+	}
+	return(calcul_rendu_light(rd_light, n_lights, ambiant));
+}
