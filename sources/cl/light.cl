@@ -10,13 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "reflex.cl"
 #include "transparency.cl"
+#include "lib.cl"
 #include "light.h"
-#include "calc.h"
-#include "obj_def.h"
-#include "lib.h"
 
 unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
 	short n_objs, short n_lights, /*float ambiant, */float3 ray_pos, float3 ray_dir,
@@ -29,13 +26,14 @@ unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
 	short	safe = 0;
 
 	get_color(*objs, *lights, n_objs, n_lights, &ray_pos, &ray_dir,
-			obj_ind, &light_power, &rd_light, &safe);
+			obj_ind, &light_power, &rd_light, &safe, ambiant);
 	return(calcul_rendu_light(rd_light, n_lights, ambiant));
 }
 
 void	get_color(global t_obj *objs, global t_lgt *lights,
 	short n_objs, short n_lights, float3 *ray_pos, float3 *ray_dir,
-	short obj_ind, float3 *light_power, float3 *rd_light, float *safe)
+	short obj_ind, float3 *light_power, float3 *rd_light, float *safe,
+	float ambiant)
 {
 	*safe++;
 	if (light_power > 0.0f && objs[obj_ind]->reflex > 0.0f && *safe < SAFE)
@@ -43,7 +41,7 @@ void	get_color(global t_obj *objs, global t_lgt *lights,
 	 		ray_dir, ray_dir, obj_ind, clearness, rd_light);
 	if (light_power > 0.0f && safe < SAFE)
 		*rd_light += clearness_calcul(objs, lights, n_objs, n_lights, ray_pos,
-	 		ray_dir, ray_dir, obj_ind, light_power, rd_light);
+	 		ray_dir, ray_dir, obj_ind, light_power, rd_light, ambiant);
 }
 
 float3		check_all_light(global t_lgt *lights, short n_lights,
@@ -127,10 +125,10 @@ float3		calcul_normale(global t_obj *obj, float3 *point)
 	if (obj->type == T_PLANE)
 		normale = obj->rot;
 	if (obj->type == T_SPHERE)
-		normale = obj->pos - point;
+		normale = obj->pos - *point;
 	if (obj->type == T_CYLINDER)
 	{
-		normale = obj->pos - point;
+		normale = obj->pos - *point;
 		normale.y = 0.0f;
 		// normale = rotate_ray(normale, obj->rot);
 	}

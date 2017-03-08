@@ -6,35 +6,44 @@
 /*   By: erodrigu <erodrigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:00 by erodrigu          #+#    #+#             */
-/*   Updated: 2017/03/02 16:59:39 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/03/08 19:48:06 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
-	short n_objs, short n_lights,/* float ambiant,*/ float3 ray_pos, float3 ray_dir,
+
+#include "calc.h"
+#include "obj_def.h"
+
+unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
+	short n_objs, short n_lights, /*float ambiant, */float3 ray_pos, float3 ray_dir,
 	short obj_ind);
-float3	is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_lgt *light,
-	short n_objs, short n_lights, float3 normale, short obj_ind);
-float3	calcul_clr(float3 ray, float3 normale, float3 light,
+float3		is_light(float3 lightpos, float3 lightdir, global t_obj *objs,
+	global t_lgt *light, short n_objs, short n_lights, float3 normale,
+	short obj_ind);
+float3		calcul_clr(float3 ray, float3 normale, float3 light,
 	global t_obj *obj);
 unsigned	calcul_rendu_light(float3 light, short n_lights, float ambiant);
-float3	calcul_normale(global t_obj *obj, float3 point);
-float3	is_shining(float3 normale, float3 lightdir, float int_specul,
+float3		calcul_normale(global t_obj *obj, float3 *point);
+float3		is_shining(float3 normale, float3 lightdir, float int_specul,
 	float pow_specul, float3 dif_color, float3 lightcolor);
-float3	check_all_light(global t_lgt *lights, short n_lights,
+float3		check_all_light(global t_lgt *lights, short n_lights,
 	global t_obj *objs, short n_objs, short obj_ind, float ambiant, float3 ray_dir,
 	float3 ray_pos);
-void	calcul_light(float3 *light_clr, global t_obj *obj);
-
-void	reflex_calcul(global t_obj *objs, global t_lgt *lights,
+void		calcul_light(float3 *light_clr, global t_obj *obj);
+void		reflex_calcul(global t_obj *objs, global t_lgt *lights,
 	short n_objs, short n_lights, float3 *ray_pos, float3 ray_dir,
-	short obj_ind, float3 *light_power, float3 *rd_light);
-void	calcul_reflex_ray(float3 *ray_pos, float3 *ray_dir, global t_obj *objs,
+	short obj_ind, float3 *light_power, float3 *rd_light, float *safe);
+void		calcul_reflex_ray(float3 *ray_pos, float3 *ray_dir, global t_obj *objs,
 	short obj_ind);
-
-void	clearness_color(global t_obj *objs, global t_lgt *lights,
-	short n_objs, short n_lights, float3 ray_pos, float3 ray_dir,
-	short obj_ind, float *light_power, float3 *rd_light);
-void	clearness_calcul(global t_obj *objs, global t_lgt *lights,
+float		my_dot(float3 v1, float3 v2);
+void		clearness_calcul(global t_obj *objs, global t_lgt *lights,
 	short n_objs, short n_lights, float3 *new_pos, float3 ray_dir,
 	short obj_ind, float *light_power, float3 *rd_light);
+void		clearness_color(global t_obj *objs, global t_lgt *lights,
+	short n_objs, short n_lights, float3 ray_pos, float3 ray_dir,
+	short obj_ind, float *light_power, float3 *rd_light);
+void		get_color(global t_obj *objs, global t_lgt *lights,
+	short n_objs, short n_lights, float3 *ray_pos, float3 *ray_dir,
+	short obj_ind, float3 *light_power, float3 *rd_light, float *safe);
+float3		calcul_refract_ray(float3 *ray_dir, float3 *ray_pos, global t_obj *obj,
+	float refract1, float refract2);

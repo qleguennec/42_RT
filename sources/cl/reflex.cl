@@ -1,5 +1,4 @@
 #include "light.h"
-#include "lib.h"
 #include "calc.h"
 
 void	reflex_calcul(global t_obj *objs, global t_lgt *lights,
@@ -25,5 +24,5 @@ void	calcul_reflex_ray(float3 *ray_pos, float3 *ray_dir, global t_obj *objs,
 	float3 normale;
 
 	normale = calcul_normale(objs[obj_ind], *ray_pos);
-	*ray_dir = *ray_pos + (2 * normale * -my_dot(normale, *ray_pos))
+	*ray_dir = *ray_pos + (2 * normale * -my_dot(normale, *ray_pos));
 }

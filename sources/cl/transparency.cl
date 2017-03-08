@@ -3,7 +3,7 @@
 
 void	clearness_color(global t_obj *objs, global t_lgt *lights,
 	short n_objs, short n_lights, float3 ray_pos, float3 ray_dir,
-	short obj_ind, float *light_power, float3 *rd_light)
+	short obj_ind, float *light_power, float3 *rd_light, float3 ambiant)
 {
 	float3	new_pos = ray_pos;
 	float3	rd_light = (float3){0.0f, 0.0f, 0.0f};
@@ -14,14 +14,14 @@ void	clearness_color(global t_obj *objs, global t_lgt *lights,
 	if (objs[obj_ind].opacity < 1.0)
 		rd_light += clearness_calcul(objs, lights, n_objs, n_lights, ray_pos,
 			ray_dir, ray_dir, obj_ind, light_power, rd_light);
-	if (light_power > 0.0f)
+	if (*light_power > 0.0f)
 		get_color(objs, lights, n_objs, n_lights, ray_pos, ray_dir, obj_ind,
 			light_power, rd_light);
 }
 
 void	clearness_calcul(global t_obj *objs, global t_lgt *lights,
 	short n_objs, short n_lights, float3 *new_pos, float3 ray_dir,
-	short obj_ind, float *light_power, float3 *rd_light)
+	short obj_ind, float *light_power, float3 *rd_light, ambiant)
 {
 	short	index = obj_ind;
 
