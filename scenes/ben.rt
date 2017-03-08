@@ -33,7 +33,7 @@
 	<position>25. 50. 500.</position>
 	<rotation>0. 175. 20.</rotation>
 	<color-rgb>1.0 1.0 1.0 </color-rgb>
-	<opacity>.4</opacity>
+	<opacity>1.</opacity>
 	<visibility> ON </visibility>
 	<material>PhOnG</material>
 	<type>sphere      </type>

@@ -16,7 +16,7 @@
 #include "light.cl"
 #include "calc_object.cl"
 
-#define COLOR 1
+#define COLOR 0
 
 float		calc_delta(float a, float b, float c)
 {
