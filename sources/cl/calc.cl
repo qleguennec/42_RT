@@ -16,7 +16,7 @@
 #include "light.cl"
 #include "calc_object.cl"
 
-#define COLOR 0
+#define COLOR 1
 
 float		calc_delta(float a, float b, float c)
 {
@@ -94,10 +94,10 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 		t2 = (float3){5, 6, 7};
 		t3 = dot(t.x, t2.x);
 		printf("t3 = [%f]\n",t3);
-	*/
 		printf("type de lobjet %u\n", tab_objs[0].type);
 		PRINT3(ray_dir,"ray_dir");
 		printf("x[%u] et y[%u]\n",x,y);
+	*/
 	}
     intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
 	if (id > -1 && COLOR)

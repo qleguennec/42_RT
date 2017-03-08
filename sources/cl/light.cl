@@ -18,8 +18,7 @@
 #include "lib.h"
 
 unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
-	short n_objs, short n_lights, /*float ambiant, */float3 ray_pos, float3 ray_dir,
-	short obj_ind)
+	short n_objs, short n_lights, float3 ray_pos, float3 ray_dir,short obj_ind)
 {
 	float	ambiant = 0.25f;
 	float	clearness = 1.0f;

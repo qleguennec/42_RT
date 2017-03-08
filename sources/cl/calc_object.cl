@@ -132,13 +132,11 @@ short			ray_cylinder_intersection(global t_obj *obj, float3 ray_pos,
 */
 	rdir = ray_dir;
 //rotation sur x
-//	ray_dir = rotate_x(&ray_dir, obj->rot.x);
-//	ray_pos = rotate_x(&ray_dir, obj->rot.x);
+	ray_dir = rotate_x(&ray_dir, obj->rot.x);
 //rotation sur y
 //	ray_dir = rotate_y(&ray_dir, obj->rot.y);
 //rotation sur z
 	ray_dir = rotate_z(&ray_dir, obj->rot.z);
-//	ray_pos = rotate_z(&ray_pos, obj->rot.z);
 
 
 	r2dir = ray_dir;
