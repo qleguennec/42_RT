@@ -35,8 +35,8 @@
 	<visibility>False</visibility>
 	<height>50.</height>
 	<position>0.00 00.00 400.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
+	<rotation>0.00 0.00 00.00</rotation>
 	<color-rgb>1.00 0.00 0.00</color-rgb>
 	<opacity>1.0</opacity>
-	<radius>50</radius>
+	<radius>1</radius>
 </object>

@@ -73,6 +73,46 @@ short			ray_cone_intersection(global t_obj *obj, float3 ray_pos, float3 ray_dir,
 	return (1);
 }
 
+static float3 rotate_x(float3 *ray, angle)
+{
+	float3	res;
+	float	rad;
+
+	rad = angle * (M_PI / 180);
+		return (*ray);
+	res.x = ray->x;
+	res.y = cos(rad) * ray->y - (sin(rad) * ray->z);
+	res.z = sin(rad) * ray->y + cos(rad) * ray->z;
+	return (res);
+}
+
+static float3 rotate_y(float3 *ray, angle)
+{
+	float3	res;
+	float	rad;
+
+	rad = angle * (M_PI / 180);
+		return (*ray);
+	res.x = cos(rad) * ray->y + sin(rad) * ray->z;
+	res.y = ray->y;
+	res.z = -(sin(rad) * ray->y) + cos(rad) * ray->z;
+	return (res);
+}
+
+static float3 rotate_z(float3 * ray, angle)
+{
+	float3	res;
+	float	rad;
+
+	if (angle == 0.0f)
+		return (*ray);
+	rad = angle * (M_PI / 180);
+	res.x = cos(rad) * ray->x - (sin(rad) * ray->y);
+	res.y = sin(rad) * ray->x + cos(rad) * ray->y;
+	res.z = ray->z;
+	return (res);
+}
+
 short			ray_cylinder_intersection(global t_obj *obj, float3 ray_pos,
 		float3 ray_dir, float3 *intersect)
 {
@@ -86,14 +126,20 @@ short			ray_cylinder_intersection(global t_obj *obj, float3 ray_pos,
 	offset.y = 0;
 
 	float3 rdir;
+	float3 r2dir;
 /* test rotation
 
 */
-	float	rad;
-	rad = 85.0f * (M_PI / 180.0f);
-//	ray_dir.x = cos(rad) * ray_dir.x - sin(rad) * ray_dir.y;
-
 	rdir = ray_dir;
+//rotation sur x
+	ray_dir = rotate_x(&ray_dir, obj->rot.x);
+//rotation sur y
+	ray_dir = rotate_y(&ray_dir, obj->rot.y);
+//rotation sur z
+	ray_dir = rotate_z(&ray_dir, obj->rot.z);
+
+
+	r2dir = ray_dir;
 
 	ray_dir.y = 0;
 	offset.y = 0;
@@ -102,12 +148,14 @@ short			ray_cylinder_intersection(global t_obj *obj, float3 ray_pos,
 	c = dot(offset, offset) - obj->radius * obj->radius;
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
-	norm(delta, ray_pos, rdir, intersect);
-	if (obj->height > 0.0f && sqrt(dot(*intersect - obj->pos,
+//	norm(delta, ray_pos, normalize(ray_dir), intersect);
+	norm(delta, ray_pos, normalize(rdir), intersect);
+//	norm(delta, ray_pos, normalize(r2dir), intersect);
+/*	if (obj->height > 0.0f && sqrt(dot(*intersect - obj->pos,
 		*intersect - obj->pos)) >sqrt(obj->height * obj->height +
 		obj->radius * obj->radius))
 		return (0);
-	return (1);
+*/	return (1);
 }
 
 short			ray_sphere_intersection(global t_obj *obj, float3 ray_pos,

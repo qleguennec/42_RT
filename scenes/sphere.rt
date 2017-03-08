@@ -33,11 +33,11 @@
 	<type>sphere</type>
 	<material>Lambert</material>
 	<visibility>False</visibility>
-	<position>0.00 0.00 100.00</position>
+	<position>350.00 250.00 1000.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<height>1</height>
 	<color-rgb>1.00 0.00 0.00</color-rgb>
 	<height>20</height>
 	<opacity>1</opacity>
-	<radius>20</radius>
+	<radius>60</radius>
 </object>

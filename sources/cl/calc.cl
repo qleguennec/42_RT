@@ -103,17 +103,17 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 	if (id > -1 && COLOR)
 	{
 		if (id == 0)
-		*pixel = 0xff0000FF;
+			*pixel = 0xff0000FF;
 		else if (id == 1)
-		*pixel = 0x00ff00FF;
+			*pixel = 0x00ff00FF;
 		else if (id == 2)
-		*pixel = 0x00ffffFF;
+			*pixel = 0x00ffffFF;
 		else if (id == 3)
-		*pixel = 0xffffffFF;
+			*pixel = 0xffffffFF;
 		else if (id == 4)
-		*pixel = 0xffff00FF;
+			*pixel = 0xffff00FF;
 		else
-		*pixel = 0xff00ffFF;
+			*pixel = 0xff00ffFF;
 	}
 	else if (id > -1 && !COLOR)
 	{
