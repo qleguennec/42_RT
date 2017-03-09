@@ -13,7 +13,7 @@
 //#include "obj_def.h"
 #include "calc.h"
 #include "light.h"
-#include "light.cl"
+//#include "light.cl"
 #include "calc_object.cl"
 
 #define COLOR 1
@@ -36,21 +36,20 @@ float		calc_delta(float a, float b, float c)
 }
 
 
-static short	ray_intersection(global t_obj *obj, float3 ray_pos,
-		float3 ray_dir, float3 *intersect)
+static short	ray_intersection(t_data *data, global t_obj *obj)
 {
 	if (obj->type == T_PLANE)
-		return (ray_plane_intersection(obj, ray_pos, ray_dir, intersect));
+		return (ray_plane_intersection(data, obj));
 	else if (obj->type == T_CONE)
-		return (ray_cone_intersection(obj, ray_pos, ray_dir, intersect));
+		return (ray_cone_intersection(data, obj));
 	else if (obj->type == T_CYLINDER)
-		return (ray_cylinder_intersection(obj, ray_pos, ray_dir, intersect));
+		return (ray_cylinder_intersection(data, obj));
 	else if (obj->type == T_SPHERE)
-		return (ray_sphere_intersection(obj, ray_pos, ray_dir, intersect));
+		return (ray_sphere_intersection(data, obj));
 	return (0);
 }
 
-float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 ray_dir, short *id)
+float3	touch_object(t_data *data)
 {
 	short			i;
 	float			smallest_norm;
@@ -59,31 +58,51 @@ float3	touch_object(global t_obj *tab_objs, short nobjs, float3 ray_pos, float3 
 	float3			intersect;
 
 	i = -1;
-	*id = -1;
+	data->id = -1;
 	smallest_norm = -1;
 //			if (obj->type == T_PLANE && dot(tmp_intersect - obj->pos, tmp_intersect - obj->pos) < obj->radius * obj->radius) // formule du disque
-	while(++i <  nobjs)
+	while(++i <  data->n_objs)
 	{
-		if (ray_intersection(&tab_objs[i], ray_pos, ray_dir, &intersect))
-			if((norm = float3_to_float(intersect - ray_pos)) > 0.0f &&
+//		if (ray_intersection(&data->objs[i], data->ray_pos,
+		if (ray_intersection(data, &data->objs[i]))
+			if ((norm = float3_to_float(data->intersect - data->ray_pos)) > 0.0f &&
 				(norm < smallest_norm || smallest_norm == -1))
 			{
 				closest_intersect = intersect;
 				smallest_norm = norm;
-				*id = i;
+				data->id = i;
 			}
 	}
 	return (closest_intersect);
 }
 
-void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
-	global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos,
+static void		init_data(t_data *data, global t_obj *objs,
+global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
+float3 ray_dir, float ambiant, float3 intersect,
+global unsigned int *pixel)
+{
+	data->objs = objs;
+	data->lgts = lgts;
+	data->n_objs = n_objs;
+	data->n_lgts = n_lgts;
+	data->ray_pos = ray_pos;
+	data->ray_dir = ray_dir;
+	data->ambiant = ambiant;
+	data->id = -1;
+	data->intersect = intersect;
+	data->pixel = pixel;
+}
+
+void calc(int debug, global unsigned int *pixel, global t_obj *objs,
+	global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
 	float3 ray_dir, global t_cam *cam, short x, short y)
 {
-    short	id;
+	t_data	data;
 	float3	intersect;
+	float	ambiant = 0.20;
 
-	id = -1;
+	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir,
+			ambiant, intersect, pixel);
 	if (debug)
 	{
 	/*
@@ -99,12 +118,12 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 		printf("x[%u] et y[%u]\n",x,y);
 	*/
 	}
-    intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
-	if (id > -1 && COLOR)
+    data.intersect = touch_object(&data);
+	if (data.id > -1 && COLOR)
 	{
-		if (id == 0)
-			*pixel = 0xff0000FF;
-		else if (id == 1)
+		if (data.id == 0)
+			*(data.pixel) = 0xff0000FF;
+/*		else if (id == 1)
 			*pixel = 0x00ff00FF;
 		else if (id == 2)
 			*pixel = 0x00ffffFF;
@@ -114,10 +133,10 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 			*pixel = 0xffff00FF;
 		else
 			*pixel = 0xff00ffFF;
-	}
-	else if (id > -1 && !COLOR)
+*/	}
+	else if (data.id > -1 && !COLOR)
 	{
-		*pixel = get_lighting(debug, tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
+//		*(pixel) = get_lighting(debug, objs, lgts, n_objs, n_lgts, intersect, ray_dir, id);
 	}
 	else
 		*pixel = 0xFFFFFFFF;
