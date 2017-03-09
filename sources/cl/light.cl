@@ -15,7 +15,7 @@
 #include "lib.cl"
 #include "light.h"
 
-unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
+unsigned	get_lighting(global t_obj *objs, global t_lgt *lights,
 	short n_objs, short n_lights, /*float ambiant, */float3 ray_pos, float3 ray_dir,
 	short obj_ind)
 {
@@ -26,27 +26,27 @@ unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
 	short	safe = 0;
 
 	get_color(*objs, *lights, n_objs, n_lights, &ray_pos, &ray_dir,
-			obj_ind, &light_power, &rd_light, &safe, ambiant);
+			obj_ind, safe, &light_power, &rd_light, &safe, ambiant);
 	return(calcul_rendu_light(rd_light, n_lights, ambiant));
 }
 
 void	get_color(global t_obj *objs, global t_lgt *lights,
 	short n_objs, short n_lights, float3 *ray_pos, float3 *ray_dir,
-	short obj_ind, float3 *light_power, float3 *rd_light, float *safe,
+	short obj_ind, float *light_power, float3 *rd_light, float *safe,
 	float ambiant)
 {
 	*safe++;
-	if (light_power > 0.0f && objs[obj_ind]->reflex > 0.0f && *safe < SAFE)
+	if (*light_power > 0.0f && objs[obj_ind].reflex > 0.0f && *safe < SAFE)
 		*rd_light += reflex_calcul(objs, lights, n_objs, n_lights, ray_pos,
-	 		ray_dir, ray_dir, obj_ind, clearness, rd_light);
-	if (light_power > 0.0f && safe < SAFE)
+	 		ray_dir, ambiant, obj_ind, light_power, rd_light, safe);
+	if (*light_power > 0.0f && safe < SAFE)
 		*rd_light += clearness_calcul(objs, lights, n_objs, n_lights, ray_pos,
-	 		ray_dir, ray_dir, obj_ind, light_power, rd_light, ambiant);
+	 		ray_dir, safe, obj_ind, light_power, rd_light, ambiant);
 }
 
 float3		check_all_light(global t_lgt *lights, short n_lights,
-	global t_obj *objs, short n_objs, short obj_ind, float ambiant, float3 ray_dir,
-	float3 ray_pos)
+	global t_obj *objs, short n_objs, short obj_ind, float ambiant, float3 *ray_dir,
+	float3 *ray_pos)
 {
 	short	i = 0;
 	float3	lightdir;
@@ -55,7 +55,7 @@ float3		check_all_light(global t_lgt *lights, short n_lights,
 	rd_light.xyz = (float3)(ambiant, ambiant, ambiant);
 	while (i < n_lights)
 	{
-		lightdir = normalize(ray_pos - lights[i].pos);
+		lightdir = normalize(*ray_pos - lights[i].pos);
 		rd_light += is_light(lights[i].pos, lightdir, objs, &lights[i],
 		n_objs, n_lights, calcul_normale(&objs[obj_ind], ray_pos), obj_ind);
 		i++;

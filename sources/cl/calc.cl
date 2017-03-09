@@ -120,7 +120,7 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 		*pixel = 0x0000ffFF;
 //		*/
 //		PRINT3(intersect,"########inter");
-		*pixel = get_lighting(debug, tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
+		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
 	else
 		*pixel = 0x000000FF;
