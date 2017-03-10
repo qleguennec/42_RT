@@ -58,8 +58,7 @@ kernel void
 	origin.z = cam->pos.z + (cam->focal / 27.5f * cam->rot.z);
 	direction.x = origin.x + ((float)x * indent.x) - cam->pos.x;
 	direction.y = origin.y + ((float)y * indent.y) - cam->pos.y;
-	direction.z = 1;
-	// direction.z = origin.z - cam->pos.z;
+	direction.z = origin.z - cam->pos.z;
 	*(img_buffer + WIDTH * y + x) = -1;
 	calc((DEBUG && ((x == XCENTER && y == YCENTER) || (x == XCENTER && y == YCENTER)))
 		, img_buffer + WIDTH * y + x
