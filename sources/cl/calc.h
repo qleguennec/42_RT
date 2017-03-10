@@ -28,7 +28,7 @@ typedef struct			s_data
 
 float			calc_delta(float a, float b, float c);
 
-void			norm(float delta, t_data *data);
+void			norm(float *delta, float3 *ray_pos, float3 *ray_dir, float3 *intersect);
 
 float3			touch_object(t_data *data);
 
@@ -43,4 +43,8 @@ short			ray_sphere_intersection(t_data *data, global t_obj *obj);
 void			calc(int debug ,global unsigned int *pixel, global t_obj *objs, global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir, global t_cam *cam, short x, short y);
 
 float			float3_to_float(float3 v);
+// rotation function
+float3			rotate_x(float3 * ray, global t_obj *obj);
+float3			rotate_y(float3 * ray, global t_obj *obj);
+float3			rotate_z(float3 * ray, global t_obj *obj);
 #endif
