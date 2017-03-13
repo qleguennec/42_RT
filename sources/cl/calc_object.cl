@@ -54,25 +54,38 @@ short			ray_cone_intersection(t_data *data, global t_obj *obj)
 
 	ray_dir = data->ray_dir;
 	float	rad;
-	rad = 178.0f * (M_PI / 360.0f);
+	// rad = 178.0f * (M_PI / 360.0f);
 
-	offset = data->ray_pos - obj->pos;
-	a = dot(ray_dir.xz, ray_dir.xz) - dot(ray_dir.y, ray_dir.y) * tan(rad);
+	float3 pos;
+	//float rad;
 
-	b = 2.0f * (dot(ray_dir.xz, offset.xz) - dot(ray_dir.y, offset.y) * tan(rad));// -
-//		obj->radius * obj->radius;
+	rad = obj->rot.z * (M_PI / 180.0f);
 
-	c = dot(offset.xz, offset.xz) - dot(offset.y, offset.y) * (tan(rad));
+	// pos.x = -obj->pos.x;
+	// pos.y = obj->pos.y - cos(rad) * obj->pos.z - (sin(rad) * obj->pos.z);
+	// pos.z = obj->pos.y - sin(rad) * obj->pos.z + cos(rad) * obj->pos.z;// 
+	pos.x = obj->pos.x -(cos(rad) * obj->pos.x + (-sin(rad) * obj->pos.y));
+	pos.y = obj->pos.y + (sin(rad) * obj->pos.x - cos(rad) * obj->pos.y);
+	pos.z = obj->pos.z;
+	offset = -pos;
+	ray_dir = rotate_z(&ray_dir, obj);
+	// offset = data->ray_pos - obj->pos;
+	a = dot(ray_dir.xz, ray_dir.xz) - dot(ray_dir.y, ray_dir.y);// * tan(rad);
+
+	b = (2.0f * dot(ray_dir.x, offset.x)) + (2.0f * dot(ray_dir.z, offset.z)) -
+	 (2.0f * dot(ray_dir.y, offset.y));// * tan(rad));
+
+	c = dot(offset.xz, offset.xz) - dot(offset.y, offset.y);// * (tan(rad));
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	norm(&delta, &data->ray_pos, &ray_dir, &data->intersect);
 
-	float test = 1.0f;
+/*	float test = 1.0f;
 	if (obj->height > 0.0f && (sqrt(dot(data->intersect - obj->pos,
 					data->intersect - obj->pos)) > sqrt((test * obj->height) * (test * obj->height) + obj->radius  * obj->radius) ||
 			dot(data->intersect, obj->pos) < 0.0f))
 		return (0);
-	return (1);
+*/	return (1);
 }
 
 
@@ -94,19 +107,29 @@ short			ray_cylinder_intersection(t_data *data, global t_obj *obj)
 // test rotation
 //ne pas changer le ray_dir mtn car on a l'adress
 //rotation sur x
-//	ray_dir = rotate_x(&ray_dir, obj);
+	ray_dir = rotate_x(&ray_dir, obj);
 //rotation sur y
 //	ray_dir = rotate_y(&ray_dir, obj->rot.y);
 //rotation sur z
-	ray_dir = rotate_z(&ray_dir, obj);
+//	ray_dir = rotate_z(&ray_dir, obj);
 	rdir = ray_dir;
+//
+	float3 pos;
+	float rad;
 
+	rad = obj->rot.x * (M_PI / 180.0f);
+
+	pos.x = 0;//obj->pos.x;
+	pos.y = 0;//obj->pos.y - cos(rad) * obj->pos.z - (sin(rad) * obj->pos.z);
+	pos.z = 0;//obj->pos.y - sin(rad) * obj->pos.z + cos(rad) * obj->pos.z;
+	offset = pos;
+	
 	ray_dir.y = 0;
 	offset.y = 0;
-	a = dot(ray_dir, ray_dir);
+	a = dot(ray_dir.x, ray_dir.x) + dot(ray_dir.z, ray_dir.z);
 	b = (2.0f * dot(ray_dir.x, offset.x)) +
 		(2.0f * dot(ray_dir.z, offset.z));
-	c = dot(offset, offset) - obj->radius * obj->radius;
+	c = dot(offset.x, offset.x) + dot(offset.z, offset.z) - obj->radius * obj->radius;
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 
@@ -122,6 +145,8 @@ short			ray_cylinder_intersection(t_data *data, global t_obj *obj)
 	tmp = sqrt(tmp);
 	t0 = ((-b + tmp) / (2.0f * a));
 	t1 = ((-b - tmp) / (2.0f * a));
+	tmp = (t0 > 0.0f && (t0 < t1 || t1 <= 0.0f)) ? t0 : t1;
+	/*
 	if (t0 > t1)
 	{
 		tmp = t0;
@@ -160,6 +185,7 @@ short			ray_cylinder_intersection(t_data *data, global t_obj *obj)
 	}
 //	norm(delta, data->ray_pos, normalize(rdir), data->intersect);
 //	norm(delta, data->ray_pos, normalize(r2dir), data->intersect);
+	*/
 	return (1);
 }
 /*
