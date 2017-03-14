@@ -29,6 +29,12 @@ float3          rotate_y(float3 *ray, global t_obj *obj, float3 *offset)
 	if (obj->rot.y == 0.0f)
 		return (*ray);
 	rad = obj->rot.y * (M_PI / 180.0f);
+
+	offset->x = cos(rad) * obj->pos.x + (sin(rad) * obj->pos.z);
+	offset->y = obj->pos.y;
+	offset->z = (-sin(rad) * obj->pos.x) + cos(rad) * obj->pos.z;
+	*offset *= -1;
+
 	res.x = cos(rad) * ray->y + sin(rad) * ray->z;
 	res.y = ray->y;
 	res.z = -(sin(rad) * ray->y) + cos(rad) * ray->z;
