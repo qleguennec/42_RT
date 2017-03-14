@@ -44,7 +44,7 @@ void			calc(int debug ,global unsigned int *pixel, global t_obj *objs, global t_
 
 float			float3_to_float(float3 v);
 // rotation function
-float3			rotate_x(float3 * ray, global t_obj *obj);
-float3			rotate_y(float3 * ray, global t_obj *obj);
-float3			rotate_z(float3 * ray, global t_obj *obj);
+float3			rotate_x(float3 * ray, global t_obj *obj, float3 *offset);
+float3			rotate_y(float3 * ray, global t_obj *obj, float3 *offset);
+float3			rotate_z(float3 * ray, global t_obj *obj, float3 *offset);
 #endif
