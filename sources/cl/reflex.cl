@@ -16,7 +16,7 @@ void	reflex_calcul(global t_obj *objs, global t_lgt *lights,
 	*light_power = temp_power - objs[obj_ind].reflex;
 	calcul_reflex_ray(&temp_pos, &temp_dir, objs, obj_ind);
 	get_color(objs, lights, n_objs, n_lights, ray_pos, ray_dir,
-		obj_ind, light_power, rd_light, safe);
+		obj_ind, light_power, rd_light, safe, ambiant);
 }
 
 void	calcul_reflex_ray(float3 *ray_pos, float3 *ray_dir, global t_obj *objs,

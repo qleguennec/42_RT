@@ -11,7 +11,7 @@ void	clearness_color(global t_obj *objs, global t_lgt *lights,
 		ambiant, ray_dir, ray_pos)
 	*light_power *= objs[obj_ind].opacity;
 	if (objs[obj_ind].opacity < 1.0f)
-		rd_light += clearness_calcul(objs, lights, n_objs, n_lights, ray_pos,
+		clearness_calcul(objs, lights, n_objs, n_lights, ray_pos,
 			ray_dir, safe, obj_ind, light_power, rd_light, ambiant);
 	if (*light_power > 0.0f)
 		get_color(objs, lights, n_objs, n_lights, ray_pos, ray_dir, obj_ind,
@@ -25,9 +25,9 @@ void	clearness_calcul(global t_obj *objs, global t_lgt *lights,
 {
 	short	index = obj_ind;
 
-	ray_dir = calcul_refract_ray(ray_dir, new_pos, &objs[obj_ind], 1,
+	*ray_dir = calcul_refract_ray(ray_dir, new_pos, &objs[obj_ind], 1,
 		objs[obj_ind].refract);
-	new_pos = touch_object(objs, n_objs, *new_pos, *ray_dir, &index);
+	*new_pos = touch_object(objs, n_objs, *new_pos, *ray_dir, &index);
 	if (index == -1)
 	{
 		// *rd_light += (float3){0.0f, 0.0f, 0.0f} * light_power;
@@ -35,17 +35,17 @@ void	clearness_calcul(global t_obj *objs, global t_lgt *lights,
 	}
 	if (index == obj_ind)
 	{
-		ray_dir = calcul_refract_ray(ray_dir, new_pos, &objs[obj_ind],
+		*ray_dir = calcul_refract_ray(ray_dir, new_pos, &objs[obj_ind],
 			objs[obj_ind].refract, 1);
-		new_pos = touch_object(objs, n_objs, *new_pos, *ray_dir, &index);
+		*new_pos = touch_object(objs, n_objs, *new_pos, *ray_dir, &index);
 	}
 	else
 	{
 		obj_ind = index;
 		*rd_light += (check_all_light(lights, n_lights, objs, n_objs, index,
-			ambiant, ray_dir, new_pos) * light_power);
+			ambiant, ray_dir, new_pos) * *light_power);
 		*light_power *= (objs[obj_ind].opacity);
-		ray_dir = calcul_refract_ray(ray_dir, new_pos, &objs[obj_ind],
+		*ray_dir = calcul_refract_ray(ray_dir, new_pos, &objs[obj_ind],
 			objs[obj_ind].refract, 1);
 	}
 }
