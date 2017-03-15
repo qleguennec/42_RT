@@ -39,7 +39,7 @@ void	get_color(global t_obj *objs, global t_lgt *lights,
 		reflex_calcul(objs, lights, n_objs, n_lights, ray_pos,
 	 		ray_dir, ambiant, obj_ind, light_power, rd_light, safe);
 	if (*light_power > 0.0f && *safe < SAFE)
-		clearness_calcul(objs, lights, n_objs, n_lights, ray_pos,
+		clearness_color(objs, lights, n_objs, n_lights, ray_pos,
 	 		ray_dir, safe, obj_ind, light_power, rd_light, ambiant);
 }
 

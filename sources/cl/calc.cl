@@ -105,7 +105,7 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
     intersect = touch_object(tab_objs, nobjs, ray_pos, ray_dir, &id);
 	if (id > -1)
 	{
-	//	/*
+		/*
 		if (id == 1)
 		*pixel = 0xff0000FF;
 		else if (id == 2)
@@ -118,7 +118,7 @@ void calc(int debug, global unsigned int *pixel, global t_obj *tab_objs,
 		*pixel = 0xffff00FF;
 		else
 		*pixel = 0x0000ffFF;
-//		*/
+		*/
 //		PRINT3(intersect,"########inter");
 		*pixel = get_lighting(tab_objs, lgts, nobjs, nlgts, intersect, ray_dir, id);
 	}
