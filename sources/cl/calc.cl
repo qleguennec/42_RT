@@ -93,7 +93,7 @@ global unsigned int *pixel)
 	data->pixel = pixel;
 }
 
-void calc(int debug, global unsigned int *pixel, global t_obj *objs,
+void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
 	float3 ray_dir, global t_cam *cam, short x, short y)
 {

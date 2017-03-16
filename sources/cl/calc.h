@@ -40,7 +40,7 @@ short			cylinder_intersection(t_data *data, global t_obj *obj);
 
 short			sphere_intersection(t_data *data, global t_obj *obj);
 
-void			calc(int debug ,global unsigned int *pixel, global t_obj *objs, global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir, global t_cam *cam, short x, short y);
+void			calc_picture(int debug ,global unsigned int *pixel, global t_obj *objs, global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir, global t_cam *cam, short x, short y);
 
 float			float3_to_float(float3 v);
 // rotation function
