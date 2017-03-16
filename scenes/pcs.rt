@@ -36,7 +36,7 @@
 	<position>0.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 1.00 0.00</color-rgb>
-	<opacity>.40</opacity>
+	<opacity>1</opacity>
 	<radius>30</radius>
 </object>
 
@@ -48,7 +48,8 @@
 	<position>0.00 20.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>1.00 0.00 0.00</color-rgb>
-	<opacity>.40</opacity>
+	<opacity>1</opacity>
+	<height>50</height>
 	<radius>25</radius>
 </object>
 
@@ -60,6 +61,6 @@
 	<position>10.00 20.00 290.00</position>
 	<rotation>0.00 1.00 0.00</rotation>
 	<color-rgb>0.00 0.00 1.00</color-rgb>
-	<opacity>.40</opacity>
+	<opacity>1</opacity>
 	<radius>25</radius>
 </object>

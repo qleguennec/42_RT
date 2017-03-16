@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/02/19 16:00:19 by lgatibel         ###   ########.fr        #
+#*   Updated: 2017/02/20 08:39:18 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,9 @@ HEADER		= include \
 		  libraries/libgnl/include \
 		  libraries/libcl/include \
 		  libraries/libfmt/include
+
+# Compilation options
+BENCHMARK_KRL	?=	0
 
 
 SOURCES		= \
@@ -99,7 +102,6 @@ SOURCES		= \
 			parser/init_global_stuctures.c \
 			parser/set_elements_parameters.c \
 			renderer/init_renderer.c \
-			renderer/scene_init_rendering.c \
 			renderer/start_renderer.c \
 			export/export_config.c \
 			export/cameras.c \
@@ -135,7 +137,7 @@ $(BUILD_DIR):
 	@mkdir -p $@
 
 $(DIR_O)/%.o: $(DIR_S)/%.c
-	@$(CC) $(FLAGS) $(addprefix -I, $(HEADER)) -c -o $@ $<
+	@$(CC) $(FLAGS) -D BENCHMARK_KRL=$(BENCHMARK_KRL) $(addprefix -I, $(HEADER)) -c -o $@ $<
 
 norme:
 	@make norme -C $(LIBFT)
@@ -175,5 +177,10 @@ re: fclean
 
 r: $(OBJS)
 	@$(CC) $(FLAGS) -L $(LIBFT) -lft -L $(FSDL) -lfsdl -lpthread -L $(LIBVECT) -lvect -L $(LIBFMT) -lfmt -L $(LIBGNL) -lgnl -L $(LIBCL) -lcl -o $(NAME) $^ $(OPENCL_F) $(SDL2_P) $(SDL2_F) $(SDL2_I) $(SDL2_TTF_I) $(SDL2_IMG_I)
+
+benchmark_krl: $(OBJS)
+	rm temporary/cl_build/cl_main_krl_exec.o
+	BENCHMARK_KRL=1 make
+
 
 .PHONY: all, temporary, norme, clean, fclean, re
