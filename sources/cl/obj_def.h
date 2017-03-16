@@ -16,7 +16,7 @@
 # include "../../include/obj_types.h"
 
 # define PREC 0.0000001f
-# define SAFE 2
+# define SAFE 1
 
 typedef struct		s_obj
 {

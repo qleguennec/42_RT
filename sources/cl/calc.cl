@@ -30,7 +30,8 @@ float		calc_delta(float a, float b, float c)
 //	printf ("tmp\n", tmp);
 	t0 = ((-b + tmp) / (2.0f * a));
 	t1 = ((-b - tmp) / (2.0f * a));
-	if (t0 > 0.0f && (t0 < t1 || t1 <= 0.0f))
+	// if (t0 > 0.0f && (t0 < t1 || t1 <= 0.0f))
+	if (t0 < t1)
 		return (t0);
 	return (t1);
 }

@@ -25,17 +25,18 @@ void	clearness_calcul(global t_obj *objs, global t_lgt *lights,
 
 	// *ray_dir = calcul_refract_ray(ray_dir, new_pos, &objs[obj_ind], 1,
 		// objs[obj_ind].refract);
+	*new_pos += *ray_dir;
 	*new_pos = touch_object(objs, n_objs, *new_pos, *ray_dir, &index);
-	if (index == -1)
-	{
-		// *rd_light += (float3){0.0f, 0.0f, 0.0f} * light_power;
-		*light_power = 0.0f;
-	}
-	while (index == obj_ind)
+	if (index == obj_ind)
 	{
 		// *ray_dir = calcul_refract_ray(ray_dir, new_pos, &objs[obj_ind],
 			// objs[obj_ind].refract, 1.0f);
 		*new_pos = touch_object(objs, n_objs, *new_pos, *ray_dir, &index);
+	}
+	if (index == -1)
+	{
+		// *rd_light += (float3){0.0f, 0.0f, 0.0f} * light_power;
+		*light_power = 0.0f;
 	}
 		obj_ind = index;
 		*rd_light += (check_all_light(lights, n_lights, objs, n_objs, index,
