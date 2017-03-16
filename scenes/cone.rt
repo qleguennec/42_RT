@@ -33,10 +33,10 @@
 	<type>Cone</type>
 	<material>Lambert</material>
 	<visibility>False</visibility>
-	<position>-50.00  0.00 250.00</position>
+	<position>00.00  0.00 250.00</position>
 	<rotation>10.00 0.00 45.00</rotation>
 	<color-rgb>1.00 0.00 0.00</color-rgb>
 	<height>50</height>
 	<opacity>1</opacity>
-	<radius>5</radius>
+	<radius>0</radius>
 </object>
