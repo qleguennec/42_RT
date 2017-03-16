@@ -39,13 +39,13 @@ float		calc_delta(float a, float b, float c)
 static short	ray_intersection(t_data *data, global t_obj *obj)
 {
 	if (obj->type == T_PLANE)
-		return (ray_plane_intersection(data, obj));
+		return (plane_intersection(data, obj));
 	else if (obj->type == T_CONE)
-		return (ray_cone_intersection(data, obj));
+		return (cone_intersection(data, obj));
 	else if (obj->type == T_CYLINDER)
-		return (ray_cylinder_intersection(data, obj));
+		return (cylinder_intersection(data, obj));
 	else if (obj->type == T_SPHERE)
-		return (ray_sphere_intersection(data, obj));
+		return (sphere_intersection(data, obj));
 	return (0);
 }
 
