@@ -1,60 +1,47 @@
 
 #include "light.h"
 
-void	clearness_color(t_data * data, global t_obj *objs, global t_lgt *lights,
-	short n_objs, short n_lights, float3 *ray_pos, float3 *ray_dir, short *safe,
-	short obj_ind, float *light_power, float3 *rd_light, float ambiant)
+void	clearness_color(t_data *data)
 {
-	*rd_light += check_all_light(data, lights, n_lights, objs, n_objs, obj_ind,
-		ambiant, ray_dir, ray_pos);
-	*light_power *= objs[obj_ind].opacity;
-	if (objs[obj_ind].opacity < 1.0f)
-		clearness_calcul(data, objs, lights, n_objs, n_lights, ray_pos,
-			ray_dir, safe, obj_ind, light_power, rd_light, ambiant);
-	if (*light_power > 0.0f)
-		get_color(data, objs, lights, n_objs, n_lights, ray_pos, ray_dir, obj_ind,
-			light_power, rd_light, safe, ambiant);
+	data->rd_light += check_all_light(data);
+	data->light_pow *= objs[data->id].opacity;
+	if (objs[data->id].opacity < 1.0f)
+		clearness_calcul(data);
+	if (data->light_pow > 0.0f)
+		get_color(data);
 }
 
-void	clearness_calcul(t_data *data, global t_obj *objs, global t_lgt *lights,
-	short n_objs, short n_lights, float3 *new_pos, float3 *ray_dir, short *safe,
-	short obj_ind, float *light_power, float3 *rd_light, float ambiant)
+//fonction a amelioré, (calcul des different indices si on passe pas dans l'air)
+void	clearness_calcul(t_data *data)
 
 {
-	short	index = obj_ind;
+	short	index = data->id;
 
-	// *ray_dir = calcul_refract_ray(ray_dir, new_pos, &objs[obj_ind], 1,
-		// objs[obj_ind].refract);
-	// *new_pos += *ray_dir;
+	// *ray_dir = calcul_refract_ray(data, 1.0f, data->objs[data->id].refract);
 	data->intersect = touch_object(data);
-	if (index == obj_ind)
+	if (index == data->id)
 	{
-		// *ray_dir = calcul_refract_ray(ray_dir, new_pos, &objs[obj_ind],
-			// objs[obj_ind].refract, 1.0f);
+		// *ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
 		data->intersect = touch_object(data);
 	}
 	if (index == -1)
 	{
-		// *rd_light += (float3){0.0f, 0.0f, 0.0f} * light_power;
-		*light_power = 0.0f;
+		// data->rd_light += (float3){0.0f, 0.0f, 0.0f} * light_power;
+		data->light_pow = 0.0f;
 	}
-		obj_ind = index;
-		*rd_light += (check_all_light(data, lights, n_lights, objs, n_objs, index,
-			ambiant, ray_dir, new_pos) * *light_power);
-		*light_power -= (objs[obj_ind].opacity);
-		// *ray_dir = calcul_refract_ray(ray_dir, new_pos, &objs[obj_ind],
-			// objs[obj_ind].refract, 1.0f);
+		data->rd_light += (check_all_light(data) * data->light_pow);
+		data->light_pow -= (objs[data->id].opacity);
+		// *ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
 }
 
-float3	calcul_refract_ray(t_data *data, float3 *ray_dir, float3 *ray_pos, global t_obj *obj,
-	float refract1, float refract2)
+float3	calcul_refract_ray(t_data *data, float refract1, float refract2)
 {
 	float	n;
 	float	c1;
 	float	c2;
 	float3	normale;
 
-	normale = calcul_normale(obj, ray_pos);
+	normale = calcul_normale(obj, data->intersect);
 	n = refract1 / refract2;
-	return (*ray_dir * n + normale * (n * c1 - c2));
+	return (data->ray_dir * n + normale * (n * c1 - c2));
 }

@@ -49,7 +49,7 @@ static short	ray_intersection(t_data *data, global t_obj *obj)
 		return (sphere_intersection(data, obj));
 	return (0);
 }
-
+// mettre en void set intersect.
 float3	touch_object(t_data *data)
 {
 	short			i;
@@ -92,6 +92,10 @@ global unsigned int *pixel)
 	data->id = -1;
 	data->intersect = intersect;
 	data->pixel = pixel;
+	data->rd_light = 0.0f;
+	data->light_pow = 1.0f;
+	data->ambiant = ambiant;
+	data->safe = 0;
 }
 
 void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,

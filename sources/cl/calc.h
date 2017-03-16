@@ -6,7 +6,7 @@
 /*   By: lgatibel <lgatibel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:37 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/03/09 16:15:32 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/03/16 16:36:08 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct			s_data
 	float				ambiant;
 	short				id;
 	float3				intersect;
+	float				light_pow;
+	float3				rd_light;
 }						t_data;
 
 float			calc_delta(float a, float b, float c);
