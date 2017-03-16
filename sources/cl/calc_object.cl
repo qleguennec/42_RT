@@ -75,7 +75,8 @@ short			cone_intersection(t_data *data, global t_obj *obj)
 					data->intersect - obj->pos)) > sqrt((test * obj->height) * (test * obj->height) + obj->radius  * obj->radius) ||
 			dot(data->intersect, obj->pos) < 0.0f))
 		return (0);
-*/	return (1);
+*/
+	return (1);
 }
 
 
@@ -107,7 +108,6 @@ short			cylinder_intersection(t_data *data, global t_obj *obj)
 
 	ray_dir = rdir;
 	calc_intersect(&delta, &data->ray_pos, &ray_dir, &data->intersect);
-
 		//test de la troncature du cylindre
 		// if (obj->height > 0.0f && sqrt(dot(data->intersect - obj->pos,
 		// data->intersect - obj->pos)) <= sqrt(obj->height * obj->height +

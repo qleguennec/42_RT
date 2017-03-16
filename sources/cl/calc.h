@@ -30,7 +30,7 @@ float			calc_delta(float a, float b, float c);
 
 void			calc_intesect(float *delta, float3 *ray_pos, float3 *ray_dir, float3 *intersect);
 
-float3			touch_object(t_data *data);
+void			touch_object(t_data *data);
 
 short			plane_intersection(t_data *data, global t_obj *obj);
 

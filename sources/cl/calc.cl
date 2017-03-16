@@ -49,7 +49,7 @@ static short	ray_intersection(t_data *data, global t_obj *obj)
 	return (0);
 }
 
-float3	touch_object(t_data *data)
+void			touch_object(t_data *data)
 {
 	short			i;
 	float			smallest_norm;
@@ -63,7 +63,6 @@ float3	touch_object(t_data *data)
 //			if (obj->type == T_PLANE && dot(tmp_intersect - obj->pos, tmp_intersect - obj->pos) < obj->radius * obj->radius) // formule du disque
 	while(++i <  data->n_objs)
 	{
-//		if (ray_intersection(&data->objs[i], data->ray_pos,
 		if (ray_intersection(data, &data->objs[i]))
 			if ((norm = float3_to_float(data->intersect - data->ray_pos)) > 0.0f &&
 				(norm < smallest_norm || smallest_norm == -1))
@@ -73,7 +72,7 @@ float3	touch_object(t_data *data)
 				data->id = i;
 			}
 	}
-	return (closest_intersect);
+	data->intersect = closest_intersect;
 }
 
 static void		init_data(t_data *data, global t_obj *objs,
@@ -118,7 +117,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		printf("x[%u] et y[%u]\n",x,y);
 	*/
 	}
-    data.intersect = touch_object(&data);
+    touch_object(&data);
 	if (data.id > -1 && COLOR)
 	{
 		if (data.id == 0)
