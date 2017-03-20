@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_object.cl                                     :+:      :+:    :+:   */
+/*   calc_intersect.cl                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgatibel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "obj_def.h"
-#include "calc.h"
-#include "rotate.cl"
 
 float			float3_to_float(float3 v){
 	return (v.x + v.y + v.z);
 }
 
-void			calc_intersection(float *delta, float3 *ray_pos, float3 *ray_dir, float3 *intersect)
+void			calc_intersect(float *delta, float3 *ray_pos, float3 *ray_dir,
+ float3 *intersect)
 {
 	*intersect = *ray_pos + (*ray_dir * (*delta));
 }
@@ -52,7 +50,7 @@ short			cone_intersection(t_data *data, global t_obj *obj)
 	float3	offset;
 	float3 	ray_dir;
 	float3	rdir;
-	
+
 	ray_dir = data->ray_dir;
 	rdir = ray_dir;
 	offset = data->ray_pos - obj->pos;
@@ -72,10 +70,12 @@ short			cone_intersection(t_data *data, global t_obj *obj)
 
 /*	float test = 1.0f;
 	if (obj->height > 0.0f && (sqrt(dot(data->intersect - obj->pos,
-					data->intersect - obj->pos)) > sqrt((test * obj->height) * (test * obj->height) + obj->radius  * obj->radius) ||
+					data->intersect - obj->pos)) > sqrt((test * obj->height) *
+					 (test * obj->height) + obj->radius  * obj->radius) ||
 			dot(data->intersect, obj->pos) < 0.0f))
 		return (0);
-*/	return (1);
+*/
+	return (1);
 }
 
 
@@ -97,17 +97,17 @@ short			cylinder_intersection(t_data *data, global t_obj *obj)
 //rotation sur y
 	// ray_dir = rotate_y(&ray_dir, obj, &offset);
 //rotation sur z
-	// ray_dir = rotate_z(&ray_dir, obj, &offset);
-	
+	ray_dir = rotate_z(&ray_dir, obj, &offset);
+
 	a = dot(ray_dir.x, ray_dir.x) + dot(ray_dir.z, ray_dir.z);
 	b = (2.0f * dot(ray_dir.x, offset.x)) + (2.0f * dot(ray_dir.z, offset.z));
-	c = dot(offset.x, offset.x) + dot(offset.z, offset.z) - obj->radius * obj->radius;
+	c = dot(offset.x, offset.x) + dot(offset.z, offset.z) - obj->radius *
+	obj->radius;
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 
-	ray_dir = rdir;
-	calc_intersection(&delta, &data->ray_pos, &ray_dir, &data->intersect);
-
+	// ray_dir = rdir;
+	calc_intersect(&delta, &data->ray_pos, &ray_dir, &data->intersect);
 		//test de la troncature du cylindre
 		// if (obj->height > 0.0f && sqrt(dot(data->intersect - obj->pos,
 		// data->intersect - obj->pos)) <= sqrt(obj->height * obj->height +
@@ -128,13 +128,12 @@ short			sphere_intersection(t_data *data, global t_obj *obj)
 
 	ray_dir = data->ray_dir;
 	offset = data->ray_pos - obj->pos;
-	a = 1.0f;
-	b = dot(ray_dir, offset);
+	a = dot(ray_dir, ray_dir);
+	b = (2.0f * dot(ray_dir.x, offset.x)) + (2.0f * dot(ray_dir.y, offset.y)) +
+	 (2.0f * dot(ray_dir.z, offset.z));
 	c = dot(offset, offset) - obj->radius * obj->radius;
-	if ((delta = (b * b) - a *c) < 0.0f)
+	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
-	delta = sqrt(delta);
-	delta = (-(b + delta) < 0.0f) ? -(b - delta): -(b + delta);
-	calc_intersection(&delta, &data->ray_pos, &ray_dir, &data->intersect);
+	calc_intersect(&delta, &data->ray_pos, &ray_dir, &data->intersect);
 	return (1);
 }
