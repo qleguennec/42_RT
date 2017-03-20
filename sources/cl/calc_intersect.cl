@@ -18,7 +18,7 @@ float			float3_to_float(float3 v){
 void			calc_intersect(float *delta, float3 *ray_pos, float3 *ray_dir,
  float3 *intersect)
 {
-	*intersect = *ray_pos + (*ray_dir * (*delta));
+	*intersect = *ray_pos + ((*ray_dir) * (*delta));
 }
 
 short			plane_intersection(t_data *data, global t_obj *obj)
@@ -128,13 +128,11 @@ short			sphere_intersection(t_data *data, global t_obj *obj)
 
 	ray_dir = data->ray_dir;
 	offset = data->ray_pos - obj->pos;
-	a = 1.0f;
-	b = dot(ray_dir, offset);
+	a = dot(ray_dir, ray_dir);
+	b = 2.0f * dot(ray_dir, offset);
 	c = dot(offset, offset) - obj->radius * obj->radius;
-	if ((delta = (b * b) - a *c) < 0.0f)
+		if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
-	delta = sqrt(delta);
-	delta = (-(b + delta) < 0.0f) ? -(b - delta) : -(b + delta);
 	calc_intersect(&delta, &data->ray_pos, &ray_dir, &data->intersect);
 	return (1);
 }

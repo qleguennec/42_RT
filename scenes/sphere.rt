@@ -37,5 +37,5 @@
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>1.00 0.00 0.00</color-rgb>
 	<opacity>1</opacity>
-	<radius>10</radius>
+	<radius>40</radius>
 </object>
