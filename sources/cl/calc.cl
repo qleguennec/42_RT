@@ -13,7 +13,7 @@
 #include "obj_def.h"
 #include "calc.h"
 #include "light.h"
-//#include "light.cl"
+#include "light.cl"
 #include "calc_intersect.cl"
 #include "rotate.cl"
 //debug

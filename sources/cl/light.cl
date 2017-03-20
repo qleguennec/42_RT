@@ -61,12 +61,11 @@ unsigned	calcul_rendu_light(t_data *data)
 float3		is_light(t_data * data, float3 lightdir, t_obj *lgt, float3 normale)
 {
 	short	index;
-	float3	new_pos;
 	float3 light_clr;
 	char	cal_light = 0;
 
 	light_clr = data->lights->clr;
-	new_pos	= touch_object(data);
+	touch_object(data);
 	while (index > -1 && index != data->id && data->objs[index].opacity < 1.0f)
 	{
 		if (cal_light == 0)
