@@ -10,11 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "obj_def.h"
+#include "obj_def.h"
 #include "calc.h"
 #include "light.h"
 //#include "light.cl"
-#include "calc_object.cl"
+#include "calc_intersect.cl"
+#include "rotate.cl"
 
 #define COLOR 1
 

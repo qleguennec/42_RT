@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_object.cl                                     :+:      :+:    :+:   */
+/*   calc_intersect.cl                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgatibel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "obj_def.h"
-#include "calc.h"
-#include "rotate.cl"
 
 float			float3_to_float(float3 v){
 	return (v.x + v.y + v.z);
 }
 
-void			calc_intersect(float *delta, float3 *ray_pos, float3 *ray_dir, float3 *intersect)
+void			calc_intersect(float *delta, float3 *ray_pos, float3 *ray_dir,
+ float3 *intersect)
 {
 	*intersect = *ray_pos + (*ray_dir * (*delta));
 }
@@ -72,7 +70,8 @@ short			cone_intersection(t_data *data, global t_obj *obj)
 
 /*	float test = 1.0f;
 	if (obj->height > 0.0f && (sqrt(dot(data->intersect - obj->pos,
-					data->intersect - obj->pos)) > sqrt((test * obj->height) * (test * obj->height) + obj->radius  * obj->radius) ||
+					data->intersect - obj->pos)) > sqrt((test * obj->height) *
+					 (test * obj->height) + obj->radius  * obj->radius) ||
 			dot(data->intersect, obj->pos) < 0.0f))
 		return (0);
 */
@@ -102,7 +101,8 @@ short			cylinder_intersection(t_data *data, global t_obj *obj)
 	
 	a = dot(ray_dir.x, ray_dir.x) + dot(ray_dir.z, ray_dir.z);
 	b = (2.0f * dot(ray_dir.x, offset.x)) + (2.0f * dot(ray_dir.z, offset.z));
-	c = dot(offset.x, offset.x) + dot(offset.z, offset.z) - obj->radius * obj->radius;
+	c = dot(offset.x, offset.x) + dot(offset.z, offset.z) - obj->radius * 
+	obj->radius;
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 
