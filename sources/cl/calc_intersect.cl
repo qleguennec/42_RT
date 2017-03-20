@@ -18,7 +18,7 @@ float			float3_to_float(float3 v){
 void			calc_intersect(float *delta, float3 *ray_pos, float3 *ray_dir,
  float3 *intersect)
 {
-	*intersect = *ray_pos + ((*ray_dir) * (*delta));
+	*intersect = *ray_pos + (*ray_dir * (*delta));
 }
 
 short			plane_intersection(t_data *data, global t_obj *obj)
@@ -97,7 +97,7 @@ short			cylinder_intersection(t_data *data, global t_obj *obj)
 //rotation sur y
 	// ray_dir = rotate_y(&ray_dir, obj, &offset);
 //rotation sur z
-	// ray_dir = rotate_z(&ray_dir, obj, &offset);
+	ray_dir = rotate_z(&ray_dir, obj, &offset);
 	
 	a = dot(ray_dir.x, ray_dir.x) + dot(ray_dir.z, ray_dir.z);
 	b = (2.0f * dot(ray_dir.x, offset.x)) + (2.0f * dot(ray_dir.z, offset.z));
@@ -106,7 +106,7 @@ short			cylinder_intersection(t_data *data, global t_obj *obj)
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 
-	ray_dir = rdir;
+	// ray_dir = rdir;
 	calc_intersect(&delta, &data->ray_pos, &ray_dir, &data->intersect);
 		//test de la troncature du cylindre
 		// if (obj->height > 0.0f && sqrt(dot(data->intersect - obj->pos,
@@ -129,9 +129,10 @@ short			sphere_intersection(t_data *data, global t_obj *obj)
 	ray_dir = data->ray_dir;
 	offset = data->ray_pos - obj->pos;
 	a = dot(ray_dir, ray_dir);
-	b = 2.0f * dot(ray_dir, offset);
+	b = (2.0f * dot(ray_dir.x, offset.x)) + (2.0f * dot(ray_dir.y, offset.y)) +
+	 (2.0f * dot(ray_dir.z, offset.z));
 	c = dot(offset, offset) - obj->radius * obj->radius;
-		if ((delta = calc_delta(a, b, c)) < 0.0f)
+	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, &data->ray_pos, &ray_dir, &data->intersect);
 	return (1);
