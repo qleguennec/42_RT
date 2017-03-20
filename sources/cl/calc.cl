@@ -37,39 +37,40 @@ float		calc_delta(float a, float b, float c)
 }
 
 
-static short	ray_intersection(t_data *data, global t_obj *obj)
+static short	ray_intersection(t_data *data, short *index)
 {
-	if (obj->type == T_PLANE)
-		return (plane_intersection(data, obj));
-	else if (obj->type == T_CONE)
-		return (cone_intersection(data, obj));
-	else if (obj->type == T_CYLINDER)
-		return (cylinder_intersection(data, obj));
-	else if (obj->type == T_SPHERE)
-		return (sphere_intersection(data, obj));
+	data->obj = &data->objs[(int)*index];
+	if (data->obj->type == T_PLANE)
+		return (plane_intersection(data));
+	else if (data->obj->type == T_CONE)
+		return (cone_intersection(data));
+	else if (data->obj->type == T_CYLINDER)
+		return (cylinder_intersection(data));
+	else if (data->obj->type == T_SPHERE)
+		return (sphere_intersection(data));
 	return (0);
 }
 
 void			touch_object(t_data *data)
 {
-	short			i;
+	short			index;
 	float			smallest_norm;
 	float			norm;
 	float3			closest_intersect;
 
-	i = -1;
+	index = -1;
 	data->id = -1;
 	smallest_norm = -1;
 //			if (obj->type == T_PLANE && dot(tmp_intersect - obj->pos, tmp_intersect - obj->pos) < obj->radius * obj->radius) // formule du disque
-	while(++i <  data->n_objs)
+	while(++index <  data->n_objs)
 	{
-		if (ray_intersection(data, &data->objs[i]))
+		if (ray_intersection(data, &index))
 			if ((norm = fast_distance(data->intersect,data->ray_pos)) > 0.0f &&
 				(norm < smallest_norm || smallest_norm == -1))
 			{
 				closest_intersect = data->intersect;
 				smallest_norm = norm;
-				data->id = i;
+				data->id = index;
 			}
 	}
 	data->intersect = closest_intersect;

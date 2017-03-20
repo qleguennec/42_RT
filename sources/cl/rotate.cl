@@ -1,62 +1,81 @@
-float3          rotate_x(float3 *ray, global t_obj *obj, float3 *offset)
+float3			rotate_ray(float3 *ray, t_data *data)
 {
 	float3	res;
-	float3		pos;
-	float	rad;
 
-	pos = obj->pos;
-	if (obj->rot.x == 0.0f)
-		return (*ray);
-	rad = obj->rot.x * (M_PI / 180.0f);
+	data->rad = data->obj->rot * (float)(M_PI / 180.0f);
+	res = rotate_x(ray, data->rad.x);
+	// res = rotate_y(&ray, data->rad.y);
+	// res = rotate_z(&ray, data->rad.z);
+	rotate_pos_x(data);
+	// rotate_pos_y(data);
+	// rotate_pos_z(data);
+	return(res);
+}
+// 
+void			rotate_pos_x(t_data *data)
+{
+	float3	pos;
 
-	offset->x = pos.x;
-	offset->y = cos(rad) * pos.y + (-sin(rad) * pos.z);
-	offset->z = sin(rad) * pos.y + cos(rad) * pos.z;
-	*offset *= -1;
+	pos = data->obj->pos;
+	data->offset.x = pos.x;
+	data->offset.y = cos(data->rad.x) * pos.y + (-sin(data->rad.x) * pos.z);
+	data->offset.z = sin(data->rad.x) * pos.y + cos(data->rad.x) * pos.z;
+	data->offset *= -1;
+}
+
+float3          rotate_x(float3 *ray, float rad)
+{
+	float3	res;
 
 	res.x = ray->x;
 	res.y = cos(rad) * ray->y + (-sin(rad) * ray->z);
 	res.z = sin(rad) * ray->y + cos(rad) * ray->z;
 	return (normalize(res));
 }
-float3          rotate_y(float3 *ray, global t_obj *obj, float3 *offset)
+
+void          rotate_pos_y(t_data *data)
 {
-	float3	res;
-	float	rad;
     float3	pos;
 
-	pos = obj->pos;
-	if (obj->rot.y == 0.0f)
-		return (*ray);
-	rad = obj->rot.y * (M_PI / 180.0f);
+	pos = data->offset;
+	data->offset.x = cos(data->rad.y) * pos.x + (sin(data->rad.y) * pos.z);
+	data->offset.y = pos.y;
+	data->offset.z = (-sin(data->rad.y) * pos.x) + cos(data->rad.y) * pos.z;
+	data->offset *= -1;
+}
 
-	offset->x = cos(rad) * pos.x + (sin(rad) * pos.z);
-	offset->y = pos.y;
-	offset->z = (-sin(rad) * pos.x) + cos(rad) * pos.z;
-	*offset *= -1;
+float3          rotate_y(float3 *ray, float rad)
+{
+	float3	res;
 
 	res.x = cos(rad) * ray->y + sin(rad) * ray->z;
 	res.y = ray->y;
 	res.z = -(sin(rad) * ray->y) + cos(rad) * ray->z;
 	return (res);
 }
-float3          rotate_z(float3 *ray, global t_obj *obj, float3 *offset)
+
+void          rotate_pos_z(t_data *data)
 {
-	float3	res;
-	float	rad;
 	float3	pos;
 
-	// pos = *offset;
-	pos = obj->pos;
+	pos = data->offset;
+	pos = data->obj->pos;
+	data->offset.x = data->offset.x -( cos(data->rad.z) * pos.x +
+	 (-sin(data->rad.z) * pos.y));
+	data->offset.y = data->offset.y -(sin(data->rad.z) * pos.x +
+	 cos(data->rad.z) * pos.y);
+	data->offset.z = 0;
 
-	if (obj->rot.z == 0.0f)
-		return (*ray);
-	rad = obj->rot.z * (M_PI / 180.0f);
+	data->offset.x += cos(data->rad.z) * pos.x + (-sin(data->rad.z) * pos.y);
+	data->offset.y += sin(data->rad.z) * pos.x + cos(data->rad.z) * pos.y;
+	data->offset.z += pos.z;
+	data->offset *= -1;
+}
 
-	offset->x = cos(rad) * pos.x + (-sin(rad) * pos.y);//ok
-	offset->y = sin(rad) * pos.x + cos(rad) * pos.y;//ok
-	offset->z = pos.z;//ok
-	*offset *= -1;
+////////////////////////////////enlever l'offset et le rajouter dans la structure'
+float3          rotate_z(float3 *ray, float rad)
+{
+	float3	res;
 
 	res.x = (cos(rad) * ray->x) + (-sin(rad) * ray->y);
 	res.y = (sin(rad) * ray->x) + cos(rad) * ray->y;
@@ -86,6 +105,5 @@ float3          rotate_z(float3 *ray, global t_obj *obj, float3 *offset)
 
 	// res = mat * (*ray);
 	// *offset = obj->pos * mat * -1;
-
 	return (normalize(res));
-}
+	}
