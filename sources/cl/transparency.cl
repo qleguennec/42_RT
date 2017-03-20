@@ -4,8 +4,8 @@
 void	clearness_color(t_data *data)
 {
 	data->rd_light += check_all_light(data);
-	data->light_pow *= objs[data->id].opacity;
-	if (objs[data->id].opacity < 1.0f)
+	data->light_pow *= data->objs[data->id].opacity;
+	if (data->objs[data->id].opacity < 1.0f)
 		clearness_calcul(data);
 	if (data->light_pow > 0.0f)
 		get_color(data);
@@ -26,11 +26,11 @@ void	clearness_calcul(t_data *data)
 	}
 	if (index == -1)
 	{
-		// data->rd_light += (float3){0.0f, 0.0f, 0.0f} * light_power;
+		// data->rd_light += (float3){1.0f, 1.0f, 1.0f} * light_power;
 		data->light_pow = 0.0f;
 	}
 		data->rd_light += (check_all_light(data) * data->light_pow);
-		data->light_pow -= (objs[data->id].opacity);
+		data->light_pow -= (data->objs[data->id].opacity);
 		// *ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
 }
 
@@ -41,7 +41,7 @@ float3	calcul_refract_ray(t_data *data, float refract1, float refract2)
 	float	c2;
 	float3	normale;
 
-	normale = calcul_normale(obj, data->intersect);
+	normale = calcul_normale(&data->objs[data->id], &data->intersect);
 	n = refract1 / refract2;
 	return (data->ray_dir * n + normale * (n * c1 - c2));
 }

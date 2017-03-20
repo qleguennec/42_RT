@@ -6,7 +6,7 @@
 /*   By: lgatibel <lgatibel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:37 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/03/16 16:36:08 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/03/20 11:46:38 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 typedef struct			s_data
 {
 	global t_obj		*objs;
-	global t_lgt		*lgts;
+	global t_lgt		*lights;
 	global unsigned int	*pixel;
 	short				n_objs;
 	short				n_lgts;
@@ -26,6 +26,7 @@ typedef struct			s_data
 	float3				intersect;
 	float				light_pow;
 	float3				rd_light;
+	short				safe;
 }						t_data;
 
 float			calc_delta(float a, float b, float c);
