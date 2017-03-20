@@ -88,7 +88,7 @@ short			cylinder_intersection(t_data *data)
 	ray_dir = data->ray_dir;
 	data->offset = data->ray_pos - data->obj->pos;
 	rdir = ray_dir;
-	// ray_dir = rotate_ray(&ray_dir, data);
+	ray_dir = rotate_ray(&ray_dir, data);
 	a = dot(ray_dir.x, ray_dir.x) + dot(ray_dir.z, ray_dir.z);
 	b = (2.0f * dot(ray_dir.x, data->offset.x)) + (2.0f * dot(ray_dir.z, data->offset.z));
 	c = dot(data->offset.x, data->offset.x) + dot(data->offset.z, data->offset.z) - data->obj->radius *

@@ -3,12 +3,12 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	float3	res;
 
 	data->rad = data->obj->rot * (float)(M_PI / 180.0f);
-	res = rotate_x(ray, data->rad.x);
+	// res = rotate_x(ray, data->rad.x);
 	// res = rotate_y(&ray, data->rad.y);
-	// res = rotate_z(&ray, data->rad.z);
-	rotate_pos_x(data);
+	res = rotate_z(&ray, data->rad.z);
+	// rotate_pos_x(data);
 	// rotate_pos_y(data);
-	// rotate_pos_z(data);
+	rotate_pos_z(data);
 	return(res);
 }
 // 
@@ -60,15 +60,15 @@ void          rotate_pos_z(t_data *data)
 
 	pos = data->offset;
 	pos = data->obj->pos;
-	data->offset.x = data->offset.x -( cos(data->rad.z) * pos.x +
-	 (-sin(data->rad.z) * pos.y));
-	data->offset.y = data->offset.y -(sin(data->rad.z) * pos.x +
-	 cos(data->rad.z) * pos.y);
-	data->offset.z = 0;
+	// data->offset.x = data->offset.x -( cos(data->rad.z) * pos.x +
+	//  (-sin(data->rad.z) * pos.y));
+	// data->offset.y = data->offset.y -(sin(data->rad.z) * pos.x +
+	//  cos(data->rad.z) * pos.y);
+	// data->offset.z = 0;
 
-	data->offset.x += cos(data->rad.z) * pos.x + (-sin(data->rad.z) * pos.y);
-	data->offset.y += sin(data->rad.z) * pos.x + cos(data->rad.z) * pos.y;
-	data->offset.z += pos.z;
+	data->offset.x = cos(data->rad.z) * pos.x + (-sin(data->rad.z) * pos.y);
+	data->offset.y = sin(data->rad.z) * pos.x + cos(data->rad.z) * pos.y;
+	data->offset.z = pos.z;
 	data->offset *= -1;
 }
 
