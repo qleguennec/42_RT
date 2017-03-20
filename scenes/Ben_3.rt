@@ -28,26 +28,26 @@
 </light>
 
 <!------------ Object(s) ------------->
-<!--
+
 <object>
 	<name>Sphere 1</name>
 	<type>Sphere</type>
 	<material>Phong</material>
 	<visibility>True</visibility>
 	<position>0.00 00.00 500.00</position>
-	<rotation>0.00 175.00 20.00</rotation>
+	<rotation>0.00 0.00 00.00</rotation>
 	<color-rgb>0.0 0.0 .80</color-rgb>
-	<opacity>.50</opacity>
+	<opacity>1.0</opacity>
 	<radius>50.00</radius>
-</object>-->
+</object>
 
 <object>
 	<name>Cylinder 1</name>
 	<type>Cylinder</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>100.00 10.00 550.00</position>
-	<rotation>45.00 0.00 45.00</rotation>
+	<position>0.00 10.00 550.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>1.00 .00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>20.0</radius>
@@ -58,10 +58,10 @@
 	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>100.00 10.00 550.00</position>
+	<position>100.00 10.00 400.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>.50 .3 .1</color-rgb>
-	<opacity>1.00</opacity>
+	<opacity>1.0</opacity>
 	<radius>25.0</radius>
 </object>
 

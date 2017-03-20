@@ -6,7 +6,7 @@
 /*   By: erodrigu <erodrigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:00 by erodrigu          #+#    #+#             */
-/*   Updated: 2017/03/20 11:49:56 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/03/20 14:33:38 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 unsigned	get_lighting(t_data * data);
 
-float3		is_light(t_data * data, float3 lightdir, t_obj *lgt, float3 normale);
+float3		is_light(t_data * data, float3 lightdir, global t_lgt *lgt,
+	float3 normale);
 
 float3		calcul_clr(float3 ray, float3 normale, float3 light,
 	global t_obj *obj);

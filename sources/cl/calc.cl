@@ -17,7 +17,7 @@
 #include "calc_intersect.cl"
 #include "rotate.cl"
 //debug
-#define COLOR 1
+#define COLOR 0
 //
 float		calc_delta(float a, float b, float c)
 {
@@ -91,6 +91,9 @@ global unsigned int *pixel)
 	data->id = -1;
 	data->intersect = intersect;
 	data->pixel = pixel;
+	data->safe = 0;
+	data->light_pow = 1.0f;
+	data->rd_light = 0.0f;
 }
 
 void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
@@ -137,7 +140,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	}
 	else if (data.id > -1 && !COLOR)
 	{
-//		*(pixel) = get_lighting(debug, objs, lgts, n_objs, n_lgts, intersect, ray_dir, id);
+		*pixel = get_lighting(&data);
 	}
 	else
 		*pixel = 0xFFFFFFFF;
