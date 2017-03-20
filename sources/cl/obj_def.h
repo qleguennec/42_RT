@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/03/20 15:36:18 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/03/20 18:17:08 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../../include/obj_types.h"
 
 # define PREC 0.0000001f
-# define SAFE 1
+# define SAFE 3
 
 typedef struct		s_obj
 {

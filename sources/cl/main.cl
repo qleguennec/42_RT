@@ -60,7 +60,7 @@ kernel void
 	direction.y = origin.y + ((float)y * indent.y) - cam->pos.y;
 	direction.z = origin.z - cam->pos.z;
 	*(img_buffer + WIDTH * y + x) = -1;
-	if ((x == XCENTER && y == YCENTER))
+	// if ((x == XCENTER && y == YCENTER))
 	calc_picture((DEBUG && ((x == XCENTER && y == YCENTER) || (x == XCENTER && y == YCENTER)))
 		, img_buffer + WIDTH * y + x
 		, objs

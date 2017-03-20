@@ -61,26 +61,29 @@ unsigned	calcul_rendu_light(t_data *data)
 float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normale)
 {
 	short	index = data->id;
-	float3	old_dir = data->ray_dir;
-	float3	old_pos = data->ray_pos;
+	// float3	old_dir = data->ray_dir;
+	// float3	old_pos = data->ray_pos;
 	float3 light_clr;
+	// char	test = 0;
 
-	data->ray_pos = lgt->pos;
-	data->ray_dir = lightdir;
+	// data->ray_pos = lgt->pos;
+	// data->ray_dir = lightdir;
 	touch_object(data);
 	light_clr = lgt->clr;
 	while (data->id > -1 && index != data->id && data->objs[data->id].opacity < 1.0f)
 	{
+		// if (!test)
 		calcul_light(&light_clr, &data->objs[data->id]);
-		data->ray_pos = data->intersect;
+		// test = 1;
+		// data->ray_pos = data->intersect;
 		touch_object(data);
 	}
-	data->ray_dir = old_dir;
-	data->ray_pos = old_pos;
+	// data->ray_dir = old_dir;
+	// data->ray_pos = old_pos;
 	if (index == data->id)
 		return (calcul_clr(lightdir, normale, light_clr, &data->objs[index]));
 	else
-		data->id = index;
+		// data->id = index;
 	return (data->ambiant * data->objs[index].clr);
 }
 
@@ -101,7 +104,6 @@ float3		calcul_clr(float3 ray, float3 normale, float3 light,
 	float	cosinus;
 
 	cosinus = dot(ray, normale);
-	printf("cosinus = %f\n", cosinus);
 	return((float3)(light * cosinus * obj->clr));
 }
 
@@ -109,7 +111,6 @@ float3		calcul_normale(global t_obj *obj, float3 *point)
 {
 	float3	normale;
 
-	printf("obj_type = %d", obj->type);
 	if (obj->type == T_PLANE)
 		normale = obj->rot;
 	if (obj->type == T_SPHERE)

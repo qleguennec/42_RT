@@ -35,9 +35,9 @@
 	<material>Phong</material>
 	<visibility>True</visibility>
 	<position>0.00 00.00 500.00</position>
-	<rotation>0.00 0.00 00.00</rotation>
+	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.0 0.0 .80</color-rgb>
-	<opacity>1.0</opacity>
+	<opacity>.30</opacity>
 	<radius>50.00</radius>
 </object>
 
