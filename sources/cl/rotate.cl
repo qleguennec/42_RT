@@ -40,6 +40,8 @@ float3          rotate_y(float3 *ray, global t_obj *obj, float3 *offset)
 	res.z = -(sin(rad) * ray->y) + cos(rad) * ray->z;
 	return (res);
 }
+
+////////////////////////////////enlever l'offset et le rajouter dans la structure'
 float3          rotate_z(float3 *ray, global t_obj *obj, float3 *offset)
 {
 	float3	res;
@@ -53,9 +55,13 @@ float3          rotate_z(float3 *ray, global t_obj *obj, float3 *offset)
 		return (*ray);
 	rad = obj->rot.z * (M_PI / 180.0f);
 
-	offset->x = cos(rad) * pos.x + (-sin(rad) * pos.y);//ok
-	offset->y = sin(rad) * pos.x + cos(rad) * pos.y;//ok
-	offset->z = pos.z;//ok
+	offset->x = offset->x -( cos(rad) * pos.x + (-sin(rad) * pos.y));//ok
+	offset->y = offset->y -(sin(rad) * pos.x + cos(rad) * pos.y);//ok
+	offset->z = 0;//ok
+
+	offset->x += cos(rad) * pos.x + (-sin(rad) * pos.y);//ok
+	offset->y += sin(rad) * pos.x + cos(rad) * pos.y;//ok
+	offset->z += pos.z;//ok
 	*offset *= -1;
 
 	res.x = (cos(rad) * ray->x) + (-sin(rad) * ray->y);

@@ -13,11 +13,14 @@
 #include "obj_def.h"
 #include "calc.h"
 #include "light.h"
-// #include "light.cl"
+#include "light.cl"
 #include "calc_intersect.cl"
 #include "rotate.cl"
 //debug
 #define COLOR 1
+//
+float		calc_delta(float a, float b, float c)
+{
 	float	t0;
 	float	t1;
 	float	tmp;
