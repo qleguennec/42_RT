@@ -28,7 +28,7 @@
 </light>
 
 <!------------ Object(s) ------------->
-
+<!--
 <object>
 	<name>Sphere 1</name>
 	<type>Sphere</type>
@@ -39,7 +39,7 @@
 	<color-rgb>0.0 0.0 .80</color-rgb>
 	<opacity>.50</opacity>
 	<radius>50.00</radius>
-</object>
+</object>-->
 
 <object>
 	<name>Cylinder 1</name>

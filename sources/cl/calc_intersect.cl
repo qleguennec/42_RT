@@ -134,7 +134,7 @@ short			sphere_intersection(t_data *data, global t_obj *obj)
 	if ((delta = (b * b) - a *c) < 0.0f)
 		return (0);
 	delta = sqrt(delta);
-	delta = (-(b + delta) < 0.0f) ? -(b - delta): -(b + delta);
+	delta = (-(b + delta) < 0.0f) ? -(b - delta) : -(b + delta);
 	calc_intersect(&delta, &data->ray_pos, &ray_dir, &data->intersect);
 	return (1);
 }
