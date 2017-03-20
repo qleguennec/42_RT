@@ -22,7 +22,6 @@ typedef struct			s_data
 	short				n_lgts;
 	short				id;
 	short				safe;
-	short				option;
 	float				ambiant;
 	float				light_pow;
 	float3				ray_pos;

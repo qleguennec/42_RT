@@ -89,7 +89,6 @@ global unsigned int *pixel)
 	data->ray_pos = ray_pos;
 	data->ray_dir = ray_dir;
 	data->ambiant = ambiant;
-	data->option = 1;
 	data->id = -1;
 	data->intersect = intersect;
 	data->pixel = pixel;
