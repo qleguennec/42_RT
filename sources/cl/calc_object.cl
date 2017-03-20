@@ -57,7 +57,7 @@ short			cone_intersection(t_data *data, global t_obj *obj)
 	rdir = ray_dir;
 	offset = data->ray_pos - obj->pos;
 
-	ray_dir = rotate_x(&ray_dir, obj, &offset);
+	// ray_dir = rotate_x(&ray_dir, obj, &offset);
 
 	a = dot(ray_dir.xz, ray_dir.xz) - dot(ray_dir.y, ray_dir.y);// * tan(rad);
 
@@ -94,7 +94,7 @@ short			cylinder_intersection(t_data *data, global t_obj *obj)
 	offset = data->ray_pos - obj->pos;
 	rdir = ray_dir;
 //rotation sur x
-	 ray_dir = rotate_x(&ray_dir, obj, &offset);
+	//  ray_dir = rotate_x(&ray_dir, obj, &offset);
 //rotation sur y
 	// ray_dir = rotate_y(&ray_dir, obj, &offset);
 //rotation sur z
