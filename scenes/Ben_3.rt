@@ -11,7 +11,7 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<position>0.00 00.00 0.00</position>
+	<position>0.00 0.00 0.00</position>
 	<rotation>0.00 0.00 1.00</rotation>
 	<focal>55</focal>
 </camera>
@@ -21,9 +21,10 @@
 <light>
 	<name>Prout</name>
 	<type>Diffuse</type>
-	<visibility>False</visibility>
+	<visibility>True</visibility>
+	<flare-visibility>True</flare-visibility>
 	<position>0.00 0.00 0.00</position>
-	<color-rgb>1.00 1.00 1.00</color-rgb>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
 
@@ -34,9 +35,9 @@
 	<type>Sphere</type>
 	<material>Phong</material>
 	<visibility>True</visibility>
-	<position>0.00 00.00 500.00</position>
+	<position>0.00 0.00 500.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>0.0 0.0 .80</color-rgb>
+	<color-rgb>0.00 0.00 200.0</color-rgb>
 	<opacity>.30</opacity>
 	<radius>50.00</radius>
 </object>
@@ -48,10 +49,9 @@
 	<visibility>True</visibility>
 	<position>0.00 10.00 550.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>1.00 .00 0.00</color-rgb>
+	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>5</height>
-	<radius>20.0</radius>
+	<radius>20.00</radius>
 </object>
 
 <object>
@@ -61,9 +61,9 @@
 	<visibility>True</visibility>
 	<position>100.00 10.00 400.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>.50 .3 .1</color-rgb>
-	<opacity>1.0</opacity>
-	<radius>25.0</radius>
+	<color-rgb>130.0 80.0 25.0</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>25.00</radius>
 </object>
 
 <object>
@@ -73,19 +73,19 @@
 	<visibility>True</visibility>
 	<position>50.00 50.00 200.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>.50 .5 .5</color-rgb>
+	<color-rgb>128.0 128.0 128.0</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>20.0</radius>
+	<radius>20.00</radius>
 </object>
 
-<!--<object>
+<object>
 	<name>Sphere 4</name>
 	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>-50.00 10.00 200.00</position>
+	<position>-18.50 -5.50 88.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>1 0 1</color-rgb>
+	<color-rgb>127.50 127.50 127.50</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>20.0</radius>
-</object>-->
+	<radius>10.00</radius>
+</object>

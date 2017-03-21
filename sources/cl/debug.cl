@@ -45,8 +45,6 @@ void
 	short	i;
 
 	i = 0;
-	printf("nobjs: %d\n", nobjs);
-	printf("nlgts: %d\n", nlgts);
 	while (i < nobjs)
 	{
 		printf("obj %d\n", i);
