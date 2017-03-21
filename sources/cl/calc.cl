@@ -16,9 +16,6 @@
 #include "light.cl"
 #include "calc_intersect.cl"
 #include "rotate.cl"
-//debug
-#define COLOR 1
-//
 float		calc_delta(float a, float b, float c)
 {
 	float	t0;
@@ -122,7 +119,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	*/
 	}
     touch_object(&data);
-	if (data.id > -1 && COLOR)
+	if (data.id > -1 && COLOR == 0)
 	{
 		if (data.id == 0)
 			*(data.pixel) = 0xff0000FF;
@@ -138,7 +135,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 			*pixel = 0xff00ffFF;
 
 	}
-	else if (data.id > -1 && !COLOR)
+	else if (data.id > -1 && COLOR == 1)
 	{
 		*pixel = get_lighting(&data);
 	}
