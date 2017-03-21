@@ -4,8 +4,8 @@ float3			rotate_ray(float3 *ray, t_data *data)
 
 	data->rad = data->obj->rot * (float)(M_PI / 180.0f);
 	// res = rotate_x(ray, data->rad.x);
-	// res = rotate_y(&ray, data->rad.y);
-	res = rotate_z(&ray, data->rad.z);
+	// res = rotate_y(ray, data->rad.y);
+	res = rotate_z(ray, data->rad.z);
 	// rotate_pos_x(data);
 	// rotate_pos_y(data);
 	rotate_pos_z(data);

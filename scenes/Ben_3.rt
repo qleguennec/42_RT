@@ -50,7 +50,7 @@
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>1.00 .00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>5</height>
+	<height>0</height>
 	<radius>20.0</radius>
 </object>
 
