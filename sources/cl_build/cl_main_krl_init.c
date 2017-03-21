@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:08:54 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/20 09:33:44 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/06 15:00:28 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,16 @@ bool
 	int		ret;
 	t_vect	build_line;
 
+	ft_bzero(cl, sizeof(*cl));
 	if ((fd = open(FILENAME, O_RDONLY)) < 0)
 		return (ERR("cannot open " FILENAME, false, 0));
 	cl_init(&cl->info);
 	cl_krl_init(&cl->main_krl, 2);
-	cl->main_krl.sizes[0] = REND_W * REND_H * sizeof(int);
+	cl->main_krl.sizes[0] = REND_W * REND_H * 4;
 	cl->main_krl.sizes[1] = sizeof(t_cl_cam);
 	cl_build_line(&build_line);
 	if ((ret = cl_krl_build(&cl->info
-		, &cl->main_krl
-		, fd
-		, &build_line)) != CL_SUCCESS)
+		, &cl->main_krl, fd, &build_line)) != CL_SUCCESS)
 		return (ERR("cannot build kernel, err %a", false, ret));
 	close(fd);
 	free(build_line.data);

@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
-#    Updated: 2017/02/09 16:00:08 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/02/24 19:27:54 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ HEADER		= include
 
 SOURCES		= draw/fsdl_fill_rect.c \
 			  draw/fsdl_draw_pt.c \
+			  draw/fsdl_draw_rect.c \
 			  get/fsdl_pt_in_rect.c \
 			  set/fsdl_fps.c
 

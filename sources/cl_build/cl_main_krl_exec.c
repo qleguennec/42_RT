@@ -6,17 +6,24 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 12:07:51 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/03/08 16:25:59 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/03/21 17:06:52 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libfmt.h"
 
-// TODO remove debug includes
-#include <assert.h>
-
 #define N_BENCH 2000
+
+static void
+	cpy_kernel_args
+	(t_cl *cl)
+{
+	CL_KRL_ARG(cl->main_krl.krl, 2, cl->objs);
+	CL_KRL_ARG(cl->main_krl.krl, 3, cl->lgts);
+	CL_KRL_ARG(cl->main_krl.krl, 4, cl->n_objs);
+	CL_KRL_ARG(cl->main_krl.krl, 5, cl->n_lgts);
+}
 
 static double
 	main_krl_exec_benchmark
@@ -43,22 +50,18 @@ bool
 	cl_main_krl_exec
 	(t_cl *cl)
 {
-	double		total;
-	int			ret;
-	size_t		i;
-	size_t		work_size[2];
+	double			total;
+	int				ret;
+	size_t			i;
+	static size_t	work_size[2] = {REND_W, REND_H};
 
-	work_size[0] = REND_W;
-	work_size[1] = REND_H;
+	cpy_kernel_args(cl);
 	if (BENCHMARK_KRL == 1)
 	{
-		i = 0;
+		i = -1;
 		total = 0;
-		while (i < N_BENCH)
-		{
+		while (++i < N_BENCH)
 			total += main_krl_exec_benchmark(cl, work_size);
-			i++;
-		}
 		total /= N_BENCH;
 		printf("render time: %lfs ", total);
 		printf("fps: %lf\n", 1.0 / total);

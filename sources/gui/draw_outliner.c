@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 18:43:06 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 22:32:49 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/25 20:30:22 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void		draw_outliner(t_rt *rt, int i, int max)
 	t_obj	*list;
 
 	list = rt->scn->b_outliner;
-	rt->ui->area[12].y = 224;
-	fsdl_fill_rect(rt->s_back, (SDL_Rect){13, 224, 188, 409}, INFO_BG);
+	rt->ui->area[12].y = 233;
+	fsdl_fill_rect(rt->s_back, (SDL_Rect){13, 233, 188, 409}, INFO_BG);
 	if (rt->ui->nav_state == 1)
 		draw_top_nav_button(rt, (list->id == rt->scn->o->id) ? -1 : 0);
 	max = (rt->ui->nav_state == 1) ? 12 : 13;

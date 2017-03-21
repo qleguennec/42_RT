@@ -6,12 +6,18 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/20 08:29:50 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/01 21:43:45 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
+
+/*
+** <assert.h> to delete , actually used for debug purpose only
+*/
+
+# include <assert.h>
 
 /*
 ** -------------------------- External Headers ---------------------------------
@@ -21,7 +27,6 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <stdio.h>
-# include <pthread.h>
 
 /*
 ** --------------------------------- OpenCL ------------------------------------
@@ -118,11 +123,15 @@ int					add_object_parameters(t_rt *rt, t_obj *obj, int b_e, int e);
 */
 
 void				init_gui_structure(t_rt *rt);
+void				init_gui_selected_camera_buttons(t_ui *ui);
+void				init_gui_selected_light_buttons(t_ui *ui);
+void				init_gui_selected_object_buttons(t_ui *ui);
 
 void				draw_panel(t_rt *rt, int p, int type);
 void				draw_button(t_rt *rt, int b_num, int type);
+void				draw_se_button(t_rt *rt, int b_num, char etype, int type);
 
-int					draw_renderer_info(t_rt *rt);
+void				draw_renderer_info(t_rt *rt);
 void				draw_current_camera_name(t_rt *rt, short type);
 int					draw_state_frame(t_rt *rt);
 int					draw_info_bar(t_rt *rt);
@@ -137,6 +146,17 @@ void				draw_top_nav_button(t_rt *rt, int state);
 void				draw_bottom_nav_button(t_rt *rt, int state);
 
 void				draw_selected_element(t_rt *rt);
+void				draw_no_selected_element(t_rt *rt);
+void				draw_parameter(t_rt *rt, char *tmp, SDL_Rect rect, int t);
+void				draw_selected_camera(t_rt *rt, t_obj *obj);
+void				draw_selected_light(t_rt *rt, t_obj *obj);
+void				draw_selected_object(t_rt *rt, t_obj *obj);
+void				draw_dimensions_parameter(t_rt *rt, t_obj *o);
+
+void				redraw_current_element(t_rt *rt, t_cl *cl, char *str);
+
+void				redraw_case_active(t_rt *rt, int mode);
+void				draw_case_active(t_rt *rt, char *tmp, SDL_Rect rect, int t);
 
 void				draw_materials(t_rt *rt, char type);
 
@@ -189,6 +209,8 @@ int					create_window(t_rt *rt, t_cl *cl);
 int					add_render_frame(t_rt *rt);
 void				render_loop(t_rt *rt);
 
+bool				scene_init_rendering(t_rt *rt, t_cl *cl);
+
 /*
 ** -----------------------------------------------------------------------------
 ** -------------------------------- Handle -------------------------------------
@@ -205,6 +227,8 @@ void				handle_events(t_rt *rt, t_cl *cl);
 ** --------------------------- Handle Elements ---------------------------------
 */
 char				*shape_object(short shape);
+char				*shape_object_ws(short shape);
+void				set_default_element(t_rt *rt, t_cl *cl, char type);
 void				add_new_camera(t_rt *rt, t_obj *tmp);
 void				add_new_light(t_rt *rt, t_obj *tmp, short type);
 void				add_new_object(t_rt *rt, t_obj *tmp, short type);
@@ -246,10 +270,22 @@ void				handle_double_click_down(t_rt *rt, t_cl *cl);
 void				handle_motion_mouse(t_rt *rt);
 
 /*
+** ------------------------ Handle Selected Element ----------------------------
+*/
+
+void				handle_selected_element(t_rt *rt);
+void				handle_selected_element_down(t_rt *rt, t_cl *cl);
+
+void				delete_current_element(t_rt *rt, t_cl *cl,
+					t_obj *nav, t_obj *tmp);
+
+/*
 ** --------------------------- Handle Keyboard ---------------------------------
 */
 
 void				handle_keyboard(t_rt *rt, t_cl *cl);
+void				update_se_box_plus(t_rt *rt, t_cl *cl);
+void				update_se_box_minus(t_rt *rt, t_cl *cl);
 
 /*
 ** ------------------------- Handle Linked Lints -------------------------------

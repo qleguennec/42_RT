@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cpy_cam.c                                          :+:      :+:    :+:   */
+/*   draw_special_mode.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/13 12:17:28 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/03/01 21:42:26 by bsouchet         ###   ########.fr       */
+/*   Created: 2017/02/22 19:07:05 by bsouchet          #+#    #+#             */
+/*   Updated: 2017/02/22 19:07:33 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cl_interface.h"
-#include "obj_types.h"
 #include "rt.h"
 
-#define CPY(a) dest->a = src->a
-
-void
-	cpy_cam
-	(t_cl_cam *dest
-	, t_obj *src)
+void		draw_special_mode(t_rt *rt, int r_num, int type)
 {
-	ft_bzero(dest, sizeof(*dest));
-	CPY(pos);
-	CPY(rot);
-	CPY(focal);
+	SDL_LowerBlit(rt->ui->s_ui, &rt->ui->ra_rect[type], rt->s_back,
+	&rt->ui->ra_rect[r_num]);
+	(type == 0) ? (rt->ui->ra_hover = -1) : 1;
 }

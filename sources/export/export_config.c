@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 15:10:20 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 22:07:41 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/22 13:52:10 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,13 @@ static void	export_elements(t_rt *rt, int fd)
 
 void		export_config_file(t_rt *rt)
 {
-	static int	value = 1;
-	static int	fd = 1;
 	char		*tmp;
-	char		*scene_name;
+	int			fd;
 
-	scene_name = (char *)ft_name(rt->filename, ".rt");
-	tmp = ft_strf("test -e scenes/%s_%d.rt", scene_name, value);
-	while (system(tmp) == 0)
-	{
-		free(tmp);
-		tmp = ft_strf("test -e scenes/%s_%d.rt", scene_name, ++value);
-	}
-	free(tmp);
-	tmp = ft_strf("touch scenes/%s_%d.rt", scene_name, value);
+	tmp = ft_strf("> %s", rt->filename);
 	system(tmp);
 	free(tmp);
-	tmp = ft_strf("scenes/%s_%d.rt", scene_name, value);
-	fd = open(tmp, O_WRONLY | O_APPEND);
-	free(tmp);
+	fd = open(rt->filename, O_WRONLY | O_APPEND);
 	export_elements(rt, fd);
-	free(scene_name);
 	close(fd);
 }

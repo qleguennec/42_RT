@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:37 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 11:49:54 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/01 19:57:58 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ static void	init_window_elements(t_rt *rt)
 {
 	rt->r_view = (SDL_Rect){232, 84, 816, 588};
 	rt->r_info = (SDL_Rect){215, 690, 850, 30};
-	rt->cursor[0] = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_ARROW);
-	rt->cursor[1] = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
-	rt->ui->s_ui = IMG_Load("./assets/images/ui_7.png");
+	rt->cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
+	rt->ui->s_ui = IMG_Load("./assets/images/ui.png");
 	rt->ui->font[0] = TTF_OpenFont("./assets/font/SourceCodePro.ttf", 14);
 	rt->ui->font[1] = TTF_OpenFont("./assets/font/SourceCodePro.ttf", 12);
 	rt->s_back = SDL_GetWindowSurface(rt->win);
 	rt->s_rend = SDL_CreateRGBSurfaceWithFormat(0, REND_W, REND_H, 32, SDL_PF);
 	rt->s_process = SDL_CreateRGBSurfaceWithFormat(0, 1244, 618, 32, SDL_PF);
-	fsdl_fill_rect(rt->s_back, (SDL_Rect){0, 0, 1280, 720}, WIN_BG);
 	rt->ui->s_ver = TTF_RenderText_Blended(rt->ui->font[0], WIN_VERSION,
-	(SDL_Color){162, 162, 162, 255});
+	(SDL_Color){109, 125, 145, 255});
+	fsdl_fill_rect(rt->s_back, (SDL_Rect){0, 0, 1280, 720}, WIN_BG);
+	SDL_SetCursor(rt->cursor);
 }
 
 static void	init_fps_structure(t_rt *rt)
@@ -50,7 +50,7 @@ void		init_renderer(t_rt *rt)
 	init_gui_structure(rt);
 	draw_current_camera_name(rt, 0);
 	draw_scene_parameters(rt);
-	draw_renderer_info(rt);
 	draw_outliner(rt, -1, 0);
+	draw_renderer_info(rt);
 	draw_info_bar(rt);
 }

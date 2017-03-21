@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:30:05 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 15:33:51 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/25 18:36:58 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@
 # define INF33	"Info : \"%s\" is now set as the current camera."
 # define INF34	"Info : \"%s\" is now hidden."
 # define INF35	"Info : \"%s\" is now visible."
+
+# define INF36	"Info : \"%s\" was successfully deleted."
 
 #endif

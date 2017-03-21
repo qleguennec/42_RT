@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 22:06:23 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 22:13:37 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/23 20:06:45 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,19 @@
 
 static void	export_light_part2(t_obj *light, int fd)
 {
+	write(fd, "\t<position>", 11);
+	ft_putfloat_fd((float)light->pos.x, fd);
+	write(fd, " ", 1);
+	ft_putfloat_fd((float)light->pos.y, fd);
+	write(fd, " ", 1);
+	ft_putfloat_fd((float)light->pos.z, fd);
+	write(fd, "</position>\n", 12);
 	write(fd, "\t<color-rgb>", 12);
-	ft_putfloat_fd((float)light->clr.x, fd);
+	ft_putfloat_fd((float)light->clr.x * 255., fd);
 	write(fd, " ", 1);
-	ft_putfloat_fd((float)light->clr.y, fd);
+	ft_putfloat_fd((float)light->clr.y * 255., fd);
 	write(fd, " ", 1);
-	ft_putfloat_fd((float)light->clr.z, fd);
+	ft_putfloat_fd((float)light->clr.z * 255., fd);
 	write(fd, "</color-rgb>\n", 13);
 	write(fd, "\t<intensity>", 12);
 	ft_putfloat_fd((float)light->intensity, fd);
@@ -44,12 +51,8 @@ void		export_light(t_obj *light, int fd)
 	write(fd, "\t<visibility>", 13);
 	(light->visibility == 1) ? write(fd, "True", 4) : write(fd, "False", 5);
 	write(fd, "</visibility>\n", 14);
-	write(fd, "\t<position>", 11);
-	ft_putfloat_fd((float)light->pos.x, fd);
-	write(fd, " ", 1);
-	ft_putfloat_fd((float)light->pos.y, fd);
-	write(fd, " ", 1);
-	ft_putfloat_fd((float)light->pos.z, fd);
-	write(fd, "</position>\n", 12);
+	write(fd, "\t<flare-visibility>", 19);
+	(light->flare_v == 1) ? write(fd, "True", 4) : write(fd, "False", 5);
+	write(fd, "</flare-visibility>\n", 20);
 	export_light_part2(light, fd);
 }

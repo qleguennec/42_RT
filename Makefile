@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/02/20 08:39:18 by qle-guen         ###   ########.fr       *#
+#    Updated: 2017/03/01 19:52:20 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,6 @@ HEADER		= include \
 # Compilation options
 BENCHMARK_KRL	?=	0
 
-
 SOURCES		= \
 			cl_build/cl_main_krl_exec.c \
 			cl_build/cl_main_krl_init.c \
@@ -66,14 +65,22 @@ SOURCES		= \
 			cl_build/cpy_lgt.c \
 			cl_build/cpy_obj.c \
 			cl_build/cl_copy_image_buffer.c \
-			gui/draw_elements.c \
+			gui/draw_button.c \
+			gui/draw_case_box.c \
+			gui/draw_materials.c \
+			gui/draw_current_camera_name.c \
+			gui/draw_selected_panel.c \
+			gui/draw_selected_element.c \
 			gui/draw_info_and_state.c \
 			gui/draw_outliner_nav_buttons.c \
 			gui/draw_outliner_elements.c \
 			gui/draw_outliner.c \
 			gui/draw_panels.c \
 			gui/draw_scene_parameters.c \
-			gui/init_structure.c \
+			gui/draw_dimensions_parameters.c \
+			gui/draw_special_mode.c \
+			gui/init_structures.c \
+			gui/init_structures_selected_element.c \
 			gui/save_to_png.c \
 			handle/buttons.c \
 			handle/elements.c \
@@ -82,12 +89,14 @@ SOURCES		= \
 			handle/info_bar.c \
 			handle/keyboard.c \
 			handle/linked_lists.c \
+			handle/selected_element.c \
 			handle/mouse.c \
 			handle/mouse_clicks.c \
 			handle/outliner.c \
 			handle/scene_parameters.c \
+			handle/se_box_minus.c \
+			handle/se_box_plus.c \
 			handle/special_mode.c \
-			handle/threads.c \
 			main.c \
 			misc/free_elements.c \
 			misc/verbose_mode.c \
@@ -107,7 +116,7 @@ SOURCES		= \
 			export/cameras.c \
 			export/lights.c \
 			export/objects.c \
-			test/cl_test_krl.c \
+			test/cl_test_krl.c
 
 SUB_FOLDERS	= test gui handle misc parser renderer cl_build export
 

@@ -6,11 +6,12 @@
 /*   By: lgatibel <lgatibel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:37 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/03/20 11:46:38 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/03/21 17:10:51 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CALC_H
+
 #define CALC_H
 typedef struct			s_data
 {
@@ -61,4 +62,5 @@ void			rotate_pos_z(t_data *data);
 float3			rotate_x(float3 *ray, float rad);
 float3			rotate_y(float3 *ray, float rad);
 float3			rotate_z(float3 *ray, float rad);
+
 #endif

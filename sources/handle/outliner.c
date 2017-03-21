@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 21:00:30 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 11:46:38 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/22 13:26:39 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		handle_outliner_down(t_rt *rt)
 	draw_outliner_element(rt, rt->ui->c_elem, 2);
 	rt->ui->c_down = rt->ui->c_hover;
 	rt->scn->s_elem = rt->ui->c_elem;
-	(rt->ui->b_state[17] == 2) ? draw_selected_element(rt) : 1;
+	(rt->ui->b_state[16] == 2) ? draw_selected_element(rt) : 1;
 	if (rt->ui->c_elem->type == 'O')
 		(!rt->ui->m_visible) ? draw_materials(rt, 'E') : 1;
 	else if (rt->ui->m_visible)
@@ -58,7 +58,7 @@ int			handle_top_nav_button(t_rt *rt)
 	if (rt->scn->b_outliner->n == NULL && rt->scn->b_outliner->type == 'C')
 		return (1);
 	rt->ui->c_hover = -2;
-	rt->ui->r_hover = (SDL_Rect){13, 223, 188, 16};
+	rt->ui->r_hover = (SDL_Rect){13, 232, 188, 16};
 	draw_top_nav_button(rt, 1);
 	return (1);
 }
@@ -72,7 +72,7 @@ int			handle_bottom_nav_button(t_rt *rt, t_obj *list, int pos)
 	if (list->next == NULL)
 		return (1);
 	rt->ui->c_hover = -3;
-	rt->ui->r_hover = (SDL_Rect){13, 616, 188, 16};
+	rt->ui->r_hover = (SDL_Rect){13, 625, 188, 16};
 	draw_bottom_nav_button(rt, 1);
 	return (1);
 }
@@ -85,13 +85,13 @@ void		handle_outliner(t_rt *rt, int pos, int tmp, int type)
 	(void)type;
 	rt->ui->c_hover = -1;
 	list = rt->scn->b_outliner;
-	pos = ((int)((float)(rt->m_pos.y - 224.) / 29.) + 1);
+	pos = ((int)((float)(rt->m_pos.y - 233.) / 29.) + 1);
 	if (rt->ui->nav_state == 1)
 	{
-		pos = ((int)((float)(rt->m_pos.y - 240.) / 29.) + 1);
-		if (rt->m_pos.y < 240 && handle_top_nav_button(rt))
+		pos = ((int)((float)(rt->m_pos.y - 249.) / 29.) + 1);
+		if (rt->m_pos.y < 249 && handle_top_nav_button(rt))
 			return ;
-		else if (rt->m_pos.y > 616 && handle_bottom_nav_button(rt, list, pos))
+		else if (rt->m_pos.y > 625 && handle_bottom_nav_button(rt, list, pos))
 			return ;
 	}
 	while (--pos && list->next != NULL)

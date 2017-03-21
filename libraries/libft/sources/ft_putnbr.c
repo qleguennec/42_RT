@@ -33,6 +33,7 @@ void		ft_putshort(short num)
 		num /= 10;
 	(size == 0) ? str[0] = '-' : 1;
 	write(1, str, ft_strlen(str));
+	free(str);
 }
 
 void		ft_putint(int num)
@@ -56,6 +57,7 @@ void		ft_putint(int num)
 		num /= 10;
 	(size == 0) ? str[0] = '-' : 1;
 	write(1, str, ft_strlen(str));
+	free(str);
 }
 
 void		ft_putfloat(float num)
@@ -83,6 +85,7 @@ void		ft_putfloat(float num)
 	(size == 0 && i == 2) ? str[0] = '.' : 1;
 	(size == 0 && i != 2) ? str[0] = '-' : 1;
 	write(1, str, ft_strlen(str));
+	free(str);
 }
 
 void		ft_putdouble(double num)
@@ -110,4 +113,5 @@ void		ft_putdouble(double num)
 	(size == 0 && i == 2) ? str[0] = '.' : 1;
 	(size == 0 && i != 2) ? str[0] = '-' : 1;
 	write(1, str, ft_strlen(str));
+	free(str);
 }

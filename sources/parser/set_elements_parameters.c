@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 15:13:44 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/14 13:04:41 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/23 18:29:19 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@ t_obj		*set_default_parameters(t_obj *obj, char type, int title)
 	obj->forme = -1;
 	obj->pos = (cl_float3){{0., 0., 0., 0.}};
 	obj->rot = (cl_float3){{0., 0., 0., 0.}};
-	obj->clr = (cl_float3){{128., 128., 128., 128.}};
+	obj->clr = (cl_float3){{.5, .5, .5, .5}};
 	obj->opacity = 1.;
-	obj->focal = 50;
-	obj->radius = 0.5;
-	obj->width = 1;
-	obj->height = 1;
+	obj->focal = 55;
+	obj->radius = 25.0;
+	obj->lenght = 50.0;
+	obj->width = 50.0;
+	obj->height = 50.0;
 	obj->material = 0;
 	obj->visibility = 1;
+	obj->flare_v = 1;
 	obj->intensity = 10.;
 	obj->shiness = .0;
 	obj->mshiness = .0;
@@ -53,9 +55,11 @@ t_obj		*set_element_parameters(t_obj *obj, t_obj *tmp, char t, int title)
 	obj->opacity = tmp->opacity;
 	obj->focal = tmp->focal;
 	obj->radius = tmp->radius;
+	obj->lenght = tmp->lenght;
 	obj->width = tmp->width;
 	obj->height = tmp->height;
 	obj->visibility = tmp->visibility;
+	obj->flare_v = tmp->flare_v;
 	obj->intensity = tmp->intensity;
 	obj->shiness = tmp->shiness;
 	obj->mshiness = tmp->shiness;

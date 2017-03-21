@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:35:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 11:31:55 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/03/01 22:11:32 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,24 @@
 
 # define WIN_TITLE "Raytracer Renderer - Scene : "
 
+# define WIN_VERSION "Version : ALPHA 0.71.7"
+
 # define WIN_ICON "./assets/images/icon.png"
 
-# define WIN_VERSION "Ver. ALPHA 0.64 \"CRASH\""
-
-# define WIN_BG (unsigned)0xFF252525
-# define PAN_BG (unsigned)0xFF353535
-# define LOL_BG (unsigned)0x8f8f8fFF
-# define OUT_BG (unsigned)0xFF2b2b2b
+# define WIN_BG (unsigned)0xFF252c34
+# define PAN_BG (unsigned)0xFF343e4d
+# define OUT_BG (unsigned)0xFF2c3540
 
 # define NAV_BG (unsigned)0xFF2a2a2a
 # define NAV_FG (unsigned)0xFF848484
 
-# define INFO_BG (unsigned)0xFF2f2f2f
+# define HOVER_SE (unsigned)0xFF3f697e
+# define FOCUS_SE (unsigned)0xFF4e8ea8
+# define LEFT_SE (unsigned)0xFF29323e
+
+# define BOX_BG (unsigned)0xFF2a3440
+
+# define INFO_BG (unsigned)0xFF2c3540
 
 # define WHITE_BG (unsigned)0xFFbdbdbd
 # define YELLOW_BG (unsigned)0xFFffd500
@@ -53,6 +58,12 @@
 # define IMG "Image"
 
 # define RECT_OUTLINER rt->ui->c_elem->r_ol
+
+# define CK_DOWN rt->event.key.keysym.sym
+
+# define DRAW_C draw_case_active
+
+# define DELETE_RECT &(SDL_Rect){874, 370, 170, 22}
 
 # define MAX_FPS 30
 

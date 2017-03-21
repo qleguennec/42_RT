@@ -6,13 +6,13 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 22:19:54 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/13 18:07:01 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/02/28 21:58:05 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void		ft_putnbr_fd(int n, int fd)
 {
 	unsigned int	x;
 
@@ -53,6 +53,7 @@ void		ft_putshort_fd(short num, int fd)
 		num /= 10;
 	(size == 0) ? str[0] = '-' : 1;
 	write(fd, str, ft_strlen(str));
+	free(str);
 }
 
 void		ft_putint_fd(int num, int fd)
@@ -76,6 +77,7 @@ void		ft_putint_fd(int num, int fd)
 		num /= 10;
 	(size == 0) ? str[0] = '-' : 1;
 	write(fd, str, ft_strlen(str));
+	free(str);
 }
 
 void		ft_putfloat_fd(float num, int fd)
@@ -103,6 +105,7 @@ void		ft_putfloat_fd(float num, int fd)
 	(size == 0 && i == 2) ? str[0] = '.' : 1;
 	(size == 0 && i != 2) ? str[0] = '-' : 1;
 	write(fd, str, ft_strlen(str));
+	free(str);
 }
 
 void		ft_putdouble_fd(double num, int fd)
@@ -130,4 +133,5 @@ void		ft_putdouble_fd(double num, int fd)
 	(size == 0 && i == 2) ? str[0] = '.' : 1;
 	(size == 0 && i != 2) ? str[0] = '-' : 1;
 	write(fd, str, ft_strlen(str));
+	free(str);
 }
