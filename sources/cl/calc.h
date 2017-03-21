@@ -6,7 +6,7 @@
 /*   By: lgatibel <lgatibel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:37 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/03/20 11:46:38 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/03/21 20:06:08 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct			s_data
 	float3				rd_light;
 	float3				offset;
 	float3				rad;
+	short				nl;
 }						t_data;
 
 float			calc_delta(float a, float b, float c);

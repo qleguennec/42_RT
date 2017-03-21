@@ -91,6 +91,7 @@ global unsigned int *pixel)
 	data->safe = 0;
 	data->light_pow = 1.0f;
 	data->rd_light = 0.0f;
+	data->nl = 0;
 }
 
 void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
@@ -140,5 +141,5 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		*pixel = get_lighting(&data);
 	}
 	else
-		*pixel = 0xFFFFFFFF;
+		*pixel = 0x000000FF;
 }
