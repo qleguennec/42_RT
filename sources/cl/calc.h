@@ -12,6 +12,12 @@
 
 #ifndef CALC_H
 #define CALC_H
+
+//debug
+#define COLOR 1
+#define ROTATE 0
+//
+
 typedef struct			s_data
 {
 	global t_obj		*objs;

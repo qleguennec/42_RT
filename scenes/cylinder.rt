@@ -34,8 +34,8 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<height>30.</height>
-	<position>10.00 .0 400.00</position>
-	<rotation> 0.00 00. 0.00</rotation>
+	<position>100.00 .0 800.00</position>
+	<rotation> 90.00 00. 45.00</rotation>
 	<color-rgb>1.00 0.00 0.00</color-rgb>
 	<opacity>1.0</opacity>
 	<radius>20</radius>

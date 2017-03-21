@@ -3,6 +3,13 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	float3	res;
 
 	data->rad = data->obj->rot * (float)(M_PI / 180.0f);
+
+	//////debug
+	if (ROTATE == 0)
+		return (*ray);
+	///////debug
+	if (float_to_float3(data->rad) == 0.0f)
+		return (*ray);
 	////////////////////////////////////matrice de rotation;
 	float3	matrix[3];
 	matrix[0] = (float3){};
@@ -17,7 +24,7 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	// rotate_pos_z(data);
 	return(res);
 }
-// 
+//
 void			rotate_pos_x(t_data *data)
 {
 	float3	pos;
@@ -47,12 +54,12 @@ float3          rotate_x(float3 *ray, float rad)
 	res.y = (cos(rad) * sin(rad)) * ray->x + cos(rad) * cos(rad) * ray->y + (-sin(rad)) * ray->z;
 	res.z = sin(rad) * sin(rad) * ray->x + sin(rad) * cos(rad) * ray->y + cos(rad) * ray->z;
 	///////////////////////////////////////////////////////////////
-	
+
 	/////////////////////////////////
 	// res.x = ray->x;
 	// res.y = cos(rad) * ray->y + (-sin(rad) * ray->z);
 	// res.z = sin(rad) * ray->y + cos(rad) * ray->z;
-	
+
 	return (normalize(res));
 }
 
@@ -106,14 +113,14 @@ float3          rotate_z(float3 *ray, float rad)
 
 	// float radx = obj->rot.x * (M_PI / 180.0f);
 	// float3 matx[3] = {{1.0f, 0.0f, 0.0f},
-	// {0.0f, cos(radx), (-sin(radx))}, 
+	// {0.0f, cos(radx), (-sin(radx))},
 	// {0.0f, sin(radx), cos(radx)}};
 
-	// // float3 maty[3] = {{cos(rad), (-sin(rad)), 0.0f}, 
+	// // float3 maty[3] = {{cos(rad), (-sin(rad)), 0.0f},
 	// // {sin(rad), cos(rad), 0.0f},
 	// // {0.0f, 0.0f, 1.0f}};
 	// float radz = obj->rot.z * (M_PI / 180.0f);
-	// float3 matz[3] = {{cos(radz), (-sin(radz)), 0.0f}, 
+	// float3 matz[3] = {{cos(radz), (-sin(radz)), 0.0f},
 	// {sin(radz), cos(radz), 0.0f},
 	// {0.0f, 0.0f, 1.0f}};
 
