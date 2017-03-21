@@ -3,6 +3,12 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	float3	res;
 
 	data->rad = data->obj->rot * (float)(M_PI / 180.0f);
+	////////////////////////////////////matrice de rotation;
+	float3	matrix[3];
+	matrix[0] = (float3){};
+	matrix[1] = (float3){};
+	matrix[2] = (float3){};
+	///////////////////////////////////
 	res = rotate_x(ray, data->rad.x);
 	// res = rotate_y(ray, data->rad.y);
 	// res = rotate_z(ray, data->rad.z);
