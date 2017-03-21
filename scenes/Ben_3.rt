@@ -37,7 +37,7 @@
 	<visibility>True</visibility>
 	<position>0.00 0.00 500.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>0.00 0.00 200.0</color-rgb>
+	<color-rgb>0.00 0.00 200.00</color-rgb>
 	<opacity>.30</opacity>
 	<radius>50.00</radius>
 </object>
@@ -61,7 +61,7 @@
 	<visibility>True</visibility>
 	<position>100.00 10.00 400.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>130.0 80.0 25.0</color-rgb>
+	<color-rgb>130.00 80.00 25.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>25.00</radius>
 </object>
@@ -73,7 +73,7 @@
 	<visibility>True</visibility>
 	<position>50.00 50.00 200.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>128.0 128.0 128.0</color-rgb>
+	<color-rgb>128.00 128.00 128.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>20.00</radius>
 </object>
@@ -89,3 +89,4 @@
 	<opacity>1.00</opacity>
 	<radius>10.00</radius>
 </object>
+
