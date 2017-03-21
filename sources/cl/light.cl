@@ -119,7 +119,7 @@ float3		calcul_normale(global t_obj *obj, float3 *point)
 	{
 		normale = obj->pos - *point;
 		normale.y = 0.0f;
-		// normale = rotate_ray(normale, obj->rot);
+		// normale = rotate_ray(&normale, data);
 	}
 	if (obj->type == T_CONE)
 		normale = (float3){0.0f, 0.0f, 1.0f};

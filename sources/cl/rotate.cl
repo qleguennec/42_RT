@@ -3,12 +3,12 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	float3	res;
 
 	data->rad = data->obj->rot * (float)(M_PI / 180.0f);
-	// res = rotate_x(ray, data->rad.x);
+	res = rotate_x(ray, data->rad.x);
 	// res = rotate_y(ray, data->rad.y);
-	res = rotate_z(ray, data->rad.z);
-	// rotate_pos_x(data);
+	// res = rotate_z(ray, data->rad.z);
+	rotate_pos_x(data);
 	// rotate_pos_y(data);
-	rotate_pos_z(data);
+	// rotate_pos_z(data);
 	return(res);
 }
 // 
@@ -17,9 +17,18 @@ void			rotate_pos_x(t_data *data)
 	float3	pos;
 
 	pos = data->obj->pos;
-	data->offset.x = pos.x;
-	data->offset.y = cos(data->rad.x) * pos.y + (-sin(data->rad.x) * pos.z);
-	data->offset.z = sin(data->rad.x) * pos.y + cos(data->rad.x) * pos.z;
+	////////////////////////test de rotation sur x puis z
+	// data->offset.x = cos(data->rad.x) * pos.x + pos.y + pos.z;
+	// data->offset.y = (-sin(data->rad.x) * (-sin(data->rad.x))) * pos.x + cos(data->rad.x) * pos.y + ((-sin(data->rad.x)) * cos(data->rad.x)) * pos.z;
+	// data->offset.z = cos(data->rad.x) * (-sin(data->rad.x)) * pos.x + sin(data->rad.x) * pos.y + cos(data->rad.x) * cos(data->rad.x) * pos.z;
+	////////////////////////////////////////////////////////////////////////////////
+	data->offset.x = cos(data->rad.x) * pos.x + (-sin(data->rad.x)) * pos.y + 0;
+	data->offset.y = (cos(data->rad.x) * sin(data->rad.x)) * pos.x + cos(data->rad.x) * cos(data->rad.x) * pos.y + (-sin(data->rad.x)) * pos.z;
+	data->offset.z = sin(data->rad.x) * sin(data->rad.x) * pos.x + sin(data->rad.x) * cos(data->rad.x) * pos.y + cos(data->rad.x) * pos.z;
+	/////////////////////////////////
+	// data->offset.x = pos.x;
+	// data->offset.y = cos(data->rad.x) * pos.y + (-sin(data->rad.x) * pos.z);
+	// data->offset.z = sin(data->rad.x) * pos.y + cos(data->rad.x) * pos.z;
 	data->offset *= -1;
 }
 
@@ -27,9 +36,17 @@ float3          rotate_x(float3 *ray, float rad)
 {
 	float3	res;
 
-	res.x = ray->x;
-	res.y = cos(rad) * ray->y + (-sin(rad) * ray->z);
-	res.z = sin(rad) * ray->y + cos(rad) * ray->z;
+	////////////////////////test de rotation sur x puis z
+	res.x = cos(rad) * ray->x + (-sin(rad)) * ray->y + 0;
+	res.y = (cos(rad) * sin(rad)) * ray->x + cos(rad) * cos(rad) * ray->y + (-sin(rad)) * ray->z;
+	res.z = sin(rad) * sin(rad) * ray->x + sin(rad) * cos(rad) * ray->y + cos(rad) * ray->z;
+	///////////////////////////////////////////////////////////////
+	
+	/////////////////////////////////
+	// res.x = ray->x;
+	// res.y = cos(rad) * ray->y + (-sin(rad) * ray->z);
+	// res.z = sin(rad) * ray->y + cos(rad) * ray->z;
+	
 	return (normalize(res));
 }
 
@@ -58,7 +75,7 @@ void          rotate_pos_z(t_data *data)
 {
 	float3	pos;
 
-	pos = data->offset;
+	// pos = data->offset;
 	pos = data->obj->pos;
 	// data->offset.x = data->offset.x -( cos(data->rad.z) * pos.x +
 	//  (-sin(data->rad.z) * pos.y));
@@ -105,5 +122,6 @@ float3          rotate_z(float3 *ray, float rad)
 
 	// res = mat * (*ray);
 	// *offset = obj->pos * mat * -1;
+
 	return (normalize(res));
 	}

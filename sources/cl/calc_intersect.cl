@@ -63,7 +63,7 @@ short			cone_intersection(t_data *data)
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	// calc_intersection(&delta, &data->ray_pos, &ray_dir, &data->intersect);
-	calc_intersect(&delta, &data->ray_pos, &rdir, &data->intersect);
+	calc_intersect(&delta, &data->ray_pos, &ray_dir, &data->intersect);
 
 /*	float test = 1.0f;
 	if (obj->height > 0.0f && (sqrt(dot(data->intersect - obj->pos,
@@ -89,6 +89,7 @@ short			cylinder_intersection(t_data *data)
 	data->offset = data->ray_pos - data->obj->pos;
 	rdir = ray_dir;
 	ray_dir = rotate_ray(&ray_dir, data);
+	// PRINT3(ray_dir, "ray_dir");
 	a = dot(ray_dir.x, ray_dir.x) + dot(ray_dir.z, ray_dir.z);
 	b = (2.0f * dot(ray_dir.x, data->offset.x)) + (2.0f * dot(ray_dir.z, data->offset.z));
 	c = dot(data->offset.x, data->offset.x) + dot(data->offset.z, data->offset.z) - data->obj->radius *
@@ -116,6 +117,8 @@ short			sphere_intersection(t_data *data)
 
 	ray_dir = data->ray_dir;
 	data->offset = data->ray_pos - data->obj->pos;
+	ray_dir = rotate_ray(&ray_dir, data);
+	
 	a = dot(ray_dir, ray_dir);
 	b = (2.0f * dot(ray_dir.x, data->offset.x)) + (2.0f * dot(ray_dir.y, data->offset.y)) +
 	 (2.0f * dot(ray_dir.z, data->offset.z));

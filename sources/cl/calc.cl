@@ -17,7 +17,7 @@
 #include "calc_intersect.cl"
 #include "rotate.cl"
 //debug
-#define COLOR 0
+#define COLOR 1
 //
 float		calc_delta(float a, float b, float c)
 {
