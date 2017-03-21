@@ -3,7 +3,11 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	float3	res;
 
 	data->rad = data->obj->rot * (float)(M_PI / 180.0f);
+	//////debug
 	if (ROTATE == 0)
+		return (*ray);
+	///////debug
+	if (float_to_float3(data->rad) == 0.0f)
 		return (*ray);
 	////////////////////////////////////matrice de rotation;
 	float3	matrix[3];
