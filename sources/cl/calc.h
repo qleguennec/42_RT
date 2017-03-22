@@ -54,13 +54,6 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
   global t_cam *cam, short x, short y);
 
 float			float3_to_float(float3 v);
-// rotation function
+// rotate function
 float3			rotate_ray(float3 *ray, t_data *data);
-void			rotate_pos_x(t_data *data);
-void			rotate_pos_y(t_data *data);
-void			rotate_pos_z(t_data *data);
-
-float3			rotate_x(float3 *ray, float rad);
-float3			rotate_y(float3 *ray, float rad);
-float3			rotate_z(float3 *ray, float rad);
 #endif
