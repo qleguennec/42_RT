@@ -16,23 +16,46 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	float3 maty = (float3){(-sin(rad.z) * (-sin(rad.x))), cos(rad.y), (-sin(rad.z) * cos(rad.z))};
 	float3 matz = (float3){cos(rad.z) * (-sin(rad.z)), sin(rad.y), cos(rad.z) * cos(rad.z)};
 
+	//////////////////test
 	matx = (float3){cos(rad.x), 0.0f, sin(rad.z)};
 	maty = (float3){(-sin(rad.x) * (-sin(rad.x))), cos(rad.y), (-sin(rad.z) * cos(rad.z))};
 	matz = (float3){cos(rad.x) * (-sin(rad.x)), sin(rad.y), cos(rad.z) * cos(rad.z)};
+
+	matx = (float3){cos(rad.y), 0.0f, sin(rad.y)};
+	maty = (float3){(-sin(rad.x) * (-sin(rad.y))), cos(rad.x), (-sin(rad.x) * cos(rad.y))};
+	matz = (float3){cos(rad.x) * (-sin(rad.y)), sin(rad.x), cos(rad.x) * cos(rad.y)};
+	//////////////////
+
+	/////////////////test hard
+	// matx = (float3){cos(rad.x) * ray->x , 0.0f, sin(rad.z) * ray->z};
+	// maty = (float3){(-sin(rad.x) * ray->y + (-sin(rad.x))* ray->x), cos(rad.y) * ray->y, (-sin(rad.z) * ray->y +
+	//  cos(rad.z) * ray->z)};
+	// matz = (float3){cos(rad.x) * ray->z  + (-sin(rad.x)) * ray->x, sin(rad.y) * ray->z, cos(rad.z) * ray->z +
+	//  cos(rad.z) * ray->z};
+	////////////////
 	_PRINT3(*ray, "ray or");
 	_PRINT3(matx, "matx");
 	_PRINT3(maty, "maty");
 	_PRINT3(matz, "matz");
-	res.x = dot(matx , *ray);
-	res.y = dot(maty, *ray);
-	res.z = dot(matz, *ray);
+	if (data->option)
+	{
+		res.x = dot(matx , *ray);
+		res.y = dot(maty, *ray);
+		res.z = dot(matz, *ray);
+	}
+	////////////test hard
+	// res.x = float3_to_float(matx);
+	// res.y = float3_to_float(maty);
+	// res.z = float3_to_float(matz);
+	// 	////////////////////
 	float3 pos;
-	pos = data->obj->pos;
+		pos = data->obj->pos;
+	/////////////test
 	data->offset.x = dot(matx, data->obj->pos);
 	data->offset.y = dot(maty, data->obj->pos);
 	data->offset.z = dot(matz, data->obj->pos);
 	data->offset *= -1;
-	
+	////////////////////
 	_PRINT3(res, "res 1");
 	
 	///////////////////////////////////

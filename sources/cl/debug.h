@@ -11,7 +11,7 @@
 // #define FONT 0xFFFFFFFF
 
 /*active l'affichage des define _PRINT...*/
-#define _DEBUG 1
+#define _DEBUG 0
 
 #define PRINT3(v, a) printf(a ": %f %f %f\n", (v).x, (v).y, (v).z);
 #define PRINT1(v, a) printf(a ": %f\n", (v));

@@ -59,6 +59,7 @@ void			touch_object(t_data *data)
 	index = -1;
 	data->id = -1;
 	smallest_norm = -1;
+	data->option = 1;
 //			if (obj->type == T_PLANE && dot(tmp_intersect - obj->pos, tmp_intersect - obj->pos) < obj->radius * obj->radius) // formule du disque
 	while(++index <  data->n_objs)
 	{
@@ -71,27 +72,31 @@ void			touch_object(t_data *data)
 				data->id = index;
 			}
 	}
+	data->option = 0;
 	data->intersect = closest_intersect;
 }
 
 static void		init_data(t_data *data, global t_obj *objs,
 global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
-float3 ray_dir, float ambiant, float3 intersect,
-global unsigned int *pixel)
+float3 ray_dir, float ambiant, global unsigned int *pixel)
 {
 	data->objs = objs;
+	data->obj = 0;
 	data->lights = lgts;
+	data->pixel = pixel;
 	data->n_objs = n_objs;
 	data->n_lgts = n_lgts;
+	data->id = -1;
+	data->safe = 0;
+	data->option = 1;
+	data->ambiant = ambiant;
+	data->light_pow = 1.0f;
 	data->ray_pos = ray_pos;
 	data->ray_dir = ray_dir;
-	data->ambiant = ambiant;
-	data->id = -1;
-	data->intersect = intersect;
-	data->pixel = pixel;
-	data->safe = 0;
-	data->light_pow = 1.0f;
+	data->intersect = 0.0f;
 	data->rd_light = 0.0f;
+	data->offset = 0.0f;
+	data->rad = 0.0f;
 }
 
 void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
@@ -99,47 +104,21 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	float3 ray_dir, global t_cam *cam, short x, short y)
 {
 	t_data	data;
-	float3	intersect;
 	float	ambiant = 0.20;
 
-	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir,
-			ambiant, intersect, pixel);
-	if (debug)
-	{
-	/*
-		float3 t;
-		float3 t2;
-		float t3;
-		t = (float3){2, 3, 4};
-		t2 = (float3){5, 6, 7};
-		t3 = dot(t.x, t2.x);
-		printf("t3 = [%f]\n",t3);
-		printf("type de lobjet %u\n", tab_objs[0].type);
-		PRINT3(ray_dir,"ray_dir");
-		printf("x[%u] et y[%u]\n",x,y);
-	*/
-	}
+	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant, pixel);
     touch_object(&data);
 	if (!COLOR && data.id > -1)
 	{
-		if (data.id == 0)
-			*(data.pixel) = 0xff0000FF;
-		else if (data.id == 1)
-			*pixel = 0x00ff00FF;
-		else if (data.id == 2)
-			*pixel = 0x00ffffFF;
-		else if (data.id == 3)
-			*pixel = 0xffffffFF;
-		else if (data.id == 4)
-			*pixel = 0xffff00FF;
-		else
-			*pixel = 0xff00ffFF;
-
+		if (data.id == 0){*(data.pixel) = 0xff0000FF;}
+		else if (data.id == 1){*pixel = 0x00ff00FF;}
+		else if (data.id == 2){*pixel = 0x00ffffFF;}
+		else if (data.id == 3){*pixel = 0xffffffFF;}
+		else if (data.id == 4){*pixel = 0xffff00FF;}
+		else{*pixel = 0xff00ffFF;}
 	}
 	else if (COLOR && data.id > -1)
-	{
 		*pixel = get_lighting(&data);
-	}
 	else
 		*pixel = FONT;
 }
