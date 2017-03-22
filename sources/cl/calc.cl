@@ -121,9 +121,5 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	else if (COLOR && data.id > -1)
 		*pixel = get_lighting(&data);
 	else
-<<<<<<< HEAD
 		*pixel = FONT;
-=======
-		*pixel = 0x000000FF;
->>>>>>> 6f3de2dd30ac63c5c50e35386193880bbdfd12f1
 }
