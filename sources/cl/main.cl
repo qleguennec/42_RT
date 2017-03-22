@@ -11,18 +11,15 @@
 /* ************************************************************************** */
 
 #include "obj_def.h"
-
-#define DEBUG 0
-
-#define PRINT3(v, a) printf(a ": %f %f %f\n", (v).x, (v).y, (v).z);
-#define PRINT1(v, a) printf(a ": %f\n", (v));
+/*debug*/
+#include "debug.h"
+/////////////
+#include "calc.cl"
 
 constant float2	size2	= (float2){WIDTH, HEIGHT};
 constant float2	size2_2	= (float2){XCENTER, YCENTER};
 constant float3	size3	= (float3){WIDTH, HEIGHT, 0};
 constant float3	size3_2	= (float3){XCENTER, YCENTER, 0};
-
-# include "calc.cl"
 
 #if DEBUG
 # include "debug.cl"
@@ -60,7 +57,7 @@ kernel void
 	direction.y = origin.y + ((float)y * indent.y) - cam->pos.y;
 	direction.z = origin.z - cam->pos.z;
 	*(img_buffer + WIDTH * y + x) = -1;
-	// if ((x == XCENTER && y == YCENTER))
+	// if ((x == XCENTER && y == 50))
 	calc_picture((DEBUG && ((x == XCENTER && y == YCENTER) || (x == XCENTER && y == YCENTER)))
 		, img_buffer + WIDTH * y + x
 		, objs

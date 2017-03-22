@@ -16,6 +16,7 @@
 #include "light.cl"
 #include "calc_intersect.cl"
 #include "rotate.cl"
+
 float		calc_delta(float a, float b, float c)
 {
 	float	t0;
@@ -62,7 +63,7 @@ void			touch_object(t_data *data)
 	while(++index <  data->n_objs)
 	{
 		if (ray_intersection(data, &index))
-			if ((norm = fast_distance(data->intersect,data->ray_pos)) > 0.0f &&
+			if ((norm = fast_distance(data->intersect, data->ray_pos)) > 0.0f &&
 				(norm < smallest_norm || smallest_norm == -1))
 			{
 				closest_intersect = data->intersect;
@@ -120,7 +121,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	*/
 	}
     touch_object(&data);
-	if (data.id > -1 && COLOR == 0)
+	if (!COLOR && data.id > -1)
 	{
 		if (data.id == 0)
 			*(data.pixel) = 0xff0000FF;
@@ -136,7 +137,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 			*pixel = 0xff00ffFF;
 
 	}
-	else if (data.id > -1 && COLOR == 1)
+	else if (COLOR && data.id > -1)
 	{
 		*pixel = get_lighting(&data);
 	}
