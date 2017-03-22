@@ -97,6 +97,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->rd_light = 0.0f;
 	data->offset = 0.0f;
 	data->rad = 0.0f;
+	data->nl = 0;
 }
 
 void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
@@ -120,5 +121,9 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	else if (COLOR && data.id > -1)
 		*pixel = get_lighting(&data);
 	else
+<<<<<<< HEAD
 		*pixel = FONT;
+=======
+		*pixel = 0x000000FF;
+>>>>>>> 6f3de2dd30ac63c5c50e35386193880bbdfd12f1
 }

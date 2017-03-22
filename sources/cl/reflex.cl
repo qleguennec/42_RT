@@ -20,6 +20,7 @@ void	calcul_reflex_ray(t_data * data, float3 *ray_pos, float3 *ray_dir)
 	float3 normale;
 
 	normale = calcul_normale(&data->objs[data->id], ray_pos);
-	data->ray_dir = *ray_pos + (2 * normale * -my_dot(normale, *ray_pos));
+	data->ray_dir = *ray_pos - (2 * normale * my_dot(normale, *ray_pos));
+	// data->ray_dir = normalize(data->ray_dir);
 	data->ray_pos = data->intersect;
 }

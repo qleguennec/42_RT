@@ -17,8 +17,14 @@
 
 unsigned	get_lighting(t_data *data)
 {
+	init_laputain_desamere(data);
 	get_color(data);
 	return(calcul_rendu_light(data));
+}
+
+void	init_laputain_desamere(t_data *data)
+{
+	data->objs[1].reflex = 1.0f;
 }
 
 void	get_color(t_data *data)
@@ -40,20 +46,20 @@ float3		check_all_light(t_data *data)
 	rd_light = (float3){0.0f, 0.0f, 0.0f};
 	while (i < data->n_lgts)
 	{
-		lightdir = normalize(data->intersect - data->lights[i].pos);
+		lightdir = data->intersect - data->lights[i].pos;
 		rd_light += is_light(data, lightdir, &data->lights[i],
 			calcul_normale(&data->objs[data->id], &data->intersect));
 		i++;
 	}
-	return((float3)(rd_light / (float)(data->n_lgts)) *
-		data->objs[data->id].opacity);
+	return((float3)(rd_light / (float)(data->nl)) *
+		data->objs[data->id].opacity * data->light_pow);
 }
 
 unsigned	calcul_rendu_light(t_data *data)
 {
 	float3	clr;
 
-	clr =  data->rd_light / (1 + data->ambiant) * 255.0f;
+	clr =  data->rd_light * 255.0f;
 	return ((((unsigned)clr.x & 0xff) << 24) + (((unsigned)clr.y & 0xff) << 16)
 		+ (((unsigned)clr.z & 0xff) << 8) + ((unsigned)255 & 0xff));
 }
@@ -61,29 +67,21 @@ unsigned	calcul_rendu_light(t_data *data)
 float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normale)
 {
 	short	index = data->id;
-	// float3	old_dir = data->ray_dir;
-	// float3	old_pos = data->ray_pos;
-	float3 light_clr;
-	// char	test = 0;
+	float3	light_clr;
 
-	// data->ray_pos = lgt->pos;
-	// data->ray_dir = lightdir;
+	lightdir = normalize(lightdir);
 	touch_object(data);
 	light_clr = lgt->clr;
-	while (data->id > -1 && index != data->id && data->objs[data->id].opacity < 1.0f)
+	if (data->id > -1 && index != data->id && data->objs[data->id].opacity < 1.0f)
 	{
-		// if (!test)
 		calcul_light(&light_clr, &data->objs[data->id]);
-		// test = 1;
-		// data->ray_pos = data->intersect;
 		touch_object(data);
 	}
-	// data->ray_dir = old_dir;
-	// data->ray_pos = old_pos;
 	if (index == data->id)
+	{
+		data->nl++;
 		return (calcul_clr(lightdir, normale, light_clr, &data->objs[index]));
-	else
-		// data->id = index;
+	}
 	return (data->ambiant * data->objs[index].clr);
 }
 

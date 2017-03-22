@@ -6,7 +6,7 @@
 /*   By: erodrigu <erodrigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:00 by erodrigu          #+#    #+#             */
-/*   Updated: 2017/03/20 18:15:49 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/03/22 15:56:32 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	get_color(t_data *data);
 float3	calcul_refract_ray(t_data *data, float refract1, float refract2);
 
 void	reflex_calcul(t_data *data);
+void	init_laputain_desamere(t_data *data);
 
 #endif
