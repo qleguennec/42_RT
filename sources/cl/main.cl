@@ -11,21 +11,15 @@
 /* ************************************************************************** */
 
 #include "obj_def.h"
-
-#define DEBUG 0
-
-#define PRINT3(v, a) printf(a ": %f %f %f\n", (v).x, (v).y, (v).z);
-#define PRINT1(v, a) printf(a ": %f\n", (v));
-#define _DEBUG 0
-#define _PRINT3(v, a) if(_DEBUG){printf(a ": %f %f %f\n", (v).x, (v).y, (v).z);}
-#define _PRINT1(v, a) if(_DEBUG){printf(a ": %f\n", (v));}
+/*debug*/
+#include "debug.h"
+/////////////
+#include "calc.cl"
 
 constant float2	size2	= (float2){WIDTH, HEIGHT};
 constant float2	size2_2	= (float2){XCENTER, YCENTER};
 constant float3	size3	= (float3){WIDTH, HEIGHT, 0};
 constant float3	size3_2	= (float3){XCENTER, YCENTER, 0};
-
-# include "calc.cl"
 
 #if DEBUG
 # include "debug.cl"
