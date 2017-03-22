@@ -15,7 +15,7 @@
 
 //debug
 #define COLOR 1
-#define ROTATE 0
+#define ROTATE 1
 //
 
 typedef struct			s_data

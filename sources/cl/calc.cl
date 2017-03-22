@@ -62,7 +62,7 @@ void			touch_object(t_data *data)
 	while(++index <  data->n_objs)
 	{
 		if (ray_intersection(data, &index))
-			if ((norm = fast_distance(data->intersect,data->ray_pos)) > 0.0f &&
+			if ((norm = fast_distance(data->intersect, data->ray_pos)) > 0.0f &&
 				(norm < smallest_norm || smallest_norm == -1))
 			{
 				closest_intersect = data->intersect;

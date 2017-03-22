@@ -22,7 +22,7 @@
 	<type>Diffuse</type>
 	<visibility>True</visibility>
 	<position>0.00 0.00 0.00</position>
-	<color-rgb>1.00 1.00 1.00</color-rgb>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
 
@@ -35,8 +35,8 @@
 	<visibility>True</visibility>
 	<height>30.</height>
 	<position>100.00 .0 800.00</position>
-	<rotation> 90.00 00. 45.00</rotation>
-	<color-rgb>1.00 0.00 0.00</color-rgb>
+	<rotation> 0.00 00. 0.00</rotation>
+	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.0</opacity>
 	<radius>20</radius>
 </object>

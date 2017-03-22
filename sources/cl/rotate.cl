@@ -3,23 +3,26 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	float3	res;
 
 	data->rad = data->obj->rot * (float)(M_PI / 180.0f);
-
+	float3 rad = data->rad;
 	//////debug
 	if (ROTATE == 0)
 		return (*ray);
 	///////debug
-	if (float_to_float3(data->rad) == 0.0f)
+	if (float3_to_float(data->rad) == 0.0f)
 		return (*ray);
 	////////////////////////////////////matrice de rotation;
 	float3	matrix[3];
-	matrix[0] = (float3){};
-	matrix[1] = (float3){};
-	matrix[2] = (float3){};
+	matrix[0] = (float3){cos(rad.x), 0.0f, sin(rad.z)};
+	matrix[1] = (float3){(-sin(rad.z) * (-sin(rad.x))), cos(rad.y), (-sin(rad.z) * cos(rad.z))};
+	matrix[2] = (float3){cos(rad.z) * (-sin(rad.z)), sin(rad.y), cos(rad.z) * cos(rad.z)};
+	res.x = float3_to_float(matrix[0] * (*ray);
+	// res.y = dot(matrix[1]), *ray);
+	// res.z = dot(matrix[2]), *ray);
 	///////////////////////////////////
-	res = rotate_x(ray, data->rad.x);
+	// res = rotate_x(ray, data->rad.x);
 	// res = rotate_y(ray, data->rad.y);
 	// res = rotate_z(ray, data->rad.z);
-	rotate_pos_x(data);
+	// rotate_pos_x(data);
 	// rotate_pos_y(data);
 	// rotate_pos_z(data);
 	return(res);
@@ -60,7 +63,7 @@ float3          rotate_x(float3 *ray, float rad)
 	// res.y = cos(rad) * ray->y + (-sin(rad) * ray->z);
 	// res.z = sin(rad) * ray->y + cos(rad) * ray->z;
 
-	return (normalize(res));
+	return (fast_normalize(res));
 }
 
 void          rotate_pos_y(t_data *data)
@@ -136,5 +139,5 @@ float3          rotate_z(float3 *ray, float rad)
 	// res = mat * (*ray);
 	// *offset = obj->pos * mat * -1;
 
-	return (normalize(res));
+	return (fast_normalize(res));
 	}
