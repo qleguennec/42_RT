@@ -17,8 +17,14 @@
 
 unsigned	get_lighting(t_data *data)
 {
+	init_laputain_desamere(data);
 	get_color(data);
 	return(calcul_rendu_light(data));
+}
+
+void	init_laputain_desamere(t_data *data)
+{
+	data->objs[1].reflex = 1.0f;
 }
 
 void	get_color(t_data *data)

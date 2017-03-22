@@ -11,7 +11,7 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<position>0.00 0.00 0.00</position>
+	<position>0.00 0.00 2.00</position>
 	<rotation>0.00 0.00 1.00</rotation>
 	<focal>55</focal>
 </camera>
@@ -23,18 +23,18 @@
 	<type>Diffuse</type>
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>-50.00 0.00 50.00</position>
+	<position>0.00 0.00 50.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
 
 <light>
 	<name>Point 2</name>
-	<type>Diffuse</type>
+	<type>Spot</type>
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>50.00 0.00 50.00</position>
-	<color-rgb>255.00 255.0 255.0</color-rgb>
+	<position>0.00 0.00 950.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>10.00</intensity>
 </light>
 
@@ -69,7 +69,7 @@
 	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>100.00 10.00 400.00</position>
+	<position>46.00 -60.00 400.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>130.00 80.00 25.00</color-rgb>
 	<opacity>1.00</opacity>
@@ -93,9 +93,31 @@
 	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 88.50</position>
+	<position>-23.00 0.00 88.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>255.0 255.0 255.0</color-rgb>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>.95</opacity>
 	<radius>12.00</radius>
+</object>
+
+<object>
+	<name>Plane 1</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 0.00 1000.00</position>
+	<rotation>0.00 0.00 1.00</rotation>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<opacity>1.00</opacity>
+</object>
+
+<object>
+	<name>Plane 1</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 0.00 0.00</position>
+	<rotation>0.00 0.00 -1.00</rotation>
+	<color-rgb>255.00 0.00 255.00</color-rgb>
+	<opacity>1.00</opacity>
 </object>
