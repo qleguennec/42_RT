@@ -35,9 +35,9 @@
 	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>-50.00 0.00 290.00</position>
+	<position>0.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>.00 128.00 0.00</color-rgb>
+	<color-rgb>0.00 128.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>50.00</radius>
 </object>
@@ -47,33 +47,9 @@
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>-70.00 0.00 0.00</position>
-	<rotation>-1.00 .00 0.00</rotation>
-	<color-rgb>255  255 255.0</color-rgb>
+	<position>-3.50 0.00 0.00</position>
+	<rotation>-1.00 0.00 0.00</rotation>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-</object>
-<!--
-<object>
-	<name>Sphere 2</name>
-	<type>Sphere</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 0.00 0.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>127.50 127.50 127.50</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>25.00</radius>
 </object>
 
-<object>
-	<name>Cylinder 2</name>
-	<type>Cylinder</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 0.00 0.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>127.50 127.50 127.50</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>25.00</radius>
-</object>
--->
