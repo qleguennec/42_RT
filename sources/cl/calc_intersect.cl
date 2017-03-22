@@ -126,6 +126,5 @@ short			sphere_intersection(t_data *data)
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, &data->ray_pos, &ray_dir, &data->intersect);
-
 	return (1);
 }

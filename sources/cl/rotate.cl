@@ -4,6 +4,7 @@ float3			rotate_ray(float3 *ray, t_data *data)
 
 	data->rad = data->obj->rot * (float)(M_PI / 180.0f);
 	float3 rad = data->rad;
+	_PRINT3(rad, "rad");
 	//////debug
 	if (ROTATE == 0)
 		return (*ray);
@@ -11,20 +12,30 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	if (float3_to_float(data->rad) == 0.0f)
 		return (*ray);
 	////////////////////////////////////matrice de rotation;
-	float3	matrix[3];
-	matrix[0] = (float3){cos(rad.x), 0.0f, sin(rad.z)};
-	matrix[1] = (float3){(-sin(rad.z) * (-sin(rad.x))), cos(rad.y), (-sin(rad.z) * cos(rad.z))};
-	matrix[2] = (float3){cos(rad.z) * (-sin(rad.z)), sin(rad.y), cos(rad.z) * cos(rad.z)};
-	res.x = float3_to_float(matrix[0] * (*ray);
-	// res.y = dot(matrix[1]), *ray);
-	// res.z = dot(matrix[2]), *ray);
+	float3 matx = (float3){cos(rad.x), 0.0f, sin(rad.z)};
+	float3 maty = (float3){(-sin(rad.z) * (-sin(rad.x))), cos(rad.y), (-sin(rad.z) * cos(rad.z))};
+	float3 matz = (float3){cos(rad.z) * (-sin(rad.z)), sin(rad.y), cos(rad.z) * cos(rad.z)};
+
+	matx = (float3){cos(rad.x), 0.0f, sin(rad.z)};
+	maty = (float3){(-sin(rad.x) * (-sin(rad.x))), cos(rad.y), (-sin(rad.z) * cos(rad.z))};
+	matz = (float3){cos(rad.x) * (-sin(rad.x)), sin(rad.y), cos(rad.z) * cos(rad.z)};
+	_PRINT3(*ray, "ray or");
+	_PRINT3(matx, "matx");
+	_PRINT3(maty, "maty");
+	_PRINT3(matz, "matz");
+	res.x = dot(matx , *ray);
+	res.y = dot(maty, *ray);
+	res.z = dot(matz, *ray);
+	_PRINT3(res, "res 1");
+	
 	///////////////////////////////////
-	// res = rotate_x(ray, data->rad.x);
+	//  res = rotate_x(ray, data->rad.x);
 	// res = rotate_y(ray, data->rad.y);
-	// res = rotate_z(ray, data->rad.z);
-	// rotate_pos_x(data);
+	//  res = rotate_z(&res, data->rad.z);
+	//  rotate_pos_x(data);
 	// rotate_pos_y(data);
-	// rotate_pos_z(data);
+	//  rotate_pos_z(data);
+	_PRINT3(res, "res 2");
 	return(res);
 }
 //

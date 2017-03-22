@@ -16,6 +16,9 @@
 
 #define PRINT3(v, a) printf(a ": %f %f %f\n", (v).x, (v).y, (v).z);
 #define PRINT1(v, a) printf(a ": %f\n", (v));
+#define _DEBUG 0
+#define _PRINT3(v, a) if(_DEBUG){printf(a ": %f %f %f\n", (v).x, (v).y, (v).z);}
+#define _PRINT1(v, a) if(_DEBUG){printf(a ": %f\n", (v));}
 
 constant float2	size2	= (float2){WIDTH, HEIGHT};
 constant float2	size2_2	= (float2){XCENTER, YCENTER};
@@ -60,7 +63,7 @@ kernel void
 	direction.y = origin.y + ((float)y * indent.y) - cam->pos.y;
 	direction.z = origin.z - cam->pos.z;
 	*(img_buffer + WIDTH * y + x) = -1;
-	// if ((x == XCENTER && y == YCENTER))
+	// if ((x == XCENTER && y == 50))
 	calc_picture((DEBUG && ((x == XCENTER && y == YCENTER) || (x == XCENTER && y == YCENTER)))
 		, img_buffer + WIDTH * y + x
 		, objs
