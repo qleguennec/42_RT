@@ -17,27 +17,20 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	////////////////
 	if (float3_to_float(rad) == 0.0f)
 		return (*ray);
-
-
-
-	matx = (float3){cos(rad.y), 0.0f, sin(rad.y)};
-	maty = (float3){(-sin(rad.x) * (-sin(rad.y))), cos(rad.x), (-sin(rad.x) * cos(rad.y))};
-	matz = (float3){cos(rad.x) * (-sin(rad.y)), sin(rad.x), cos(rad.x) * cos(rad.y)};
-	
-
-	matx = (float3){cos(rad.y) * cos(rad.z), cos(rad.y) * sin(rad.z), sin(rad.y)};
-
+		
+	matx = (float3){cos(rad.y) * cos(rad.z),
+	 cos(rad.y) * (-sin(rad.z)),
+	  sin(rad.y)};
 	maty = (float3){(-sin(rad.x)) * (-sin(rad.y)) * cos(rad.z) + cos(rad.x) * sin(rad.z),
-	 (-sin(rad.x)) * (-sin(rad.y)) * sin(rad.z) + cos(rad.x) * cos(rad.z), (-sin(rad.x)) * cos(rad.y)};
-	 
+	 (-sin(rad.x)) * (-sin(rad.y)) * (-sin(rad.z)) + cos(rad.x) * cos(rad.z),
+	  (-sin(rad.x)) * cos(rad.y)};
 	matz = (float3){cos(rad.x) * (-sin(rad.y)) * cos(rad.z) + sin(rad.x) * sin(rad.z),
-	 cos(rad.x) * (-sin(rad.y)) * sin(rad.z) + sin(rad.x) * cos(rad.z),
+	 cos(rad.x) * (-sin(rad.y)) * (-sin(rad.z)) + sin(rad.x) * cos(rad.z),
 	  cos(rad.x) * cos(rad.y)};
 
-	res.x = dot(matx , *ray);
+	res.x = dot(matx, *ray);
 	res.y = dot(maty, *ray);
 	res.z = dot(matz, *ray);
-
 	if (data->option)
 	{
 		data->offset.x = dot(matx, data->obj->pos);

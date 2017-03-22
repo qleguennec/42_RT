@@ -1,7 +1,7 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
-#define DEBUG 0
+#define DEBUG 1
 /*defini si le vrai calcul de couleur est realiser ou non*/
 #define COLOR 0
 /*active la rotation ou non*/
