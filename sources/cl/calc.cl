@@ -141,5 +141,5 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		*pixel = get_lighting(&data);
 	}
 	else
-		*pixel = 0xFFFFFFFF;
+		*pixel = FONT;
 }

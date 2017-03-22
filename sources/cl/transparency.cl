@@ -28,7 +28,7 @@ void	clearness_calcul(t_data *data)
 	}
 	if (data->id == -1)
 	{
-		data->rd_light += (float3){1.0f, 1.0f, 1.0f} * data->light_pow;
+		// data->rd_light += (float3){1.0f, 1.0f, 1.0f} * data->light_pow;
 		data->light_pow = 0.0f;
 	}
 		data->rd_light += (check_all_light(data) * data->light_pow);
