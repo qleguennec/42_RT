@@ -12,12 +12,12 @@ float3			rotate_ray(float3 *ray, t_data *data)
 
 	_PRINT3(rad, "rad");
 	//////debug
-	if (ROTATE == 0)
+	if (!ROTATE)
 		return (*ray);
 	////////////////
 	if (float3_to_float(rad) == 0.0f)
 		return (*ray);
-		
+
 	matx = (float3){cos(rad.y) * cos(rad.z),
 	 cos(rad.y) * (-sin(rad.z)),
 	  sin(rad.y)};

@@ -15,14 +15,16 @@
 	<rotation>0.00 0.00 1.00</rotation>
 	<focal>55</focal>
 </camera>
+
 <!------------ Light(s) -------------->
 
 <light>
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>True</visibility>
-	<position>50.00 -80.00 180.00</position>
-	<color-rgb>1.00 1.00 1.00</color-rgb>
+	<flare-visibility>True</flare-visibility>
+	<position>10.00 0.00 180.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
 
@@ -30,24 +32,48 @@
 
 <object>
 	<name>Sphere 1</name>
-	<type>sphere</type>
+	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 290.00</position>
+	<position>-50.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>1.00 1.00 1.00</color-rgb>
-	<opacity>1</opacity>
-	<radius>50</radius>
+	<color-rgb>.00 128.00 0.00</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>50.00</radius>
 </object>
 
 <object>
-	<name>Sphere 1</name>
-	<type>cylinder</type>
+	<name>Plane 1</name>
+	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 20.00 290.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>1.00 0.00 0.00</color-rgb>
-	<opacity>.40</opacity>
-	<radius>40</radius>
+	<position>-70.00 0.00 0.00</position>
+	<rotation>-1.00 .00 0.00</rotation>
+	<color-rgb>255  255 255.0</color-rgb>
+	<opacity>1.00</opacity>
 </object>
+<!--
+<object>
+	<name>Sphere 2</name>
+	<type>Sphere</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 0.00 0.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>127.50 127.50 127.50</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>25.00</radius>
+</object>
+
+<object>
+	<name>Cylinder 2</name>
+	<type>Cylinder</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 0.00 0.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>127.50 127.50 127.50</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>25.00</radius>
+</object>
+-->
