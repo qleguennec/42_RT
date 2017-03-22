@@ -24,7 +24,7 @@ unsigned	get_lighting(t_data *data)
 
 void	init_laputain_desamere(t_data *data)
 {
-	data->objs[1].reflex = 1.0f;
+	data->objs[1].reflex = .5f;
 }
 
 void	get_color(t_data *data)
@@ -32,7 +32,7 @@ void	get_color(t_data *data)
 	data->safe++;
 	if (data->light_pow > 0.0f && data->objs[data->id].reflex > 0.0f &&
 		data->safe <= SAFE)
-		reflex_calcul(data);
+			reflex_calcul(data);
 	if (data->light_pow > 0.0f && data->safe <= SAFE)
 		clearness_color(data);
 }

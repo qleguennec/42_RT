@@ -35,7 +35,7 @@
 	<visibility>True</visibility>
 	<height>30.</height>
 	<position>0.00 .0 800.00</position>
-	<rotation> 0.00 90. 0.00</rotation>
+	<rotation> 0.00 45. .00</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.0</opacity>
 	<radius>20</radius>
