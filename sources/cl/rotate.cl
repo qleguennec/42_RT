@@ -26,6 +26,13 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	res.x = dot(matx , *ray);
 	res.y = dot(maty, *ray);
 	res.z = dot(matz, *ray);
+	float3 pos;
+	pos = data->obj->pos;
+	data->offset.x = dot(matx, data->obj->pos);
+	data->offset.y = dot(maty, data->obj->pos);
+	data->offset.z = dot(matz, data->obj->pos);
+	data->offset *= -1;
+	
 	_PRINT3(res, "res 1");
 	
 	///////////////////////////////////
