@@ -10,8 +10,8 @@ void	reflex_calcul(t_data *data)
 	data->light_pow *= (1.0f - data->objs[data->id].reflex);
 	clearness_color(data);
 	data->light_pow = temp_power * data->objs[data->id].reflex;
-	data->intersect = temp_pos;
 	calcul_reflex_ray(data, &temp_pos, &temp_dir);
+	touch_object(data);
 	get_color(data);
 }
 
@@ -21,6 +21,5 @@ void	calcul_reflex_ray(t_data * data, float3 *ray_pos, float3 *ray_dir)
 
 	normale = calcul_normale(&data->objs[data->id], ray_pos);
 	data->ray_dir = *ray_pos - (2 * normale * my_dot(normale, *ray_pos));
-	// data->ray_dir = normalize(data->ray_dir);
-	data->ray_pos = data->intersect;
+	data->ray_pos = *ray_pos;
 }
