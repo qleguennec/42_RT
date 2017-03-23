@@ -19,13 +19,13 @@
 <!------------ Light(s) -------------->
 
 <light>
-	<name>Prout</name>
+	<name>Point 1</name>
 	<type>Diffuse</type>
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>0.00 -10.00 10.00</position>
-	<color-rgb>255.00 255.00 255.00</color-rgb>
-	<intensity>50.00</intensity>
+	<position>0.00 0.00 0.00</position>
+	<color-rgb>255.00 250.00 250.00</color-rgb>
+	<intensity>5.00</intensity>
 </light>
 
 <!------------ Object(s) ------------->
@@ -81,7 +81,7 @@
 	<visibility>True</visibility>
 	<position>40.00 0.00 290.00</position>
 	<rotation>1.00 0.00 0.00</rotation>
-	<color-rgb>.00 255.00 .00</color-rgb>
+	<color-rgb>0.00 255.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 </object>
 
@@ -100,10 +100,17 @@
 	<name>Sphere 1</name>
 	<type>Sphere</type>
 	<material>Lambert</material>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<position>30.00 0.00 100.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 128.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>10.00</radius>
+	<width>9.00</width>
+	<!--<height>8.00</height>
+	<reflex>7.00</reflex>-->-->
+	<!--<shiness>6.00</shiness>-->
+	<!--<mshiness>5.00</mshiness>-->
+	<!--<reflex>4.00</reflex>
 </object>
+

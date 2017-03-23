@@ -118,18 +118,22 @@ float3		calcul_normale(t_data *data)
 	if (data->objs[data->id].type == T_PLANE)
 		normale = data->objs[data->id].rot;
 	if (data->objs[data->id].type == T_SPHERE)
+	{
 		normale = data->objs[data->id].pos - data->intersect;
+		normale = rotate_ray(&normale, data);
+	}
 	if (data->objs[data->id].type == T_CYLINDER)
 	{
 		normale = data->objs[data->id].pos - data->intersect;
 		// normale.y = 0.0f; ////////// a supprimer
+		normale = rotate_ray(&normale, data);
 	}
 	if (data->objs[data->id].type == T_CONE)
 	{
-		// normale = data->objs[data->id].pos - data->intersect;
-		normale = (float3){0.0f, 0.0f, 1.0f}; // a voir si la suppresion est necesaire
+		normale = data->objs[data->id].pos - data->intersect;
+		// normale = (float3){0.0f, 0.0f, 1.0f}; // a voir si la suppresion est necesaire
 		//soit la premiere soit la seconde
+		normale = rotate_ray(&normale, data);
 	}
-	normale = rotate_ray(&normale, data);
 	return (normalize(normale));
 }

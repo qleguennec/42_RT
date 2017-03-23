@@ -45,6 +45,7 @@ void
 	short	i;
 
 	i = 0;
+	printf("=====>objs[%u]\n", nobjs);
 	while (i < nobjs)
 	{
 		printf("obj %d\n", i);
@@ -65,6 +66,7 @@ void
 		i++;
 	}
 	i = 0;
+	printf("=====>nlgts[%u]\n", nlgts);
 	while (i < nlgts)
 	{
 		printf("lgt %d\n", i);
