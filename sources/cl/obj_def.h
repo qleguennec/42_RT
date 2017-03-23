@@ -16,6 +16,7 @@
 # include "../../include/obj_types.h"
 
 # define PREC 0.0000001f
+#define PLANE_PREC 0.00001f
 # define SAFE 2
 
 typedef struct		s_obj

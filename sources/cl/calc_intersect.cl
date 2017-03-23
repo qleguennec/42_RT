@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 float			float3_to_float(float3 v){
 	return (v.x + v.y + v.z);
 }
@@ -27,13 +26,14 @@ short			plane_intersection(t_data *data)
 	float	t;
 
 	data->offset = data->ray_pos - data->obj->pos;
+	// rotate_ray(&data->ray_dir, data);////////////not good for plane rotation
 	div = dot(data->obj->rot, data->ray_dir);
 	if (div == 0.0f)
 		return (0);
 	t = (-dot(data->obj->rot, data->offset)) / div;
 	if (t < 0.0f)
 		return (0);
-	t += (t < 0)? t * 0.00001f: t * -0.00001f;
+	t += (t < 0)? t * -PLANE_PREC: t * -PLANE_PREC;
 	calc_intersect(&t, &data->ray_pos, &data->ray_dir, &data->intersect);
 	return (1);
 }
