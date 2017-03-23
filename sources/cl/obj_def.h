@@ -17,7 +17,7 @@
 
 # define PREC 0.0000001f
 #define PLANE_PREC 0.00001f
-# define SAFE 2
+# define SAFE 4
 
 typedef struct		s_obj
 {
