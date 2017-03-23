@@ -11,18 +11,20 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<position>00.00 0.00 0.00</position>
-	<rotation>0.00 0.00 1.</rotation>
+	<position>0.00 0.00 0.00</position>
+	<rotation>0.00 0.00 1.00</rotation>
 	<focal>55</focal>
 </camera>
+
 <!------------ Light(s) -------------->
 
 <light>
 	<name>Prout</name>
 	<type>Diffuse</type>
-	<visibility>False</visibility>
-	<position>00.00 -10.00 10.00</position>
-	<color-rgb>1.00 1.00 1.00</color-rgb>
+	<visibility>True</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>0.00 -10.00 10.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>50.00</intensity>
 </light>
 
@@ -30,60 +32,56 @@
 
 <object>
 	<name>plan sol</name>
-	<type>plane</type>
+	<type>Plane</type>
 	<material>Lambert</material>
-	<visibility>False</visibility>
+	<visibility>True</visibility>
 	<position>10.00 20.00 290.00</position>
 	<rotation>0.00 1.00 0.00</rotation>
-	<color-rgb>1.00 0.00 0.00</color-rgb>
+	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>25</radius>
-</object>
-
-<object>
-	<name>plan plafond</name>
-	<type>plane</type>
-	<material>Lambert</material>
-	<visibility>False</visibility>
-	<position>10.00 -20.00 290.00</position>
-	<rotation>0.00 1.00 0.00</rotation>
-	<color-rgb>0.00 1.00 0.00</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>25</radius>
-</object>
-
-<object>
-	<name>plan droit</name>
-	<type>plane</type>
-	<material>Lambert</material>
-	<visibility>False</visibility>
-	<position>40.00 0.00 290.00</position>
-	<rotation>1.00 0.00 0.00</rotation>
-	<color-rgb>0.00 0.00 1.00</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>25</radius>
-</object>
-
-<object>
-	<name>plan gauche</name>
-	<type>plane</type>
-	<material>Lambert</material>
-	<visibility>False</visibility>
-	<position>-40.00 0.00 290.00</position>
-	<rotation>1.00 0.00 0.00</rotation>
-	<color-rgb>1.00 1.00 0.00</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>25</radius>
 </object>
 
 <object>
 	<name>plan fond</name>
-	<type>plane</type>
+	<type>Plane</type>
 	<material>Lambert</material>
-	<visibility>False</visibility>
+	<visibility>True</visibility>
 	<position>0.00 0.00 200.00</position>
 	<rotation>0.00 0.00 1.00</rotation>
-	<color-rgb>1.00 0.00 1.00</color-rgb>
+	<color-rgb>255.00 0.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>25</radius>
 </object>
+<object>
+	<name>plan plafond</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>10.00 -20.00 290.00</position>
+	<rotation>0.00 1.00 0.00</rotation>
+	<color-rgb>0.00 255.00 0.00</color-rgb>
+	<opacity>1.00</opacity>
+</object>
+
+<object>
+	<name>plan droit</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>40.00 0.00 290.00</position>
+	<rotation>1.00 0.00 0.00</rotation>
+	<color-rgb>.00 255.00 .00</color-rgb>
+	<opacity>1.00</opacity>
+</object>
+
+<object>
+	<name>plan gauche</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>-40.00 0.00 290.00</position>
+	<rotation>-1.00 0.00 0.00</rotation>
+	<color-rgb>255.00 255.00 0.00</color-rgb>
+	<opacity>1.00</opacity>
+</object>
+
+
