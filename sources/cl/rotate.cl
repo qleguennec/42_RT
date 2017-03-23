@@ -7,17 +7,11 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	float3	maty;
 	float3	matz;	
 
-	pos = data->obj->pos;
+	pos = data->ray_pos - data->obj->pos;
 	rad = data->obj->rot * (float)(M_PI / 180.0f);
 
-	_PRINT3(rad, "rad");
-	//////debug
 	if (!ROTATE)
 		return (*ray);
-	////////////////
-	if (float3_to_float(rad) == 0.0f)
-		return (*ray);
-
 	matx = (float3){cos(rad.y) * cos(rad.z),
 	 cos(rad.y) * (-sin(rad.z)),
 	  sin(rad.y)};
@@ -33,12 +27,9 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	res.z = dot(matz, *ray);
 	if (data->option)
 	{
-		data->offset.x = dot(matx, data->obj->pos);
-		data->offset.y = dot(maty, data->obj->pos);
-		data->offset.z = dot(matz, data->obj->pos);
-		data->offset *= -1;
+		data->offset.x = dot(matx, pos);
+		data->offset.y = dot(maty, pos);
+		data->offset.z = dot(matz, pos);
 	}
-
-	_PRINT3(res, "res 1");
 	return(res);
 }

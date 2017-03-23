@@ -24,7 +24,7 @@ unsigned	get_lighting(t_data *data)
 
 void	init_laputain_desamere(t_data *data)
 {
-	data->objs[1].reflex = 0.0f;
+	data->objs[1].reflex = 0.5f;
 }
 
 void	get_color(t_data *data)
@@ -116,10 +116,10 @@ float3		calcul_normale(t_data *data)
 	if (data->objs[data->id].type == T_CYLINDER)
 	{
 		normale = data->objs[data->id].pos - data->intersect;
-		normale = rotate_ray(&normale, data);
 		normale.y = 0.0f;
 	}
 	if (data->objs[data->id].type == T_CONE)
 		normale = (float3){0.0f, 0.0f, 1.0f};
+	normale = rotate_ray(&normale, data);
 	return (normalize(normale));
 }

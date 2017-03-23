@@ -28,8 +28,10 @@ typedef struct			s_data
 	float				ambiant;
 	float				light_pow;
 	float3				ray_pos;
+	float3				grid_ray_dir;
 	float3				ray_dir;
 	float3				intersect;
+	float3				grid_intersect;
 	float3				rd_light;
 	float3				offset;
 	float3				rad;
@@ -37,7 +39,7 @@ typedef struct			s_data
 
 float			calc_delta(float a, float b, float c);
 
-void			calc_intersect(float *delta, float3 *ray_pos, float3 *ray_dir,
+void			calc_intersect(float *delta, t_data *data, float3 *ray_pos, float3 *ray_dir,
  float3 *intersect);
 
 void			touch_object(t_data *data);
