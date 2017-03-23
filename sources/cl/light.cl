@@ -125,7 +125,7 @@ float3		calcul_normale(t_data *data)
 	if (data->objs[data->id].type == T_CYLINDER)
 	{
 		normale = data->objs[data->id].pos - data->intersect;
-		// normale.y = 0.0f; ////////// a supprimer
+		normale.y = 0.0f;
 		normale = rotate_ray(&normale, data);
 	}
 	if (data->objs[data->id].type == T_CONE)
@@ -135,5 +135,5 @@ float3		calcul_normale(t_data *data)
 		//soit la premiere soit la seconde
 		normale = rotate_ray(&normale, data);
 	}
-	return (normalize(normale));
+	return (fast_normalize(normale));
 }

@@ -46,7 +46,7 @@ short			cone_intersection(t_data *data)
 	float	delta;
 
 	float	rad;
-	rad = (data->obj->radius) * (float)(M_PI / 180.0f);
+	rad = (data->obj->radius / 2.0f) * (float)(M_PI / 180.0f);
 
 	data->ray_dir = rotate_ray(&data->ray_dir, data);
 	a = dot(data->ray_dir.xz, data->ray_dir.xz) - dot(data->ray_dir.y, data->ray_dir.y) * tan(rad);
@@ -58,11 +58,10 @@ short			cone_intersection(t_data *data)
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data, &data->ray_pos, &data->ray_dir, &data->intersect);
-	if ((data->obj->height > 0.0f && ((sqrt(dot(data->obj->pos - data->grid_intersect,
-			data->obj->pos - data->grid_intersect)) > sqrt(data->obj->height *
-	data->obj->height + data->obj->radius  * data->obj->radius)))) ||
+	if ((data->obj->height > 0.0f && ((fast_distance(data->obj->pos, data->grid_intersect) >
+	 sqrt(data->obj->height * data->obj->height + data->obj->radius  * data->obj->radius)))) ||
 		 data->grid_intersect.y >
-	data->obj->height || data->grid_intersect.y < data->obj->pos.y)
+	data->obj->height || data->grid_intersect.y > data->obj->pos.y)
 		return (0);
 	// if (data->obj->height > 0.0f && ((sqrt(dot(data->obj->pos - data->grid_intersect,
 	// 	data->obj->pos - data->grid_intersect)) > sqrt(data->obj->height *
@@ -87,8 +86,11 @@ short			cylinder_intersection(t_data *data)
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data, &data->ray_pos, &data->ray_dir, &data->intersect);
-	if (data->obj->height > 0.0f && ((sqrt(dot(data->obj->pos - data->grid_intersect,
-			data->obj->pos - data->grid_intersect)) > sqrt(data->obj->height *
+	// if (data->obj->height > 0.0f && ((sqrt(dot(data->obj->pos - data->grid_intersect,
+	// 		data->obj->pos - data->grid_intersect)) > sqrt(data->obj->height *
+	// 	data->obj->height + data->obj->radius  * data->obj->radius))))
+	// 	return (0);
+		if (data->obj->height > 0.0f && ((fast_distance(data->obj->pos,data->grid_intersect) > sqrt(data->obj->height *
 		data->obj->height + data->obj->radius  * data->obj->radius))))
 		return (0);
 	return (1);
