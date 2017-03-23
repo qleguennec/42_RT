@@ -89,6 +89,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->id = -1;
 	data->safe = 0;
 	data->option = 1;
+	data->nl = 0;
 	data->ambiant = ambiant;
 	data->light_pow = 1.0f;
 	data->ray_pos = ray_pos;
@@ -97,7 +98,6 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->rd_light = 0.0f;
 	data->offset = 0.0f;
 	data->rad = 0.0f;
-	data->nl = 0;
 }
 
 void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,

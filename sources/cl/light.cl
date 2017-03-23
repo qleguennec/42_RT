@@ -48,7 +48,7 @@ float3		check_all_light(t_data *data)
 	{
 		lightdir = data->intersect - data->lights[i].pos;
 		rd_light += is_light(data, lightdir, &data->lights[i],
-			calcul_normale(&data->objs[data->id], &data->intersect));
+		calcul_normale(data));
 		i++;
 	}
 	return((float3)(rd_light / (float)(data->nl)) *
@@ -105,22 +105,21 @@ float3		calcul_clr(float3 ray, float3 normale, float3 light,
 	return((float3)(light * cosinus * obj->clr));
 }
 
-float3		calcul_normale(global t_obj *obj, float3 *point)
+float3		calcul_normale(t_data *data)
 {
 	float3	normale;
 
-	if (obj->type == T_PLANE)
-		normale = obj->rot;
-	if (obj->type == T_SPHERE)
-		normale = obj->pos - *point;
-	if (obj->type == T_CYLINDER)
+	if (data->objs[data->id].type == T_PLANE)
+		normale = data->objs[data->id].rot;
+	if (data->objs[data->id].type == T_SPHERE)
+		normale = data->objs[data->id].pos - data->intersect;
+	if (data->objs[data->id].type == T_CYLINDER)
 	{
-		normale = obj->pos - *point;
+		normale = data->objs[data->id].pos - data->intersect;
+		normale = rotate_ray(&normale, data);
 		normale.y = 0.0f;
-		// normale = rotate_ray(&normale, data);
 	}
-	if (obj->type == T_CONE)
+	if (data->objs[data->id].type == T_CONE)
 		normale = (float3){0.0f, 0.0f, 1.0f};
-	normale = normalize(normale);
-	return (normale);
+	return (normalize(normale));
 }

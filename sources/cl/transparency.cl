@@ -45,7 +45,7 @@ float3	calcul_refract_ray(t_data *data, float refract1, float refract2)
 	float	c2;
 	float3	normale;
 
-	normale = calcul_normale(&data->objs[data->id], &data->intersect);
+	normale = calcul_normale(data);
 	n = refract1 / refract2;
 	return (data->ray_dir * n + normale * (n * c1 - c2));
 }

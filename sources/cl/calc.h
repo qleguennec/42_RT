@@ -24,6 +24,7 @@ typedef struct			s_data
 	short				id;
 	short				safe;
 	short				option;
+	short				nl;
 	float				ambiant;
 	float				light_pow;
 	float3				ray_pos;
@@ -32,7 +33,6 @@ typedef struct			s_data
 	float3				rd_light;
 	float3				offset;
 	float3				rad;
-	short				nl;
 }						t_data;
 
 float			calc_delta(float a, float b, float c);
