@@ -47,9 +47,9 @@
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>-3.50 0.00 0.00</position>
+	<position>-37.50 0.00 0.00</position>
 	<rotation>-1.00 0.00 0.00</rotation>
-	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<color-rgb>128.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 </object>
 
@@ -60,7 +60,7 @@
 	<visibility>True</visibility>
 	<position>0.00 0.00 500.00</position>
 	<rotation>0.00 0.00 1.00</rotation>
-	<color-rgb>255.0 255.0 255.0</color-rgb>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 </object>
 

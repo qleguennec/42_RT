@@ -26,7 +26,6 @@ short			plane_intersection(t_data *data)
 	float	div;
 	float	t;
 
-	// data->offset = data->ray_pos - data->obj->pos;
 	rotate_ray(&data->ray_dir, data);////////////not good for plane rotation
 	div = dot(data->obj->rot, data->ray_dir);
 	if (div == 0.0f)
@@ -46,20 +45,26 @@ short			cone_intersection(t_data *data)
 	float	c;
 	float	delta;
 
+	float	rad;
+	rad = (data->obj->radius) * (float)(M_PI / 180.0f);
+
 	data->ray_dir = rotate_ray(&data->ray_dir, data);
-	a = dot(data->ray_dir.xz, data->ray_dir.xz) - dot(data->ray_dir.y, data->ray_dir.y);// * tan(rad);
+	a = dot(data->ray_dir.xz, data->ray_dir.xz) - dot(data->ray_dir.y, data->ray_dir.y) * tan(rad);
 
 	b = (2.0f * dot(data->ray_dir.x, data->offset.x)) + (2.0f * dot(data->ray_dir.z, data->offset.z)) -
-	 (2.0f * dot(data->ray_dir.y, data->offset.y));// * tan(rad));
+	 (2.0f * dot(data->ray_dir.y, data->offset.y)) * tan(rad);
 
-	c = dot(data->offset.xz, data->offset.xz) - dot(data->offset.y, data->offset.y);// * (tan(rad));
+	c = dot(data->offset.xz, data->offset.xz) - dot(data->offset.y, data->offset.y) * tan(rad);
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data, &data->ray_pos, &data->ray_dir, &data->intersect);
-	if (data->obj->height > 0.0f && ((sqrt(dot(data->obj->pos - data->grid_intersect,
+	// if (data->obj->height > 0.0f && ((sqrt(dot(data->obj->pos - data->grid_intersect,
+	// 		data->obj->pos - data->grid_intersect)) > sqrt(data->obj->height *
+	// 	data->obj->height + data->obj->radius  * data->obj->radius))))
+	// 	return (0);
+		if (data->obj->height > 0.0f && ((sqrt(dot(data->obj->pos - data->grid_intersect,
 			data->obj->pos - data->grid_intersect)) > sqrt(data->obj->height *
-		data->obj->height + data->obj->radius  * data->obj->radius)) ))// ||
-		//(dot(data->obj->pos, data->intersect) < 0.0f)))
+		data->obj->height + data->obj->radius  * data->obj->radius))))
 		return (0);
 	return (1);
 }
@@ -82,8 +87,7 @@ short			cylinder_intersection(t_data *data)
 	calc_intersect(&delta, data, &data->ray_pos, &data->ray_dir, &data->intersect);
 	if (data->obj->height > 0.0f && ((sqrt(dot(data->obj->pos - data->grid_intersect,
 			data->obj->pos - data->grid_intersect)) > sqrt(data->obj->height *
-		data->obj->height + data->obj->radius  * data->obj->radius)) ))// ||
-		//(dot(data->obj->pos, data->intersect) < 0.0f)))
+		data->obj->height + data->obj->radius  * data->obj->radius))))
 		return (0);
 	return (1);
 }
