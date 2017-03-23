@@ -47,7 +47,7 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 200.00</position>
-	<rotation>0.00 0.00 1.00</rotation>
+	<rotation>0.00 0.00 -1.00</rotation>
 	<color-rgb>255.00 0.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 </object>
@@ -57,8 +57,8 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>10.00 -20.00 290.00</position>
-	<rotation>0.00 1.00 0.00</rotation>
-	<color-rgb>0.00 255.00 0.00</color-rgb>
+	<rotation>0.00 -1.00 0.00</rotation>
+	<color-rgb>0.00 220.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 </object>
 
@@ -83,5 +83,3 @@
 	<color-rgb>255.00 255.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 </object>
-
-

@@ -24,7 +24,8 @@ unsigned	get_lighting(t_data *data)
 
 void	init_laputain_desamere(t_data *data)
 {
-	data->objs[1].reflex = .50f;
+	data->objs[0].reflex = 1.0f;
+	// printf("data->n_light = %d\n", data->n_lgts);
 }
 
 void	get_color(t_data *data)
@@ -116,12 +117,12 @@ float3		calcul_normale(t_data *data)
 	if (data->objs[data->id].type == T_CYLINDER)
 	{
 		normale = data->objs[data->id].pos - data->intersect;
-		// normale.y = 0.0f; ////////// a supprimer
+		normale.y = 0.0f;
 	}
 	if (data->objs[data->id].type == T_CONE)
 	{
-		// normale = data->objs[data->id].pos - data->intersect;
-		normale = (float3){0.0f, 0.0f, 1.0f}; // a voir si la suppresion est necesaire
+		normale = data->objs[data->id].pos - data->intersect * dot(data->objs[data->id].pos, data->intersect);
+		// normale = (float3){0.0f, 0.0f, 1.0f}; // a voir si la suppresion est necesaire
 		//soit la premiere soit la seconde
 	}
 	normale = rotate_ray(&normale, data);
