@@ -58,14 +58,14 @@ short			cone_intersection(t_data *data)
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data, &data->ray_pos, &data->ray_dir, &data->intersect);
-	// if (data->obj->height > 0.0f && ((sqrt(dot(data->obj->pos - data->grid_intersect,
-	// 		data->obj->pos - data->grid_intersect)) > sqrt(data->obj->height *
-	// 	data->obj->height + data->obj->radius  * data->obj->radius))))
-	// 	return (0);
-		if (data->obj->height > 0.0f && ((sqrt(dot(data->obj->pos - data->grid_intersect,
+	if (data->obj->height > 0.0f && ((sqrt(dot(data->obj->pos - data->grid_intersect,
 			data->obj->pos - data->grid_intersect)) > sqrt(data->obj->height *
 		data->obj->height + data->obj->radius  * data->obj->radius))))
 		return (0);
+	// if (data->obj->height > 0.0f && ((sqrt(dot(data->obj->pos - data->grid_intersect,
+	// 	data->obj->pos - data->grid_intersect)) > sqrt(data->obj->height *
+	// 	data->obj->height + data->obj->radius  * data->obj->radius))))
+	// 	return (0);
 	return (1);
 }
 

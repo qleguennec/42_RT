@@ -34,10 +34,22 @@
 	<name>Cylinder</name>
 	<type>Cylinder</type>
 	<material>Lambert</material>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<position>57.00 -131.00 400.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>31.00</radius>
+</object>
+
+<object>
+	<name>Cone</name>
+	<type>Cone</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>57.00 -131.00 400.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>0.00 255.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>31.00</radius>
 </object>
