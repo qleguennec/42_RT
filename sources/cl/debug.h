@@ -3,7 +3,7 @@
 
 #define DEBUG 0
 /*defini si le vrai calcul de couleur est realiser ou non*/
-#define COLOR 0
+#define COLOR 1
 /*active la rotation ou non*/
 #define ROTATE 1
 /**/

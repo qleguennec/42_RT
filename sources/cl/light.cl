@@ -120,6 +120,11 @@ float3		calcul_normale(t_data *data)
 		normale = data->rot;
 		
 	}
+	else if (data->test == T_SPHERE)
+	{
+		normale = data->objs[data->id].pos - data->intersect;
+		normale = rotate_ray(&normale, data);
+	}
 	else if (data->objs[data->id].type == T_PLANE)
 	{
 		normale = data->objs[data->id].rot;
