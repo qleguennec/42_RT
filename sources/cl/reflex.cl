@@ -3,36 +3,28 @@
 
 void	reflex_calcul(t_data *data)
 {
+	short test;
+
+	data->safe++;
+	test = data->safe;
 	float	temp_power = data->light_pow;
 	float3	temp_dir = data->ray_dir;
 	float3	temp_pos = data->intersect;
 
-	data->light_pow *= (1.0f - data->objs[data->id].reflex);
-	// clearness_color(data);
 	data->safe++;
+	data->light_pow *= (1.0f - data->objs[data->id].reflex);
 	data->rd_light += check_all_light(data);
-	data->light_pow *=  (1.0f - data->objs[data->id].opacity);
 
 	data->light_pow = temp_power * data->objs[data->id].reflex;
 	calcul_reflex_ray(data, &temp_pos, &temp_dir);
 
-
 	touch_object(data);
-	if (data->safe < SAFE)
+	while (test > SAFE - data->safe)
 	{
+		// printf("light->pow = %f\n", data->light_pow);
 		data->rd_light += check_all_light(data);
-		data->light_pow *=  ( data->objs[data->id].opacity);
-		// data->light_pow -=  (1 - data->objs[data->id].opacity);
-		// printf("light->power = %f\n", data->light_pow);
-	}	
-
-	// clearness_color(data);
-
-	// data->ray_dir = temp_dir;
-	// data->intersect = temp_pos;
-	// data->light_pow = temp_power;
-	
-	// get_color(data);
+		test--;
+	}	git 
 }
 
 void	calcul_reflex_ray(t_data * data, float3 *ray_pos, float3 *ray_dir)
