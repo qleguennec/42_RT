@@ -50,7 +50,7 @@
 	<visibility>True</visibility>
 	<position>0.00 0.00 200.00</position>
 	<rotation>0.00 0.00 1.00</rotation>
-	<color-rgb>.00 0.00 128.00</color-rgb>
+	<color-rgb>.00 255.00 128.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
 	<width>0</width>
@@ -116,7 +116,7 @@
 	<position>20.00 0.00 180.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
-	<opacity>.300</opacity>
+	<opacity>1.00</opacity>
 	<radius>10.00</radius>
 	<width>9.00</width>
 	<!--<height>8.00</height>
