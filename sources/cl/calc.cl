@@ -106,6 +106,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 
 	// data->rot = (float3){.0f, 1.0f, 0.0f};
 	data->test = T_TRIANGLE;
+	// data->
 }
 
 void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,

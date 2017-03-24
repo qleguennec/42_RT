@@ -35,8 +35,10 @@ void	clearness_calcul(t_data *data)
 		data->light_pow = 0.0f;
 	}
 	else
+	{
 		data->rd_light += (check_all_light(data) * data->light_pow);
 		data->light_pow -= (data->objs[data->id].opacity);
+	}
 		// *ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
 }
 

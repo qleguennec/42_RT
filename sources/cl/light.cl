@@ -26,7 +26,7 @@ void	init_laputain_desamere(t_data *data)
 {
 	data->objs[0].reflex = 0.0f;
 	data->objs[1].reflex = 1.00f;
-	// data->objs[2].reflex = 1.0f;
+	data->objs[2].reflex = 1.00f;
 	// data->objs[3].reflex = 1.0f;
 	// data->objs[4].reflex = 1.0f;
 	// data->objs[5].reflex = 1.0f;
@@ -43,7 +43,10 @@ void	get_color(t_data *data)
 		data->safe <= SAFE)
 		while (data->light_pow > 0.0f && data->objs[data->id].reflex > 0.0f &&
 		data->safe <= SAFE)
+		{
+			// printf("data->id = %u\n",data->id);
 			reflex_calcul(data);
+		}
 	 else if (data->light_pow > 0.0f && data->safe <= SAFE)
 	//  while (data->light_pow > 0.0f && data->safe <= SAFE)
 	 	clearness_color(data);
