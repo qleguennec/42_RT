@@ -56,7 +56,7 @@ short			plane_intersection(t_data *data)
 	float	div;
 	float	t;
 
-	rotate_ray(&data->ray_dir, data);////////////not good for plane rotation
+	data->obj->rot = rotate_ray(&data->rot, data);////////////not good for plane rotation
 	div = dot(data->obj->rot, data->ray_dir);
 	if (div == 0.0f)
 		return (0);
@@ -71,6 +71,7 @@ short			plane_intersection(t_data *data)
 	 data->obj->pos.z) > (data->obj->height / 2.0f))
 		return (0);
 	t += (t < 0)? t * -PLANE_PREC: t * -PLANE_PREC;
+	PRINT3(data->obj->rot,"normal");
 	return (1);
 }
 
@@ -125,37 +126,33 @@ short			cylinder_intersection(t_data *data)
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data, &data->ray_pos, &data->ray_dir, &data->intersect);
-	// if (data->obj->height > 0.0f && ((sqrt(dot(data->obj->pos - data->grid_intersect,
-	// 		data->obj->pos - data->grid_intersect)) > sqrt(data->obj->height *
-	// 	data->obj->height + data->obj->radius  * data->obj->radius))))
-	// 	return (0);
-		if (data->obj->height > 0.0f && ((fast_distance(data->obj->pos,data->grid_intersect) > sqrt(data->obj->height *
-		data->obj->height + data->obj->radius  * data->obj->radius))))
+	if (data->obj->height > 0.0f && ((fast_distance(data->obj->pos,data->grid_intersect) > sqrt(data->obj->height *
+	data->obj->height + data->obj->radius  * data->obj->radius))))
+	{
+		data->test = T_DISK;
+		data->radius = data->obj->radius;
+		if (data->ray_pos.y - data->intersect.y > data->obj->height)
 		{
-			data->test = T_DISK;
-			data->radius = data->obj->radius;
-			if (data->ray_pos.y - data->intersect.y > data->obj->height)
-			{
-				data->rot = (float3){0.0f, .0f, 1.0f};
-				data->pos = (float3){data->obj->pos.x, data->obj->pos.y - data->obj->height,
-				data->obj->pos.z};
-				// data->obj->pos.y += data->obj->height;
-			}
-			else
-			{
-				data->rot = (float3){0.0f, .0f, 1.0f};
-				data->pos = (float3){data->obj->pos.x, data->obj->pos.y + data->obj->height,
-				data->obj->pos.z};
-				// data->obj->pos = (float3){data->obj->pos.x, data->obj->pos.y + data->obj->height,
-				// data->obj->pos.z};
-			}
-			data->ray_dir = rdir;
-			if (disk_intersection(data) == 1)
-			// if (sphere_intersection(data) == 1)
-				return (1);
-			return (0);
+			data->rot = (float3){0.0f, .0f, 1.0f};
+			data->pos = (float3){data->obj->pos.x, data->obj->pos.y - data->obj->height,
+			data->obj->pos.z};
+			// data->obj->pos.y += data->obj->height;
 		}
-		data->test = T_CYLINDER;
+		else
+		{
+			data->rot = (float3){0.0f, .0f, 1.0f};
+			data->pos = (float3){data->obj->pos.x, data->obj->pos.y + data->obj->height,
+			data->obj->pos.z};
+			// data->obj->pos = (float3){data->obj->pos.x, data->obj->pos.y + data->obj->height,
+			// data->obj->pos.z};
+		}
+		data->ray_dir = rdir;
+		if (disk_intersection(data) == 1)
+		// if (sphere_intersection(data) == 1)/// not working a 100%
+			return (1);
+		return (0);
+	}
+	data->test = T_CYLINDER;
 	// return (0);
 	return (1);
 }
