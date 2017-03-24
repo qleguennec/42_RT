@@ -11,7 +11,10 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	rad = data->obj->rot * (float)(M_PI / 180.0f);
 
 	if (!ROTATE)
+	{
+		data->offset  = data->ray_pos - data->obj->pos;
 		return (*ray);
+	}
 	matx = (float3){cos(rad.y) * cos(rad.z),
 	 cos(rad.y) * (-sin(rad.z)),
 	  sin(rad.y)};

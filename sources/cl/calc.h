@@ -29,6 +29,7 @@ typedef struct			s_data
 	short				test;
 	float3				rot;
 	float3				pos;
+	float				radius;
 
 	float				ambiant;
 	float				light_pow;
