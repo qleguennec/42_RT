@@ -49,8 +49,8 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 200.00</position>
-	<rotation>0.00 0.00 1.00</rotation>
-	<color-rgb>255.00 0.00 255.00</color-rgb>
+	<rotation>0.00 0.00 -1.00</rotation>
+	<color-rgb>.00 0.00 128.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
 	<width>0</width>
@@ -125,4 +125,3 @@
 	<!--<mshiness>5.00</mshiness>-->
 	<!--<reflex>4.00</reflex>-->
 </object>
-

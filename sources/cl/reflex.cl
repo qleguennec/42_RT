@@ -12,7 +12,7 @@ void	reflex_calcul(t_data *data)
 	data->light_pow = temp_power * data->objs[data->id].reflex;
 	calcul_reflex_ray(data, &temp_pos, &temp_dir);
 	touch_object(data);
-	get_color(data);
+	// get_color(data);
 }
 
 void	calcul_reflex_ray(t_data * data, float3 *ray_pos, float3 *ray_dir)

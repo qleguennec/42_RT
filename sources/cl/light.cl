@@ -25,8 +25,8 @@ unsigned	get_lighting(t_data *data)
 void	init_laputain_desamere(t_data *data)
 {
 	// data->objs[0].reflex = 1.0f;
-	data->objs[1].reflex = 1.0f;
-	data->objs[2].reflex = 1.0f;
+	// data->objs[1].reflex = 1.0f;
+	// data->objs[2].reflex = 1.0f;
 	// data->objs[3].reflex = 1.0f;
 	// data->objs[4].reflex = 1.0f;
 	// data->objs[5].reflex = 1.0f;
@@ -35,10 +35,15 @@ void	init_laputain_desamere(t_data *data)
 
 void	get_color(t_data *data)
 {
-	data->safe++;
-	if (data->light_pow > 0.0f && data->objs[data->id].reflex > 0.0f &&
-		data->safe <= SAFE)
-			reflex_calcul(data);
+	// data->safe++;
+	// while (data->light_pow > 0.0f && data->objs[data->id].reflex > 0.0f &&
+	// 	data->safe <= SAFE)
+	// 		reflex_calcul(data);
+	// if (data->light_pow > 0.0f && data->objs[data->id].reflex > 0.0f &&
+	// 	data->safe <= SAFE)
+	// 		reflex_calcul(data);
+	// while (data->light_pow > 0.0f && data->safe <= SAFE)
+	// 	clearness_color(data);
 	if (data->light_pow > 0.0f && data->safe <= SAFE)
 		clearness_color(data);
 }
@@ -118,7 +123,7 @@ float3		calcul_normale(t_data *data)
 	if (data->test == T_DISK)
 	{
 		normale = data->rot;
-		
+
 	}
 	else if (data->test == T_SPHERE)
 	{

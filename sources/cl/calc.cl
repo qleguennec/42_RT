@@ -104,35 +104,36 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->rad = 0.0f;
 
 
-	data->rot = (float3){.0f, 1.0f, 0.0f};
+	// data->rot = (float3){.0f, 1.0f, 0.0f};
+	data->test = T_TRIANGLE;
 }
 
 void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
 	float3 ray_dir, global t_cam *cam, short x, short y)
 {
-	//t_data	data;
-	//float	ambiant = 0.20;
-	// printf("c'est pas ma faute!!!!!!\n");
+	t_data	data;
+	float	ambiant = 0.20;
+	//printf("c'est pas ma faute!!!!!!\n");
 
-	// printf("c'est ma faute!!!!!!\n");
-	// init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant, pixel);
-    // touch_object(&data);
-	// if (!COLOR && data.id > -1)
-	// {
-	// 	if (data.id == 0){*(data.pixel) = 0xff0000FF;}
-	// 	else if (data.id == 1){*pixel = 0x00ff00FF;}
-	// 	else if (data.id == 2){*pixel = 0x00ffffFF;}
-	// 	else if (data.id == 3){*pixel = 0xffffffFF;}
-	// 	else if (data.id == 4){*pixel = 0xffff00FF;}
-	// 	else{*pixel = 0xff00ffFF;}
-	// }
-	// else if (COLOR && data.id > -1)
-	// {
-	// 	// printf("c'est la faute d'erwan!!!!!!\n");
-	// 	*pixel = get_lighting(&data);
-	// }
-	// else
-	// 	*pixel = FONT;
-	printf("test\n");
+	//printf("c'est ma faute!!!!!!\n");
+	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant, pixel);
+    touch_object(&data);
+	if (!COLOR && data.id > -1)
+	{
+		if (data.id == 0){*(data.pixel) = 0xff0000FF;}
+		else if (data.id == 1){*pixel = 0x00ff00FF;}
+		else if (data.id == 2){*pixel = 0x00ffffFF;}
+		else if (data.id == 3){*pixel = 0xffffffFF;}
+		else if (data.id == 4){*pixel = 0xffff00FF;}
+		else{*pixel = 0xff00ffFF;}
+	}
+	else if (COLOR && data.id > -1)
+	{
+		// printf("c'est la faute d'erwan!!!!!!\n");
+		*pixel = get_lighting(&data);
+	}
+	else
+		*pixel = FONT;
+	//printf("test\n");
 }

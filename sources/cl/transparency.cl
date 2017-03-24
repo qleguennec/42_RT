@@ -3,12 +3,14 @@
 
 void	clearness_color(t_data *data)
 {
+	data->safe++;
+
 	data->rd_light += check_all_light(data);
 	data->light_pow *=  (1.0f - data->objs[data->id].opacity);
 	if (data->objs[data->id].opacity < 1.0f)
 		clearness_calcul(data);
-	if (data->light_pow > 0.0f)
-		get_color(data);
+	// if (data->light_pow > 0.0f)
+	// 	get_color(data);
 }
 
 
