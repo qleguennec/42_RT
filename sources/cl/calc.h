@@ -25,6 +25,11 @@ typedef struct			s_data
 	short				safe;
 	short				option;
 	short				nl;
+
+	short				test;
+	float3				rot;
+	float3				pos;
+
 	float				ambiant;
 	float				light_pow;
 	float3				ray_pos;
@@ -42,6 +47,7 @@ float			calc_delta(float a, float b, float c);
 void			calc_intersect(float *delta, t_data *data, float3 *ray_pos, float3 *ray_dir,
  float3 *intersect);
 
+//////////////object intersection
 void			touch_object(t_data *data);
 
 short			plane_intersection(t_data *data);
@@ -51,6 +57,9 @@ short			cone_intersection(t_data *data);
 short			cylinder_intersection(t_data *data);
 
 short			sphere_intersection(t_data *data);
+
+short			disk_intersection(t_data *data)
+////////////////////////
 
 void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
  global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir,

@@ -16,21 +16,21 @@ void
 {
 	if (type == T_SPHERE)
 		printf("sphere\n");
-	if (type == T_CUBE)
+	else if (type == T_CUBE)
 		printf("cube\n");
-	if (type == T_CYLINDER)
+	else if (type == T_CYLINDER)
 		printf("cylinder\n");
-	if (type == T_PLANE)
+	else if (type == T_PLANE)
 		printf("plane\n");
-	if (type == T_CONE)
+	else if (type == T_CONE)
 		printf("cone\n");
-	if (type == T_TORUS)
+	else if (type == T_TORUS)
 		printf("torus\n");
-	if (type == T_PYRAMID)
+	else if (type == T_PYRAMID)
 		printf("pyramid\n");
-	if (type == T_TETRAHEDRON)
+	else if (type == T_TETRAHEDRON)
 		printf("tetrahedron\n");
-	if (type == T_MOEBIUS)
+	else if (type == T_MOEBIUS)
 		printf("moebius\n");
 }
 
