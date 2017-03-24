@@ -58,7 +58,7 @@ short			cylinder_intersection(t_data *data);
 
 short			sphere_intersection(t_data *data);
 
-short			disk_intersection(t_data *data)
+short			disk_intersection(t_data *data);
 ////////////////////////
 
 void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,

@@ -115,9 +115,9 @@ float3		calcul_normale(t_data *data)
 {
 	float3	normale;
 
-	if (data->test == T_PLANE)
+	if (data->test == T_DISK)
 	{
-		normale = data->objs[data->id].rot;
+		normale = data->rot;
 		
 	}
 	else if (data->objs[data->id].type == T_PLANE)

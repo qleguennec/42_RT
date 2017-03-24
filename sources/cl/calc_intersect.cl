@@ -17,6 +17,7 @@ float			float3_to_float(float3 v){
 void			calc_intersect(float *delta, t_data *data, float3 *ray_pos, float3 *ray_dir,
  float3 *intersect)
 {
+	///////////////reduire le nombre d'argument a data et delta
 	*intersect = *ray_pos + (*ray_dir * (*delta));
 	data->grid_intersect = *ray_pos + (data->grid_ray_dir * (*delta));
 }
@@ -25,17 +26,25 @@ short			disk_intersection(t_data *data)
 {
 	float	div;
 	float	t;
+	float3	pos;
 
-	rotate_ray(&data->ray_dir, data);////////////not good for plane rotation
-	div = dot(data->obj->rot, data->ray_dir);
+	// rotate_ray(&data->ray_dir, data);////////////not good for plane rotation
+	// div = dot(data->obj->rot, data->ray_dir);
+	pos = data->pos;
+	div = dot(data->rot, data->ray_dir);
 	if (div == 0.0f)
 		return (0);
-	t = (-dot(data->obj->rot, data->offset)) / div;
+	// t = (-dot(data->obj->rot, data->offset)) / div;
+	data->offset = data->ray_pos - pos;
+
+	t = (-dot(data->rot, data->offset)) / div;
 	if (t < 0.0f)
 		return (0);
 	calc_intersect(&t, data, &data->ray_pos, &data->ray_dir, &data->intersect);
 		if (data->obj->radius != 0.0f && fast_distance(data->grid_intersect,
-		 data->obj->pos) > data->obj->radius)
+		 pos) > data->obj->radius)
+		//  if (data->obj->radius != 0.0f && fast_distance(data->grid_intersect,
+		//  pos) > data->obj->radius)
 			return (0);
 		return (0);
 	t += (t < 0)? t * -PLANE_PREC: t * -PLANE_PREC;
@@ -120,15 +129,15 @@ short			cylinder_intersection(t_data *data)
 		if (data->obj->height > 0.0f && ((fast_distance(data->obj->pos,data->grid_intersect) > sqrt(data->obj->height *
 		data->obj->height + data->obj->radius  * data->obj->radius))))
 		{
-			// if (data->grid_intersect.y > data->obj->pos.y + data->obj->height)
-			// {
-			// 	data->test = T_PLANE;
-			// 	data->obj->rot = (float3){0.0f, -1.0f, 0.0f};
-			// 	data->obj->pos = (float3){data->obj->pos.x, data->obj->pos.y - data->obj->height,
-			// 	data->obj->pos.z};
-			// 	plane_intersection(data);
-			// 	return (1);
-			// }
+			if (data->ray_pos.y + data->grid_intersect.y > data->obj->pos.y + data->obj->height)
+			{
+				data->test = T_DISK;
+				data->rot = (float3){0.0f, -1.0f, 0.0f};
+				data->pos = (float3){data->obj->pos.x, data->obj->pos.y - data->obj->height,
+				data->obj->pos.z};
+				disk_intersection(data);
+				return (1);
+			}
 			return (0);
 		}
 		data->test = T_CYLINDER;
