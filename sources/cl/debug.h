@@ -9,7 +9,10 @@
 /**/
 #define FONT 0x000000FF
 // #define FONT 0xFFFFFFFF
-
+#ifndef M_PI
+#define M_PI 3.14f
+#endif
+#define FONT 0x000000FF
 /*active l'affichage des define _PRINT...*/
 #define _DEBUG 0
 

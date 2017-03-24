@@ -113,7 +113,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	float3 ray_dir, global t_cam *cam, short x, short y)
 {
 	t_data	data;
-	float	ambiant = 0.20;
+	float	ambiant = 0.20f;
 	//printf("c'est pas ma faute!!!!!!\n");
 
 	//printf("c'est ma faute!!!!!!\n");
