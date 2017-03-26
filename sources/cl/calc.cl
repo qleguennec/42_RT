@@ -104,7 +104,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->rad = 0.0f;
 
 
-	// data->rot = (float3){.0f, 1.0f, 0.0f};
+	data->rot = (float3){0.0f, 1.0f, 0.0f};
 	data->test = T_TRIANGLE;
 	// data->
 }

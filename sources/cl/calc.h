@@ -45,8 +45,7 @@ typedef struct			s_data
 
 float			calc_delta(float a, float b, float c);
 
-void			calc_intersect(float *delta, t_data *data, float3 *ray_pos, float3 *ray_dir,
- float3 *intersect);
+void			calc_intersect(float *delta, t_data *data);
 
 //////////////object intersection
 void			touch_object(t_data *data);
