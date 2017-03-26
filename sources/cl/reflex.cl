@@ -5,8 +5,8 @@ void	reflex_calcul(t_data *data)
 {
 	short test;
 
-	data->safe++;
 	test = data->safe;
+	data->safe++;
 	float	temp_power = data->light_pow;
 	float3	temp_dir = data->ray_dir;
 	float3	temp_pos = data->intersect;
@@ -19,7 +19,7 @@ void	reflex_calcul(t_data *data)
 	calcul_reflex_ray(data, &temp_pos, &temp_dir);
 
 	touch_object(data);
-	while (test > SAFE - data->safe)
+	while (test >= SAFE - data->safe)
 	{
 		// printf("light->pow = %f\n", data->light_pow);
 		data->rd_light += check_all_light(data);

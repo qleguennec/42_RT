@@ -6,7 +6,7 @@
 #define COLOR 1
 /*active la rotation ou non*/
 #define ROTATE 0
-#define NATIVE 1
+#define NATIVE 0
 /**/
 
 #define FONT 0x000000FF
