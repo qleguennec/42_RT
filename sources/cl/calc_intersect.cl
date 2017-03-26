@@ -55,8 +55,9 @@ short			plane_intersection(t_data *data)
 	float	div;
 	float	t;
 
-	data->obj->rot = rotate_ray(&data->rot, data);////////////not good for plane rotation
-	// rotate_ray(&data->ray_dir, data);////////////not good for plane rotation
+	// data->obj->rot = data->rot;
+
+	rotate_ray(&data->ray_dir, data);
 	div = dot(data->obj->rot, data->ray_dir);
 	if (div == 0.0f)
 		return (0);
@@ -70,7 +71,7 @@ short			plane_intersection(t_data *data)
 	if (data->obj->width != 0.0f && fast_distance(data->grid_intersect.z,
 	 data->obj->pos.z) > (data->obj->height / 2.0f))
 		return (0);
-	t += (t < 0)? t * -PLANE_PREC: t * -PLANE_PREC;
+	// t += (t < 0)? t * -PLANE_PREC: t * -PLANE_PREC;///inutile
 	// PRINT3(data->obj->rot,"normal");
 	return (1);
 }

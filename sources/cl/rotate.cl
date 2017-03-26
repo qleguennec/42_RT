@@ -43,7 +43,7 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	res.x = dot(matx, *ray);
 	res.y = dot(maty, *ray);
 	res.z = dot(matz, *ray);
-	if (data->option)
+	if (data->option == 1)
 	{
 		data->offset.x = dot(matx, pos);
 		data->offset.y = dot(maty, pos);

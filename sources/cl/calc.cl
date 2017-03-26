@@ -104,9 +104,8 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->rad = 0.0f;
 
 
-	data->rot = (float3){0.0f, 1.0f, 0.0f};
+	data->rot = (float3){0.f, 1.0f, 0.0f};
 	data->test = T_TRIANGLE;
-	// data->
 }
 
 void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
@@ -122,8 +121,8 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
     touch_object(&data);
 	if (!COLOR && data.id > -1)
 	{
-		if (data.id == 0){*(data.pixel) = 0xff0000FF;}
-		else if (data.id == 1){*pixel = 0x00ff00FF;}
+		if (data.id == 0){*(data.pixel) = 0x00ff00FF;}
+		else if (data.id == 1){*pixel = 0xff0000FF;}
 		else if (data.id == 2){*pixel = 0x00ffffFF;}
 		else if (data.id == 3){*pixel = 0xffffffFF;}
 		else if (data.id == 4){*pixel = 0xffff00FF;}
