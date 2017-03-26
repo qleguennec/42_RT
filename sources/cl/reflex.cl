@@ -24,7 +24,7 @@ void	reflex_calcul(t_data *data)
 		// printf("light->pow = %f\n", data->light_pow);
 		data->rd_light += check_all_light(data);
 		test--;
-	}	git 
+	}
 }
 
 void	calcul_reflex_ray(t_data * data, float3 *ray_pos, float3 *ray_dir)

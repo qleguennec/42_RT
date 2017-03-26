@@ -6,7 +6,9 @@
 #define COLOR 1
 /*active la rotation ou non*/
 #define ROTATE 0
+#define NATIVE 1
 /**/
+
 #define FONT 0x000000FF
 // #define FONT 0xFFFFFFFF
 #ifndef M_PI
