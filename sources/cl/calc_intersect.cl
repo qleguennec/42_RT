@@ -87,12 +87,15 @@ short			cone_intersection(t_data *data)
 	rad = (data->obj->radius / 2.0f) * (float)(M_PI / 180.0f);
 
 	data->ray_dir = rotate_ray(&data->ray_dir, data);
-	a = dot(data->ray_dir.xz, data->ray_dir.xz) - dot(data->ray_dir.y, data->ray_dir.y) * tan(rad);
+	a = dot(data->ray_dir.xz, data->ray_dir.xz) - dot(data->ray_dir.y,
+	 data->ray_dir.y) * tan(rad);
 
-	b = (2.0f * dot(data->ray_dir.x, data->offset.x)) + (2.0f * dot(data->ray_dir.z, data->offset.z)) -
+	b = (2.0f * dot(data->ray_dir.x, data->offset.x)) +
+	 (2.0f * dot(data->ray_dir.z, data->offset.z)) -
 	 (2.0f * dot(data->ray_dir.y, data->offset.y)) * tan(rad);
 
-	c = dot(data->offset.xz, data->offset.xz) - dot(data->offset.y, data->offset.y) * tan(rad);
+	c = dot(data->offset.xz, data->offset.xz) -
+	 dot(data->offset.y, data->offset.y) * tan(rad);
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data);
