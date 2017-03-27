@@ -65,14 +65,14 @@ short			plane_intersection(t_data *data)
 	t = (-dot(data->obj->rot, data->offset)) / div;
 	if (t < 0.0f)
 		return (0);
-	t += (t < 0)? t * -PLANE_PREC: t * -PLANE_PREC;
+	t += (t < 0)? t * -PLANE_PREC: t * +PLANE_PREC;
 	calc_intersect(&t, data);
-	// if (data->obj->width != 0.0f && fast_distance(data->grid_intersect.x,
-	//  data->obj->pos.x) > (data->obj->width / 2.0f))
-	// 	return (0);
-	// if (data->obj->width != 0.0f && fast_distance(data->grid_intersect.z,
-	//  data->obj->pos.z) > (data->obj->height / 2.0f))
-	// 	return (0);
+	if (data->obj->width > 0.0f && fast_distance(data->grid_intersect.x,
+	 data->obj->pos.x) > (data->obj->width / 2.0f))
+		return (0);
+	if (data->obj->height > 0.0f && fast_distance(data->grid_intersect.z,
+	 data->obj->pos.z) > (data->obj->height / 2.0f))
+		return (0);
 	// PRINT3(data->obj->rot,"normal");
 	return (1);
 }
@@ -123,7 +123,7 @@ short			cylinder_intersection(t_data *data)
 	float3	rdir;
 	rdir = data->ray_dir;
 
-	data->ray_dir = rotate_ray(&data->grid_ray_dir, data);
+	data->ray_dir = rotate_ray(&data->ray_dir, data);
 	a = dot(data->ray_dir.x, data->ray_dir.x) + dot(data->ray_dir.z, data->ray_dir.z);
 	b = (2.0f * dot(data->ray_dir.x, data->offset.x)) + (2.0f * dot(data->ray_dir.z, data->offset.z));
 	c = dot(data->offset.x, data->offset.x) + dot(data->offset.z, data->offset.z) - data->obj->radius *
@@ -131,7 +131,7 @@ short			cylinder_intersection(t_data *data)
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data);
-	if (data->obj->height > 0.0f && ((fast_distance(data->obj->pos,data->grid_intersect) > sqrt(data->obj->height *
+	if (data->obj->height > 0.0f && ((fast_distance(data->obj->pos, data->grid_intersect) > sqrt(data->obj->height *
 	data->obj->height + data->obj->radius  * data->obj->radius))))
 	{
 		// data->test = T_DISK;
@@ -157,8 +157,7 @@ short			cylinder_intersection(t_data *data)
 		// 	return (1);
 		return (0);
 	}
-	data->test = T_CYLINDER;
-	// return (0);
+	return (0);
 	return (1);
 }
 

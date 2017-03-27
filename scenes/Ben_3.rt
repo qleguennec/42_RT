@@ -54,14 +54,16 @@
 
 <object>
 	<name>Cylinder 1</name>
-	<type>Cylinder</type>
+	<type>cylinder</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 10.00 550.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
+	<position>0.00 10.00 650.00</position>
+	<rotation>0.00 0.00 1.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>20.00</radius>
+	<radius>50.00</radius>
+	<height>20</height>
+	<!--<width>30</width>-->
 </object>
 
 <object>
