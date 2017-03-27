@@ -135,29 +135,28 @@ short			cylinder_intersection(t_data *data)
 	data->obj->height + data->obj->radius  * data->obj->radius))))
 	{
 		// data->test = T_DISK;
-		// data->radius = data->obj->radius;
-		// if (data->ray_pos.y - data->intersect.y > data->obj->height)
-		// {
-		// 	data->rot = (float3){0.0f, .0f, 1.0f};
-		// 	data->pos = (float3){data->obj->pos.x, data->obj->pos.y - data->obj->height,
-		// 	data->obj->pos.z};
-		// 	// data->obj->pos.y += data->obj->height;
-		// }
-		// else
-		// {
-		// 	data->rot = (float3){0.0f, .0f, 1.0f};
-		// 	data->pos = (float3){data->obj->pos.x, data->obj->pos.y + data->obj->height,
-		// 	data->obj->pos.z};
-		// 	// data->obj->pos = (float3){data->obj->pos.x, data->obj->pos.y + data->obj->height,
-		// 	// data->obj->pos.z};
-		// }
+		data->radius = data->obj->radius;
+		if (data->ray_pos.y - data->intersect.y > data->obj->height)
+		{
+			data->rot = (float3){0.0f, .0f, 1.0f};
+			data->pos = (float3){data->obj->pos.x, data->obj->pos.y - data->obj->height,
+			data->obj->pos.z};
+			// data->obj->pos.y += data->obj->height;
+		}
+		else
+		{
+			data->rot = (float3){0.0f, .0f, 1.0f};
+			data->pos = (float3){data->obj->pos.x, data->obj->pos.y + data->obj->height,
+			data->obj->pos.z};
+			// data->obj->pos = (float3){data->obj->pos.x, data->obj->pos.y + data->obj->height,
+			// data->obj->pos.z};
+		}
 		// data->ray_dir = rdir;
 		// if (disk_intersection(data) == 1)
-		// // if (sphere_intersection(data) == 1)/// not working a 100%
-		// 	return (1);
+		// if (sphere_intersection(data) == 1)/// not working a 100%
+			// return (1);
 		return (0);
 	}
-	return (0);
 	return (1);
 }
 
