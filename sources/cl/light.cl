@@ -24,33 +24,26 @@ unsigned	get_lighting(t_data *data)
 
 void	init_laputain_desamere(t_data *data)
 {
-	data->objs[0].reflex = 1.0f;
+	// data->objs[0].reflex = 1.0f;
 	// data->objs[1].reflex = 1.00f;
 	// data->objs[2].reflex = 1.00f;
 	// data->objs[3].reflex = 1.0f;
-	// data->objs[4].reflex = 1.0f;
+	data->objs[4].reflex = .80f;
 	// data->objs[5].reflex = 1.0f;
 	// data->objs[6].reflex = 1.0f;
 }
 
 void	get_color(t_data *data)
 {
-	// data->safe++;
-	// while (data->light_pow > 0.0f && data->objs[data->id].reflex > 0.0f &&
-	// 	data->safe <= SAFE)
-	// 		reflex_calcul(data);
 	while (data->safe < SAFE && data->light_pow > 0.0f)
 	{
-		if (data->light_pow > 0.0f && data->objs[data->id].reflex > 0.0f &&
-			data->safe <= SAFE)
+		if (data->light_pow > 0.0f && data->objs[data->id].reflex > 0.0f)
 		{
 			// printf("data->id = %u\n",data->id);
 			reflex_calcul(data);
 		}
-		 else if (data->light_pow > 0.0f && data->safe <= SAFE)
-		 {
+		 else if (data->light_pow > 0.0f)
 	 		clearness_color(data);
-		 }
 	}
 }
 
@@ -61,22 +54,18 @@ float3		check_all_light(t_data *data)
 	float3	rd_light;
 
 	rd_light = (float3){0.0f, 0.0f, 0.0f};
-
-	while (i < data->n_lgts)
+	if (i < data->n_lgts)
 	{
 		lightdir = data->intersect - data->lights[i].pos;
 		rd_light += is_light(data, lightdir, &data->lights[i],
 		calcul_normale(data));
 		i++;
 	}
-
-
-
-	if (data->nl == 0)
-	{
-		data->rd_light = 0.0f;
-		return((float3){0.0f, 0.0f, 0.0f});
-	}
+	// if (data->nl == 0)
+	// {
+	// 	data->rd_light = 0.0f;
+	// 	return((float3){0.0f, 0.0f, 0.0f});
+	// }
 	return((float3)(rd_light / (float)(data->nl)) *
 		data->objs[data->id].opacity * data->light_pow);
 }
@@ -100,6 +89,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 	light_clr = lgt->clr;
 	if (data->id > -1 && index != data->id && data->objs[data->id].opacity < 1.0f)
 	{
+		data->ray_pos = data->intersect + data->ray_dir;
 		calcul_light(&light_clr, &data->objs[data->id]);
 		touch_object(data);
 	}

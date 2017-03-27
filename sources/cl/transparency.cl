@@ -19,16 +19,18 @@ void	clearness_calcul(t_data *data)
 	short	index = data->id;
 
 	// *ray_dir = calcul_refract_ray(data, 1.0f, data->objs[data->id].refract);
-	// data->ray_pos = data->intersect + data->ray_dir;
+	data->ray_pos = data->intersect;
 	touch_object(data);
 	if (index == data->id)
 	{
 		// *ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
+		data->ray_pos = data->intersect + data->ray_dir;
 		touch_object(data);
 	}
 	if (data->id == -1)
 	{
 		data->rd_light = (float3){0.0f, 0.0f, 0.0f} * data->light_pow;
+		data->rd_light = 0.0f;
 		data->light_pow = 0.0f;
 	}
 	else

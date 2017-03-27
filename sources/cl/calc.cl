@@ -104,7 +104,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->offset = 0.0f;
 	data->rad = 0.0f;
 
-
+	data->option2 = 0;
 	data->rot = (float3){0.f, 1.0f, 0.0f};
 	data->test = -8;
 }

@@ -31,7 +31,7 @@
 <light>
 	<name>Point 2</name>
 	<type>Spot</type>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<flare-visibility>True</flare-visibility>
 	<position>34.00 39.50 950.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
