@@ -32,7 +32,7 @@
 
 <object>
 	<name>Sphere 1</name>
-	<type>Sphere</type>
+	<type>SpHeRe</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 290.00</position>

@@ -9,8 +9,6 @@ void	clearness_color(t_data *data)
 	data->light_pow *=  (1.0f - data->objs[data->id].opacity);
 	if (data->objs[data->id].opacity < 1.0f)
 		clearness_calcul(data);
-	// if (data->light_pow > 0.0f)
-	// 	get_color(data);
 }
 
 
@@ -26,7 +24,6 @@ void	clearness_calcul(t_data *data)
 	if (index == data->id)
 	{
 		// *ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
-		data->ray_pos = data->intersect + data->ray_dir;
 		touch_object(data);
 	}
 	if (data->id == -1)

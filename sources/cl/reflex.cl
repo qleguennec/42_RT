@@ -29,11 +29,11 @@ void	reflex_calcul(t_data *data)
 
 	data->light_pow = temp_power * data->objs[data->id].reflex;
 	calcul_reflex_ray(data, &temp_pos, &temp_dir);
-
-		touch_object(data);
+	touch_object(data);
 	while ( test > 0)
 	// while (test > SAFE - data->safe && SAFE <= data->safe)
 	{
+		data->ray_pos += data->ray_dir;
 		touch_object(data);
 		// printf("light->pow = %f\n", data->light_pow);
 		// reverse_calcul_light(&data->rd_light);

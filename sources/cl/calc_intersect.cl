@@ -46,7 +46,7 @@ short			disk_intersection(t_data *data)
 		//  pos) > data->obj->radius)
 			// return (0);
 		return (0);
-	t += (t < 0)? t * -PLANE_PREC: t * -PLANE_PREC;
+	t += (t < 0)? t * PLANE_PREC: t * -PLANE_PREC;
 	return (1);
 }
 
@@ -64,6 +64,7 @@ short			plane_intersection(t_data *data)
 	t = (-dot(data->obj->rot, data->offset)) / div;
 	if (t < 0.0f)
 		return (0);
+	t += (t < 0)? t * -PLANE_PREC: t * -PLANE_PREC;
 	calc_intersect(&t, data);
 	if (data->obj->width != 0.0f && fast_distance(data->grid_intersect.x,
 	 data->obj->pos.x) > (data->obj->width / 2.0f))
@@ -71,7 +72,6 @@ short			plane_intersection(t_data *data)
 	if (data->obj->width != 0.0f && fast_distance(data->grid_intersect.z,
 	 data->obj->pos.z) > (data->obj->height / 2.0f))
 		return (0);
-	// t += (t < 0)? t * -PLANE_PREC: t * -PLANE_PREC;///inutile
 	// PRINT3(data->obj->rot,"normal");
 	return (1);
 }

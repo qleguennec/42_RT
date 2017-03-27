@@ -21,6 +21,7 @@ float		calc_delta(float a, float b, float c)
 {
 	float	t0;
 	float	t1;
+	float	t;
 	float	tmp;
 
 	tmp = (b * b) - (4.0f * a * c);
@@ -29,9 +30,9 @@ float		calc_delta(float a, float b, float c)
 	tmp = sqrt(tmp);
 	t0 = ((-b + tmp) / (2.0f * a));
 	t1 = ((-b - tmp) / (2.0f * a));
-	if (t0 < t1)
-		return (t0);
-	return (t1);
+	t = (t0 < t1) ? t0 : t1;
+	// t += (t < 0)? t * PLANE_PREC: t * -PLANE_PREC;
+	return (t);
 }
 
 
