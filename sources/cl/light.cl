@@ -24,8 +24,8 @@ unsigned	get_lighting(t_data *data)
 
 void	init_laputain_desamere(t_data *data)
 {
-	data->objs[0].reflex = 0.0f;
-	data->objs[1].reflex = 1.00f;
+	data->objs[0].reflex = 1.0f;
+	// data->objs[1].reflex = 1.00f;
 	// data->objs[2].reflex = 1.00f;
 	// data->objs[3].reflex = 1.0f;
 	// data->objs[4].reflex = 1.0f;
@@ -61,12 +61,23 @@ float3		check_all_light(t_data *data)
 	float3	rd_light;
 
 	rd_light = (float3){0.0f, 0.0f, 0.0f};
+
+	data->nl = 0;
+
 	while (i < data->n_lgts)
 	{
 		lightdir = data->intersect - data->lights[i].pos;
 		rd_light += is_light(data, lightdir, &data->lights[i],
 		calcul_normale(data));
 		i++;
+	}
+
+
+
+	if (data->nl == 0)
+	{
+		data->rd_light = 0.0f;
+		return((float3){0.0f, 0.0f, 0.0f});
 	}
 	return((float3)(rd_light / (float)(data->nl)) *
 		data->objs[data->id].opacity * data->light_pow);
@@ -126,17 +137,18 @@ float3		calcul_normale(t_data *data)
 {
 	float3	normale;
 
-	if (data->test == T_DISK)
-	{
-		normale = data->rot;
+	// if (data->test == T_DISK)
+	// {
+	// 	normale = data->rot;
 
-	}
-	else if (data->test == T_SPHERE)
-	{
-		normale = data->objs[data->id].pos - data->intersect;
-		normale = rotate_ray(&normale, data);
-	}
-	else if (data->objs[data->id].type == T_PLANE)
+	// }
+	// else if (data->test == T_SPHERE)
+	// {
+	// 	normale = data->objs[data->id].pos - data->intersect;
+	// 	normale = rotate_ray(&normale, data);
+	// }
+	// else 
+	if (data->objs[data->id].type == T_PLANE)
 	{
 		normale = data->objs[data->id].rot;
 	}

@@ -66,6 +66,6 @@ kernel void
 		, nobjs
 		, nlgts
 		, cam->pos
-		, direction
+		, normalize(direction)
 		, cam, x, y);
 }

@@ -45,7 +45,7 @@
 	<type>Sphere</type>
 	<material>Phong</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 500.00</position>
+	<position>0.00 0.00 450.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 0.00 200.00</color-rgb>
 	<opacity>1</opacity>
@@ -59,7 +59,7 @@
 	<visibility>True</visibility>
 	<position>0.00 10.00 550.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>255.00 0.00 0.00</color-rgb>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>20.00</radius>
 </object>
@@ -101,7 +101,7 @@
 </object>
 
 <object>
-	<name>Plane 1</name>
+	<name>Plane fond</name>
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
@@ -127,13 +127,52 @@
 </object>
 
 <object>
-	<name>Plane 1</name>
+	<name>Plane gauche</name>
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 1000.00</position>
-	<rotation>0.00 0.00 1.00</rotation>
-	<color-rgb>255.50 255.50 255.50</color-rgb>
+	<position>-200.00 0.00 .00</position>
+	<rotation>-1.00 0.00 .00</rotation>
+	<color-rgb>255.50 .50 .50</color-rgb>
+	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
+</object>
+
+<object>
+	<name>Plane droit</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>200.00 0.00 .00</position>
+	<rotation>1.00 0.00 .00</rotation>
+	<color-rgb>.50 255.0 .50</color-rgb>
+	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
+</object>
+
+<object>
+	<name>Plane haut</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 -200.00 .00</position>
+	<rotation>.00 -1.00 .00</rotation>
+	<color-rgb>128.50 128.0 128.50</color-rgb>
+	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
+</object>
+
+<object>
+	<name>Plane bas</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 200.00 .00</position>
+	<rotation>.00 1.00 .00</rotation>
+	<color-rgb>128.50 .0 128.50</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
 	<width>0</width>

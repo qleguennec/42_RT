@@ -17,7 +17,7 @@ void	reflex_calcul(t_data *data)
 	data->light_pow = temp_power * data->objs[data->id].reflex;
 	calcul_reflex_ray(data, &temp_pos, &temp_dir);
 	touch_object(data);
-	while ( test > 0)
+	while (test > 0 )
 	// while (test > SAFE - data->safe && SAFE <= data->safe)
 	{
 		touch_object(data);
