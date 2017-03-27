@@ -45,7 +45,7 @@
 	<type>Sphere</type>
 	<material>Phong</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 450.00</position>
+	<position>40.00 0.00 450.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 0.00 200.00</color-rgb>
 	<opacity>1</opacity>
@@ -116,11 +116,11 @@
 </object>
 
 <object>
-	<name>Plane 1</name>
+	<name>Plane arriere</name>
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 .50</position>
+	<position>0.00 0.00 -1000.50</position>
 	<rotation>0.00 0.00 -1.00</rotation>
 	<color-rgb>255.00 0.00 255.00</color-rgb>
 	<opacity>1.00</opacity>

@@ -18,7 +18,6 @@ void	reflex_calcul(t_data *data)
 	calcul_reflex_ray(data, &temp_pos, &temp_dir);
 	touch_object(data);
 	while (test > 0 )
-	// while (test > SAFE - data->safe && SAFE <= data->safe)
 	{
 		touch_object(data);
 		// printf("light->pow = %f\n", data->light_pow);

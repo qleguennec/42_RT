@@ -47,7 +47,7 @@ static short	ray_intersection(t_data *data, short *index)
 		return (cylinder_intersection(data));
 	else if (data->obj->type == T_SPHERE)
 		return (sphere_intersection(data));
-	// else if (data->obj->type == T_DISK)
+	//else if (data->obj->type == T_DISK)
 	// 	return (disk_intersection(data));
 	return (0);
 }
