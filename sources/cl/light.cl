@@ -62,8 +62,6 @@ float3		check_all_light(t_data *data)
 
 	rd_light = (float3){0.0f, 0.0f, 0.0f};
 
-	data->nl = 0;
-
 	while (i < data->n_lgts)
 	{
 		lightdir = data->intersect - data->lights[i].pos;
