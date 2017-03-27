@@ -1,6 +1,19 @@
 #include "light.h"
 #include "calc.h"
 
+
+
+// static void		reverse_calcul_light(float3 *light_clr)
+// {
+// 	// *light_clr -= (1.0f - obj->clr) * obj->opacity;
+// 	if (light_clr->x > 1.0f)
+// 		light_clr->x = 1.0f;
+// 	if (light_clr->y > 1.0f)
+// 		light_clr->y = 1.0f;
+// 	if (light_clr->z > 1.0f)
+// 		light_clr->z = 1.0f;
+// }
+
 void	reflex_calcul(t_data *data)
 {
 	short test;
@@ -11,20 +24,22 @@ void	reflex_calcul(t_data *data)
 	float3	temp_dir = data->ray_dir;
 	float3	temp_pos = data->intersect;
 
-	data->safe++;
 	data->light_pow *= (1.0f - data->objs[data->id].reflex);
 	data->rd_light += check_all_light(data);
 
 	data->light_pow = temp_power * data->objs[data->id].reflex;
 	calcul_reflex_ray(data, &temp_pos, &temp_dir);
 
-	touch_object(data);
-	while (test >= SAFE - data->safe)
+		touch_object(data);
+	while ( test > 0)
+	// while (test > SAFE - data->safe && SAFE <= data->safe)
 	{
+		touch_object(data);
 		// printf("light->pow = %f\n", data->light_pow);
-		data->rd_light += check_all_light(data);
+		// reverse_calcul_light(&data->rd_light);
 		test--;
 	}
+		data->rd_light = check_all_light(data);
 }
 
 void	calcul_reflex_ray(t_data * data, float3 *ray_pos, float3 *ray_dir)
@@ -32,9 +47,7 @@ void	calcul_reflex_ray(t_data * data, float3 *ray_pos, float3 *ray_dir)
 	float3 normale;
 
 	data->intersect = *ray_pos;
-
-	data->ray_pos = *ray_pos;
-
+	// data->ray_pos = *ray_pos;
 	normale = calcul_normale(data);
 	data->ray_dir = *ray_pos - (2.0f * normale * dot(normale, *ray_pos));
 	data->ray_pos = *ray_pos;

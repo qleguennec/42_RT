@@ -55,7 +55,7 @@ short			plane_intersection(t_data *data)
 	float	div;
 	float	t;
 
-	data->obj->rot = data->rot;
+	// data->obj->rot = data->rot;
 	
 	rotate_ray(&data->ray_dir, data);
 	div = dot(data->obj->rot, data->ray_dir);

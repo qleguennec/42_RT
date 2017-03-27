@@ -40,15 +40,18 @@ void	get_color(t_data *data)
 	// 	data->safe <= SAFE)
 	// 		reflex_calcul(data);
 	while (data->safe < SAFE && data->light_pow > 0.0f)
-	if (data->light_pow > 0.0f && data->objs[data->id].reflex > 0.0f &&
-		data->safe <= SAFE)
+	{
+		if (data->light_pow > 0.0f && data->objs[data->id].reflex > 0.0f &&
+			data->safe <= SAFE)
 		{
 			// printf("data->id = %u\n",data->id);
 			reflex_calcul(data);
 		}
-	 else if (data->light_pow > 0.0f && data->safe <= SAFE)
-//	if (data->light_pow > 0.0f && data->safe <= SAFE)
-	 	clearness_color(data);
+		 else if (data->light_pow > 0.0f && data->safe <= SAFE)
+		 {
+	 		clearness_color(data);
+		 }
+	}
 }
 
 float3		check_all_light(t_data *data)
