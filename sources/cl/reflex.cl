@@ -1,19 +1,6 @@
 #include "light.h"
 #include "calc.h"
 
-
-
-// static void		reverse_calcul_light(float3 *light_clr)
-// {
-// 	// *light_clr -= (1.0f - obj->clr) * obj->opacity;
-// 	if (light_clr->x > 1.0f)
-// 		light_clr->x = 1.0f;
-// 	if (light_clr->y > 1.0f)
-// 		light_clr->y = 1.0f;
-// 	if (light_clr->z > 1.0f)
-// 		light_clr->z = 1.0f;
-// }
-
 void	reflex_calcul(t_data *data)
 {
 	short test;
@@ -33,10 +20,8 @@ void	reflex_calcul(t_data *data)
 	while ( test > 0)
 	// while (test > SAFE - data->safe && SAFE <= data->safe)
 	{
-		data->ray_pos += data->ray_dir;
 		touch_object(data);
 		// printf("light->pow = %f\n", data->light_pow);
-		// reverse_calcul_light(&data->rd_light);
 		test--;
 	}
 		data->rd_light = check_all_light(data);
