@@ -3,10 +3,7 @@
 
 void	reflex_calcul(t_data *data)
 {
-	short test;
-
-	test = data->safe;
-	data->safe++;
+	data->safe--;
 	float	temp_power = data->light_pow;
 	float3	temp_dir = data->ray_dir;
 	float3	temp_pos = data->intersect;
@@ -16,12 +13,8 @@ void	reflex_calcul(t_data *data)
 	data->rd_light += check_all_light(data);
 	data->light_pow = temp_power * data->objs[data->id].reflex;
 	calcul_reflex_ray(data, &temp_pos, &temp_dir);
-	while (test >= 0)
-	{
-		touch_object(data);
+	touch_object(data);
 		// printf("light->pow = %f\n", data->light_pow);
-		test--;
-	}
 	if (data->objs[(short)id].opacity < 1.0f && data->objs[(short)id].reflex < 1.0f)
 	{
 		data->intersect = temp_pos;

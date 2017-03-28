@@ -87,7 +87,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->n_objs = n_objs;
 	data->n_lgts = n_lgts;
 	data->id = -1;
-	data->safe = 0;
+	data->safe = SAFE;
 	data->option = 1;
 	data->nl = 0;
 	data->ambiant = ambiant;
