@@ -74,10 +74,10 @@ void			touch_object(t_data *data)
 				smallest_norm = norm;
 				data->id = index;
 				data->off_set = data->offset;
-				t = data->t; 
+				t = data->t;
 			}
 	}
-	data->t = t; 
+	data->t = t;
 	data->option = 0;
 	data->intersect = closest_intersect;
 }

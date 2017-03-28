@@ -30,6 +30,8 @@ typedef struct			s_data
 	float3				rot;
 	float3				pos;
 	float				radius;
+	float3				off_set;
+	float				t;
 
 	float				ambiant;
 	float				light_pow;

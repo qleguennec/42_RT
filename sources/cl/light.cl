@@ -120,6 +120,7 @@ float3		calcul_normale(t_data *data)
 {
 	float3	normale;
 	float	k;
+	float	m;
 
 
 	if (data->objs[data->id].type == T_PLANE)
@@ -140,10 +141,10 @@ float3		calcul_normale(t_data *data)
 	else if (data->objs[data->id].type == T_CONE)
 	{
 		k = tan((data->obj->radius / 2.0f) * (float)(M_PI / 180.0f));
-		m = dot(data->ray_dir, data->[data->id].rot * data->t) +
-			dot(data->ray_dir, data->off_set);
+		m = dot(data->ray_dir, data->objs[data->id].rot) * data->t +
+			dot(data->objs[data->id].rot, data->off_set);
 		normale = normalize(data->intersect - data->objs[data->id].pos -
-			(1 + k * k) * data->objs[data->id].rot * m)
+			(1.0f + k * k) * data->objs[data->id].rot * m);
 	}
 	return (fast_normalize(normale));
 }

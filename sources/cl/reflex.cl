@@ -3,10 +3,7 @@
 
 void	reflex_calcul(t_data *data)
 {
-<<<<<<< HEAD
 	data->safe--;
-=======
->>>>>>> c491125bd7dc4c647579bf5590c31a00c974633d
 	float	temp_power = data->light_pow;
 	float3	temp_dir = data->ray_dir;
 	float3	temp_pos = data->intersect;
