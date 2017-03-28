@@ -48,13 +48,8 @@
 	<position>40.00 0.00 450.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 0.00 200.00</color-rgb>
-<<<<<<< HEAD
-	<opacity>.30</opacity>
-	<radius>30.00</radius>
-=======
 	<opacity>1</opacity>
 	<radius>50.00</radius>
->>>>>>> 7f8cef842c0a832e3ecb74fb502b9e46675c8f18
 </object>
 
 <object>
@@ -133,8 +128,6 @@
 	<width>0</width>
 </object>
 
-<<<<<<< HEAD
-=======
 <object>
 	<name>Plane gauche</name>
 	<type>Plane</type>
@@ -186,4 +179,3 @@
 	<height>0</height>
 	<width>0</width>
 </object>
->>>>>>> 7f8cef842c0a832e3ecb74fb502b9e46675c8f18
