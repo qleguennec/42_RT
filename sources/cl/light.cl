@@ -24,8 +24,13 @@ unsigned	get_lighting(t_data *data)
 
 void	init_laputain_desamere(t_data *data)
 {
-	data->objs[0].reflex = 1.0f;
-	// printf("data->n_light = %d\n", data->n_lgts);
+	// data->objs[0].reflex = 1.0f;
+	data->objs[1].reflex = 1.0f;
+	data->objs[2].reflex = 1.0f;
+	// data->objs[3].reflex = 1.0f;
+	// data->objs[4].reflex = 1.0f;
+	// data->objs[5].reflex = 1.0f;
+	// data->objs[6].reflex = 1.0f;
 }
 
 void	get_color(t_data *data)
@@ -113,7 +118,10 @@ float3		calcul_normale(t_data *data)
 	if (data->objs[data->id].type == T_PLANE)
 		normale = data->objs[data->id].rot;
 	if (data->objs[data->id].type == T_SPHERE)
+	{
 		normale = data->objs[data->id].pos - data->intersect;
+		normale = rotate_ray(&normale, data);
+	}
 	if (data->objs[data->id].type == T_CYLINDER)
 	{
 		normale = data->objs[data->id].pos - data->intersect;
@@ -121,10 +129,10 @@ float3		calcul_normale(t_data *data)
 	}
 	if (data->objs[data->id].type == T_CONE)
 	{
-		normale = data->objs[data->id].pos - data->intersect * dot(data->objs[data->id].pos, data->intersect);
+		normale = (data->objs[data->id].pos - data->intersect);
 		// normale = (float3){0.0f, 0.0f, 1.0f}; // a voir si la suppresion est necesaire
 		//soit la premiere soit la seconde
+		normale = rotate_ray(&normale, data);
 	}
-	normale = rotate_ray(&normale, data);
 	return (normalize(normale));
 }

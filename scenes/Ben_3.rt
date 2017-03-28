@@ -60,7 +60,6 @@
 	<position>0.00 10.00 550.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
-	<height>80.0</height>
 	<opacity>1.00</opacity>
 	<radius>20.00</radius>
 </object>
@@ -72,7 +71,7 @@
 	<visibility>True</visibility>
 	<position>46.00 -60.00 400.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>130.00 80.00 25.00</color-rgb>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>25.00</radius>
 </object>
@@ -123,13 +122,3 @@
 	<opacity>1.00</opacity>
 </object>
 
-<object>
-	<name>Plane 1</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 0.00 1000.00</position>
-	<rotation>0.00 0.00 1.00</rotation>
-	<color-rgb>255.50 255.50 255.50</color-rgb>
-	<opacity>1.00</opacity>
-</object>

@@ -108,7 +108,9 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 {
 	t_data	data;
 	float	ambiant = 0.20;
+	// printf("c'est pas ma faute!!!!!!\n");
 
+	// printf("c'est ma faute!!!!!!\n");
 	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant, pixel);
     touch_object(&data);
 	if (!COLOR && data.id > -1)
@@ -121,7 +123,10 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		else{*pixel = 0xff00ffFF;}
 	}
 	else if (COLOR && data.id > -1)
+	{
+		// printf("c'est la faute d'erwan!!!!!!\n");
 		*pixel = get_lighting(&data);
+	}
 	else
 		*pixel = FONT;
 }
