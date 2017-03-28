@@ -25,10 +25,10 @@ unsigned	get_lighting(t_data *data)
 void	init_laputain_desamere(t_data *data)
 {
 	// data->objs[0].reflex = 1.0f;
-	data->objs[1].reflex = 1.0f;
-	data->objs[2].reflex = 1.00f;
+	// data->objs[1].reflex = 1.0f;
+	// data->objs[2].reflex = 1.0f;
 	// data->objs[3].reflex = 1.0f;
-	// data->objs[4].reflex = 0.90f;
+	data->objs[4].reflex = 0.90f;
 	// data->objs[5].reflex = 1.0f;
 	// data->objs[6].reflex = 1.0f;
 }
@@ -79,7 +79,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 	short	index = data->id;
 	float3	light_clr;
 
-	lightdir = normalize(lightdir);
+	lightdir = -normalize(lightdir);
 	touch_object(data);
 	light_clr = lgt->clr;
 	if (data->id > -1 && index != data->id && data->objs[data->id].opacity < 1.0f)
@@ -125,26 +125,26 @@ float3		calcul_normale(t_data *data)
 
 	if (data->objs[data->id].type == T_PLANE)
 	{
-		normale = data->objs[data->id].rot;
+		normale = -data->objs[data->id].rot;
 	}
 	else if (data->objs[data->id].type == T_SPHERE)
 	{
-		normale = data->objs[data->id].pos - data->intersect;
-		normale = rotate_ray(&normale, data);
+		normale = data->intersect - data->objs[data->id].pos;
 	}
 	else if (data->objs[data->id].type == T_CYLINDER)
 	{
-		normale = data->objs[data->id].pos - data->intersect;
-		normale.y = 0.0f;
-		normale = rotate_ray(&normale, data);
+		m = dot(data->ray_dir, data->objs[data->id].rot * data->t) +
+			dot(data->objs[data->id].rot, data->off_set);
+			normale = data->intersect - data->objs[data->id].pos -
+			data->objs[data->id].rot * m;
 	}
 	else if (data->objs[data->id].type == T_CONE)
 	{
-		k = tan((data->obj->radius / 2.0f) * (float)(M_PI / 180.0f));
-		m = dot(data->ray_dir, data->objs[data->id].rot) * data->t +
+		m = dot(data->ray_dir, data->objs[data->id].rot * data->t) +
 			dot(data->objs[data->id].rot, data->off_set);
-		normale = normalize(data->intersect - data->objs[data->id].pos -
-			(1.0f + k * k) * data->objs[data->id].rot * m);
+		k = tan((data->obj->radius / 2.0f) * (float)(M_PI / 180.0f));
+		normale = data->intersect - data->objs[data->id].pos -
+			(1.0f + k * k) * data->objs[data->id].rot * m;
 	}
 	return (fast_normalize(normale));
 }
