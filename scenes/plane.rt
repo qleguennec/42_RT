@@ -11,18 +11,20 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<position>00.00 0.00 0.00</position>
-	<rotation>0.00 0.00 1.</rotation>
+	<position>0.00 0.00 0.00</position>
+	<rotation>0.00 0.00 1.00</rotation>
 	<focal>55</focal>
 </camera>
+
 <!------------ Light(s) -------------->
 
 <light>
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>True</visibility>
-	<position>00.00 -30.00 10.00</position>
-	<color-rgb>1.00 1.00 1.00</color-rgb>
+	<flare-visibility>True</flare-visibility>
+	<position>0.00 -20.00 10.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
 
@@ -30,12 +32,17 @@
 
 <object>
 	<name>plan sol</name>
-	<type>plane</type>
+	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 10.00 100.00</position>
-	<rotation>0.00 1.00 0.00</rotation>
-	<color-rgb>1.00 0.00 0.00</color-rgb>
-	<opacity>1.0</opacity>
-	<radius>25</radius>
+	<position>0.00 5.00 33.00</position>
+	<rotation>0.00 0.50 0.50</rotation>
+	<color-rgb>0.00 255.00 0.00</color-rgb>
+	<height>5</height>
+	<width>10000000</width>
+	<radius>20</radius>
+	<opacity>1.00</opacity>
 </object>
+
+
+

@@ -39,6 +39,8 @@
 	<rotation>0.00 1.00 0.00</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
 </object>
 
 <object>
@@ -47,9 +49,16 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 200.00</position>
+<<<<<<< HEAD
 	<rotation>0.00 0.00 -1.00</rotation>
 	<color-rgb>255.00 0.00 255.00</color-rgb>
+=======
+	<rotation>0.00 0.00 1.00</rotation>
+	<color-rgb>.00 255.00 128.00</color-rgb>
+>>>>>>> 7f8cef842c0a832e3ecb74fb502b9e46675c8f18
 	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
 </object>
 
 <object>
@@ -61,6 +70,8 @@
 	<rotation>0.00 0.00 -1.00</rotation>
 	<color-rgb>255.00 0.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
 </object>
 
 <object>
@@ -72,6 +83,8 @@
 	<rotation>0.00 -1.00 0.00</rotation>
 	<color-rgb>150.00 185.00 240.00</color-rgb>
 	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
 </object>
 
 <object>
@@ -83,6 +96,8 @@
 	<rotation>1.00 0.00 0.00</rotation>
 	<color-rgb>0.00 255.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
 </object>
 
 <object>
@@ -94,6 +109,8 @@
 	<rotation>-1.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
 </object>
 
 <object>
@@ -101,9 +118,37 @@
 	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>False</visibility>
-	<position>30.00 0.00 100.00</position>
+	<position>20.00 0.00 180.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>0.00 128.00 0.00</color-rgb>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>10.00</radius>
+<<<<<<< HEAD
 </object>
+=======
+	<width>9.00</width>
+	<!--<height>8.00</height>
+	<reflex>7.00</reflex>-->
+	<!--<shiness>6.00</shiness>-->
+	<!--<mshiness>5.00</mshiness>-->
+	<!--<reflex>4.00</reflex>-->
+</object>
+
+<object>
+	<name>Sphere 1</name>
+	<type>Sphere</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>20.00 0.00 80.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>255.00 .00 .00</color-rgb>
+	<opacity>1</opacity>
+	<radius>5.00</radius>
+	<width>9.00</width>
+	<!--<height>8.00</height>
+	<reflex>7.00</reflex>-->
+	<!--<shiness>6.00</shiness>-->
+	<!--<mshiness>5.00</mshiness>-->
+	<!--<reflex>4.00</reflex>-->
+</object>
+>>>>>>> 7f8cef842c0a832e3ecb74fb502b9e46675c8f18

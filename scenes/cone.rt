@@ -15,12 +15,14 @@
 	<rotation>0.00 0.00 1.00</rotation>
 	<focal>55</focal>
 </camera>
+
 <!------------ Light(s) -------------->
 
 <light>
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>True</visibility>
+	<flare-visibility>True</flare-visibility>
 	<position>0.00 0.00 10.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
@@ -33,10 +35,11 @@
 	<type>Cone</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00  0.00 250.00</position>
+	<position>0.00 21.50 250.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 128.00 0.00</color-rgb>
-	<height>50</height>
-	<opacity>1</opacity>
-	<radius>40</radius>
+	<opacity>1.00</opacity>
+	<radius>40.00</radius>
+	<height>20</height>
 </object>
+

@@ -32,7 +32,7 @@
 
 <object>
 	<name>Sphere 1</name>
-	<type>Sphere</type>
+	<type>SpHeRe</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 290.00</position>
@@ -51,6 +51,8 @@
 	<rotation>-1.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
 </object>
 
 <object>
@@ -62,5 +64,7 @@
 	<rotation>0.00 0.00 1.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
 </object>
 

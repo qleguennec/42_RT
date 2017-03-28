@@ -23,6 +23,8 @@
 # define T_TETRAHEDRON	7
 # define T_OCTAHEDRON	8
 # define T_MOEBIUS		9
+# define T_DISK         10
+# define T_TRIANGLE     11
 
 # define T_DIFFUSE		0
 # define T_DIRECTIONAL	1
