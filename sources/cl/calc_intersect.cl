@@ -60,6 +60,12 @@ short			plane_intersection(t_data *data)
 		return (0);
 	t += (t < 0)? t * -PLANE_PREC: t * PLANE_PREC;
 	calc_intersect(&t, data);
+	// if (data->obj->width > 0.0f && fast_distance(data->grid_intersect.x,
+	//  data->obj->pos.x) > (data->obj->width / 2.0f))
+	// 	return (0);
+	// if (data->obj->height > 0.0f && fast_distance(data->grid_intersect.z,
+	//  data->obj->pos.z) > (data->obj->height / 2.0f))
+	// 	return (0);
 	if (data->obj->width > 0.0f && fast_distance(data->grid_intersect.x,
 	 data->obj->pos.x) > (data->obj->width / 2.0f))
 		return (0);

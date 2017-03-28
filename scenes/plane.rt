@@ -39,7 +39,7 @@
 	<rotation>0.00 0.50 0.50</rotation>
 	<color-rgb>0.00 255.00 0.00</color-rgb>
 	<height>5</height>
-	<width>10</width>
+	<width>10000000</width>
 	<radius>20</radius>
 	<opacity>1.00</opacity>
 </object>
