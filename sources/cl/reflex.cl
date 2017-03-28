@@ -9,7 +9,6 @@ void	reflex_calcul(t_data *data)
 	float3	temp_pos = data->intersect;
 	short	id = data->id;
 
-	data->safe++;
 	data->light_pow *= (1.0f - data->objs[data->id].reflex);
 	data->rd_light += check_all_light(data);
 	data->light_pow = temp_power * data->objs[data->id].reflex;
