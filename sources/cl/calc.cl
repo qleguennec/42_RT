@@ -57,6 +57,9 @@ void			touch_object(t_data *data)
 	float			norm;
 	float3			closest_intersect;
 
+	float	t;
+	t = -1;
+
 	index = -1;
 	data->id = -1;
 	smallest_norm = -1;
@@ -70,8 +73,11 @@ void			touch_object(t_data *data)
 				closest_intersect = data->intersect;
 				smallest_norm = norm;
 				data->id = index;
+				data->off_set = data->offset;
+				t = data->t; 
 			}
 	}
+	data->t = t; 
 	data->option = 0;
 	data->intersect = closest_intersect;
 }
@@ -101,6 +107,8 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->offset = 0.0f;
 	data->rad = 0.0f;
 
+	data->off_set = 0.0f;
+	data->t = 0.0f;
 	data->rot = (float3){0.f, 1.0f, 0.0f};
 	data->test = -8;
 	data->pos = (float3){0.0f, 1.0f, 0.0f};
