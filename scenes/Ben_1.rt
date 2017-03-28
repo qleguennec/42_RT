@@ -44,15 +44,16 @@
 
 <object>
 	<name>Plane 1</name>
-	<type>Plane</type>
+	<type>plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>-37.50 0.00 0.00</position>
+	<position>-103.50 0.00 290.00</position>
 	<rotation>-1.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
 	<width>0</width>
+	<radius>50</radius>
 </object>
 
 <object>
@@ -68,3 +69,15 @@
 	<width>0</width>
 </object>
 
+<object>
+	<name>Plane 2</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 0.00 -100.00</position>
+	<rotation>0.00 0.00 -1.00</rotation>
+	<color-rgb>255.00 .00 .00</color-rgb>
+	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
+</object>

@@ -25,10 +25,10 @@ unsigned	get_lighting(t_data *data)
 void	init_laputain_desamere(t_data *data)
 {
 	// data->objs[0].reflex = 1.0f;
-	// data->objs[1].reflex = 1.00f;
-	// data->objs[2].reflex = 1.00f;
+	data->objs[1].reflex = 1.0f;
+	data->objs[2].reflex = 1.00f;
 	// data->objs[3].reflex = 1.0f;
-	data->objs[4].reflex = .80f;
+	// data->objs[4].reflex = 0.90f;
 	// data->objs[5].reflex = 1.0f;
 	// data->objs[6].reflex = 1.0f;
 }
@@ -120,6 +120,7 @@ float3		calcul_normale(t_data *data)
 {
 	float3	normale;
 	float	k;
+
 
 	if (data->objs[data->id].type == T_PLANE)
 	{

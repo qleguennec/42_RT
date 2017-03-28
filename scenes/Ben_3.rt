@@ -92,10 +92,10 @@
 
 <object>
 	<name>Sphere 4</name>
-	<type>Plane</type>
+	<type>sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>-18.00 0.00 88.50</position>
+	<position>-23.00 0.00 88.50</position>
 	<rotation>1.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>.95</opacity>
