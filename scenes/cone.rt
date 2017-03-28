@@ -23,7 +23,7 @@
 	<type>Diffuse</type>
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>0.00 0.00 10.00</position>
+	<position>0.00 0.00 0.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -42,4 +42,3 @@
 	<radius>40.00</radius>
 	<height>20</height>
 </object>
-

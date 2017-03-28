@@ -35,7 +35,7 @@ void	init_laputain_desamere(t_data *data)
 
 void	get_color(t_data *data)
 {
-	while (data->safe < SAFE && data->light_pow > 0.0f)
+	while (data->safe > 0 && data->light_pow > 0.0f)
 	{
 		if (data->light_pow > 0.0f && data->objs[data->id].reflex > 0.0f)
 		{
@@ -79,7 +79,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 	short	index = data->id;
 	float3	light_clr;
 
-	lightdir = normalize(lightdir);
+	lightdir = -normalize(lightdir);
 	touch_object(data);
 	light_clr = lgt->clr;
 	if (data->id > -1 && index != data->id && data->objs[data->id].opacity < 1.0f)
@@ -119,18 +119,10 @@ float3		calcul_clr(float3 ray, float3 normale, float3 light,
 float3		calcul_normale(t_data *data)
 {
 	float3	normale;
-	//test pour les futures caps des cylindre et cone
-	if (data->test == T_DISK)
-	{
-		normale = data->rot;
+	float	k;
+	float	m;
 
-	}
-	else if (data->test == T_SPHERE)
-	{
-		normale = data->objs[data->id].pos - data->intersect;
-		normale = rotate_ray(&normale, data);
-	}
-	else 
+
 	if (data->objs[data->id].type == T_PLANE)
 	{
 		normale = data->objs[data->id].rot;
@@ -148,10 +140,11 @@ float3		calcul_normale(t_data *data)
 	}
 	else if (data->objs[data->id].type == T_CONE)
 	{
-		// normale = data->objs[data->id].pos - data->intersect;
-		normale = (float3){0.0f, 0.0f, 1.0f}; // a voir si la suppresion est necesaire
-		//soit la premiere soit la seconde
-		normale = rotate_ray(&normale, data);
+		k = tan((data->obj->radius / 2.0f) * (float)(M_PI / 180.0f));
+		m = dot(data->ray_dir, data->objs[data->id].rot) * data->t +
+			dot(data->objs[data->id].rot, data->off_set);
+		normale = data->intersect - data->objs[data->id].pos -
+			(1.0f + k * k) * data->objs[data->id].rot * m;
 	}
 	return (fast_normalize(normale));
 }

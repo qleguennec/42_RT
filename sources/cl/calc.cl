@@ -74,10 +74,10 @@ void			touch_object(t_data *data)
 				smallest_norm = norm;
 				data->id = index;
 				data->off_set = data->offset;
-				t = data->t; 
+				t = data->t;
 			}
 	}
-	data->t = t; 
+	data->t = t;
 	data->option = 0;
 	data->intersect = closest_intersect;
 }
@@ -93,7 +93,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->n_objs = n_objs;
 	data->n_lgts = n_lgts;
 	data->id = -1;
-	data->safe = 0;
+	data->safe = SAFE;
 	data->option = 1;
 	data->nl = 0;
 	data->ambiant = ambiant;

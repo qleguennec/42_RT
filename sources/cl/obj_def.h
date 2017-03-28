@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/03/22 16:50:21 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/03/28 16:30:20 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define PREC 0.0000001f
 #define PLANE_PREC 0.00001f
-# define SAFE 10
+# define SAFE 40
 
 typedef struct		s_obj
 {
