@@ -92,11 +92,11 @@
 
 <object>
 	<name>Sphere 4</name>
-	<type>Sphere</type>
+	<type>sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>-23.00 0.00 88.50</position>
-	<rotation>0.00 0.00 0.00</rotation>
+	<rotation>1.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>.95</opacity>
 	<radius>12.00</radius>
