@@ -40,5 +40,6 @@
 	<color-rgb>0.00 128.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>40.00</radius>
+	<height>20</height>
 </object>
 

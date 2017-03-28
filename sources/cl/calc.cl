@@ -31,10 +31,8 @@ float		calc_delta(float a, float b, float c)
 	t0 = ((-b + tmp) / (2.0f * a));
 	t1 = ((-b - tmp) / (2.0f * a));
 	t = (t0 < t1) ? t0 : t1;
-	// t += (t < 0)? t * PLANE_PREC: t * -PLANE_PREC;
 	return (t);
 }
-
 
 static short	ray_intersection(t_data *data, short *index)
 {
@@ -63,7 +61,6 @@ void			touch_object(t_data *data)
 	data->id = -1;
 	smallest_norm = -1;
 	data->option = 1;
-//			if (obj->type == T_PLANE && dot(tmp_intersect - obj->pos, tmp_intersect - obj->pos) < obj->radius * obj->radius) // formule du disque
 	while(++index <  data->n_objs)
 	{
 		if (ray_intersection(data, &index))
@@ -104,9 +101,9 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->offset = 0.0f;
 	data->rad = 0.0f;
 
-	data->option2 = 0;
 	data->rot = (float3){0.f, 1.0f, 0.0f};
 	data->test = -8;
+	data->pos = (float3){0.0f, 1.0f, 0.0f};
 }
 
 void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
@@ -116,7 +113,6 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	t_data	data;
 	float	ambiant = 0.20f;
 	//printf("c'est pas ma faute!!!!!!\n");
-
 	//printf("c'est ma faute!!!!!!\n");
 	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant, pixel);
     touch_object(&data);
@@ -136,5 +132,4 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	}
 	else
 		*pixel = FONT;
-	//printf("test\n");
 }

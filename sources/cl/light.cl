@@ -61,11 +61,6 @@ float3		check_all_light(t_data *data)
 		calcul_normale(data));
 		i++;
 	}
-	// if (data->nl == 0)
-	// {
-	// 	data->rd_light = 0.0f;
-	// 	return((float3){0.0f, 0.0f, 0.0f});
-	// }
 	return((float3)(rd_light / (float)(data->nl)) *
 		data->objs[data->id].opacity * data->light_pow);
 }
@@ -124,7 +119,7 @@ float3		calcul_clr(float3 ray, float3 normale, float3 light,
 float3		calcul_normale(t_data *data)
 {
 	float3	normale;
-
+	//test pour les futures caps des cylindre et cone
 	// if (data->test == T_DISK)
 	// {
 	// 	normale = data->rot;

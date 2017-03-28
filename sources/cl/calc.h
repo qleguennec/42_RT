@@ -12,7 +12,7 @@
 
 #ifndef CALC_H
 #define CALC_H
-
+// structure for image computing
 typedef struct			s_data
 {
 	global t_obj		*objs;
@@ -30,7 +30,6 @@ typedef struct			s_data
 	float3				rot;
 	float3				pos;
 	float				radius;
-	short				option2;
 
 	float				ambiant;
 	float				light_pow;
@@ -43,12 +42,13 @@ typedef struct			s_data
 	float3				offset;
 	float3				rad;
 }						t_data;
+/////////////////////
 
+// object intersection
 float			calc_delta(float a, float b, float c);
 
 void			calc_intersect(float *delta, t_data *data);
 
-//////////////object intersection
 void			touch_object(t_data *data);
 
 short			plane_intersection(t_data *data);
@@ -60,13 +60,19 @@ short			cylinder_intersection(t_data *data);
 short			sphere_intersection(t_data *data);
 
 short			disk_intersection(t_data *data);
-////////////////////////
+/////////////////////
 
+// entry function
 void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
  global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir,
   global t_cam *cam, short x, short y);
+/////////////////////
 
+// tools
 float			float3_to_float(float3 v);
+/////////////////////
+
 // rotate function
 float3			rotate_ray(float3 *ray, t_data *data);
+/////////////////////
 #endif
