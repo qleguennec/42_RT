@@ -17,7 +17,6 @@
 
 unsigned	get_lighting(t_data *data)
 {
-	init_laputain_desamere(data);
 	get_color(data);
 	return(calcul_rendu_light(data));
 }
@@ -59,6 +58,7 @@ float3		check_all_light(t_data *data)
 
 unsigned	calcul_rendu_light(t_data *data)
 {
+
 	float3	clr;
 
 	clr =  data->rd_light * 255.0f;
@@ -72,13 +72,14 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 	float3	light_clr;
 
 	lightdir = -normalize(lightdir);
-	check_intercept(data, 1);
+	check_intercept(data, index, 1);
+	// printf("index = %u  data->id = %u\nlight_pow = %f\n\n", index, data->id, data->light_pow);
 	light_clr = lgt->clr;
-	if (data->id > -1 && index != data->id && data->objs[data->id].opacity < 1.0f)
+	if (data->id > -1 && index != data->id)
 	{
 		data->ray_pos = data->intersect - data->ray_dir;
 		calcul_light(&light_clr, &data->objs[data->id]);
-		check_intercept(data, 1);
+		check_intercept(data, index, 1);
 	}
 	if (index == data->id)
 	{

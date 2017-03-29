@@ -17,12 +17,12 @@ void	clearness_calcul(t_data *data)
 
 	// *ray_dir = calcul_refract_ray(data, 1.0f, data->objs[data->id].refract);
 	data->ray_pos = data->intersect + data->ray_dir;
-	check_intercept(data, 0);
+	check_intercept(data, index, 1);
 	if (index == data->id)
 	{
 		// *ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
 		data->ray_pos = data->intersect + data->ray_dir;
-		check_intercept(data, 0);
+		check_intercept(data, index, 1);
 	}
 	if (data->id == -1)
 	{

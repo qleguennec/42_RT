@@ -1,15 +1,19 @@
 #include "light.h"
 #include "calc.h"
 
-void	check_intercept(t_data *data, short light)
+void	check_intercept(t_data *data, short index, short light)
 {
-	short	id = data->id;
-	float	temp_power = data->light_pow;
-	float3	temp_dir = data->ray_dir;
-	float3	temp_pos = data->intersect;
+	short	id;
+	float	temp_power;
+	float3	temp_dir;
+	float3	temp_pos;
 
 	touch_object(data);
-	if(data->obj[data->id].reflex > 0.0f && !light)
+	id = data->id;
+	temp_power = data->light_pow;
+	temp_dir = data->ray_dir;
+	temp_pos = data->intersect;
+	if(data->objs[data->id].reflex > 0.0f && light == 0)
 	{
 		data->light_pow *= (1.0f - data->objs[data->id].reflex);
 		clearness_calcul(data);
@@ -17,7 +21,7 @@ void	check_intercept(t_data *data, short light)
 		calcul_reflex_ray(data, &temp_pos, &temp_dir);
 		touch_object(data);
 	}
-	else if(data->obj[data->id].reflex > 0.0f && light)
+	else if (data->id != index && data->objs[data->id].reflex > 0.0f && light)
 	{
 		calcul_reflex_ray(data, &temp_pos, &temp_dir);
 		touch_object(data);

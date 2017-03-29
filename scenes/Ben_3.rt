@@ -98,7 +98,7 @@
 	<position>-20.00 0.00 200.0</position>
 	<rotation>1.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
-	<opacity>.95</opacity>
+	<opacity>1.0</opacity>
 	<radius>10.00</radius>
 </object>
 
