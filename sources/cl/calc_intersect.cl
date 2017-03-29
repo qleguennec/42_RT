@@ -91,18 +91,8 @@ short			cone_intersection(t_data *data)
 	float	rad;
 	rad = (data->obj->radius / 2.0f) * (float)(M_PI / 180.0f);
 	
-	data->rot = data->obj->rot;
-	rotate_ray(&data->rot, data);
+	data->rot = rotate_ray(&data->rot, data);
 
-	// a = dot(data->ray_dir.xz, data->ray_dir.xz) - dot(data->ray_dir.y,
-	//  data->ray_dir.y) * tan(rad);
-
-	// b = (2.0f * dot(data->ray_dir.x, data->offset.x)) +
-	//  (2.0f * dot(data->ray_dir.z, data->offset.z)) -
-	//  (2.0f * dot(data->ray_dir.y, data->offset.y)) * tan(rad);
-
-	// c = dot(data->offset.xz, data->offset.xz) -
-	//  dot(data->offset.y, data->offset.y) * tan(rad);
 	a = dot(data->ray_dir, data->ray_dir) - (1.0f + tan(rad) * tan(rad)) * 
 		dot(data->ray_dir, data->rot) * dot(data->ray_dir, data->rot);
 
@@ -138,10 +128,7 @@ short			cylinder_intersection(t_data *data)
 	rdir = data->ray_dir;
 
 	data->ray_dir = rotate_ray(&data->ray_dir, data);
-	// a = dot(data->ray_dir.x, data->ray_dir.x) + dot(data->ray_dir.z, data->ray_dir.z);
-	// b = (2.0f * dot(data->ray_dir.x, data->offset.x)) + (2.0f * dot(data->ray_dir.z, data->offset.z));
-	// c = dot(data->offset.x, data->offset.x) + dot(data->offset.z, data->offset.z) - data->obj->radius *
-	
+
 	a = dot(data->ray_dir, data->ray_dir) - dot(data->ray_dir, (float3){0.0f, 1.0f, 0.0f}) *
 	dot(data->ray_dir, (float3){0.0f, 1.0f, 0.0f});
 

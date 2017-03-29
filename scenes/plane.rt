@@ -36,7 +36,7 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 4.00 33.00</position>
-	<rotation>0.00 0.50 0.50</rotation>
+	<rotation>0.00 1.0 0.0</rotation>
 	<color-rgb>0.00 255.00 0.00</color-rgb>
 	<height>5</height>
 	<width>10</width>
