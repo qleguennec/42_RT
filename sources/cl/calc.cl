@@ -121,7 +121,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	t_data	data;
 	float	ambiant = 0.20f;
 	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant, pixel);
-    touch_object(&data);
+	check_intercept(&data, 0);
 	if (!COLOR && data.id > -1)
 	{
 		if (data.id == 0){*(data.pixel) = 0x00ff00FF;}

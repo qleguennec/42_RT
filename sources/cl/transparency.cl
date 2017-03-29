@@ -6,26 +6,23 @@ void	clearness_color(t_data *data)
 	data->safe++;
 
 	data->rd_light += check_all_light(data);
-	data->light_pow -= data->objs[data->id].opacity;
+	data->light_pow *= (1.0f - data->objs[data->id].opacity);
 	if (data->objs[data->id].opacity < 1.0f)
 		clearness_calcul(data);
 }
 
-
-//fonction a amelioré, (calcul des different indices si on passe pas dans l'air)
 void	clearness_calcul(t_data *data)
-
 {
 	short	index = data->id;
 
 	// *ray_dir = calcul_refract_ray(data, 1.0f, data->objs[data->id].refract);
 	data->ray_pos = data->intersect + data->ray_dir;
-	touch_object(data);
+	check_intercept(data, 0);
 	if (index == data->id)
 	{
 		// *ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
 		data->ray_pos = data->intersect + data->ray_dir;
-		touch_object(data);
+		check_intercept(data, 0);
 	}
 	if (data->id == -1)
 	{
@@ -34,11 +31,7 @@ void	clearness_calcul(t_data *data)
 		data->light_pow = 0.0f;
 	}
 	else
-	{
 		data->rd_light += (check_all_light(data) * data->light_pow);
-		// data->light_pow -= (data->objs[data->id].opacity);
-	}
-		// *ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
 }
 
 float3	calcul_refract_ray(t_data *data, float refract1, float refract2)

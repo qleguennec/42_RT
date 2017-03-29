@@ -36,15 +36,7 @@ void	init_laputain_desamere(t_data *data)
 void	get_color(t_data *data)
 {
 	while (data->safe > 0 && data->light_pow > 0.0f)
-	{
-		// printf("data->id = %d\nlight_pow global = %f\n", data->id, data->light_pow);
-		if (data->light_pow > 0.0f && data->objs[data->id].reflex > 0.0f)
-		{
-			reflex_calcul(data);
-		}
-		else if (data->light_pow > 0.0f)
-				clearness_color(data);
-	}
+		clearness_color(data);
 }
 
 float3		check_all_light(t_data *data)
@@ -80,17 +72,13 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 	float3	light_clr;
 
 	lightdir = -normalize(lightdir);
-	data->ray_dir = -lightdir;
-	data->ray_pos = lgt->pos;
-	touch_object(data);
-	// PRINT3(data->ray_pos, "pos after");
-	// printf("obj id = %d\n", data->id);
+	check_intercept(data, 1);
 	light_clr = lgt->clr;
 	if (data->id > -1 && index != data->id && data->objs[data->id].opacity < 1.0f)
 	{
-		data->ray_pos = data->intersect; //+ data->ray_dir;
+		data->ray_pos = data->intersect - data->ray_dir;
 		calcul_light(&light_clr, &data->objs[data->id]);
-		touch_object(data);
+		check_intercept(data, 1);
 	}
 	if (index == data->id)
 	{
