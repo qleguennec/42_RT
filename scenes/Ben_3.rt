@@ -45,11 +45,11 @@
 	<type>Sphere</type>
 	<material>Phong</material>
 	<visibility>True</visibility>
-	<position>40.00 0.00 450.00</position>
+	<position>50.00 0.00 450.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 0.00 200.00</color-rgb>
 	<opacity>1</opacity>
-	<radius>50.00</radius>
+	<radius>30.00</radius>
 </object>
 
 <object>
@@ -58,7 +58,7 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 10.00 650.00</position>
-	<rotation>0.00 0.00 1.00</rotation>
+	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>50.00</radius>
@@ -95,11 +95,11 @@
 	<type>sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>-23.00 0.00 88.50</position>
+	<position>-20.00 0.00 200.0</position>
 	<rotation>1.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>.95</opacity>
-	<radius>12.00</radius>
+	<radius>10.00</radius>
 </object>
 
 <object>

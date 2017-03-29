@@ -120,8 +120,6 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 {
 	t_data	data;
 	float	ambiant = 0.20f;
-	//printf("c'est pas ma faute!!!!!!\n");
-	//printf("c'est ma faute!!!!!!\n");
 	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant, pixel);
     touch_object(&data);
 	if (!COLOR && data.id > -1)

@@ -6,7 +6,7 @@ void	clearness_color(t_data *data)
 	data->safe++;
 
 	data->rd_light += check_all_light(data);
-	data->light_pow *=  (1.0f - data->objs[data->id].opacity);
+	data->light_pow -= data->objs[data->id].opacity;
 	if (data->objs[data->id].opacity < 1.0f)
 		clearness_calcul(data);
 }
@@ -36,7 +36,7 @@ void	clearness_calcul(t_data *data)
 	else
 	{
 		data->rd_light += (check_all_light(data) * data->light_pow);
-		data->light_pow -= (data->objs[data->id].opacity);
+		// data->light_pow -= (data->objs[data->id].opacity);
 	}
 		// *ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
 }
