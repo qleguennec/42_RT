@@ -13,7 +13,7 @@ void	check_intercept(t_data *data, short index, short light)
 	temp_power = data->light_pow;
 	temp_dir = data->ray_dir;
 	temp_pos = data->intersect;
-	if(data->objs[data->id].reflex > 0.0f && light == 0)
+	if(light == 0 && data->objs[data->id].reflex > 0.0f)
 	{
 		data->light_pow *= (1.0f - data->objs[data->id].reflex);
 		clearness_calcul(data);
