@@ -27,7 +27,7 @@ void	init_laputain_desamere(t_data *data)
 	// data->objs[1].reflex = 1.0f;
 	// data->objs[2].reflex = 1.0f;
 	// data->objs[3].reflex = 1.0f;
-	data->objs[4].reflex = 0.50f;
+	// data->objs[4].reflex = 0.50f;
 	// data->objs[5].reflex = 1.0f;
 	// data->objs[6].reflex = 1.0f;
 }
@@ -52,8 +52,10 @@ float3		check_all_light(t_data *data)
 		calcul_normale(data));
 		i++;
 	}
-	return((float3)(rd_light / (float)(data->nl)) *
-		data->objs[data->id].opacity * data->light_pow);
+	if (data->nl > 0)
+		return ((float3)(rd_light / (data->nl + data->ambiant)) *
+			data->objs[data->id].opacity * data->light_pow);
+	return (rd_light * data->objs[data->id].opacity);
 }
 
 unsigned	calcul_rendu_light(t_data *data)
@@ -69,24 +71,36 @@ unsigned	calcul_rendu_light(t_data *data)
 float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normale)
 {
 	short	index = data->id;
-	float3	light_clr;
+	// float3	light_clr;
+	float3	save_pos = data->ray_pos;
+	float3	save_ray = data->ray_dir;
+	float3	save_inter = data->intersect;
 
-	lightdir = -normalize(lightdir);
+	lightdir = normalize(lightdir);
+	data->ray_pos = lgt->pos;
+	data->ray_dir = lightdir;
 	check_intercept(data, index, 1);
-	// printf("index = %u  data->id = %u\nlight_pow = %f\n\n", index, data->id, data->light_pow);
-	light_clr = lgt->clr;
-	if (data->id > -1 && index != data->id)
-	{
-		data->ray_pos = data->intersect - data->ray_dir;
-		calcul_light(&light_clr, &data->objs[data->id]);
-		check_intercept(data, index, 1);
-	}
+	// light_clr = lgt->clr;
+	// if (data->id != -1 && index != data->id)
+	// {
+		// data->ray_pos = data->intersect;
+		// data->ray_dir = lightdir;
+
+		// calcul_light(&light_clr, &data->objs[data->id]);
+		// check_intercept(data, 1);
+	// }
+	data->ray_pos = save_pos;
+	data->ray_dir = save_ray;
+	data->intersect = save_inter;
 	if (index == data->id)
 	{
 		data->nl++;
-		return (calcul_clr(lightdir, normale, light_clr, &data->objs[index]));
+		return ((1 - data->ambiant) * calcul_clr(-lightdir, normale, lgt->clr,
+			&data->objs[index]) + data->ambiant * data->objs[index].clr);
 	}
+	data->id = index;
 	return (data->ambiant * data->objs[index].clr);
+	// return ((float3){0.0f, 0.0f, 0.0f});
 }
 
 void		calcul_light(float3 *light_clr, global t_obj *obj)
