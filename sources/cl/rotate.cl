@@ -20,24 +20,32 @@ float3			rotate_ray(float3 *ray, t_data *data)
 		matx = (float3){native_cos(rad.y) * native_cos(rad.z),
 		native_cos(rad.y) * (-native_sin(rad.z)),
 		native_sin(rad.y)};
-		maty = (float3){(-native_sin(rad.x)) * (-native_sin(rad.y)) * native_cos(rad.z) + native_cos(rad.x) * native_sin(rad.z),
-		(-native_sin(rad.x)) * (-native_sin(rad.y)) * (-native_sin(rad.z)) + native_cos(rad.x) * native_cos(rad.z),
-		(-native_sin(rad.x)) * native_cos(rad.y)};
-		matz = (float3){native_cos(rad.x) * (-native_sin(rad.y)) * native_cos(rad.z) + native_sin(rad.x) * native_sin(rad.z),
-		native_cos(rad.x) * (-native_sin(rad.y)) * (-native_sin(rad.z)) + native_sin(rad.x) * native_cos(rad.z),
-		native_cos(rad.x) * native_cos(rad.y)};
+
+		maty = (float3){(-native_sin(rad.x)) * (-native_sin(rad.y)) *
+		native_cos(rad.z) + native_cos(rad.x) * native_sin(rad.z),
+		(-native_sin(rad.x)) * (-native_sin(rad.y)) * (-native_sin(rad.z)) +
+		native_cos(rad.x) * native_cos(rad.z), (-native_sin(rad.x)) *
+		native_cos(rad.y)};
+
+		matz = (float3){native_cos(rad.x) * (-native_sin(rad.y)) *
+		native_cos(rad.z) + native_sin(rad.x) * native_sin(rad.z),
+		native_cos(rad.x) * (-native_sin(rad.y)) * (-native_sin(rad.z)) +
+		native_sin(rad.x) * native_cos(rad.z), native_cos(rad.x) *
+		native_cos(rad.y)};
 	}
 	else
 	{
 		matx = (float3){cos(rad.y) * cos(rad.z),
 		cos(rad.y) * (-sin(rad.z)),
 		sin(rad.y)};
-		maty = (float3){(-sin(rad.x)) * (-sin(rad.y)) * cos(rad.z) + cos(rad.x) * sin(rad.z),
-		(-sin(rad.x)) * (-sin(rad.y)) * (-sin(rad.z)) + cos(rad.x) * cos(rad.z),
-		(-sin(rad.x)) * cos(rad.y)};
-		matz = (float3){cos(rad.x) * (-sin(rad.y)) * cos(rad.z) + sin(rad.x) * sin(rad.z),
-		cos(rad.x) * (-sin(rad.y)) * (-sin(rad.z)) + sin(rad.x) * cos(rad.z),
-		cos(rad.x) * cos(rad.y)};
+
+		maty = (float3){(-sin(rad.x)) * (-sin(rad.y)) * cos(rad.z) +
+		cos(rad.x) * sin(rad.z), (-sin(rad.x)) * (-sin(rad.y)) * (-sin(rad.z)) +
+		cos(rad.x) * cos(rad.z), (-sin(rad.x)) * cos(rad.y)};
+
+		matz = (float3){cos(rad.x) * (-sin(rad.y)) * cos(rad.z) + sin(rad.x) *
+		sin(rad.z), cos(rad.x) * (-sin(rad.y)) * (-sin(rad.z)) + sin(rad.x) *
+		cos(rad.z), cos(rad.x) * cos(rad.y)};
 	}
 
 	res.x = dot(matx, *ray);
@@ -48,6 +56,12 @@ float3			rotate_ray(float3 *ray, t_data *data)
 		data->offset.x = dot(matx, pos);
 		data->offset.y = dot(maty, pos);
 		data->offset.z = dot(matz, pos);
+	}
+	if (data->option == 2)
+	{
+		data->offset.x = dot(matx, data->pos);
+		data->offset.y = dot(maty, data->pos);
+		data->offset.z = dot(matz, data->pos);
 	}
 	return(res);
 }

@@ -6,7 +6,7 @@
 /*   By: lgatibel <lgatibel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:37 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/03/21 20:06:08 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/04/07 11:46:31 by lgatibel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct			s_data
 	float				radius;
 	float3				off_set;
 	float				t;
+//	float				delta;
 
 	float				ambiant;
 	float				light_pow;

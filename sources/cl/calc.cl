@@ -108,6 +108,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->rad = 0.0f;
 	data->rot = (float3){0.f, 1.0f, 0.0f}; // a ne pas toucher c'est le set de l'axe des objets de base
 
+//	data->delta = 0;
 	data->off_set = 0.0f;
 	data->t = 0.0f;
 	data->test = -8;
