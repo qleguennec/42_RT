@@ -101,12 +101,13 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->ray_pos = ray_pos;
 	data->grid_ray_dir = ray_dir;
 	data->ray_dir = ray_dir;
+	data->rdir = ray_dir;
 	data->intersect = 0.0f;
 	data->grid_intersect = 0.0f;
 	data->rd_light = 0.0f;
 	data->offset = 0.0f;
-	data->rad = 0.0f;
-	data->rot = (float3){0.f, 1.0f, 0.0f}; // a ne pas toucher c'est le set de l'axe des objets de base
+	// data->rad = 0.0f;
+	data->rot = (float3){0.0f, 1.0f, 0.0f}; // a ne pas toucher c'est le set de l'axe des objets de base
 
 //	data->delta = 0;
 	data->off_set = 0.0f;

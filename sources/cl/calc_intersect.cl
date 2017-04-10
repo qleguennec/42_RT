@@ -17,7 +17,7 @@ float			float3_to_float(float3 v){
 void			calc_intersect(float *delta, t_data *data)
 {
 	data->t = *delta;
-	data->intersect = data->ray_pos + (data->ray_dir * (*delta));
+	data->intersect = data->ray_pos + (data->rdir * (*delta));
 	data->grid_intersect = data->ray_pos + (data->grid_ray_dir * (*delta));
 }
 
@@ -25,13 +25,15 @@ short			disk_intersection(t_data *data)
 {
 	float	div;
 	float	t;
-	// float3	pos;
 
-	data->option = 3;
-	data->rot = rotate_ray(&data->rot, data);
-	data->offset = data->ray_pos - data->pos;
+	data->option = 8;
+	// data->rot = rotate_ray(&data->rot, data);
+	// rotate_ray(&data->ray_dir, data);
+	// data->offset = data->ray_pos - data->pos;
+	data->rdir = rotate_ray(&data->ray_dir, data);
+	 data->offset -= data->pos;
 
-	div = dot(data->rot, data->ray_dir);
+	div = dot(data->rot, data->rdir);
 	if (div == 0.0f)
 		return (0);
 	t = (-dot(data->rot, data->offset)) / div;
@@ -50,11 +52,13 @@ short			plane_intersection(t_data *data)
 	float	div;
 	float	t;
 
-	data->option = 2;
-	data->rot = rotate_ray(&data->rot, data);
-	data->offset = data->ray_pos - data->obj->pos;
+	// data->option = 2;
+	// data->rot = rotate_ray(&data->rot, data);
+	data->rdir = rotate_ray(&data->ray_dir, data);
+
+	// data->offset = data->ray_pos - data->obj->pos;
 /*
-	div = dot((float3){0.0f, 1.0f, 0.0f}, data->ray_dir);
+	div = dot((float3){0.0f, 1.0f, 0.0f}, data->rdir);
 	if (div == 0.0f)
 		return (0);
 	t = (-dot((float3){0.0f, 1.0f, 0.0f}, data->offset)) / div;
@@ -63,7 +67,7 @@ short			plane_intersection(t_data *data)
 	t += (t < 0)? t * -PLANE_PREC: t * PLANE_PREC;
 	data->delta = t;
 */
-	div = dot(data->rot, data->ray_dir);
+	div = dot(data->rot, data->rdir);
 	if (div == 0.0f)
 		return (0);
 	t = (-dot(data->rot, data->offset)) / div;
@@ -104,13 +108,13 @@ short			cone_intersection(t_data *data)
 	float tanj;
 	tanj = 1.0f + tan(rad) * tan(rad); 
 	
-	data->ray_dir = rotate_ray(&data->ray_dir, data);
+	data->rdir = rotate_ray(&data->ray_dir, data);
 
-	a = dot(data->ray_dir, data->ray_dir) - tanj *
-		dot(data->ray_dir, data->rot) * dot(data->ray_dir, data->rot);
+	a = dot(data->rdir, data->rdir) - tanj *
+		dot(data->rdir, data->rot) * dot(data->rdir, data->rot);
 
-	b = 2.0f * (dot(data->ray_dir, data->offset) - tanj *
-		dot(data->ray_dir, data->rot) *
+	b = 2.0f * (dot(data->rdir, data->offset) - tanj *
+		dot(data->rdir, data->rot) *
 		dot(data->offset, data->rot));
 
 	c = dot(data->offset, data->offset) - tanj * 
@@ -119,7 +123,7 @@ short			cone_intersection(t_data *data)
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data);
-	
+
 	if ((data->obj->height > 0.0f && ((fast_distance(data->obj->pos, data->grid_intersect) >
 	sqrt(data->obj->height * data->obj->height + data->obj->radius  * data->obj->radius)))))
 		return (0);
@@ -134,56 +138,51 @@ short			cylinder_intersection(t_data *data)
 	float	c;
 	float	delta;
 
-	float3	rdir;
-	rdir = data->ray_dir;
+	data->rdir = rotate_ray(&data->ray_dir, data);
 
-	data->ray_dir = rotate_ray(&data->ray_dir, data);
+	a = dot(data->rdir, data->rdir) -
+	 dot(data->rdir, data->rot) *
+	 dot(data->rdir, data->rot);
 
-	a = dot(data->ray_dir, data->ray_dir) - dot(data->ray_dir,
-		(float3){0.0f, 1.0f, 0.0f}) * dot(data->ray_dir,
-			(float3){0.0f, 1.0f, 0.0f});
+	b = 2.0f * (dot(data->rdir, data->offset) - dot(data->rdir,
+	data->rot) *
+	dot(data->offset, data->rot));
 
-	b = 2.0f * (dot(data->ray_dir, data->offset) - dot(data->ray_dir,
-		(float3){0.0f, 1.0f, 0.0f}) *
-		dot(data->offset, (float3){0.0f, 1.0f, 0.0f}));
-
-	c = dot(data->offset, data->offset) - dot(data->offset,
-		(float3){0.0f, 1.0f, 0.0f}) * dot(data->offset,
-			(float3){0.0f, 1.0f, 0.0f}) - data->obj->radius * data->obj->radius;
+	c = dot(data->offset, data->offset) -
+	 dot(data->offset,	data->rot) * dot(data->offset, data->rot) -
+	 data->obj->radius * data->obj->radius;
 
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
-		// printf("test\n");
+
 	calc_intersect(&delta, data);
-	if (data->obj->height > 0.0f && ((fast_distance(data->obj->pos, data->grid_intersect) > sqrt(data->obj->height *
+	if (data->obj->height > 0.0f && ((fast_distance(data->obj->pos, data->grid_intersect) >= sqrt(data->obj->height *
 	data->obj->height + data->obj->radius  * data->obj->radius))))
 	{
 		// data->rot = (float3){0.0f, 1.0f, 0.0f};
+		// data->option = 2;
 		// data->radius = data->obj->radius;
 		data->test = T_DISK;
-		if (data->ray_pos.y - data->grid_intersect.y > data->obj->height)
-		{
+		// if (data->grid_intersect.y == data->obj->pos.y - data->obj->height || data->grid_intersect.y == data->obj->pos.y + data->obj->height)
+		// {
+			if (data->ray_pos.y - data->grid_intersect.y > data->obj->height)
+			{
+			// return (0);
+				data->pos = data->obj->pos;
+				data->pos.y -= data->obj->height;
+			}
+			else
+			{
+				data->pos = data->obj->pos;
+				data->pos.y += data->obj->height;
+			}
+			if (disk_intersection(data))
+			// if (sphere_intersection(data))/// not working a 100%
+				return (1);
+			// }
 		return (0);
-			// data->rot = (float3){0.0f, 1.0f, 0.0f};
-			data->pos = (float3){data->obj->pos.x, data->obj->pos.y - data->obj->height,
-			data->obj->pos.z};
-		}
-		else
-		{
-			data->pos = (float3){data->obj->pos.x, data->obj->pos.y,
-			data->obj->pos.z};
-			data->pos -= 10.0f * data->rot;
-		}
-		data->ray_dir = rdir;
-		if (!disk_intersection(data))
-		// if (sphere_intersection(data) == 1)/// not working a 100%
-			return (0);
-		return (1);
 	}
-
-
 		// return (0);
-	
 	return (1);
 }
 
@@ -194,9 +193,11 @@ short			sphere_intersection(t_data *data)
 	float	c;
 	float	delta;
 
-	data->ray_dir = rotate_ray(&data->ray_dir, data);
-	a = dot(data->ray_dir, data->ray_dir);
-	b = 2.0f * dot(data->ray_dir, data->offset);
+	data->rdir = rotate_ray(&data->ray_dir, data);
+	// data->offset = data->ray_pos - data->pos;
+	
+	a = dot(data->rdir, data->rdir);
+	b = 2.0f * dot(data->rdir, data->offset);
 	c = dot(data->offset, data->offset) -  data->obj->radius * data->obj->radius;
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);

@@ -43,7 +43,8 @@ typedef struct			s_data
 	float3				grid_intersect;
 	float3				rd_light;
 	float3				offset;
-	float3				rad;
+	float3				rdir;
+	// float3				rad;
 }						t_data;
 /////////////////////
 
