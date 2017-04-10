@@ -119,16 +119,10 @@ short			cone_intersection(t_data *data)
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data);
-	//  if (data->obj->height > 0.0f && ((fast_distance(data->pos, data->grid_intersect) >
-	// sqrt(data->obj->height * data->obj->height + data->obj->radius  * data->obj->radius))))
-	// 	return (0);
-	// 	if ((data->obj->height > 0.0f && ((fast_distance(data->obj->pos, data->grid_intersect) >
-	// sqrt(data->obj->height * data->obj->height + data->obj->radius  * data->obj->radius)))) ||
-	// 	 data->grid_intersect.y - data->obj->pos.y > 0)
-	// 	return (0);
-		// if ((data->obj->height > 0.0f && ((fast_distance(data->obj->pos, data->grid_intersect) >
-		// sqrt(data->obj->height * data->obj->height + data->obj->radius  * data->obj->radius)))))
-		// return (0);
+	
+	if ((data->obj->height > 0.0f && ((fast_distance(data->obj->pos, data->grid_intersect) >
+	sqrt(data->obj->height * data->obj->height + data->obj->radius  * data->obj->radius)))))
+		return (0);
 	return (1);
 }
 
