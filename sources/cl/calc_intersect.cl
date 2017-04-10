@@ -100,28 +100,32 @@ short			cone_intersection(t_data *data)
 
 	float	rad;
 	rad = (data->obj->radius / 2.0f) * (float)(M_PI / 180.0f);
-	
-	data->rot = rotate_ray(&data->rot, data);
 
-	a = dot(data->ray_dir, data->ray_dir) - (1.0f + tan(rad) * tan(rad)) * 
+	float tanj;
+	tanj = 1.0f + tan(rad) * tan(rad); 
+	
+	data->ray_dir = rotate_ray(&data->ray_dir, data);
+
+	a = dot(data->ray_dir, data->ray_dir) - tanj *
 		dot(data->ray_dir, data->rot) * dot(data->ray_dir, data->rot);
 
-	b = 2.0f * (dot(data->ray_dir, data->offset) - (1.0f + tan(rad) *
-		tan(rad)) * dot(data->ray_dir, data->rot) *
-			dot(data->offset, data->rot));
+	b = 2.0f * (dot(data->ray_dir, data->offset) - tanj *
+		dot(data->ray_dir, data->rot) *
+		dot(data->offset, data->rot));
 
-	c = dot(data->offset, data->offset) - (1.0f + tan(rad) * tan(rad)) * 
+	c = dot(data->offset, data->offset) - tanj * 
 		dot(data->offset, data->rot) * dot(data->offset, data->rot);
+
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data);
 	//  if (data->obj->height > 0.0f && ((fast_distance(data->pos, data->grid_intersect) >
 	// sqrt(data->obj->height * data->obj->height + data->obj->radius  * data->obj->radius))))
 	// 	return (0);
-		if ((data->obj->height > 0.0f && ((fast_distance(data->obj->pos, data->grid_intersect) >
-	sqrt(data->obj->height * data->obj->height + data->obj->radius  * data->obj->radius)))) ||
-		 data->grid_intersect.y - data->obj->pos.y > 0)
-		return (0);
+	// 	if ((data->obj->height > 0.0f && ((fast_distance(data->obj->pos, data->grid_intersect) >
+	// sqrt(data->obj->height * data->obj->height + data->obj->radius  * data->obj->radius)))) ||
+	// 	 data->grid_intersect.y - data->obj->pos.y > 0)
+	// 	return (0);
 		// if ((data->obj->height > 0.0f && ((fast_distance(data->obj->pos, data->grid_intersect) >
 		// sqrt(data->obj->height * data->obj->height + data->obj->radius  * data->obj->radius)))))
 		// return (0);
