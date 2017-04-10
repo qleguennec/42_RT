@@ -28,6 +28,7 @@ void	init_laputain_desamere(t_data *data)
 	// data->objs[2].reflex = 1.0f;
 	// data->objs[3].reflex = 1.0f;
 	// data->objs[4].reflex = 1.0f;
+	data->objs[4].refract = 1.3f;
 	// data->objs[5].reflex = 1.0f;
 	// data->objs[6].reflex = 1.0f;
 }
@@ -50,11 +51,12 @@ float3		check_all_light(t_data *data)
 		lightdir = data->intersect - data->lights[i].pos;
 		rd_light += is_light(data, lightdir, &data->lights[i],
 		calcul_normale(data));
+		// PRINT3(rd_light, "rd_light");
 		i++;
 	}
 	if (data->nl > 0)
-		return ((float3)(rd_light / (data->nl + data->ambiant)) *
-			data->objs[data->id].opacity * data->light_pow);
+		return ((float3)(rd_light / (data->nl + data->nl *
+			data->ambiant)) * data->objs[data->id].opacity * data->light_pow);
 	return (rd_light * data->objs[data->id].opacity);
 }
 
@@ -71,7 +73,7 @@ unsigned	calcul_rendu_light(t_data *data)
 float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normale)
 {
 	short	index = data->id;
-	// float3	light_clr;
+	float3	light_clr;
 	float3	save_pos = data->ray_pos;
 	float3	save_ray = data->ray_dir;
 	float3	save_inter = data->intersect;
@@ -81,7 +83,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 	data->ray_dir = lightdir;
 	check_intercept(data, index, 1);
 	// light_clr = lgt->clr;
-	// if (data->id != -1 && index != data->id)
+	// if (data->id != -1 && index != data->id && data->objs[data->id].opacity < 1.0f)
 	// {
 		// data->ray_pos = data->intersect;
 		// data->ray_dir = lightdir;
@@ -89,17 +91,22 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 		// calcul_light(&light_clr, &data->objs[data->id]);
 		// check_intercept(data, 1);
 	// }
+	if (index == data->id && fast_distance(save_inter, lgt->pos) <=
+		fast_distance(data->intersect, lgt->pos) + PREC)
+	{
+		data->nl++;
+		light_clr = (1 - data->ambiant) * calcul_clr(-lightdir, normale, lgt->clr,
+			&data->objs[index]) + data->ambiant * data->objs[index].clr;
+		return (light_clr);
+	}
 	data->ray_pos = save_pos;
 	data->ray_dir = save_ray;
 	data->intersect = save_inter;
-	if (index == data->id)
-	{
-		data->nl++;
-		return ((1 - data->ambiant) * calcul_clr(-lightdir, normale, lgt->clr,
-			&data->objs[index]) + data->ambiant * data->objs[index].clr);
-	}
 	data->id = index;
-	return (data->ambiant * data->objs[index].clr);
+	// return (data->ambiant * data->objs[index].clr);
+	return (calcul_clr(data->ray_pos, normale, data->ambiant,
+&data->objs[index]));
+
 	// return ((float3){0.0f, 0.0f, 0.0f});
 }
 
@@ -120,6 +127,11 @@ float3		calcul_clr(float3 ray, float3 normale, float3 light,
 	float	cosinus;
 
 	cosinus = dot(ray, normale);
+	if (cosinus < 0.0)
+	{
+		cosinus = -cosinus;
+		// light = light / 4.0f;
+	}
 	return((float3)(light * cosinus * obj->clr));
 }
 
@@ -142,7 +154,7 @@ float3		calcul_normale(t_data *data)
 	{
 		m = dot(data->ray_dir, data->objs[data->id].rot * data->t) +
 			dot(data->objs[data->id].rot, data->off_set);
-			normale = data->intersect - data->objs[data->id].pos -
+		normale = data->intersect - data->objs[data->id].pos -
 			data->objs[data->id].rot * m;
 	}
 	else if (data->objs[data->id].type == T_CONE)

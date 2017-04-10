@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/03/28 20:22:18 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/04/10 12:23:49 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../../include/obj_types.h"
 
-# define PREC 0.0000001f
+# define PREC 0.02f
 #define PLANE_PREC 0.00001f
 # define SAFE 40
 

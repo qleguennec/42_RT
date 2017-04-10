@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include "obj_def.h"
-/*debug*/
+
 #include "debug.h"
-/////////////
+
 #include "calc.cl"
 
 constant float2	size2	= (float2){WIDTH, HEIGHT};

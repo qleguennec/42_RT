@@ -15,8 +15,11 @@ void	check_intercept(t_data *data, short index, short light)
 	temp_pos = data->intersect;
 	if(light == 0 && data->objs[data->id].reflex > 0.0f)
 	{
-		data->light_pow *= (1.0f - data->objs[data->id].reflex);
-		clearness_calcul(data);
+		if (data->objs[data->id].reflex != 1.0f)
+		{
+			data->light_pow *= (1.0f - data->objs[data->id].reflex);
+			clearness_calcul(data);
+		}
 		data->light_pow = temp_power * data->objs[id].reflex;
 		calcul_reflex_ray(data, &temp_pos, &temp_dir);
 		touch_object(data);
