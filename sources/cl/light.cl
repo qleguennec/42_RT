@@ -17,7 +17,6 @@
 
 unsigned	get_lighting(t_data *data)
 {
-	init_laputain_desamere(data);
 	get_color(data);
 	return(calcul_rendu_light(data));
 }
@@ -28,7 +27,7 @@ void	init_laputain_desamere(t_data *data)
 	// data->objs[1].reflex = 1.0f;
 	// data->objs[2].reflex = 1.0f;
 	// data->objs[3].reflex = 1.0f;
-	// data->objs[4].reflex = .90f;
+	// data->objs[4].reflex = 1.0f;
 	// data->objs[5].reflex = 1.0f;
 	// data->objs[6].reflex = 1.0f;
 }
@@ -36,15 +35,7 @@ void	init_laputain_desamere(t_data *data)
 void	get_color(t_data *data)
 {
 	while (data->safe > 0 && data->light_pow > 0.0f)
-	{
-		if (data->objs[data->id].reflex > 0.0f)
-		{
-			// printf("data->id = %u\n",data->id);
-			reflex_calcul(data);
-		}
-		 else
-	 		clearness_color(data);
-	}
+		clearness_color(data);
 }
 
 float3		check_all_light(t_data *data)
@@ -54,19 +45,23 @@ float3		check_all_light(t_data *data)
 	float3	rd_light;
 
 	rd_light = (float3){0.0f, 0.0f, 0.0f};
-	if (i < data->n_lgts)
+	while (i < data->n_lgts)
 	{
 		lightdir = data->intersect - data->lights[i].pos;
 		rd_light += is_light(data, lightdir, &data->lights[i],
 		calcul_normale(data));
+		// PRINT3(rd_light, "rd_light");
 		i++;
 	}
-	return((float3)(rd_light / (float)(data->nl)) *
-		data->objs[data->id].opacity * data->light_pow);
+	if (data->nl > 0)
+		return ((float3)(rd_light / (data->nl + data->nl *
+			data->ambiant)) * data->objs[data->id].opacity * data->light_pow);
+	return (rd_light * data->objs[data->id].opacity);
 }
 
 unsigned	calcul_rendu_light(t_data *data)
 {
+
 	float3	clr;
 
 	clr =  data->rd_light * 255.0f;
@@ -78,22 +73,40 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 {
 	short	index = data->id;
 	float3	light_clr;
+	float3	save_pos = data->ray_pos;
+	float3	save_ray = data->ray_dir;
+	float3	save_inter = data->intersect;
 
-	lightdir = -normalize(lightdir);
-	touch_object(data);
-	light_clr = lgt->clr;
-	if (data->id > -1 && index != data->id && data->objs[data->id].opacity < 1.0f)
-	{
-		data->ray_pos = data->intersect + data->ray_dir;
-		calcul_light(&light_clr, &data->objs[data->id]);
-		touch_object(data);
-	}
-	if (index == data->id)
+	lightdir = normalize(lightdir);
+	data->ray_pos = lgt->pos;
+	data->ray_dir = lightdir;
+	check_intercept(data, index, 1);
+	// light_clr = lgt->clr;
+	// if (data->id != -1 && index != data->id && data->objs[data->id].opacity < 1.0f)
+	// {
+		// data->ray_pos = data->intersect;
+		// data->ray_dir = lightdir;
+
+		// calcul_light(&light_clr, &data->objs[data->id]);
+		// check_intercept(data, 1);
+	// }
+	if (index == data->id && fast_distance(save_inter, lgt->pos) <=
+		fast_distance(data->intersect, lgt->pos) + PREC)
 	{
 		data->nl++;
-		return (calcul_clr(lightdir, normale, light_clr, &data->objs[index]));
+		light_clr = (1 - data->ambiant) * calcul_clr(-lightdir, normale, lgt->clr,
+			&data->objs[index]) + data->ambiant * data->objs[index].clr;
+		return (light_clr);
 	}
-	return (data->ambiant * data->objs[index].clr);
+	data->ray_pos = save_pos;
+	data->ray_dir = save_ray;
+	data->intersect = save_inter;
+	data->id = index;
+	// return (data->ambiant * data->objs[index].clr);
+	return (calcul_clr(data->ray_pos, normale, data->ambiant,
+&data->objs[index]));
+
+	// return ((float3){0.0f, 0.0f, 0.0f});
 }
 
 void		calcul_light(float3 *light_clr, global t_obj *obj)
@@ -113,6 +126,11 @@ float3		calcul_clr(float3 ray, float3 normale, float3 light,
 	float	cosinus;
 
 	cosinus = dot(ray, normale);
+	if (cosinus < 0.0)
+	{
+		cosinus = -cosinus;
+		// light = light / 4.0f;
+	}
 	return((float3)(light * cosinus * obj->clr));
 }
 

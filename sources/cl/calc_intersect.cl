@@ -163,18 +163,18 @@ short			cylinder_intersection(t_data *data, short *index)
 	// if (m < -data->objs[(int)*index].height / 2.0f || m > data->objs[(int)*index].height / 2.0f)
 	if (m > 0.0f || m < -data->objs[(int)*index].height)
 	{
-		if (m > 0.0f)
-		{	
-			// data->rot = (float3){-1.0f, 0.0f, 0.0f};
-			// data->rdir = data->ray_dir;
-	 		if (!plane_intersection(data, index))
+		// if (m > 0.0f)
+		// {	
+		// 	// data->rot = (float3){-1.0f, 0.0f, 0.0f};
+		// 	// data->rdir = data->ray_dir;
+	 	// 	if (!plane_intersection(data, index))
+		// 	return (0);
+		// }
+		// else
+		// {
+		// 	return (0);
+		// }
 			return (0);
-		}
-		else
-		{
-			return (0);
-		}
-			// return (0);
 		
 	}
 	// if (data->objs[(int)*index].height > 0.0f && ((distance(data->objs[(int)*index].pos, data->grid_intersect) > sqrt(data->objs[(int)*index].height *

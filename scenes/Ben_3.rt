@@ -21,7 +21,7 @@
 <light>
 	<name>Prout</name>
 	<type>Diffuse</type>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<flare-visibility>True</flare-visibility>
 	<position>0.00 0.00 20.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
@@ -31,9 +31,9 @@
 <light>
 	<name>Point 2</name>
 	<type>Spot</type>
-	<visibility>False</visibility>
+	<visibility>true</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>34.00 39.50 950.00</position>
+	<position>34.00 39.50 990.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>10.00</intensity>
 </light>
@@ -49,7 +49,7 @@
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 0.00 200.00</color-rgb>
 	<opacity>1</opacity>
-	<radius>50.00</radius>
+	<radius>30.00</radius>
 </object>
 
 <object>
@@ -61,9 +61,8 @@
 	<rotation>0.00 1.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>50.00</radius>
+	<radius>30.00</radius>
 	<height>40</height>
-	<!--<width>30</width>-->
 </object>
 
 <object>
@@ -73,7 +72,7 @@
 	<visibility>True</visibility>
 	<position>46.00 -60.00 400.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<color-rgb>130.00 80.00 25.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>25.00</radius>
 </object>
@@ -92,13 +91,13 @@
 
 <object>
 	<name>Sphere 4</name>
-	<type>sphere</type>
+	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>-23.00 0.00 88.50</position>
-	<rotation>1.00 0.00 0.00</rotation>
+	<position>-25.00 0.00 150.50</position>
+	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
-	<opacity>.95</opacity>
+	<opacity>1.0</opacity>
 	<radius>12.00</radius>
 </object>
 
@@ -134,7 +133,7 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>-200.00 0.00 .00</position>
-	<rotation>-1.00 0.00 .00</rotation>
+	<rotation>.00 0.00 90.00</rotation>
 	<color-rgb>255.50 .50 .50</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
@@ -147,7 +146,7 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>200.00 0.00 .00</position>
-	<rotation>1.00 0.00 .00</rotation>
+	<rotation>1.00 0.00 90.00</rotation>
 	<color-rgb>.50 255.0 .50</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>

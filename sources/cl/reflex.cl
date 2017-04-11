@@ -1,39 +1,37 @@
 #include "light.h"
 #include "calc.h"
 
-void	reflex_calcul(t_data *data)
+void	check_intercept(t_data *data, short index, short light)
 {
-	data->safe--;
-	float	temp_power = data->light_pow;
-	float3	temp_dir = data->ray_dir;
-	float3	temp_pos = data->intersect;
-	short	id = data->id;
+	short	id;
+	float	temp_power;
+	float3	temp_dir;
+	float3	temp_pos;
 
-	data->light_pow *= (1.0f - data->objs[data->id].reflex);
-	data->rd_light += check_all_light(data);
-	data->light_pow = temp_power * data->objs[data->id].reflex;
-	calcul_reflex_ray(data, &temp_pos, &temp_dir);
 	touch_object(data);
+	id = data->id;
 	temp_power = data->light_pow;
 	temp_dir = data->ray_dir;
-	if (data->objs[(short)id].opacity < 1.0f && data->objs[(short)id].reflex < 1.0f)
+	temp_pos = data->intersect;
+	if(light == 0 && data->objs[data->id].reflex > 0.0f)
 	{
-		data->intersect = temp_pos;
-		data->ray_dir = temp_dir;
-		data->rd_light += check_all_light(data);
-		clearness_color(data);
-		data->safe = SAFE;
+		if (data->objs[data->id].reflex != 1.0f)
+		{
+			data->light_pow *= (1.0f - data->objs[data->id].reflex);
+			clearness_calcul(data);
+		}
+		data->light_pow = temp_power * data->objs[id].reflex;
+		calcul_reflex_ray(data, &temp_pos, &temp_dir);
+		touch_object(data);
 	}
-	else
+	else if (data->id != index && data->objs[data->id].reflex > 0.0f && light)
 	{
-		// data->intersect = temp_pos;
-		// data->ray_dir = temp_dir;
-		data->rd_light = check_all_light(data);
-		// clearness_color(data);
+		calcul_reflex_ray(data, &temp_pos, &temp_dir);
+		touch_object(data);
 	}
 }
 
-void	calcul_reflex_ray(t_data * data, float3 *ray_pos, float3 *ray_dir)
+void	calcul_reflex_ray(t_data *data, float3 *ray_pos, float3 *ray_dir)
 {
 	float3 normale;
 
