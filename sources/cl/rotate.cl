@@ -1,4 +1,4 @@
-float3			rotate_ray(float3 *ray, t_data *data)
+float3			rotate_ray(float3 *ray, t_data *data, short *index)
 {
 	float3	res;
 	float3	rad;
@@ -8,24 +8,24 @@ float3			rotate_ray(float3 *ray, t_data *data)
 	float3	matz;	
 
 	/////////debug
-	if (!ROTATE)
-	{
-		data->offset  = pos;
-		return (*ray);
-	}
+
 	///////////
 
-	if (data->option == 2 || data->option == 8)
+	if (data->option == 0)
 	{
 		pos = data->ray_pos - data->pos;
 	}
 	else
 	{
-		pos = data->ray_pos - data->obj->pos;
+		pos = data->ray_pos - data->objs[(int)*index].pos;
 	}
-	rad = data->obj->rot * ((float)M_PI / 180.0f);
+	if (!ROTATE)
+	{
+		data->offset  = pos;
+		return (*ray);
+	}	rad = data->objs[(int)*index].rot * ((float)M_PI / 180.0f);
 
-	if (NATIVE)
+	if (NATIVE) //  en test
 	{
 		matx = (float3){native_cos(rad.y) * native_cos(rad.z),
 		native_cos(rad.y) * (-native_sin(rad.z)),
@@ -68,13 +68,5 @@ float3			rotate_ray(float3 *ray, t_data *data)
 		data->offset.y = dot(maty, pos);
 		data->offset.z = dot(matz, pos);
 	}
-	if (data->option >= 8)
-	{
-		data->offset.x = res.x  - dot(matx, pos);
-		data->offset.y = res.y  - dot(maty, pos);
-		data->offset.z = res.z - dot(matz, pos);
-		return (data->offset);
-	}
-
 	return(res);
 }

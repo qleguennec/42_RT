@@ -55,15 +55,15 @@ void			calc_intersect(float *delta, t_data *data);
 
 void			touch_object(t_data *data);
 
-short			plane_intersection(t_data *data);
+short			plane_intersection(t_data *data, short *index);
 
-short			cone_intersection(t_data *data);
+short			cone_intersection(t_data *data, short *index);
 
-short			cylinder_intersection(t_data *data);
+short			cylinder_intersection(t_data *data, short *index);
 
-short			sphere_intersection(t_data *data);
+short			sphere_intersection(t_data *data, short *index);
 
-short			disk_intersection(t_data *data);
+short			disk_intersection(t_data *data, short *index);
 /////////////////////
 
 // entry function
@@ -77,6 +77,6 @@ float			float3_to_float(float3 v);
 /////////////////////
 
 // rotate function
-float3			rotate_ray(float3 *ray, t_data *data);
+float3			rotate_ray(float3 *ray, t_data *data, short *index);
 /////////////////////
 #endif
