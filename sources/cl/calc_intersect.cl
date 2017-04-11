@@ -58,17 +58,7 @@ short			plane_intersection(t_data *data, short *index)
 	// data->rot = rotate_ray(&data->rot, data);
 	// data->rdir = rotate_ray(&data->ray_dir, data, index);
 	// data->offset = data->ray_pos - data->objs[(int)*index].pos;
-/*
-	div = dot((float3){0.0f, 1.0f, 0.0f}, data->rdir);
-	if (div == 0.0f)
-		return (0);
-	t = (-dot((float3){0.0f, 1.0f, 0.0f}, data->offset)) / div;
-	if (t < 0.0f)
-		return (0);
-	t += (t < 0)? t * -PLANE_PREC: t * PLANE_PREC;
-	data->delta = t;
-*/
-return (1);
+
 	div = dot(data->rdir, data->rot);
 	if (div == 0.0f)
 		return (0);
@@ -163,18 +153,17 @@ short			cylinder_intersection(t_data *data, short *index)
 	// if (m < -data->objs[(int)*index].height / 2.0f || m > data->objs[(int)*index].height / 2.0f)
 	if (m > 0.0f || m < -data->objs[(int)*index].height)
 	{
-		// if (m > 0.0f)
-		// {	
-		// 	// data->rot = (float3){-1.0f, 0.0f, 0.0f};
-		// 	// data->rdir = data->ray_dir;
-	 	// 	if (!plane_intersection(data, index))
-		// 	return (0);
-		// }
-		// else
-		// {
-		// 	return (0);
-		// }
+		if (m > 0.0f)
+		{	
+			// data->rot = (float3){-1.0f, 0.0f, 0.0f};
+			// data->rdir = data->ray_dir;
+			 return (plane_intersection(data, index));
+		}
+		else
+		{
 			return (0);
+		}
+			// return (0);
 		
 	}
 	// if (data->objs[(int)*index].height > 0.0f && ((distance(data->objs[(int)*index].pos, data->grid_intersect) > sqrt(data->objs[(int)*index].height *
