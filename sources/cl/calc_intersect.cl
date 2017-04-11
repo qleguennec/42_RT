@@ -32,7 +32,7 @@ short			disk_intersection(t_data *data, short *index)
 	// data->offset = data->ray_pos - data->pos;
 	data->rdir = rotate_ray(&data->ray_dir, data, index);
 	// rotate_ray(&data->ray_dir, data, index);
-	//  data->offset = data->ray_pos - data->objs[(int)*index].pos;
+	 data->offset = data->ray_pos - data->objs[(int)*index].pos;
 
 	div = dot(data->rot, data->rdir);
 	if (div == 0.0f)
@@ -55,8 +55,9 @@ short			plane_intersection(t_data *data, short *index)
 	float	t;
 
 	// data->option = 2;
-	// data->rot = rotate_ray(&data->rot, data);
-	// data->rdir = rotate_ray(&data->ray_dir, data, index);
+	// data->rdir = data->ray_dir;
+	// data->rot = rotate_ray(&data->rot, data, index);
+	data->rdir = rotate_ray(&data->ray_dir, data, index);
 	// data->offset = data->ray_pos - data->objs[(int)*index].pos;
 
 	div = dot(data->rdir, data->rot);
@@ -65,7 +66,7 @@ short			plane_intersection(t_data *data, short *index)
 	t = (-dot(data->offset, data->rot)) / div;
 	if (t < 0.0f)
 		return (0);
-	t += (t < 0)? t * -PLANE_PREC: t * PLANE_PREC;
+	// t += (t < 0)? t * -PLANE_PREC: t * PLANE_PREC;
 	calc_intersect(&t, data);
 	// if (data->objs[(int)*index].width > 0.0f && fast_distance(data->grid_intersect.x,
 	//  data->objs[(int)*index].pos.x) > (data->objs[(int)*index].width / 2.0f))
@@ -155,8 +156,10 @@ short			cylinder_intersection(t_data *data, short *index)
 	{
 		if (m > 0.0f)
 		{	
-			// data->rot = (float3){-1.0f, 0.0f, 0.0f};
+			data->test = T_DISK;
+			data->rot = (float3){1.0f, 0.0f, 0.0f};
 			// data->rdir = data->ray_dir;
+			//  return (disk_intersection(data, index));/// not a good formula 
 			 return (plane_intersection(data, index));
 		}
 		else

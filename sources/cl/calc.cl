@@ -87,7 +87,7 @@ global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
 float3 ray_dir, float ambiant, global unsigned int *pixel)
 {
 	data->objs = objs;
-	data->obj = 0;
+	// data->obj = 0;
 	data->lights = lgts;
 	data->pixel = pixel;
 	data->n_objs = n_objs;
@@ -127,7 +127,8 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	check_intercept(&data, data.id, 0);
 	if (!COLOR && data.id > -1)
 	{
-		if (data.id == 0){*(data.pixel) = 0x00ff00FF;}
+
+		if (data.id == 0 && data.test != T_DISK){*(data.pixel) = 0x00ff00FF;}
 		else if (data.id == 1){*pixel = 0xff0000FF;}
 		else if (data.id == 2){*pixel = 0x00ffffFF;}
 		else if (data.id == 3){*pixel = 0xffffffFF;}
