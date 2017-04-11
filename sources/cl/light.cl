@@ -12,7 +12,7 @@
 
 #include "reflex.cl"
 #include "transparency.cl"
-#include "lib.cl"
+#include "shiness.cl"
 #include "light.h"
 
 unsigned	get_lighting(t_data *data)
@@ -28,7 +28,7 @@ void	init_laputain_desamere(t_data *data)
 	// data->objs[2].reflex = 1.0f;
 	// data->objs[3].reflex = 1.0f;
 	// data->objs[4].reflex = 1.0f;
-	data->objs[4].refract = 1.3f;
+	// data->objs[4].refract = 1.3f;
 	// data->objs[5].reflex = 1.0f;
 	// data->objs[6].reflex = 1.0f;
 }
@@ -51,20 +51,27 @@ float3		check_all_light(t_data *data)
 		lightdir = data->intersect - data->lights[i].pos;
 		rd_light += is_light(data, lightdir, &data->lights[i],
 		calcul_normale(data));
-		// PRINT3(rd_light, "rd_light");
 		i++;
 	}
+	printf("nl = %d\n", data->nl);
 	if (data->nl > 0)
-		return ((float3)(rd_light / (data->nl + data->nl *
-			data->ambiant)) * data->objs[data->id].opacity * data->light_pow);
+	{
+		return ((rd_light / (data->nl + data->n_lgts * data->ambiant)
+			* data->objs[data->id].opacity * data->light_pow));
+	}
 	return (rd_light * data->objs[data->id].opacity);
 }
 
 unsigned	calcul_rendu_light(t_data *data)
 {
-
 	float3	clr;
 
+	if (data->rd_light.x > 1.0f)
+		data->rd_light.x = 1.0f;
+	if (data->rd_light.y > 1.0f)
+		data->rd_light.y = 1.0f;
+	if (data->rd_light.z > 1.0f)
+		data->rd_light.z = 1.0f;
 	clr =  data->rd_light * 255.0f;
 	return ((((unsigned)clr.x & 0xff) << 24) + (((unsigned)clr.y & 0xff) << 16)
 		+ (((unsigned)clr.z & 0xff) << 8) + ((unsigned)255 & 0xff));
@@ -95,9 +102,10 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 		fast_distance(data->intersect, lgt->pos) + PREC)
 	{
 		data->nl++;
-		light_clr = (1 - data->ambiant) * calcul_clr(-lightdir, normale, lgt->clr,
+		light_clr = calcul_clr(-lightdir, normale, lgt->clr,
 			&data->objs[index]) + data->ambiant * data->objs[index].clr;
-		return (light_clr);
+		light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
+		return (light_clr / (1.0f + data->ambiant));
 	}
 	data->ray_pos = save_pos;
 	data->ray_dir = save_ray;
@@ -105,9 +113,9 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 	data->id = index;
 	// return (data->ambiant * data->objs[index].clr);
 	return (calcul_clr(data->ray_pos, normale, data->ambiant,
-&data->objs[index]));
+		&data->objs[index]));
 
-	// return ((float3){0.0f, 0.0f, 0.0f});
+	// return ((float3){0.0f, 0.0omf, 0.0f});
 }
 
 void		calcul_light(float3 *light_clr, global t_obj *obj)
@@ -126,12 +134,11 @@ float3		calcul_clr(float3 ray, float3 normale, float3 light,
 {
 	float	cosinus;
 
+	ray = fast_normalize(ray);
+	normale = fast_normalize(normale);
 	cosinus = dot(ray, normale);
 	if (cosinus < 0.0)
-	{
 		cosinus = -cosinus;
-		// light = light / 4.0f;
-	}
 	return((float3)(light * cosinus * obj->clr));
 }
 
@@ -141,9 +148,10 @@ float3		calcul_normale(t_data *data)
 	float	k;
 	float	m;
 
-
 	if (data->objs[data->id].type == T_PLANE)
 	{
+		if (dot(data->ray_dir, data->objs[data->id].rot) > 0)
+			normale = data->objs[data->id].rot;
 		normale = -data->objs[data->id].rot;
 	}
 	else if (data->objs[data->id].type == T_SPHERE)
