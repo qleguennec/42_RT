@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 21:43:45 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/12 17:13:36 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,7 @@ bool				cl_copy_image_buffer(t_cl *cl, void *buffer);
 
 void				init_renderer(t_rt *rt);
 
-int					create_window(t_rt *rt, t_cl *cl);
+int					create_window(t_rt *rt, t_cl *cl, t_cluster *cluster);
 
 int					add_render_frame(t_rt *rt);
 void				render_loop(t_rt *rt);
@@ -329,5 +329,14 @@ void				export_config_file(t_rt *rt);
 void				print_verbose(t_rt *rt);
 
 int					free_elements(t_rt *rt);
+
+/*
+** -----------------------------------------------------------------------------
+** ------------------------------- Clustering ----------------------------------
+** -----------------------------------------------------------------------------
+*/
+
+int					cluster_init(t_cluster *cluster);
+int					cluster_listen(t_cluster *cluster);
 
 #endif

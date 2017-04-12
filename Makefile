@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/03/22 15:11:10 by lgatibel         ###   ########.fr        #
+#*   Updated: 2017/04/12 15:45:00 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,9 +116,11 @@ SOURCES		= \
 			export/cameras.c \
 			export/lights.c \
 			export/objects.c \
-			test/cl_test_krl.c
+			test/cl_test_krl.c \
+			cluster/cluster_init.c \
+			cluster/cluster_listen.c
 
-SUB_FOLDERS	= test gui handle misc parser renderer cl_build export
+SUB_FOLDERS	= test gui handle misc parser renderer cl_build export cluster
 
 BUILD_DIR	= $(addprefix $(DIR_O)/,$(SUB_FOLDERS))
 

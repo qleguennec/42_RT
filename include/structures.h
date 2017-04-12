@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/28 21:59:59 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/12 17:16:17 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,13 @@ struct				s_rt
 
 	char			render;
 };
+
+typedef struct		s_cluster
+{
+	int				sockfd;
+	fd_set			fdset;
+	struct timeval	timeout;
+}					t_cluster;
 
 typedef struct		s_cl
 {

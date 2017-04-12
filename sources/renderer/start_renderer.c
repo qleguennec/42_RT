@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 21:42:39 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/12 17:21:47 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ int			add_render_frame(t_rt *rt)
 	return (1);
 }
 
-static int	global_loop(t_rt *rt, t_cl *cl)
+static int	global_loop(t_rt *rt, t_cl *cl, t_cluster *cluster)
 {
 	while (rt->run)
 	{
+		cluster_listen(cluster);
 		if (SDL_PollEvent(&rt->event))
 			handle_events(rt, cl);
 		SDL_UpdateWindowSurface(rt->win);
@@ -32,7 +33,7 @@ static int	global_loop(t_rt *rt, t_cl *cl)
 	return (free_elements(rt));
 }
 
-int			create_window(t_rt *rt, t_cl *cl)
+int			create_window(t_rt *rt, t_cl *cl, t_cluster *cluster)
 {
 	TTF_Init();
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
@@ -51,6 +52,7 @@ int			create_window(t_rt *rt, t_cl *cl)
 		&& cl_main_krl_exec(cl)
 		&& cl_copy_image_buffer(cl, rt->s_rend->pixels)))
 		return (error(rt, 42));
+	cluster_init(cluster);
 	add_render_frame(rt);
-	return (global_loop(rt, cl));
+	return (global_loop(rt, cl, cluster));
 }

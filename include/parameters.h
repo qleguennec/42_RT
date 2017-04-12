@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:35:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 22:11:32 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/12 15:59:33 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,8 @@
 # define DELETE_RECT &(SDL_Rect){874, 370, 170, 22}
 
 # define MAX_FPS 30
+
+# define CLUSTER_PORT 4242
+# define CLUSTER_MAX_CLIENTS 10
 
 #endif
