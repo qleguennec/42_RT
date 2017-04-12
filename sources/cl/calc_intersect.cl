@@ -26,13 +26,7 @@ short			disk_intersection(t_data *data, short *index)
 	float	div;
 	float	t;
 
-	// data->option = 0;
-	// data->rot = rotate_ray(&data->rot, data);
-	// rotate_ray(&data->ray_dir, data, index);
-	// data->offset = data->ray_pos - data->pos;
 	data->rdir = rotate_ray(&data->ray_dir, data, index);
-	// rotate_ray(&data->ray_dir, data, index);
-	 data->offset = data->ray_pos - data->objs[(int)*index].pos;
 
 	div = dot(data->rot, data->rdir);
 	if (div == 0.0f)
@@ -40,11 +34,14 @@ short			disk_intersection(t_data *data, short *index)
 	t = (-dot(data->rot, data->offset)) / div;
 	if (t < 0.0f)
 		return (0);
-	t += (t < 0)? t * -PLANE_PREC: t * PLANE_PREC;
 	calc_intersect(&t, data);
+
+	if (data->option == 1)
+		data->pos = data->objs[(int)*index].pos;
 	if (data->objs[(int)*index].radius > 0.0f && fast_distance(data->grid_intersect,
 	 data->pos) > data->objs[(int)*index].radius)
 		return (0);
+	
 	return (1);
 }
 
@@ -66,7 +63,6 @@ short			plane_intersection(t_data *data, short *index)
 	t = (-dot(data->offset, data->rot)) / div;
 	if (t < 0.0f)
 		return (0);
-	// t += (t < 0)? t * -PLANE_PREC: t * PLANE_PREC;
 	calc_intersect(&t, data);
 	// if (data->objs[(int)*index].width > 0.0f && fast_distance(data->grid_intersect.x,
 	//  data->objs[(int)*index].pos.x) > (data->objs[(int)*index].width / 2.0f))
@@ -148,54 +144,24 @@ short			cylinder_intersection(t_data *data, short *index)
 
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
-
 	calc_intersect(&delta, data);
+	// printf("1\n");
 	m = dot(data->rdir, data->rot) * delta + dot(data->offset, data->rot);
 	// if (m < -data->objs[(int)*index].height / 2.0f || m > data->objs[(int)*index].height / 2.0f)
-	if (m > 0.0f || m < -data->objs[(int)*index].height)
+	if (m < 0.0f || m > data->objs[(int)*index].height)
 	{
-		if (m > 0.0f)
-		{	
-			data->test = T_DISK;
-			data->rot = (float3){1.0f, 0.0f, 0.0f};
-			// data->rdir = data->ray_dir;
-			//  return (disk_intersection(data, index));/// not a good formula 
-			 return (plane_intersection(data, index));
-		}
+		data->test = T_DISK;
+		if (m < 0.0f)
+			 return (disk_intersection(data, index));
 		else
 		{
-			return (0);
+			// printf("test\n");
+			data->option = 2;
+			data->pos = data->objs[(int)*index].pos + (data->rot * data->objs[(int)*index].height);
+			 return (disk_intersection(data, index));
 		}
 			// return (0);
-		
 	}
-	// if (data->objs[(int)*index].height > 0.0f && ((distance(data->objs[(int)*index].pos, data->grid_intersect) > sqrt(data->objs[(int)*index].height *
-	// data->objs[(int)*index].height + data->objs[(int)*index].radius  * data->objs[(int)*index].radius))))
-	// {
-	// 	// // data->rot = (float3){0.0f, 1.0f, 0.0f};
-	// 	// // data->option = 0;
-	// 	// // data->radius = data->objs[(int)*index].radius;
-	// 	// data->test = T_DISK;
-	// 	// // if (data->grid_intersect.y == data->objs[(int)*index].pos.y - data->objs[(int)*index].height || data->grid_intersect.y == data->objs[(int)*index].pos.y + data->objs[(int)*index].height)
-	// 	// // {
-	// 	// 	if (data->ray_pos.y - data->grid_intersect.y > data->objs[(int)*index].height)
-	// 	// 	{
-	// 	// 	return (0);
-	// 	// 		data->pos = data->objs[(int)*index].pos;
-	// 	// 		data->pos.y -= data->objs[(int)*index].height;
-	// 	// 	}
-	// 	// 	else
-	// 	// 	{
-	// 	// 		data->pos = data->objs[(int)*index].pos;
-	// 	// 		data->pos.y += data->objs[(int)*index].height;
-	// 	// 	}
-	// 	// 	if (disk_intersection(data))
-	// 	// 	// if (sphere_intersection(data))/// not working a 100%
-	// 	// 		return (1);
-	// 	// 	// }
-	// 	return (0);
-	// }
-		// return (0);
 	return (1);
 }
 
@@ -210,7 +176,8 @@ short			sphere_intersection(t_data *data, short *index)
 	
 	a = dot(data->rdir, data->rdir);
 	b = 2.0f * dot(data->rdir, data->offset);
-	c = dot(data->offset, data->offset) -  data->objs[(int)*index].radius * data->objs[(int)*index].radius;
+	c = dot(data->offset, data->offset) - data->objs[(int)*index].radius *
+	 data->objs[(int)*index].radius;
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data);

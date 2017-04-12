@@ -63,9 +63,9 @@ void			touch_object(t_data *data)
 	index = -1;
 	data->id = -1;
 	smallest_norm = -1;
-	data->option = 1;
 	while(++index <  data->n_objs)
 	{
+		data->option = 1;
 		if (ray_intersection(data, &index))
 			if ((norm = fast_distance(data->intersect, data->ray_pos)) > 0.0f &&
 				(norm < smallest_norm || smallest_norm == -1))
