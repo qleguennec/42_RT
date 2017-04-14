@@ -24,7 +24,7 @@ void	check_intercept(t_data *data, short index, short light)
 		calcul_reflex_ray(data, &temp_pos, &temp_dir);
 		touch_object(data);
 	}
-	else if (data->id != index && data->objs[data->id].reflex > 0.0f && light)
+	if (data->id != index && data->objs[data->id].reflex > 0.0f && light)
 	{
 		calcul_reflex_ray(data, &temp_pos, &temp_dir);
 		touch_object(data);

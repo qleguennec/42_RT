@@ -3,12 +3,19 @@
 
 void	clearness_color(t_data *data)
 {
-	data->safe++;
+	data->safe--;
 
-	data->rd_light += check_all_light(data);
-	data->light_pow *= (1.0f - data->objs[data->id].opacity);
-	if (data->objs[data->id].opacity < 1.0f)
+	if (data->objs[data->id].reflex < 1.0f)
+		data->rd_light += check_all_light(data) *
+		(1.0f - data->objs[data->id].reflex);
+	if (data->objs[data->id].reflex > 0.0f && data->light_pow > 0.0f)
+		check_intercept(data, data->id, 0);
+	// if (data->objs[data->id].reflex == 0.0f)
+		// data->light_pow *= (1.0f - data->objs[data->id].opacity);
+	if (data->objs[data->id].opacity < 1.0f || data->objs[data->id].reflex > 0.0f)
 		clearness_calcul(data);
+	else
+		data->light_pow = 0.0f;
 }
 
 void	clearness_calcul(t_data *data)
@@ -27,11 +34,13 @@ void	clearness_calcul(t_data *data)
 	if (data->id == -1)
 	{
 		data->rd_light = (float3){0.0f, 0.0f, 0.0f} * data->light_pow;
-		data->rd_light = 0.0f;
 		data->light_pow = 0.0f;
 	}
 	else
+	{
 		data->rd_light += (check_all_light(data) * data->light_pow);
+		data->light_pow *= (1.0f - data->objs[data->id].opacity);
+	}
 }
 
 float3	calcul_refract_ray(t_data *data, float refract1, float refract2)
