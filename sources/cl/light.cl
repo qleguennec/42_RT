@@ -33,11 +33,11 @@ unsigned	get_lighting(t_data *data)
 void	init_laputain_desamere(t_data *data)
 {
 	// data->objs[0].reflex = 1.0f;
-	data->objs[1].reflex = 1.0f;
-	data->objs[2].reflex = 1.0f;
+	// data->objs[1].reflex = 1.0f;
+	// data->objs[2].reflex = 1.0f;
 	// data->objs[3].reflex = 1.0f;
 	// data->objs[4].reflex = 1.0f;
-	// data->objs[4].refract = 1.55f;
+	data->objs[4].refract = 1.55f;
 	// data->objs[5].reflex = 1.0f;
 	// data->objs[6].reflex = 1.0f;
 }
@@ -97,7 +97,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, normale, lgt->clr,
 			&data->objs[index]) + data->ambiant * data->objs[index].clr;
-		light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
+		// light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
 		return (light_clr / (1.0f + data->ambiant));
 	}
 	data->ray_pos = save_pos;
