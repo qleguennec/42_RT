@@ -6,7 +6,7 @@
 /*   By: erodrigu <erodrigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:00 by erodrigu          #+#    #+#             */
-/*   Updated: 2017/04/11 16:34:22 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/04/18 14:53:41 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		clearness_calcul(t_data *data);
 void		clearness_color(t_data *data);
 void		get_color(t_data *data);
 float3		calcul_refract_ray(t_data *data, float refract1, float refract2);
-void		check_intercept(t_data *data, short index, short light);
+void		calcul_reflex_color(t_data *data);
 void		init_laputain_desamere(t_data *data);
 
 #endif

@@ -1,21 +1,25 @@
 
 #include "light.h"
 
-void	clearness_color(t_data *data)
+void clearness_color(t_data *data)
 {
-	data->safe--;
+	short	id;
+	float	temp_power;
+	float3	temp_dir;
+	float3	temp_pos;
 
-	if (data->objs[data->id].reflex < 1.0f)
-		data->rd_light += check_all_light(data) *
-		(1.0f - data->objs[data->id].reflex);
-	if (data->objs[data->id].reflex > 0.0f && data->light_pow > 0.0f)
-		check_intercept(data, data->id, 0);
-	// if (data->objs[data->id].reflex == 0.0f)
-		// data->light_pow *= (1.0f - data->objs[data->id].opacity);
-	if (data->objs[data->id].opacity < 1.0f || data->objs[data->id].reflex > 0.0f)
-		clearness_calcul(data);
-	else
-		data->light_pow = 0.0f;
+	id = data->id;
+	temp_power = data->light_pow;
+	temp_dir = data->ray_dir;
+	temp_pos = data->intersect;
+	clearness_calcul(data);
+	touch_object(data);
+	get_lighting(data);
+	data->id = id;
+	data->light_pow = temp_power - data->objs[id].opacity;
+	data->ray_dir = temp_dir;
+	data->intersect = temp_pos;
+
 }
 
 void	clearness_calcul(t_data *data)
@@ -24,22 +28,12 @@ void	clearness_calcul(t_data *data)
 
 	data->ray_dir = calcul_refract_ray(data, 1.0f, data->objs[data->id].refract);
 	data->ray_pos = data->intersect + data->ray_dir * PREC;
-	check_intercept(data, index, 0);
+	touch_object(data);
 	if (index == data->id)
 	{
 		data->ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
 		data->ray_pos = data->intersect + data->ray_dir * PREC;
-		check_intercept(data, index, 0);
-	}
-	if (data->id == -1)
-	{
-		data->rd_light = (float3){0.0f, 0.0f, 0.0f} * data->light_pow;
-		data->light_pow = 0.0f;
-	}
-	else
-	{
-		data->rd_light += (check_all_light(data) * data->light_pow);
-		data->light_pow *= (1.0f - data->objs[data->id].opacity);
+		touch_object(data);
 	}
 }
 
