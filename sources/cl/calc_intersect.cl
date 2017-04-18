@@ -145,8 +145,8 @@ short			cylinder_intersection(t_data *data, short *index)
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data);
+
 	return (1);
-	// printf("1\n");
 	m = dot(data->rdir, data->rot) * delta + dot(data->offset, data->rot);
 	// if (m < -data->objs[(int)*index].height / 2.0f || m > data->objs[(int)*index].height / 2.0f)
 	if (data->objs[(int)*index].height > 0.0f && (m < 0.0f || m > data->objs[(int)*index].height))
