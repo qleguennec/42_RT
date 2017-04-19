@@ -17,7 +17,7 @@ float			float3_to_float(float3 v){
 void			calc_intersect(float *delta, t_data *data)
 {
 	data->t = *delta;
-	data->intersect = data->ray_pos + (data->rdir * (*delta));
+	data->intersect = data->ray_pos + (data->ray_dir * (*delta));
 	data->grid_intersect = data->ray_pos + (data->grid_ray_dir * (*delta));
 }
 
