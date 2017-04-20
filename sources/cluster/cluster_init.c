@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 14:50:25 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/20 15:41:26 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/20 16:11:01 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void
 		SEND(self->fd, "NOK");
 		return (NULL);
 	}
-	write(1, "ok", 2);
-	write(1, "\n", 1);
 	SEND(self->fd, "OK");
+	while (42)
+		;
 	return (NULL);
 }
 
@@ -59,12 +59,10 @@ int
 	(t_cluster *cluster)
 {
 	struct sockaddr_in	self_addr;
-	int					yes;
 
 	ft_bzero(cluster, sizeof(*cluster));
 	cluster->sockfd = socket(AF_INET, SOCK_STREAM, 0);
-	yes = 1;
-	setsockopt(cluster->sockfd, SOL_SOCKET, SO_REUSEADDR, &yes, 4);
+	setsockopt(cluster->sockfd, SOL_SOCKET, SO_REUSEADDR, NULL, 4);
 	self_addr.sin_family = AF_INET;
 	self_addr.sin_port = htons(CLUSTER_PORT);
 	self_addr.sin_addr.s_addr = INADDR_ANY;
