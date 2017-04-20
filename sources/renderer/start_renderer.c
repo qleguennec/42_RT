@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/12 17:21:47 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/20 15:43:07 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int			add_render_frame(t_rt *rt)
 
 static int	global_loop(t_rt *rt, t_cl *cl, t_cluster *cluster)
 {
+	(void)cluster;
 	while (rt->run)
 	{
-		cluster_listen(cluster);
 		if (SDL_PollEvent(&rt->event))
 			handle_events(rt, cl);
 		SDL_UpdateWindowSurface(rt->win);

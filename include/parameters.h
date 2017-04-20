@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:35:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/12 15:59:33 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/20 14:28:41 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,7 @@
 
 # define CLUSTER_PORT 4242
 # define CLUSTER_MAX_CLIENTS 10
+# define CLIENT_MINCAPA 100
+# define CLIENT_MAXCAPA 10000000
 
 #endif
