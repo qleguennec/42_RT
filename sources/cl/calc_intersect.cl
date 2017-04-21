@@ -128,7 +128,11 @@ short			cylinder_intersection(t_data *data, short *index)
 	float	delta;
 	float	m;
 
-	data->rdir = rotate_ray(&data->ray_dir, data, index);
+	if (!data->set)
+	{
+		data->rdir = rotate_ray(&data->ray_dir, data, index);
+		data->set = 1;
+	}
 
 	a = dot(data->rdir, data->rdir) -
 	 dot(data->rdir, data->rot) *
@@ -147,6 +151,10 @@ short			cylinder_intersection(t_data *data, short *index)
 	calc_intersect(&delta, data);
 
 	return (1);
+
+
+
+	
 	m = dot(data->rdir, data->rot) * delta + dot(data->offset, data->rot);
 	// if (m < -data->objs[(int)*index].height / 2.0f || m > data->objs[(int)*index].height / 2.0f)
 	if (data->objs[(int)*index].height > 0.0f && (m < 0.0f || m > data->objs[(int)*index].height))

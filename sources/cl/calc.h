@@ -27,6 +27,7 @@ typedef struct			s_data
 	short				nl;
 
 	short				test;
+	short				set;
 	float3				rot;
 	float3				pos;
 	float				radius;

@@ -157,7 +157,7 @@ float3		calcul_normale(t_data *data)
 			dot(data->objs[data->id].rot, data->off_set);
 		normale = data->intersect - data->objs[data->id].pos -
 			data->objs[data->id].rot * m;
-		// normale  = rotate_ray(&normale, data, &data->id);
+		normale  = rotate_ray(&normale, data, &data->id);
 	}
 	else if (data->objs[data->id].type == T_CONE)
 	{
