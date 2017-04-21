@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/20 15:43:07 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/21 14:44:16 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ static int	global_loop(t_rt *rt, t_cl *cl, t_cluster *cluster)
 
 int			create_window(t_rt *rt, t_cl *cl, t_cluster *cluster)
 {
+	(void)cluster;
 	TTF_Init();
+	//int test = 42;
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 		return (error(rt, 29));
 	if (!(rt->w_icon = IMG_Load(WIN_ICON)))

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/20 14:48:31 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/21 15:06:42 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,17 +184,16 @@ struct				s_rt
 typedef struct		s_client
 {
 	int				fd;
-	int				capa;
 	int				*buffer;
-	pthread_t		thread;
+	struct s_client	*next;
 }					t_client;
 
 typedef struct		s_cluster
 {
 	int				sockfd;
 	pthread_t		accept_thread;
-	t_client		clients[CLUSTER_MAX_CLIENTS];
-	int				nclients;
+	t_client		*cli_list;
+	int				lock;
 }					t_cluster;
 
 typedef struct		s_cl

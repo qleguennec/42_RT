@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 14:50:25 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/20 16:11:01 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/21 15:36:57 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,40 +16,22 @@
 #define SEND(fd, msg) send(fd, msg, sizeof(msg) - 1, 0)
 
 void
-	*client_routine
-	(void *arg)
-{
-	t_client	*self;
-	int			nbytes;
-
-	self = arg;
-	nbytes = recv(self->fd, &self->capa, 4, 0);
-	if (self->capa < CLIENT_MINCAPA || self->capa > CLIENT_MAXCAPA)
-	{
-		SEND(self->fd, "NOK");
-		return (NULL);
-	}
-	SEND(self->fd, "OK");
-	while (42)
-		;
-	return (NULL);
-}
-
-void
 	*accept_routine
 	(void *arg)
 {
 	t_cluster	*self;
+	int			fd;
+	t_client	*new;
 
 	self = arg;
 	while (42)
 	{
-		self->clients[self->nclients].fd = accept(self->sockfd, NULL, NULL);
-		pthread_create(&self->clients[self->nclients].thread
-			, NULL
-			, &client_routine
-			, &self->clients[self->nclients]);
-		self->nclients++;
+		fd = accept(self->sockfd, NULL, NULL);
+		new = malloc(sizeof(*new));
+		new->fd = fd;
+		new->next = self->cli_list;
+		self->cli_list = new;
+		cluster_send_command_all(self, "int", &fd, 4);
 	}
 	return (NULL);
 }
