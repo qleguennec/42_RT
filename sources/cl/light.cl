@@ -24,7 +24,8 @@ unsigned	get_lighting(t_data *data)
 	if (data->objs[data->id].opacity < 1.0f && data->light_pow > 0.0f &&
 		data->safe > 0)
 		clearness_color(data);
-	data->rd_light += check_all_light(data);
+	if (data->objs[data->id].reflex != 1.0f)
+		data->rd_light += check_all_light(data);
 	return(calcul_rendu_light(data));
 }
 
@@ -33,11 +34,11 @@ unsigned	get_lighting(t_data *data)
 void	init_laputain_desamere(t_data *data)
 {
 	// data->objs[0].reflex = 1.0f;
-	// data->objs[1].reflex = 1.0f;
-	// data->objs[2].reflex = 1.0f;
+	data->objs[1].reflex = 1.0f;
+	data->objs[2].reflex = 1.0f;
 	// data->objs[3].reflex = 1.0f;
 	// data->objs[4].reflex = 1.0f;
-	data->objs[4].refract = 1.55f;
+	// data->objs[4].refract = 1.55f;
 	// data->objs[5].reflex = 1.0f;
 	// data->objs[6].reflex = 1.0f;
 }
@@ -54,6 +55,7 @@ float3		check_all_light(t_data *data)
 		lightdir = data->intersect - data->lights[i].pos;
 		rd_light += is_light(data, lightdir, &data->lights[i],
 		calcul_normale(data));
+		// PRINT3(rd_light, "rd_light");
 		i++;
 	}
 	if (data->nl > 0)
@@ -64,6 +66,7 @@ float3		check_all_light(t_data *data)
 
 unsigned	calcul_rendu_light(t_data *data)
 {
+
 	float3	clr;
 
 	if (data->rd_light.x > 1.0f)
@@ -125,7 +128,7 @@ float3		calcul_clr(float3 ray, float3 normale, float3 light,
 	ray = fast_normalize(ray);
 	normale = fast_normalize(normale);
 	cosinus = dot(ray, normale);
-	if (cosinus < 0.0)
+	if (cosinus < 0.0f)
 		return((float3){0.0f, 0.0f, 0.0f});
 	return((float3)(light * cosinus * obj->clr));
 }
@@ -148,14 +151,20 @@ float3		calcul_normale(t_data *data)
 	}
 	else if (data->objs[data->id].type == T_CYLINDER)
 	{
-		m = dot(data->ray_dir, data->objs[data->id].rot * data->t) +
-			dot(data->objs[data->id].rot, data->off_set);
+		float3 	rot;
+		data->option = 2;
+		rot = rotate_ray(&data->rot, data, &data->id);
+
+		m = dot(data->ray_dir, rot) * data->t +
+			dot(rot, data->offset);
+
 		normale = data->intersect - data->objs[data->id].pos -
-			data->objs[data->id].rot * m;
+			rot * m;
+		// normale  = rotate_ray(&normale, data, &data->id);
 	}
 	else if (data->objs[data->id].type == T_CONE)
 	{
-		m = dot(data->ray_dir, data->objs[data->id].rot * data->t) +
+		m = dot(data->ray_dir, data->objs[data->id].rot) * data->t +
 			dot(data->objs[data->id].rot, data->off_set);
 		k = tan((data->obj->radius / 2.0f) * (float)(M_PI / 180.0f));
 		normale = data->intersect - data->objs[data->id].pos -

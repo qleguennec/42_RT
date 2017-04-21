@@ -6,7 +6,7 @@
 /*   By: lgatibel <lgatibel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:37 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/03/21 20:06:08 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/04/07 11:46:31 by lgatibel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ typedef struct			s_data
 	short				nl;
 
 	short				test;
+	short				set;
 	float3				rot;
 	float3				pos;
 	float				radius;
 	float3				off_set;
 	float				t;
+//	float				delta;
 
 	float				ambiant;
 	float				light_pow;
@@ -42,7 +44,8 @@ typedef struct			s_data
 	float3				grid_intersect;
 	float3				rd_light;
 	float3				offset;
-	float3				rad;
+	float3				rdir;
+	// float3				rad;
 }						t_data;
 /////////////////////
 
@@ -53,15 +56,15 @@ void			calc_intersect(float *delta, t_data *data);
 
 void			touch_object(t_data *data);
 
-short			plane_intersection(t_data *data);
+short			plane_intersection(t_data *data, short *index);
 
-short			cone_intersection(t_data *data);
+short			cone_intersection(t_data *data, short *index);
 
-short			cylinder_intersection(t_data *data);
+short			cylinder_intersection(t_data *data, short *index);
 
-short			sphere_intersection(t_data *data);
+short			sphere_intersection(t_data *data, short *index);
 
-short			disk_intersection(t_data *data);
+short			disk_intersection(t_data *data, short *index);
 /////////////////////
 
 // entry function
@@ -75,6 +78,6 @@ float			float3_to_float(float3 v);
 /////////////////////
 
 // rotate function
-float3			rotate_ray(float3 *ray, t_data *data);
+float3			rotate_ray(float3 *ray, t_data *data, short *index);
 /////////////////////
 #endif
