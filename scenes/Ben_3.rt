@@ -29,7 +29,37 @@
 </light>
 
 <light>
-	<name>Point 2</name>
+	<name>Blue</name>
+	<type>Diffuse</type>
+	<visibility>False</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>0.00 0.00 -100.00</position>
+	<color-rgb>.00 .00 255.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
+<light>
+	<name>Green</name>
+	<type>Diffuse</type>
+	<visibility>False</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>0.00 0.00 0.00</position>
+	<color-rgb>.00 255.00 .00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
+<light>
+	<name>RED</name>
+	<type>Diffuse</type>
+	<visibility>False</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>0.00 0.00 100.00</position>
+	<color-rgb>255.00 .00 .00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
+<light>
+	<name>Derriere</name>
 	<type>Spot</type>
 	<visibility>true</visibility>
 	<flare-visibility>True</flare-visibility>

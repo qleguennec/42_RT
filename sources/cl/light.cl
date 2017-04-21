@@ -57,10 +57,8 @@ float3		check_all_light(t_data *data)
 		i++;
 	}
 	if (data->nl > 0)
-	{
-		return ((rd_light / (data->n_lgts + data->nl * data->ambiant)
-			* data->objs[data->id].opacity * data->light_pow));
-	}
+		return ((rd_light / data->n_lgts) *
+			data->objs[data->id].opacity * data->light_pow);
 	return (rd_light * data->objs[data->id].opacity);
 }
 
@@ -91,8 +89,8 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 	data->ray_pos = lgt->pos;
 	data->ray_dir = lightdir;
 	touch_object(data);
-	if (index == data->id && fast_distance(data->intersect, lgt->pos) <
-		fast_distance(data->intersect, lgt->pos) + PREC)
+	if (index == data->id && fast_distance(data->intersect, save_pos) <
+		fast_distance(save_inter, save_pos) + PREC)
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, normale, lgt->clr,
