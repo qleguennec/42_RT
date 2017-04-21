@@ -57,8 +57,8 @@ float3		check_all_light(t_data *data)
 		i++;
 	}
 	if (data->nl > 0)
-		return ((rd_light / data->n_lgts) *
-			data->objs[data->id].opacity * data->light_pow);
+		return ((rd_light / (data->n_lgts + data->nl * data->ambiant)
+			* data->objs[data->id].opacity * data->light_pow));
 	return (rd_light * data->objs[data->id].opacity);
 }
 
@@ -95,7 +95,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, normale, lgt->clr,
 			&data->objs[index]) + data->ambiant * data->objs[index].clr;
-		// light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
+		light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
 		return (light_clr / (1.0f + data->ambiant));
 	}
 	data->ray_pos = save_pos;
