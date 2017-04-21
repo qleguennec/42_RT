@@ -152,12 +152,14 @@ float3		calcul_normale(t_data *data)
 	}
 	else if (data->objs[data->id].type == T_CYLINDER)
 	{
-		// float3 	rdir;
-		m = dot(data->ray_dir, data->objs[data->id].rot) * data->t +
-			dot(data->objs[data->id].rot, data->off_set);
+		float3 	rot;
+		rot = rotate_ray(&data->rot, data, 0);
+
+		m = dot(data->ray_dir, rot) * data->t +
+			dot(rot, data->off_set);
 		normale = data->intersect - data->objs[data->id].pos -
-			data->objs[data->id].rot * m;
-		normale  = rotate_ray(&normale, data, &data->id);
+			rot * m;
+		// normale  = rotate_ray(&normale, data, &data->id);
 	}
 	else if (data->objs[data->id].type == T_CONE)
 	{

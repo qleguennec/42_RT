@@ -127,23 +127,21 @@ short			cylinder_intersection(t_data *data, short *index)
 	float	c;
 	float	delta;
 	float	m;
+	float3	rot;
 
-	if (!data->set)
-	{
-		data->rdir = rotate_ray(&data->ray_dir, data, index);
-		data->set = 1;
-	}
+	rot = rotate_ray(&data->rot, data, index);
+	data->set = 1;
 
 	a = dot(data->rdir, data->rdir) -
-	 dot(data->rdir, data->rot) *
-	 dot(data->rdir, data->rot);
+	 dot(data->rdir, rot) *
+	 dot(data->rdir, rot);
 
 	b = 2.0f * (dot(data->rdir, data->offset) - 
-	dot(data->rdir,	data->rot) *
-	dot(data->offset, data->rot));
+	dot(data->rdir,	rot) *
+	dot(data->offset, rot));
 
 	c = dot(data->offset, data->offset) -
-	 dot(data->offset,	data->rot) * dot(data->offset, data->rot) -
+	 dot(data->offset,	rot) * dot(data->offset, rot) -
 	 data->objs[(int)*index].radius * data->objs[(int)*index].radius;
 
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
