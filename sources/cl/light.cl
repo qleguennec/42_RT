@@ -99,7 +99,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, normale, lgt->clr,
 			&data->objs[index]) + data->ambiant * data->objs[index].clr;
-		light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
+		// light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
 		return (light_clr / (1.0f + data->ambiant));
 	}
 	data->ray_pos = save_pos;
@@ -129,7 +129,7 @@ float3		calcul_clr(float3 ray, float3 normale, float3 light,
 	ray = fast_normalize(ray);
 	normale = fast_normalize(normale);
 	cosinus = dot(ray, normale);
-	if (cosinus < 0.0f)
+	if (cosinus <= 0.0f)
 		return((float3){0.0f, 0.0f, 0.0f});
 	return((float3)(light * cosinus * obj->clr));
 }
@@ -142,9 +142,13 @@ float3		calcul_normale(t_data *data)
 
 	if (data->objs[data->id].type == T_PLANE)
 	{
-		if (dot(data->ray_dir, data->objs[data->id].rot) > 0)
-			normale = data->objs[data->id].rot;
-		normale = -data->objs[data->id].rot;
+		float3	rot;
+		rot = rotate_ray(&data->rot, data, &data->id);
+		
+		if (dot(data->ray_dir, rot) > 0.0f)
+			normale = rot;
+		normale = -rot;
+		// normale  = rotate_ray(&normale, data, &data->id);
 	}
 	else if (data->objs[data->id].type == T_SPHERE)
 	{
@@ -153,14 +157,15 @@ float3		calcul_normale(t_data *data)
 	else if (data->objs[data->id].type == T_CYLINDER)
 	{
 		float3 	rot;
-		data->option = 2;
-		rot = rotate_ray(&data->rot, data, &data->id);
+		// data->option = 2;
+		// rot = rotate_ray(&data->rot, data, &data->id);
+		rot = data->rot;
 
-		m = dot(data->ray_dir, rot) * data->t +
+		m = dot(data->ray_dir, rot * data->t) +
 			dot(rot, data->offset);
 			
 		normale = data->intersect - data->objs[data->id].pos -
-			rot * m;
+			data->rot * m;
 		// normale  = rotate_ray(&normale, data, &data->id);
 	}
 	else if (data->objs[data->id].type == T_CONE)

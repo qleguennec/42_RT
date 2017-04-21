@@ -25,8 +25,9 @@ short			disk_intersection(t_data *data, short *index)
 {
 	float	div;
 	float	t;
+	// float3	rot;
 
-	data->rdir = rotate_ray(&data->ray_dir, data, index);
+	// rot = rotate_ray(&data->rot, data, index);
 
 	div = dot(data->rot, data->rdir);
 	if (div == 0.0f)
@@ -48,39 +49,18 @@ short			disk_intersection(t_data *data, short *index)
 short			plane_intersection(t_data *data, short *index)
 {
 	float	div;
-	// float	delta;
 	float	t;
+	float3	rot;
 
-	// data->option = 2;
-	// data->rdir = data->ray_dir;
-	// data->rot = rotate_ray(&data->rot, data, index);
-	data->rdir = rotate_ray(&data->ray_dir, data, index);
-	// data->offset = data->ray_pos - data->objs[(int)*index].pos;
+	rot = rotate_ray(&data->rot, data, index);
 
-	div = dot(data->rdir, data->rot);
+	div = dot(data->ray_dir, rot);
 	if (div == 0.0f)
 		return (0);
-	t = (-dot(data->offset, data->rot)) / div;
+	t = (-dot(data->offset, rot)) / div;
 	if (t < 0.0f)
 		return (0);
 	calc_intersect(&t, data);
-	// if (data->objs[(int)*index].width > 0.0f && fast_distance(data->grid_intersect.x,
-	//  data->objs[(int)*index].pos.x) > (data->objs[(int)*index].width / 2.0f))
-	// 	return (0);
-	// if (data->objs[(int)*index].height > 0.0f && fast_distance(data->grid_intersect.z,
-	//  data->objs[(int)*index].pos.z) > (data->objs[(int)*index].height / 2.0f))
-	// 	return (0);
-	// data->radius = 4;
-	// if (data->radius > 0.0f && fast_distance(data->grid_intersect,
-	//  data->objs[(int)*index].pos) > data->radius)
-	// 	return (0);
-//	 if (data->objs[(int)*index].width > 0.0f && fast_distance(data->grid_intersect.x,
-//	  data->objs[(int)*index].pos.x) > (data->objs[(int)*index].width / 2.0f))
-//	 	return (0);
-//	 if (data->objs[(int)*index].height > 0.0f && fast_distance(data->grid_intersect.z,
-//	  data->objs[(int)*index].pos.z) > (data->objs[(int)*index].height / 2.0f))
-//	 	return (0);
-	// PRINT3(data->objs[(int)*index].rot,"normal");
 	return (1);
 }
 

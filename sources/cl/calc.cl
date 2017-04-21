@@ -77,6 +77,7 @@ void			touch_object(t_data *data)
 				t = data->t;
 			}
 	}
+	// data->set = 1;
 	data->t = t;
 	data->option = 0;
 	data->intersect = closest_intersect;
@@ -106,6 +107,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->grid_intersect = 0.0f;
 	data->rd_light = 0.0f;
 	data->offset = 0.0f;
+	data->set = 0;
 	// data->rad = 0.0f;
 	data->rot = (float3){0.0f, 1.0f, 0.0f}; // a ne pas toucher c'est le set de l'axe des objets de base
 

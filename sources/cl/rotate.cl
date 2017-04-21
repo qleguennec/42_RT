@@ -7,17 +7,21 @@ float3			rotate_ray(float3 *ray, t_data *data, short *index)
 	float3	maty;
 	float3	matz;	
 
+
+	float3 test = (float3){0.0f, 0.0f, 0.0f};
+
 	/////////debug
 
 	///////////
 
 	if (data->option == 2)
 	{
-		pos = data->lights[0].pos - data->objs[data->id].pos;
+		pos = data->lights[0].pos - data->objs[(int)index].pos;
 	}
 	else
 	{
-		pos = data->ray_pos - data->objs[(int)*index].pos;
+		// pos = data->ray_pos - data->objs[(int)*index].pos;
+		pos = test - data->objs[(int)*index].pos;
 	}
 	if (!ROTATE)
 	{
