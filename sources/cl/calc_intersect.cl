@@ -130,7 +130,6 @@ short			cylinder_intersection(t_data *data, short *index)
 	float3	rot;
 
 	rot = rotate_ray(&data->rot, data, index);
-	data->set = 1;
 
 	a = dot(data->rdir, data->rdir) -
 	 dot(data->rdir, rot) *

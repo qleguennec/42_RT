@@ -13,7 +13,7 @@ float3			rotate_ray(float3 *ray, t_data *data, short *index)
 
 	if (data->option == 2)
 	{
-		pos = data->lights[0].pos - data->pos;
+		pos = data->lights[0].pos - data->objs[data->id].pos;
 	}
 	else
 	{

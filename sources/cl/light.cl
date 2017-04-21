@@ -153,10 +153,12 @@ float3		calcul_normale(t_data *data)
 	else if (data->objs[data->id].type == T_CYLINDER)
 	{
 		float3 	rot;
-		rot = rotate_ray(&data->rot, data, 0);
+		data->option = 2;
+		rot = rotate_ray(&data->rot, data, &data->id);
 
 		m = dot(data->ray_dir, rot) * data->t +
-			dot(rot, data->off_set);
+			dot(rot, data->offset);
+			
 		normale = data->intersect - data->objs[data->id].pos -
 			rot * m;
 		// normale  = rotate_ray(&normale, data, &data->id);
