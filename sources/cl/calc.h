@@ -22,6 +22,13 @@ typedef struct			s_data
 	short				n_objs;
 	short				n_lgts;
 
+	float3				ray_pos;
+	float3				ray_dir;
+
+	float				ambiant;
+	float				light_pow;
+	float3				rd_light;
+	//////// essayer de virer tout ceux qui se trouve en dessous ///////
 	short				id;
 	// short				option;
 
@@ -30,23 +37,14 @@ typedef struct			s_data
 	float3				pos;
 	float				t;
 
-	float				ambiant;
-	float				light_pow;
-	float3				rd_light;
-
-	float3				ray_pos;
-	float3				ray_dir;
 	float3				intersect;
 
 	///////////a virer///////////
 	float3				offset;
-	float3				rdir;
 	//////////////optionel//////////
 	short				safe;
 }						t_data;
-/////////////////////
 
-// object intersection
 float			calc_delta(float a, float b, float c);
 
 void			calc_intersect(float *delta, t_data *data);

@@ -94,7 +94,6 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->light_pow = 1.0f;
 	data->ray_pos = ray_pos;
 	data->ray_dir = ray_dir;
-	data->rdir = ray_dir;
 	data->intersect = 0.0f;
 	data->rd_light = 0.0f;
 	data->offset = 0.0f;
