@@ -87,17 +87,19 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->pixel = pixel;
 	data->n_objs = n_objs;
 	data->n_lgts = n_lgts;
+	data->ray_pos = ray_pos;
+	data->ray_dir = ray_dir;
+
+	data->ambiant = ambiant;
+	data->light_pow = 1.0f;
+	data->rd_light = 0.0f;
+	/////////////essayer d esupprimer le reste///////////
 	data->id = -1;
 	data->safe = SAFE;
 	data->nl = 0;
-	data->ambiant = ambiant;
-	data->light_pow = 1.0f;
-	data->ray_pos = ray_pos;
-	data->ray_dir = ray_dir;
-	data->intersect = 0.0f;
-	data->rd_light = 0.0f;
-	data->offset = 0.0f;
 
+	data->intersect = 0.0f;
+	data->offset = 0.0f;
 	data->rot = (float3){0.0f, 1.0f, 0.0f}; // a ne pas toucher c'est le set de l'axe des objets de base
 }
 
