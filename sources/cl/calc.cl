@@ -36,7 +36,6 @@ float		calc_delta(float a, float b, float c)
 
 static short	ray_intersection(t_data *data, short *index)
 {
-	// data->obj = &data->objs[(int)*index];
 	if (data->objs[(int)*index].type == T_PLANE)
 		return (plane_intersection(data, index));
 	else if (data->objs[(int)*index].type == T_CONE)
@@ -65,7 +64,6 @@ void			touch_object(t_data *data)
 	smallest_norm = -1;
 	while(++index <  data->n_objs)
 	{
-		data->option = 1;
 		if (ray_intersection(data, &index))
 			if ((norm = fast_distance(data->intersect, data->ray_pos)) > 0.0f &&
 				(norm < smallest_norm || smallest_norm == -1))
@@ -73,13 +71,10 @@ void			touch_object(t_data *data)
 				closest_intersect = data->intersect;
 				smallest_norm = norm;
 				data->id = index;
-				data->off_set = data->offset;
 				t = data->t;
 			}
 	}
-	// data->set = 1;
 	data->t = t;
-	data->option = 0;
 	data->intersect = closest_intersect;
 }
 
@@ -88,34 +83,23 @@ global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
 float3 ray_dir, float ambiant, global unsigned int *pixel)
 {
 	data->objs = objs;
-	// data->obj = 0;
 	data->lights = lgts;
 	data->pixel = pixel;
 	data->n_objs = n_objs;
 	data->n_lgts = n_lgts;
 	data->id = -1;
 	data->safe = SAFE;
-	data->option = 1;
 	data->nl = 0;
 	data->ambiant = ambiant;
 	data->light_pow = 1.0f;
 	data->ray_pos = ray_pos;
-	data->grid_ray_dir = ray_dir;
 	data->ray_dir = ray_dir;
 	data->rdir = ray_dir;
 	data->intersect = 0.0f;
-	data->grid_intersect = 0.0f;
 	data->rd_light = 0.0f;
 	data->offset = 0.0f;
-	data->set = 0;
-	// data->rad = 0.0f;
-	data->rot = (float3){0.0f, 1.0f, 0.0f}; // a ne pas toucher c'est le set de l'axe des objets de base
 
-//	data->delta = 0;
-	data->off_set = 0.0f;
-	data->t = 0.0f;
-	data->test = -8;
-	data->pos = (float3){0.0f, 1.0f, 0.0f};
+	data->rot = (float3){0.0f, 1.0f, 0.0f}; // a ne pas toucher c'est le set de l'axe des objets de base
 }
 
 void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
@@ -131,7 +115,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	if (!COLOR && data.id > -1)
 	{
 
-		if (data.id == 0 && data.test != T_DISK){*(data.pixel) = 0x00ff00FF;}
+		if (data.id == 0 ){*pixel = 0x00ff00FF;}
 		else if (data.id == 1){*pixel = 0xff0000FF;}
 		else if (data.id == 2){*pixel = 0x00ffffFF;}
 		else if (data.id == 3){*pixel = 0xffffffFF;}

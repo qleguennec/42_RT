@@ -2,30 +2,14 @@ float3			rotate_ray(float3 *ray, t_data *data, short *index)
 {
 	float3	res;
 	float3	rad;
-	float3	pos;
 	float3	matx;
 	float3	maty;
 	float3	matz;	
 
 
-	float3 test = (float3){0.0f, 0.0f, 0.0f};
 
-	/////////debug
-
-	///////////
-
-	if (data->option == 2)
-	{
-		pos = data->lights[0].pos - data->objs[(int)index].pos;
-	}
-	else
-	{
-		// pos = data->ray_pos - data->objs[(int)*index].pos;
-		pos = test - data->objs[(int)*index].pos;
-	}
 	if (!ROTATE)
 	{
-		data->offset  = pos;
 		return (*ray);
 	}	rad = data->objs[(int)*index].rot * ((float)M_PI / 180.0f);
 
@@ -66,11 +50,5 @@ float3			rotate_ray(float3 *ray, t_data *data, short *index)
 	res.x = dot(matx, *ray);
 	res.y = dot(maty, *ray);
 	res.z = dot(matz, *ray);
-	if (data->option > 0)
-	{
-		data->offset.x = dot(matx, pos);
-		data->offset.y = dot(maty, pos);
-		data->offset.z = dot(matz, pos);
-	}
 	return(res);
 }

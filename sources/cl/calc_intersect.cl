@@ -18,7 +18,7 @@ void			calc_intersect(float *delta, t_data *data)
 {
 	data->t = *delta;
 	data->intersect = data->ray_pos + (data->ray_dir * (*delta));
-	data->grid_intersect = data->ray_pos + (data->grid_ray_dir * (*delta));
+	// data->grid_intersect = data->ray_pos + (data->grid_ray_dir * (*delta));
 }
 
 short			disk_intersection(t_data *data, short *index)
@@ -36,13 +36,6 @@ short			disk_intersection(t_data *data, short *index)
 	if (t < 0.0f)
 		return (0);
 	calc_intersect(&t, data);
-
-	if (data->option == 1)
-		data->pos = data->objs[(int)*index].pos;
-	if (data->objs[(int)*index].radius > 0.0f && fast_distance(data->grid_intersect,
-	 data->pos) > data->objs[(int)*index].radius)
-		return (0);
-	
 	return (1);
 }
 
@@ -92,10 +85,6 @@ short			cone_intersection(t_data *data, short *index)
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data);
-
-	if ((data->objs[(int)*index].height > 0.0f && ((fast_distance(data->objs[(int)*index].pos, data->grid_intersect) >
-	sqrt(data->objs[(int)*index].height * data->objs[(int)*index].height + data->objs[(int)*index].radius  * data->objs[(int)*index].radius)))))
-		return (0);
 	return (1);
 }
 
@@ -106,10 +95,11 @@ short			cylinder_intersection(t_data *data, short *index)
 	float	b;
 	float	c;
 	float	delta;
-	float	m;
 	float3	rot;
 
 	rot = rotate_ray(&data->rot, data, index);
+
+	data->offset = data->ray_pos - data->objs[(int)*index].pos;
 
 	a = dot(data->rdir, data->rdir) -
 	 dot(data->rdir, rot) *
@@ -127,27 +117,6 @@ short			cylinder_intersection(t_data *data, short *index)
 		return (0);
 	calc_intersect(&delta, data);
 
-	return (1);
-
-
-
-	
-	m = dot(data->rdir, data->rot) * delta + dot(data->offset, data->rot);
-	// if (m < -data->objs[(int)*index].height / 2.0f || m > data->objs[(int)*index].height / 2.0f)
-	if (data->objs[(int)*index].height > 0.0f && (m < 0.0f || m > data->objs[(int)*index].height))
-	{
-		data->test = T_DISK;
-		if (m < 0.0f)
-			 return (disk_intersection(data, index));
-		else
-		{
-			// printf("test\n");
-			data->option = 2;
-			data->pos = data->objs[(int)*index].pos + (data->rot * data->objs[(int)*index].height);
-			 return (disk_intersection(data, index));
-		}
-			// return (0);
-	}
 	return (1);
 }
 

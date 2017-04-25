@@ -21,31 +21,28 @@ typedef struct			s_data
 	global unsigned int	*pixel;
 	short				n_objs;
 	short				n_lgts;
-	short				id;
-	short				safe;
-	short				option;
-	short				nl;
 
-	short				test;
-	short				set;
+	short				id;
+	// short				option;
+
+	short				nl;
 	float3				rot;
 	float3				pos;
-	float				radius;
-	float3				off_set;
 	float				t;
-//	float				delta;
 
 	float				ambiant;
 	float				light_pow;
+	float3				rd_light;
+
 	float3				ray_pos;
-	float3				grid_ray_dir;
 	float3				ray_dir;
 	float3				intersect;
-	float3				grid_intersect;
-	float3				rd_light;
+
+	///////////a virer///////////
 	float3				offset;
 	float3				rdir;
-	// float3				rad;
+	//////////////optionel//////////
+	short				safe;
 }						t_data;
 /////////////////////
 
