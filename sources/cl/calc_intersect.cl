@@ -192,7 +192,7 @@ short			sphere_intersection(t_data *data, short *index)
 
 // k = distance entre les centres
 
-short			ellipsoid_intersection(t_data *data, short *index)
+short			egg_intersection(t_data *data, short *index)
 {
 	float	a;
 	float	b;
