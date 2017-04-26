@@ -127,9 +127,6 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	init_laputain_desamere(&data);
 	touch_object(&data);
 	// check_intercept(&data, data.id, 0);
-	printf("type[%d]\n",data.objs[0].type);
-	printf("type[%d]\n",data.objs[1].type);
-	printf("type[%d]\n",data.objs[2].type);
 	if (!COLOR && data.id > -1)
 	{
 		if (data.id == 0 ){*pixel = 0x00ff00FF;}
