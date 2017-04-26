@@ -42,3 +42,16 @@
 	<height>40</height>
 	<radius>20.00</radius>
 </object>
+
+<object>
+	<name>Cylinder</name>
+	<type>sphere</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>00.00 0.00 300.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>.00 255.00 0.00</color-rgb>
+	<opacity>1.00</opacity>
+	<height>80</height>
+	<radius>20.00</radius>
+</object>

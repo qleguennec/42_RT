@@ -17,7 +17,6 @@
 #include "calc_intersect.cl"
 #include "rotate.cl"
 #include "calc_normal.cl"
-#include "reset_object.cl"
 
 float		calc_delta(float a, float b, float c)
 {
@@ -64,7 +63,7 @@ void			touch_object(t_data *data)
 	index = -1;
 	data->id = -1;
 	smallest_norm = -1;
-	while(++index <  data->n_objs)
+	while(++index < data->n_objs)
 	{
 		if (ray_intersection(data, &index))
 			if ((norm = fast_distance(data->intersect, data->ray_pos)) > 0.0f &&
@@ -76,8 +75,13 @@ void			touch_object(t_data *data)
 				t = data->t;
 			}
 	}
-	data->t = t;
 	data->intersect = closest_intersect;
+	data->t = t;
+	if (!data->is_light)
+	{
+		data->inter = data->intersect;
+		data->is_light = 1;
+	}
 }
 
 static void		init_data(t_data *data, global t_obj *objs,
@@ -100,6 +104,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 
 
 	/////////////essayer d esupprimer le reste///////////
+	data->is_light = 0;
 	data->id = -1;
 	data->safe = SAFE;
 	data->nl = 0;
@@ -115,14 +120,18 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 {
 	t_data	data;
 	float	ambiant = 0.20f;
+	printf("type[%d]\n",objs[0].type);
+	printf("type[%d]\n",objs[1].type);
+	printf("type[%d]\n",objs[2].type);
 	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant, pixel);
-	reset_object(&data);
 	init_laputain_desamere(&data);
 	touch_object(&data);
 	// check_intercept(&data, data.id, 0);
+	printf("type[%d]\n",data.objs[0].type);
+	printf("type[%d]\n",data.objs[1].type);
+	printf("type[%d]\n",data.objs[2].type);
 	if (!COLOR && data.id > -1)
 	{
-
 		if (data.id == 0 ){*pixel = 0x00ff00FF;}
 		else if (data.id == 1){*pixel = 0xff0000FF;}
 		else if (data.id == 2){*pixel = 0x00ffffFF;}
@@ -131,10 +140,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		else{*pixel = 0xff00ffFF;}
 	}
 	else if (COLOR && data.id > -1)
-	{
-		// printf("c'est la faute d'erwan!!!!!!\n");
 		*pixel = get_lighting(&data);
-	}
 	else
 		*pixel = FONT;
 }

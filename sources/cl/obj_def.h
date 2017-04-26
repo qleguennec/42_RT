@@ -37,7 +37,6 @@ typedef struct		s_obj
 
 	float3			normal;
 	float3			intersect;
-	short			set;
 	float3			axe;
 	
 	float3			offset;

@@ -11,7 +11,8 @@ float3			rotate_ray(float3 *ray, t_data *data, short *index)
 	if (!ROTATE)
 	{
 		return (*ray);
-	}	rad = data->objs[(int)*index].rot * ((float)M_PI / 180.0f);
+	}	
+	rad = data->objs[(int)*index].rot * ((float)M_PI / 180.0f);
 
 	if (NATIVE) //  en test
 	{

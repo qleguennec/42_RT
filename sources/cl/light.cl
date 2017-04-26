@@ -89,7 +89,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 	float3	save_ray = data->ray_dir;
 	float3	save_inter = data->intersect;
 
-	lightdir = normalize(lightdir);
+	lightdir = fast_normalize(lightdir);
 	data->ray_pos = lgt->pos;
 	data->ray_dir = lightdir;
 	touch_object(data);
@@ -126,7 +126,7 @@ float3		calcul_clr(float3 ray, float3 normale, float3 light,
 {
 	float	cosinus;
 
-	ray = fast_normalize(ray);
+	// ray = fast_normalize(ray); // ray deja normalize
 	cosinus = dot(ray, normale);
 	if (cosinus <= 0.0f)
 		return((float3){0.0f, 0.0f, 0.0f});
@@ -150,11 +150,11 @@ float3		calcul_normale(t_data *data)
 	}
 	else if (data->objs[data->id].type == T_SPHERE)
 	{
-		normale = data->intersect - data->objs[data->id].pos;
+		normale = data->inter - data->objs[data->id].pos;
 	}
 	else if (data->objs[data->id].type == T_CYLINDER)
 	{
-		return (data->objs[data->id].normal);
+		// return (data->objs[data->id].normal);
 		
 		float3 	rot;
 		rot = rotate_ray(&data->rot, data, &data->id);
@@ -162,16 +162,19 @@ float3		calcul_normale(t_data *data)
 		m = dot(data->ray_dir, rot * data->t) +
 			dot(rot, data->offset);
 			
-		normale = data->intersect - data->objs[data->id].pos -
-			data->rot * m;
+		normale = data->inter - data->objs[data->id].pos -
+			rot * m;
 	}
 	else if (data->objs[data->id].type == T_CONE)
 	{
-		m = dot(data->ray_dir, data->objs[data->id].rot) * data->t +
-			dot(data->objs[data->id].rot, data->offset);
+		float3 	rot;
+		rot = rotate_ray(&data->rot, data, &data->id);
+
+		m = dot(data->ray_dir, rot) * data->t +
+			dot(rot, data->offset);
 		k = tan((data->obj->radius / 2.0f) * (float)(M_PI / 180.0f));
-		normale = data->intersect - data->objs[data->id].pos -
-			(1.0f + k * k) * data->objs[data->id].rot * m;
+		normale = data->inter - data->objs[data->id].pos -
+			(1.0f + k * k) * rot * m;
 	}
 	return (fast_normalize(normale));
 }
