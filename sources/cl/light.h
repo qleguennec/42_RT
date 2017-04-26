@@ -34,6 +34,4 @@ void		clearness_color(t_data *data);
 void		get_color(t_data *data);
 float3		calcul_refract_ray(t_data *data, float refract1, float refract2);
 void		calcul_reflex_color(t_data *data);
-void		init_laputain_desamere(t_data *data);
-
 #endif

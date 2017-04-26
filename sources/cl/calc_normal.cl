@@ -13,7 +13,7 @@ static float3         cone_normal(t_data *data, float3 rot)
     m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
     k = tan((data->objs[data->id].radius / 2.0f) * (float)(M_PI / 180.0f));
     return (data->inter - data->objs[data->id].pos - (1.0f + k * k) *
-    rot * m);/////////// a finir
+    rot * m);
 }
 
 static float3         cylinder_normal(t_data *data, float3 rot)

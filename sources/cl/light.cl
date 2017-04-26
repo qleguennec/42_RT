@@ -28,20 +28,6 @@ unsigned	get_lighting(t_data *data)
 	return(calcul_rendu_light(data));
 }
 
-
-
-void	init_laputain_desamere(t_data *data)
-{
-	// data->objs[0].reflex = 1.0f;
-	// data->objs[1].reflex = 1.0f;
-	// data->objs[2].reflex = 1.0f;
-	// data->objs[3].reflex = 1.0f;
-	// data->objs[4].reflex = 1.0f;
-	// data->objs[4].refract = 1.55f;
-	// data->objs[5].reflex = 1.0f;
-	// data->objs[6].reflex = 1.0f;
-}
-
 float3		check_all_light(t_data *data)
 {
 	short	i = 0;
@@ -132,4 +118,3 @@ float3		calcul_clr(float3 ray, float3 normale, float3 light,
 		return((float3){0.0f, 0.0f, 0.0f});
 	return((float3)(light * cosinus * obj->clr));
 }
-

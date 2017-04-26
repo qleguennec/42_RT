@@ -35,8 +35,8 @@
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>10.00 20.00 290.00</position>
-	<rotation>0.00 1.00 0.00</rotation>
+	<position>0.00 20.00 290.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
@@ -49,7 +49,7 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 200.00</position>
-	<rotation>0.00 0.00 1.00</rotation>
+	<rotation>90.00 0.00 0.00</rotation>
 	<color-rgb>.00 255.00 128.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
@@ -61,8 +61,8 @@
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 -2004.00</position>
-	<rotation>0.00 0.00 -1.00</rotation>
+	<position>0.00 0.00 -200.00</position>
+	<rotation>90.00 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
@@ -75,7 +75,7 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>10.00 -20.00 290.00</position>
-	<rotation>0.00 -1.00 0.00</rotation>
+	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>150.00 185.00 240.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
@@ -88,7 +88,7 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>40.00 0.00 290.00</position>
-	<rotation>1.00 0.00 0.00</rotation>
+	<rotation>0.00 0.00 90.00</rotation>
 	<color-rgb>0.00 255.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
@@ -101,7 +101,7 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>-40.00 0.00 290.00</position>
-	<rotation>-1.00 0.00 0.00</rotation>
+	<rotation>0.00 0.00 90.00</rotation>
 	<color-rgb>255.00 255.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>

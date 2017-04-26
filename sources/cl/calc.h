@@ -79,4 +79,8 @@ float3			rotate_ray(float3 *ray, t_data *data, short *index);
 /////////////////////
 float3		calcul_normale(t_data *data);
 
+void		init(t_data *data, global t_obj *objs,
+global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
+float3 ray_dir, float ambiant, global unsigned int *pixel);
+
 #endif

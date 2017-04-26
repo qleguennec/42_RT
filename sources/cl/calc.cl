@@ -17,6 +17,7 @@
 #include "calc_intersect.cl"
 #include "rotate.cl"
 #include "calc_normal.cl"
+#include "init.cl"
 
 float		calc_delta(float a, float b, float c)
 {
@@ -84,35 +85,7 @@ void			touch_object(t_data *data)
 	}
 }
 
-static void		init_data(t_data *data, global t_obj *objs,
-global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
-float3 ray_dir, float ambiant, global unsigned int *pixel)
-{
-	data->objs = objs;
-	data->lights = lgts;
-	data->pixel = pixel;
-	data->n_objs = n_objs;
-	data->n_lgts = n_lgts;
-	data->ray_pos = ray_pos;
-	data->ray_dir = ray_dir;
 
-	data->ambiant = ambiant;
-	data->light_pow = 1.0f;
-	data->rd_light = 0.0f;
-
-	///////////////a set avant l'appel des rayon pour opti///////
-
-
-	/////////////essayer d esupprimer le reste///////////
-	data->is_light = 0;
-	data->id = -1;
-	data->safe = SAFE;
-	data->nl = 0;
-
-	data->intersect = 0.0f;
-	data->offset = 0.0f;
-	data->rot = (float3){0.0f, 1.0f, 0.0f}; // a ne pas toucher c'est le set de l'axe des objets de base
-}
 
 void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
@@ -120,10 +93,9 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 {
 	t_data	data;
 	float	ambiant = 0.20f;
-	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant, pixel);
-	init_laputain_desamere(&data);
+	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant,
+     pixel);
 	touch_object(&data);
-	// check_intercept(&data, data.id, 0);
 	if (!COLOR && data.id > -1)
 	{
 		if (data.id == 0 ){*pixel = 0x00ff00FF;}
