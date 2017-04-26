@@ -58,6 +58,7 @@ short			plane_intersection(t_data *data, short *index)
 
 short			cone_intersection(t_data *data, short *index)
 {
+	printf("test[1]\n");
 	float	a;
 	float	b;
 	float	c;
@@ -92,6 +93,7 @@ short			cone_intersection(t_data *data, short *index)
 
 short			cylinder_intersection(t_data *data, short *index)
 {
+	printf("test[2]\n");
 	float	a;
 	float	b;
 	float	c;

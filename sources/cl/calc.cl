@@ -16,7 +16,7 @@
 #include "light.cl"
 #include "calc_intersect.cl"
 #include "rotate.cl"
-#include "calc_normal.cl"
+// #include "calc_normal.cl"
 
 float		calc_delta(float a, float b, float c)
 {

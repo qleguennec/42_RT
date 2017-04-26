@@ -46,7 +46,7 @@
 
 <object>
 	<name>Cone 1</name>
-	<type>Cone</type>
+	<type>Cylinder</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.0 250.00</position>
