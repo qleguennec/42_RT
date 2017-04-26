@@ -58,7 +58,6 @@ short			plane_intersection(t_data *data, short *index)
 
 short			cone_intersection(t_data *data, short *index)
 {
-	printf("test[1]\n");
 	float	a;
 	float	b;
 	float	c;
@@ -69,7 +68,7 @@ short			cone_intersection(t_data *data, short *index)
 	rad = (data->objs[(int)*index].radius / 2.0f) * (float)(M_PI / 180.0f);
 
 	float tanj;
-	tanj = 1.0f + tan(rad) * tan(rad); 
+	tanj = 1.0f + tan(rad) * tan(rad);
 	
 	rot = rotate_ray(&data->rot, data, index);
 	data->offset = data->ray_pos - data->objs[(int)*index].pos;
@@ -81,7 +80,7 @@ short			cone_intersection(t_data *data, short *index)
 		dot(data->ray_dir, rot) *
 		dot(data->offset, rot));
 
-	c = dot(data->offset, data->offset) - tanj * 
+	c = dot(data->offset, data->offset) - tanj *
 		dot(data->offset, rot) * dot(data->offset, rot);
 
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
@@ -93,7 +92,6 @@ short			cone_intersection(t_data *data, short *index)
 
 short			cylinder_intersection(t_data *data, short *index)
 {
-	printf("test[2]\n");
 	float	a;
 	float	b;
 	float	c;

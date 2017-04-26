@@ -30,6 +30,7 @@ typedef struct		s_cl_obj
 	cl_float		refract;
 	cl_float		shiness;
 	cl_float		mshiness;
+	cl_float3		offset;
 }					t_cl_obj;
 
 typedef struct		s_cl_lgt

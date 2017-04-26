@@ -16,7 +16,7 @@
 #include "light.cl"
 #include "calc_intersect.cl"
 #include "rotate.cl"
-// #include "calc_normal.cl"
+#include "calc_normal.cl"
 
 float		calc_delta(float a, float b, float c)
 {
@@ -120,9 +120,6 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 {
 	t_data	data;
 	float	ambiant = 0.20f;
-	printf("type[%d]\n",objs[0].type);
-	printf("type[%d]\n",objs[1].type);
-	printf("type[%d]\n",objs[2].type);
 	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant, pixel);
 	init_laputain_desamere(&data);
 	touch_object(&data);
