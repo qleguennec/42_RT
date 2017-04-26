@@ -34,6 +34,13 @@ typedef struct		s_obj
 	float			refract;
 	float			shiness;
 	float			mshiness;
+
+	float3			normal;
+	float3			intersect;
+	short			set;
+	float3			axe;
+	
+	float3			offset;
 }					t_obj;
 
 typedef struct		s_lgt

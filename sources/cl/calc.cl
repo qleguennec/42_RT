@@ -16,12 +16,13 @@
 #include "light.cl"
 #include "calc_intersect.cl"
 #include "rotate.cl"
+#include "calc_normal.cl"
+#include "reset_object.cl"
 
 float		calc_delta(float a, float b, float c)
 {
 	float	t0;
 	float	t1;
-	float	t;
 	float	tmp;
 
 	tmp = (b * b) - (4.0f * a * c);
@@ -30,8 +31,9 @@ float		calc_delta(float a, float b, float c)
 	tmp = sqrt(tmp);
 	t0 = ((-b + tmp) / (2.0f * a));
 	t1 = ((-b - tmp) / (2.0f * a));
-	t = (t0 < t1) ? t0 : t1;
-	return (t);
+	if (t0 < t1)
+		return (t0);
+	return (t1);
 }
 
 static short	ray_intersection(t_data *data, short *index)
@@ -93,6 +95,10 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->ambiant = ambiant;
 	data->light_pow = 1.0f;
 	data->rd_light = 0.0f;
+
+	///////////////a set avant l'appel des rayon pour opti///////
+
+
 	/////////////essayer d esupprimer le reste///////////
 	data->id = -1;
 	data->safe = SAFE;
@@ -110,6 +116,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	t_data	data;
 	float	ambiant = 0.20f;
 	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant, pixel);
+	reset_object(&data);
 	init_laputain_desamere(&data);
 	touch_object(&data);
 	// check_intercept(&data, data.id, 0);

@@ -75,4 +75,8 @@ float			float3_to_float(float3 v);
 // rotate function
 float3			rotate_ray(float3 *ray, t_data *data, short *index);
 /////////////////////
+
+
+void        reset_object(t_data *data);
+
 #endif

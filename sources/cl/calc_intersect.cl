@@ -97,9 +97,21 @@ short			cylinder_intersection(t_data *data, short *index)
 	float	c;
 	float	delta;
 	float3	rot;
+	float3	m;
 
-	rot = rotate_ray(&data->rot, data, index);
-	data->offset = data->ray_pos - data->objs[(int)*index].pos;
+	if (!data->objs[(int)*index].set)
+	{
+		rot = rotate_ray(&data->rot, data, index);
+		data->objs[(int)*index].axe = rot;
+
+		data->offset = data->ray_pos - data->objs[(int)*index].pos;
+		data->objs[(int)*index].offset = data->offset;
+	}
+	else
+	{
+		rot = data->objs[(int)*index].axe;
+		data->offset = data->objs[(int)*index].offset;
+	}
 
 	a = dot(data->ray_dir, data->ray_dir) -
 	 dot(data->ray_dir, rot) *
@@ -117,6 +129,21 @@ short			cylinder_intersection(t_data *data, short *index)
 		return (0);
 	calc_intersect(&delta, data);
 
+
+	
+
+
+	if (!data->objs[(int)*index].set)
+	{
+		m = dot(data->ray_dir, rot * data->t) +
+			dot(rot, data->offset);
+		
+		data->objs[(int)*index].normal = fast_normalize(data->intersect - 
+		data->objs[(int)*index].pos - rot * m);
+		// calc_cylinder_normal();
+		// printf("set[%u]\n", data->objs[(int)*index].set);
+		data->objs[(int)*index].set = 1;
+	}
 	return (1);
 }
 
