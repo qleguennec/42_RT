@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/21 14:44:16 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/26 15:39:49 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ int			add_render_frame(t_rt *rt)
 	return (1);
 }
 
-static int	global_loop(t_rt *rt, t_cl *cl, t_cluster *cluster)
+static int	global_loop(t_rt *rt, t_cl *cl)
 {
-	(void)cluster;
 	while (rt->run)
 	{
 		if (SDL_PollEvent(&rt->event))
@@ -33,11 +32,9 @@ static int	global_loop(t_rt *rt, t_cl *cl, t_cluster *cluster)
 	return (free_elements(rt));
 }
 
-int			create_window(t_rt *rt, t_cl *cl, t_cluster *cluster)
+int			create_window(t_rt *rt, t_cl *cl)
 {
-	(void)cluster;
 	TTF_Init();
-	//int test = 42;
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 		return (error(rt, 29));
 	if (!(rt->w_icon = IMG_Load(WIN_ICON)))
@@ -54,7 +51,7 @@ int			create_window(t_rt *rt, t_cl *cl, t_cluster *cluster)
 		&& cl_main_krl_exec(cl)
 		&& cl_copy_image_buffer(cl, rt->s_rend->pixels)))
 		return (error(rt, 42));
-	cluster_init(cluster);
+	cluster_init(cl);
 	add_render_frame(rt);
-	return (global_loop(rt, cl, cluster));
+	return (global_loop(rt, cl));
 }

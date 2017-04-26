@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/12 17:16:36 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/26 15:38:51 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	check(t_rt *rt, int end)
 	return (end);
 }
 
-static int	execute(t_rt *rt, t_cl *cl, t_cluster *cluster, int fd)
+static int	execute(t_rt *rt, t_cl *cl, int fd)
 {
 	if (!(rt->prs->buf = (char *)malloc(sizeof(char))))
 		return (error(rt, 0));
@@ -60,13 +60,12 @@ static int	execute(t_rt *rt, t_cl *cl, t_cluster *cluster, int fd)
 		print_verbose(rt);
 	if (!cl_main_krl_init(cl))
 		return (error(rt, 42));
-	return (create_window(rt, cl, cluster));
+	return (create_window(rt, cl));
 }
 
 int			main(int ac, char **av)
 {
 	t_cl		cl;
-	t_cluster	cluster;
 	t_rt		rt;
 
 	init_errors(&rt, 0);
@@ -81,5 +80,5 @@ int			main(int ac, char **av)
 	if ((ac = open(av[1], O_RDONLY)) == -1)
 		return (error(&rt, 3));
 	rt.filename = av[1];
-	return (execute(&rt, &cl, &cluster, ac));
+	return (execute(&rt, &cl, ac));
 }

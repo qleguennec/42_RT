@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/21 15:06:42 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/26 15:46:01 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,14 +188,6 @@ typedef struct		s_client
 	struct s_client	*next;
 }					t_client;
 
-typedef struct		s_cluster
-{
-	int				sockfd;
-	pthread_t		accept_thread;
-	t_client		*cli_list;
-	int				lock;
-}					t_cluster;
-
 typedef struct		s_cl
 {
 	t_cl_info		info;
@@ -204,6 +196,9 @@ typedef struct		s_cl
 	cl_mem			lgts;
 	short			n_objs;
 	short			n_lgts;
+	int				sockfd;
+	pthread_t		accept_thread;
+	t_client		*cli_list;
 }					t_cl;
 
 #endif

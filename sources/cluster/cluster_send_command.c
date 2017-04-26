@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 11:18:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/21 16:20:04 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/26 15:50:00 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ int
 
 static void
 	remove_client
-	(t_cluster *cluster
+	(t_cl *cl
 	, t_client **cli
 	, t_client **tmp)
 {
 	if (*tmp == NULL)
 	{
-		cluster->cli_list = (*cli)->next;
+		cl->cli_list = (*cli)->next;
 		close((*cli)->fd);
 		free(*cli);
-		*cli = cluster->cli_list;
+		*cli = cl->cli_list;
 	}
 	else
 	{
@@ -58,7 +58,7 @@ static void
 
 int
 	cluster_send_command_all
-	(t_cluster *cluster
+	(t_cl *cl
 	, char *command
 	, void *arg
 	, size_t arg_size)
@@ -68,12 +68,12 @@ int
 	int			nclients;
 
 	tmp = NULL;
-	cli = cluster->cli_list;
+	cli = cl->cli_list;
 	nclients = 0;
 	while (cli != NULL)
 	{
 		if (!cluster_send_command(cli, command, arg, arg_size))
-			remove_client(cluster, &cli, &tmp);
+			remove_client(cl, &cli, &tmp);
 		else
 		{
 			tmp = cli;

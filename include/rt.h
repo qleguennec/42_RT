@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/21 13:48:14 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/26 15:38:13 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,7 @@ bool				cl_copy_image_buffer(t_cl *cl, void *buffer);
 
 void				init_renderer(t_rt *rt);
 
-int					create_window(t_rt *rt, t_cl *cl, t_cluster *cluster);
+int					create_window(t_rt *rt, t_cl *cl);
 
 int					add_render_frame(t_rt *rt);
 void				render_loop(t_rt *rt);
@@ -336,18 +336,10 @@ int					free_elements(t_rt *rt);
 ** -----------------------------------------------------------------------------
 */
 
-int					cluster_init(t_cluster *cluster);
-int
-	cluster_send_command
-	(t_client *client
-	, char *command
-	, void *arg
-	, size_t arg_size);
-int
-	cluster_send_command_all
-	(t_cluster *cluster
-	, char *command
-	, void *arg
-	, size_t arg_size);
+int					cluster_init(t_cl *cl);
+int					cluster_send_command
+	(t_client *client, char *command, void *arg, size_t arg_size);
+int					cluster_send_command_all
+	(t_cl *cl, char *command, void *arg, size_t arg_size); 
 
 #endif

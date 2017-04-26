@@ -21,6 +21,7 @@ constant float2	size2_2	= (float2){XCENTER, YCENTER};
 constant float3	size3	= (float3){WIDTH, HEIGHT, 0};
 constant float3	size3_2	= (float3){XCENTER, YCENTER, 0};
 
+#define DEBUG 1
 #if DEBUG
 # include "debug.cl"
 #endif
@@ -50,6 +51,8 @@ kernel void
 	indent.y = basis.y / HEIGHT;
 	indent.x = basis.x / WIDTH;
 
+	if (x == 0 && y == 0)
+		debug(objs, lgts, cam, nobjs, nlgts);
 	origin.x = cam->pos.x + (cam->focal / 27.5f * cam->rot.x) - basis.x / 2.0f;
 	origin.y = cam->pos.y + (cam->focal / 27.5f * cam->rot.y) - basis.y / 2.0f;
 	origin.z = cam->pos.z + (cam->focal / 27.5f * cam->rot.z);
