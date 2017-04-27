@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 14:50:25 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/26 16:43:31 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/27 14:54:07 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ void
 	self = arg;
 	while (42)
 	{
+		printf("accept\n");
 		fd = accept(self->sockfd, NULL, NULL);
+		printf("accepted\n");
 		new = malloc(sizeof(*new));
 		new->fd = fd;
 		new->next = self->cli_list;

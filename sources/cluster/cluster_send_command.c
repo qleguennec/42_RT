@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 11:18:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/26 15:50:00 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/27 17:07:12 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,16 @@ int
 	, void *arg
 	, size_t arg_size)
 {
-	int	ok;
-
 	if (!send(client->fd, command, ft_strlen(command), 0))
 		return (0);
 	if (!send(client->fd, &arg_size, 8, 0))
 		return (0);
-	if (!send(client->fd, arg, arg_size, 0))
-		return (0);
-	if (!recv(client->fd, &ok, 4, 0))
-		return (0);
-	return (ok);
+	if (arg_size)
+	{
+		if (!send(client->fd, arg, arg_size, 0))
+			return (0);
+	}
+	return (1);
 }
 
 static void

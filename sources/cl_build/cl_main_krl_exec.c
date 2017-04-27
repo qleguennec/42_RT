@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 12:07:51 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/22 13:46:24 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/27 17:09:34 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ bool
 	size_t			i;
 	static size_t	work_size[2] = {REND_W, REND_H};
 
+	cluster_send_command_all(cl, "render", NULL, 0);
 	cpy_kernel_args(cl);
 	if (BENCHMARK_KRL == 1)
 	{
