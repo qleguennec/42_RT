@@ -47,7 +47,7 @@ typedef struct			s_data
 	short				safe;
 }						t_data;
 
-float			calc_delta(float a, float b, float c);
+float			calc_delta(float3 *disc);
 
 void			calc_intersect(float *delta, t_data *data);
 

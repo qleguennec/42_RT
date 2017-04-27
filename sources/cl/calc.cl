@@ -19,18 +19,18 @@
 #include "calc_normal.cl"
 #include "init.cl"
 
-float		calc_delta(float a, float b, float c)
+float		calc_delta(float3 *disc)
 {
 	float	t0;
 	float	t1;
 	float	tmp;
 
-	tmp = (b * b) - (4.0f * a * c);
+	tmp = (disc->y * disc->y) - (4.0f * disc->x * disc->z);
 	if(tmp < 0.0f)
 		return (-1);
 	tmp = sqrt(tmp);
-	t0 = ((-b + tmp) / (2.0f * a));
-	t1 = ((-b - tmp) / (2.0f * a));
+	t0 = ((-disc->y + tmp) / (2.0f * disc->x));
+	t1 = ((-disc->y - tmp) / (2.0f * disc->x));
 	if (t0 < t1)
 		return (t0);
 	return (t1);
