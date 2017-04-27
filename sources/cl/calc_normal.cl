@@ -34,7 +34,7 @@ float3		        calcul_normale(t_data *data)
     float3      rot;
 
     rot = rotate_ray(&data->rot, data, &data->id);
-    if (data->objs[data->id].type == T_PLANE)
+    if (data->objs[data->id].type == T_PLANE || data->type == T_DISK)
         return (fast_normalize(plane_normal(data, rot)));
     else if (data->objs[data->id].type == T_CONE)
         return (fast_normalize(cone_normal(data, rot)));

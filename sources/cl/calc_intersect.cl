@@ -79,7 +79,9 @@ short			cone_intersection(t_data *data, short *index)
 		return (0);
 	calc_intersect(&delta, data);
     m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
-	if (m < 0.0f || m > data->objs[(int)*index].height)
+	if (m < 0.0f)
+		return (0);
+	if(m > data->objs[(int)*index].height)
 		return (cone_caps());
 	return (1);
 }
@@ -106,7 +108,8 @@ short			cylinder_intersection(t_data *data, short *index)
 	calc_intersect(&delta, data);
 	m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
 	if (m < 0.0f || m > data->objs[(int)*index].height)
-		return (cylinder_caps());
+		return (cylinder_caps(data, &rot, index, m));
+	// return (0);
 	return (1);
 }
 

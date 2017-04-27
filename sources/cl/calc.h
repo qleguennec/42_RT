@@ -28,23 +28,20 @@ typedef struct			s_data
 	float				ambiant;
 	float				light_pow;
 	float3				rd_light;
-	//////// essayer de virer tout ceux qui se trouve en dessous ///////
 	short				id;
+	short				safe;
+	short				type;
+	float3				pos;
+
 	short				is_light;
 	float3				inter;
-	// short				option;
 
 	short				nl;
 	float3				rot;
-	float3				pos;
 	float				t;
 
-	float3				intersect;
-
-	///////////a virer///////////
 	float3				offset;
-	//////////////optionel//////////
-	short				safe;
+	float3				intersect;
 }						t_data;
 
 float			calc_delta(float3 *disc);
@@ -57,7 +54,8 @@ short			plane_intersection(t_data *data, short *index);
 
 short			cone_intersection(t_data *data, short *index);
 short			cone_caps(void);
-short			cylinder_caps(void);
+short			cylinder_caps(t_data *data, float3 *rot, short *index, float m);
+
 
 
 short			cylinder_intersection(t_data *data, short *index);
