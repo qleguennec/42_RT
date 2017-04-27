@@ -14,6 +14,7 @@
 #include "calc.h"
 #include "light.h"
 #include "light.cl"
+#include "caps.cl"
 #include "calc_intersect.cl"
 #include "rotate.cl"
 #include "calc_normal.cl"

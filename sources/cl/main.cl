@@ -38,6 +38,7 @@ kernel void
 	float2	indent;
 	float3	direction;
 	float3	origin;
+	float3	rot;
 	size_t	x;
 	size_t	y;
 
@@ -50,9 +51,11 @@ kernel void
 	indent.y = basis.y / HEIGHT;
 	indent.x = basis.x / WIDTH;
 
-	origin.x = cam->pos.x + (cam->focal / 27.5f * cam->rot.x) - basis.x / 2.0f;
-	origin.y = cam->pos.y + (cam->focal / 27.5f * cam->rot.y) - basis.y / 2.0f;
-	origin.z = cam->pos.z + (cam->focal / 27.5f * cam->rot.z);
+	rot = (float3){0.0f, 0.0f, 1.0f};
+	rot = rotate_cam(&rot, cam->rot);
+	origin.x = cam->pos.x + (cam->focal / 27.5f * rot.y) - basis.x / 2.0f;
+	origin.y = cam->pos.y + (cam->focal / 27.5f * rot.x) - basis.y / 2.0f;
+	origin.z = cam->pos.z + (cam->focal / 27.5f * 1.0f);
 	direction.x = origin.x + ((float)x * indent.x) - cam->pos.x;
 	direction.y = origin.y + ((float)y * indent.y) - cam->pos.y;
 	direction.z = origin.z - cam->pos.z;

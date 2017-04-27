@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-float			float3_to_float(float3 v){
-	return (v.x + v.y + v.z);
-}
+// float			float3_to_float(float3 v){
+// 	return (v.x + v.y + v.z);
+// }
 
 void			calc_intersect(float *delta, t_data *data)
 {
@@ -78,10 +78,9 @@ short			cone_intersection(t_data *data, short *index)
 	if ((delta = calc_delta(&disc)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data);
-
     m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
 	if (m < 0.0f || m > data->objs[(int)*index].height)
-		return (0);
+		return (cone_caps());
 	return (1);
 }
 
@@ -98,17 +97,16 @@ short			cylinder_intersection(t_data *data, short *index)
 	disc.x = dot(data->ray_dir, data->ray_dir) -
 		dot(data->ray_dir, rot) * dot(data->ray_dir, rot);
 	disc.y = 2.0f * (dot(data->ray_dir, data->offset) - 
-		dot(data->ray_dir,	rot) * dot(data->offset, rot));
+		dot(data->ray_dir, rot) * dot(data->offset, rot));
 	disc.z = dot(data->offset, data->offset) -
-		dot(data->offset,	rot) * dot(data->offset, rot) -
+		dot(data->offset, rot) * dot(data->offset, rot) -
 		data->objs[(int)*index].radius * data->objs[(int)*index].radius;
 	if ((delta = calc_delta(&disc)) < 0.0f)
 		return (0);
 	calc_intersect(&delta, data);
 	m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
 	if (m < 0.0f || m > data->objs[(int)*index].height)
-		return (0);
-
+		return (cylinder_caps());
 	return (1);
 }
 
