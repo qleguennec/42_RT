@@ -109,7 +109,6 @@ short			cylinder_intersection(t_data *data, short *index)
 	m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
 	if (m < 0.0f || m > data->objs[(int)*index].height)
 		return (cylinder_caps(data, &rot, index, m));
-	// return (0);
 	return (1);
 }
 

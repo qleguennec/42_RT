@@ -21,39 +21,25 @@ short       cylinder_caps(t_data *data, float3 *rot, short *index, float m)
 	float	t;
 
     if (m < 0.0f)
-    {
-        *rot *= -1; // a voir ci cela est necessaire
-        data->type = T_DISK;
-        div = dot(*rot, data->ray_dir);
-        if (div == 0.0f)
-            return (0);
-        t = (-dot(*rot, data->offset)) / div;
-        if (t < 0.0f)
-            return (0);
-        calc_intersect(&t, data);
-        // if (fast_distance(data->intersect, data->objs[(int)*index].pos) >
-        // data->objs[(int)*index].radius)
-        //     return (0);
-        return (1);
-    }
+        data->pos = data->objs[(int)*index].pos;
     else if (m > data->objs[(int)*index].height)
     {
-        data->type = T_DISK;/////voir pour le fait de sauver le type
         data->pos = data->objs[(int)*index].pos + *rot *
             data->objs[(int)*index].height;
         data->offset = data->ray_pos - data->pos;
-        div = dot(*rot, data->ray_dir);
-        if (div == 0.0f)
-            return (0);
-        t = (-dot(*rot, data->offset)) / div;
-        if (t < 0.0f)
-            return (0);
-        calc_intersect(&t, data);
-        if (fast_distance(data->intersect, data->pos) >
-        data->objs[(int)*index].radius)
-            return (0);
-        return (1);
     }
-    else{printf("test\n");}
-    return (0);
+    else
+        return (0);
+    data->type = T_DISK;
+    div = dot(*rot, data->ray_dir);
+    if (div == 0.0f)
+        return (0);
+    t = (-dot(*rot, data->offset)) / div;
+    if (t < 0.0f)
+        return (0);
+    calc_intersect(&t, data);
+    if (fast_distance(data->intersect, data->pos) >
+    data->objs[(int)*index].radius)
+        return (0);
+    return (1);
 }

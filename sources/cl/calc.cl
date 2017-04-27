@@ -107,7 +107,18 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		else{*pixel = 0x00FF00FF;}
 	}
 	else if (COLOR && data.id > -1)
-		*pixel = get_lighting(&data);
+	{
+		int	clr;
+		int	mask;
+
+		clr = get_lighting(&data);
+		mask = (clr) | 0x000000FF;
+		// printf("clr[%d]\n",clr);
+		// printf("clr[%x]\n",clr);
+		// printf("clr[%p]",clr);
+		*pixel = mask;
+		// *pixel = get_lighting(&data);
+	}
 	else
 		*pixel = FONT;
 }

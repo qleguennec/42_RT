@@ -1,8 +1,8 @@
 static float3         plane_normal(t_data *data, float3 rot)
 {
 	if (dot(data->ray_dir, rot) > 0.0f)
-        return (rot);
-    return (-rot); 
+        return (-rot);
+    return (rot); 
 }
 
 static float3         cone_normal(t_data *data, float3 rot)
