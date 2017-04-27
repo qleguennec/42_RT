@@ -10,10 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// float			float3_to_float(float3 v){
-// 	return (v.x + v.y + v.z);
-// }
-
 void			calc_intersect(float *delta, t_data *data)
 {
 	data->t = *delta;
@@ -82,7 +78,7 @@ short			cone_intersection(t_data *data, short *index)
 	if (m < 0.0f)
 		return (0);
 	if(m > data->objs[(int)*index].height)
-		return (cone_caps());
+		return (cone_caps(data, &rot, index));
 	return (1);
 }
 

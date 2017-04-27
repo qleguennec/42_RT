@@ -53,7 +53,8 @@ void			touch_object(t_data *data);
 short			plane_intersection(t_data *data, short *index);
 
 short			cone_intersection(t_data *data, short *index);
-short			cone_caps(void);
+short       cone_caps(t_data *data, float3 *rot, short *index);
+
 short			cylinder_caps(t_data *data, float3 *rot, short *index, float m);
 
 
@@ -69,10 +70,6 @@ short			disk_intersection(t_data *data, short *index);
 void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
  global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir,
   global t_cam *cam, short x, short y);
-/////////////////////
-
-// tools
-// float			float3_to_float(float3 v);
 /////////////////////
 
 // rotate function
