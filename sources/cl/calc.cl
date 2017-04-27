@@ -100,7 +100,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	if (!COLOR && data.id > -1)
 	{
 		if (data.id == 0 && data.type != T_DISK){*pixel = 0xFF0000FF;}
-		else if (data.id == 1){*pixel = 0xff0000FF;}
+		else if (data.id == 1){*pixel = 0xFFFF00FF;}
 		else if (data.id == 2){*pixel = 0x00ffffFF;}
 		else if (data.id == 3){*pixel = 0xffffffFF;}
 		else if (data.id == 4){*pixel = 0xffff00FF;}

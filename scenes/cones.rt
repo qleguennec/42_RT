@@ -1,0 +1,86 @@
+<!--------- Global Settings ---------->
+
+<scene>
+	<name>420 blaze it</name>
+	<ambient>.20</ambient>
+	<anti-aliasing>2</anti-aliasing>
+	<max-reflexion>1</max-reflexion>
+</scene>
+
+<!------------ Camera(s) ------------->
+
+<camera>
+	<name>0123456789012345678</name>
+	<position>0.00 0.00 0.00</position>
+	<rotation>0.00 0.00 1.00</rotation>
+	<focal>55</focal>
+</camera>
+
+<!------------ Light(s) -------------->
+
+<light>
+	<name>Prout</name>
+	<type>Diffuse</type>
+	<visibility>True</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>0.00 0.00 0.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
+<!------------ Object(s) ------------->
+
+<object>
+	<name>Cone 1</name>
+	<type>Cone</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 0.0 250.00</position>
+	<rotation>0.00 0.00 90.00</rotation>
+	<color-rgb>128.00 0.00 0.00</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>40.00</radius>
+	<height>40</height>
+</object>
+
+
+<object>
+	<name>Cone 1</name>
+	<type>Cone</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 0.0 250.00</position>
+	<rotation>0.00 0.00 180.00</rotation>
+	<color-rgb>0.00 0.00 128.00</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>40.00</radius>
+	<height>40</height>
+</object>
+
+
+<object>
+	<name>Cone 1</name>
+	<type>Cone</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 0.0 250.00</position>
+	<rotation>0.00 0.00 270.00</rotation>
+	<color-rgb>128.00 128.00 0.00</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>40.00</radius>
+	<height>40</height>
+</object>
+
+<object>
+	<name>Cone 1</name>
+	<type>Cone</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 0.0 250.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>0.00 128.00 0.00</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>40.00</radius>
+	<height>40</height>
+</object>
+

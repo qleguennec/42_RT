@@ -23,7 +23,7 @@
 	<type>Diffuse</type>
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>0.00 0.00 100.00</position>
+	<position>0.00 0.00 00.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -36,22 +36,23 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 400.00</position>
-	<rotation>-45.00 0.00 0.00</rotation>
+	<rotation>95.00 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>40</height>
 	<radius>20.00</radius>
 </object>
-<!--
+
 <object>
-	<name>Cylinder</name>
-	<type>Cylinder</type>
+	<name>plan sol</name>
+	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>10.00 0.00 400.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>.00 255.00 0.00</color-rgb>
+	<position>0.00 25.00 400.00</position>
+	<rotation>45.00 0.0 0.0</rotation>
+	<color-rgb>0.00 255.00 0.00</color-rgb>
+	<height>5</height>
+	<width>10</width>
+	<radius>20</radius>
 	<opacity>1.00</opacity>
-	<height>80</height>
-	<radius>20.00</radius>
-</object>-->
+</object>
