@@ -26,12 +26,15 @@ float		calc_delta(float3 *disc)
 	float	t1;
 	float	tmp;
 
-	tmp = (disc->y * disc->y) - (4.0f * disc->x * disc->z);
+	tmp = (disc->y * disc->y) - (disc->x * disc->z);
 	if(tmp < 0.0f)
 		return (-1);
+	// else if (tmp == 0.0f)
+	// 	return (-disc->y / (2.0f * disc->x));
 	tmp = sqrt(tmp);
-	t0 = ((-disc->y + tmp) / (2.0f * disc->x));
-	t1 = ((-disc->y - tmp) / (2.0f * disc->x));
+	t0 = ((-disc->y + tmp) / (disc->x));
+	t1 = ((-disc->y - tmp) / (disc->x));
+	// if ((t0 > 0.0f) && (t0 > t1))
 	if (t0 < t1)
 		return (t0);
 	return (t1);

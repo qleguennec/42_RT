@@ -27,7 +27,7 @@ short       cone_caps(t_data *data, float3 *rot, short *index)
         return (0);
     calc_intersect(&t, data);
     if (fast_distance(data->intersect, data->pos) >
-    15)//data->objs[(int)*index].radius)
+    15)//data->objs[(int)*index].radius)// probleme de caps voir benj
         return (0);
     return (1);
 }

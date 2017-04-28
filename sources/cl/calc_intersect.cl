@@ -66,7 +66,7 @@ short			cone_intersection(t_data *data, short *index)
 	data->offset = data->ray_pos - data->objs[(int)*index].pos;
 	disc.x = dot(data->ray_dir, data->ray_dir) - tanj *
 		dot(data->ray_dir, rot) * dot(data->ray_dir, rot);
-	disc.y = 2.0f * (dot(data->ray_dir, data->offset) - tanj *
+	disc.y = (dot(data->ray_dir, data->offset) - tanj *
 		dot(data->ray_dir, rot) *
 		dot(data->offset, rot));
 	disc.z = dot(data->offset, data->offset) - tanj *
@@ -78,7 +78,8 @@ short			cone_intersection(t_data *data, short *index)
 	if (m < 0.0f)
 		return (0);
 	if(m > data->objs[(int)*index].height)
-		return (cone_caps(data, &rot, index));
+		return (0);
+		// return (cone_caps(data, &rot, index));
 	return (1);
 }
 
@@ -94,7 +95,7 @@ short			cylinder_intersection(t_data *data, short *index)
 	data->offset = data->ray_pos - data->objs[(int)*index].pos;
 	disc.x = dot(data->ray_dir, data->ray_dir) -
 		dot(data->ray_dir, rot) * dot(data->ray_dir, rot);
-	disc.y = 2.0f * (dot(data->ray_dir, data->offset) - 
+	disc.y = (dot(data->ray_dir, data->offset) - 
 		dot(data->ray_dir, rot) * dot(data->offset, rot));
 	disc.z = dot(data->offset, data->offset) -
 		dot(data->offset, rot) * dot(data->offset, rot) -
@@ -103,8 +104,10 @@ short			cylinder_intersection(t_data *data, short *index)
 		return (0);
 	calc_intersect(&delta, data);
 	m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
-	if (m < 0.0f || m > data->objs[(int)*index].height)
+	if (data->objs[(int)*index].height > 0  && (m < 0.0f ||
+		m > data->objs[(int)*index].height))
 		return (cylinder_caps(data, &rot, index, m));
+		// return (0);
 	return (1);
 }
 
@@ -117,7 +120,7 @@ short			sphere_intersection(t_data *data, short *index)
 	rot = rotate_ray(&data->ray_dir, data, index);
 	data->offset = data->ray_pos - data->objs[(int)*index].pos;
 	disc.x = dot(data->ray_dir, data->ray_dir);
-	disc.y = 2.0f * dot(data->ray_dir, data->offset);
+	disc.y = dot(data->ray_dir, data->offset);
 	disc.z = dot(data->offset, data->offset) -
 	data->objs[(int)*index].radius * data->objs[(int)*index].radius;
 	if ((delta = calc_delta(&disc)) < 0.0f)
