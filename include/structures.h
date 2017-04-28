@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/26 15:46:01 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/28 14:11:42 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ typedef struct		s_client
 	int				fd;
 	int				*buffer;
 	struct s_client	*next;
+	char			status;
 }					t_client;
 
 typedef struct		s_cl

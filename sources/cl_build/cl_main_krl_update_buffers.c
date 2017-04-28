@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/27 15:32:29 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/28 14:17:37 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static cl_mem
 		return (NULL);
 	}
 	cluster_send_command_all(cl
-		, OBJSIZE == sizeof(t_cl_lgt) ? "lgts" : "objs"
+		, OBJSIZE == sizeof(t_cl_lgt) ? 'l' : 'o'
 		, buf.data
 		, buf.used);
 	free(buf.data);

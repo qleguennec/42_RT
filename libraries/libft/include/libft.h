@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 15:21:42 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/28 12:54:47 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,5 +159,6 @@ int				ft_isdigit(int c);
 
 void			divide_clr(cl_float3 *clr);
 int				check_rgb_clr(cl_float3 clr);
+void			ft_strncpy(char *dest, char *src, size_t n);
 
 #endif

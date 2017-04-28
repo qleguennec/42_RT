@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
-#    Updated: 2017/03/01 15:21:56 by bsouchet         ###   ########.fr        #
+#*   Updated: 2017/04/28 12:55:09 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SOURCES = ft_atoi.c \
 		  ft_bzero.c \
 		  ft_itoa.c \
 		  ft_putnbr.c \
+		  ft_strncpy.c \
 		  ft_putnbr_fd.c \
 		  ft_assign.c \
 		  ft_assign_opencl.c \

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/26 15:38:13 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/28 13:56:17 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -338,8 +338,8 @@ int					free_elements(t_rt *rt);
 
 int					cluster_init(t_cl *cl);
 int					cluster_send_command
-	(t_client *client, char *command, void *arg, size_t arg_size);
+	(t_client *client, char command, void *arg, size_t arg_size);
 int					cluster_send_command_all
-	(t_cl *cl, char *command, void *arg, size_t arg_size); 
+	(t_cl *cl, char command, void *arg, size_t arg_size); 
 
 #endif
