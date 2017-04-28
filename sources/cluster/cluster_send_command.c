@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 11:18:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/28 15:16:05 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/04/28 16:29:14 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int
 	void	*buffer;
 	int		alive;
 
+	buffer = NULL;
 	// TODO this is really really bad
 	if ((cli->status & CLIENT_CAM_OK) == 0)
 	{
