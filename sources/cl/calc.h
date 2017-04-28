@@ -39,12 +39,14 @@ typedef struct			s_data
 	short				nl;
 	float3				rot;
 	float				t;
+	float				t0;
+	float				t1;
 
 	float3				offset;
 	float3				intersect;
 }						t_data;
 
-float			calc_delta(float3 *disc);
+float			calc_delta(float3 *disc, t_data *data);
 
 void			calc_intersect(float *delta, t_data *data);
 
@@ -53,7 +55,7 @@ void			touch_object(t_data *data);
 short			plane_intersection(t_data *data, short *index);
 
 short			cone_intersection(t_data *data, short *index);
-short       cone_caps(t_data *data, float3 *rot, short *index);
+short			cone_caps(t_data *data, float3 *rot, short *index, float m);
 
 short			cylinder_caps(t_data *data, float3 *rot, short *index, float m);
 

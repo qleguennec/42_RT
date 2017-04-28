@@ -20,24 +20,22 @@
 #include "calc_normal.cl"
 #include "init.cl"
 
-float		calc_delta(float3 *disc)
+float		calc_delta(float3 *disc, t_data *data)
 {
-	float	t0;
-	float	t1;
 	float	tmp;
 
-	tmp = (disc->y * disc->y) - (disc->x * disc->z);
+	tmp = (disc->y * disc->y) - (4.0f * disc->x * disc->z);
 	if(tmp < 0.0f)
 		return (-1);
-	// else if (tmp == 0.0f)
-	// 	return (-disc->y / (2.0f * disc->x));
+	else if (tmp == 0.0f)
+	{
+		data->t = -disc->y / (2.0f * disc->x);
+		return (0);
+	}
 	tmp = sqrt(tmp);
-	t0 = ((-disc->y + tmp) / (disc->x));
-	t1 = ((-disc->y - tmp) / (disc->x));
-	// if ((t0 > 0.0f) && (t0 > t1))
-	if (t0 < t1)
-		return (t0);
-	return (t1);
+	data->t0 = ((-disc->y + tmp) / (2.0f * disc->x));
+	data->t1 = ((-disc->y - tmp) / (2.0f * disc->x));
+	return (1);
 }
 
 static short	ray_intersection(t_data *data, short *index)

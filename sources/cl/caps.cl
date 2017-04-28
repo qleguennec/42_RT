@@ -10,11 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-short       cone_caps(t_data *data, float3 *rot, short *index)
+short       cone_caps(t_data *data, float3 *rot, short *index, float m)
 {
+    float   radius;
     float	div;
 	float	t;
 
+    if (m < 0.0f)
+        return (0.0f);
     data->type = T_DISK;
     data->pos = data->objs[(int)*index].pos + *rot *
         data->objs[(int)*index].height;
@@ -26,8 +29,10 @@ short       cone_caps(t_data *data, float3 *rot, short *index)
     if (t < 0.0f)
         return (0);
     calc_intersect(&t, data);
-    if (fast_distance(data->intersect, data->pos) >
-    15)//data->objs[(int)*index].radius)// probleme de caps voir benj
+    radius = data->objs[(int)*index].height / tan((90.0f -
+        (data->objs[(int)*index].radius / 2.0f)) * (float)(M_PI / 180.0f));
+    if (native_powr(radius, 2) <
+    native_powr(fast_distance(data->intersect, data->pos), 2))
         return (0);
     return (1);
 }
@@ -38,7 +43,10 @@ short       cylinder_caps(t_data *data, float3 *rot, short *index, float m)
 	float	t;
 
     if (m < 0.0f)
+    {
+        *rot *= -1;
         data->pos = data->objs[(int)*index].pos;
+    }
     else if (m > data->objs[(int)*index].height)
     {
         data->pos = data->objs[(int)*index].pos + *rot *
