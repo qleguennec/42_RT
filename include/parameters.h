@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:35:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/03 16:06:57 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/28 18:36:17 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,16 @@
 
 # define RECT_OUTLINER rt->ui->c_elem->r_ol
 
-# define CK_DW rt->event.key.keysym.sym
+# define CK_DOWN rt->event.key.keysym.sym
 
 # define DRAW_C draw_case_active
 
 # define DELETE_RECT &(SDL_Rect){874, 370, 170, 22}
 
 # define MAX_FPS 30
+
+# define R round
+
+# define DTOA ft_dtoa
 
 #endif

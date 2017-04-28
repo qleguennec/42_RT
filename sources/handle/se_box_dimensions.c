@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse_in_render_frame.c                            :+:      :+:    :+:   */
+/*   se_box_dimensions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/03 18:45:32 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/03 18:46:43 by bsouchet         ###   ########.fr       */
+/*   Created: 2017/04/28 18:55:53 by bsouchet          #+#    #+#             */
+/*   Updated: 2017/04/28 18:58:41 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int			check_mouse_in_render_frame(t_rt *rt)
+void    update_se_object_box_dimensions_plus(t_rt *rt)
 {
-	(void)rt;
-	return (1);
+    rt->scn->s_elem->
+}
+
+void    update_se_object_box_dimensions_minus(t_rt *rt)
+{
+    rt->scn->s_elem->
 }

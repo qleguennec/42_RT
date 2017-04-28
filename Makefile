@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/03/03 18:48:14 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/03/01 19:52:20 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,6 @@ SOURCES		= \
 			handle/selected_element.c \
 			handle/mouse.c \
 			handle/mouse_clicks.c \
-			handle/mouse_in_render_frame.c \
 			handle/outliner.c \
 			handle/scene_parameters.c \
 			handle/se_box_minus.c \

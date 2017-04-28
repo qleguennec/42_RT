@@ -39,10 +39,9 @@
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>127.50 127.50 127.50</color-rgb>
 	<opacity>1.00</opacity>
-	<lenght>1000.00</lenght>
-	<width>524.00</width>
-	<reflection>.20</reflection>
-	<refraction-index>1.00</refraction-index>
-	<specular>.10</specular>
+	<radius>25.00</radius>
+	<lenght>1000.0</lenght>
+	<width>524.0</width>
+	<height>42.0</height>
 </object>
 

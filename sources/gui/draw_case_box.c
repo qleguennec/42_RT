@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 17:29:24 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/03 15:24:27 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/28 19:43:21 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ static void	redraw_case_box_light(t_rt *rt, t_obj *obj, char *tmp, int m)
 		draw_case_active(rt, tmp, rt->ui->lgt_b_rect[2], m);
 	}
 	else if (rt->ui->case_active == 3)
-		DRAW_C(rt, ft_dtoa(obj->clr.x * 255.0), rt->ui->lgt_b_rect[3], m);
+		DRAW_C(rt, DTOA(R(obj->clr.x * 255.0f)), rt->ui->lgt_b_rect[3], m);
 	else if (rt->ui->case_active == 4)
-		DRAW_C(rt, ft_dtoa(obj->clr.y * 255.0), rt->ui->lgt_b_rect[4], m);
+		DRAW_C(rt, DTOA(R(obj->clr.y * 255.0f)), rt->ui->lgt_b_rect[4], m);
 	else if (rt->ui->case_active == 5)
-		DRAW_C(rt, ft_dtoa(obj->clr.z * 255.0), rt->ui->lgt_b_rect[5], m);
+		DRAW_C(rt, DTOA(R(obj->clr.z * 255.0f)), rt->ui->lgt_b_rect[5], m);
 	else if (rt->ui->case_active == 6)
 		draw_case_active(rt, ft_dtoa(obj->pos.x), rt->ui->lgt_b_rect[6], m);
 	else if (rt->ui->case_active == 7)
@@ -59,7 +59,7 @@ static void	redraw_case_box_light(t_rt *rt, t_obj *obj, char *tmp, int m)
 		draw_case_active(rt, ft_dtoa(obj->rot.z), rt->ui->lgt_b_rect[11], m);
 }
 
-static int	redraw_case_box_object_part2(t_rt *rt, t_obj *obj, int m)
+static void	redraw_case_box_object_part2(t_rt *rt, t_obj *obj, int m)
 {
 	if (rt->ui->case_active == 3)
 		draw_case_active(rt, ft_dtoa(obj->reflex), rt->ui->obj_b_rect[3], m);
@@ -67,7 +67,12 @@ static int	redraw_case_box_object_part2(t_rt *rt, t_obj *obj, int m)
 		draw_case_active(rt, ft_dtoa(obj->refrac_y), rt->ui->obj_b_rect[4], m);
 	else if (rt->ui->case_active == 5)
 		draw_case_active(rt, ft_dtoa(obj->radius), rt->ui->obj_b_rect[5], m);
-	return (1);
+	else if (rt->ui->case_active == 6)
+		draw_case_active(rt, ft_dtoa(obj->width), rt->ui->obj_b_rect[6], m);
+	else if (rt->ui->case_active == 7)
+		draw_case_active(rt, ft_dtoa(obj->height), rt->ui->obj_b_rect[7], m);
+	else
+		draw_case_active(rt, ft_dtoa(obj->lenght), rt->ui->obj_b_rect[8], m);
 }
 
 static void	redraw_case_box_object(t_rt *rt, t_obj *obj, int m)
@@ -79,11 +84,11 @@ static void	redraw_case_box_object(t_rt *rt, t_obj *obj, int m)
 	else if (rt->ui->case_active > 2 && rt->ui->case_active < 9)
 		redraw_case_box_object_part2(rt, obj, m);
 	else if (rt->ui->case_active == 9)
-		DRAW_C(rt, ft_dtoa(obj->clr.x * 255.0), rt->ui->obj_b_rect[9], m);
+		DRAW_C(rt, DTOA(R(obj->clr.x * 255.0f)), rt->ui->obj_b_rect[9], m);
 	else if (rt->ui->case_active == 10)
-		DRAW_C(rt, ft_dtoa(obj->clr.y * 255.0), rt->ui->obj_b_rect[10], m);
+		DRAW_C(rt, DTOA(R(obj->clr.y * 255.0f)), rt->ui->obj_b_rect[10], m);
 	else if (rt->ui->case_active == 11)
-		DRAW_C(rt, ft_dtoa(obj->clr.z * 255.0), rt->ui->obj_b_rect[11], m);
+		DRAW_C(rt, DTOA(R(obj->clr.z * 255.0f)), rt->ui->obj_b_rect[11], m);
 	else if (rt->ui->case_active == 12)
 		draw_case_active(rt, ft_dtoa(obj->pos.x), rt->ui->obj_b_rect[12], m);
 	else if (rt->ui->case_active == 13)

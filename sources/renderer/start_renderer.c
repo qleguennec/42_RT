@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 21:42:39 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/28 18:09:36 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,23 @@ int			add_render_frame(t_rt *rt)
 	return (1);
 }
 
+int			lol_cat(void *data, SDL_Event *event)
+{
+	(void)data;
+	if (event->type == SDL_KEYUP)
+		SDL_FlushEvent(SDL_KEYDOWN);
+	return (1);
+}
+
 static int	global_loop(t_rt *rt, t_cl *cl)
 {
 	while (rt->run)
 	{
 		if (SDL_PollEvent(&rt->event))
+		{
+			SDL_AddEventWatch(lol_cat, rt); 
 			handle_events(rt, cl);
+		}
 		SDL_UpdateWindowSurface(rt->win);
 		fsdl_fps_limit(rt->fps);
 		fsdl_fps_counter(rt->fps);

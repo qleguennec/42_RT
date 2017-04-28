@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 21:18:20 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/03 19:24:42 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/28 20:20:04 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,23 +84,26 @@ static void		handle_selected_light(t_rt *rt)
 	draw_se_button(rt, rt->ui->b_se_hover, 'L', 1);
 }
 
-static void		handle_selected_object(t_rt *rt, t_obj *obj)
+static void		handle_selected_object(t_rt *rt, t_obj *o)
 {
 	rt->ui->t_c = 0;
 	while (rt->ui->t_c < 18 &&
 	!fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[(int)rt->ui->t_c]))
 		rt->ui->t_c++;
 	if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[5]) &&
-	(obj->forme == T_CUBE || obj->forme == T_PLANE))
+	(o->forme == T_PLANE || o->forme == T_CUBE))
 		return ;
-	if ((fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[6]) ||
-	fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[7])) &&
-	(obj->forme == T_CYLINDER || obj->forme == T_CONE ||
-	obj->forme == T_TORUS || obj->forme == T_SPHERE))
-	return ;
+	if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[6]) &&
+	(o->forme == T_SPHERE || o->forme == T_CONE || o->forme == T_CYLINDER ||
+	o->forme == T_TORUS))
+		return ;
+	if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[7]) &&
+	(o->forme == T_PLANE || o->forme == T_SPHERE || o->forme == T_TORUS)) // TORUS ??
+		return ;
 	if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[8]) &&
-		(obj->forme == T_SPHERE || obj->forme == T_PLANE))
-	return ;
+	(o->forme == T_SPHERE || o->forme == T_CONE || o->forme == T_CYLINDER ||
+	o->forme == T_TORUS))
+		return ;
 	if ((rt->ui->t_c == 18 || rt->ui->t_c == rt->ui->case_active) &&
 	(rt->ui->b_se_hover = -1) != 0)
 		return ;
