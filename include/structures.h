@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/30 18:27:37 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/02 18:15:38 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ struct				s_scene
 typedef struct		s_ui
 {
 	short			t_c;
+	cl_float3		t_v;
 	char			c_num;
 	char			*tmp;
 	char			*c_name;
@@ -182,7 +183,7 @@ struct				s_rt
 	SDL_Rect		r_view;
 	SDL_Rect		r_view_m;
 	SDL_Surface		*s_rend;
-	SDL_Surface		*s_process;
+	SDL_Surface		*s_effct;
 	SDL_Texture		*t_rend;
 
 	char			render;

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/28 18:09:36 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/02 18:15:57 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,20 @@
 
 int			add_render_frame(t_rt *rt)
 {
-	SDL_LowerBlit(rt->s_rend, &(SDL_Rect){(rt->r_view.x - 18), 0, rt->r_view.w,
-	rt->r_view.h}, rt->s_back, &rt->r_view);
+	if (rt->scn->sp_mode)
+	{
+		if (rt->scn->sp_mode == 1)
+			add_sepia_effect(rt);
+		else if (rt->scn->sp_mode == 2)
+			add_black_n_white_effect(rt);
+		else
+			add_cartoon_effect(rt);
+		SDL_LowerBlit(rt->s_effct, &(SDL_Rect){(rt->r_view.x - 18), 0,
+		rt->r_view.w, rt->r_view.h}, rt->s_back, &rt->r_view);
+	}
+	else
+		SDL_LowerBlit(rt->s_rend, &(SDL_Rect){(rt->r_view.x - 18), 0,
+		rt->r_view.w, rt->r_view.h}, rt->s_back, &rt->r_view);
 	return (1);
 }
 

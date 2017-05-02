@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/03/01 19:52:20 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/05/02 17:40:04 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,7 @@ SOURCES		= \
 			main.c \
 			misc/free_elements.c \
 			misc/verbose_mode.c \
+			misc/special_modes.c \
 			parser/add_elements.c \
 			parser/add_elements_parameters.c \
 			parser/check_elements.c \
