@@ -129,7 +129,7 @@ short            egg_intersection(t_data *data, short *index)
 
     k1 = 2.0f * data->objs[(int)*index].height * (dot(data->ray_dir, data->rot));
     k2 = sr + 2.0f * data->objs[(int)*index].height *
-            dot(data->offset, data->ray_dir) - data->objs[(int)*index].height;
+            dot(data->offset, data->rot) - data->objs[(int)*index].height;
 
     disc.x = dot((4.0f * sr * data->ray_dir), data->ray_dir) - k1 * k1;
     disc.y = 2.0f * (dot((4.0f * sr * data->ray_dir), data->offset) - k1 * k2);
