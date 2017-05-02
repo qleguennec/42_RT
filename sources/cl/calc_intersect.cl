@@ -55,7 +55,7 @@ short			cone_intersection(t_data *data, short *index)
 {
 	float3	disc;
 	float3	rot;
-	float	delta;
+	float	res;
 	float	m;
 	float	tanj;
 	float	rad;
@@ -71,19 +71,22 @@ short			cone_intersection(t_data *data, short *index)
 		dot(data->offset, rot));
 	disc.z = dot(data->offset, data->offset) - tanj *
 		dot(data->offset, rot) * dot(data->offset, rot);
-	if ((delta = calc_delta(&disc, data)) == -1)
+	if (calc_delta(&disc, data) == -1)
 		return (0);
 	m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
 	if (data->objs[(int)*index].height > 0.0f && 
 		(m > data->objs[(int)*index].height || m < 0.0f))
 	{
-		delta = (data->t0 > data->t1) ? data->t0 : data->t1;
-		if ((rad = cone_caps(data, &rot, index, m)) == 0)
-			return (0);
-		else if (rad == 1)
+		rad = (data->t0 > data->t1) ? data->t0 : data->t1;
+		if ((res = cone_caps(data, &rot, index, m)) == 1)
 			return (1);
+		else if (res == 0)
+			return (0);
+	// calc_intersect(&rad, data);
+	return (1);
+			
 	}
-	calc_intersect(&delta, data);
+	calc_intersect(&data->t, data);
 	return (1);
 }
 
@@ -92,7 +95,6 @@ short			cylinder_intersection(t_data *data, short *index)
 {
 	float3	disc;
 	float3	rot;
-	float	delta;
 	float	m;
 
 	rot = rotate_ray(&data->rot, data, index);
@@ -104,7 +106,7 @@ short			cylinder_intersection(t_data *data, short *index)
 	disc.z = dot(data->offset, data->offset) -
 		dot(data->offset, rot) * dot(data->offset, rot) -
 		data->objs[(int)*index].radius * data->objs[(int)*index].radius;
-	if ((delta = calc_delta(&disc, data)) == -1)
+	if (calc_delta(&disc, data) == -1)
 		return (0);
 	if (data->objs[(int)*index].height > 0.0f)
 	{
@@ -120,7 +122,6 @@ short			sphere_intersection(t_data *data, short *index)
 {
 	float3	disc;
 	float3	rot;
-	float	delta;
 
 	rot = rotate_ray(&data->ray_dir, data, index);
 	data->offset = data->ray_pos - data->objs[(int)*index].pos;
@@ -128,8 +129,8 @@ short			sphere_intersection(t_data *data, short *index)
 	disc.y = 2.0f * dot(data->ray_dir, data->offset);
 	disc.z = dot(data->offset, data->offset) -
 	data->objs[(int)*index].radius * data->objs[(int)*index].radius;
-	if ((delta = calc_delta(&disc, data)) == -1)
+	if (calc_delta(&disc, data) == -1)
 		return (0);
-	calc_intersect(&delta, data);
+	calc_intersect(&data->t, data);
 	return (1);
 }
