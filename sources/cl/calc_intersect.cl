@@ -103,9 +103,9 @@ short			cylinder_intersection(t_data *data, short *index)
 	else if (!delta)
 	{
 		calc_intersect(&data->t, data);
-		data->type = T_DISK;
-		return (1);
-		m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
+		// data->type = T_DISK;
+		return (0);
+		// m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
 		// if (m < 0.0f || m > 40.0f)
 		// 	// return (cylinder_caps(data, &rot, index, m));
 		// // else
@@ -113,17 +113,20 @@ short			cylinder_intersection(t_data *data, short *index)
 	}
 	else
 	{
-		calc_intersect(&data->t, data);
-		// data->type = T_DISK;
-		//  return (1);
 		float	m0 = dot(data->ray_dir, rot * data->t0) + dot(rot, data->offset);
 		float	m1 = dot(data->ray_dir, rot * data->t1) + dot(rot, data->offset);
-		m = (m0 < m1) ? m0 : m1;
-		if ((m0 < 0.0f || m1 > 40.0f) && (m1 < 0.0f || m0 > 40.0f))
-			return (0);
-		// else if ()
-			// return (cylinder_caps(data, &rot, index, m));
-			// return (0);
+		m = (data->t0 < data->t1) ? m0 : m1;
+		// return (1);
+			// return (1);
+		// data->type = T_DISK;
+		//  return (1);
+		
+		// m = (m0 < m1) ? m1 : m0;
+		if ((m0 < 0.0f || m0 > 40.0f) && (m1 < 0.0f || m1 > 40.0f))// && (m1 < 0.0f || m1 > 40.0f))
+			return (cylinder_caps(data, &rot, index, m, 0));
+		calc_intersect(&data->t, data);
+		// else
+			return (1);
 		}
 	// m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
 

@@ -37,20 +37,20 @@ short       cone_caps(t_data *data, float3 *rot, short *index, float m)
     return (1);
 }
 
-short       cylinder_caps(t_data *data, float3 *rot, short *index, float m)
+short       cylinder_caps(t_data *data, float3 *rot, short *index, float m, int option)
 {
     float	div;
 	float	t;
 
-    if (m < 0.0f)
+    if (option)
     {
-        *rot *= -1;
+        *rot *=-1;
         data->pos = data->objs[(int)*index].pos;
     }
-    else if (m > data->objs[(int)*index].height)
+    else
     {
-        data->pos = data->objs[(int)*index].pos + *rot *
-            data->objs[(int)*index].height;
+        data->pos = data->objs[(int)*index].pos + (*rot *
+        data->objs[(int)*index].height);
         data->offset = data->ray_pos - data->pos;
     }
     data->type = T_DISK;

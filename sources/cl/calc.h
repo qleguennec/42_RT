@@ -57,7 +57,7 @@ short			plane_intersection(t_data *data, short *index);
 short			cone_intersection(t_data *data, short *index);
 short			cone_caps(t_data *data, float3 *rot, short *index, float m);
 
-short			cylinder_caps(t_data *data, float3 *rot, short *index, float m);
+short			cylinder_caps(t_data *data, float3 *rot, short *index, float m, int option);
 
 
 
