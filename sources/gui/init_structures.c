@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:28:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/27 17:46:54 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/30 19:12:15 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ static void	init_buttons_state(t_ui *ui)
 
 static void	init_buttons(t_rt *rt)
 {
+	rt->ui->k_edit = 0;
+	rt->ui->b_sp_hover = -1;
+	rt->ui->b_sp_active = -1;
 	rt->ui->case_active = -1;
 	rt->ui->case_rect = NULL;
 	init_buttons_rect(rt->ui);
@@ -65,6 +68,7 @@ static void	init_buttons(t_rt *rt)
 	init_gui_selected_camera_buttons(rt->ui);
 	init_gui_selected_light_buttons(rt->ui);
 	init_gui_selected_object_buttons(rt->ui);
+	init_gui_selected_scene_parameters(rt->ui);
 	draw_button(rt, 11, 3);
 	draw_button(rt, 12, 3);
 	draw_button(rt, 13, 3);
@@ -78,7 +82,7 @@ static void	init_gui_areas(t_ui *ui, short i)
 	ui->area[0] = (SDL_Rect){0, 0, 1280, 66};
 	ui->area[1] = (SDL_Rect){225, 25, 829, 34};
 	ui->area[2] = (SDL_Rect){0, 67, 214, 653};
-	ui->area[3] = (SDL_Rect){144, 101, 47, 63};
+	ui->area[3] = (SDL_Rect){139, 100, 53, 75};
 	ui->area[4] = (SDL_Rect){13, 233, 188, (i * 29) - 1};
 	ui->area[7] = (SDL_Rect){1066, 67, 214, 653};
 	comment(" v Current Selected Element Area v ");

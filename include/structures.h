@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/28 16:21:25 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/30 18:27:37 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,14 @@ typedef struct		s_ui
 	char			c_down;
 	char			ra_hover;
 	char			ra_down;
+	char			b_sp_hover;
+	char			b_sp_active;
 	char			*n_save;
 	char			save_num;
 	char			b_state[19];
 	char			nav_state;
 	short			id;
+	short			k_edit;
 	t_obj			*c_elem;
 	SDL_Point		p_tmp;
 	SDL_Rect		t_rect;
@@ -131,6 +134,7 @@ typedef struct		s_ui
 	SDL_Rect		cam_b_rect[8];
 	SDL_Rect		lgt_b_rect[12];
 	SDL_Rect		obj_b_rect[18];
+	SDL_Rect		param_b_rect[3];
 	SDL_Rect		*b_se_rect;
 	SDL_Rect		*case_rect;
 	SDL_Rect		r_hover;
