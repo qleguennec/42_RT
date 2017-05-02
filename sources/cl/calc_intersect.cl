@@ -116,10 +116,13 @@ short			cylinder_intersection(t_data *data, short *index)
 		float	m0 = dot(data->ray_dir, rot * data->t0) + dot(rot, data->offset);
 		float	m1 = dot(data->ray_dir, rot * data->t1) + dot(rot, data->offset);
 		m = (m0 < m1) ? m1 : m0;
-		// m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
+		m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
 		
 		if ((m < 0.0f || m > 40.0f))
-				return (cylinder_caps(data, &rot, index, m));
+			return (cylinder_caps(data, &rot, index, m));
+		m = (m0 < m1) ? m0 : m1;
+		if ((m < 0.0f || m > 40.0f))
+			return (cylinder_caps(data, &rot, index, m));
 		calc_intersect(&data->t, data);
 	}
 	return (1);
