@@ -35,18 +35,17 @@ static float3 	   calcul_normal_egg(t_data *data)
     float    k2;
     float    sr;
 
-    data->rdir = rotate_ray(&data->ray_dir, data, &data->id);
     sr = pow(data->objs[data->id].radius, 2.0f);
-    data->rdir = rotate_ray(&data->ray_dir, data, &data->id);
-    k1 = 2.0f * data->objs[data->id].height * (dot(data->rdir, data->rot));
+    data->ray_dir = rotate_ray(&data->ray_dir, data, &data->id);
+    k1 = 2.0f * data->objs[data->id].height * (dot(data->ray_dir, data->rot));
     k2 = sr + 2.0f * data->objs[data->id].height *
-            dot(data->offset, data->rdir) - data->objs[data->id].height;
-    a = 4.0f * sr * dot(data->rdir, data->rdir) - k1 * k1;
-    b = 2.0f * (4.0f * sr *    dot(data->rdir, data->offset) - k1 * k2);
-    m = data->objs[data->id].pos + data->rdir * data->objs[data->id].height / 2.0f;
+            dot(data->offset, data->ray_dir) - data->objs[data->id].height;
+    a = 4.0f * sr * dot(data->ray_dir, data->ray_dir) - k1 * k1;
+    b = 2.0f * (4.0f * sr *    dot(data->ray_dir, data->offset) - k1 * k2);
+    m = data->objs[data->id].pos + data->ray_dir * data->objs[data->id].height / 2.0f;
     k = data->intersect - m;
-    return(data->objs[data->id].radius - data->rdir * (1.0f - pow(b, 2.0f) /
-                pow(a, 2.0f) * dot(k, data->rdir)));
+    return(data->objs[data->id].radius - data->ray_dir * (1.0f - pow(b, 2.0f) /
+                pow(a, 2.0f) * dot(k, data->ray_dir)));
 }
 
 static float3    	calcul_normal_paraboloid(t_data *data)
@@ -55,8 +54,8 @@ static float3    	calcul_normal_paraboloid(t_data *data)
 
     m = dot(data->ray_dir, data->rot) * data->t +
         dot(data->rot, data->offset);
-    data->rdir = rotate_ray(&data->ray_dir, data, &data->id);
-    return(data->intersect - data->objs[data->id].pos - data->rdir * m);
+    data->ray_dir = rotate_ray(&data->ray_dir, data, &data->id);
+    return(data->intersect - data->objs[data->id].pos - data->ray_dir * m);
 }
 
 static float3		sphere_normal(t_data *data)
@@ -79,5 +78,10 @@ float3		        calcul_normale(t_data *data)
         return (fast_normalize(cylinder_normal(data, rot)));
     else if (data->objs[data->id].type == T_SPHERE)
         return (fast_normalize(sphere_normal(data)));
+	else if (data->objs[data->id].type == T_TORUS)
+		return (fast_normalize(calcul_normal_egg(data)));
+	else if (data->objs[data->id].type == T_PYRAMID)
+        return (fast_normalize(calcul_normal_paraboloid(data)));
+
 	return ((float3){0.0f, 0.0f, 0.0f});
 }

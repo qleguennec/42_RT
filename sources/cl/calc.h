@@ -6,7 +6,7 @@
 /*   By: lgatibel <lgatibel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:37 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/05/02 15:17:25 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/02 16:38:41 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,13 @@ short			cone_caps(t_data *data, float3 *rot, short *index, float m);
 
 short			cylinder_caps(t_data *data, float3 *rot, short *index, float m);
 
+short            paraboloid_intersection(t_data *data, short *index);
 
+short            egg_intersection(t_data *data, short *index);
 
 short			cylinder_intersection(t_data *data, short *index);
 
 short			sphere_intersection(t_data *data, short *index);
-
-short			disk_intersection(t_data *data, short *index);
-
-short			egg_intersection(t_data *data, short *index);
-
-short			paraboloid_intersection(t_data *data, short *index);
-
-
 /////////////////////
 
 // entry function
