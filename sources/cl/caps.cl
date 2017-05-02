@@ -37,22 +37,22 @@ short       cone_caps(t_data *data, float3 *rot, short *index, float m)
     return (1);
 }
 
-short       cylinder_caps(t_data *data, float3 *rot, short *index, float m, int option)
+short       cylinder_caps(t_data *data, float3 *rot, short *index, float m)
 {
     float	div;
 	float	t;
 
-    if (option)
-    {
-        *rot *=-1;
-        data->pos = data->objs[(int)*index].pos;
-    }
-    else
-    {
-        data->pos = data->objs[(int)*index].pos + (*rot *
-        data->objs[(int)*index].height);
+    // if (m < 0.0f)
+    // {
+    //     *rot *= -1;
+    //     data->pos = data->objs[(int)*index].pos;
+    // }
+    // else
+    // {
+        data->pos = data->objs[(int)*index].pos + data->rot *
+            data->objs[(int)*index].height;
         data->offset = data->ray_pos - data->pos;
-    }
+    // }
     data->type = T_DISK;
     div = dot(*rot, data->ray_dir);
     if (div == 0.0f)

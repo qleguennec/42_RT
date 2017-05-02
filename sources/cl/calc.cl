@@ -35,6 +35,7 @@ float		calc_delta(float3 *disc, t_data *data)
 	tmp = sqrt(tmp);
 	data->t0 = ((-disc->y + tmp) / (2.0f * disc->x));
 	data->t1 = ((-disc->y - tmp) / (2.0f * disc->x));
+	data->t = (data->t0 < data->t1) ? data->t0 : data->t1;
 	return (1);
 }
 
