@@ -12,7 +12,7 @@
 <camera>
 	<name>0123456789012345678</name>
 	<position>0.00 0.00 0.00</position>
-	<rotation>0.00 0.00 1.00</rotation>
+	<rotation>0.00 0.00 0.00</rotation>
 	<focal>55</focal>
 </camera>
 
@@ -36,7 +36,7 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.0 250.00</position>
-	<rotation>45.00 0.00 0.00</rotation>
+	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 255.00 .00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>80.00</radius>
@@ -47,9 +47,9 @@
 	<name>plan fond</name>
 	<type>Plane</type>
 	<material>Lambert</material>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<position>0.00 0.00 400.00</position>
-	<rotation>-90.00 0.00 0.00</rotation>
+	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>128.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>

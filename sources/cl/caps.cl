@@ -17,8 +17,7 @@ short       cone_caps(t_data *data, float3 *rot, short *index, float m)
 	float	t;
 
     if (m < 0.0f)
-        return (0.0f);
-    data->type = T_DISK;
+        return (-1);
     data->pos = data->objs[(int)*index].pos + *rot *
         data->objs[(int)*index].height;
     data->offset = data->ray_pos - data->pos;
@@ -34,6 +33,7 @@ short       cone_caps(t_data *data, float3 *rot, short *index, float m)
     if (native_powr(radius, 2) <
     native_powr(fast_distance(data->intersect, data->pos), 2))
         return (0);
+    data->type = T_DISK;
     return (1);
 }
 
@@ -42,18 +42,14 @@ short       cylinder_caps(t_data *data, float3 *rot, short *index, float m)
     float	div;
 	float	t;
 
-    // if (m < 0.0f)
-    // {
-    //     *rot *= -1;
-    //     data->pos = data->objs[(int)*index].pos;
-    // }
-    // else
-    // {
-        data->pos = data->objs[(int)*index].pos + data->rot *
+    if (m < 0.0f)
+        data->pos = data->objs[(int)*index].pos;
+    else
+    {
+        data->pos = data->objs[(int)*index].pos + *rot *
             data->objs[(int)*index].height;
         data->offset = data->ray_pos - data->pos;
-    // }
-    data->type = T_DISK;
+    }
     div = dot(*rot, data->ray_dir);
     if (div == 0.0f)
         return (0);
@@ -64,5 +60,6 @@ short       cylinder_caps(t_data *data, float3 *rot, short *index, float m)
     if (fast_distance(data->intersect, data->pos) >
     data->objs[(int)*index].radius)
         return (0);
+    data->type = T_DISK;
     return (1);
 }

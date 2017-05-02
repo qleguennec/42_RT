@@ -71,13 +71,19 @@ short			cone_intersection(t_data *data, short *index)
 		dot(data->offset, rot));
 	disc.z = dot(data->offset, data->offset) - tanj *
 		dot(data->offset, rot) * dot(data->offset, rot);
-	if ((delta = calc_delta(&disc, data)) < 0.0f)
+	if ((delta = calc_delta(&disc, data)) == -1)
 		return (0);
+	m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
+	if (data->objs[(int)*index].height > 0.0f && 
+		(m > data->objs[(int)*index].height || m < 0.0f))
+	{
+		delta = (data->t0 > data->t1) ? data->t0 : data->t1;
+		if ((rad = cone_caps(data, &rot, index, m)) == 0)
+			return (0);
+		else if (rad == 1)
+			return (1);
+	}
 	calc_intersect(&delta, data);
-    m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
-	// if (data->objs[(int)*index].height > 0.0f && 
-	// 	(m > data->objs[(int)*index].height || m < 0.0f))
-	// 		return (cone_caps(data, &rot, index, m));
 	return (1);
 }
 
@@ -100,29 +106,13 @@ short			cylinder_intersection(t_data *data, short *index)
 		data->objs[(int)*index].radius * data->objs[(int)*index].radius;
 	if ((delta = calc_delta(&disc, data)) == -1)
 		return (0);
-	else if (!delta)
+	if (data->objs[(int)*index].height > 0.0f)
 	{
-		calc_intersect(&data->t, data);
-		// data->type = T_DISK;
-		return (1);
 		m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
-		if (m < 0.0f || m > 40.0f)
+		if (m < 0.0f || m > data->objs[(int)*index].height)
 			return (cylinder_caps(data, &rot, index, m));
-		// // else
-		// 	return (0);
 	}
-	else
-	{
-		float	m0 = dot(data->ray_dir, rot * data->t0) + dot(rot, data->offset);
-		float	m1 = dot(data->ray_dir, rot * data->t1) + dot(rot, data->offset);
-		m = (m0 < m1) ? m1 : m0;
-		m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
-		
-		if ((m < 0.0f || m > 40.0f))
-			return (cylinder_caps(data, &rot, index, m));
-	
-		calc_intersect(&data->t, data);
-	}
+	calc_intersect(&data->t, data);
 	return (1);
 }
 
@@ -138,7 +128,7 @@ short			sphere_intersection(t_data *data, short *index)
 	disc.y = 2.0f * dot(data->ray_dir, data->offset);
 	disc.z = dot(data->offset, data->offset) -
 	data->objs[(int)*index].radius * data->objs[(int)*index].radius;
-	if ((delta = calc_delta(&disc, data)) < 0.0f)
+	if ((delta = calc_delta(&disc, data)) == -1)
 		return (0);
 	calc_intersect(&delta, data);
 	return (1);

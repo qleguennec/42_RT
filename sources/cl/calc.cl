@@ -49,8 +49,6 @@ static short	ray_intersection(t_data *data, short *index)
 		return (cylinder_intersection(data, index));
 	else if (data->objs[(int)*index].type == T_SPHERE)
 		return (sphere_intersection(data, index));
-	//else if (data->objs[(int)*index].type == T_DISK)
-	// 	return (disk_intersection(data));
 	return (0);
 }
 
@@ -60,10 +58,10 @@ void			touch_object(t_data *data)
 	float			smallest_norm;
 	float			norm;
 	float3			closest_intersect;
+	float			t;
+	float			type;
 
-	float	t;
 	t = -1;
-
 	index = -1;
 	data->id = -1;
 	smallest_norm = -1;
@@ -77,10 +75,12 @@ void			touch_object(t_data *data)
 				smallest_norm = norm;
 				data->id = index;
 				t = data->t;
+				type = data->type;
 			}
 	}
 	data->intersect = closest_intersect;
 	data->t = t;
+	data->type = type;
 	if (!data->is_light)
 	{
 		data->inter = data->intersect;

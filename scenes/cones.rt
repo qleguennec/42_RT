@@ -37,7 +37,7 @@
 	<visibility>True</visibility>
 	<position>0.00 0.0 250.00</position>
 	<rotation>0.00 0.00 90.00</rotation>
-	<color-rgb>128.00 0.00 0.00</color-rgb>
+	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>40.00</radius>
 	<height>40</height>
