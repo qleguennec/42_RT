@@ -190,28 +190,48 @@ short			sphere_intersection(t_data *data, short *index)
 	return (1);
 }
 
-// k = distance entre les centres
-
-short			egg_intersection(t_data *data, short *index)
+short            egg_intersection(t_data *data, short *index)
 {
-	float	a;
-	float	b;
-	float	c;
-	float	k1;
-	float	k2;
+    float    a;
+    float    b;
+    float    c;
+    float    k1;
+    float    k2;
+    float    sr;
+	float	delta;
 
-	data->rdir = rotate_ray(&data->ray_dir, data, index);
-	k1 = 2.0f * k * (dot(data->rdir, data->rot));
-	k2 = data->objs[(int)*index].radius * data->objs[(int)*index].radius + 2.0f
-		* k * dot(data->offset, data->rdir) - k;
-	a = 4.0f * data->objs[(int)*index].radius * data->objs[(int)*index].radius *
-		dot(data->rdir, data->rdir) - k1 * k1;
-	b = 4.0f * data->objs[(int)*index].radius * data->objs[(int)*index].radius *
-		dot(data->rdir, data->offset) - k1 * k2;
-	c = 4.0f * data->objs[(int)*index].radius * data->objs[(int)*index].radius *
-		dot(data->offset, data->offset) - k2 * k2;
-	if ((delta = calc_delta(a, b, c)) < 0.0f)
-		return (0);
-	calc_intersect(&delta, data);
-	return (1);
+    sr = pow(data->objs[(int)*index].radius, 2.0f);
+    data->rdir = rotate_ray(&data->ray_dir, data, index);
+
+    k1 = 2.0f * data->objs[(int)*index].height * (dot(data->rdir, data->rot));
+    k2 = sr + 2.0f * data->objs[(int)*index].height *
+            dot(data->offset, data->rdir) - data->objs[(int)*index].height;
+
+    a = 4.0f * sr * dot(data->rdir, data->rdir) - k1 * k1;
+    b = 2.0f * (4.0f * sr * dot(data->rdir, data->offset) - k1 * k2);
+    c = 4.0f * sr * dot(data->offset, data->offset) - k2 * k2;
+
+    if ((delta = calc_delta(a, b, c)) < 0.0f)
+        return (0);
+    calc_intersect(&delta, data);
+    return (1);
+}
+
+short            paraboloid_intersection(t_data *data, short *index)
+{
+    float	a;
+    float	b;
+    float	c;
+	float	delta;
+
+    data->rdir = rotate_ray(&data->ray_dir, data, index);
+    a = dot(data->rdir, data->rdir) - pow(dot(data->rdir, data->rot), 2.0f);
+    b = 2.0f * (dot(data->rdir, data->offset) - dot(data->rdir, data->rot) *
+        (dot(data->offset, data->rot) + 2.0f * data->objs[(int)*index].height));
+    c = dot(data->offset, data->offset) - dot(data->offset, data->rdir) *
+        (dot(data->offset, data->rdir) + 4.0f * data->objs[(int)*index].height);
+    if ((delta = calc_delta(a, b, c)) < 0.0f)
+        return (0);
+    calc_intersect(&delta, data);
+    return (1);
 }

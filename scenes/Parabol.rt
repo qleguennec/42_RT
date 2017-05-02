@@ -32,7 +32,7 @@
 
 <object>
 	<name>Cylinder</name>
-	<type>Cylinder</type>
+	<type>Pyramid</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 400.00</position>

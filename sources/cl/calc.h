@@ -6,7 +6,7 @@
 /*   By: lgatibel <lgatibel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:37 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/04/07 11:46:31 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/05/02 15:17:25 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ short			cylinder_intersection(t_data *data, short *index);
 short			sphere_intersection(t_data *data, short *index);
 
 short			disk_intersection(t_data *data, short *index);
+
+short			egg_intersection(t_data *data, short *index);
+
+short			paraboloid_intersection(t_data *data, short *index);
+
+
 /////////////////////
 
 // entry function

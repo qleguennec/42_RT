@@ -31,14 +31,14 @@
 <!------------ Object(s) ------------->
 
 <object>
-	<name>Cylinder</name>
-	<type>Cylinder</type>
+	<name>Egg</name>
+	<type>Torus</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 400.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>255.00 0.00 0.00</color-rgb>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>40</height>
-	<radius>20.00</radius>
+	<height>20.00</height>
+	<radius>50.00</radius>
 </object>

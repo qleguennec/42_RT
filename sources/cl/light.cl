@@ -34,8 +34,9 @@ unsigned	get_lighting(t_data *data)
 void	init_laputain_desamere(t_data *data)
 {
 	// data->objs[0].reflex = 1.0f;
-	data->objs[1].reflex = 1.0f;
-	data->objs[2].reflex = 1.0f;
+	data->objs[0].type = T_PYRAMID;
+	// data->objs[1].reflex = 1.0f;
+	// data->objs[2].reflex = 1.0f;
 	// data->objs[3].reflex = 1.0f;
 	// data->objs[4].reflex = 1.0f;
 	// data->objs[4].refract = 1.55f;
@@ -170,5 +171,43 @@ float3		calcul_normale(t_data *data)
 		normale = data->intersect - data->objs[data->id].pos -
 			(1.0f + k * k) * data->objs[data->id].rot * m;
 	}
+	else if	(data->objs[data->id].type == T_TORUS)
+		calcul_normal_egg(data, &normale);
+	else if (data->objs[data->id].type == T_PYRAMID)
+		calcul_normal_paraboloid(data, &normale);
 	return (fast_normalize(normale));
+}
+
+void    calcul_normal_egg(t_data *data, float3 *normale)
+{
+    float3    m;
+    float3    k;
+    float    a;
+    float    b;
+    float    k1;
+    float    k2;
+    float    sr;
+
+    data->rdir = rotate_ray(&data->ray_dir, data, &data->id);
+    sr = pow(data->objs[data->id].radius, 2.0f);
+    data->rdir = rotate_ray(&data->ray_dir, data, &data->id);
+    k1 = 2.0f * data->objs[data->id].height * (dot(data->rdir, data->rot));
+    k2 = sr + 2.0f * data->objs[data->id].height *
+            dot(data->offset, data->rdir) - data->objs[data->id].height;
+    a = 4.0f * sr * dot(data->rdir, data->rdir) - k1 * k1;
+    b = 2.0f * (4.0f * sr *    dot(data->rdir, data->offset) - k1 * k2);
+    m = data->objs[data->id].pos + data->rdir * data->objs[data->id].height / 2.0f;
+    k = data->intersect - m;
+    *normale = data->objs[data->id].radius - data->rdir * (1.0f - pow(b, 2.0f) /
+                pow(a, 2.0f) * dot(k, data->rdir));
+}
+
+void    calcul_normal_paraboloid(t_data *data, float3 *normale)
+{
+    float    m;
+
+    m = dot(data->ray_dir, data->rot) * data->t +
+        dot(data->rot, data->offset);
+    data->rdir = rotate_ray(&data->ray_dir, data, &data->id);
+    *normale = data->intersect - data->objs[data->id].pos - data->rdir * m;
 }
