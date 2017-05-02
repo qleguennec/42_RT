@@ -21,36 +21,32 @@ typedef struct			s_data
 	global unsigned int	*pixel;
 	short				n_objs;
 	short				n_lgts;
-	short				id;
-	short				safe;
-	short				option;
-	short				nl;
 
-	short				test;
-	short				set;
-	float3				rot;
-	float3				pos;
-	float				radius;
-	float3				off_set;
-	float				t;
-//	float				delta;
+	float3				ray_pos;
+	float3				ray_dir;
 
 	float				ambiant;
 	float				light_pow;
-	float3				ray_pos;
-	float3				grid_ray_dir;
-	float3				ray_dir;
-	float3				intersect;
-	float3				grid_intersect;
 	float3				rd_light;
-	float3				offset;
-	float3				rdir;
-	// float3				rad;
-}						t_data;
-/////////////////////
+	short				id;
+	short				safe;
+	short				type;
+	float3				pos;
 
-// object intersection
-float			calc_delta(float a, float b, float c);
+	short				is_light;
+	float3				inter;
+
+	short				nl;
+	float3				rot;
+	float				t;
+	float				t0;
+	float				t1;
+
+	float3				offset;
+	float3				intersect;
+}						t_data;
+
+float			calc_delta(float3 *disc, t_data *data);
 
 void			calc_intersect(float *delta, t_data *data);
 
@@ -59,6 +55,11 @@ void			touch_object(t_data *data);
 short			plane_intersection(t_data *data, short *index);
 
 short			cone_intersection(t_data *data, short *index);
+short			cone_caps(t_data *data, float3 *rot, short *index, float m);
+
+short			cylinder_caps(t_data *data, float3 *rot, short *index, float m);
+
+
 
 short			cylinder_intersection(t_data *data, short *index);
 
@@ -79,11 +80,15 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
   global t_cam *cam, short x, short y);
 /////////////////////
 
-// tools
-float			float3_to_float(float3 v);
-/////////////////////
-
 // rotate function
 float3			rotate_ray(float3 *ray, t_data *data, short *index);
 /////////////////////
+float3		calcul_normale(t_data *data);
+
+void		init(t_data *data, global t_obj *objs,
+global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
+float3 ray_dir, float ambiant, global unsigned int *pixel);
+
+float3			rotate_cam(float3 *ray, float3 rot);
+
 #endif

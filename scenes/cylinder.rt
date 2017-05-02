@@ -23,7 +23,7 @@
 	<type>Diffuse</type>
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>0.00 0.00 0.00</position>
+	<position>0.00 0.00 00.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -35,8 +35,8 @@
 	<type>Cylinder</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 400.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
+	<position>25.00 0.00 400.00</position>
+	<rotation>45.00 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>40</height>

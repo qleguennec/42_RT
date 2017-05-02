@@ -20,7 +20,7 @@
 <light>
 	<name>Prout</name>
 	<type>Diffuse</type>
-	<visibility>False</visibility>
+	<visibility>True</visibility>
 	<position>0.00 0.00 10.00</position>
 	<color-rgb>255.00 1.00 255.00</color-rgb>
 	<intensity>5.00</intensity>

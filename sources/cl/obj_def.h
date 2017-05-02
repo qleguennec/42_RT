@@ -34,6 +34,9 @@ typedef struct		s_obj
 	float			refract;
 	float			shiness;
 	float			mshiness;
+	// a ajouter avant le lancer de rayon pour chaque objet
+	float3			offset;
+	///si tu touche a cette structure modifie la jumelle dans cl_buil/interface.h
 }					t_obj;
 
 typedef struct		s_lgt

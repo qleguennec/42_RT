@@ -23,7 +23,7 @@
 	<type>Diffuse</type>
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>-7.00 -20.00 10.00</position>
+	<position>0.00 0.00 10.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -35,16 +35,16 @@
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 200.00</position>
-	<rotation>45.00 0.0 0.0</rotation>
+	<position>0.00 1.00 0.00</position>
+	<rotation>0.00 0.0 0.0</rotation>
 	<color-rgb>0.00 255.00 0.00</color-rgb>
-	<height>5</height>
+	<height>10</height>
 	<width>10</width>
 	<radius>20</radius>
 	<opacity>1.00</opacity>
 </object>
 
-<object>
+<!--<object>
 	<name>Sphere 1</name>
 	<type>sphere</type>
 	<material>Lambert</material>
@@ -54,4 +54,4 @@
 	<color-rgb>1.00 0.00 255.00</color-rgb>
 	<opacity>1</opacity>
 	<radius>30</radius>
-</object>
+</object>-->

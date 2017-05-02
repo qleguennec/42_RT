@@ -6,7 +6,7 @@
 /*   By: erodrigu <erodrigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:00 by erodrigu          #+#    #+#             */
-/*   Updated: 2017/05/02 15:16:38 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/02 16:17:01 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,5 @@ void		clearness_color(t_data *data);
 void		get_color(t_data *data);
 float3		calcul_refract_ray(t_data *data, float refract1, float refract2);
 void		calcul_reflex_color(t_data *data);
-void		init_laputain_desamere(t_data *data);
-void   		calcul_normal_egg(t_data *data, float3 *normale);
-void  		calcul_normal_paraboloid(t_data *data, float3 *normale);
-
 
 #endif

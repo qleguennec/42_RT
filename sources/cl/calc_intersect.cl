@@ -10,181 +10,130 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-float			float3_to_float(float3 v){
-	return (v.x + v.y + v.z);
-}
-
 void			calc_intersect(float *delta, t_data *data)
 {
 	data->t = *delta;
 	data->intersect = data->ray_pos + (data->ray_dir * (*delta));
-	data->grid_intersect = data->ray_pos + (data->grid_ray_dir * (*delta));
 }
 
 short			disk_intersection(t_data *data, short *index)
 {
 	float	div;
 	float	t;
+	float3	rot;
 
-	data->rdir = rotate_ray(&data->ray_dir, data, index);
-
-	div = dot(data->rot, data->rdir);
+	rot = rotate_ray(&data->rot, data, index);
+	div = dot(rot, data->ray_dir);
 	if (div == 0.0f)
 		return (0);
-	t = (-dot(data->rot, data->offset)) / div;
+	t = (-dot(rot, data->offset)) / div;
 	if (t < 0.0f)
 		return (0);
 	calc_intersect(&t, data);
-
 	if (data->option == 1)
 		data->pos = data->objs[(int)*index].pos;
 	if (data->objs[(int)*index].radius > 0.0f && fast_distance(data->grid_intersect,
 	 data->pos) > data->objs[(int)*index].radius)
 		return (0);
-
 	return (1);
 }
 
 short			plane_intersection(t_data *data, short *index)
 {
+	float3	rot;
 	float	div;
-	// float	delta;
 	float	t;
 
-	// data->option = 2;
-	// data->rdir = data->ray_dir;
-	// data->rot = rotate_ray(&data->rot, data, index);
-	data->rdir = rotate_ray(&data->ray_dir, data, index);
-	// data->offset = data->ray_pos - data->objs[(int)*index].pos;
-
-	div = dot(data->rdir, data->rot);
+	rot = rotate_ray(&data->rot, data, index);
+	data->offset = data->ray_pos - data->objs[(int)*index].pos;
+	div = dot(data->ray_dir, rot);
 	if (div == 0.0f)
 		return (0);
-	t = (-dot(data->offset, data->rot)) / div;
+	t = (-dot(data->offset, rot)) / div;
 	if (t < 0.0f)
 		return (0);
 	calc_intersect(&t, data);
-	// if (data->objs[(int)*index].width > 0.0f && fast_distance(data->grid_intersect.x,
-	//  data->objs[(int)*index].pos.x) > (data->objs[(int)*index].width / 2.0f))
-	// 	return (0);
-	// if (data->objs[(int)*index].height > 0.0f && fast_distance(data->grid_intersect.z,
-	//  data->objs[(int)*index].pos.z) > (data->objs[(int)*index].height / 2.0f))
-	// 	return (0);
-	// data->radius = 4;
-	// if (data->radius > 0.0f && fast_distance(data->grid_intersect,
-	//  data->objs[(int)*index].pos) > data->radius)
-	// 	return (0);
-//	 if (data->objs[(int)*index].width > 0.0f && fast_distance(data->grid_intersect.x,
-//	  data->objs[(int)*index].pos.x) > (data->objs[(int)*index].width / 2.0f))
-//	 	return (0);
-//	 if (data->objs[(int)*index].height > 0.0f && fast_distance(data->grid_intersect.z,
-//	  data->objs[(int)*index].pos.z) > (data->objs[(int)*index].height / 2.0f))
-//	 	return (0);
-	// PRINT3(data->objs[(int)*index].rot,"normal");
 	return (1);
 }
 
 short			cone_intersection(t_data *data, short *index)
 {
-	float	a;
-	float	b;
-	float	c;
+	float3	disc;
+	float3	rot;
 	float	delta;
-
+	float	m;
+	float	tanj;
 	float	rad;
+
 	rad = (data->objs[(int)*index].radius / 2.0f) * (float)(M_PI / 180.0f);
-
-	float tanj;
 	tanj = 1.0f + tan(rad) * tan(rad);
-
-	data->rdir = rotate_ray(&data->ray_dir, data, index);
-
-	a = dot(data->rdir, data->rdir) - tanj *
-		dot(data->rdir, data->rot) * dot(data->rdir, data->rot);
-
-	b = 2.0f * (dot(data->rdir, data->offset) - tanj *
-		dot(data->rdir, data->rot) *
-		dot(data->offset, data->rot));
-
-	c = dot(data->offset, data->offset) - tanj *
-		dot(data->offset, data->rot) * dot(data->offset, data->rot);
-
-	if ((delta = calc_delta(a, b, c)) < 0.0f)
+	rot = rotate_ray(&data->rot, data, index);
+	data->offset = data->ray_pos - data->objs[(int)*index].pos;
+	disc.x = dot(data->ray_dir, data->ray_dir) - tanj *
+		dot(data->ray_dir, rot) * dot(data->ray_dir, rot);
+	disc.y = 2.0f * (dot(data->ray_dir, data->offset) - tanj *
+		dot(data->ray_dir, rot) *
+		dot(data->offset, rot));
+	disc.z = dot(data->offset, data->offset) - tanj *
+		dot(data->offset, rot) * dot(data->offset, rot);
+	if ((delta = calc_delta(&disc, data)) == -1)
 		return (0);
+	m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
+	if (data->objs[(int)*index].height > 0.0f &&
+		(m > data->objs[(int)*index].height || m < 0.0f))
+	{
+		delta = (data->t0 > data->t1) ? data->t0 : data->t1;
+		if ((rad = cone_caps(data, &rot, index, m)) == 0)
+			return (0);
+		else if (rad == 1)
+			return (1);
+	}
 	calc_intersect(&delta, data);
-
-	if ((data->objs[(int)*index].height > 0.0f && ((fast_distance(data->objs[(int)*index].pos, data->grid_intersect) >
-	sqrt(data->objs[(int)*index].height * data->objs[(int)*index].height + data->objs[(int)*index].radius  * data->objs[(int)*index].radius)))))
-		return (0);
 	return (1);
 }
 
 
 short			cylinder_intersection(t_data *data, short *index)
 {
-	float	a;
-	float	b;
-	float	c;
+	float3	disc;
+	float3	rot;
 	float	delta;
 	float	m;
-	float3	rot;
 
 	rot = rotate_ray(&data->rot, data, index);
-
-	a = dot(data->rdir, data->rdir) -
-	 dot(data->rdir, rot) *
-	 dot(data->rdir, rot);
-
-	b = 2.0f * (dot(data->rdir, data->offset) -
-	dot(data->rdir,	rot) *
-	dot(data->offset, rot));
-
-	c = dot(data->offset, data->offset) -
-	 dot(data->offset,	rot) * dot(data->offset, rot) -
-	 data->objs[(int)*index].radius * data->objs[(int)*index].radius;
-
-	if ((delta = calc_delta(a, b, c)) < 0.0f)
+	data->offset = data->ray_pos - data->objs[(int)*index].pos;
+	disc.x = dot(data->ray_dir, data->ray_dir) -
+		dot(data->ray_dir, rot) * dot(data->ray_dir, rot);
+	disc.y = 2.0f * (dot(data->ray_dir, data->offset) -
+		dot(data->ray_dir, rot) * dot(data->offset, rot));
+	disc.z = dot(data->offset, data->offset) -
+		dot(data->offset, rot) * dot(data->offset, rot) -
+		data->objs[(int)*index].radius * data->objs[(int)*index].radius;
+	if ((delta = calc_delta(&disc, data)) == -1)
 		return (0);
-	calc_intersect(&delta, data);
-
-	return (1);
-
-
-
-
-	m = dot(data->rdir, data->rot) * delta + dot(data->offset, data->rot);
-	// if (m < -data->objs[(int)*index].height / 2.0f || m > data->objs[(int)*index].height / 2.0f)
-	if (data->objs[(int)*index].height > 0.0f && (m < 0.0f || m > data->objs[(int)*index].height))
+	if (data->objs[(int)*index].height > 0.0f)
 	{
-		data->test = T_DISK;
-		if (m < 0.0f)
-			 return (disk_intersection(data, index));
-		else
-		{
-			// printf("test\n");
-			data->option = 2;
-			data->pos = data->objs[(int)*index].pos + (data->rot * data->objs[(int)*index].height);
-			 return (disk_intersection(data, index));
-		}
-			// return (0);
+		m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
+		if (m < 0.0f || m > data->objs[(int)*index].height)
+			return (cylinder_caps(data, &rot, index, m));
 	}
+	calc_intersect(&data->t, data);
 	return (1);
 }
 
 short			sphere_intersection(t_data *data, short *index)
 {
-	float	a;
-	float	b;
-	float	c;
+	float3	disc;
+	float3	rot;
 	float	delta;
-	data->rdir = rotate_ray(&data->ray_dir, data, index);
-	// data->offset = data->ray_pos - data->pos;
 
-	a = dot(data->rdir, data->rdir);
-	b = 2.0f * dot(data->rdir, data->offset);
-	c = dot(data->offset, data->offset) - data->objs[(int)*index].radius *
-	 data->objs[(int)*index].radius;
-	if ((delta = calc_delta(a, b, c)) < 0.0f)
+	rot = rotate_ray(&data->ray_dir, data, index);
+	data->offset = data->ray_pos - data->objs[(int)*index].pos;
+	disc.x = dot(data->ray_dir, data->ray_dir);
+	disc.y = 2.0f * dot(data->ray_dir, data->offset);
+	disc.z = dot(data->offset, data->offset) -
+	data->objs[(int)*index].radius * data->objs[(int)*index].radius;
+	if ((delta = calc_delta(&disc, data)) == -1)
 		return (0);
 	calc_intersect(&delta, data);
 	return (1);
@@ -192,9 +141,7 @@ short			sphere_intersection(t_data *data, short *index)
 
 short            egg_intersection(t_data *data, short *index)
 {
-    float    a;
-    float    b;
-    float    c;
+	float3	disc;
     float    k1;
     float    k2;
     float    sr;
@@ -207,11 +154,11 @@ short            egg_intersection(t_data *data, short *index)
     k2 = sr + 2.0f * data->objs[(int)*index].height *
             dot(data->offset, data->rdir) - data->objs[(int)*index].height;
 
-    a = 4.0f * sr * dot(data->rdir, data->rdir) - k1 * k1;
-    b = 2.0f * (4.0f * sr * dot(data->rdir, data->offset) - k1 * k2);
-    c = 4.0f * sr * dot(data->offset, data->offset) - k2 * k2;
+    disc.x = 4.0f * sr * dot(data->rdir, data->rdir) - k1 * k1;
+    disc.y = 2.0f * (4.0f * sr * dot(data->rdir, data->offset) - k1 * k2);
+    disc.z = 4.0f * sr * dot(data->offset, data->offset) - k2 * k2;
 
-    if ((delta = calc_delta(a, b, c)) < 0.0f)
+    if ((delta = calc_delta(&disc, data)) < 0.0f)
         return (0);
     calc_intersect(&delta, data);
     return (1);
@@ -219,18 +166,16 @@ short            egg_intersection(t_data *data, short *index)
 
 short            paraboloid_intersection(t_data *data, short *index)
 {
-    float	a;
-    float	b;
-    float	c;
+	float3	disc;
 	float	delta;
 
     data->rdir = rotate_ray(&data->ray_dir, data, index);
-    a = dot(data->rdir, data->rdir) - pow(dot(data->rdir, data->rot), 2.0f);
-    b = 2.0f * (dot(data->rdir, data->offset) - dot(data->rdir, data->rot) *
+    disc.x = dot(data->rdir, data->rdir) - pow(dot(data->rdir, data->rot), 2.0f);
+    disc.y = 2.0f * (dot(data->rdir, data->offset) - dot(data->rdir, data->rot) *
         (dot(data->offset, data->rot) + 2.0f * data->objs[(int)*index].height));
-    c = dot(data->offset, data->offset) - dot(data->offset, data->rdir) *
+    disc.z = dot(data->offset, data->offset) - dot(data->offset, data->rdir) *
         (dot(data->offset, data->rdir) + 4.0f * data->objs[(int)*index].height);
-    if ((delta = calc_delta(a, b, c)) < 0.0f)
+    if ((delta = calc_delta(&disc, data)) < 0.0f)
         return (0);
     calc_intersect(&delta, data);
     return (1);
