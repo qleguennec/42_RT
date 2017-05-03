@@ -10,10 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-float			float3_to_float(float3 v){
-	return (v.x + v.y + v.z);
-}
-
 void			calc_intersect(float *delta, t_data *data)
 {
 	data->intersect = data->ray_pos + (data->ray_dir * (*delta));

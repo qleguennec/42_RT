@@ -148,11 +148,7 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 1000.00</position>
-<<<<<<< HEAD
 	<rotation>90.00 0.00 0.00</rotation>
-=======
-	<rotation>90.00 0.00 .00</rotation>
->>>>>>> 2ae55252eb5f6e27d2c4e34ed4cfa89d5c063afc
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
@@ -165,11 +161,7 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 -1000.50</position>
-<<<<<<< HEAD
 	<rotation>-90.00 0.00 0.00</rotation>
-=======
-	<rotation>-90.00 0.00 1.00</rotation>
->>>>>>> 2ae55252eb5f6e27d2c4e34ed4cfa89d5c063afc
 	<color-rgb>255.00 0.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
