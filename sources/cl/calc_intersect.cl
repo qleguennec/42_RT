@@ -55,7 +55,7 @@ short			cone_intersection(t_data *data, short *index)
 {
 	float3	disc;
 	float3	rot;
-	// float	res;
+	float	res;
 	float	m;
 	float	tanj;
 	float	rad;
@@ -64,29 +64,30 @@ short			cone_intersection(t_data *data, short *index)
 	tanj = 1.0f + tan(rad) * tan(rad);
 	rot = rotate_ray(&data->rot, data, index);
 	data->offset = data->ray_pos - data->objs[(int)*index].pos;
-	disc.x = dot(data->ray_dir, data->ray_dir) - tanj *
-		dot(data->ray_dir, rot) * dot(data->ray_dir, rot);
-	disc.y = 2.0f * (dot(data->ray_dir, data->offset) - tanj *
+	disc.x = dot(data->ray_dir, data->ray_dir) - (tanj *
+	dot(data->ray_dir, rot) * dot(data->ray_dir, rot));
+	disc.y = 2.0f * (dot(data->ray_dir, data->offset) - (tanj *
 		dot(data->ray_dir, rot) *
-		dot(data->offset, rot));
-	disc.z = dot(data->offset, data->offset) - tanj *
-		dot(data->offset, rot) * dot(data->offset, rot);
+	dot(data->offset, rot)));
+	disc.z = dot(data->offset, data->offset) - (tanj *
+	dot(data->offset, rot) * dot(data->offset, rot));
 	if (calc_delta(&disc, data) == -1)
 		return (0);
 	m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
-	// if (data->objs[(int)*index].height > 0.0f && 
-	// 	(m > data->objs[(int)*index].height ||
-	// 	 m < -data->objs[(int)*index].height))
-	// {
-	// 	rad = (data->t0 > data->t1) ? data->t0 : data->t1;
-	// 	if ((res = cone_caps(data, &rot, index, m)) == 1)
-	// 		return (1);
-	// 	else if (res == 0)
-	// 		return (0);
-	// // calc_intersect(&rad, data);
-	// return (1);
+	calc_intersect(&data->t, data);
+	if (data->objs[(int)*index].height > 0.0f && 
+		(m > 0 ||
+		 m < -data->objs[(int)*index].height))
+	{
+		rad = (data->t0 > data->t1) ? data->t0 : data->t1;
+		if ((res = cone_caps(data, &rot, index, m)) == 1)
+			return (1);
+		else if (res == 0)
+			return (0);
+	// calc_intersect(&rad, data);
+		return (1);
 			
-	// }
+	}
 	calc_intersect(&data->t, data);
 	return (1);
 }

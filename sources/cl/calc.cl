@@ -51,6 +51,41 @@ static short	ray_intersection(t_data *data, short *index)
 		return (sphere_intersection(data, index));
 	return (0);
 }
+void			touch_object2(t_data *data)
+{
+	short			index;
+	float			smallest_norm;
+	float			norm;
+	float3			closest_intersect;
+	float			t;
+	float			type;
+
+	t = -1;
+	index = -1;
+	data->id = -1;
+	smallest_norm = -1;
+	while(++index < data->n_objs)
+	{
+		if (ray_intersection(data, &index))
+			if ((norm = fast_distance(data->intersect, data->ray_pos)) > 0.0f &&
+				(norm < smallest_norm || smallest_norm == -1))
+			{
+				closest_intersect = data->intersect;
+				smallest_norm = norm;
+				data->id = index;
+				t = data->t;
+				type = data->type;
+			}
+	}
+	data->intersect = closest_intersect;
+	data->t = t;
+	data->type = type;
+	if (!data->is_light)
+	{
+		data->inter = data->intersect;
+		data->is_light = 1;
+	}
+}
 
 void			touch_object(t_data *data)
 {
