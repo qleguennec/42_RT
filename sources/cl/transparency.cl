@@ -12,12 +12,11 @@ void clearness_color(t_data *data)
 	temp_power = data->light_pow;
 	temp_dir = data->ray_dir;
 	temp_pos = data->intersect;
-	data->light_pow = temp_power * (1.0f - data->objs[id].opacity);
 	clearness_calcul(data);
 	touch_object(data);
 	get_lighting(data);
 	data->id = id;
-	data->light_pow = temp_power * data->objs[id].opacity;
+	data->light_pow = temp_power - data->objs[id].opacity;
 	data->ray_dir = temp_dir;
 	data->intersect = temp_pos;
 

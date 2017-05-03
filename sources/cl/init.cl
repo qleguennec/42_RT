@@ -13,7 +13,6 @@
 static void     init_laputain_desamere(t_data *data)
 {
 	// data->objs[0].reflex = 1.0f;
-	data->objs[0].type = T_TORUS;
 	// data->objs[1].reflex = 1.0f;
 	// data->objs[2].reflex = 1.0f;
 	// data->objs[3].reflex = 1.0f;
@@ -37,7 +36,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 
 	data->intersect = 0.0f;
 	data->inter = 0.0f;
-	data->rot = (float3){0.0f, 1.0f, 0.0f};
+	data->rot = (float3){0.0f, 1.0f, 0.0f}; 
 	data->is_light = 0;
 	data->offset = 0.0f;
 	data->type = -1;
