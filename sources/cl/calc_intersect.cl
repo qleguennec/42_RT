@@ -55,7 +55,7 @@ short			cone_intersection(t_data *data, short *index)
 {
 	float3	disc;
 	float3	rot;
-	float	res;
+	// float	res;
 	float	m;
 	float	tanj;
 	float	rad;
@@ -74,18 +74,19 @@ short			cone_intersection(t_data *data, short *index)
 	if (calc_delta(&disc, data) == -1)
 		return (0);
 	m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
-	if (data->objs[(int)*index].height > 0.0f && 
-		(m > data->objs[(int)*index].height || m < 0.0f))
-	{
-		rad = (data->t0 > data->t1) ? data->t0 : data->t1;
-		if ((res = cone_caps(data, &rot, index, m)) == 1)
-			return (1);
-		else if (res == 0)
-			return (0);
-	// calc_intersect(&rad, data);
-	return (1);
+	// if (data->objs[(int)*index].height > 0.0f && 
+	// 	(m > data->objs[(int)*index].height ||
+	// 	 m < -data->objs[(int)*index].height))
+	// {
+	// 	rad = (data->t0 > data->t1) ? data->t0 : data->t1;
+	// 	if ((res = cone_caps(data, &rot, index, m)) == 1)
+	// 		return (1);
+	// 	else if (res == 0)
+	// 		return (0);
+	// // calc_intersect(&rad, data);
+	// return (1);
 			
-	}
+	// }
 	calc_intersect(&data->t, data);
 	return (1);
 }
