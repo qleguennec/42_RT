@@ -36,13 +36,13 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.0 250.00</position>
-	<rotation>-45.00 0.00 0.00</rotation>
+	<rotation>25.00 0.00 0.00</rotation>
 	<color-rgb>0.00 255.00 .00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>90.00</radius>
 	<height>20</height>
 </object>
-
+<!--
 <object>
 	<name>plan fond</name>
 	<type>Plane</type>
@@ -54,4 +54,4 @@
 	<opacity>1.00</opacity>
 	<height>0</height>
 	<width>0</width>
-</object>
+</object>-->

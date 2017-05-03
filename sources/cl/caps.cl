@@ -16,10 +16,17 @@ short       cone_caps(t_data *data, float3 *rot, short *index, float m)
     float	div;
 	float	t;
 
-    if (m < 0.0f)
-        return (-1);
-    data->pos = data->objs[(int)*index].pos + *rot *
+    if (m < 0)
+    {
+        data->pos = data->objs[(int)*index].pos - *rot *
         data->objs[(int)*index].height;
+    }
+        // return (-1);
+    else
+    {
+        data->pos = data->objs[(int)*index].pos + *rot *
+        data->objs[(int)*index].height;
+    }
     data->offset = data->ray_pos - data->pos;
     div = dot(*rot, data->ray_dir);
     if (div == 0.0f)

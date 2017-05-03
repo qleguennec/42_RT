@@ -81,11 +81,11 @@ short			plane_intersection(t_data *data)
 
 short			cone_intersection(t_data *data)
 {
-	float	a;
-	float	b;
-	float	c;
-	float	delta;
-
+	float3	disc;
+	float3	rot;
+	// float	res;
+	float	m;
+	float	tanj;
 	float	rad;
 	rad = (data->obj->radius / 2.0f) * (float)(M_PI / 180.0f);
 
@@ -114,15 +114,21 @@ short			cone_intersection(t_data *data)
 		dot(data->offset, data->rot) * dot(data->offset, data->rot);
 	if ((delta = calc_delta(a, b, c)) < 0.0f)
 		return (0);
-	data->t = delta;
-	calc_intersect(&delta, data);
-	// // if (data->obj->height > 0.0f && ((fast_distance(data->pos, data->grid_intersect) >
-	// // sqrt(data->obj->height * data->obj->height + data->obj->radius  * data->obj->radius))))
-	// // 	return (0);
-	// 		if ((data->obj->height > 0.0f && ((fast_distance(data->obj->pos, data->grid_intersect) >
-	// sqrt(data->obj->height * data->obj->height + data->obj->radius  * data->obj->radius)))) ||
-	// 	 data->grid_intersect.y - data->obj->pos.y >= data->obj->height - data->obj->pos.y)
-	// 	return (0);
+	m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
+	// if (data->objs[(int)*index].height > 0.0f &&
+	// 	(m > data->objs[(int)*index].height ||
+	// 	 m < -data->objs[(int)*index].height))
+	// {
+	// 	rad = (data->t0 > data->t1) ? data->t0 : data->t1;
+	// 	if ((res = cone_caps(data, &rot, index, m)) == 1)
+	// 		return (1);
+	// 	else if (res == 0)
+	// 		return (0);
+	// // calc_intersect(&rad, data);
+	// return (1);
+
+	// }
+	calc_intersect(&data->t, data);
 	return (1);
 }
 
