@@ -35,21 +35,21 @@
 	<type>SpHeRe</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 290.00</position>
+	<position>-0.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 128.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>50.00</radius>
+	<radius>10.00</radius>
 </object>
 
 <object>
-	<name>Plane 1</name>
+	<name>Fond</name>
 	<type>plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>-103.50 0.00 290.00</position>
-	<rotation>-1.00 0.00 0.00</rotation>
-	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<position>0.0 0.00 500.00</position>
+	<rotation>90.00 0.00 0.00</rotation>
+	<color-rgb>.00 255.00 .00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
 	<width>0</width>
@@ -57,12 +57,12 @@
 </object>
 
 <object>
-	<name>Plane 2</name>
+	<name>Arriere</name>
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 500.00</position>
-	<rotation>0.00 0.00 1.00</rotation>
+	<position>0.00 0.00 -500.00</position>
+	<rotation>90.00 0.00 .00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
@@ -70,13 +70,52 @@
 </object>
 
 <object>
-	<name>Plane 2</name>
+	<name>Gauche</name>
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 -100.00</position>
-	<rotation>0.00 0.00 -1.00</rotation>
+	<position>-100.00 0.00 -100.00</position>
+	<rotation>.00 0.00 90.00</rotation>
 	<color-rgb>255.00 .00 .00</color-rgb>
+	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
+</object>
+
+<object>
+	<name>Droite</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>100.00 0.00 -100.00</position>
+	<rotation>.00 0.00 90.00</rotation>
+	<color-rgb>100.00 80.00 128.00</color-rgb>
+	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
+</object>
+
+<object>
+	<name>Haut</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 -100.00 -100.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>255.00 .00 255.00</color-rgb>
+	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
+</object>
+
+<object>
+	<name>Bas</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 100.00 -100.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>0.00 128.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
 	<width>0</width>

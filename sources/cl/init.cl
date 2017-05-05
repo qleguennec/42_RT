@@ -41,6 +41,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->offset = 0.0f;
 	data->type = -1;
 
+	data->clr = 0.0f;
 	data->ambiant = ambiant;
 	data->light_pow = 1.0f;
 	data->rd_light = 0.0f;
@@ -56,4 +57,5 @@ void		init(t_data *data, global t_obj *objs, global t_lgt *lgts,
 	init_data(data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant,
      pixel);
 	init_laputain_desamere(data);
+	
 }

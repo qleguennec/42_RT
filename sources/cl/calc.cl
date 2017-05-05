@@ -131,8 +131,10 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 {
 	t_data	data;
 	float	ambiant = 0.20f; // a setter par benj par la suite
-	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant,
+	init(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant,
      pixel);
+	// data.objs[4].reflex = 1.0f;
+
 	touch_object(&data);
 	if (!COLOR && data.id > -1)
 	{
@@ -146,16 +148,17 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	else if (COLOR && data.id > -1)
 	{
 		int	clr;
-		int	mask;
+		// int	mask;
 
 		clr = get_lighting(&data);
-		mask = (clr) | 0x000000FF;
+		// mask = (clr) | 0x000000FF;
 		// printf("clr[%d]\n",clr);
 		// printf("clr[%x]\n",clr);
 		// printf("clr[%p]",clr);
-		*pixel = mask;
+		*pixel = clr;
 		// *pixel = get_lighting(&data);
 	}
 	else
+		// *pixel = 0xDB6820FF;
 		*pixel = FONT;
 }

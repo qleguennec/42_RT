@@ -35,6 +35,7 @@ typedef struct			s_data
 
 	short				is_light;
 	float3				inter;
+	float3				clr;
 
 	short				nl;
 	float3				rot;
