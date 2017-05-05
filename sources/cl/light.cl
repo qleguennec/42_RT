@@ -74,7 +74,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 	data->ray_pos = lgt->pos;
 	data->ray_dir = lightdir;
 	touch_object(data);
-	if (index == data->id && fast_distance(save_intersect, lgt->pos) <
+	if (index == data->id && fast_distance(save_intersect, lgt->pos) <=
 		fast_distance(data->intersect, lgt->pos) + PREC)
 	{
 		data->nl++;
