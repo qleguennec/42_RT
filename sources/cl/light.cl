@@ -18,15 +18,6 @@
 
 unsigned	get_lighting(t_data *data)
 {
-	// short	id;
-	// float3	temp_dir;
-	// float3	temp_pos;
-
-	// data->safe--;
-	data->safe = 1;
-	// id = data->id;
-	// temp_dir = data->ray_dir;
-	// temp_pos = data->intersect;
 	while (data->safe > 0 && data->light_pow > 0.0f)
 	{
 

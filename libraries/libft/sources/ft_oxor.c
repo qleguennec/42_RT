@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_parameters.c                                 :+:      :+:    :+:   */
+/*   ft_oxor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 13:02:07 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/30 19:25:11 by bsouchet         ###   ########.fr       */
+/*   Created: 2017/04/30 15:24:37 by bsouchet          #+#    #+#             */
+/*   Updated: 2017/04/30 21:33:37 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "libft.h"
 
-void		handle_scene_parameters(t_rt *rt)
+bool        oxor(bool a, bool b)
 {
-	if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->param_b_rect[0]))
-		rt->ui->b_sp_hover = 0;
-	else if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->param_b_rect[1]))
-		rt->ui->b_sp_hover = 1;
-	else if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->param_b_rect[2]))
-		rt->ui->b_sp_hover = 2;
-	if (rt->ui->b_sp_hover > -1)
-		draw_sp_element(rt, rt->ui->b_sp_hover, 1);
+    return ((a + b) % 2);
 }

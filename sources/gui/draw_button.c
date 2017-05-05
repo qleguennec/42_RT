@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 19:05:57 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/27 17:28:19 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/02 16:31:22 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void		draw_se_button(t_rt *rt, int b_num, char etype, int type)
 	else if (type == 2)
 		clr = FOCUS_SE;
 	fsdl_draw_rect(rt->s_back, *rect, clr);
+	if (type == 4 && rt->ui->case_active > 0)
+		redraw_case_active(rt, 0);
 	rt->ui->b_se_rect = rect;
 	(type == 0) ? (rt->ui->b_se_hover = -1) : 1;
 }

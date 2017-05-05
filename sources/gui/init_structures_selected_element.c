@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 19:05:05 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/24 21:10:16 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/30 19:10:19 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,11 @@ void		init_gui_selected_object_buttons(t_ui *ui)
 	ui->obj_b_rect[15] = (SDL_Rect){1088, 506, 53, 21};
 	ui->obj_b_rect[16] = (SDL_Rect){1147, 506, 52, 21};
 	ui->obj_b_rect[17] = (SDL_Rect){1205, 506, 53, 21};
+}
+
+void		init_gui_selected_scene_parameters(t_ui *ui)
+{
+	ui->param_b_rect[0] = (SDL_Rect){139, 100, 53, 21};
+	ui->param_b_rect[1] = (SDL_Rect){139, 127, 53, 21};
+	ui->param_b_rect[2] = (SDL_Rect){139, 154, 53, 21};
 }

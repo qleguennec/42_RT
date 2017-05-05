@@ -30,12 +30,16 @@
 <!------------ Object(s) ------------->
 
 <object>
-	<position>25. 50. 500.</position>
-	<rotation>0. 175. 20.</rotation>
-	<color-rgb>1.0 1.0 1.0 </color-rgb>
-	<opacity>.4</opacity>
-	<visibility> ON </visibility>
-	<material>PhOnG</material>
-	<type>sphere      </type>
-	<radius>30.0</radius>
+	<name>Red Sphere</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 0.00 0.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>127.50 127.50 127.50</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>25.00</radius>
+	<lenght>1000.0</lenght>
+	<width>524.0</width>
+	<height>42.0</height>
 </object>

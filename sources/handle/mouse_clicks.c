@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 21:44:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 20:11:11 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/30 21:50:52 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ void		handle_left_click_down(t_rt *rt, t_cl *cl)
 	if (rt->ui->b_se_hover > 0 &&
 	!fsdl_pt_in_rect(&rt->m_pos, rt->ui->area[13]))
 		draw_se_button(rt, rt->ui->b_se_hover, rt->scn->s_elem->type, 0);
+	/*if (rt->ui->b_sp_active != -1 &&
+	fsdl_pt_in_rect(&rt->m_pos, rt->ui->param_b_rect[rt->ui->b_sp_active]))
+		return ;
+	else*/
 	if (rt->ui->case_active != -1 &&
 	fsdl_pt_in_rect(&rt->m_pos, *rt->ui->case_rect))
 		return ;

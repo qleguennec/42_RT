@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 15:37:50 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 22:09:11 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/02 16:07:04 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,86 +14,119 @@
 
 static void	update_se_camera_box(t_rt *rt)
 {
-	if (rt->ui->case_active == 1 && rt->scn->s_elem->focal < 200)
-		rt->scn->s_elem->focal += 1;
-	else if (rt->ui->case_active == 2 && rt->scn->s_elem->pos.x <= 999.5)
-		rt->scn->s_elem->pos.x += 0.5;
-	else if (rt->ui->case_active == 3 && rt->scn->s_elem->pos.y <= 999.5)
-		rt->scn->s_elem->pos.y += 0.5;
-	else if (rt->ui->case_active == 4 && rt->scn->s_elem->pos.z <= 999.5)
-		rt->scn->s_elem->pos.z += 0.5;
-	else if (rt->ui->case_active == 5 && rt->scn->s_elem->rot.x <= 999.5)
-		rt->scn->s_elem->rot.x += 0.5;
-	else if (rt->ui->case_active == 6 && rt->scn->s_elem->rot.y <= 359.5)
-		rt->scn->s_elem->rot.y += 0.5;
-	else if (rt->ui->case_active == 7 && rt->scn->s_elem->rot.z <= 359.5)
-		rt->scn->s_elem->rot.z += 0.5;
+	if (AC == 1 && S_ELEM->focal < 200)
+		S_ELEM->focal += 1;
+	else if ((AC == 2 || (AC == -1 && CK_DOWN == SDLK_RIGHT && (AC = 2) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->pos.x <= 999.50f)
+		S_ELEM->pos.x = R((S_ELEM->pos.x + 0.50f) * 100) / 100;
+	else if ((AC == 3 || (AC == -1 && CK_DOWN == SDLK_UP && (AC = 3) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->pos.y <= 999.50f)
+		S_ELEM->pos.y = R((S_ELEM->pos.y + 0.50f) * 100) / 100;
+	else if (AC == 4 && S_ELEM->pos.z <= 999.50f)
+		S_ELEM->pos.z = R((S_ELEM->pos.z + 0.50f) * 100) / 100;
+	else if ((AC == 5 || (AC == -1 && CK_DOWN == SDLK_w && (AC = 5) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->rot.x <= 999.50f)
+		S_ELEM->rot.x = R((S_ELEM->rot.x + 0.50f) * 100) / 100;
+	else if ((AC == 6 || (AC == -1 && CK_DOWN == SDLK_d && (AC = 6) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->rot.y <= 719.50f)
+		S_ELEM->rot.y = R((S_ELEM->rot.y + 0.50f) * 100) / 100;
+	else if ((AC == 7 || (AC == -1 && CK_DOWN == SDLK_e && (AC = 7) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->rot.z <= 719.50f)
+		S_ELEM->rot.z = R((S_ELEM->rot.z + 0.50f) * 100) / 100;
 	redraw_case_active(rt, 1);
 }
 
 static void	update_se_light_box(t_rt *rt)
 {
-	if (rt->ui->case_active == 1 && rt->scn->s_elem->intensity < 50)
-		rt->scn->s_elem->intensity += 1;
-	else if (rt->ui->case_active == 2 && rt->scn->s_elem->flare_v < 1)
-		rt->scn->s_elem->flare_v += 1;
-	else if (rt->ui->case_active == 3 && rt->scn->s_elem->clr.x <= 0.95)
-		rt->scn->s_elem->clr.x += 0.002;
-	else if (rt->ui->case_active == 4 && rt->scn->s_elem->clr.y <= 0.95)
-		rt->scn->s_elem->clr.y += 0.002;
-	else if (rt->ui->case_active == 5 && rt->scn->s_elem->clr.z <= 0.95)
-		rt->scn->s_elem->clr.z += 0.002;
-	else if (rt->ui->case_active == 6 && rt->scn->s_elem->pos.x <= 999.5)
-		rt->scn->s_elem->pos.x += 0.5;
-	else if (rt->ui->case_active == 7 && rt->scn->s_elem->pos.y <= 999.5)
-		rt->scn->s_elem->pos.y += 0.5;
-	else if (rt->ui->case_active == 8 && rt->scn->s_elem->pos.z <= 999.5)
-		rt->scn->s_elem->pos.z += 0.5;
-	else if (rt->ui->case_active == 9 && rt->scn->s_elem->rot.x <= 359.5)
-		rt->scn->s_elem->rot.x += 0.5;
-	else if (rt->ui->case_active == 10 && rt->scn->s_elem->rot.y <= 359.5)
-		rt->scn->s_elem->rot.y += 0.5;
-	else if (rt->ui->case_active == 11 && rt->scn->s_elem->rot.z <= 359.5)
-		rt->scn->s_elem->rot.z += 0.5;
+	if (AC == 1 && S_ELEM->intensity < 50)
+		S_ELEM->intensity += 1;
+	else if (AC == 2 && S_ELEM->flare_v < 1)
+		S_ELEM->flare_v += 1;
+	else if (AC == 3 && S_ELEM->clr.x <= 0.9980f)
+		S_ELEM->clr.x = R((S_ELEM->clr.x + 0.0020f) * 1000) / 1000;
+	else if (AC == 4 && S_ELEM->clr.y <= 0.9980f)
+		S_ELEM->clr.y = R((S_ELEM->clr.y + 0.0020f) * 1000) / 1000;
+	else if (AC == 5 && S_ELEM->clr.z <= 0.9980f)
+		S_ELEM->clr.z = R((S_ELEM->clr.z + 0.0020f) * 1000) / 1000;
+	else if ((AC == 6 || (AC == -1 && CK_DOWN == SDLK_RIGHT && (AC = 6) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->pos.x <= 999.50f)
+		S_ELEM->pos.x = R((S_ELEM->pos.x + 0.50f) * 100) / 100;
+	else if ((AC == 7 || (AC == -1 && CK_DOWN == SDLK_UP && (AC = 7) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->pos.y <= 999.50f)
+		S_ELEM->pos.y = R((S_ELEM->pos.y + 0.50f) * 100) / 100;
+	else if (AC == 8 && S_ELEM->pos.z <= 999.50f)
+		S_ELEM->pos.z = R((S_ELEM->pos.z + 0.50f) * 100) / 100;
+	else if ((AC == 9 || (AC == -1 && CK_DOWN == SDLK_w && (AC = 9) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->rot.x <= 719.50f)
+		S_ELEM->rot.x = R((S_ELEM->rot.x + 0.50f) * 100) / 100;
+	else if ((AC == 10 || (AC == -1 && CK_DOWN == SDLK_d && (AC = 10) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->rot.y <= 719.50f)
+		S_ELEM->rot.y = R((S_ELEM->rot.y + 0.50f) * 100) / 100;
+	else if ((AC == 11 || (AC == -1 && CK_DOWN == SDLK_e && (AC = 11) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->rot.z <= 719.50f)
+		S_ELEM->rot.z = R((S_ELEM->rot.z + 0.50f) * 100) / 100;
 	redraw_case_active(rt, 1);
+}
+
+static void	update_se_object_box_part2(t_rt *rt)
+{
+	if (AC == 3 && S_ELEM->reflex <= 0.950f)
+		S_ELEM->reflex = R((S_ELEM->reflex + 0.050f) * 100) / 100;
+	else if (AC == 4 && S_ELEM->refrac_y <= 0.950f)
+		S_ELEM->refrac_y = R((S_ELEM->refrac_y + 0.050f) * 100) / 100;
+	else if (AC == 5 && S_ELEM->radius <= 499.0f)
+		S_ELEM->radius += 1.0f;
+	else if (AC == 6 && S_ELEM->width <= 999.50f)
+		S_ELEM->width = R((S_ELEM->width + 0.50f) * 100) / 100;
+	else if (AC == 7 && S_ELEM->height <= 999.50f)
+		S_ELEM->height = R((S_ELEM->height + 0.50f) * 100) / 100;
+	else if (S_ELEM->lenght <= 999.50f)
+		S_ELEM->lenght = R((S_ELEM->lenght + 0.50f) * 100) / 100;
 }
 
 static void	update_se_object_box(t_rt *rt)
 {
-	if (rt->ui->case_active == 1 && rt->scn->s_elem->opacity <= 0.95)
-		rt->scn->s_elem->opacity += 0.05;
-	else if (rt->ui->case_active == 5 && rt->scn->s_elem->radius <= 399.0)
-		rt->scn->s_elem->radius += 1.0;
-	else if (rt->ui->case_active == 9 && rt->scn->s_elem->clr.x <= 0.95)
-		rt->scn->s_elem->clr.x += 0.002;
-	else if (rt->ui->case_active == 10 && rt->scn->s_elem->clr.y <= 0.95)
-		rt->scn->s_elem->clr.y += 0.002;
-	else if (rt->ui->case_active == 11 && rt->scn->s_elem->clr.z <= 0.95)
-		rt->scn->s_elem->clr.z += 0.002;
-	else if (rt->ui->case_active == 12 && rt->scn->s_elem->pos.x <= 999.5)
-		rt->scn->s_elem->pos.x += 0.5;
-	else if (rt->ui->case_active == 13 && rt->scn->s_elem->pos.y <= 999.5)
-		rt->scn->s_elem->pos.y += 0.5;
-	else if (rt->ui->case_active == 14 && rt->scn->s_elem->pos.z <= 999.5)
-		rt->scn->s_elem->pos.z += 0.5;
-	else if (rt->ui->case_active == 15 && rt->scn->s_elem->rot.x <= 359.5)
-		rt->scn->s_elem->rot.x += 0.5;
-	else if (rt->ui->case_active == 16 && rt->scn->s_elem->rot.y <= 359.5)
-		rt->scn->s_elem->rot.y += 0.5;
-	else if (rt->ui->case_active == 17 && rt->scn->s_elem->rot.z <= 359.5)
-		rt->scn->s_elem->rot.z += 0.5;
+	if (AC == 1 && S_ELEM->opacity <= 0.950f)
+		S_ELEM->opacity = R((S_ELEM->opacity + 0.050f) * 100) / 100;
+	else if (AC == 2 && S_ELEM->specular <= 0.950f)
+		S_ELEM->specular = R((S_ELEM->specular + 0.050f) * 100) / 100;
+	else if (AC > 2 && AC < 9)
+		update_se_object_box_part2(rt);
+	else if (AC == 9 && S_ELEM->clr.x <= 0.9980f)
+		S_ELEM->clr.x = R((S_ELEM->clr.x + 0.0020f) * 1000) / 1000;
+	else if (AC == 10 && S_ELEM->clr.y <= 0.9980f)
+		S_ELEM->clr.y = R((S_ELEM->clr.y + 0.0020f) * 1000) / 1000;
+	else if (AC == 11 && S_ELEM->clr.z <= 0.9980f)
+		S_ELEM->clr.z = R((S_ELEM->clr.z + 0.0020f) * 1000) / 1000;
+	else if ((AC == 12 || (AC == -1 && CK_DOWN == SDLK_RIGHT && (AC = 12) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->pos.x <= 999.50f)
+		S_ELEM->pos.x = R((S_ELEM->pos.x + 0.50f) * 100) / 100;
+	else if ((AC == 13 || (AC == -1 && CK_DOWN == SDLK_UP && (AC = 13) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->pos.y <= 999.50f)
+		S_ELEM->pos.y = R((S_ELEM->pos.y + 0.50f) * 100) / 100;
+	else if (AC == 14 && S_ELEM->pos.z <= 999.50f)
+		S_ELEM->pos.z = R((S_ELEM->pos.z + 0.50f) * 100) / 100;
+	else if ((AC == 15 || (AC == -1 && CK_DOWN == SDLK_w && (AC = 15) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->rot.x <= 719.50f)
+		S_ELEM->rot.x = R((S_ELEM->rot.x + 0.50f) * 100) / 100;
+	else if ((AC == 16 || (AC == -1 && CK_DOWN == SDLK_d && (AC = 16) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->rot.y <= 719.50f)
+		S_ELEM->rot.y = R((S_ELEM->rot.y + 0.50f) * 100) / 100;
+	else if ((AC == 17 || (AC == -1 && CK_DOWN == SDLK_e && (AC = 17) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->rot.z <= 719.50f)
+		S_ELEM->rot.z = R((S_ELEM->rot.z + 0.50f) * 100) / 100;
 	redraw_case_active(rt, 1);
 }
 
 void		update_se_box_plus(t_rt *rt, t_cl *cl)
 {
-	if (rt->scn->s_elem->type == 'C')
+	if (S_ELEM->type == 'C')
 		update_se_camera_box(rt);
-	else if (rt->scn->s_elem->type == 'L')
+	else if (S_ELEM->type == 'L')
 		update_se_light_box(rt);
 	else
 		update_se_object_box(rt);
-	if (rt->scn->s_elem == rt->scn->c_cam)
+	if (S_ELEM == rt->scn->c_cam)
 		cl_main_krl_update_camera(cl, rt->scn->c_cam);
 	else
 		cl_main_krl_update_buffers(cl, rt->scn);
