@@ -27,11 +27,11 @@ float		calc_delta(float3 *disc, t_data *data)
 	tmp = (disc->y * disc->y) - (4.0f * disc->x * disc->z);
 	if(tmp < 0.0f)
 		return (-1);
-	else if (tmp == 0.0f)
-	{
-		data->t = -disc->y / (2.0f * disc->x);
-		return (0);
-	}
+	// else if (tmp == 0.0f)
+	// {
+	// 	data->t = -disc->y / (2.0f * disc->x);
+	// 	return (0);
+	// }
 	tmp = sqrt(tmp);
 	data->t0 = ((-disc->y + tmp) / (2.0f * disc->x));
 	data->t1 = ((-disc->y - tmp) / (2.0f * disc->x));

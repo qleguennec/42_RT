@@ -16,22 +16,22 @@ void			calc_intersect(float *delta, t_data *data)
 	data->intersect = data->ray_pos + (data->ray_dir * (*delta));
 }
 
-short			disk_intersection(t_data *data, short *index)
-{
-	float	div;
-	float	t;
-	float3	rot;
+// short			disk_intersection(t_data *data, short *index)
+// {
+// 	float	div;
+// 	float	t;
+// 	float3	rot;
 
-	rot = rotate_ray(&data->rot, data, index);
-	div = dot(rot, data->ray_dir);
-	if (div == 0.0f)
-		return (0);
-	t = (-dot(rot, data->offset)) / div;
-	if (t < 0.0f)
-		return (0);
-	calc_intersect(&t, data);
-	return (1);
-}
+// 	rot = rotate_ray(&data->rot, data, index);
+// 	div = dot(rot, data->ray_dir);
+// 	if (div == 0.0f)
+// 		return (0);
+// 	t = (-dot(rot, data->offset)) / div;
+// 	if (t < 0.0f)
+// 		return (0);
+// 	calc_intersect(&t, data);
+// 	return (1);
+// }
 
 short			plane_intersection(t_data *data, short *index)
 {
@@ -58,22 +58,22 @@ short			cone_intersection(t_data *data, short *index)
 	// float	res;
 	float	m;
 	float	tanj;
-	float	rad;
+	float	k;
 
-	rad = (data->objs[(int)*index].radius / 2.0f) * (float)(M_PI / 180.0f);
-	tanj = 1.0f + tan(rad) * tan(rad);
+	k = tan((data->objs[(int)*index].radius / 2.0f) * (float)(M_PI / 180.0f));
+	tanj = 1.0f + native_powr(k, 2);
 	rot = rotate_ray(&data->rot, data, index);
 
 	data->offset = data->ray_pos - data->objs[(int)*index].pos;
 
 	disc.x = dot(data->ray_dir, data->ray_dir) - (tanj *
-	powr(dot(data->ray_dir, rot), 2.0f));
+	native_powr(dot(data->ray_dir, rot), 2));
 
 	disc.y = 2.0f * (dot(data->ray_dir, data->offset) - (tanj *
 		(dot(data->ray_dir, rot) * dot(data->offset, rot))));
 
 	disc.z = dot(data->offset, data->offset) - (tanj *
-	powr(dot(data->offset, rot), 2.0f));
+	powr(dot(data->offset, rot), 2));
 	if (calc_delta(&disc, data) == -1)
 		return (0);
 	m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
