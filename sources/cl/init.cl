@@ -13,8 +13,8 @@
 static void     init_laputain_desamere(t_data *data)
 {
 	// data->objs[0].reflex = 1.0f;
-	data->objs[1].reflex = 1.0f;
-	data->objs[2].reflex = 1.0f;
+	// data->objs[1].reflex = 1.0f;
+	// data->objs[2].reflex = 1.0f;
 	// data->objs[3].reflex = 1.0f;
 	// data->objs[4].reflex = 1.0f;
 	// data->objs[4].refract = 1.55f;
@@ -41,7 +41,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->offset = 0.0f;
 	data->type = -1;
 
-	data->clr = 0.0f;
+	// data->clr = 0.0f;
 	data->ambiant = ambiant;
 	data->light_pow = 1.0f;
 	data->rd_light = 0.0f;

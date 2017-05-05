@@ -104,7 +104,7 @@ void			touch_object(t_data *data)
 	{
 		if (ray_intersection(data, &index))
 			if ((norm = fast_distance(data->intersect, data->ray_pos)) > 0.0f &&
-				(norm < smallest_norm || smallest_norm == -1))
+				(norm + PREC < smallest_norm || smallest_norm == -1))
 			{
 				closest_intersect = data->intersect;
 				smallest_norm = norm;
@@ -130,7 +130,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	float3 ray_dir, global t_cam *cam, short x, short y)
 {
 	t_data	data;
-	float	ambiant = 0.20f; // a setter par benj par la suite
+	float	ambiant = 0.60f; // a setter par benj par la suite
 	init(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant,
      pixel);
 	// data.objs[4].reflex = 1.0f;

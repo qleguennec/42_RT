@@ -23,7 +23,7 @@
 	<type>Diffuse</type>
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>10.00 0.00 180.00</position>
+	<position>0.00 0.00 180.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -32,10 +32,10 @@
 
 <object>
 	<name>Sphere 1</name>
-	<type>SpHeRe</type>
+	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>-0.00 0.00 290.00</position>
+	<position>70.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 128.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
@@ -44,16 +44,13 @@
 
 <object>
 	<name>Fond</name>
-	<type>plane</type>
+	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.0 0.00 500.00</position>
+	<position>0.00 0.00 500.00</position>
 	<rotation>90.00 0.00 0.00</rotation>
-	<color-rgb>.00 255.00 .00</color-rgb>
+	<color-rgb>0.00 255.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
-	<radius>50</radius>
 </object>
 
 <object>
@@ -62,11 +59,9 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 -500.00</position>
-	<rotation>90.00 0.00 .00</rotation>
+	<rotation>90.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
 </object>
 
 <object>
@@ -75,11 +70,9 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>-100.00 0.00 -100.00</position>
-	<rotation>.00 0.00 90.00</rotation>
-	<color-rgb>255.00 .00 .00</color-rgb>
+	<rotation>0.00 0.00 90.00</rotation>
+	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
 </object>
 
 <object>
@@ -88,11 +81,9 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>100.00 0.00 -100.00</position>
-	<rotation>.00 0.00 90.00</rotation>
+	<rotation>0.00 0.00 90.00</rotation>
 	<color-rgb>100.00 80.00 128.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
 </object>
 
 <object>
@@ -102,10 +93,8 @@
 	<visibility>True</visibility>
 	<position>0.00 -100.00 -100.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>255.00 .00 255.00</color-rgb>
+	<color-rgb>255.00 0.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
 </object>
 
 <object>
@@ -117,6 +106,5 @@
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 128.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
 </object>
+
