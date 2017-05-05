@@ -130,7 +130,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	float3 ray_dir, global t_cam *cam, short x, short y)
 {
 	t_data	data;
-	float	ambiant = 0.60f; // a setter par benj par la suite
+	float	ambiant = 0.25f; // a setter par benj par la suite
 	init(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant,
      pixel);
 	// data.objs[4].reflex = 1.0f;

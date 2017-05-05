@@ -12,14 +12,22 @@
 
 static void     init_laputain_desamere(t_data *data)
 {
-	// data->objs[0].reflex = 1.0f;
-	// data->objs[1].reflex = 1.0f;
-	// data->objs[2].reflex = 1.0f;
-	// data->objs[3].reflex = 1.0f;
-	// data->objs[4].reflex = 1.0f;
-	// data->objs[4].refract = 1.55f;
-	// data->objs[5].reflex = 1.0f;
-	// data->objs[6].reflex = 1.0f;
+	data->objs[0].reflex = 0.0f;
+	data->objs[1].reflex = 1.0f;
+	data->objs[2].reflex = 1.0f;
+	data->objs[3].reflex = 0.0f;
+	data->objs[4].reflex = 0.0f;
+	data->objs[5].reflex = 0.0f;
+	data->objs[6].reflex = 0.0f;
+
+	data->objs[0].refract = 0.0f;
+	data->objs[1].refract = 0.0f;
+	data->objs[2].refract = 0.0f;
+	data->objs[3].refract = 0.0f;
+	data->objs[4].refract = 0.0f;
+	data->objs[5].refract = 0.0f;
+	data->objs[6].refract = 0.0f;
+	
 }
 
 static void		init_data(t_data *data, global t_obj *objs,
