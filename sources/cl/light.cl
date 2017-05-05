@@ -23,7 +23,7 @@ unsigned	get_lighting(t_data *data)
 	float3	temp_pos;
 
 	// data->safe--;
-	data->safe = 100;
+	data->safe = 1;
 	id = data->id;
 	temp_dir = data->ray_dir;
 	temp_pos = data->intersect;
@@ -39,17 +39,15 @@ unsigned	get_lighting(t_data *data)
 		{
 			data->safe = 0;
 		}
-		if (data->id > -1)
-			data->clr  = data->objs[data->id].clr;
 	// if (data->objs[data->id].opacity < 1.0f && data->light_pow > 0.0f &&
 		// data->safe > 0)
 		// clearness_color(data);
 		data->rd_light += check_all_light(data);
 	}
 	
-	data->id = id;
-	data->ray_dir = temp_dir;
-	data->intersect = temp_pos;
+	// data->id = id;
+	// data->ray_dir = temp_dir;
+	// data->intersect = temp_pos;
 	
 	return(calcul_rendu_light(data));
 }
@@ -93,11 +91,8 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 		fast_distance(data->intersect, lgt->pos) + PREC)
 	{
 		data->nl++;
-		// light_clr = calcul_clr(-lightdir, normale, lgt->clr,
-			// &data->objs[index]) + data->ambiant * data->objs[index].clr;
-		// else//le else est en test
-			light_clr = calcul_clr(-lightdir, normale, lgt->clr,
-			&data->objs[index]) + data->ambiant * data->clr;
+		light_clr = calcul_clr(-lightdir, normale, lgt->clr,
+			&data->objs[index]) + data->ambiant * data->objs[index].clr;
 		// light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
 		return (light_clr / (1.0f + data->ambiant));
 	}
