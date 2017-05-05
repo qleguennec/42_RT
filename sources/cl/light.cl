@@ -18,6 +18,7 @@
 
 unsigned	get_lighting(t_data *data)
 {
+	// temp_pos = data->intersect;
 	while (data->safe > 0 && data->light_pow > 0.0f)
 	{
 
@@ -51,7 +52,7 @@ float3		check_all_light(t_data *data)
 		// PRINT3(rd_light, "rd_light");
 		i++;
 	}
-	if (data->nl >0)
+	if (data->nl > 0)
 	{
 		return ((rd_light / (data->nl + data->nl * data->ambiant)
 			* data->objs[data->id].opacity * data->light_pow) * data->objs[data->id].clr);
