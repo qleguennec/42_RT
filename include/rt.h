@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 21:43:45 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/02 17:34:33 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void				init_gui_structure(t_rt *rt);
 void				init_gui_selected_camera_buttons(t_ui *ui);
 void				init_gui_selected_light_buttons(t_ui *ui);
 void				init_gui_selected_object_buttons(t_ui *ui);
+void				init_gui_selected_scene_parameters(t_ui *ui);
 
 void				draw_panel(t_rt *rt, int p, int type);
 void				draw_button(t_rt *rt, int b_num, int type);
@@ -137,6 +138,7 @@ int					draw_state_frame(t_rt *rt);
 int					draw_info_bar(t_rt *rt);
 
 void				draw_scene_parameters(t_rt *rt);
+void				draw_sp_element(t_rt *rt, int b_num, int mode);
 
 void				draw_outliner(t_rt *rt, int i, int max);
 void				draw_outliner_element(t_rt *rt, t_obj *obj, int state);
@@ -213,6 +215,16 @@ bool				scene_init_rendering(t_rt *rt, t_cl *cl);
 
 /*
 ** -----------------------------------------------------------------------------
+** ----------------------------- Special Modes ---------------------------------
+** -----------------------------------------------------------------------------
+*/
+
+void				add_sepia_effect(t_rt *rt);
+void				add_black_n_white_effect(t_rt *rt);
+void				add_cartoon_effect(t_rt *rt);
+
+/*
+** -----------------------------------------------------------------------------
 ** -------------------------------- Handle -------------------------------------
 ** -----------------------------------------------------------------------------
 */
@@ -278,6 +290,12 @@ void				handle_selected_element_down(t_rt *rt, t_cl *cl);
 
 void				delete_current_element(t_rt *rt, t_cl *cl,
 					t_obj *nav, t_obj *tmp);
+
+/*
+** ------------------------ Handle Scene Parameters ----------------------------
+*/
+
+void				handle_scene_parameters(t_rt *rt);
 
 /*
 ** --------------------------- Handle Keyboard ---------------------------------

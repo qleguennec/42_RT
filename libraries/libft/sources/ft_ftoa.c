@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 19:38:08 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 18:49:54 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/28 18:08:11 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char		*ft_dtoa(double num)
 	if (num == .0)
 		return (ft_strdup("0.00"));
 	(num < .0 && (tmp *= -1.) > 0) ? ++size : 1;
+	(tmp < 10) ? ++size : 1;
 	(tmp < 100) ? ++size : 1;
 	num = tmp;
 	while (tmp != 0 && ++size)
@@ -62,8 +63,9 @@ char		*ft_dtoa(double num)
 		return (NULL);
 	str[size--] = 0;
 	while ((int)num != 0 && ++i)
-		(i != 3 && (str[size--] =
-		((int)num % 10) + '0')) ? (num /= 10) : (str[size--] = '.');
+		(i != 3 && (str[size--] = ((int)num % 10) + '0')) ?
+		(num /= 10) : (str[size--] = '.');
+	(i == 1 && ++i) ? str[size--] = '0' : 1;
 	(i++ == 2) ? str[size--] = '.' : 1;
 	(i++ == 3) ? str[size--] = '0' : 1;
 	(size == 0) ? str[0] = '-' : 1;

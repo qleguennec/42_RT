@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_parameters.c                                 :+:      :+:    :+:   */
+/*   fsdl_get_pt_clr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 13:02:07 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/30 19:25:11 by bsouchet         ###   ########.fr       */
+/*   Created: 2017/05/02 17:55:07 by bsouchet          #+#    #+#             */
+/*   Updated: 2017/05/02 18:28:47 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "fsdl.h"
 
-void		handle_scene_parameters(t_rt *rt)
+cl_float3	fsdl_get_pt_clr(SDL_Surface *dst, int x, int y)
 {
-	if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->param_b_rect[0]))
-		rt->ui->b_sp_hover = 0;
-	else if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->param_b_rect[1]))
-		rt->ui->b_sp_hover = 1;
-	else if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->param_b_rect[2]))
-		rt->ui->b_sp_hover = 2;
-	if (rt->ui->b_sp_hover > -1)
-		draw_sp_element(rt, rt->ui->b_sp_hover, 1);
+	size_t		tmp;
+	cl_float3	clr;
+
+	tmp = (*((unsigned *)(dst->pixels + y * dst->pitch + x *
+	dst->format->BytesPerPixel)));
+	clr.x = (((tmp >> 24) & 0xFF));
+	clr.y = (((tmp >> 16) & 0xFF));
+	clr.z = (((tmp >> 8) & 0xFF));
+	return (clr);
 }

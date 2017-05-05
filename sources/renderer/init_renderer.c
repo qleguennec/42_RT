@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:37 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 19:57:58 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/02 18:15:27 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	init_window_elements(t_rt *rt)
 	rt->ui->font[1] = TTF_OpenFont("./assets/font/SourceCodePro.ttf", 12);
 	rt->s_back = SDL_GetWindowSurface(rt->win);
 	rt->s_rend = SDL_CreateRGBSurfaceWithFormat(0, REND_W, REND_H, 32, SDL_PF);
-	rt->s_process = SDL_CreateRGBSurfaceWithFormat(0, 1244, 618, 32, SDL_PF);
+	rt->s_effct = SDL_CreateRGBSurfaceWithFormat(0, REND_W, REND_H, 32, SDL_PF);
 	rt->ui->s_ver = TTF_RenderText_Blended(rt->ui->font[0], WIN_VERSION,
 	(SDL_Color){109, 125, 145, 255});
 	fsdl_fill_rect(rt->s_back, (SDL_Rect){0, 0, 1280, 720}, WIN_BG);

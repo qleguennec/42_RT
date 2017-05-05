@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 22:06:56 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/23 20:06:58 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/04/28 20:49:56 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ int			export_shape_object(short shape, int fd)
 	return (write(fd, "Object", 6));
 }
 
+static void	export_object_dimensions(t_obj *obj, int fd)
+{
+	write(fd, "\t<width>", 8);
+	ft_putfloat_fd((float)obj->width, fd);
+	write(fd, "</width>\n", 9);
+	write(fd, "\t<height>", 9);
+	ft_putfloat_fd((float)obj->height, fd);
+	write(fd, "</height>\n", 10);
+	write(fd, "\t<lenght>", 9);
+	ft_putfloat_fd((float)obj->lenght, fd);
+	write(fd, "</lenght>\n", 10);
+}
+
 static void	export_object_part2(t_obj *obj, int fd)
 {
 	write(fd, "\t<rotation>", 11);
@@ -63,6 +76,7 @@ static void	export_object_part2(t_obj *obj, int fd)
 		ft_putfloat_fd((float)obj->radius, fd);
 		write(fd, "</radius>\n", 10);
 	}
+	export_object_dimensions(obj, fd);
 	write(fd, "</object>\n\n", 11);
 }
 

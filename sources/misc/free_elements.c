@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 14:49:22 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 17:52:00 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/02 18:17:11 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			free_elements(t_rt *rt)
 	free_scene(rt);
 	SDL_FreeSurface(rt->w_icon);
 	SDL_FreeSurface(rt->s_rend);
-	SDL_FreeSurface(rt->s_process);
+	SDL_FreeSurface(rt->s_effct);
 	TTF_Quit();
 	SDL_Quit();
 	exit(0);
