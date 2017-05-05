@@ -10,138 +10,96 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-// #include "calc.cl"
+#include "reflex.cl"
+#include "refract.cl"
+#include "shiness.cl"
 #include "light.h"
-#include "calc.h"
-// #include "obj_def.h"
-#include "lib.h"
+#include "color.cl"
 
-unsigned	get_lighting(int debug, global t_obj *objs, global t_lgt *lights,
-	short n_objs, short n_lights, /*float ambiant, */float3 ray_pos, float3 ray_dir,
-	short obj_ind)
+unsigned	get_lighting(t_data *data)
 {
-	float	ambiant = 0.25f;
-	float	clearness = 1.0f;
-	short	index = obj_ind;
-	float3	new_pos = ray_pos;
-	float3	rd_light = (float3){0.0f, 0.0f, 0.0f}; //set a la couleur de fondy
+	short	id;
+	float3	temp_dir;
+	float3	temp_pos;
 
-//		PRINT3(new_pos,"test position");
-	rd_light += check_all_light(lights, n_lights, objs, n_objs, obj_ind, ambiant,
-		ray_dir, ray_pos);
-	clearness -= (objs[obj_ind].opacity + PREC);
-	while (clearness > 0.0f)
+	// data->safe--;
+	data->safe = 1;
+	id = data->id;
+	temp_dir = data->ray_dir;
+	temp_pos = data->intersect;
+	while (data->safe > 0 && data->light_pow > 0.0f)
 	{
-		if (index == obj_ind)
-			new_pos = touch_object(objs, n_objs, new_pos, ray_dir, &index);
-		else if (index == -1)
+
+		if (data->objs[data->id].reflex > 0.0f)
 		{
-			rd_light += (float3){1.0f, 1.0f, 1.0f} * clearness;
-			clearness = 0.0f;
+			// printf("lo\n");
+			calcul_reflex_color(data);
 		}
 		else
 		{
-			obj_ind = index;
-			rd_light += (check_all_light(lights, n_lights, objs, n_objs, index, ambiant,
-			ray_dir, new_pos) * clearness);
-			clearness -= (objs[obj_ind].opacity + PREC);
+			data->safe = 0;
 		}
+	// if (data->objs[data->id].opacity < 1.0f && data->light_pow > 0.0f &&
+		// data->safe > 0)
+		// clearness_color(data);
+		data->rd_light += check_all_light(data);
 	}
-	return(calcul_rendu_light(rd_light, n_lights, ambiant));
+	
+	// data->id = id;
+	// data->ray_dir = temp_dir;
+	// data->intersect = temp_pos;
+	
+	return(calcul_rendu_light(data));
 }
 
-float3		check_all_light(global t_lgt *lights, short n_lights,
-	global t_obj *objs, short n_objs, short obj_ind, float ambiant, float3 ray_dir,
-	float3 ray_pos)
+float3		check_all_light(t_data *data)
 {
 	short	i = 0;
 	float3	lightdir;
 	float3	rd_light;
 
-	rd_light.xyz = (float3)(ambiant, ambiant, ambiant);
-	while (i < n_lights)
+	rd_light = (float3){0.0f, 0.0f, 0.0f};
+	while (i < data->n_lgts)
 	{
-		lightdir = normalize(ray_pos - lights[i].pos);
-		rd_light += is_light(lights[i].pos, lightdir, objs, &lights[i],
-		n_objs, n_lights, calcul_normale(&objs[obj_ind], ray_pos), obj_ind);
+		lightdir = data->intersect - data->lights[i].pos;
+		rd_light += is_light(data, lightdir, &data->lights[i],
+		calcul_normale(data));
+		// PRINT3(rd_light, "rd_light");
 		i++;
 	}
-	return((float3)(rd_light / (float)(n_lights + ambiant)) * objs[obj_ind].opacity);
-}
-
-unsigned	calcul_rendu_light(float3 light, short n_lights, float ambiant)
-{
-	float3	clr;
-
-	ambiant = 0;
-	clr =  light * 255.0f;
-	return ((((unsigned)clr.x & 0xff) << 24) + (((unsigned)clr.y & 0xff) << 16)
-		+ (((unsigned)clr.z & 0xff) << 8) + ((unsigned)255 & 0xff));
-}
-
-float3		is_light(float3 lightpos, float3 lightdir, global t_obj *objs, global t_lgt *light,
-	short n_objs, short n_lights, float3 normale, short obj_ind)
-{
-	short	index;
-	float3	new_pos;
-	float3 light_clr;
-	char	cal_light = 0;
-
-	light_clr = light->clr;
-	new_pos	= touch_object(objs, n_objs, lightpos, lightdir, &index);
-	while (index > -1 && index != obj_ind && objs[index].opacity < 1.0f)
+	if (data->nl > 0)
 	{
-		if (cal_light == 0)
-		{
-		light_clr = calcul_light(light_clr, &objs[index]);
-		cal_light = 1;
-		}
-		new_pos = touch_object(objs, n_objs, new_pos, lightdir, &index);
+		return ((rd_light / (data->n_lgts + data->nl * data->ambiant)
+			* data->objs[data->id].opacity * data->light_pow));
 	}
-	if (index == obj_ind)
-		return (calcul_clr(lightdir, normale, light_clr, &objs[index]));
-	else
-		return ((float3)(0.0f, 0.0f, 0.0f));
+	return (rd_light * data->objs[data->id].opacity);
 }
 
-float3		calcul_light(float3 light_clr, global t_obj *obj)
+float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normale)
 {
-	light_clr -= (1.0f - obj->clr) * obj->opacity;
-	if (light_clr.x < 0.0f)
-		light_clr.x = 0.0f;
-	if (light_clr.y < 0.0f)
-		light_clr.y = 0.0f;
-	if (light_clr.z < 0.0f)
-		light_clr.z = 0.0f;
-	return (light_clr);
-}
+	short	index = data->id;
+	float3	light_clr;
+	float3	save_pos = data->ray_pos;
+	float3	save_ray = data->ray_dir;
+	float3	save_inter = data->intersect;
 
-float3		calcul_clr(float3 ray, float3 normale, float3 light,
-	global t_obj *obj)
-{
-	float	cosinus;
-
-	cosinus = dot(ray, normale);
-	return((float3)(light * cosinus * obj->clr));
-}
-
-float3		calcul_normale(global t_obj *obj, float3 point)
-{
-	float3	normale;
-
-	if (obj->type == T_PLANE)
-		normale = obj->rot;
-	if (obj->type == T_SPHERE)
-		normale = obj->pos - point;
-	if (obj->type == T_CYLINDER)
+	lightdir = fast_normalize(lightdir);
+	data->ray_pos = lgt->pos;
+	data->ray_dir = lightdir;
+	touch_object(data);
+	if (index == data->id && fast_distance(data->intersect, lgt->pos) <
+		fast_distance(data->intersect, lgt->pos) + PREC)
 	{
-		normale = obj->pos - point;
-		normale.y = 0.0f;
-		// normale = rotate_ray(normale, obj->rot);
+		data->nl++;
+		light_clr = calcul_clr(-lightdir, normale, lgt->clr,
+			&data->objs[index]) + data->ambiant * data->objs[index].clr;
+		// light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
+		return (light_clr / (1.0f + data->ambiant));
 	}
-	if (obj->type == T_CONE)
-		normale = (float3){0.0f, 0.0f, 1.0f};
-	normale = normalize(normale);
-	return (normale);
+	data->ray_pos = save_pos;
+	data->ray_dir = save_ray;
+	data->intersect = save_inter;
+	data->id = index;
+	return (calcul_clr(data->ray_pos, -normale, data->ambiant,
+		&data->objs[index]));
 }

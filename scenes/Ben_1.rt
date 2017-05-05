@@ -19,90 +19,103 @@
 <!------------ Light(s) -------------->
 
 <light>
-	<name>Point 1</name>
+	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>0.00 0.00 0.00</position>
-	<color-rgb>255.00 250.00 250.00</color-rgb>
+	<position>10.00 0.00 180.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
 
 <!------------ Object(s) ------------->
 
 <object>
-	<name>plan sol</name>
-	<type>Plane</type>
+	<name>Sphere 1</name>
+	<type>SpHeRe</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 20.00 290.00</position>
+	<position>-0.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>255.00 0.00 0.00</color-rgb>
+	<color-rgb>0.00 128.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
+	<radius>10.00</radius>
 </object>
 
 <object>
-	<name>plan fond</name>
-	<type>Plane</type>
+	<name>Fond</name>
+	<type>plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 200.00</position>
-	<rotation>-90.00 0.00 0.00</rotation>
-	<color-rgb>.00 255.00 128.00</color-rgb>
-	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
-</object>
-
-<object>
-	<name>plan Arriere</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 0.00 -200.00</position>
+	<position>0.0 0.00 500.00</position>
 	<rotation>90.00 0.00 0.00</rotation>
-	<color-rgb>255.00 0.00 255.00</color-rgb>
+	<color-rgb>.00 255.00 .00</color-rgb>
+	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
+	<radius>50</radius>
+</object>
+
+<object>
+	<name>Arriere</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 0.00 -500.00</position>
+	<rotation>90.00 0.00 .00</rotation>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
 	<width>0</width>
 </object>
 
 <object>
-	<name>plan plafond</name>
+	<name>Gauche</name>
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>10.00 -20.00 290.00</position>
+	<position>-100.00 0.00 -100.00</position>
+	<rotation>.00 0.00 90.00</rotation>
+	<color-rgb>255.00 .00 .00</color-rgb>
+	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
+</object>
+
+<object>
+	<name>Droite</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>100.00 0.00 -100.00</position>
+	<rotation>.00 0.00 90.00</rotation>
+	<color-rgb>100.00 80.00 128.00</color-rgb>
+	<opacity>1.00</opacity>
+	<height>0</height>
+	<width>0</width>
+</object>
+
+<object>
+	<name>Haut</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 -100.00 -100.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>150.00 185.00 240.00</color-rgb>
+	<color-rgb>255.00 .00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
 	<width>0</width>
 </object>
 
 <object>
-	<name>plan droit</name>
+	<name>Bas</name>
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>40.00 0.00 290.00</position>
-	<rotation>0.00 0.00 90.00</rotation>
-	<color-rgb>0.00 255.00 0.00</color-rgb>
-	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
-</object>
-
-<object>
-	<name>plan gauche</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>-40.00 0.00 290.00</position>
-	<rotation>0.00 0.00 90.00</rotation>
-	<color-rgb>255.00 255.00 0.00</color-rgb>
+	<position>0.00 100.00 -100.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>0.00 128.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<height>0</height>
 	<width>0</width>

@@ -19,13 +19,12 @@
 <!------------ Light(s) -------------->
 
 <light>
-	<name>Diffuse</name>
-	<type>Diffuse</type>
-	<visibility>True</visibility>
-	<flare-visibility>True</flare-visibility>
-	<position>0.00 115.00 115.00</position>
-	<color-rgb>127.50 127.50 127.50</color-rgb>
-	<intensity>10.00</intensity>
+	<name> Prout </name>
+	<type> diffuse </type>
+	<visibility>ON</visibility>
+	<intensity>5</intensity>
+	<color-rgb>1.0 1.0 1.0</color-rgb>
+	<position>0. 0. 100.</position>
 </light>
 
 <!------------ Object(s) ------------->
@@ -44,4 +43,3 @@
 	<width>524.0</width>
 	<height>42.0</height>
 </object>
-
