@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 21:44:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/30 21:50:52 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/06 20:57:30 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void		handle_double_click_down(t_rt *rt, t_cl *cl)
 {
-	if (rt->ui->c_down != -1 || rt->ui->c_hover == -1 || rt->ui->c_hover == 'C'
+	if (rt->ui->c_down != -1 || rt->ui->c_elem->type != 'C' ||
+	rt->ui->c_hover == -1 /*|| rt->ui->c_hover == 'C'*/
 	|| rt->ui->c_elem == rt->scn->c_cam)
 		return ;
 	rt->n_info = -2;
@@ -59,7 +60,7 @@ static void	handle_left_click_down_part2(t_rt *rt, t_cl *cl)
 	else if (rt->ui->c_down == -1 && rt->ui->c_hover != -1)
 		handle_outliner_down(rt);
 	else if (rt->ui->ra_down == -1 && rt->ui->ra_hover != -1)
-		handle_special_modes_down(rt, cl);
+		handle_special_modes_down(rt);
 }
 
 void		handle_left_click_down(t_rt *rt, t_cl *cl)

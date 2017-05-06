@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 18:43:50 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/25 18:15:40 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/06 00:05:53 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,5 @@ void		draw_panel(t_rt *rt, int p, int type)
 	draw_current_camera_name(rt, 2);
 	draw_info_bar(rt);
 	if (type == 0)
-		SDL_LowerBlit(rt->s_rend, &(SDL_Rect){(rt->r_view.x - 18), 0,
-		rt->r_view.w, rt->r_view.h}, rt->s_back, &rt->r_view);
+		add_render_frame(rt);
 }
