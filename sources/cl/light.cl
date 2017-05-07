@@ -46,40 +46,55 @@ float3		check_all_light(t_data *data)
 
 	rd_light = 0.0f;
 	normale = calcul_normale(data);
-	while (i++ < data->n_lgts)
+	// printf("lighs[%u]",data->n_lgts);
+	rd_light = 0.0f;
+	while (++i < data->n_lgts)
 	{
 		lightdir = fast_normalize(data->save_inter - data->lights[i].pos);
 		rd_light += is_light(data, lightdir, &data->lights[i], normale);
 	}
-	// if (data->nl > 0)
+	if (data->nl && data->nl == data->n_lgts)
+	{
+		return ((rd_light * data->objs[data->id].opacity * data->light_pow + data->nl / 10.0f) / data->nl);
+		// return ((rd_light / (data->nl + data->nl * data->ambiant)
+			// * data->objs[data->id].opacity * data->light_pow) * data->objs[data->id].clr);
+	}
+	// else if (data->nl < data->n_lgts)
 	// {
-	// 	return ((rd_light / (data->nl + data->nl * data->ambiant)
-	// 		* data->objs[data->id].opacity * data->light_pow) * data->objs[data->id].clr);
-	// 	// 	return ((rd_light
-	// 		// * data->objs[data->id].opacity * data->light_pow));
+	// 	return ((rd_light * data->objs[data->id].opacity * data->light_pow + data->nl / 20.0f) / data->nl);
 	// }
-	return (rd_light * data->objs[data->id].opacity * data->save_clr);
+	// else if (!data->nl && data->n_lgts)
+		return (rd_light * data->objs[data->id].opacity * data->light_pow / data->n_lgts);
+	// return (rd_light * data->objs[data->id].opacity * data->light_pow);
 	//obj.clr a retirer
 }
 
 float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normale)
 {
-	short	index = data->id;
 	float3	light_clr;
 
 	data->ray_pos = lgt->pos;
 	data->ray_dir = lightdir;
 	touch_object(data);
-	if (index == data->id && fast_distance(data->save_inter, lgt->pos) < 
+	if (data->id == data->save_id && fast_distance(data->save_inter, lgt->pos) < 
 		fast_distance(data->intersect, lgt->pos) + PREC)
 	{
 		data->nl++;
-		light_clr = calcul_clr(-lightdir, normale, lgt->clr, &data->objs[index]);
+		light_clr = calcul_clr(-lightdir, normale, lgt->clr * data->save_clr, &data->objs[data->save_id]);
 		// light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
 		return (light_clr + (light_clr * data->ambiant));
 		// return (light_clr / (1.0f + data->ambiant));
 	}
-	return (calcul_clr(data->save_dir, -normale, data->ambiant, &data->objs[index]));
+	data->ray_pos = data->save_pos;
+	data->ray_dir = lgt->pos - data->save_pos;
+	touch_object(data);
+	if (data->id < 0 || fast_distance(data->save_pos, lgt->pos) > 
+		fast_distance(data->intersect, lgt->pos))
+	{
+		data->nl++;
+	}
+	
+	return (calcul_clr(data->save_dir, -normale, data->ambiant * data->save_clr, &data->objs[data->save_id]));
 	// data->objs n'est pas utilise
 	// a deux endroit la et la haut
 }

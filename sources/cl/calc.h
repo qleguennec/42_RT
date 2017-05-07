@@ -30,6 +30,7 @@ typedef struct			s_data
 	float3				save_dir;
 	float3				save_inter;
 	float3				save_clr;
+	short				save_id;
 
 	float				ambiant;
 	float				light_pow;
