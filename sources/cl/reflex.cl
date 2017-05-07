@@ -16,6 +16,7 @@ void	calcul_reflex_color(t_data *data)
 	calcul_reflex_ray(data, &temp_pos, &temp_dir);
 	touch_object(data);
 
+	// data->ray_dir = data->intersect;
 	// get_lighting(data);
 	// data->light_pow = temp_power * (1.0f - data->objs[id].reflex);
 	// data->light_pow *= temp_power * (1.0f - data->objs[id].reflex);
