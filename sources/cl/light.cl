@@ -19,20 +19,25 @@
 unsigned	get_lighting(t_data *data)
 {
 	// temp_pos = data->intersect;
-	// while (data->safe > 0 && data->light_pow > 0.0f)
-	// {
-
-	// 	if (data->objs[data->id].reflex > 0.0f)
-	// 	{
-	// 		calcul_reflex_color(data);
-	// 	}
-	// 	else if (data->objs[data->id].opacity < 1.0f)
-	// 	{
-	// 		break ;// WIP
-	// 	}
-	// 	else
-	// 		break ;
-	// }
+	data->safe = 1;
+	while (data->safe > 0 && data->light_pow > 0.0f)
+	{
+		if (data->objs[data->id].reflex > 0.0f)
+		{
+			calcul_reflex_color(data);
+		}
+		else if (data->objs[data->id].opacity < 1.0f)
+		{
+			break ;// WIP
+		}
+		else
+			break ;
+	}
+	data->save_dir = data->ray_dir;
+	data->save_pos = data->ray_pos;
+	data->save_clr = data->objs[data->id].clr;
+	
+	// data->save_id = data->id;
 	data->rd_light = check_all_light(data);
 	return(calcul_rendu_light(data));
 }

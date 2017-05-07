@@ -31,5 +31,5 @@ void	calcul_reflex_ray(t_data *data, float3 *ray_pos, float3 *ray_dir)
 	normale = calcul_normale(data);
 	data->ray_dir = data->ray_dir - (2.0f * normale * dot(normale, data->ray_dir));
 	data->ray_pos = data->intersect - *ray_dir;
-	data->light_pow *= data->objs[data->id].reflex;
+	// data->light_pow *= data->objs[data->id].reflex;
 }

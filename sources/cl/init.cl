@@ -13,8 +13,8 @@
 static void     init_laputain_desamere(t_data *data)
 {
 	data->objs[0].reflex = 0.0f;
-	data->objs[1].reflex = 0.0f;
-	data->objs[2].reflex = 0.0f;
+	data->objs[1].reflex = 1.0f;
+	data->objs[2].reflex = 1.0f;
 	data->objs[3].reflex = 0.0f;
 	data->objs[4].reflex = 0.0f;
 	data->objs[5].reflex = 0.0f;
