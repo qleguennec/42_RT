@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-float3		calcul_clr(float3 ray, float3 normale, float3 light,
-	global t_obj *obj)
+float3		calcul_clr(float3 ray, float3 normale, float3 light)
 {
 	float	cosinus;
 
