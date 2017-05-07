@@ -76,7 +76,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 	data->ray_pos = lgt->pos;
 	data->ray_dir = lightdir;
 	touch_object(data);
-	if (data->id == data->save_id && fast_distance(data->save_inter, lgt->pos) < 
+	if (data->id == data ->save_id && fast_distance(data->save_inter, lgt->pos) < 
 		fast_distance(data->intersect, lgt->pos) + PREC)
 	{
 		data->nl++;
@@ -85,15 +85,10 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 		return (light_clr + (light_clr * data->ambiant));
 		// return (light_clr / (1.0f + data->ambiant));
 	}
-	data->ray_pos = data->save_pos;
-	data->ray_dir = lgt->pos - data->save_pos;
-	touch_object(data);
-	if (data->id < 0 || fast_distance(data->save_pos, lgt->pos) > 
-		fast_distance(data->intersect, lgt->pos))
+	if (data->id == data->save_id)
 	{
-		data->nl++;
+		data->test++;
 	}
-	
 	return (calcul_clr(data->save_dir, -normale, data->ambiant * data->save_clr, &data->objs[data->save_id]));
 	// data->objs n'est pas utilise
 	// a deux endroit la et la haut
