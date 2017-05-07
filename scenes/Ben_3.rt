@@ -48,6 +48,17 @@
 	<intensity>5.00</intensity>
 </light>
 
+
+<light>
+	<name>Proutnot in range</name>
+	<type>Diffuse</type>
+	<visibility>False</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>-300.00 0.00 20.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
 <light>
 	<name>Blue</name>
 	<type>Spot</type>

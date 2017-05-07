@@ -53,20 +53,13 @@ float3		check_all_light(t_data *data)
 		lightdir = fast_normalize(data->save_inter - data->lights[i].pos);
 		rd_light += is_light(data, lightdir, &data->lights[i], normale);
 	}
-	if (data->nl && data->nl == data->n_lgts)
-	{
-		return ((rd_light * data->objs[data->id].opacity * data->light_pow + data->nl / 10.0f) / data->nl);
-		// return ((rd_light / (data->nl + data->nl * data->ambiant)
-			// * data->objs[data->id].opacity * data->light_pow) * data->objs[data->id].clr);
-	}
-	// else if (data->nl < data->n_lgts)
-	// {
-	// 	return ((rd_light * data->objs[data->id].opacity * data->light_pow + data->nl / 20.0f) / data->nl);
-	// }
-	// else if (!data->nl && data->n_lgts)
-		return (rd_light * data->objs[data->id].opacity * data->light_pow / data->n_lgts);
-	// return (rd_light * data->objs[data->id].opacity * data->light_pow);
-	//obj.clr a retirer
+	rd_light += calcul_clr(data->save_dir, -normale, data->ambiant * data->save_clr, &data->objs[data->save_id])
+	* data->objs[data->id].opacity * data->light_pow;
+	if (!data->nl)
+	 	return (rd_light);
+	else if (data->n_lgts == 1)
+		return (rd_light + (rd_light * (data->nl / 10.0f)) / data->n_lgts);
+	return ((rd_light + (rd_light * (data->nl) / 10.0f)) / (data->n_lgts - data->test));
 }
 
 float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normale)
@@ -82,14 +75,11 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, normale, lgt->clr * data->save_clr, &data->objs[data->save_id]);
 		// light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
-		return (light_clr + (light_clr * data->ambiant));
-		// return (light_clr / (1.0f + data->ambiant));
+		return (light_clr );
 	}
-	if (data->id == data->save_id)
-	{
+	if (fast_distance(data->save_inter, data->save_pos) < fast_distance(data->intersect, data->save_pos)+ PREC)
 		data->test++;
-	}
-	return (calcul_clr(data->save_dir, -normale, data->ambiant * data->save_clr, &data->objs[data->save_id]));
+	return (0);
 	// data->objs n'est pas utilise
 	// a deux endroit la et la haut
 }
