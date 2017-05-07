@@ -15,7 +15,7 @@ float3		calcul_clr(float3 ray, float3 normale, float3 light,
 {
 	float	cosinus;
 
-	ray = fast_normalize(ray);
+	// ray = fast_normalize(ray);
 	cosinus = dot(ray, normale);
 	if (cosinus <= 0.0f)
 		return((float3){0.0f, 0.0f, 0.0f});

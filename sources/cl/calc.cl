@@ -149,6 +149,10 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	{
 		int	clr;
 		// int	mask;
+		data.save_dir = data.ray_dir;
+		data.save_pos = data.ray_pos;
+		data.save_inter = data.inter;
+		data.save_clr = data.objs[data.id].clr;
 
 		clr = get_lighting(&data);
 		// mask = (clr) | 0x000000FF;
