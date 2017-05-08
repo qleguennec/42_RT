@@ -13,7 +13,7 @@ static float3         cone_normal(t_data *data, float3 rot)
     // printf("test\n");
     m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
     k = tan((data->objs[data->id].radius / 2.0f) * (float)(M_PI / 180.0f));
-    return (data->inter - data->objs[data->id].pos - ((1.0f + k * k) *
+    return (data->intersect - data->objs[data->id].pos - ((1.0f + k * k) *
     rot * m));
 }
 
@@ -22,7 +22,7 @@ static float3         cylinder_normal(t_data *data, float3 rot)
     float   m;
 
 	m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
-    return (data->inter - data->objs[data->id].pos - rot * m);
+    return (data->intersect - data->objs[data->id].pos - rot * m);
 }
 
 static float3        calcul_normal_egg(t_data *data)
@@ -60,7 +60,7 @@ static float3        calcul_normal_paraboloid(t_data *data)
 
 static float3         sphere_normal(t_data *data)
 {
-    return (data->inter - data->objs[data->id].pos);
+    return (data->intersect - data->objs[data->id].pos);
 }
 
 float3		        calcul_normale(t_data *data)

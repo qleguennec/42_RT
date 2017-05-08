@@ -15,77 +15,80 @@
 #include "shiness.cl"
 #include "light.h"
 #include "color.cl"
+#include "noise.h"
+#include "noise.cl"
 
 unsigned	get_lighting(t_data *data)
 {
+	float3 color  = (float3){202.0f, 164.0f, 10.0f};
 	// temp_pos = data->intersect;
-	while (data->safe > 0 && data->light_pow > 0.0f)
-	{
-
-		if (data->objs[data->id].reflex > 0.0f)
-		{
-			calcul_reflex_color(data);
-		}
-		else if (data->objs[data->id].opacity < 1.0f)
-		{
-			break ;// WIP
-		}
-		else
-			break ;
-	}
+	// data->safe = 1;
+	// while (data->safe-- > 0 && data->light_pow > 0.0f)
+	// {
+	// 	if (data->objs[data->id].reflex > 0.0f)
+	// 	{
+	// 		calcul_reflex_color(data);
+	// 	}
+	// 	else if (data->objs[data->id].opacity < 1.0f) // a changer en if
+	// 	{
+	// 		break ;// WIP
+	// 	}
+	// 	else
+	// 		break ;
+	// }
+	// data->save_dir = data->ray_dir;
+	// data->save_pos = data->ray_pos;
+	data->save_clr = twocolor_lerp(data->objs[data->id].clr,
+		color / 255.0f, (float)smooth_noise_3d(data->intersect));
+	// data->save_inter = data->inter;
+	// data->save_inter = data->intersect;
+	// data->save_id = data->id;
 	data->rd_light = check_all_light(data);
 	return(calcul_rendu_light(data));
 }
 
 float3		check_all_light(t_data *data)
 {
-	short	i = 0;
+	short	i;
 	float3	lightdir;
 	float3	rd_light;
+	float3	normale;
 
-	rd_light = (float3){0.0f, 0.0f, 0.0f};
-	while (i < data->n_lgts)
+	i = -1;
+	rd_light = 0.0f;
+	rd_light = 0.0f;
+	normale = calcul_normale(data);
+	while (++i < data->n_lgts)
 	{
-		lightdir = data->intersect - data->lights[i].pos;
-		rd_light += is_light(data, lightdir, &data->lights[i],
-		calcul_normale(data));
-		// PRINT3(rd_light, "rd_light");
-		i++;
+		lightdir = fast_normalize(data->save_inter - data->lights[i].pos);
+		rd_light += is_light(data, lightdir, &data->lights[i], normale);
 	}
-	if (data->nl > 0)
-	{
-		return ((rd_light / (data->nl + data->nl * data->ambiant)
-			* data->objs[data->id].opacity * data->light_pow) * data->objs[data->id].clr);
-		// 	return ((rd_light
-			// * data->objs[data->id].opacity * data->light_pow));
-	}
-	return (rd_light * data->objs[data->id].opacity * data->objs[data->id].clr);
+	rd_light += calcul_clr(data->save_dir, -normale, data->ambiant * data->save_clr)
+	* data->objs[data->id].opacity * data->light_pow;
+	if (!data->nl)
+	 	return (rd_light);
+	else if (data->n_lgts == 1)
+		return (rd_light + (rd_light * (data->nl / 20.0f)) / data->n_lgts);
+	return ((rd_light + ((rd_light * data->nl) / 20.0f)) / (data->n_lgts - data->test));
 }
 
 float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normale)
 {
-	short	index = data->id;
 	float3	light_clr;
-	float3	save_intersect = data->intersect;
-	// float3	save_pos = data->ray_pos;
-	// float3	save_dir = data->ray_dir;
 
-	lightdir = fast_normalize(lightdir);
 	data->ray_pos = lgt->pos;
 	data->ray_dir = lightdir;
 	touch_object(data);
-	if (index == data->id && fast_distance(save_intersect, lgt->pos) <
+	if (data->id == data ->save_id && fast_distance(data->save_inter, lgt->pos) <
 		fast_distance(data->intersect, lgt->pos) + PREC)
 	{
 		data->nl++;
-		light_clr = calcul_clr(-lightdir, normale, lgt->clr,
-			&data->objs[index]);
-		// light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
-		data->id = index;
-		return (light_clr / (1.0f + data->ambiant));
+		light_clr = calcul_clr(-lightdir, normale, lgt->clr * data->save_clr);
+		// light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, data->save_clr);
+		return (light_clr );
 	}
-		data->id = index;
-	return (calcul_clr(data->ray_pos, -normale, data->ambiant,
-	&data->objs[index]));//* data->objs[data->id].clr);
-	// return (data->objs[index].clr * data->ambiant);
+	if (fast_distance(data->save_inter, data->save_pos) <
+	fast_distance(data->intersect, data->save_pos)+ PREC)
+		data->test++;
+	return (0);
 }

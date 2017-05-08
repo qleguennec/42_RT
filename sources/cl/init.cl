@@ -49,6 +49,8 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->offset = 0.0f;
 	data->type = -1;
 
+	data->test = 0;
+
 	// data->clr = 0.0f;
 	data->ambiant = ambiant;
 	data->light_pow = 1.0f;

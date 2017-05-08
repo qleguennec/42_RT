@@ -55,12 +55,13 @@ kernel void
 	rot = rotate_cam(&rot, cam->rot);
 	origin.x = cam->pos.x + (cam->focal / 27.5f * rot.y) - basis.x / 2.0f;
 	origin.y = cam->pos.y + (cam->focal / 27.5f * rot.x) - basis.y / 2.0f;
-	origin.z = cam->pos.z + (cam->focal / 27.5f * 1.0f);
+	origin.z = cam->pos.z + (cam->focal / 27.5f * rot.z);
 	direction.x = origin.x + ((float)x * indent.x) - cam->pos.x;
 	direction.y = origin.y + ((float)y * indent.y) - cam->pos.y;
 	direction.z = origin.z - cam->pos.z;
 	*(img_buffer + WIDTH * y + x) = -1;
-	// if ((x == XCENTER && y == YCENTER)) 
+	if ((x == XCENTER && y == YCENTER)) 
+	PRINT3(fast_normalize(direction),"direction");
 	// if ((x > XCENTER - 10 && y > YCENTER - 10 && x < XCENTER + 10 && y < YCENTER + 10))
 	calc_picture((DEBUG && ((x == XCENTER && y == YCENTER) || (x == XCENTER && y == YCENTER)))
 		, img_buffer + WIDTH * y + x
@@ -69,6 +70,6 @@ kernel void
 		, nobjs
 		, nlgts
 		, cam->pos
-		, normalize(direction)
+		, fast_normalize(direction)
 		, cam, x, y);
 }

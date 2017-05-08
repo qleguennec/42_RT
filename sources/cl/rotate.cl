@@ -47,7 +47,6 @@ float3			rotate_ray(float3 *ray, t_data *data, short *index)
 		cos(rad.z), cos(rad.x) * cos(rad.y)};
 	}
 
-
 	res.x = dot(matx, *ray);
 	res.y = dot(maty, *ray);
 	res.z = dot(matz, *ray);

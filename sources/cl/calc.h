@@ -24,6 +24,15 @@ typedef struct			s_data
 
 	float3				ray_pos;
 	float3				ray_dir;
+	float3				intersect;
+	
+	float3				save_pos;
+	float3				save_dir;
+	float3				save_inter;
+	float3				save_clr;
+	short				save_id;
+	
+	short				test;
 
 	float				ambiant;
 	float				light_pow;
@@ -44,7 +53,6 @@ typedef struct			s_data
 	float				t1;
 
 	float3				offset;
-	float3				intersect;
 }						t_data;
 
 float			calc_delta(float3 *disc, t_data *data);

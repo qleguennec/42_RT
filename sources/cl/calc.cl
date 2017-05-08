@@ -134,7 +134,6 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	init(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant,
      pixel);
 	// data.objs[4].reflex = 1.0f;
-
 	touch_object(&data);
 	if (!COLOR && data.id > -1)
 	{
@@ -149,6 +148,11 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	{
 		int	clr;
 		// int	mask;
+		data.save_dir = data.ray_dir;
+		data.save_pos = data.ray_pos;
+		data.save_inter = data.inter;
+		data.save_clr = data.objs[data.id].clr;
+		data.save_id = data.id;
 
 		clr = get_lighting(&data);
 		// mask = (clr) | 0x000000FF;

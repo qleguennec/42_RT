@@ -15,9 +15,10 @@
 
 # include "../../include/obj_types.h"
 
-# define PREC 0.02f
+# define PREC 0.2f
+// # define PREC 0.02f
 #define PLANE_PREC 0.00001f
-# define SAFE 1
+# define SAFE 4
 
 typedef struct		s_obj
 {
