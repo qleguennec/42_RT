@@ -47,7 +47,6 @@ typedef struct			s_data
 	// float3				clr;
 
 	short				nl;
-	float3				rot;
 	float				t;
 	float				t0;
 	float				t1;
@@ -85,7 +84,8 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 /////////////////////
 
 // rotate function
-float3			rotate_ray(float3 *ray, t_data *data, short *index);
+float3			rotate_ray(t_data *data, short *index);
+float3			rotate_cam(float3 rot);
 /////////////////////
 float3		calcul_normale(t_data *data);
 
@@ -93,6 +93,5 @@ void		init(t_data *data, global t_obj *objs,
 global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
 float3 ray_dir, float ambiant, global unsigned int *pixel);
 
-float3			rotate_cam(float3 *ray, float3 rot);
 
 #endif

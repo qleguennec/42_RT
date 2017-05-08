@@ -51,13 +51,7 @@ kernel void
 	indent.x = basis.x / WIDTH;
 	indent.y = basis.y / HEIGHT;
 
-	rot = (float3){0.0f, 0.0f, 1.0f};
-
-	float3		test;
-	test = (cam->rot * (float)M_PI / 180.0f);
-	test.z = 1.0f;
-
-	rot = rotate_cam(&rot, test);
+	rot = rotate_cam(cam->rot);
 	origin.x = cam->pos.x + (cam->focal / 27.5f * rot.y) - basis.x / 2.0f;
 	origin.y = cam->pos.y + (cam->focal / 27.5f * rot.x) - basis.y / 2.0f;
 	origin.z = cam->pos.z + (cam->focal / 27.5f * rot.z);
@@ -66,10 +60,7 @@ kernel void
 	direction.z = origin.z - cam->pos.z;
 	*(img_buffer + WIDTH * y + x) = -1;
 	// if ((x > XCENTER - 10 && y > YCENTER - 10 && x < XCENTER + 10 && y < YCENTER + 10))
-	if ((x == XCENTER && y == YCENTER)) 
-	{
-	PRINT3(fast_normalize(direction),"direction");
-	}
+	// if ((x == XCENTER && y == YCENTER)) 
 	// PRINT3(fast_normalize(direction),"direction");
 	calc_picture((DEBUG && ((x == XCENTER && y == YCENTER) || (x == XCENTER && y == YCENTER)))
 		, img_buffer + WIDTH * y + x

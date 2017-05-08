@@ -44,7 +44,6 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 
 	data->intersect = 0.0f;
 	data->inter = 0.0f;
-	data->rot = (float3){0.0f, 1.0f, 0.0f}; 
 	data->is_light = 0;
 	data->offset = 0.0f;
 	data->type = -1;
