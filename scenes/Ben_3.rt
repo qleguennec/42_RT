@@ -175,7 +175,7 @@
 	<visibility>True</visibility>
 	<position>-25.00 0.00 150.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>128.00 128.00 128.00</color-rgb>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>12.00</radius>
 	<width>50.00</width>

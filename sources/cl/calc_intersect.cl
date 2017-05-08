@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void			calc_intersect(float *delta, t_data *data)
+void			calc_intersect(t_data *data)
 {
-	data->t = *delta;
-	data->intersect = data->ray_pos + (data->ray_dir * (*delta));
+	data->intersect = data->ray_pos + (data->ray_dir * data->t);
 }
 
 // short			disk_intersection(t_data *data, short *index)
@@ -37,17 +36,16 @@ short			plane_intersection(t_data *data, short *index)
 {
 	float3	rot;
 	float	div;
-	float	t;
 
 	rot = rotate_ray(&data->rot, data, index);
 	data->offset = data->ray_pos - data->objs[(int)*index].pos;
 	div = dot(data->ray_dir, rot);
 	if (div == 0.0f)
 		return (0);
-	t = (-dot(data->offset, rot)) / div;
-	if (t < 0.0f)
+	data->t = (-dot(data->offset, rot)) / div;
+	if (data->t < 0.0f)
 		return (0);
-	calc_intersect(&t, data);
+	calc_intersect(data);
 	return (1);
 }
 
@@ -90,7 +88,7 @@ short			cone_intersection(t_data *data, short *index)
 	// // calc_intersect(&rad, data);
 	// 	return (1);
 	// }
-	calc_intersect(&data->t, data);
+	calc_intersect(data);
 	return (1);
 }
 
@@ -160,16 +158,16 @@ short			cylinder_intersection(t_data *data, short *index)
 		if (m < 0.0f || m > data->objs[(int)*index].height)
 			return (cylinder_caps(data, &rot, index, m));
 	}
-	calc_intersect(&data->t, data);
+	calc_intersect(data);
 	return (1);
 }
 
 short			sphere_intersection(t_data *data, short *index)
 {
 	float3	disc;
-	float3	rot;
+	// float3	rot;
 
-	rot = rotate_ray(&data->ray_dir, data, index);
+	// rot = rotate_ray(&data->rot, data, index);
 	data->offset = data->ray_pos - data->objs[(int)*index].pos;
 	disc.x = dot(data->ray_dir, data->ray_dir);
 	disc.y = 2.0f * dot(data->ray_dir, data->offset);
@@ -177,6 +175,6 @@ short			sphere_intersection(t_data *data, short *index)
 	data->objs[(int)*index].radius * data->objs[(int)*index].radius;
 	if (calc_delta(&disc, data) == -1)
 		return (0);
-	calc_intersect(&data->t, data);
+	calc_intersect(data);
 	return (1);
 }

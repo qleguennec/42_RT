@@ -46,13 +46,18 @@ kernel void
 	y = get_global_id(1);
 	if (DEBUG && x == 0 && y == 0)
 		debug(objs, lgts, cam, nobjs, nlgts);
-	basis.y = 1.0f;
 	basis.x = WIDTH / HEIGHT;
-	indent.y = basis.y / HEIGHT;
+	basis.y = 1.0f;
 	indent.x = basis.x / WIDTH;
+	indent.y = basis.y / HEIGHT;
 
 	rot = (float3){0.0f, 0.0f, 1.0f};
-	rot = rotate_cam(&rot, cam->rot);
+
+	float3		test;
+	test = (cam->rot * (float)M_PI / 180.0f);
+	test.z = 1.0f;
+
+	rot = rotate_cam(&rot, test);
 	origin.x = cam->pos.x + (cam->focal / 27.5f * rot.y) - basis.x / 2.0f;
 	origin.y = cam->pos.y + (cam->focal / 27.5f * rot.x) - basis.y / 2.0f;
 	origin.z = cam->pos.z + (cam->focal / 27.5f * rot.z);
@@ -62,6 +67,7 @@ kernel void
 	*(img_buffer + WIDTH * y + x) = -1;
 	if ((x == XCENTER && y == YCENTER)) 
 	PRINT3(fast_normalize(direction),"direction");
+	// PRINT3(fast_normalize(direction),"direction");
 	// if ((x > XCENTER - 10 && y > YCENTER - 10 && x < XCENTER + 10 && y < YCENTER + 10))
 	calc_picture((DEBUG && ((x == XCENTER && y == YCENTER) || (x == XCENTER && y == YCENTER)))
 		, img_buffer + WIDTH * y + x

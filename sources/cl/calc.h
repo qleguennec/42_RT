@@ -57,7 +57,7 @@ typedef struct			s_data
 
 float			calc_delta(float3 *disc, t_data *data);
 
-void			calc_intersect(float *delta, t_data *data);
+void			calc_intersect(t_data *data);
 
 void			touch_object(t_data *data);
 void			touch_object2(t_data *data);//

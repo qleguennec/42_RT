@@ -67,10 +67,14 @@ float3			rotate_cam(float3 *ray, float3 rot)
 	{
 		return (*ray);
 	}	
-	rad = rot * ((float)M_PI / 180.0f);
+	rad = rot ;//* ((float)M_PI / 180.0f);
 
 	if (NATIVE) //  en test
 	{
+
+
+
+
 		matx = (float3){native_cos(rad.y) * native_cos(rad.z),
 		native_cos(rad.y) * (-native_sin(rad.z)),
 		native_sin(rad.y)};

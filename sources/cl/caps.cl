@@ -14,7 +14,6 @@ short       cone_caps(t_data *data, float3 *rot, short *index, float m)
 {
     float   radius;
     float	div;
-	float	t;
 
     if (m < 0.0f)
     {
@@ -31,10 +30,10 @@ short       cone_caps(t_data *data, float3 *rot, short *index, float m)
     div = dot(*rot, data->ray_dir);
     if (div == 0.0f)
         return (0);
-    t = (-dot(*rot, data->offset)) / div;
-    if (t < 0.0f)
+    data->t = (-dot(*rot, data->offset)) / div;
+    if (data->t < 0.0f)
         return (0);
-    calc_intersect(&t, data);
+    calc_intersect(data);
     radius = data->objs[(int)*index].height / tan((90.0f -
         (data->objs[(int)*index].radius / 2.0f)) * (float)(M_PI / 180.0f));
     if (native_powr(radius, 2) <
@@ -47,7 +46,6 @@ short       cone_caps(t_data *data, float3 *rot, short *index, float m)
 short       cylinder_caps(t_data *data, float3 *rot, short *index, float m)
 {
     float	div;
-	float	t;
 
     if (m < 0.0f)
         data->pos = data->objs[(int)*index].pos;
@@ -60,10 +58,10 @@ short       cylinder_caps(t_data *data, float3 *rot, short *index, float m)
     div = dot(*rot, data->ray_dir);
     if (div == 0.0f)
         return (0);
-    t = (-dot(*rot, data->offset)) / div;
-    if (t < 0.0f)
+    data->t = (-dot(*rot, data->offset)) / div;
+    if (data->t < 0.0f)
         return (0);
-    calc_intersect(&t, data);
+    calc_intersect(data);
     if (fast_distance(data->intersect, data->pos) >
     data->objs[(int)*index].radius)
         return (0);

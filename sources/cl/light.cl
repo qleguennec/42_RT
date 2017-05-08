@@ -64,8 +64,8 @@ float3		check_all_light(t_data *data)
 	if (!data->nl)
 	 	return (rd_light);
 	else if (data->n_lgts == 1)
-		return (rd_light + (rd_light * (data->nl / 20.0f)) / data->n_lgts);
-	return ((rd_light + ((rd_light * data->nl) / 20.0f)) / (data->n_lgts - data->test));
+		return (rd_light / (1.0f + data->ambiant));
+	return (rd_light  / (data->n_lgts - data->test + data->ambiant));
 }
 
 float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normale)
@@ -80,7 +80,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, normale, lgt->clr * data->save_clr);
-		// light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
+		light_clr += is_shining(calcul_normale(data), -lightdir, lgt->clr);
 		return (light_clr );
 	}
 	if (fast_distance(data->save_inter, data->save_pos) < 
