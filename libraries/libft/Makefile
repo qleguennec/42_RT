@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
-#    Updated: 2017/05/06 22:32:02 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/05/08 19:13:07 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ HEADER = include
 
 SOURCES = ft_atoi.c \
 		  ft_atof.c \
+		  ft_free.c \
 		  ft_shtoi.c \
 		  ft_ftoa.c \
 		  ft_clr.c \

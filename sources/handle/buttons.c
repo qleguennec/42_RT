@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:56:06 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/06 00:03:31 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/08 19:22:22 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void		handle_buttons_down(t_rt *rt, t_cl *cl)
 
 void		execute_button(t_rt *rt, int button, t_cl *cl)
 {
-	printf("lol button: %i\n", button);
 	if (button == 0 && (rt->n_info = -1) != 0)
 		export_config_file(rt);
 	else if (button == 1 && (rt->n_info = 1) != 0)

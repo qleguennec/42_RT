@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/05/06 21:09:35 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/05/08 19:23:53 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ C			= clang
 
 NAME		= rt
 
-FLAGS		= -Wall -Wextra -Werror -g
+FLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 
 OPENCL_F	= -framework OpenCL
 
