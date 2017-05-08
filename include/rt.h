@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/28 13:56:17 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/08 11:25:48 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void				init_gui_structure(t_rt *rt);
 void				init_gui_selected_camera_buttons(t_ui *ui);
 void				init_gui_selected_light_buttons(t_ui *ui);
 void				init_gui_selected_object_buttons(t_ui *ui);
+void				init_gui_selected_scene_parameters(t_ui *ui);
 
 void				draw_panel(t_rt *rt, int p, int type);
 void				draw_button(t_rt *rt, int b_num, int type);
@@ -137,6 +138,7 @@ int					draw_state_frame(t_rt *rt);
 int					draw_info_bar(t_rt *rt);
 
 void				draw_scene_parameters(t_rt *rt);
+void				draw_sp_element(t_rt *rt, int b_num, int mode);
 
 void				draw_outliner(t_rt *rt, int i, int max);
 void				draw_outliner_element(t_rt *rt, t_obj *obj, int state);
@@ -169,31 +171,13 @@ void				save_to_png(t_rt *rt);
 ** -----------------------------------------------------------------------------
 */
 
-/*
-** needs to be call once at the start of the program
-*/
 bool				cl_main_krl_init(t_cl *cl);
 
-/*
-** needs to be call each time the scene needs to be rendered
-*/
 bool				cl_main_krl_exec(t_cl *cl);
 
-/*
-** needs to be call each time the camera is changed
-** cl_main_krl_init
-*/
 bool				cl_main_krl_update_camera(t_cl *cl, t_obj *obj);
-
-/*
-** needs to be call each time objects are modified
-*/
 bool				cl_main_krl_update_buffers(t_cl *cl, t_scene *scene);
 
-/*
-** needs to be called each time the scene has been re-renderer
-** the image buffer is assumed to be of size WIDTH * HEIGHT * sizeof(int)
-*/
 bool				cl_copy_image_buffer(t_cl *cl, void *buffer);
 
 /*
@@ -210,6 +194,20 @@ int					add_render_frame(t_rt *rt);
 void				render_loop(t_rt *rt);
 
 bool				scene_init_rendering(t_rt *rt, t_cl *cl);
+
+/*
+** -----------------------------------------------------------------------------
+** ----------------------------- Special Modes ---------------------------------
+** -----------------------------------------------------------------------------
+*/
+
+void				add_sepia_effect(t_rt *rt, short r, short g, short b);
+void				add_black_n_white_effect(t_rt *rt);
+void				add_cartoon_effect(t_rt *rt, short s, short x_g, short y_g);
+void				add_reverse_colors_effect(t_rt *rt);
+void				add_sobel_effect(t_rt *rt, short sum, short x, short y);
+void				add_pixel_art_effect(t_rt *rt);
+void				add_saturate_effect(t_rt *rt);
 
 /*
 ** -----------------------------------------------------------------------------
@@ -253,7 +251,7 @@ void				handle_outliner_down(t_rt *rt);
 ** ------------------------- Handle Special Mode -------------------------------
 */
 
-void				handle_special_modes_down(t_rt *rt, t_cl *cl);
+void				handle_special_modes_down(t_rt *rt);
 void				handle_special_mode(t_rt *rt, int i);
 
 /*
@@ -278,6 +276,12 @@ void				handle_selected_element_down(t_rt *rt, t_cl *cl);
 
 void				delete_current_element(t_rt *rt, t_cl *cl,
 					t_obj *nav, t_obj *tmp);
+
+/*
+** ------------------------ Handle Scene Parameters ----------------------------
+*/
+
+void				handle_scene_parameters(t_rt *rt);
 
 /*
 ** --------------------------- Handle Keyboard ---------------------------------

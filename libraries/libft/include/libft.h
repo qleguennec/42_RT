@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/28 12:54:47 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/08 12:00:13 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,28 @@
 # define MIN(a,b)	((a <= b) ? a : b)
 # define MAX(a,b)	((a > b) ? a : b)
 # define ABS(x)		(((x) < 0) ? (-x) : (x))
+
+
+typedef struct	s_hsv
+{
+	double		h;
+	double		s;
+	double		v;
+}				t_hsv;
+
+typedef struct	s_percent
+{
+	double		r;
+	double		g;
+	double		b;
+}				t_percent;
+
+typedef struct	s_rgb
+{
+	double		r;
+	double		g;
+	double		b;
+}				t_rgb;
 
 char			*ft_name(char *file, char *extension);
 
@@ -159,6 +181,11 @@ int				ft_isdigit(int c);
 
 void			divide_clr(cl_float3 *clr);
 int				check_rgb_clr(cl_float3 clr);
-void			ft_strncpy(char *dest, char *src, size_t n);
+
+bool			oxor(bool a, bool b);
+
+cl_float3		ft_hsv_to_rgb(t_hsv hsv);
+t_hsv 			ft_rgb_to_hsv(t_rgb c);
+t_hsv 			ft_vec_to_hsv(cl_float3 c);
 
 #endif

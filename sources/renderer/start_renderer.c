@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/26 15:39:49 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/08 12:00:36 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,36 @@
 
 int			add_render_frame(t_rt *rt)
 {
-	SDL_LowerBlit(rt->s_rend, &(SDL_Rect){(rt->r_view.x - 18), 0, rt->r_view.w,
-	rt->r_view.h}, rt->s_back, &rt->r_view);
+	if (rt->scn->sp_mode)
+	{
+		if (rt->scn->sp_mode == 1)
+			add_pixel_art_effect(rt);
+		else if (rt->scn->sp_mode == 2)
+			add_saturate_effect(rt);
+		else if (rt->scn->sp_mode == 3)
+			add_sepia_effect(rt, 0, 0, 0);
+		else if (rt->scn->sp_mode == 4)
+			add_black_n_white_effect(rt);
+		else if (rt->scn->sp_mode == 5)
+			add_sobel_effect(rt, 0, 0, 0);
+		else if (rt->scn->sp_mode == 6)
+			add_reverse_colors_effect(rt);
+		else if (rt->scn->sp_mode == 7)
+			add_cartoon_effect(rt, 0, 0, 0);
+		SDL_LowerBlit(rt->s_effct, &(SDL_Rect){(rt->r_view.x - 18), 0,
+		rt->r_view.w, rt->r_view.h}, rt->s_back, &rt->r_view);
+	}
+	else
+		SDL_LowerBlit(rt->s_rend, &(SDL_Rect){(rt->r_view.x - 18), 0,
+		rt->r_view.w, rt->r_view.h}, rt->s_back, &rt->r_view);
+	return (1);
+}
+
+int			lol_cat(void *data, SDL_Event *event)
+{
+	(void)data;
+	if (event->type == SDL_KEYUP)
+		SDL_FlushEvent(SDL_KEYDOWN);
 	return (1);
 }
 
@@ -24,7 +52,10 @@ static int	global_loop(t_rt *rt, t_cl *cl)
 	while (rt->run)
 	{
 		if (SDL_PollEvent(&rt->event))
+		{
+			SDL_AddEventWatch(lol_cat, rt); 
 			handle_events(rt, cl);
+		}
 		SDL_UpdateWindowSurface(rt->win);
 		fsdl_fps_limit(rt->fps);
 		fsdl_fps_counter(rt->fps);

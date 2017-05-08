@@ -1,0 +1,336 @@
+norminette ../libft/include
+Norme: ./include/ft_printf.h
+Norme: ./include/malloc.h
+Norme: ./include/types.h
+Norme: ./include/libft.h
+
+norminette ../libft/sources
+Norme: ./sources/ft_assign.c
+Norme: ./sources/ft_bzero.c
+Norme: ./sources/ft_assign_opencl.c
+Norme: ./sources/ft_checkstr.c
+Norme: ./sources/ft_atoi.c
+Norme: ./sources/ft_clr.c
+Norme: ./sources/ft_comment.c
+Norme: ./sources/ft_atof.c
+Norme: ./sources/ft_edit_end.c
+Norme: ./sources/ft_del_dir_name.c
+Norme: ./sources/ft_isdigit.c
+Norme: ./sources/ft_getstr.c
+Norme: ./sources/ft_color.c
+Norme: ./sources/ft_itoa.c
+Norme: ./sources/ft_memchr.c
+Norme: ./sources/ft_memcpy.c
+Norme: ./sources/ft_memmove.c
+Norme: ./sources/ft_mempcpy.c
+Norme: ./sources/ft_malloc_err.c
+Norme: ./sources/ft_nbrlen.c
+Norme: ./sources/ft_itoa_w.c
+Norme: ./sources/ft_ftoa.c
+Error (line 44): function ft_dtoa has 27 lines
+Norme: ./sources/ft_oxor.c
+Error (line 15): Space before function name
+Error (line 15): Space before function name
+Error (line 15): Space before function name
+Error (line 15): Space before function name
+Error (line 15): Space before function name
+Error (line 15): Space before function name
+Error (line 15): Space before function name
+Error (line 15): Space before function name
+Error (line 15, col 4): bad spacing
+Error (line 17): bad indentation
+Error (line 17): must begin only by tabulations
+Norme: ./sources/ft_printf/ft_addto.c
+Norme: ./sources/ft_memset.c
+Norme: ./sources/ft_nsplit.c
+Norme: ./sources/ft_printf/ft_apply.c
+Norme: ./sources/ft_printf/ft_maths.c
+Norme: ./sources/ft_printf/ft_nbrlen.c
+Norme: ./sources/ft_printf/ft_getparams.c
+Norme: ./sources/ft_printf/ft_sitoa.c
+Norme: ./sources/ft_printf/ft_options.c
+Norme: ./sources/ft_printf/ft_strnchr.c
+Norme: ./sources/ft_printf/option_b.c
+Norme: ./sources/ft_printf/ft_strf.c
+Norme: ./sources/ft_printf/ft_printf.c
+Norme: ./sources/ft_printf/option_c.c
+Norme: ./sources/ft_printf/ft_setoptions.c
+Norme: ./sources/ft_printf/option_mod.c
+Norme: ./sources/ft_printf/option_p.c
+Norme: ./sources/ft_printf/option_o.c
+Norme: ./sources/ft_printf/option_s.c
+Norme: ./sources/ft_printf/option_u.c
+Norme: ./sources/ft_putchar.c
+Norme: ./sources/ft_putchar_fd.c
+Norme: ./sources/ft_printf/option_hexa.c
+Norme: ./sources/ft_putendl.c
+Norme: ./sources/ft_putendl_fd.c
+Norme: ./sources/ft_printf/option_di.c
+Norme: ./sources/ft_putnbrlong.c
+Norme: ./sources/ft_putnl.c
+Norme: ./sources/ft_putstr.c
+Norme: ./sources/ft_putstr_fd.c
+Norme: ./sources/ft_short_bzero.c
+Norme: ./sources/ft_printf/option_uni.c
+Norme: ./sources/ft_shtoi.c
+Norme: ./sources/ft_strchr.c
+Norme: ./sources/ft_strchr_end.c
+Norme: ./sources/ft_strdup.c
+Norme: ./sources/ft_strcmp.c
+Norme: ./sources/ft_strlen.c
+Norme: ./sources/ft_strjoin.c
+Norme: ./sources/ft_strlen_w.c
+Norme: ./sources/ft_strunc.c
+Norme: ./sources/ft_word.c
+Norme: ./sources/ft_putnbr.c
+Norme: ./sources/gnl/get_next_line.c
+Norme: ./sources/ft_putnbr_fd.c
+norminette ../libvect/include ../libft/include
+Norme: ./include/libvect.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/malloc.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/types.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/ft_printf.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/libft.h
+
+norminette ../libvect/sources
+Norme: ./sources/vect_add.c
+Norme: ./sources/vect_del.c
+Norme: ./sources/vect_init.c
+Norme: ./sources/vect_memcmp.c
+Norme: ./sources/vect_grow.c
+Norme: ./sources/vect_cmp.c
+Norme: ./sources/vect_mset_end.c
+Norme: ./sources/vect_print.c
+Norme: ./sources/vect_memmem.c
+Norme: ./sources/vect_new.c
+Norme: ./sources/vect_str_add.c
+Norme: ./sources/vect_str_push.c
+Norme: ./sources/vect_mset.c
+Norme: ./sources/vect_req.c
+Norme: ./sources/vect_wrap.c
+Norme: ./sources/vect_push.c
+norminette ../libgnl/include ../libft/include ../libvect/include
+Norme: ./include/libgnl.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/malloc.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/types.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libvect/include/libvect.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/ft_printf.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/libft.h
+
+norminette ../libgnl/sources
+Norme: ./sources/gnl_lines.c
+Norme: ./sources/gnl_vect.c
+norminette ../libcl/include ../libft/include ../libvect/include ../libgnl/include
+Norme: ./include/libcl.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/malloc.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/types.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libvect/include/libvect.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libgnl/include/libgnl.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/ft_printf.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/libft.h
+
+norminette ../libcl/sources
+Norme: ./sources/cl_init.c
+Norme: ./sources/cl_krl_exec.c
+Norme: ./sources/cl_krl_init.c
+Norme: ./sources/cl_read.c
+Norme: ./sources/cl_write.c
+Norme: ./sources/cl_krl_build.c
+norminette ../fsdl/include ../libft/include ../libvect/include
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/fsdl/include/fsdl.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/malloc.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/types.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libvect/include/libvect.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/ft_printf.h
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/libft/include/libft.h
+
+norminette ../fsdl/sources
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/fsdl/sources/draw/fsdl_draw_pt.c
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/fsdl/sources/get/fsdl_pt_in_rect.c
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/fsdl/sources/get/fsdl_get_pt_clr.c
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/fsdl/sources/set/fsdl_fps.c
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/fsdl/sources/draw/fsdl_fill_rect.c
+Norme: /Users/bsouchet/Projects/42_BRO/42_RT/libraries/fsdl/sources/draw/fsdl_draw_rect.c
+
+norminette ./include libraries/libft/include libraries/libvect/include libraries/libgnl/include libraries/libcl/include libraries/libfmt/include
+Norme: ./include/errors_messages.h
+Norme: ./include/infos_messages.h
+Norme: ./include/obj_types.h
+Norme: ./include/parameters.h
+Norme: ./include/test_krl.h
+Norme: ./include/xml_elements.h
+Norme: ./libraries/libft/include/ft_printf.h
+Norme: ./libraries/libft/include/malloc.h
+Norme: ./libraries/libft/include/libft.h
+Norme: ./libraries/libft/include/types.h
+Norme: ./include/structures.h
+Error (line 45): C++ comment
+Error (line 46): C++ comment
+Error (line 48): C++ comment
+Error (line 50): C++ comment
+Norme: ./libraries/libvect/include/libvect.h
+Norme: ./libraries/libgnl/include/libgnl.h
+Norme: ./libraries/libcl/include/libcl.h
+Norme: ./libraries/libfmt/include/libfmt.h
+Norme: ./include/rt.h
+
+norminette ./sources
+Norme: ./sources/cl/calc.cl
+Warning: Not a valid file
+Norme: ./sources/cl/calc_intersect.cl
+Warning: Not a valid file
+Norme: ./sources/cl/calc_normal.cl
+Warning: Not a valid file
+Norme: ./sources/cl/caps.cl
+Warning: Not a valid file
+Norme: ./sources/cl/color.cl
+Warning: Not a valid file
+Norme: ./sources/cl/debug.cl
+Warning: Not a valid file
+Norme: ./sources/cl/init.cl
+Warning: Not a valid file
+Norme: ./sources/cl/light.cl
+Warning: Not a valid file
+Norme: ./sources/cl/main.cl
+Warning: Not a valid file
+Norme: ./sources/cl/pas_touch.cl
+Warning: Not a valid file
+Norme: ./sources/cl/reflex.cl
+Warning: Not a valid file
+Norme: ./sources/cl/refract.cl
+Warning: Not a valid file
+Norme: ./sources/cl/rotate.cl
+Warning: Not a valid file
+Norme: ./sources/cl/shiness.cl
+Warning: Not a valid file
+Norme: ./sources/test/test.cl
+Warning: Not a valid file
+Norme: ./sources/cl/calc.h
+Warning: /Users/bsouchet/Projects/42_BRO/42_RT/./sources/cl/calc.h may not compile or is invalid for some reasons.
+Norme: ./sources/cl/debug.h
+Warning: /Users/bsouchet/Projects/42_BRO/42_RT/./sources/cl/debug.h may not compile or is invalid for some reasons.
+Norme: ./sources/cl/light.h
+Warning: /Users/bsouchet/Projects/42_BRO/42_RT/./sources/cl/light.h may not compile or is invalid for some reasons.
+Norme: ./sources/cl_build/cl_copy_image_buffer.c
+Norme: ./sources/cl_build/cl_interface.h
+Norme: ./sources/cl/obj_def.h
+Error (line 19): wrong number of spaces in preprocessor indentation
+Error (line 37): C++ comment
+Error (line 39): C++ comment
+Error (line 39): line has 82 characters
+Norme: ./sources/cl_build/cl_main_krl_update_camera.c
+Norme: ./sources/cl_build/cpy_cam.c
+Norme: ./sources/cl_build/cpy_lgt.c
+Norme: ./sources/cl_build/cl_main_krl_init.c
+Norme: ./sources/cl_build/cpy_obj.c
+Norme: ./sources/cl_build/cl_main_krl_update_buffers.c
+Error (line 24): wrong number of spaces in preprocessor indentation
+Error (line 25): wrong number of spaces in preprocessor indentation
+Error (line 92, col 32): space after cast
+Error (line 99, col 32): space after cast
+Norme: ./sources/cl_build/cl_main_krl_exec.c
+Norme: ./sources/export/cameras.c
+Norme: ./sources/export/export_config.c
+Norme: ./sources/export/lights.c
+Norme: ./sources/gui/draw_button.c
+Norme: ./sources/gui/draw_current_camera_name.c
+Norme: ./sources/gui/draw_dimensions_parameters.c
+Norme: ./sources/gui/draw_info_and_state.c
+Norme: ./sources/gui/draw_materials.c
+Norme: ./sources/export/objects.c
+Error (line 53): function export_object_part2 has 26 lines
+Norme: ./sources/gui/draw_outliner.c
+Error (line 15): function draw_outliner has 26 lines
+Norme: ./sources/gui/draw_outliner_nav_buttons.c
+Norme: ./sources/gui/draw_panels.c
+Norme: ./sources/gui/draw_outliner_elements.c
+Norme: ./sources/gui/draw_scene_parameters.c
+Norme: ./sources/gui/draw_special_mode.c
+Norme: ./sources/gui/draw_selected_panel.c
+Norme: ./sources/gui/init_structures_selected_element.c
+Norme: ./sources/gui/save_to_png.c
+Norme: ./sources/gui/draw_case_box.c
+Norme: ./sources/handle/buttons.c
+Norme: ./sources/gui/draw_selected_element.c
+Error (line 108): C++ comment
+Error (line 108): line has 85 characters
+Norme: ./sources/handle/events.c
+Norme: ./sources/gui/init_structures.c
+Norme: ./sources/handle/info_bar.c
+Norme: ./sources/handle/elements.c
+Error (line 63, col 50): missing space around /
+Norme: ./sources/handle/errors.c
+Norme: ./sources/handle/linked_lists.c
+Norme: ./sources/handle/keyboard.c
+Norme: ./sources/handle/scene_parameters.c
+Norme: ./sources/handle/mouse.c
+Error (line 50): function handle_motion_mouse has 35 lines
+Error (line 54): Empty line
+Error (line 55): comment not well formatted
+Error (line 55): comment not well placed
+Error (line 58): Empty line
+Error (line 64): Empty line
+Error (line 65): comment not well formatted
+Error (line 65): bad indentation
+Error (line 65): comment not well placed
+Error (line 68): Empty line
+Norme: ./sources/handle/outliner.c
+Norme: ./sources/handle/mouse_clicks.c
+Error (line 18): comment not well formatted
+Error (line 18): comment not well placed
+Error (line 79): comment not well formatted
+Error (line 79): bad indentation
+Norme: ./sources/handle/special_mode.c
+Error (line 26): C++ comment
+Error (line 27): C++ comment
+Norme: ./sources/main.c
+Norme: ./sources/handle/selected_element.c
+Error: 6 functions in the file
+Error (line 100): missing newline after if
+Error (line 101): C++ comment
+Error (line 101): line has 86 characters
+Norme: ./sources/misc/free_elements.c
+Norme: ./sources/misc/cartoon_effect.c
+Error (line 52): spaces at the end of line
+Error (line 53): line has 85 characters
+Error (line 78): spaces at the end of line
+Norme: ./sources/misc/verbose_mode.c
+Norme: ./sources/parser/add_elements.c
+Norme: ./sources/misc/special_modes.c
+Error (line 32, col 5): space after (
+Error (line 33, col 4): space after (
+Error (line 34, col 4): space after (
+Error (line 52): spaces at the end of line
+Error (line 73, col 13): space after (
+Error (line 74, col 13): space after (
+Norme: ./sources/handle/se_box_minus.c
+Error (line 39): function update_se_light_box has 28 lines
+Error (line 87): function update_se_object_box has 30 lines
+Norme: ./sources/parser/check_tags.c
+Norme: ./sources/parser/clear_buffer.c
+Norme: ./sources/handle/se_box_plus.c
+Error (line 39): function update_se_light_box has 28 lines
+Error (line 87): function update_se_object_box has 30 lines
+Norme: ./sources/parser/get_informations.c
+Norme: ./sources/parser/get_type_elements.c
+Norme: ./sources/parser/check_elements.c
+Error (line 77): comment not well formatted
+Error (line 82): function check_object has 33 lines
+Norme: ./sources/parser/init_global_stuctures.c
+Norme: ./sources/parser/set_elements_parameters.c
+Error (line 15): function set_default_parameters has 28 lines
+Error (line 34): C++ comment
+Error (line 35): C++ comment
+Error (line 37): C++ comment
+Error (line 47): function set_element_parameters has 29 lines
+Error (line 67): C++ comment
+Error (line 68): C++ comment
+Error (line 71): C++ comment
+Norme: ./sources/renderer/init_renderer.c
+Norme: ./sources/renderer/start_renderer.c
+Error (line 50): spaces at the end of line
+Norme: ./sources/test/cl_test_krl.c
+Norme: ./sources/parser/get_numbers.c
+Error (line 82): function get_v has 38 lines
+Norme: ./sources/parser/add_elements_parameters.c
+Error (line 93): function add_object_parameters has 35 lines

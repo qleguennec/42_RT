@@ -14,57 +14,57 @@
 #include "calc.h"
 #include "light.h"
 #include "light.cl"
+#include "caps.cl"
 #include "calc_intersect.cl"
 #include "rotate.cl"
+#include "calc_normal.cl"
+#include "init.cl"
 
-float		calc_delta(float a, float b, float c)
+float		calc_delta(float3 *disc, t_data *data)
 {
-	float	t0;
-	float	t1;
-	float	t;
 	float	tmp;
 
-	tmp = (b * b) - (4.0f * a * c);
+	tmp = (disc->y * disc->y) - (4.0f * disc->x * disc->z);
 	if(tmp < 0.0f)
 		return (-1);
+	// else if (tmp == 0.0f)
+	// {
+	// 	data->t = -disc->y / (2.0f * disc->x);
+	// 	return (0);
+	// }
 	tmp = sqrt(tmp);
-	t0 = ((-b + tmp) / (2.0f * a));
-	t1 = ((-b - tmp) / (2.0f * a));
-	t = (t0 < t1) ? t0 : t1;
-	return (t);
+	data->t0 = ((-disc->y + tmp) / (2.0f * disc->x));
+	data->t1 = ((-disc->y - tmp) / (2.0f * disc->x));
+	data->t = (data->t0 < data->t1) ? data->t0 : data->t1;
+	return (1);
 }
 
 static short	ray_intersection(t_data *data, short *index)
 {
-	data->obj = &data->objs[(int)*index];
-	if (data->obj->type == T_PLANE)
-		return (plane_intersection(data));
-	else if (data->obj->type == T_CONE)
-		return (cone_intersection(data));
-	else if (data->obj->type == T_CYLINDER)
-		return (cylinder_intersection(data));
-	else if (data->obj->type == T_SPHERE)
-		return (sphere_intersection(data));
-	//else if (data->obj->type == T_DISK)
-	// 	return (disk_intersection(data));
+	if (data->objs[(int)*index].type == T_PLANE)
+		return (plane_intersection(data, index));
+	else if (data->objs[(int)*index].type == T_CONE)
+		return (cone_intersection(data, index));
+	else if (data->objs[(int)*index].type == T_CYLINDER)
+		return (cylinder_intersection(data, index));
+	else if (data->objs[(int)*index].type == T_SPHERE)
+		return (sphere_intersection(data, index));
 	return (0);
 }
-
-void			touch_object(t_data *data)
+void			touch_object2(t_data *data)
 {
 	short			index;
 	float			smallest_norm;
 	float			norm;
 	float3			closest_intersect;
+	float			t;
+	float			type;
 
-	float	t;
 	t = -1;
-
 	index = -1;
 	data->id = -1;
 	smallest_norm = -1;
-	data->option = 1;
-	while(++index <  data->n_objs)
+	while(++index < data->n_objs)
 	{
 		if (ray_intersection(data, &index))
 			if ((norm = fast_distance(data->intersect, data->ray_pos)) > 0.0f &&
@@ -73,70 +73,92 @@ void			touch_object(t_data *data)
 				closest_intersect = data->intersect;
 				smallest_norm = norm;
 				data->id = index;
-				data->off_set = data->offset;
 				t = data->t;
+				type = data->type;
 			}
 	}
-	data->t = t;
-	data->option = 0;
 	data->intersect = closest_intersect;
+	data->t = t;
+	data->type = type;
+	if (!data->is_light)
+	{
+		data->inter = data->intersect;
+		data->is_light = 1;
+	}
 }
 
-static void		init_data(t_data *data, global t_obj *objs,
-global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
-float3 ray_dir, float ambiant, global unsigned int *pixel)
+void			touch_object(t_data *data)
 {
-	data->objs = objs;
-	data->obj = 0;
-	data->lights = lgts;
-	data->pixel = pixel;
-	data->n_objs = n_objs;
-	data->n_lgts = n_lgts;
-	data->id = -1;
-	data->safe = SAFE;
-	data->option = 1;
-	data->nl = 0;
-	data->ambiant = ambiant;
-	data->light_pow = 1.0f;
-	data->ray_pos = ray_pos;
-	data->grid_ray_dir = ray_dir;
-	data->ray_dir = ray_dir;
-	data->intersect = 0.0f;
-	data->grid_intersect = 0.0f;
-	data->rd_light = 0.0f;
-	data->offset = 0.0f;
-	data->rad = 0.0f;
+	short			index;
+	float			smallest_norm;
+	float			norm;
+	float3			closest_intersect;
+	float			t;
+	float			type;
 
-	data->off_set = 0.0f;
-	data->t = 0.0f;
-	data->rot = (float3){0.f, 1.0f, 0.0f};
-	data->test = -8;
-	data->pos = (float3){0.0f, 1.0f, 0.0f};
+	t = -1;
+	index = -1;
+	data->id = -1;
+	smallest_norm = -1;
+	while(++index < data->n_objs)
+	{
+		if (ray_intersection(data, &index))
+			if ((norm = fast_distance(data->intersect, data->ray_pos)) > 0.0f &&
+				(norm < smallest_norm || smallest_norm == -1))
+			{
+				closest_intersect = data->intersect;
+				smallest_norm = norm;
+				data->id = index;
+				t = data->t;
+				type = data->type;
+			}
+	}
+	data->intersect = closest_intersect;
+	data->t = t;
+	data->type = type;
+	if (!data->is_light)
+	{
+		data->inter = data->intersect;
+		data->is_light = 1;
+	}
 }
+
+
 
 void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
 	float3 ray_dir, global t_cam *cam, short x, short y)
 {
 	t_data	data;
-	float	ambiant = 0.20f;
-	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant, pixel);
-	init_laputain_desamere(&data);
-	check_intercept(&data, data.id, 0);
+	float	ambiant = 0.20f; // a setter par benj par la suite
+	init(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant,
+     pixel);
+	// data.objs[4].reflex = 1.0f;
+
+	touch_object(&data);
 	if (!COLOR && data.id > -1)
 	{
-		if (data.id == 0){*(data.pixel) = 0x00ff00FF;}
-		else if (data.id == 1){*pixel = 0xff0000FF;}
+		if (data.id == 0 && data.type != T_DISK){*pixel = 0xFF0000FF;}
+		else if (data.id == 1){*pixel = 0xFFFF00FF;}
 		else if (data.id == 2){*pixel = 0x00ffffFF;}
 		else if (data.id == 3){*pixel = 0xffffffFF;}
 		else if (data.id == 4){*pixel = 0xffff00FF;}
-		else{*pixel = 0xff00ffFF;}
+		else{*pixel = 0x00FF00FF;}
 	}
 	else if (COLOR && data.id > -1)
 	{
-		// printf("c'est la faute d'erwan!!!!!!\n");
-		*pixel = get_lighting(&data);
+		int	clr;
+		// int	mask;
+
+		clr = get_lighting(&data);
+		// mask = (clr) | 0x000000FF;
+		// printf("clr[%d]\n",clr);
+		// printf("clr[%x]\n",clr);
+		// printf("clr[%p]",clr);
+		*pixel = clr;
+		// *pixel = get_lighting(&data);
 	}
 	else
+		// *pixel = 0xDB6820FF;
 		*pixel = FONT;
 }

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 21:44:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 20:11:11 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/06 20:57:30 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void		handle_double_click_down(t_rt *rt, t_cl *cl)
 {
-	if (rt->ui->c_down != -1 || rt->ui->c_hover == -1 || rt->ui->c_hover == 'C'
+	if (rt->ui->c_down != -1 || rt->ui->c_elem->type != 'C' ||
+	rt->ui->c_hover == -1 /*|| rt->ui->c_hover == 'C'*/
 	|| rt->ui->c_elem == rt->scn->c_cam)
 		return ;
 	rt->n_info = -2;
@@ -59,7 +60,7 @@ static void	handle_left_click_down_part2(t_rt *rt, t_cl *cl)
 	else if (rt->ui->c_down == -1 && rt->ui->c_hover != -1)
 		handle_outliner_down(rt);
 	else if (rt->ui->ra_down == -1 && rt->ui->ra_hover != -1)
-		handle_special_modes_down(rt, cl);
+		handle_special_modes_down(rt);
 }
 
 void		handle_left_click_down(t_rt *rt, t_cl *cl)
@@ -75,6 +76,10 @@ void		handle_left_click_down(t_rt *rt, t_cl *cl)
 	if (rt->ui->b_se_hover > 0 &&
 	!fsdl_pt_in_rect(&rt->m_pos, rt->ui->area[13]))
 		draw_se_button(rt, rt->ui->b_se_hover, rt->scn->s_elem->type, 0);
+	/*if (rt->ui->b_sp_active != -1 &&
+	fsdl_pt_in_rect(&rt->m_pos, rt->ui->param_b_rect[rt->ui->b_sp_active]))
+		return ;
+	else*/
 	if (rt->ui->case_active != -1 &&
 	fsdl_pt_in_rect(&rt->m_pos, *rt->ui->case_rect))
 		return ;

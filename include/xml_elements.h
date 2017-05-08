@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:31:43 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/23 17:41:33 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/02 19:27:29 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,19 @@
 # define BO_RE	"<reflection>"
 # define BC_RE	"</reflection>"
 
-# define BO_RF	"<refraction>"
-# define BC_RF	"</refraction>"
+# define BO_RI	"<refraction-index>"
+# define BC_RI	"</refraction-index>"
+
+# define BO_RY	"<refraction-intensity>"
+# define BC_RY	"</refraction-intensity>"
 
 # define BO_SP	"<specular>"
 # define BC_SP	"</specular>"
 
-# define BO_TX	"<texture>"
-# define BC_TX	"</texture>"
+# define BO_PT	"<procedural-texture>"
+# define BC_PT	"</procedural-texture>"
+
+# define BO_TX	"<texture-file>"
+# define BC_TX	"</texture-file>"
 
 #endif

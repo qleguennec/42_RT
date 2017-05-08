@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 18:28:26 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/01/23 11:23:59 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/06 20:50:01 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	init_informations(t_rt *r, int i)
 	s(&r->inf[9], INF9) && s(&r->inf[14], INF14) && s(&r->inf[15], INF15) &&
 	s(&r->inf[16], INF16) && s(&r->inf[17], INF17) && s(&r->inf[21], INF21) &&
 	s(&r->inf[24], INF24) && s(&r->inf[25], INF25) && s(&r->inf[26], INF26) &&
-	s(&r->inf[27], INF27) && s(&r->inf[30], INF30)) ? 1 : 1;
+	s(&r->inf[27], INF27) && s(&r->inf[28], INF28) && s(&r->inf[29], INF29) &&
+	s(&r->inf[30], INF30) && s(&r->inf[31], INF31)) ? 1 : 1;
 }

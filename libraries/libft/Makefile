@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/04/28 12:55:09 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/05/08 11:58:35 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SOURCES = ft_atoi.c \
 		  ft_shtoi.c \
 		  ft_ftoa.c \
 		  ft_clr.c \
+		  ft_oxor.c \
 		  ft_mempcpy.c \
 		  ft_memset.c \
 		  ft_short_bzero.c \
@@ -37,7 +38,6 @@ SOURCES = ft_atoi.c \
 		  ft_bzero.c \
 		  ft_itoa.c \
 		  ft_putnbr.c \
-		  ft_strncpy.c \
 		  ft_putnbr_fd.c \
 		  ft_assign.c \
 		  ft_assign_opencl.c \
@@ -87,6 +87,7 @@ SOURCES = ft_atoi.c \
 		  ft_printf/ft_sitoa.c\
 		  ft_printf/ft_maths.c\
 		  ft_printf/ft_nbrlen.c\
+		  ft_hsv_editon.c \
 		  gnl/get_next_line.c \
 		  ft_malloc_err.c \
 		  ft_isdigit.c

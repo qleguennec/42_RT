@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:19:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/01 17:59:56 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/03/02 20:03:40 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ int			check_light(t_rt *rt, t_obj *tmp, short i)
 	return (1);
 }
 
+/*static int	check_object_part2(t_rt *rt, t_obj *t)
+{
+
+}*/
+
 int			check_object(t_rt *rt, t_obj *t, short i)
 {
 	t->title = 0;
@@ -89,12 +94,22 @@ int			check_object(t_rt *rt, t_obj *t, short i)
 		return (error(rt, 27));
 	if (rt->prs->t[7] != 0 && (t->opacity < .0 || t->opacity > 1.0))
 		return (error(rt, 10));
-	if (rt->prs->t[9] != 0 && (t->radius < .0 || t->radius > 200.0))
+	if (rt->prs->t[9] != 0 && (t->radius < .0 || t->radius > 500.0))
 		return (error(rt, 38));
-	if (rt->prs->t[10] != 0 && (t->width < .0 || t->width > 200.0))
+	if (rt->prs->t[14] != 0 && (t->lenght < .0 || t->lenght > 1000.0))
+		return (error(rt, 43));
+	if (rt->prs->t[10] != 0 && (t->width < .0 || t->width > 1000.0))
 		return (error(rt, 39));
-	if (rt->prs->t[11] != 0 && (t->height < .0 || t->height > 200.0))
+	if (rt->prs->t[11] != 0 && (t->height < .0 || t->height > 1000.0))
 		return (error(rt, 40));
+	if (rt->prs->t[15] != 0 && (t->reflex < .0 || t->reflex > 1.0))
+		return (error(rt, 44));
+	if (rt->prs->t[16] != 0 && (t->refrac_i < 1.0 || t->refrac_i > 2.8))
+		return (error(rt, 45));
+	if (rt->prs->t[17] != 0 && (t->refrac_y < .0 || t->refrac_y > 1.0))
+		return (error(rt, 46));
+	if (rt->prs->t[18] != 0 && (t->specular < .0 || t->specular > 1.0))
+		return (error(rt, 47));
 	rt->scn->o = lst_new_object(rt, rt->scn->o, 0, 0);
 	reset_tags(rt->prs);
 	rt->prs->i += 9;
