@@ -55,8 +55,5 @@ float3	twocolor_lerp(float3 a, float3 b, float pc)
 	color.x = a.x * (1.0f - pc) + b.x * pc;
 	color.y = a.y * (1.0f - pc) + b.y * pc;
 	color.z = a.z * (1.0f - pc) + b.z * pc;
-	PRINT3(color, "save_clr");
-	PRINT3(a, "a");
-	PRINT3(b, "b");
 	return(color);
 }

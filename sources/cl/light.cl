@@ -39,7 +39,7 @@ unsigned	get_lighting(t_data *data)
 	// data->save_dir = data->ray_dir;
 	// data->save_pos = data->ray_pos;
 	data->save_clr = twocolor_lerp(data->objs[data->id].clr,
-		color / 255.0f, (float)smooth_noise_3d(data->intersect));
+		color / 255.0f, (float)perlin(OCTAVE, FREQUENCY, PERSIS, data->intersect));
 	// data->save_inter = data->inter;
 	// data->save_inter = data->intersect;
 	// data->save_id = data->id;

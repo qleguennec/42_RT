@@ -41,6 +41,13 @@ double smooth_noise_3d(float3 pos)
 	integer.x = (int)pos.x;
 	integer.y = (int)pos.y;
 	integer.z = (int)pos.z;
+	if (pos.x < 0)
+		integer.x = (int)pos.x - 1;
+	if (pos.y < 0)
+		integer.y = (int)pos.y - 1;
+	if (pos.z < 0)
+		integer.z = (int)pos.z - 1;
+
 	fractional.x = (double)pos.x - integer.x;
 	fractional.y = (double)pos.y - integer.y;
 	fractional.z = (double)pos.z - integer.z;
@@ -66,4 +73,22 @@ double smooth_noise_3d(float3 pos)
 	face_down.z = cosine_interpolate(face_down.x, face_down.y, fractional.y);
 
 	return cosine_interpolate(face_up.z, face_down.z, fractional.z);
+}
+
+double perlin(int octaves, float frequency, float persistence, float3 pos)
+{
+    float	r = 0.0;
+    float	amplitude = 1.0f;
+	int		i = 0;
+	int		t;
+
+    while(i < octaves)
+    {
+        t = i * 4096;
+        r += smooth_noise_3d(pos * frequency) * amplitude;
+        amplitude *= persistence;
+        frequency *= 2;
+		i++;
+    }
+    return(r * ((1 - persistence) / (1 - amplitude)));
 }
