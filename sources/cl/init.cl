@@ -27,7 +27,7 @@ static void     init_laputain_desamere(t_data *data)
 	data->objs[4].refract = 0.0f;
 	data->objs[5].refract = 0.0f;
 	data->objs[6].refract = 0.0f;
-	
+
 }
 
 static void		init_data(t_data *data, global t_obj *objs,
@@ -44,7 +44,7 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 
 	data->intersect = 0.0f;
 	data->inter = 0.0f;
-	data->rot = (float3){0.0f, 1.0f, 0.0f}; 
+	data->rot = (float3){0.0f, 1.0f, 0.0f};
 	data->is_light = 0;
 	data->offset = 0.0f;
 	data->type = -1;
@@ -65,5 +65,5 @@ void		init(t_data *data, global t_obj *objs, global t_lgt *lgts,
 	init_data(data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant,
      pixel);
 	init_laputain_desamere(data);
-	
+
 }

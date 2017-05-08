@@ -79,7 +79,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, normale, lgt->clr,
-			&data->objs[index]) + data->ambiant;
+			&data->objs[index]);
 		// light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
 		data->id = index;
 		return (light_clr / (1.0f + data->ambiant));
