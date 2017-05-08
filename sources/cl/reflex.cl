@@ -8,7 +8,6 @@ void	calcul_reflex_color(t_data *data)
 	float3	temp_dir;
 	float3	temp_pos;
 
-	data->safe--;
 	// id = data->id;
 	// temp_power = data->light_pow;
 	temp_dir = data->ray_dir;
@@ -30,7 +29,8 @@ void	calcul_reflex_ray(t_data *data, float3 *ray_pos, float3 *ray_dir)
 	float3 normale;
 
 	normale = calcul_normale(data);
-	data->ray_dir = data->ray_dir - (2.0f * normale * dot(normale, data->ray_dir));
+	data->ray_dir -= (2.0f * normale * dot(normale, data->ray_dir));
+	data->ray_dir = fast_normalize(data->ray_dir);
 	data->inter = data->intersect;
 	data->ray_pos = data->intersect - *ray_dir;
 	// data->light_pow *= data->objs[data->id].reflex;
