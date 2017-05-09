@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/08 12:00:13 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/09 11:49:17 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,8 +184,10 @@ int				check_rgb_clr(cl_float3 clr);
 
 bool			oxor(bool a, bool b);
 
-cl_float3		ft_hsv_to_rgb(t_hsv hsv);
+cl_float3		ft_hsv_to_vec(t_hsv hsv);
 t_hsv 			ft_rgb_to_hsv(t_rgb c);
 t_hsv 			ft_vec_to_hsv(cl_float3 c);
+
+int				ft_free(char *str);
 
 #endif

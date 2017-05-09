@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/26 15:38:51 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/09 11:48:33 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,12 @@ static int	execute(t_rt *rt, t_cl *cl, int fd)
 	if (!(rt->prs->buf = (char *)malloc(sizeof(char))))
 		return (error(rt, 0));
 	rt->prs->buf[0] = 0;
+	rt->prs->line = (char *)malloc(sizeof(char) + 1);
+	rt->prs->line[0] = ' ';
+	rt->prs->line[1] = 0;
 	while (get_next_line(fd, &rt->prs->line) > 0)
 		if ((rt->prs->line =
-		clear_line(rt->prs, rt->prs->line, 0, 0)) != NULL)
+		clear_line(rt->prs, rt->prs->line, 0, -1)) != NULL)
 			rt->prs->buf = ft_strjoin(rt->prs->buf, rt->prs->line, 'B');
 	if (close(fd) == -1)
 		return (error(rt, 3));
