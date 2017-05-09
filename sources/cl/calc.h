@@ -93,5 +93,6 @@ void		init(t_data *data, global t_obj *objs,
 global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
 float3 ray_dir, float ambiant, global unsigned int *pixel);
 
+void    save(t_data *data);
 
 #endif

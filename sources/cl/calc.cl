@@ -19,6 +19,7 @@
 #include "rotate.cl"
 #include "calc_normal.cl"
 #include "init.cl"
+#include "save.cl"
 
 float		calc_delta(float3 *disc, t_data *data)
 {
@@ -151,12 +152,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	{
 		int	clr;
 		// int	mask;
-		data.save_dir = data.ray_dir;
-		data.save_pos = data.ray_pos;
-		data.save_inter = data.inter;
-		data.save_clr = data.objs[data.id].clr;
-		data.save_id = data.id;
-
+		save(&data);
 		clr = get_lighting(&data);
 		// mask = (clr) | 0x000000FF;
 		// printf("clr[%d]\n",clr);
