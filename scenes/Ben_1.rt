@@ -48,6 +48,16 @@
 	<intensity>5.00</intensity>
 </light>
 
+<light>
+	<name>Prout</name>
+	<type>Diffuse</type>
+	<visibility>True</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>50.00 0.00 100.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
 <!------------ Object(s) ------------->
 
 <!--<object>
@@ -72,7 +82,7 @@
 	<position>0.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
-	<opacity>1.00</opacity>
+	<opacity>.600</opacity>
 	<radius>50.00</radius>
 </object>
 
@@ -82,7 +92,7 @@
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 600.00</position>
+	<position>0.00 0.00 1000.00</position>
 	<rotation>90.00 0.00 0.00</rotation>
 	<color-rgb>0.00 255.00 0.00</color-rgb>
 	<opacity>1.00</opacity>

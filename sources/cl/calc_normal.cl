@@ -69,21 +69,24 @@ static float3         sphere_normal(t_data *data)
 float3		        calcul_normale(t_data *data)
 {
     float3      rot;
+    float3      normale;
 
     rot = rotate_ray(data, &data->id);
     if (data->objs[data->id].type == T_PLANE ||
      ((data->objs[data->id].type == T_CONE ||
     data->objs[data->id].type == T_CYLINDER) && data->type == T_DISK))
-        return (fast_normalize(plane_normal(data, rot)));
+        normale = plane_normal(data, rot);
     else if (data->objs[data->id].type == T_CONE)
-        return (fast_normalize(cone_normal(data, rot)));
+        normale = cone_normal(data, rot);
     else if (data->objs[data->id].type == T_CYLINDER)
-        return (fast_normalize(cylinder_normal(data, rot)));
+        normale = cylinder_normal(data, rot);
 	else if (data->objs[data->id].type == T_SPHERE)
-        return (fast_normalize(sphere_normal(data)));
+        normale = sphere_normal(data);
 	// else if (data->objs[data->id].type == T_TORUS)
-    //     return (fast_normalize(calcul_normal_egg(data)));
+    //     noirmale = calcul_normal_egg(data);
 	// else if (data->objs[data->id].type == T_PYRAMID)
-    //     return (fast_normalize(calcul_normal_paraboloid(data)));
-	return ((float3){0.0f, 0.0f, 0.0f});
+    //     normale = calcul_normal_paraboloid(data);
+    else 
+        normale = 0.0f;
+    return (fast_normalize(normale));
 }

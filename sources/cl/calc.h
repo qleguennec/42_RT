@@ -31,11 +31,13 @@ typedef struct			s_data
 	float3				save_inter;
 	float3				save_clr;
 	short				save_id;
+	short				through;
 	
 	short				test;
 
 	float				ambiant;
 	float				light_pow;
+	float				light_obj_pow;
 	float3				rd_light;
 	short				id;
 	short				safe;
@@ -44,7 +46,7 @@ typedef struct			s_data
 
 	short				is_light;
 	float3				inter;
-	// float3				clr;
+	float3				clr;
 
 	short				nl;
 	float				t;

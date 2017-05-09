@@ -47,12 +47,14 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->is_light = 0;
 	data->offset = 0.0f;
 	data->type = -1;
+	data->through = -1;
 
 	data->test = 0;
 
 	// data->clr = 0.0f;
 	data->ambiant = ambiant;
 	data->light_pow = 1.0f;
+	data->light_obj_pow = 1.0f;
 	data->rd_light = 0.0f;
 	data->id = -1;
 	data->safe = SAFE;
