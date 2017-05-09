@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:39:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/28 14:11:08 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/09 14:13:31 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ bool
 	if ((ret = cl_write(&cl->info, cl->main_krl.args[1], sizeof(cam), &cam))
 		!= CL_SUCCESS)
 		return (ERR("cannot set camera, err %a", false, ret));
+	cluster_send_command_all(cl, 'c', &cam, sizeof(cam));
 	return (true);
 }

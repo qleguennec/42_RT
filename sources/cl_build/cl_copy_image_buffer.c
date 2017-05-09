@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 16:35:42 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/09 11:16:49 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/09 14:54:20 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,57 @@
 #include "libfmt.h"
 #include <sys/socket.h>
 
+static bool
+	buffer_aggregate_samples
+	(t_cl *cl
+	, void *buffer
+	, int nsamples)
+{
+	size_t		i;
+	t_client	*cli;
+	int			ret;
+
+	ret = 0;
+	cli = cl->cli_list;
+	i = 0;
+	while (i < cl->main_krl.sizes[0])
+	{
+		if (cli)
+		{
+			ft_memcpy((char *)buffer + i, &(((char *)cli->buffer)[i])
+				, cl->main_krl.sizes[0] / nsamples);
+			cli = cli->next;
+		}
+		else
+		{
+			clFinish(cl->info.cmd_queue);
+			if ((ret = clEnqueueReadBuffer(cl->info.cmd_queue
+				, cl->main_krl.args[0], CL_TRUE, i
+				, cl->main_krl.sizes[0] / nsamples
+				, buffer + i, 0, NULL, NULL)) != CL_SUCCESS)
+				return (ERR("cannot copy image buffer, err %a", false, ret));
+		}
+		i += cl->main_krl.sizes[0] / nsamples;
+	}
+	assert(cli == NULL);
+	assert(i == cl->main_krl.sizes[0]);
+	return (true);
+}
+
 bool
 	cl_copy_image_buffer
 	(t_cl *cl
 	, void *buffer)
 {
-	int		ret;
-	ssize_t nbytes;
+	int			nsamples;
+	t_client	*cli;
 
-	if (cl->cli_list)
+	nsamples = 1;
+	cli = cl->cli_list;
+	while (cli)
 	{
-		printf("render\n");
-		if ((nbytes = recv(cl->cli_list->fd
-			, buffer, cl->main_krl.sizes[0], MSG_WAITALL))
-			!= (ssize_t)cl->main_krl.sizes[0])
-		{
-			perror("recv");
-			printf("%ld bytes received\n", nbytes);
-			return (ERR("cannot receive image buffer from client"
-				, false, 0));
-		}
-		printf("read %ld bytes\n", nbytes);
+		nsamples++;
+		cli = cli->next;
 	}
-	else
-	{
-		if ((ret = cl_read(&cl->info
-			, cl->main_krl.args[0]
-			, cl->main_krl.sizes[0]
-			, buffer))
-			!= CL_SUCCESS)
-			return (ERR("cannot copy image buffer, err %a", false, ret));
-	}
-	return (true);
+	return (buffer_aggregate_samples(cl, buffer, nsamples));
 }

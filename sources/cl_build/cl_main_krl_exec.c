@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 12:07:51 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/09 11:40:24 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/09 12:22:09 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "libfmt.h"
 
 #define N_BENCH 2000
+
+int aliasing = 1;
 
 static void
 	cpy_kernel_args
@@ -56,8 +58,6 @@ bool
 	static size_t	work_size[2] = {REND_W, REND_H};
 
 	cluster_send_command_all(cl, 'r', NULL, 0);
-	if (cl->cli_list)
-		return (true);
 	cpy_kernel_args(cl);
 	if (BENCHMARK_KRL == 1)
 	{

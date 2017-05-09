@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 11:18:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/09 11:48:13 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/09 14:56:48 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ int
 		if (!send(client->fd, arg, arg_size, 0))
 			return (0);
 	}
+	if (command == 'r' && client->buffer == NULL)
+		client->buffer = malloc(4 * REND_W * REND_H);
+	if (command == 'r' && (!client->buffer || recv(client->fd
+			, client->buffer, 4 * REND_W * REND_H, MSG_WAITALL) == 0))
+		return (0);
 	if (recv(client->fd, &ack, 1, 0) == 0)
 		return (0);
 	if (ack == 'c')
@@ -51,6 +56,7 @@ static void
 	, t_client **cli
 	, t_client **tmp)
 {
+	free((*cli)->buffer);
 	if (*tmp == NULL)
 	{
 		cl->cli_list = (*cli)->next;
@@ -108,6 +114,7 @@ static int
 	void	*buffer;
 	int		alive;
 
+	alive = 1;
 	buffer = NULL;
 	// TODO this is really really bad
 	if ((cli->status & CLIENT_CAM_OK) == 0)
@@ -163,7 +170,6 @@ int
 			cli = cli->next;
 			nclients++;
 		}
-		printf("alive: %d command: %c\n", alive, command);
 	}
 	return (nclients);
 }
