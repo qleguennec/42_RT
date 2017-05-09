@@ -7,7 +7,7 @@ float3			rotate_ray(t_data *data, short *index)
 	float3	matz;	
 	float3	ray;
 
-	ray = (float3){0.0f, 0.0f, 1.0f};
+	ray = (float3){0.0f, 1.0f, 0.0f};
 	if (!ROTATE)
 	{
 		return (ray);
