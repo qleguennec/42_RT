@@ -23,10 +23,15 @@ unsigned	get_lighting(t_data *data)
 	{
 
 		if (data->objs[data->id].reflex > 0.0f)
+<<<<<<< Updated upstream
 		{
 			calcul_reflex_color(data);
 		}
 		else if (data->objs[data->id].opacity < 1.0f)
+=======
+			calcul_reflex_ray(data);
+		else if (data->objs[data->id].opacity < 1.0f) // a changer en if
+>>>>>>> Stashed changes
 		{
 			break ;// WIP
 		}
