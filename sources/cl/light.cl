@@ -95,7 +95,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 		 data->save_clr * data->light_obj_pow));
 		// light_clr = calcul_clr(-lightdir, normale, lgt->clr * (data->save_clr);
 		light_clr += is_shining(calcul_normale(data), -lightdir, lgt->clr);
-		return (light_clr );
+		return (light_clr);
 	}
 	if (fast_distance(data->save_inter, data->save_pos) < 
 	fast_distance(data->intersect, data->save_pos)+ PREC)
