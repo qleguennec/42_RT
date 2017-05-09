@@ -21,9 +21,7 @@ unsigned	get_lighting(t_data *data)
 	while (data->safe-- > 0 && data->light_pow > 0.0f)
 	{
 		if (data->objs[data->id].reflex > 0.0f)
-		{
-			calcul_reflex_color(data);
-		}
+			calcul_reflex_ray(data);
 		else if (data->objs[data->id].opacity < 1.0f) // a changer en if
 		{
 			break ;// WIP
