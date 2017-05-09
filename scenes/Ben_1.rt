@@ -50,7 +50,7 @@
 
 <!------------ Object(s) ------------->
 
-<object>
+<!--<object>
 	<name>Sphere 1</name>
 	<type>sphere</type>
 	<material>Lambert</material>
@@ -62,19 +62,19 @@
 	<radius>20.00</radius>
 	<height>0.00</height>
 	<lenght>50.00</lenght>
-</object>
+</object>-->
 
-<!--<object>
+<object>
 	<name>Sphere 1</name>
 	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 290.00</position>
+	<position>70.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>30.00</radius>
-</object>-->
+</object>
 
 
 <object>
