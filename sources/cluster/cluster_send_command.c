@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 11:18:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/28 16:29:14 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/09 11:17:22 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void
 	return (ret);
 }
 
-int
+static int
 	fill_client_buffers
 	(t_cl *cl
 	, t_client *cli)
