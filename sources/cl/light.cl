@@ -20,11 +20,12 @@ unsigned	get_lighting(t_data *data)
 {
 	while (data->safe-- > 0 && data->light_pow > 0.0f)
 	{
-		if (data->objs[data->id].reflex > 0.0f)
-			calcul_reflex_ray(data);
-		else if (data->objs[data->id].opacity < 1.0f) // a changer en if
+		// if (data->objs[data->id].reflex > 0.0f)
+		// 	calcul_reflex_ray(data);
+		if (data->objs[data->id].opacity < 1.0f) // a changer en if
 		{
-			break ;// WIP
+			clearness_color(data);
+			// calcul_opacity(data);
 		}
 		else
 			break ;
@@ -51,7 +52,7 @@ float3		check_all_light(t_data *data)
 		rd_light += is_light(data, lightdir, &data->lights[i], normale);
 	}
 	rd_light += calcul_clr(data->save_dir, -normale, data->ambiant * data->save_clr)
-	* data->objs[data->id].opacity * data->light_pow;
+	* data->light_pow;
 	if (!data->nl)
 	 	return (rd_light);
 	else if (data->n_lgts == 1)
