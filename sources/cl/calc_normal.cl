@@ -71,16 +71,16 @@ float3		        calcul_normale(t_data *data)
     if (data->objs[data->id].type == T_PLANE ||
      ((data->objs[data->id].type == T_CONE ||
     data->objs[data->id].type == T_CYLINDER) && data->type == T_DISK))
-        return (fast_normalize(plane_normal(data, rot)));
+        return (plane_normal(data, rot));
     else if (data->objs[data->id].type == T_CONE)
-        return (fast_normalize(cone_normal(data, rot)));
+        return (cone_normal(data, rot));
     else if (data->objs[data->id].type == T_CYLINDER)
-        return (fast_normalize(cylinder_normal(data, rot)));
+        return (cylinder_normal(data, rot));
 	else if (data->objs[data->id].type == T_SPHERE)
-        return (fast_normalize(sphere_normal(data)));
+        return (sphere_normal(data));
 	else if (data->objs[data->id].type == T_TORUS)
-        return (fast_normalize(calcul_normal_egg(data)));
+        return (calcul_normal_egg(data));
 	else if (data->objs[data->id].type == T_PYRAMID)
-        return (fast_normalize(calcul_normal_paraboloid(data)));
+        return (calcul_normal_paraboloid(data));
 	return ((float3){0.0f, 0.0f, 0.0f});
 }

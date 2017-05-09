@@ -1,3 +1,4 @@
+// #include "noise.h"
 
 /* fonction qui renvois un nombre pseudo aleatoire entre 0 et 1 */
 
@@ -5,7 +6,7 @@ double rand_noise(int t)
 {
     t = (t<<13) ^ t;
     t = (t * (t * t * 15731 + 789221) + 1376312589);
-    return ((2.0 - (t & 0x7fffffff) / 1073741824.0) / 2.0);
+    return ((2.0 - (t & 0x7fffffff) / 1073741824.0) / 2.0f);
 }
 
 /* prend 3 int pour revoyer un double entre 0 et 1 */
@@ -74,6 +75,8 @@ double smooth_noise_3d(float3 pos)
 
 	return cosine_interpolate(face_up.z, face_down.z, fractional.z);
 }
+
+/* ajoute de la coherence au bruit */
 
 double perlin(int octaves, float frequency, float persistence, float3 pos)
 {

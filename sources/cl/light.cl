@@ -17,10 +17,11 @@
 #include "color.cl"
 #include "noise.h"
 #include "noise.cl"
+#include "shaders.cl"
 
 unsigned	get_lighting(t_data *data)
 {
-	float3 color  = (float3){202.0f, 164.0f, 10.0f};
+	// float3 color  = (float3){202.0, 164.0, 10.0};
 	// temp_pos = data->intersect;
 	// data->safe = 1;
 	// while (data->safe-- > 0 && data->light_pow > 0.0f)
@@ -38,8 +39,8 @@ unsigned	get_lighting(t_data *data)
 	// }
 	// data->save_dir = data->ray_dir;
 	// data->save_pos = data->ray_pos;
-	data->save_clr = twocolor_lerp(data->objs[data->id].clr,
-		color / 255.0f, (float)perlin(OCTAVE, FREQUENCY, PERSIS, data->intersect));
+	// data->save_clr = data->objs[data->id].clr;
+	data->save_clr = get_shaders(data->intersect, 1);
 	// data->save_inter = data->inter;
 	// data->save_inter = data->intersect;
 	// data->save_id = data->id;
@@ -52,18 +53,19 @@ float3		check_all_light(t_data *data)
 	short	i;
 	float3	lightdir;
 	float3	rd_light;
-	float3	normale;
 
 	i = -1;
 	rd_light = 0.0f;
 	rd_light = 0.0f;
-	normale = calcul_normale(data);
+	data->normal = calcul_normale(data);
+	// get_bumpmapping(data);
+	data->normal = fast_normalize(data->normal);
 	while (++i < data->n_lgts)
 	{
 		lightdir = fast_normalize(data->save_inter - data->lights[i].pos);
-		rd_light += is_light(data, lightdir, &data->lights[i], normale);
+		rd_light += is_light(data, lightdir, &data->lights[i], data->normal);
 	}
-	rd_light += calcul_clr(data->save_dir, -normale, data->ambiant * data->save_clr)
+	rd_light += calcul_clr(data->save_dir, -data->normal, data->ambiant * data->save_clr)
 	* data->objs[data->id].opacity * data->light_pow;
 	if (!data->nl)
 	 	return (rd_light);
@@ -83,7 +85,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 		fast_distance(data->intersect, lgt->pos) + PREC)
 	{
 		data->nl++;
-		light_clr = calcul_clr(-lightdir, normale, lgt->clr * data->save_clr);
+		light_clr = calcul_clr(-lightdir, data->normal, lgt->clr * data->save_clr);
 		// light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, data->save_clr);
 		return (light_clr );
 	}

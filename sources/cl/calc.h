@@ -6,7 +6,7 @@
 /*   By: lgatibel <lgatibel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:37 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/04/07 11:46:31 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/05/09 14:27:13 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ typedef struct			s_data
 	float3				ray_pos;
 	float3				ray_dir;
 	float3				intersect;
-	
+
+	float3				normal;
 	float3				save_pos;
 	float3				save_dir;
 	float3				save_inter;
 	float3				save_clr;
 	short				save_id;
-	
+
 	short				test;
 
 	float				ambiant;
