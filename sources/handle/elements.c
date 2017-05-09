@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:56:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/05 16:50:48 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 11:28:25 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		add_new_light(t_rt *rt, t_obj *tmp, short type)
 		tmp->n = (cl_char *)ft_strjoin("Spot ",
 		ft_itoa(rt->scn->lt[2]), 'R');
 	tmp->forme = type;
-	tmp->clr = (cl_float3){{1.0f, (219. / 255.), (74./ 255.), 1.0f}};
+	tmp->clr = (cl_float3){{1.0f, (219. / 255.), (74. / 255.), 1.0f}};
 	rt->scn->o = lst_new_light(rt, rt->scn->o, 0);
 	rt->ui->area[4].h += (rt->ui->area[4].h <= 379) ? 29 : 0;
 	(rt->scn->n_elms >= 12) ? (rt->ui->nav_state = 1) : 1;

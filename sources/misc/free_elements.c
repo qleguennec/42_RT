@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 14:49:22 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/08 19:04:43 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 12:26:52 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	free_gui(t_rt *rt)
 	free(rt->ui->c_name);
 	free(rt->ui->r_dim);
 	SDL_FreeSurface(rt->ui->s_ui);
-	//SDL_FreeSurface(rt->ui->s_cam);
 	TTF_CloseFont(rt->ui->font[0]);
 	TTF_CloseFont(rt->ui->font[1]);
 	free(rt->ui->font);

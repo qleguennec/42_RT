@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 18:46:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/30 19:41:10 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 11:17:21 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		draw_scene_parameters(t_rt *rt)
 {
 	char	*tmp;
 
-	tmp = ft_dtoa(rt->scn->ambient);
+	tmp = ft_dtoa(rt->scn->ambient, 0, 1);
 	draw_parameter_static(rt, tmp, (rt->ui->area[3].y + 3), 0);
 	tmp = ft_itoa(rt->scn->aa);
 	draw_parameter_static(rt, tmp, (rt->ui->area[3].y + 30), 0);
@@ -53,7 +53,7 @@ void		draw_sp_element(t_rt *rt, int b_num, int mode)
 		clr = FOCUS_SE;
 	fsdl_draw_rect(rt->s_back, rt->ui->param_b_rect[b_num], clr);
 	if (b_num == 0)
-		tmp = ft_dtoa(rt->scn->ambient);
+		tmp = ft_dtoa(rt->scn->ambient, 0, 1);
 	else if (b_num == 1)
 		tmp = ft_itoa(rt->scn->aa);
 	else if (b_num == 2)

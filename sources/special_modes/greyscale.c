@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/06 21:01:52 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/06 21:02:03 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 11:01:25 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	add_black_n_white_effect(t_rt *rt)
 			fsdl_get_pt_clr(rt->s_rend, rt->ui->t_rect.x, rt->ui->t_rect.y);
 			fsdl_draw_pt(rt->s_effct, ((((unsigned)((rt->ui->t_v.z * 0.1140) +
 			(rt->ui->t_v.y * 0.5870) + (rt->ui->t_v.x * 0.2989)) & 0xFF)
-			<< 24) + (((unsigned)((rt->ui->t_v.z * 0.1140) + 
+			<< 24) + (((unsigned)((rt->ui->t_v.z * 0.1140) +
 			(rt->ui->t_v.y * 0.5870) + (rt->ui->t_v.x * 0.2989)) & 0xFF)
 			<< 16) + (((unsigned)((rt->ui->t_v.z * 0.1140) +
 			(rt->ui->t_v.y * 0.5870) + (rt->ui->t_v.x * 0.2989)) & 0xFF)

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/02 13:30:40 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/08 20:25:12 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 17:25:36 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define BUFF_SIZE 1
 
 # define D (double)
+# define F3 (cl_float3)
 
 # define AO 0x000000
 
@@ -46,7 +47,6 @@
 # define MIN(a,b)	((a <= b) ? a : b)
 # define MAX(a,b)	((a > b) ? a : b)
 # define ABS(x)		(((x) < 0) ? (-x) : (x))
-
 
 typedef struct	s_hsv
 {
@@ -127,7 +127,7 @@ double			ft_atof(char *str, int i);
 
 char			*ft_ftoa(float num);
 
-char			*ft_dtoa(double num);
+char			*ft_dtoa(double num, short i, short size);
 
 char			*ft_getstr(char *buf, int s, int e);
 
@@ -185,8 +185,7 @@ int				check_rgb_clr(cl_float3 clr);
 bool			oxor(bool a, bool b);
 
 cl_float3		ft_hsv_to_vec(t_hsv hsv);
-t_hsv 			ft_rgb_to_hsv(t_rgb c);
-t_hsv 			ft_vec_to_hsv(cl_float3 c);
+t_hsv			ft_vec_to_hsv(cl_float3 c);
 
 int				ft_free(char *str);
 

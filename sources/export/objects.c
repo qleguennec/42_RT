@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 22:06:56 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/28 20:49:56 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 11:12:59 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static void	export_object_dimensions(t_obj *obj, int fd)
 
 static void	export_object_part2(t_obj *obj, int fd)
 {
-	write(fd, "\t<rotation>", 11);
 	ft_putfloat_fd((float)obj->rot.x, fd);
 	write(fd, " ", 1);
 	ft_putfloat_fd((float)obj->rot.y, fd);
@@ -102,5 +101,6 @@ void		export_object(t_obj *obj, int fd)
 	write(fd, " ", 1);
 	ft_putfloat_fd((float)obj->pos.z, fd);
 	write(fd, "</position>\n", 12);
+	write(fd, "\t<rotation>", 11);
 	export_object_part2(obj, fd);
 }

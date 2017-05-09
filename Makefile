@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/05/08 19:23:53 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/05/09 16:47:58 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,11 +47,11 @@ DIR_O		= temporary
 IMG_DIR		= saved_images
 
 HEADER		= include \
-		  libraries/libft/include \
-		  libraries/libvect/include \
-		  libraries/libgnl/include \
-		  libraries/libcl/include \
-		  libraries/libfmt/include
+			libraries/libft/include \
+			libraries/libvect/include \
+			libraries/libgnl/include \
+			libraries/libcl/include \
+			libraries/libfmt/include
 
 # Compilation options
 BENCHMARK_KRL	?=	0
@@ -94,8 +94,10 @@ SOURCES		= \
 			handle/mouse_clicks.c \
 			handle/outliner.c \
 			handle/scene_parameters.c \
+			handle/se_box.c \
 			handle/se_box_minus.c \
 			handle/se_box_plus.c \
+			handle/delete_element.c \
 			handle/special_mode.c \
 			main.c \
 			misc/free_elements.c \

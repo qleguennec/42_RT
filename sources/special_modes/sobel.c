@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/06 21:03:21 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/06 21:03:53 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 11:11:38 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static size_t	x_g(t_rt *rt, short res, short j, char type)
 		i = -2;
 		while (++i < 2)
 		{
-			rt->ui->t_v2 = 
-			fsdl_get_pt_clr(rt->s_rend, rt->ui->t_rect.x + i, rt->ui->t_rect.y + j);
+			rt->ui->t_v2 = fsdl_get_pt_clr(rt->s_rend, rt->ui->t_rect.x + i,
+			rt->ui->t_rect.y + j);
 			sum = (rt->ui->t_v2.x + rt->ui->t_v2.y + rt->ui->t_v2.z) / 3.;
 			res += tab[j + 1][i + 1] * sum;
 		}
@@ -41,7 +41,7 @@ static size_t	x_g(t_rt *rt, short res, short j, char type)
 	return (res);
 }
 
-void		add_sobel_effect(t_rt *rt, short sum, short x, short y)
+void			add_sobel_effect(t_rt *rt, short sum, short x, short y)
 {
 	rt->ui->t_rect.y = -1;
 	while (++rt->ui->t_rect.y < rt->s_rend->h)

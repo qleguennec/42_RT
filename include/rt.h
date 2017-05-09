@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/06 21:09:17 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 16:48:07 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,6 +290,9 @@ void				handle_scene_parameters(t_rt *rt);
 void				handle_keyboard(t_rt *rt, t_cl *cl);
 void				update_se_box_plus(t_rt *rt, t_cl *cl);
 void				update_se_box_minus(t_rt *rt, t_cl *cl);
+
+void				update_se_light_box_plus_part2(t_rt *rt);
+void				update_se_light_box_minus_part2(t_rt *rt);
 
 /*
 ** ------------------------- Handle Linked Lints -------------------------------

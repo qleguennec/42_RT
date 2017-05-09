@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 15:37:50 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/02 16:07:04 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 16:08:52 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,8 @@ static void	update_se_light_box(t_rt *rt)
 		S_ELEM->pos.y = R((S_ELEM->pos.y + 0.50f) * 100) / 100;
 	else if (AC == 8 && S_ELEM->pos.z <= 999.50f)
 		S_ELEM->pos.z = R((S_ELEM->pos.z + 0.50f) * 100) / 100;
-	else if ((AC == 9 || (AC == -1 && CK_DOWN == SDLK_w && (AC = 9) &&
-	(rt->ui->k_edit = 1))) && S_ELEM->rot.x <= 719.50f)
-		S_ELEM->rot.x = R((S_ELEM->rot.x + 0.50f) * 100) / 100;
-	else if ((AC == 10 || (AC == -1 && CK_DOWN == SDLK_d && (AC = 10) &&
-	(rt->ui->k_edit = 1))) && S_ELEM->rot.y <= 719.50f)
-		S_ELEM->rot.y = R((S_ELEM->rot.y + 0.50f) * 100) / 100;
-	else if ((AC == 11 || (AC == -1 && CK_DOWN == SDLK_e && (AC = 11) &&
-	(rt->ui->k_edit = 1))) && S_ELEM->rot.z <= 719.50f)
-		S_ELEM->rot.z = R((S_ELEM->rot.z + 0.50f) * 100) / 100;
+	else if (AC > 8)
+		update_se_light_box_plus_part2(rt);
 	redraw_case_active(rt, 1);
 }
 
@@ -80,8 +73,14 @@ static void	update_se_object_box_part2(t_rt *rt)
 		S_ELEM->width = R((S_ELEM->width + 0.50f) * 100) / 100;
 	else if (AC == 7 && S_ELEM->height <= 999.50f)
 		S_ELEM->height = R((S_ELEM->height + 0.50f) * 100) / 100;
-	else if (S_ELEM->lenght <= 999.50f)
+	else if (AC == 8 && S_ELEM->lenght <= 999.50f)
 		S_ELEM->lenght = R((S_ELEM->lenght + 0.50f) * 100) / 100;
+	else if (AC == 9 && S_ELEM->clr.x <= 0.9980f)
+		S_ELEM->clr.x = R((S_ELEM->clr.x + 0.0020f) * 1000) / 1000;
+	else if (AC == 10 && S_ELEM->clr.y <= 0.9980f)
+		S_ELEM->clr.y = R((S_ELEM->clr.y + 0.0020f) * 1000) / 1000;
+	else if (AC == 11 && S_ELEM->clr.z <= 0.9980f)
+		S_ELEM->clr.z = R((S_ELEM->clr.z + 0.0020f) * 1000) / 1000;
 }
 
 static void	update_se_object_box(t_rt *rt)
@@ -90,14 +89,8 @@ static void	update_se_object_box(t_rt *rt)
 		S_ELEM->opacity = R((S_ELEM->opacity + 0.050f) * 100) / 100;
 	else if (AC == 2 && S_ELEM->specular <= 0.950f)
 		S_ELEM->specular = R((S_ELEM->specular + 0.050f) * 100) / 100;
-	else if (AC > 2 && AC < 9)
+	else if (AC > 2 && AC < 12)
 		update_se_object_box_part2(rt);
-	else if (AC == 9 && S_ELEM->clr.x <= 0.9980f)
-		S_ELEM->clr.x = R((S_ELEM->clr.x + 0.0020f) * 1000) / 1000;
-	else if (AC == 10 && S_ELEM->clr.y <= 0.9980f)
-		S_ELEM->clr.y = R((S_ELEM->clr.y + 0.0020f) * 1000) / 1000;
-	else if (AC == 11 && S_ELEM->clr.z <= 0.9980f)
-		S_ELEM->clr.z = R((S_ELEM->clr.z + 0.0020f) * 1000) / 1000;
 	else if ((AC == 12 || (AC == -1 && CK_DOWN == SDLK_RIGHT && (AC = 12) &&
 	(rt->ui->k_edit = 1))) && S_ELEM->pos.x <= 999.50f)
 		S_ELEM->pos.x = R((S_ELEM->pos.x + 0.50f) * 100) / 100;
