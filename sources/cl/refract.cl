@@ -3,19 +3,17 @@
 static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normale)
 {
 	float3	light_clr;
+	float3	save_intersect;
 
 	data->ray_pos = lgt->pos;
 	data->ray_dir = lightdir;
+	save_intersect = data->intersect;
 	while (data->id == data->save_id)
 	{
 		touch_object(data);
 		data->ray_pos = data->intersect + data->ray_dir;
 	}
-	if (data->id != data->through)
-		return (0);
-	else
-		touch_object(data);
-	if ((data->id == data->save_id && fast_distance(data->save_inter, lgt->pos) < 
+	if ((data->id == data->through && fast_distance(save_intersect, lgt->pos) < 
 	fast_distance(data->intersect, lgt->pos) + PREC) || data->id == data->through)
 	{
 		data->nl++;
@@ -23,7 +21,7 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 		light_clr += is_shining(calcul_normale(data), -lightdir, lgt->clr);
 		return (light_clr);
 	}
-	if (fast_distance(data->save_inter, data->save_pos) < 
+	if (fast_distance(save_intersect, data->save_pos) < 
 	fast_distance(data->intersect, data->save_pos)+ PREC)
 		data->test++;
 	return (0);
@@ -35,16 +33,18 @@ static float3		transparancy_check_all_light(t_data *data)
 	float3	lightdir;
 	float3	rd_light;
 	float3	normale;
+	float3	clr;
 
 	i = -1;
 	rd_light = 0.0f;
 	normale = calcul_normale(data);
+	clr = data->objs[data->id].clr;
 	while (++i < data->n_lgts)
 	{
 		lightdir = fast_normalize(data->intersect - data->lights[i].pos);
 		rd_light += transparancy_is_light(data, lightdir, &data->lights[i], normale);
 	}
-	rd_light += calcul_clr(data->ray_dir, -normale, data->ambiant * data->objs[data->id].clr * data->light_pow);
+	rd_light += calcul_clr(data->ray_dir, -normale, data->ambiant * clr * data->light_pow);// a surement retirer
 		// rd_light += calcul_clr(data->save_dir, -normale, data->ambiant * data->save_clr * data->light_pow);
 	if (!data->nl)
 	 	return (rd_light);
