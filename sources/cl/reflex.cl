@@ -33,5 +33,5 @@ void	calcul_reflex_ray(t_data *data, float3 *ray_pos, float3 *ray_dir)
 	data->ray_dir = fast_normalize(data->ray_dir);
 	data->inter = data->intersect;
 	data->ray_pos = data->intersect - *ray_dir;
-	// data->light_pow *= data->objs[data->id].reflex;
+	data->light_pow -= (1.0f - data->objs[data->id].reflex);
 }

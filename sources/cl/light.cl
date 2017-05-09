@@ -19,7 +19,6 @@
 unsigned	get_lighting(t_data *data)
 {
 	// temp_pos = data->intersect;
-	data->safe = 300;
 	while (data->safe-- > 0 && data->light_pow > 0.0f)
 	{
 		if (data->objs[data->id].reflex > 0.0f)
@@ -64,8 +63,8 @@ float3		check_all_light(t_data *data)
 	if (!data->nl)
 	 	return (rd_light);
 	else if (data->n_lgts == 1)
-		return (rd_light / (1.0f + data->ambiant));
-	return (rd_light  / (data->n_lgts - data->test + data->ambiant));
+		return (rd_light / (1.0f + data->ambiant) * data->light_pow);
+	return (rd_light  / (data->n_lgts - data->test + data->ambiant) * data->light_pow);
 }
 
 float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normale)
