@@ -42,7 +42,7 @@ unsigned	get_lighting(t_data *data)
 	// data->save_dir = data->ray_dir;
 	// data->save_pos = data->ray_pos;
 	// data->save_clr = data->objs[data->id].clr;
-	data->save_clr = get_shaders(data->intersect, STAR, data->objs[data->id].clr);
+	data->save_clr = get_shaders(data->intersect, MARBRE1, data->objs[data->id].clr);
 	// data->save_inter = data->inter;
 	// data->save_inter = data->intersect;
 	// data->save_id = data->id;

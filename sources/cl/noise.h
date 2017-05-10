@@ -6,7 +6,7 @@
 /*   By: erodrigu <erodrigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 16:38:12 by erodrigu          #+#    #+#             */
-/*   Updated: 2017/05/10 17:25:23 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/10 18:18:13 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	set_color_marbre(float3 obj_col, t_shader *colors);
 float3	wood_shaders(float3 pos);
 float3	lerp_wood(float v, t_shader colors);
 
-float3	get_shaders(float3 pos, int shader);
+float3	get_shaders(float3 pos, int shader, float3 col);
 void	get_bumpmapping(t_data *data);
 
 double	rand_noise(int t);
