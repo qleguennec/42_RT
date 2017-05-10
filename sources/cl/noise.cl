@@ -6,7 +6,7 @@ double rand_noise(int t)
 {
     t = (t<<13) ^ t;
     t = (t * (t * t * 15731 + 789221) + 1376312589);
-    return ((2.0 - (t & 0x7fffffff) / 1073741824.0) / 2.0f);
+    return ((t & 0x7fffffff) / 1073741824.0);
 }
 
 /* prend 3 int pour revoyer un double entre 0 et 1 */
@@ -78,9 +78,9 @@ double smooth_noise_3d(float3 pos)
 
 /* ajoute de la coherence au bruit */
 
-double perlin(int octaves, float frequency, float persistence, float3 pos)
+double perlin(int octaves, float frequency, double persistence, float3 pos)
 {
-    float	r = 0.0;
+    double	r = 0.0;
     float	amplitude = 1.0f;
 	int		i = 0;
 	int		t;
@@ -90,7 +90,7 @@ double perlin(int octaves, float frequency, float persistence, float3 pos)
         t = i * 4096;
         r += smooth_noise_3d(pos * frequency) * amplitude;
         amplitude *= persistence;
-        frequency *= 2;
+        frequency *= 2.0;
 		i++;
     }
     return(r * ((1 - persistence) / (1 - amplitude)));
