@@ -20,7 +20,7 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr * (data->objs[data->id].clr));
 		// light_clr += is_shining(calcul_normale(data), -lightdir, lgt->clr);
 		return (light_clr);
-	}
+	} 
 	if (fast_distance(save_intersect, data->save_pos) < 
 	fast_distance(data->intersect, data->save_pos)+ PREC)
 		data->test++;
