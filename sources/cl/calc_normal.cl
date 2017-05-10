@@ -63,6 +63,7 @@ static float3         cylinder_normal(t_data *data, float3 rot)
 
 static float3         sphere_normal(t_data *data)
 {
+    return (data->save_inter - data->objs[data->save_id].pos);
     return (data->intersect - data->objs[data->id].pos);
 }
 

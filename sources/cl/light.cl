@@ -21,27 +21,26 @@ unsigned	get_lighting(t_data *data)
 	short	opacity;
 
 	opacity = 0;
-	while (data->safe-- > 0 && data->light_pow > 0.0f)
+	while (data->reflex-- > 0 && data->light_pow > 0.0f)
 	{
-		if (!opacity && data->objs[data->id].opacity < 1.0f)
-		{
-			clearness_color(data);
-			opacity = 1;
-			load(data);
-		}
-		// if (data->objs[data->id].reflex > 0.0f)
-		// {	
-		// 	calcul_reflex_ray(data);
-		// 	// save(data);
+		// if (opacity < MAX_TRANSPARANCY && data->objs[data->id].opacity < 1.0f)
+		// {
+		// 	clearness_color(data);
+		// 	opacity++;
+		// 	// return(calcul_rendu_light(data));
+		// 	// load(data);
 		// }
+		if (data->reflex > 0 && data->objs[data->id].reflex > 0.0f)
+		{	
+			calcul_reflex_ray(data);
+			// save(data);
+		}
 		else
 			break ;
 	}
 	// save(data);
-	if (data->light_pow < 0.0f)
-		data->light_pow = 0.0f;
-	data->rd_light += check_all_light(data);
-	// data->save_clr = data->clr;
+	if (data->light_pow > 0.0f)
+		data->rd_light += check_all_light(data);
 	return(calcul_rendu_light(data));
 }
 
@@ -77,33 +76,11 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 
 	data->ray_pos = lgt->pos;
 	data->ray_dir = lightdir;
-	if (data->through > 0)
-	{
-		while (data->id == data->save_id)
-		{
-			touch_object(data);
-			data->ray_pos = data->intersect + data->ray_dir;
-		}
-		if (data->id != data->through)
-			return (0);
-		// data->save_clr = data->objs[data->id].clr;
-	}
-	else
-		touch_object(data);
+	touch_object(data);
 	if ((data->id == data ->save_id && fast_distance(data->save_inter, lgt->pos) < 
-	fast_distance(data->intersect, lgt->pos) + PREC) || data->id == data->through)
+	fast_distance(data->intersect, lgt->pos) + PREC))
 	{
 		data->nl++;
-		// if (data->transparancy)
-		// { 
-		// 	light_clr = calcul_clr(-lightdir, normale, lgt->clr * 
-		// 	data->save_clr * data->light_obj_pow);
-		// }
-		//  else
-		//  {
-		// 	light_clr = calcul_clr(-lightdir, normale, lgt->clr * 
-		// 	(data->objs[data->id].clr * data->light_pow);
-		//  }
 		light_clr = calcul_clr(-lightdir, normale, lgt->clr * (data->save_clr));
 		light_clr += is_shining(calcul_normale(data), -lightdir, lgt->clr);
 		return (light_clr);

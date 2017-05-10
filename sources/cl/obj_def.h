@@ -12,13 +12,10 @@
 
 #ifndef OBJ_DEF_H
 # define OBJ_DEF_H
-
-# include "../../include/obj_types.h"
-
-// # define PREC 0.2f
 # define PREC 0.02f
-// #define PLANE_PREC 0.00001f
-# define SAFE 10
+# define MAX_REFLECTION 10
+# define MAX_TRANSPARANCY 1
+# include "../../include/obj_types.h"
 
 typedef struct		s_obj
 {
@@ -35,9 +32,7 @@ typedef struct		s_obj
 	float			refract;
 	float			shiness;
 	float			mshiness;
-	// a ajouter avant le lancer de rayon pour chaque objet
 	float3			offset;
-	///si tu touche a cette structure modifie la jumelle dans cl_buil/interface.h
 }					t_obj;
 
 typedef struct		s_lgt

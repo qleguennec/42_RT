@@ -36,7 +36,7 @@ typedef struct			s_data
 	float				light_obj_pow;
 	float3				rd_light;
 	short				id;
-	short				safe;
+	short				reflex;
 	short				type;
 	float3				pos;
 	short				is_light;
