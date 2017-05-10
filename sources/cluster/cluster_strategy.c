@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 11:32:49 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/10 12:27:20 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/10 12:41:36 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void
 	{
 		offs.x = cos(theta * nclients);
 		offs.y = sin(theta * nclients);
+		printf("%f %f\n", offs.x, offs.y);
 		if (cli)
 		{
 			cluster_send_command(cli, 's', &offs, sizeof(offs));
