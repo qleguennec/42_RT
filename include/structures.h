@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/09 13:12:12 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/10 11:37:47 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ typedef struct		s_cl
 	short			n_objs;
 	short			n_lgts;
 	int				sockfd;
+	cl_float2		offs;
 	pthread_t		accept_thread;
 	t_client		*cli_list;
 }					t_cl;

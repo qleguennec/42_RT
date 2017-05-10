@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 12:07:51 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/09 12:22:09 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/10 12:28:31 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "libfmt.h"
 
 #define N_BENCH 2000
-
-int aliasing = 1;
 
 static void
 	cpy_kernel_args
@@ -25,6 +23,7 @@ static void
 	CL_KRL_ARG(cl->main_krl.krl, 3, cl->lgts);
 	CL_KRL_ARG(cl->main_krl.krl, 4, cl->n_objs);
 	CL_KRL_ARG(cl->main_krl.krl, 5, cl->n_lgts);
+	CL_KRL_ARG(cl->main_krl.krl, 6, cl->offs);
 }
 
 static double
@@ -57,8 +56,9 @@ bool
 	size_t			i;
 	static size_t	work_size[2] = {REND_W, REND_H};
 
-	cluster_send_command_all(cl, 'r', NULL, 0);
+	cluster_strategy(cl);
 	cpy_kernel_args(cl);
+	cluster_send_command_all(cl, 'r', NULL, 0);
 	if (BENCHMARK_KRL == 1)
 	{
 		i = -1;

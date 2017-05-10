@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/05/09 11:51:26 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/05/10 12:29:11 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ SOURCES		= \
 		cl_build/cpy_obj.c \
 		cluster/cluster_init.c \
 		cluster/cluster_send_command.c \
+		cluster/cluster_strategy.c \
 		export/cameras.c \
 		export/export_config.c \
 		export/lights.c \
