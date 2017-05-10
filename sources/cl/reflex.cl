@@ -10,7 +10,8 @@ static float3		reflex_is_light(t_data *data, float3 lightdir, global t_lgt *lgt)
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr * (data->objs[data->id].clr));
-		light_clr += is_shining(data->normale, -lightdir, lgt->clr);
+		if (data->objs[data->save_id].specular != 0.0f)
+			light_clr += is_shining(data->normale, -lightdir, lgt->clr);
 		return (light_clr);
 	}
 	if (fast_distance(data->save_inter, data->save_pos) < 

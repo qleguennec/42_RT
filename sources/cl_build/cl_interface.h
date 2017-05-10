@@ -25,7 +25,7 @@ typedef struct		s_cl_obj
 	cl_float		width;
 	cl_float		height;
 	cl_float		radius;
-	cl_float		specolor;
+	cl_float		specular;
 	cl_float		reflex;
 	cl_float		refrac;
 	cl_float		shiness;

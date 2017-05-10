@@ -29,7 +29,7 @@ void
 	printf("\trot: %f %f %f\n", obj.rot.x, obj.rot.y, obj.rot.z);
 	printf("\tclr: %f %f %f\n", obj.clr.x, obj.clr.y, obj.clr.z);
 	printf("\topacity: %f\n", obj.opacity);
-	printf("\tspecolor: %f\n", obj.specolor);
+	printf("\tspecular: %f\n", obj.specular);
 	printf("\treflex: %f\n", obj.reflex);
 	printf("\trefrac: %f\n", obj.refrac);
 	if (obj.type == TYPE_SPHERE)

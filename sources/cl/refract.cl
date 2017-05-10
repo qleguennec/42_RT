@@ -19,7 +19,6 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr * (data->objs[data->id].clr));
-		// light_clr += is_shining(data->normale, -lightdir, lgt->clr);
 		return (light_clr);
 	} 
 	if (fast_distance(save_intersect, data->save_pos) < 
@@ -65,6 +64,7 @@ void 	clearness_color(t_data *data)
 		data->ray_pos = data->intersect + data->ray_dir;
 		touch_object(data);
 	}
+	// calcul_refract_ray(data, );
 	if (data->id > -1)
 	{
 		data->through = data->id;
@@ -90,18 +90,3 @@ float3	calcul_refract_ray(t_data *data, float refract1, float refract2)
 	c2 = sqrt(1.0f - c1);
 	return (data->ray_dir + (n * cosi - c2) * normale);
 }
-
-// void	clearness_calcul(t_data *data)
-// {
-// 	// short	index = data->id;
-
-// 	// data->ray_dir = calcul_refract_ray(data, 1.0f, data->objs[data->id].refract);
-// 	data->ray_pos = data->intersect + data->ray_dir;
-// 	touch_object(data);
-// 	// if (index == data->id)
-// 	// {
-// 	// 	data->ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
-// 	// 	data->ray_pos = data->intersect + data->ray_dir * PREC;
-// 	// 	touch_object(data);
-// 	// }
-// }

@@ -25,42 +25,6 @@ static float3         cylinder_normal(t_data *data, float3 rot)
     return (data->save_inter - data->objs[data->save_id].pos - rot * m);
 }
 
-// static float3        calcul_normal_egg(t_data *data)
-// {
-//     float3    m;
-//     float3    k;
-//     float    a;
-//     float    b;
-//     float    k1;
-//     float    k2;
-//     float    sr;
-//     float3   rot;
-
-//     sr = pow(data->objs[data->save_id].radius, 2.0f);
-//     rot = rotate_ray(data, &data->save_id);
-//     k1 = 2.0f * data->objs[data->save_id].height * (dot(data->ray_dir, rot));
-//     k2 = sr + 2.0f * data->objs[data->save_id].height *
-//             dot(data->offset, data->ray_dir) - data->objs[data->save_id].height;
-//     a = 4.0f * sr * dot(data->ray_dir, data->ray_dir) - k1 * k1;
-//     b = 2.0f * (4.0f * sr *    dot(data->ray_dir, data->offset) - k1 * k2);
-//     m = data->objs[data->save_id].pos + data->ray_dir * data->objs[data->save_id].height / 2.0f;
-//     k = data->intersect - m;
-//     return(data->objs[data->save_id].radius - data->ray_dir * (1.0f - pow(b, 2.0f) /
-//                 pow(a, 2.0f) * dot(k, data->ray_dir)));
-// }
-
-// static float3        calcul_normal_paraboloid(t_data *data)
-// {
-//     float    m;
-//     float3   rot;
-
-//    rot = (float3){0.0f, 0.1f, 0.0f};
-//    m = dot(data->ray_dir, rot) * data->t +
-//         dot(rot, data->offset);
-//     rot = rotate_ray(data, &data->save_id);
-//     return(data->intersect - data->objs[data->save_id].pos - data->ray_dir * m);
-// }
-
 static float3         sphere_normal(t_data *data)
 {
     return (data->save_inter - data->objs[data->save_id].pos);

@@ -31,7 +31,7 @@ void
 	CPY(width);
 	CPY(height);
 	CPY(radius);
-	CPY(specolor);
+	CPY(specular);
 	CPY(reflex);
 	CPY(refrac);
 	CPY(shiness);

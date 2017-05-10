@@ -28,7 +28,7 @@ typedef struct		s_obj
 	float			width;
 	float			height;
 	float			radius;
-	float			specolor;
+	float			specular;
 	float			reflex;
 	float			refrac;
 	float			shiness;

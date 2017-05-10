@@ -31,12 +31,12 @@ unsigned	get_lighting(t_data *data)
 	// data->light_pow = data->objs[save_id].opacity;
 	while (data->reflex-- > 0 && data->light_pow > 0.0f)
 	{
-		// if (opacity < MAX_TRANSPARANCY && data->objs[data->id].opacity < 1.0f && 
-		// data->objs[data->id].reflex < 1.0f)
-		// {
-		// 	clearness_color(data);
-		// 	opacity++;
-		// }
+		if (opacity < MAX_TRANSPARANCY && data->objs[data->id].opacity < 1.0f && 
+		data->objs[data->id].reflex < 1.0f)
+		{
+			clearness_color(data);
+			opacity++;
+		}
 		if (data->objs[data->id].reflex > 0.0f)
 		{	
 			calcul_reflex_ray(data);
@@ -90,7 +90,8 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt)
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr * (data->save_clr));
-		light_clr += is_shining(data->normale, -lightdir, lgt->clr);
+		if (data->objs[data->save_id].specular != 0.0f)
+			light_clr += is_shining(data->normale, -lightdir, lgt->clr);
 		return (light_clr);
 	}
 	if (fast_distance(data->save_inter, data->save_pos) < 

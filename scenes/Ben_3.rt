@@ -122,6 +122,7 @@
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
 	<refraction>0.00</refraction>
+	<specular>1</specular>
 </object>
 
 <object>
