@@ -35,7 +35,22 @@
 	<visibility>True</visibility>
 	<position>-25.00 0.00 150.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>128.00 128.00 128.00</color-rgb>
+	<color-rgb>4.00 5.00 6.00</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>12.00</radius>
+	<width>50.00</width>
+	<height>50.00</height>
+	<lenght>50.00</lenght>
+</object>
+
+<object>
+	<name>Sphere 4</name>
+	<type>Sphere</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>-25.00 0.00 150.50</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>1.00 2.00 3.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>12.00</radius>
 	<width>50.00</width>
@@ -50,7 +65,7 @@
 	<visibility>True</visibility>
 	<position>0.00 0.00 1000.00</position>
 	<rotation>90.00 0.00 0.00</rotation>
-	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<color-rgb>5.00 8.00 9.00</color-rgb>
 	<opacity>1.00</opacity>
 	<width>0.00</width>
 	<height>0.00</height>
@@ -78,7 +93,7 @@
 	<visibility>True</visibility>
 	<position>-200.00 0.00 0.00</position>
 	<rotation>0.00 0.00 90.00</rotation>
-	<color-rgb>255.50 .50 .50</color-rgb>
+	<color-rgb>1.0 3.0 5.0</color-rgb>
 	<opacity>1.00</opacity>
 	<width>0.00</width>
 	<height>0.00</height>
@@ -92,7 +107,7 @@
 	<visibility>True</visibility>
 	<position>200.00 0.00 0.00</position>
 	<rotation>0.00 0.00 -90.00</rotation>
-	<color-rgb>.50 255.00 .50</color-rgb>
+	<color-rgb>2.0 4.0 6.0</color-rgb>
 	<opacity>1.00</opacity>
 	<width>0.00</width>
 	<height>0.00</height>
@@ -106,7 +121,7 @@
 	<visibility>True</visibility>
 	<position>0.00 -200.00 0.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>128.50 128.00 128.50</color-rgb>
+	<color-rgb>8.0 8.00 8.50</color-rgb>
 	<opacity>1.00</opacity>
 	<width>0.00</width>
 	<height>0.00</height>
@@ -120,7 +135,7 @@
 	<visibility>True</visibility>
 	<position>0.00 200.00 0.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>128.50 0.00 128.50</color-rgb>
+	<color-rgb>0.0 0.0 0.0</color-rgb>
 	<opacity>1.00</opacity>
 	<width>0.00</width>
 	<height>0.00</height>
