@@ -35,15 +35,6 @@ static float3		transparancy_check_all_light(t_data *data)
 	float3	normale;
 	float3	clr;
 
-<<<<<<< HEAD
-	data->ray_dir = calcul_refract_ray(data, 1.0f, data->objs[data->id].refrac);
-	data->ray_pos = data->intersect + data->ray_dir * PREC;
-	touch_object(data);
-	if (index == data->id)
-	{
-		data->ray_dir = calcul_refract_ray(data, data->objs[data->id].refrac, 1.0f);
-		data->ray_pos = data->intersect + data->ray_dir * PREC;
-=======
 	i = -1;
 	rd_light = 0.0f;
 	normale = 0; // a suprimer
@@ -72,7 +63,6 @@ void 	clearness_color(t_data *data)
 	while (data->id == data->save_id)
 	{
 		data->ray_pos = data->intersect + data->ray_dir;
->>>>>>> 02986f8572ed590e6f71a0105a1ebc765ffadf18
 		touch_object(data);
 	}
 	// 	printf("id[%u], pow[%f], lpow[%f], opacity[%f]\n", data->id,

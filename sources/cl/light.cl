@@ -23,18 +23,18 @@ unsigned	get_lighting(t_data *data)
 	opacity = 0;
 	while (data->reflex-- > 0 && data->light_pow > 0.0f)
 	{
-		// if (opacity < MAX_TRANSPARANCY && data->objs[data->id].opacity < 1.0f)
-		// {
-		// 	clearness_color(data);
-		// 	opacity++;
-		// 	// return(calcul_rendu_light(data));
-		// 	// load(data);
-		// }
-		if (data->reflex > 0 && data->objs[data->id].reflex > 0.0f)
-		{	
-			calcul_reflex_ray(data);
-			// save(data);
+		if (opacity < MAX_TRANSPARANCY && data->objs[data->id].opacity < 1.0f)
+		{
+			clearness_color(data);
+			opacity++;
+		// return(calcul_rendu_light(data));
+			// load(data);
 		}
+		//if (data->reflex > 0 && data->objs[data->id].reflex > 0.0f)
+		//{	
+		//	calcul_reflex_ray(data);
+			// save(data);
+		//}
 		else
 			break ;
 	}

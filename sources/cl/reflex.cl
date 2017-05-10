@@ -10,5 +10,4 @@ void	calcul_reflex_ray(t_data *data)
 	// data->ray_pos = data->intersect + data->ray_dir;
 	data->light_pow -= (1.0f - data->objs[data->id].reflex);
 	touch_object(data);
-	data->safe = 0;
 }
