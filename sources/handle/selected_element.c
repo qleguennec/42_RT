@@ -6,41 +6,11 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 21:18:20 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/28 20:20:04 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 16:46:52 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-void			delete_current_element(t_rt *rt, t_cl *cl,
-				t_obj *nav, t_obj *tmp)
-{
-	char		*str;
-
-	if ((rt->scn->s_elem->type == 'C' && rt->scn->n_cams == 1) ||
-		(rt->scn->s_elem->type == 'L' && rt->scn->n_lgts == 1) ||
-		(rt->scn->s_elem->type == 'O' && rt->scn->n_objs == 1))
-	{
-		set_default_element(rt, cl, rt->scn->s_elem->type);
-		return ;
-	}
-	if (rt->scn->s_elem->type == 'C')
-		--rt->scn->n_cams;
-	else
-		(rt->scn->s_elem->type == 'L') ? --rt->scn->n_lgts : --rt->scn->n_objs;
-	--rt->scn->n_elms;
-	if (rt->scn->s_elem->type != 'C')
-		(rt->scn->s_elem->type == 'L') ? --rt->scn->lt[rt->scn->s_elem->forme] :
-		--rt->scn->ot[rt->scn->s_elem->forme];
-	nav = rt->scn->o;
-	while (nav->next && nav->next->id != rt->scn->s_elem->id)
-		nav = nav->next;
-	tmp = nav->next;
-	nav->next = nav->next->next;
-	str = (char *)tmp->n;
-	free(tmp);
-	redraw_current_element(rt, cl, str);
-}
 
 void			handle_selected_element_down(t_rt *rt, t_cl *cl)
 {
@@ -98,7 +68,7 @@ static void		handle_selected_object(t_rt *rt, t_obj *o)
 	o->forme == T_TORUS))
 		return ;
 	if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[7]) &&
-	(o->forme == T_PLANE || o->forme == T_SPHERE || o->forme == T_TORUS)) // TORUS ??
+	(o->forme == T_PLANE || o->forme == T_SPHERE || o->forme == T_TORUS))
 		return ;
 	if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[8]) &&
 	(o->forme == T_SPHERE || o->forme == T_CONE || o->forme == T_CYLINDER ||

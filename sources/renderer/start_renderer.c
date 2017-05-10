@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/08 12:00:36 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/10 12:30:39 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	global_loop(t_rt *rt, t_cl *cl)
 	{
 		if (SDL_PollEvent(&rt->event))
 		{
-			SDL_AddEventWatch(lol_cat, rt); 
+			SDL_AddEventWatch(lol_cat, rt);
 			handle_events(rt, cl);
 		}
 		SDL_UpdateWindowSurface(rt->win);

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 21:44:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/06 20:57:30 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 14:26:21 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void		handle_double_click_down(t_rt *rt, t_cl *cl)
 {
+	if (!rt->ui->c_elem || rt->ui->c_elem->type != 'C')
+		return ;
 	if (rt->ui->c_down != -1 || rt->ui->c_elem->type != 'C' ||
-	rt->ui->c_hover == -1 /*|| rt->ui->c_hover == 'C'*/
-	|| rt->ui->c_elem == rt->scn->c_cam)
+	rt->ui->c_hover == -1 || rt->ui->c_elem == rt->scn->c_cam)
 		return ;
 	rt->n_info = -2;
 	rt->scn->c_cam = rt->ui->c_elem;
@@ -38,7 +39,7 @@ void		handle_left_click_up(t_rt *rt)
 	if (rt->ui->b_down != -1 && rt->ui->b_state[(int)rt->ui->b_down] < 2 &&
 	fsdl_pt_in_rect(&rt->m_pos, rt->ui->b_rect[(int)rt->ui->b_down]))
 		draw_button(rt, rt->ui->b_down, 1);
-	if (rt->ui->c_down > -1 &&
+	if (rt->ui->c_down > -1 && rt->ui->c_elem &&
 	fsdl_pt_in_rect(&rt->m_pos, rt->ui->c_elem->r_ol))
 		draw_outliner_element(rt, rt->ui->c_elem, 1);
 	if (rt->ui->ra_down != -1 &&

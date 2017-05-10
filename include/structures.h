@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/10 11:37:47 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/10 12:31:51 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,12 @@ typedef struct		s_obj
 	cl_short		visibility;
 	cl_short		flare_v;
 	cl_float		intensity;
-	cl_float		shiness; // Will Be Useless One Day
-	cl_float		mshiness; // Will Be Useless One Day
+	cl_float		shiness;
+	cl_float		mshiness;
 	cl_float		specular;
-	cl_float		specolor; // Will Be Useless One Day
+	cl_float		specolor;
 	cl_float		reflex;
-	cl_float		refract; // Will Be Useless One Day
-	cl_float		refrac_i;
-	cl_float		refrac_y;
+	cl_float		refrac;
 	cl_short		p_texture;
 	SDL_Surface		*texture;
 	SDL_Rect		r_ol;

@@ -6,12 +6,11 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/06 21:05:31 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/06 21:46:02 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 11:00:14 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
 
 static size_t	get_average_clr(t_rt *rt, short x, short y)
 {
@@ -21,7 +20,7 @@ static size_t	get_average_clr(t_rt *rt, short x, short y)
 		x = rt->ui->t_rect.x;
 		while (++x < rt->ui->t_rect.x + PX_SIZE)
 		{
-			rt->ui->t_v2 = 
+			rt->ui->t_v2 =
 			fsdl_get_pt_clr(rt->s_rend, x, y);
 			rt->ui->t_v.x += rt->ui->t_v2.x;
 			rt->ui->t_v.y += rt->ui->t_v2.y;
@@ -46,7 +45,7 @@ void			add_pixel_art_effect(t_rt *rt)
 			clr = get_average_clr(rt, rt->ui->t_rect.x, rt->ui->t_rect.y);
 			fsdl_fill_rect(rt->s_effct, (SDL_Rect){rt->ui->t_rect.x + 1,
 			rt->ui->t_rect.y + 1, PX_SIZE, PX_SIZE}, clr);
-			rt->ui->t_rect.x += /*(rt->ui->t_rect.x == 1217) ? 26 : */PX_SIZE;
+			rt->ui->t_rect.x += PX_SIZE;
 		}
 		rt->ui->t_rect.y += PX_SIZE;
 	}

@@ -6,13 +6,13 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 15:24:37 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/30 21:33:37 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 10:15:02 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-bool        oxor(bool a, bool b)
+bool		oxor(bool a, bool b)
 {
-    return ((a + b) % 2);
+	return ((a + b) % 2);
 }

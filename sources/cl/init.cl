@@ -3,23 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   init.cl                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgatibel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 11:17:15 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/04/27 11:17:19 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/05/10 10:45:12 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 static void     init_laputain_desamere(t_data *data)
 {
-	// data->objs[0].reflex = 1.0f;
-	data->objs[1].reflex = 1.0f;
-	data->objs[2].reflex = 1.0f;
-	// data->objs[3].reflex = 1.0f;
-	// data->objs[4].reflex = 1.0f;
-	// data->objs[4].refract = 1.55f;
-	// data->objs[5].reflex = 1.0f;
-	// data->objs[6].reflex = 1.0f;
+	data->objs[0].reflex = 1.0f;
+	data->objs[1].reflex = 0.0f;
+	data->objs[2].reflex = 0.0f;
+	data->objs[3].reflex = 0.0f;
+	data->objs[4].reflex = 0.0f;
+	data->objs[5].reflex = 0.0f;
+	data->objs[6].reflex = 0.0f;
+
+	data->objs[0].refrac = 0.0f;
+	data->objs[1].refrac = 0.0f;
+	data->objs[2].refrac = 0.0f;
+	data->objs[3].refrac = 0.0f;
+	data->objs[4].refrac = 0.0f;
+	data->objs[5].refrac = 0.0f;
+	data->objs[6].refrac = 0.0f;
+	
 }
 
 static void		init_data(t_data *data, global t_obj *objs,
@@ -36,17 +44,20 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 
 	data->intersect = 0.0f;
 	data->inter = 0.0f;
-	data->rot = (float3){0.0f, 1.0f, 0.0f}; 
 	data->is_light = 0;
 	data->offset = 0.0f;
 	data->type = -1;
+	data->through = -1;
 
-	data->clr = 0.0f;
+	data->test = 0;
+
+	// data->clr = 0.0f;
 	data->ambiant = ambiant;
 	data->light_pow = 1.0f;
+	data->light_obj_pow = data->light_pow;
 	data->rd_light = 0.0f;
 	data->id = -1;
-	data->safe = SAFE;
+	data->reflex = MAX_REFLECTION;
 	data->nl = 0;
 }
 

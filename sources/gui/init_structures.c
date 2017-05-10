@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:28:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/08 19:37:59 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 16:20:04 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,25 @@ static void	init_buttons(t_rt *rt)
 	draw_button(rt, 14, 3);
 	draw_button(rt, 15, 2);
 	draw_button(rt, 16, 2);
+	rt->ui->r_hover = (SDL_Rect){13, 233, 188, 29};
+	rt->ui->c_clr[0] = (SDL_Color){44, 53, 64, 255};
+	rt->ui->c_clr[1] = (SDL_Color){48, 58, 69, 255};
+	rt->ui->c_clr[2] = (SDL_Color){40, 48, 57, 255};
 }
 
-static void	init_gui_areas(t_ui *ui, short i)
+static void	init_gui_areas(t_ui *ui, short lol)
 {
 	ui->area[0] = (SDL_Rect){0, 0, 1280, 66};
 	ui->area[1] = (SDL_Rect){225, 25, 829, 34};
 	ui->area[2] = (SDL_Rect){0, 67, 214, 653};
 	ui->area[3] = (SDL_Rect){139, 100, 53, 75};
-	ui->area[4] = (SDL_Rect){13, 233, 188, (i * 29) - 1};
+	ui->area[4] = (SDL_Rect){13, 233, 188, lol};
 	ui->area[7] = (SDL_Rect){1066, 67, 214, 653};
-	comment(" v Current Selected Element Area v ");
 	ui->area[8] = (SDL_Rect){1066, 67, 214, 527};
-	comment(" ^ Current Selected Element Area ^ ");
 	ui->area[9] = (SDL_Rect){1082, 632, 106, 68};
 	ui->area[10] = (SDL_Rect){0, 690, 215, 30};
 	ui->area[11] = (SDL_Rect){1065, 690, 215, 30};
-	ui->area[12] = (SDL_Rect){13, 233, 188, (i * 29) - 1};
+	ui->area[12] = (SDL_Rect){13, 233, 188, lol};
 	ui->area[13] = (SDL_Rect){1088, 160, 170, 412};
 	ui->area[14] = (SDL_Rect){1088, 160, 170, 171};
 	ui->area[15] = (SDL_Rect){1088, 160, 170, 251};
@@ -106,7 +108,6 @@ static void	init_gui_areas(t_ui *ui, short i)
 	ui->ra_rect[8] = (SDL_Rect){1082, 650, 12, 12};
 	ui->ra_rect[9] = (SDL_Rect){1176, 632, 12, 12};
 	ui->ra_rect[10] = (SDL_Rect){1082, 632, 12, 12};
-	ui->r_hover = (SDL_Rect){13, 233, 188, 29};
 }
 
 void		init_gui_structure(t_rt *rt)
@@ -124,10 +125,8 @@ void		init_gui_structure(t_rt *rt)
 	rt->ui->save_num = 1;
 	rt->ui->m_visible = 0;
 	rt->ui->nav_state = 0;
-	rt->ui->c_clr[0] = (SDL_Color){44, 53, 64, 255};
-	rt->ui->c_clr[1] = (SDL_Color){48, 58, 69, 255};
-	rt->ui->c_clr[2] = (SDL_Color){40, 48, 57, 255};
-	init_gui_areas(rt->ui, rt->scn->n_elms + 3);
+	init_gui_areas(rt->ui, ((((rt->scn->n_elms + 3) * 29) - 1) > 410) ?
+	410 : (((rt->scn->n_elms + 3) * 29) - 1));
 	init_informations(rt, 0);
 	SDL_LowerBlit(rt->ui->s_ui, &rt->ui->area[0], rt->s_back, &rt->ui->area[0]);
 	SDL_LowerBlit(rt->ui->s_ui, &rt->ui->area[2], rt->s_back, &rt->ui->area[2]);

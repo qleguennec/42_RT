@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:35:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/09 12:59:35 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/10 12:32:09 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@
 
 # define CK_DOWN		rt->event.key.keysym.sym
 
-# define DRAW_C			draw_case_active
+# define D_C			draw_case_active
+# define D_P			draw_parameter
 
 # define DELETE_RECT	&(SDL_Rect){874, 370, 170, 22}
 

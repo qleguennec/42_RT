@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 18:29:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/16 22:42:21 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 16:54:26 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,25 @@ int			get_i(t_rt *rt, int b_end, char *st, char *e)
 ** Function to get a vector (XYZ) from a position in my buffer (v->buf)
 */
 
+static void	lol(t_rt *rt, int *b_e, int *end, int *z)
+{
+	while (rt->prs->i < *b_e &&
+	(rt->prs->buf[rt->prs->i] == 32 || rt->prs->buf[rt->prs->i] == 9))
+		rt->prs->i++;
+	*z = rt->prs->i;
+	(rt->prs->i < *b_e &&
+	(rt->prs->buf[rt->prs->i] == 43 || rt->prs->buf[rt->prs->i] == 45)) ?
+	rt->prs->i++ : 1;
+	while (rt->prs->i < *b_e && (rt->prs->buf[rt->prs->i] == '.' ||
+	(rt->prs->buf[rt->prs->i] >= 48 && rt->prs->buf[rt->prs->i] <= 57)))
+		(rt->prs->i++ > 0 && rt->prs->buf[rt->prs->i] == '.') ?
+		rt->prs->t_i++ : 1;
+	*end = rt->prs->i;
+	while (rt->prs->i < *b_e &&
+	(rt->prs->buf[rt->prs->i] == 32 || rt->prs->buf[rt->prs->i] == 9))
+		rt->prs->i++;
+}
+
 int			get_v(t_rt *rt, int b_e, char *st, char *e)
 {
 	int		z;
@@ -88,21 +107,7 @@ int			get_v(t_rt *rt, int b_e, char *st, char *e)
 	p = 0;
 	while (rt->prs->i < b_e && p < 3 && (rt->prs->t_i = 0) != 1)
 	{
-		while (rt->prs->i < b_e &&
-		(rt->prs->buf[rt->prs->i] == 32 || rt->prs->buf[rt->prs->i] == 9))
-			rt->prs->i++;
-		z = rt->prs->i;
-		(rt->prs->i < b_e &&
-		(rt->prs->buf[rt->prs->i] == 43 || rt->prs->buf[rt->prs->i] == 45)) ?
-		rt->prs->i++ : 1;
-		while (rt->prs->i < b_e && (rt->prs->buf[rt->prs->i] == '.' ||
-		(rt->prs->buf[rt->prs->i] >= 48 && rt->prs->buf[rt->prs->i] <= 57)))
-			(rt->prs->i++ > 0 && rt->prs->buf[rt->prs->i] == '.') ?
-			rt->prs->t_i++ : 1;
-		end = rt->prs->i;
-		while (rt->prs->i < b_e &&
-		(rt->prs->buf[rt->prs->i] == 32 || rt->prs->buf[rt->prs->i] == 9))
-			rt->prs->i++;
+		lol(rt, &b_e, &end, &z);
 		if ((z == end || rt->prs->t_i > 1) && s(&rt->prs->b_o, st) &&
 		s(&rt->prs->b_c, e))
 			return (error(rt, 14) + 1);

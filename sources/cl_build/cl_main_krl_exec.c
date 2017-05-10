@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 12:07:51 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/10 12:28:31 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/10 12:31:03 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ static void
 	cpy_kernel_args
 	(t_cl *cl)
 {
+	cl_float2	offs;
+
+	offs.x = 0;
+	offs.y = 0;
 	CL_KRL_ARG(cl->main_krl.krl, 2, cl->objs);
 	CL_KRL_ARG(cl->main_krl.krl, 3, cl->lgts);
 	CL_KRL_ARG(cl->main_krl.krl, 4, cl->n_objs);

@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/05/10 12:29:11 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/05/10 12:34:47 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,11 +47,11 @@ DIR_O		= temporary
 IMG_DIR		= saved_images
 
 HEADER		= include \
-		  libraries/libft/include \
-		  libraries/libvect/include \
-		  libraries/libgnl/include \
-		  libraries/libcl/include \
-		  libraries/libfmt/include
+			libraries/libft/include \
+			libraries/libvect/include \
+			libraries/libgnl/include \
+			libraries/libcl/include \
+			libraries/libfmt/include
 
 # Compilation options
 BENCHMARK_KRL	?=	0
@@ -90,6 +90,7 @@ SOURCES		= \
 		gui/init_structures_selected_element.c \
 		gui/save_to_png.c \
 		handle/buttons.c \
+		handle/delete_element.c \
 		handle/elements.c \
 		handle/errors.c \
 		handle/events.c \
@@ -100,6 +101,7 @@ SOURCES		= \
 		handle/mouse_clicks.c \
 		handle/outliner.c \
 		handle/scene_parameters.c \
+		handle/se_box.c \
 		handle/se_box_minus.c \
 		handle/se_box_plus.c \
 		handle/selected_element.c \

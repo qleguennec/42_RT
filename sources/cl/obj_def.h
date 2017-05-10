@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   obj_def.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/18 16:29:24 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/10 10:42:03 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJ_DEF_H
 # define OBJ_DEF_H
-
-# include "../../include/obj_types.h"
-
 # define PREC 0.02f
-#define PLANE_PREC 0.00001f
-# define SAFE 3
+# define MAX_REFLECTION 10
+# define MAX_TRANSPARANCY 1
+# include "../../include/obj_types.h"
 
 typedef struct		s_obj
 {
@@ -31,12 +29,10 @@ typedef struct		s_obj
 	float			radius;
 	float			specolor;
 	float			reflex;
-	float			refract;
+	float			refrac;
 	float			shiness;
 	float			mshiness;
-	// a ajouter avant le lancer de rayon pour chaque objet
 	float3			offset;
-	///si tu touche a cette structure modifie la jumelle dans cl_buil/interface.h
 }					t_obj;
 
 typedef struct		s_lgt
