@@ -42,29 +42,37 @@ static float3		transparancy_check_all_light(t_data *data)
 		lightdir = fast_normalize(data->intersect - data->lights[i].pos);
 		rd_light += transparancy_is_light(data, lightdir, &data->lights[i]);
 	}
-	// rd_light += data->ambiant * clr;// a surement retirer
-			// rd_light += calcul_clr(data->save_dir, -data->normale, data->ambiant * data->save_clr);
+	// rd_light += AMBIANT * clr;// a surement retirer
+			// rd_light += calcul_clr(data->save_dir, -data->normale, AMBIANT * data->save_clr);
 
 	if (!data->nl)
-	 	return (rd_light /(1.0f + data->ambiant) * data->light_obj_pow);
+	 	return (rd_light /(1.0f + AMBIANT) * data->light_obj_pow);
 	else if (data->n_lgts == 1)
-		return ((rd_light / (1.0f + data->ambiant)) * data->light_obj_pow);
-	return (rd_light  / (data->n_lgts - data->test + data->ambiant) * data->light_obj_pow);
+		return ((rd_light / (1.0f + AMBIANT)) * data->light_obj_pow);
+	return (rd_light  / (data->n_lgts - data->test + AMBIANT) * data->light_obj_pow);
 }
 
-void 	clearness_color(t_data *data) 
+void 	clearness_color(t_data *data)
 {
 	data->light_obj_pow = data->light_pow - data->objs[data->id].opacity;
 	data->light_pow -= data->light_obj_pow;
 
 	if (data->light_obj_pow <= 0.0f)
 		return ;
-	while (data->id == data->save_id)
+	if (data->id == data->save_id)
 	{
 		data->ray_pos = data->intersect + data->ray_dir;
+		if (data->objs[data->id].refrac > 0.0f)
+			data->ray_dir = calcul_refract_ray(data, 1.0f, 1.43f);
 		touch_object(data);
 	}
-	// calcul_refract_ray(data, );
+	if (data->id == data->save_id)
+	{
+		data->ray_pos = data->intersect + data->ray_dir;
+		if (data->objs[data->id].refrac > 0.0f)
+			data->ray_dir = calcul_refract_ray(data, 1.43f, 1.0f);
+		touch_object(data);
+	}
 	if (data->id > -1)
 	{
 		data->through = data->id;
@@ -79,14 +87,12 @@ float3	calcul_refract_ray(t_data *data, float refract1, float refract2)
 	float	cosi;
 	float	c1;
 	float	c2;
-	float3	normale;
 
-	normale = calcul_normale(data);
-	cosi = -dot(normale, data->ray_dir);
+	cosi = -dot(data->normale, data->ray_dir);
 	n = refract1 / refract2;
 	c1 = n * n * (1.0f - cosi * cosi);
 	if (c1 > 1.0f)
 		return (data->ray_dir);
 	c2 = sqrt(1.0f - c1);
-	return (data->ray_dir + (n * cosi - c2) * normale);
+	return (data->ray_dir + (n * cosi - c2) * data->normale);
 }

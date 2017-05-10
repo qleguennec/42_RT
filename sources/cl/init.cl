@@ -12,7 +12,7 @@
 
 static void		init_data(t_data *data, global t_obj *objs,
 global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
-float3 ray_dir, float ambiant, global unsigned int *pixel)
+float3 ray_dir, global unsigned int *pixel)
 {
 	data->objs = objs;
 	data->lights = lgts;
@@ -32,7 +32,6 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->test = 0;
 
 	// data->clr = 0.0f;
-	data->ambiant = ambiant;
 	data->light_pow = 1.0f;
 	data->light_obj_pow = 0.0f;
 	data->rd_light = 0.0f;
