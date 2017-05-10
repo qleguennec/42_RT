@@ -34,10 +34,10 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	// data->clr = 0.0f;
 	data->ambiant = ambiant;
 	data->light_pow = 1.0f;
-	data->light_obj_pow = data->light_pow;
+	data->light_obj_pow = 0.0f;
 	data->rd_light = 0.0f;
 	data->id = -1;
 	data->reflex = MAX_REFLECTION;
 	data->nl = 0;
-	data->normale = 0.0f;
+	data->normale = 0;
 }

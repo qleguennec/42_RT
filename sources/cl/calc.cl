@@ -36,7 +36,7 @@ float		calc_delta(float3 *disc, t_data *data)
 	tmp = sqrt(tmp);
 	data->t0 = ((-disc->y + tmp) / (2.0f * disc->x));
 	data->t1 = ((-disc->y - tmp) / (2.0f * disc->x));
-	if ((data->t = (data->t0 < data->t1) ? data->t0 : data->t1) < 0.0f)
+	if ((data->t = (data->t0 > 0.0f && data->t0 < data->t1) ? data->t0 : data->t1) < 0.0f)
 		return (-1);
 	return (1);
 }
@@ -106,7 +106,7 @@ void			touch_object(t_data *data)
 	{
 		if (ray_intersection(data, &index))
 			if ((norm = fast_distance(data->intersect, data->ray_pos)) > 0.0f &&
-				(norm + PREC < smallest_norm || smallest_norm == -1))
+				(norm + PREC_DIST < smallest_norm || smallest_norm == -1))
 			{
 				closest_intersect = data->intersect;
 				smallest_norm = norm;

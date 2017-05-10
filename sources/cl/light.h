@@ -18,8 +18,7 @@
 # define POW_SPECUL 250
 
 unsigned	get_lighting(t_data * data);
-float3		is_light(t_data * data, float3 lightdir, global t_lgt *lgt,
-	float3 normale);
+float3		is_light(t_data * data, float3 lightdir, global t_lgt *lgt);
 float3		calcul_clr(float3 ray, float3 normale, float3 light);
 unsigned	calcul_rendu_light(t_data *data);
 float3		calcul_normale(t_data *data);

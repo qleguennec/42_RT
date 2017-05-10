@@ -19,7 +19,7 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr * (data->objs[data->id].clr));
-		light_clr += is_shining(data->normale, -lightdir, lgt->clr);
+		// light_clr += is_shining(data->normale, -lightdir, lgt->clr);
 		return (light_clr);
 	} 
 	if (fast_distance(save_intersect, data->save_pos) < 
@@ -44,12 +44,12 @@ static float3		transparancy_check_all_light(t_data *data)
 		rd_light += transparancy_is_light(data, lightdir, &data->lights[i]);
 	}
 	// rd_light += data->ambiant * clr;// a surement retirer
-			rd_light += calcul_clr(data->save_dir, -data->normale, data->ambiant * data->save_clr);
+			// rd_light += calcul_clr(data->save_dir, -data->normale, data->ambiant * data->save_clr);
 
 	if (!data->nl)
-	 	return (rd_light * data->light_obj_pow);
+	 	return (rd_light /(1.0f + data->ambiant) * data->light_obj_pow);
 	else if (data->n_lgts == 1)
-		return (rd_light / (1.0f + data->ambiant) * data->light_obj_pow);
+		return ((rd_light / (1.0f + data->ambiant)) * data->light_obj_pow);
 	return (rd_light  / (data->n_lgts - data->test + data->ambiant) * data->light_obj_pow);
 }
 
@@ -57,6 +57,7 @@ void 	clearness_color(t_data *data)
 {
 	data->light_obj_pow = data->light_pow - data->objs[data->id].opacity;
 	data->light_pow -= data->light_obj_pow;
+
 	if (data->light_obj_pow <= 0.0f)
 		return ;
 	while (data->id == data->save_id)

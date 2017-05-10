@@ -12,7 +12,7 @@
 <camera>
 	<name>0123456789012345678</name>
 	<position>0.00 0.00 2.00</position>
-	<rotation>0.00 0.00 1.00</rotation>
+	<rotation>0.00 0.00 0.00</rotation>
 	<focal>55</focal>
 </camera>
 
@@ -55,10 +55,9 @@
 	<intensity>5.00</intensity>
 </light>
 
-
 <light>
 	<name>Proutnot in range</name>
-	<type>Diffuse</type>
+	<type>Spot</type>
 	<visibility>False</visibility>
 	<flare-visibility>True</flare-visibility>
 	<position>-300.00 0.00 20.00</position>
@@ -110,10 +109,10 @@
 
 <object>
 	<name>Sphere 1</name>
-	<type>Sphere</type>
+	<type>Cone</type>
 	<material>Phong</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 450.00</position>
+	<position>0.00 0.00 50.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 128.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
@@ -121,6 +120,8 @@
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -129,13 +130,15 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 650.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
+	<rotation>0.00 0.00 90.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>30.00</radius>
-	<width>50.00</width>
-	<height>40.00</height>
+	<width>0.00</width>
+	<height>0.00</height>
 	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -151,6 +154,8 @@
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -166,6 +171,8 @@
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -181,89 +188,102 @@
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
-	<name>Plane fond</name>
+	<name>Fond</name>
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 1000.00</position>
 	<rotation>90.00 0.00 0.00</rotation>
+	<color-rgb>0.00 255.00 0.00</color-rgb>
+	<opacity>1.00</opacity>
+	<width>50.00</width>
+	<height>50.00</height>
+	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>.10</refraction>
+</object>
+
+<object>
+	<name>Arriere</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 0.00 -600.00</position>
+	<rotation>90.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
+	<width>50.00</width>
+	<height>50.00</height>
 	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>.10</refraction>
 </object>
 
 <object>
-	<name>Plane arriere</name>
+	<name>Gauche</name>
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 -1000.50</position>
-	<rotation>90.00 0.00 0.00</rotation>
+	<position>-100.00 0.00 0.00</position>
+	<rotation>0.00 0.00 90.00</rotation>
+	<color-rgb>255.00 0.00 0.00</color-rgb>
+	<opacity>1.00</opacity>
+	<width>50.00</width>
+	<height>50.00</height>
+	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>.10</refraction>
+</object>
+
+<object>
+	<name>Droite</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>100.00 0.00 0.00</position>
+	<rotation>0.00 0.00 90.00</rotation>
+	<color-rgb>100.00 80.00 128.00</color-rgb>
+	<opacity>1.00</opacity>
+	<width>50.00</width>
+	<height>50.00</height>
+	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>.10</refraction>
+</object>
+
+<object>
+	<name>Haut</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 -100.00 0.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
+	<width>50.00</width>
+	<height>50.00</height>
 	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>.10</refraction>
 </object>
 
 <object>
-	<name>Plane gauche</name>
+	<name>Bas</name>
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>-200.00 0.00 0.00</position>
-	<rotation>0.00 0.00 90.00</rotation>
-	<color-rgb>255.50 .50 .50</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>50.00</lenght>
-</object>
-
-<object>
-	<name>Plane droit</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>200.00 0.00 0.00</position>
-	<rotation>0.00 0.00 -90.00</rotation>
-	<color-rgb>.50 255.00 .50</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>50.00</lenght>
-</object>
-
-<object>
-	<name>Plane haut</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 -200.00 0.00</position>
+	<position>0.00 100.00 0.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>128.50 128.00 128.50</color-rgb>
+	<color-rgb>0.00 128.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
+	<width>50.00</width>
+	<height>50.00</height>
 	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>.10</refraction>
 </object>
-
-<object>
-	<name>Plane bas</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 200.00 0.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>128.50 0.00 128.50</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>50.00</lenght>
-</object>
-

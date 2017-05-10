@@ -15,23 +15,6 @@ void			calc_intersect(t_data *data)
 	data->intersect = data->ray_pos + (data->ray_dir * data->t);
 }
 
-// short			disk_intersection(t_data *data, short *index)
-// {
-// 	float	div;
-// 	float	t;
-// 	float3	rot;
-
-// 	rot = rotate_ray(&data->rot, data, index);
-// 	div = dot(rot, data->ray_dir);
-// 	if (div == 0.0f)
-// 		return (0);
-// 	t = (-dot(rot, data->offset)) / div;
-// 	if (t < 0.0f)
-// 		return (0);
-// 	calc_intersect(&t, data);
-// 	return (1);
-// }
-
 short			plane_intersection(t_data *data, short *index)
 {
 	float3	rot;

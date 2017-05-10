@@ -13,6 +13,7 @@
 #ifndef OBJ_DEF_H
 # define OBJ_DEF_H
 # define PREC 0.01f
+# define PREC_DIST 0.00001f
 # define MAX_REFLECTION 10
 # define MAX_TRANSPARANCY 1
 # include "../../include/obj_types.h"
