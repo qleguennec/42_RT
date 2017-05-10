@@ -14,11 +14,11 @@
 
 static void	set_default_parameters_part2(t_obj *obj)
 {
-	obj->shiness = .0;
-	obj->mshiness = .0;
-	obj->reflex = .0;
-	obj->refrac = 0.1;
-	obj->specular = .0;
+	obj->shiness = 0.0;
+	obj->mshiness = 0.0;
+	obj->reflex = 0.0;
+	obj->refrac = 0.0;
+	obj->specular = 0.0;
 	obj->texture = NULL;
 	obj->p_texture = -1;
 	obj->r_ol = (SDL_Rect){0, 0, 0, 0};
