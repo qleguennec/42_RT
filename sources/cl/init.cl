@@ -12,14 +12,22 @@
 
 static void     init_laputain_desamere(t_data *data)
 {
-	// data->objs[0].reflex = 1.0f;
-	data->objs[1].reflex = 1.0f;
-	data->objs[2].reflex = 1.0f;
-	// data->objs[3].reflex = 1.0f;
-	// data->objs[4].reflex = 1.0f;
-	// data->objs[4].refrac = 1.55f;
-	// data->objs[5].reflex = 1.0f;
-	// data->objs[6].reflex = 1.0f;
+	data->objs[0].reflex = 1.0f;
+	data->objs[1].reflex = 0.0f;
+	data->objs[2].reflex = 0.0f;
+	data->objs[3].reflex = 0.0f;
+	data->objs[4].reflex = 0.0f;
+	data->objs[5].reflex = 0.0f;
+	data->objs[6].reflex = 0.0f;
+
+	data->objs[0].refract = 0.0f;
+	data->objs[1].refract = 0.0f;
+	data->objs[2].refract = 0.0f;
+	data->objs[3].refract = 0.0f;
+	data->objs[4].refract = 0.0f;
+	data->objs[5].refract = 0.0f;
+	data->objs[6].refract = 0.0f;
+	
 }
 
 static void		init_data(t_data *data, global t_obj *objs,
@@ -36,17 +44,20 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 
 	data->intersect = 0.0f;
 	data->inter = 0.0f;
-	data->rot = (float3){0.0f, 1.0f, 0.0f}; 
 	data->is_light = 0;
 	data->offset = 0.0f;
 	data->type = -1;
+	data->through = -1;
 
-	data->clr = 0.0f;
+	data->test = 0;
+
+	// data->clr = 0.0f;
 	data->ambiant = ambiant;
 	data->light_pow = 1.0f;
+	data->light_obj_pow = data->light_pow;
 	data->rd_light = 0.0f;
 	data->id = -1;
-	data->safe = SAFE;
+	data->reflex = MAX_REFLECTION;
 	data->nl = 0;
 }
 

@@ -62,6 +62,8 @@ void
 		PRINT1(objs[i].refrac, "refrac")
 		PRINT1(objs[i].shiness, "shiness")
 		PRINT1(objs[i].mshiness, "mshiness")
+		PRINT1(objs[i].refract, "refract")
+		PRINT1(objs[i].reflex, "reflex")
 		printf("---\n");
 		i++;
 	}
