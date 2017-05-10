@@ -111,7 +111,7 @@
 	<name>Sphere 1</name>
 	<type>Cone</type>
 	<material>Phong</material>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<position>0.00 0.00 50.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 128.00 0.00</color-rgb>
@@ -137,7 +137,7 @@
 	<width>0.00</width>
 	<height>0.00</height>
 	<lenght>50.00</lenght>
-	<reflection>0.00</reflection>
+	<reflection>1.00</reflection>
 	<refraction>0.00</refraction>
 </object>
 
@@ -287,3 +287,4 @@
 	<reflection>0.00</reflection>
 	<refraction>.10</refraction>
 </object>
+
