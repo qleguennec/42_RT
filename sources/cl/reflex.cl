@@ -52,10 +52,8 @@ void	calcul_reflex_ray(t_data *data)
 	data->ray_pos = data->intersect - data->ray_dir;
 	data->ray_dir = fast_normalize(data->ray_dir - (2.0f * data->normale *
 	dot(data->normale, data->ray_dir)));
-	// data->ray_pos = data->intersect + data->ray_dir;
+	data->ray_pos = data->intersect + data->ray_dir;
 	touch_object(data);
-				// data->normale = calcul_normale(data);
-
 	// printf("id[%u]\n",data->id);
 	save(data);
 	data->rd_light += reflex_check_all_light(data);

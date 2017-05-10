@@ -8,17 +8,18 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 	data->ray_pos = lgt->pos;
 	data->ray_dir = lightdir;
 	save_intersect = data->intersect;
-	while (data->id == data->through)
+	while (data->id == data->save_id)
 	{
 		touch_object(data);
 		data->ray_pos = data->intersect + data->ray_dir;
 	}
+		// printf("test, id[%u], through[%u]\n", data->id, data->through);
 	if ((data->id == data->through && fast_distance(save_intersect, lgt->pos) < 
-	fast_distance(data->intersect, lgt->pos) + PREC) || data->id == data->through)
+	fast_distance(data->intersect, lgt->pos) + PREC))
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr * (data->objs[data->id].clr));
-		// light_clr += is_shining(calcul_normale(data), -lightdir, lgt->clr);
+		light_clr += is_shining(data->normale, -lightdir, lgt->clr);
 		return (light_clr);
 	} 
 	if (fast_distance(save_intersect, data->save_pos) < 
@@ -27,7 +28,7 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 	return (0);
 }
 
-static float3		transparancy_check_all_light(t_data *data, float3 normale)
+static float3		transparancy_check_all_light(t_data *data)
 {
 	short	i;
 	float3	lightdir;
@@ -42,18 +43,20 @@ static float3		transparancy_check_all_light(t_data *data, float3 normale)
 		lightdir = fast_normalize(data->intersect - data->lights[i].pos);
 		rd_light += transparancy_is_light(data, lightdir, &data->lights[i]);
 	}
-	// rd_light += data->ambiant * clr * data->light_obj_pow;// a surement retirer
+	// rd_light += data->ambiant * clr;// a surement retirer
+			rd_light += calcul_clr(data->save_dir, -data->normale, data->ambiant * data->save_clr);
+
 	if (!data->nl)
-	 	return (rd_light);
+	 	return (rd_light * data->light_obj_pow);
 	else if (data->n_lgts == 1)
-		return (rd_light / (1.0f + data->ambiant));
-	return (rd_light  / (data->n_lgts - data->test + data->ambiant));
+		return (rd_light / (1.0f + data->ambiant) * data->light_obj_pow);
+	return (rd_light  / (data->n_lgts - data->test + data->ambiant) * data->light_obj_pow);
 }
 
 void 	clearness_color(t_data *data) 
 {
 	data->light_obj_pow = data->light_pow - data->objs[data->id].opacity;
-	data->light_pow = data->light_pow - data->light_obj_pow;
+	data->light_pow -= data->light_obj_pow;
 	if (data->light_obj_pow <= 0.0f)
 		return ;
 	while (data->id == data->save_id)
@@ -64,7 +67,7 @@ void 	clearness_color(t_data *data)
 	if (data->id > -1)
 	{
 		data->through = data->id;
-		data->rd_light += transparancy_check_all_light(data, calcul_normale(data));
+		data->rd_light += transparancy_check_all_light(data);
 		data->test = 0;
 	}
 }
