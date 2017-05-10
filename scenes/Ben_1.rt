@@ -52,7 +52,7 @@
 <light>
 	<name>Prout</name>
 	<type>Spot</type>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<flare-visibility>True</flare-visibility>
 	<position>50.00 0.00 200.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>

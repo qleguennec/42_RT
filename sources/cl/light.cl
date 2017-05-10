@@ -21,6 +21,7 @@ unsigned	get_lighting(t_data *data)
 	short	opacity;
 
 	opacity = 0;
+	data->reflex = 1;//a supprimer
 	while (data->reflex-- > 0 && data->light_pow > 0.0f)
 	{
 		// if (opacity < MAX_TRANSPARANCY && data->objs[data->id].opacity < 1.0f)
@@ -30,10 +31,12 @@ unsigned	get_lighting(t_data *data)
 		// 	// return(calcul_rendu_light(data));
 		// 	// load(data);
 		// }
-		if (data->reflex > 0 && data->objs[data->id].reflex > 0.0f)
+		if (data->objs[data->id].reflex > 0.0f)
 		{	
 			calcul_reflex_ray(data);
 			// save(data);
+			// return(calcul_rendu_light(data));
+			
 		}
 		else
 			break ;
