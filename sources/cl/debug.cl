@@ -1,14 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   debug.cl                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 14:26:58 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/16 14:27:10 by qle-guen         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    debug.cl                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/02/16 14:26:58 by qle-guen          #+#    #+#              #
+#    Updated: 2017/05/10 10:41:51 by bsouchet         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 void
 	print_obj_type
@@ -59,7 +59,7 @@ void
 		PRINT1(objs[i].height, "height")
 		PRINT1(objs[i].radius, "radius")
 		PRINT1(objs[i].reflex, "reflex")
-		PRINT1(objs[i].refract, "refract")
+		PRINT1(objs[i].refrac, "refrac")
 		PRINT1(objs[i].shiness, "shiness")
 		PRINT1(objs[i].mshiness, "mshiness")
 		printf("---\n");

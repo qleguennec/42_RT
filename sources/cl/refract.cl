@@ -26,12 +26,12 @@ void	clearness_calcul(t_data *data)
 {
 	short	index = data->id;
 
-	data->ray_dir = calcul_refract_ray(data, 1.0f, data->objs[data->id].refract);
+	data->ray_dir = calcul_refract_ray(data, 1.0f, data->objs[data->id].refrac);
 	data->ray_pos = data->intersect + data->ray_dir * PREC;
 	touch_object(data);
 	if (index == data->id)
 	{
-		data->ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
+		data->ray_dir = calcul_refract_ray(data, data->objs[data->id].refrac, 1.0f);
 		data->ray_pos = data->intersect + data->ray_dir * PREC;
 		touch_object(data);
 	}

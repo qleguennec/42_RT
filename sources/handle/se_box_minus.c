@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 16:41:58 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/09 16:03:08 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/10 10:20:40 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ static void	update_se_object_box_part2(t_rt *rt)
 {
 	if (AC == 3 && S_ELEM->reflex >= 0.050f)
 		S_ELEM->reflex = R((S_ELEM->reflex - 0.050f) * 100) / 100;
-	else if (AC == 4 && S_ELEM->refrac_y >= 0.050f)
-		S_ELEM->refrac_y = R((S_ELEM->refrac_y - 0.050f) * 100) / 100;
+	else if (AC == 4 && S_ELEM->refrac >= 0.050f)
+		S_ELEM->refrac = R((S_ELEM->refrac - 0.050f) * 100) / 100;
 	else if (AC == 5 && S_ELEM->radius >= 1.0f)
 		S_ELEM->radius -= 1.0f;
 	else if (AC == 6 && S_ELEM->width >= -999.50f)

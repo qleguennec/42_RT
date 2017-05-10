@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:56:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/09 11:28:25 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/10 10:20:14 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void		add_new_shader(t_obj *obj, short type)
 	else
 		obj->reflex = (1) ? 0. : 0.;
 	if (type < 2)
-		obj->refract = (1) ? 0. : 0.;
+		obj->refrac = (1) ? 0. : 0.;
 	else
-		obj->refract = (1) ? 0. : 0.;
+		obj->refrac = (1) ? 0. : 0.;
 }

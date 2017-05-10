@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 17:29:24 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/09 11:26:46 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/10 10:22:01 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	redraw_case_box_object_part2(t_rt *rt, t_obj *obj, int m)
 	if (rt->ui->case_active == 3)
 		D_C(rt, ft_dtoa(obj->reflex, 0, 1), rt->ui->obj_b_rect[3], m);
 	else if (rt->ui->case_active == 4)
-		D_C(rt, ft_dtoa(obj->refrac_y, 0, 1), rt->ui->obj_b_rect[4], m);
+		D_C(rt, ft_dtoa(obj->refrac, 0, 1), rt->ui->obj_b_rect[4], m);
 	else if (rt->ui->case_active == 5)
 		D_C(rt, ft_dtoa(obj->radius, 0, 1), rt->ui->obj_b_rect[5], m);
 	else if (rt->ui->case_active == 6)

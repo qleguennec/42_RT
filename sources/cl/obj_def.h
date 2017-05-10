@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_def.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/18 16:29:24 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/10 10:42:03 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct		s_obj
 	float			radius;
 	float			specolor;
 	float			reflex;
-	float			refract;
+	float			refrac;
 	float			shiness;
 	float			mshiness;
 	// a ajouter avant le lancer de rayon pour chaque objet

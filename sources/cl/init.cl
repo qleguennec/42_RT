@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.cl                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgatibel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 11:17:15 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/04/27 11:17:19 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/05/10 10:45:12 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void     init_laputain_desamere(t_data *data)
 	data->objs[2].reflex = 1.0f;
 	// data->objs[3].reflex = 1.0f;
 	// data->objs[4].reflex = 1.0f;
-	// data->objs[4].refract = 1.55f;
+	// data->objs[4].refrac = 1.55f;
 	// data->objs[5].reflex = 1.0f;
 	// data->objs[6].reflex = 1.0f;
 }

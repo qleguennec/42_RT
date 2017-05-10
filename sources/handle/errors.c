@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:58:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/02 19:59:48 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/10 10:52:49 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void		init_errors(t_rt *r, int i)
 {
-	r->err = (char **)malloc(sizeof(char *) * 45);
+	r->err = (char **)malloc(sizeof(char *) * 50);
 	i = (
 	s(&r->err[0], MSG0) && s(&r->err[1], MSG1) && s(&r->err[2], MSG2) &&
 	s(&r->err[4], MSG4) && s(&r->err[5], MSG5) && s(&r->err[6], MSG6) &&
@@ -33,7 +33,7 @@ void		init_errors(t_rt *r, int i)
 	s(&r->err[36], MSG36) && s(&r->err[37], MSG37) && s(&r->err[38], MSG38) &&
 	s(&r->err[39], MSG39) && s(&r->err[40], MSG40) && s(&r->err[41], MSG41) &&
 	s(&r->err[42], MSG42) && s(&r->err[43], MSG43) && s(&r->err[44], MSG44) &&
-	s(&r->err[45], MSG45) && s(&r->err[46], MSG46) && s(&r->err[47], MSG47))
+	s(&r->err[46], MSG46) && s(&r->err[47], MSG47))
 	? 1 : 1;
 }
 
