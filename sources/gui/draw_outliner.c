@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 18:43:06 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/05 17:10:16 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 13:08:30 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void		draw_outliner(t_rt *rt, int i, int max)
 			draw_outliner_element(rt, list, 0);
 		}
 		rt->ui->area[12].y += 29;
-		if (i < max - 1)
-			list = list->next;
+		(i < max - 1) ? (list = list->next) : 0;
 		i++;
 	}
 	if (rt->ui->nav_state == 1)

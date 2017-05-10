@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/05/05 16:03:17 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/05/09 16:47:58 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ C			= clang
 
 NAME		= rt
 
-FLAGS		= -Wall -Wextra -Werror -g
+FLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 
 OPENCL_F	= -framework OpenCL
 
@@ -47,11 +47,11 @@ DIR_O		= temporary
 IMG_DIR		= saved_images
 
 HEADER		= include \
-		  libraries/libft/include \
-		  libraries/libvect/include \
-		  libraries/libgnl/include \
-		  libraries/libcl/include \
-		  libraries/libfmt/include
+			libraries/libft/include \
+			libraries/libvect/include \
+			libraries/libgnl/include \
+			libraries/libcl/include \
+			libraries/libfmt/include
 
 # Compilation options
 BENCHMARK_KRL	?=	0
@@ -94,13 +94,14 @@ SOURCES		= \
 			handle/mouse_clicks.c \
 			handle/outliner.c \
 			handle/scene_parameters.c \
+			handle/se_box.c \
 			handle/se_box_minus.c \
 			handle/se_box_plus.c \
+			handle/delete_element.c \
 			handle/special_mode.c \
 			main.c \
 			misc/free_elements.c \
 			misc/verbose_mode.c \
-			misc/special_modes.c \
 			parser/add_elements.c \
 			parser/add_elements_parameters.c \
 			parser/check_elements.c \
@@ -113,13 +114,20 @@ SOURCES		= \
 			parser/set_elements_parameters.c \
 			renderer/init_renderer.c \
 			renderer/start_renderer.c \
+			special_modes/cartoon.c \
+			special_modes/greyscale.c \
+			special_modes/pixel_art.c \
+			special_modes/reverse.c \
+			special_modes/saturate.c \
+			special_modes/sepia.c \
+			special_modes/sobel.c \
 			export/export_config.c \
 			export/cameras.c \
 			export/lights.c \
 			export/objects.c \
 			test/cl_test_krl.c
 
-SUB_FOLDERS	= test gui handle misc parser renderer cl_build export
+SUB_FOLDERS	= test gui handle misc parser renderer special_modes cl_build export
 
 BUILD_DIR	= $(addprefix $(DIR_O)/,$(SUB_FOLDERS))
 

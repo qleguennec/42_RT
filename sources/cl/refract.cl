@@ -1,6 +1,6 @@
 
 #include "light.h"
-static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normale)
+static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt *lgt)
 {
 	float3	light_clr;
 	float3	save_intersect;
@@ -17,7 +17,7 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 	fast_distance(data->intersect, lgt->pos) + PREC) || data->id == data->through)
 	{
 		data->nl++;
-		light_clr = calcul_clr(-lightdir, normale, lgt->clr * (data->objs[data->id].clr));
+		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr * (data->objs[data->id].clr));
 		// light_clr += is_shining(calcul_normale(data), -lightdir, lgt->clr);
 		return (light_clr);
 	}
@@ -27,31 +27,27 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 	return (0);
 }
 
-static float3		transparancy_check_all_light(t_data *data)
+static float3		transparancy_check_all_light(t_data *data, float3 normale)
 {
 	short	i;
 	float3	lightdir;
 	float3	rd_light;
-	float3	normale;
 	float3	clr;
 
 	i = -1;
 	rd_light = 0.0f;
-	normale = 0; // a suprimer
 	clr = data->objs[data->id].clr;
 	while (++i < data->n_lgts)
 	{
 		lightdir = fast_normalize(data->intersect - data->lights[i].pos);
-		rd_light += transparancy_is_light(data, lightdir, &data->lights[i], normale);
+		rd_light += transparancy_is_light(data, lightdir, &data->lights[i]);
 	}
-	rd_light += data->ambiant * clr * data->light_obj_pow;// a surement retirer
+	// rd_light += data->ambiant * clr * data->light_obj_pow;// a surement retirer
 	if (!data->nl)
 	 	return (rd_light);
 	else if (data->n_lgts == 1)
 		return (rd_light / (1.0f + data->ambiant));
-		// return (rd_light / (1.0f + data->ambiant) * data->light_pow);
 	return (rd_light  / (data->n_lgts - data->test + data->ambiant));
-	// return (rd_light  / (data->n_lgts - data->test + data->ambiant) * data->light_pow);
 }
 
 void 	clearness_color(t_data *data) 
@@ -65,30 +61,12 @@ void 	clearness_color(t_data *data)
 		data->ray_pos = data->intersect + data->ray_dir;
 		touch_object(data);
 	}
-	// 	printf("id[%u], pow[%f], lpow[%f], opacity[%f]\n", data->id,
-	//  data->light_obj_pow, data->light_pow, data->objs[data->id].opacity);
 	if (data->id > -1)
 	{
 		data->through = data->id;
-		data->rd_light += transparancy_check_all_light(data);
+		data->rd_light += transparancy_check_all_light(data, calcul_normale(data));
 		data->test = 0;
-		// data->through = -1;
 	}
-}
-
-void	clearness_calcul(t_data *data)
-{
-	// short	index = data->id;
-
-	// data->ray_dir = calcul_refract_ray(data, 1.0f, data->objs[data->id].refract);
-	data->ray_pos = data->intersect + data->ray_dir;
-	touch_object(data);
-	// if (index == data->id)
-	// {
-	// 	data->ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
-	// 	data->ray_pos = data->intersect + data->ray_dir * PREC;
-	// 	touch_object(data);
-	// }
 }
 
 float3	calcul_refract_ray(t_data *data, float refract1, float refract2)
@@ -108,3 +86,18 @@ float3	calcul_refract_ray(t_data *data, float refract1, float refract2)
 	c2 = sqrt(1.0f - c1);
 	return (data->ray_dir + (n * cosi - c2) * normale);
 }
+
+// void	clearness_calcul(t_data *data)
+// {
+// 	// short	index = data->id;
+
+// 	// data->ray_dir = calcul_refract_ray(data, 1.0f, data->objs[data->id].refract);
+// 	data->ray_pos = data->intersect + data->ray_dir;
+// 	touch_object(data);
+// 	// if (index == data->id)
+// 	// {
+// 	// 	data->ray_dir = calcul_refract_ray(data, data->objs[data->id].refract, 1.0f);
+// 	// 	data->ray_pos = data->intersect + data->ray_dir * PREC;
+// 	// 	touch_object(data);
+// 	// }
+// }

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:42:55 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/30 19:26:48 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 11:46:27 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,11 @@ void		handle_motion_mouse(t_rt *rt)
 {
 	rt->m_pos.x = rt->event.motion.x;
 	rt->m_pos.y = rt->event.motion.y;
-
-	/*
-	** IN PROGRESS START
-	*/
-
 	if (rt->ui->b_sp_hover != -1 &&
 	fsdl_pt_in_rect(&rt->m_pos, rt->ui->param_b_rect[(int)rt->ui->b_sp_hover]))
 		return ;
 	else if (rt->ui->b_sp_hover > -1)
 		draw_sp_element(rt, rt->ui->b_sp_hover, 0);
-
-	/*
-	** IN PROGRESS END
-	*/
-
 	if (rt->ui->b_se_hover != -1 &&
 	fsdl_pt_in_rect(&rt->m_pos, *rt->ui->b_se_rect))
 		return ;

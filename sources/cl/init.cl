@@ -3,32 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   init.cl                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgatibel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 11:17:15 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/04/27 11:17:19 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/05/10 10:45:12 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-static void     init_laputain_desamere(t_data *data)
-{
-	data->objs[0].reflex = 1.0f;
-	data->objs[1].reflex = 0.0f;
-	data->objs[2].reflex = 0.0f;
-	data->objs[3].reflex = 0.0f;
-	data->objs[4].reflex = 0.0f;
-	data->objs[5].reflex = 0.0f;
-	data->objs[6].reflex = 0.0f;
-
-	data->objs[0].refract = 0.0f;
-	data->objs[1].refract = 0.0f;
-	data->objs[2].refract = 0.0f;
-	data->objs[3].refract = 0.0f;
-	data->objs[4].refract = 0.0f;
-	data->objs[5].refract = 0.0f;
-	data->objs[6].refract = 0.0f;
-	
-}
 
 static void		init_data(t_data *data, global t_obj *objs,
 global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
@@ -59,14 +39,5 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->id = -1;
 	data->reflex = MAX_REFLECTION;
 	data->nl = 0;
-}
-
-void		init(t_data *data, global t_obj *objs, global t_lgt *lgts,
- short n_objs, short n_lgts, float3 ray_pos, float3 ray_dir, float ambiant,
-  global unsigned int *pixel)
-{
-	init_data(data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant,
-     pixel);
-	init_laputain_desamere(data);
-	
+	data->normale = 0.0f;
 }

@@ -19,31 +19,40 @@
 unsigned	get_lighting(t_data *data)
 {
 	short	opacity;
+	short	save_id = data->id;
+	float3	save_dir = data->ray_dir;
+	float3	save_pos = data->ray_pos;
+	float3	save_intersect = data->intersect;
+	float3	save_clr = data->save_clr;
 
 	opacity = 0;
-	data->reflex = 1;//a supprimer
+	data->reflex = 3;//a supprimer
 	while (data->reflex-- > 0 && data->light_pow > 0.0f)
 	{
-		// if (opacity < MAX_TRANSPARANCY && data->objs[data->id].opacity < 1.0f)
-		// {
-		// 	clearness_color(data);
-		// 	opacity++;
-		// 	// return(calcul_rendu_light(data));
-		// 	// load(data);
-		// }
+		if (opacity < MAX_TRANSPARANCY && data->objs[data->id].reflex < 1.0f &&
+		 data->objs[data->id].opacity < 1.0f)
+		{
+			data->normale = calcul_normale(data);
+			clearness_color(data);
+	return(calcul_rendu_light(data));
+			opacity++;
+		}
 		if (data->objs[data->id].reflex > 0.0f)
 		{	
 			calcul_reflex_ray(data);
-			// save(data);
-			// return(calcul_rendu_light(data));
-			
 		}
 		else
 			break ;
 	}
-	// save(data);
 	if (data->light_pow > 0.0f)
+	{
+		data->save_id = save_id;
+		data->save_dir = save_dir;
+		data->save_pos = save_pos;
+		data->save_inter = save_intersect;
+		data->save_clr = save_clr;
 		data->rd_light += check_all_light(data);
+	}
 	return(calcul_rendu_light(data));
 }
 

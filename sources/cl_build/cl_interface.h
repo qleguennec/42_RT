@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 07:55:11 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/03/01 21:49:23 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/10 10:42:43 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct		s_cl_obj
 	cl_float		radius;
 	cl_float		specolor;
 	cl_float		reflex;
-	cl_float		refract;
+	cl_float		refrac;
 	cl_float		shiness;
 	cl_float		mshiness;
 	cl_float3		offset;

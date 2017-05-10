@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc.cl                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgatibel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 17:50:51 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/02/13 11:10:55 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/05/10 10:45:03 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 {
 	t_data	data;
 	float	ambiant = 0.25f; // a setter par benj par la suite
-	init(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant,
+	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant,
      pixel);
 	// data.objs[4].reflex = 1.0f;
 	touch_object(&data);

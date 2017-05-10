@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/03/06 14:30:26 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/10 10:41:56 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void
 	CPY(radius);
 	CPY(specolor);
 	CPY(reflex);
-	CPY(refract);
+	CPY(refrac);
 	CPY(shiness);
 	CPY(mshiness);
 }
