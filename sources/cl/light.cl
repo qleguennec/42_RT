@@ -27,7 +27,7 @@ unsigned	get_lighting(t_data *data)
 
 	opacity = 0;
 	data->normale = calcul_normale(data);
-	data->reflex = 0;//a supprimer
+	data->reflex = 1;//a supprimer
 	while (data->reflex-- > 0 && data->light_pow > 0.0f)
 	{
 		if (opacity < MAX_TRANSPARANCY &&
@@ -36,10 +36,10 @@ unsigned	get_lighting(t_data *data)
 			clearness_color(data);
 			opacity++;
 		}
-		if (REFLEX > 0.0f)
-		{	
-			calcul_reflex_ray(data);
-		}
+		// if (REFLEX > 0.0f)
+		// {	
+		// 	calcul_reflex_ray(data);
+		// }
 		else
 			break ;
 	}
