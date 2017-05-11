@@ -38,7 +38,7 @@ unsigned	get_lighting(t_data *data)
 		}
 		// printf("tours[%u] light_power[%f]\n",3 - data->reflex , data->light_pow);
 	// printf("reflex[%f]\n",REFLEX);
-		if (REFLEX > 0.0f)
+		if (REFLEX > 0.0f) 
 		{	
 			calcul_reflex_ray(data);
 		}

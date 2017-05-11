@@ -103,7 +103,7 @@
 	<position>0.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
-	<opacity>0.00</opacity>
+	<opacity>.35</opacity>
 	<radius>50.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
