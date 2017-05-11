@@ -34,6 +34,7 @@ unsigned	get_lighting(t_data *data)
 			data->objs[data->id].opacity < 1.0f && REFLEX < 1.0f)
 		{
 			clearness_color(data);
+			load(data);
 			opacity++;
 		}
 	// printf("1light_power[%f]\n",data->light_pow);
@@ -46,6 +47,8 @@ unsigned	get_lighting(t_data *data)
 		else
 			break ;
 	}
+	return(calcul_rendu_light(data));
+	
 	// printf("2light_power[%f]\n",data->light_pow);
 	if (data->light_pow > 0.0f)
 	{

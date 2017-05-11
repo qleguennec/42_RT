@@ -24,7 +24,7 @@
 			data->id = data->save_id;
    		data->ray_dir = data->save_dir;
 			data->ray_pos = data->save_pos;
-			data->inter = data->save_inter;
+			data->intersect = data->save_inter;
 			data->clr = data->save_clr;
   }
 
