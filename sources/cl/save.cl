@@ -16,7 +16,10 @@
     	data->save_dir = data->ray_dir;
 			data->save_pos = data->ray_pos;
 			data->save_inter = data->intersect;
-			data->save_clr = data->objs[data->id].clr;
+			// if (data->objs[data->id].type == T_SPHERE)
+			// 	data->save_clr = get_shaders(data->intersect, MARBRE1, data->objs[data->id].clr);
+			// else
+				data->save_clr = data->objs[data->id].clr;
   }
 
 	void    load(t_data *data)
@@ -27,5 +30,3 @@
 			data->intersect = data->save_inter;
 			data->clr = data->save_clr;
   }
-
-	

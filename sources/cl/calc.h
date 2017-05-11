@@ -6,7 +6,7 @@
 /*   By: lgatibel <lgatibel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:37 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/04/07 11:46:31 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/05/11 15:31:08 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct			s_data
 	float3				save_clr;
 
 	short				save_id;
+
 	short				through;
 	short				test;
 	float				light_pow;

@@ -39,5 +39,4 @@ float3 ray_dir, global unsigned int *pixel)
 	data->id = -1;
 	data->reflex = MAX_REFLECTION;
 	data->nl = 0;
-	data->normale = 0;
 }
