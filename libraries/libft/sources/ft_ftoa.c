@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 19:38:08 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/28 18:08:11 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 10:27:52 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,11 @@ char		*ft_ftoa(float num)
 	return (str);
 }
 
-char		*ft_dtoa(double num)
+char		*ft_dtoa(double num, short i, short size)
 {
-	short	i;
 	int		tmp;
-	short	size;
 	char	*str;
 
-	i = 0;
-	size = 1;
 	tmp = (int)round(num * 100);
 	if (num == .0)
 		return (ft_strdup("0.00"));

@@ -10,15 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-float3		calcul_clr(float3 ray, float3 normale, float3 light,
-	global t_obj *obj)
+float3		calcul_clr(float3 ray, float3 normale, float3 light)
 {
 	float	cosinus;
 
-	ray = fast_normalize(ray);
+	// ray = fast_normalize(ray);
 	cosinus = dot(ray, normale);
 	if (cosinus <= 0.0f)
-		return((float3){0.0f, 0.0f, 0.0f});
+		return(0);
 	return((float3)(light * cosinus));
 }
 
@@ -47,4 +46,14 @@ unsigned	calcul_rendu_light(t_data *data)
 	clr =  data->rd_light * 255.0f;
 	return ((((unsigned)clr.x & 0xff) << 24) + (((unsigned)clr.y & 0xff) << 16)
 		+ (((unsigned)clr.z & 0xff) << 8) + ((unsigned)255 & 0xff));
+}
+
+float3	twocolor_lerp(float3 a, float3 b, float pc)
+{
+	float3 color;
+
+	color.x = a.x * (1.0f - pc) + b.x * pc;
+	color.y = a.y * (1.0f - pc) + b.y * pc;
+	color.z = a.z * (1.0f - pc) + b.z * pc;
+	return(color);
 }

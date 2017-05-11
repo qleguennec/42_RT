@@ -11,8 +11,8 @@
 
 <camera>
 	<name>0123456789012345678</name>
-	<position>0.00 0.00 100.00</position>
-	<rotation>0.00 0.00 1.00</rotation>
+	<position>0.00 0.00 0.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
 	<focal>55</focal>
 </camera>
 <!------------ Light(s) -------------->
@@ -21,8 +21,17 @@
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>True</visibility>
-	<position>0.00 0.00 10.00</position>
-	<color-rgb>255.00 1.00 255.00</color-rgb>
+	<position>0.00 0.00 100.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
+<light>
+	<name>Prout</name>
+	<type>Diffuse</type>
+	<visibility>True</visibility>
+	<position>50.00 0.00 200.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
 
@@ -33,9 +42,9 @@
 	<type>sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 400.00</position>
+	<position>0.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>1.00 0.00 255.00</color-rgb>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1</opacity>
-	<radius>40</radius>
+	<radius>50</radius>
 </object>

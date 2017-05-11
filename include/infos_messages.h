@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:30:05 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/25 18:36:58 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 10:41:27 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,21 @@
 # define INF8	"Info : New plane added to the scene."
 # define INF9	"Info : New cone added to the scene."
 
-# define INF14	"Info : Lambert Material successfully set to the object."
-# define INF15	"Info : Phong Material successfully set to the object."
-# define INF16	"Info : Blinn Material successfully set to the object."
-# define INF17	"Info : Wood Material successfully set to the object."
+# define INF13	"Info : Perlin Nose shader successfully set to the object."
+# define INF14	"Info : Wood shader successfully set to the object."
+# define INF15	"Info : Marble shader successfully set to the object."
+# define INF16	"Info : Granite shader successfully set to the object."
 
 # define INF21	"Info : Render frame successfully exported in PNG."
 
 # define INF24	"Info : Special mode disabled."
-# define INF25	"Info : Special mode changed to Sepia."
-# define INF26	"Info : Special mode changed to Black & white."
-# define INF27	"Info : Special mode changed to Cartoon."
-
-# define INF30	"Info : Editor mode actived (edit value with + or -)."
+# define INF25	"Info : Special mode changed to Pixel Art."
+# define INF26	"Info : Special mode changed to Saturate."
+# define INF27	"Info : Special mode changed to Sepia."
+# define INF28	"Info : Special mode changed to Grey."
+# define INF29	"Info : Special mode changed to Sobel."
+# define INF30	"Info : Special mode changed to Reverse."
+# define INF31	"Info : Special mode changed to Cartoon."
 
 # define INF32	"Info : \"%s\" selected."
 # define INF33	"Info : \"%s\" is now set as the current camera."
@@ -45,5 +47,7 @@
 # define INF35	"Info : \"%s\" is now visible."
 
 # define INF36	"Info : \"%s\" was successfully deleted."
+
+# define INF37	"Info : Editor mode actived (edit value with + or -)."
 
 #endif

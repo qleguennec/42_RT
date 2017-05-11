@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:28:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/02 19:46:11 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/10 10:19:41 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@
 # define MSG43	"error: <lenght> value must be set between 0.0 and 1000.0.\n"
 
 # define MSG44	"error: <reflection> value must be set between 0.0 and 1.0.\n"
-# define MSG45	"error: <refraction_index> value not set between 1.0 and 2.8.\n"
-# define MSG46	"error: <refraction_intensity> not set between 0.0 and 1.0.\n"
+# define MSG46	"error: <refraction> not set between 0.0 and 1.0.\n"
 # define MSG47	"error: <specular> value must be set between 0.0 and 1.0.\n"
 
 #endif

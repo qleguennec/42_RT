@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/02 17:34:33 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 16:48:07 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,31 +171,13 @@ void				save_to_png(t_rt *rt);
 ** -----------------------------------------------------------------------------
 */
 
-/*
-** needs to be call once at the start of the program
-*/
 bool				cl_main_krl_init(t_cl *cl);
 
-/*
-** needs to be call each time the scene needs to be rendered
-*/
 bool				cl_main_krl_exec(t_cl *cl);
 
-/*
-** needs to be call each time the camera is changed
-** cl_main_krl_init
-*/
 bool				cl_main_krl_update_camera(t_cl *cl, t_obj *obj);
-
-/*
-** needs to be call each time objects are modified
-*/
 bool				cl_main_krl_update_buffers(t_cl *cl, t_scene *scene);
 
-/*
-** needs to be called each time the scene has been re-renderer
-** the image buffer is assumed to be of size WIDTH * HEIGHT * sizeof(int)
-*/
 bool				cl_copy_image_buffer(t_cl *cl, void *buffer);
 
 /*
@@ -219,9 +201,13 @@ bool				scene_init_rendering(t_rt *rt, t_cl *cl);
 ** -----------------------------------------------------------------------------
 */
 
-void				add_sepia_effect(t_rt *rt);
+void				add_sepia_effect(t_rt *rt, short r, short g, short b);
 void				add_black_n_white_effect(t_rt *rt);
-void				add_cartoon_effect(t_rt *rt);
+void				add_cartoon_effect(t_rt *rt, short s, short x_g, short y_g);
+void				add_reverse_colors_effect(t_rt *rt);
+void				add_sobel_effect(t_rt *rt, short sum, short x, short y);
+void				add_pixel_art_effect(t_rt *rt);
+void				add_saturate_effect(t_rt *rt);
 
 /*
 ** -----------------------------------------------------------------------------
@@ -265,7 +251,7 @@ void				handle_outliner_down(t_rt *rt);
 ** ------------------------- Handle Special Mode -------------------------------
 */
 
-void				handle_special_modes_down(t_rt *rt, t_cl *cl);
+void				handle_special_modes_down(t_rt *rt);
 void				handle_special_mode(t_rt *rt, int i);
 
 /*
@@ -304,6 +290,9 @@ void				handle_scene_parameters(t_rt *rt);
 void				handle_keyboard(t_rt *rt, t_cl *cl);
 void				update_se_box_plus(t_rt *rt, t_cl *cl);
 void				update_se_box_minus(t_rt *rt, t_cl *cl);
+
+void				update_se_light_box_plus_part2(t_rt *rt);
+void				update_se_light_box_minus_part2(t_rt *rt);
 
 /*
 ** ------------------------- Handle Linked Lints -------------------------------

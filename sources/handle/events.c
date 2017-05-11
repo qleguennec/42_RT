@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 19:22:48 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/28 15:45:26 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 14:18:04 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void		handle_events(t_rt *rt, t_cl *cl)
 	rt->event.button.clicks == 1)
 		handle_left_click_down(rt, cl);
 	else if (rt->event.type == 0x401 && rt->event.button.button == 1 &&
-	rt->event.button.clicks == 2)
+	rt->event.button.clicks == 2 && 
+	!fsdl_pt_in_rect(&rt->m_pos, (SDL_Rect){216, 67, 1064, 653}))
 		handle_double_click_down(rt, cl);
 	else if (rt->event.type == 0x401 && rt->event.button.button == 3)
 		handle_right_click_down(rt, cl);

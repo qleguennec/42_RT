@@ -15,85 +15,97 @@
 #include "shiness.cl"
 #include "light.h"
 #include "color.cl"
+#include "noise.h"
+#include "noise.cl"
+#include "wood.cl"
+#include "marbre.cl"
+#include "shaders.cl"
 
 unsigned	get_lighting(t_data *data)
 {
-	// temp_pos = data->intersect;
-	while (data->safe > 0 && data->light_pow > 0.0f)
-	{
+	short	opacity;
+	short	save_id = data->id;
+	float3	save_dir = data->ray_dir;
+	float3	save_pos = data->ray_pos;
+	float3	save_intersect = data->intersect;
+	float3	save_clr = data->save_clr;
 
-		if (data->objs[data->id].reflex > 0.0f)
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+	opacity = 0;
+	data->normale = calcul_normale(data);
+	while (data->reflex-- > 0 && data->light_pow > 0.0f)
+	{
+		if (opacity < MAX_TRANSPARANCY &&
+			data->objs[data->id].opacity < 1.0f && REFLEX < 1.0f)
 		{
-			calcul_reflex_color(data);
+			clearness_color(data);
+			load(data);
+			opacity++;
 		}
-		else if (data->objs[data->id].opacity < 1.0f)
-=======
-=======
->>>>>>> Stashed changes
+		if (REFLEX > 0.0f) 
+		{	
 			calcul_reflex_ray(data);
-		else if (data->objs[data->id].opacity < 1.0f) // a changer en if
->>>>>>> Stashed changes
-		{
-			break ;// WIP
 		}
 		else
 			break ;
 	}
-	data->rd_light = check_all_light(data);
+	if (data->light_pow > 0.0f)
+	{
+		data->save_id = save_id;
+		data->save_dir = save_dir;
+		data->save_pos = save_pos;
+		data->save_inter = save_intersect;
+		data->save_clr = save_clr;
+		data->normale = calcul_normale(data);
+		data->rd_light += check_all_light(data);
+	}
 	return(calcul_rendu_light(data));
 }
 
 float3		check_all_light(t_data *data)
 {
-	short	i = 0;
+	short	i;
 	float3	lightdir;
 	float3	rd_light;
 
-	rd_light = (float3){0.0f, 0.0f, 0.0f};
-	while (i < data->n_lgts)
+	i = -1;
+	rd_light = 0.0f;
+	data->normale = calcul_normale(data);
+	while (++i < data->n_lgts)
 	{
-		lightdir = data->intersect - data->lights[i].pos;
-		rd_light += is_light(data, lightdir, &data->lights[i],
-		calcul_normale(data));
-		// PRINT3(rd_light, "rd_light");
-		i++;
+		lightdir = fast_normalize(data->save_inter - data->lights[i].pos);
+		rd_light += is_light(data, lightdir, &data->lights[i]);
 	}
-	if (data->nl > 0)
-	{
-		return ((rd_light / (data->nl + data->nl * data->ambiant)
-			* data->objs[data->id].opacity * data->light_pow) * data->objs[data->id].clr);
-		// 	return ((rd_light
-			// * data->objs[data->id].opacity * data->light_pow));
-	}
-	return (rd_light * data->objs[data->id].opacity * data->objs[data->id].clr);
+	rd_light += calcul_clr(data->save_dir, -data->normale,
+		 AMBIANT * data->save_clr);
+	if (!data->nl || data->test >= data->n_lgts)
+	 	return (rd_light * data->light_pow);
+	else if (data->n_lgts == 1 || (data->n_lgts - data->test == 1))
+		return ((rd_light / (1.0f + AMBIANT)) * data->light_pow);
+	return (rd_light / (data->n_lgts - data->test + AMBIANT) *
+	 data->light_pow);
 }
 
-float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normale)
+float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt)
 {
-	short	index = data->id;
 	float3	light_clr;
-	float3	save_intersect = data->intersect;
-	// float3	save_pos = data->ray_pos;
-	// float3	save_dir = data->ray_dir;
 
-	lightdir = fast_normalize(lightdir);
 	data->ray_pos = lgt->pos;
 	data->ray_dir = lightdir;
 	touch_object(data);
-	if (index == data->id && fast_distance(save_intersect, lgt->pos) <=
-		fast_distance(data->intersect, lgt->pos) + PREC)
+	if ((data->id == data ->save_id &&
+		fast_distance(data->save_inter, lgt->pos) <
+		fast_distance(data->intersect, lgt->pos) + PREC2))
 	{
 		data->nl++;
-		light_clr = calcul_clr(-lightdir, normale, lgt->clr,
-			&data->objs[index]) + data->ambiant;
-		// light_clr += is_shining(calcul_normale(data), -lightdir, 0.8f, 150.0f, lgt->clr);
-		data->id = index;
-		return (light_clr / (1.0f + data->ambiant));
+		light_clr = calcul_clr(-lightdir, data->normale,
+			lgt->clr * data->save_clr);
+		if (data->objs[data->save_id].specular != 0.0f)
+			light_clr += is_shining(data->normale, -lightdir, lgt->clr);
+		return (light_clr);
 	}
-		data->id = index;
-	return (calcul_clr(data->ray_pos, -normale, data->ambiant,
-	&data->objs[index]));//* data->objs[data->id].clr);
-	// return (data->objs[index].clr * data->ambiant);
+	if (fast_distance(data->save_inter, data->save_pos) <
+	fast_distance(data->intersect, data->save_pos) + PREC3 &&
+	 dot(data->ray_dir,	data->save_dir) +PREC2 <= 0.0f)
+		data->test++;
+	return (0);
 }

@@ -1,6 +1,5 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "files.associations": {"*.rt":"xml","*.cl":"c","*.h":"c"}
-,
-"files.autoSave": "onFocusChange"
+    "files.autoSave": "onFocusChange",
+    "files.associations": {"*.cl": "c"}
 }
