@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 17:29:24 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/10 10:22:01 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 11:02:07 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,13 @@ static void	redraw_case_box_camera(t_rt *rt, t_obj *obj, int m)
 		D_C(rt, ft_dtoa(obj->rot.z, 0, 1), rt->ui->cam_b_rect[7], m);
 }
 
-static void	redraw_case_box_light(t_rt *rt, t_obj *obj, char *tmp, int m)
+static void	redraw_case_box_light(t_rt *rt, t_obj *obj, int m)
 {
 	if (rt->ui->case_active == 1)
 		D_C(rt, ft_itoa(obj->intensity), rt->ui->lgt_b_rect[1], m);
 	else if (rt->ui->case_active == 2)
-	{
-		tmp = (obj->flare_v == 0) ? ft_strf("NO") : ft_strf("YES");
-		D_C(rt, tmp, rt->ui->lgt_b_rect[2], m);
-	}
+		D_C(rt, (obj->flare_v == 0) ? ft_strf("NO") : ft_strf("YES"),
+		rt->ui->lgt_b_rect[2], m);
 	else if (rt->ui->case_active == 3)
 		D_C(rt, DTOA(R(obj->clr.x * 255.0f), 0, 1), rt->ui->lgt_b_rect[3], m);
 	else if (rt->ui->case_active == 4)
@@ -80,7 +78,8 @@ static void	redraw_case_box_object(t_rt *rt, t_obj *obj, int m)
 	if (rt->ui->case_active == 1)
 		D_C(rt, ft_dtoa(obj->opacity, 0, 1), rt->ui->obj_b_rect[1], m);
 	else if (rt->ui->case_active == 2)
-		D_C(rt, ft_dtoa(obj->specular, 0, 1), rt->ui->obj_b_rect[2], m);
+		D_C(rt, (obj->specular == 0) ? ft_strf("NO") : ft_strf("YES"),
+		rt->ui->obj_b_rect[2], m);
 	else if (rt->ui->case_active > 2 && rt->ui->case_active < 9)
 		redraw_case_box_object_part2(rt, obj, m);
 	else if (rt->ui->case_active == 9)
@@ -110,7 +109,7 @@ void		redraw_case_active(t_rt *rt, int mode)
 	if (rt->scn->s_elem->type == 'C')
 		redraw_case_box_camera(rt, rt->scn->s_elem, mode);
 	else if (rt->scn->s_elem->type == 'L')
-		redraw_case_box_light(rt, rt->scn->s_elem, NULL, mode);
+		redraw_case_box_light(rt, rt->scn->s_elem, mode);
 	else
 		redraw_case_box_object(rt, rt->scn->s_elem, mode);
 	if (rt->ui->k_edit)

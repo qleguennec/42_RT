@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 15:37:50 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/10 10:20:36 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 10:59:38 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ static void	update_se_object_box(t_rt *rt)
 {
 	if (AC == 1 && S_ELEM->opacity <= 0.950f)
 		S_ELEM->opacity = R((S_ELEM->opacity + 0.050f) * 100) / 100;
-	else if (AC == 2 && S_ELEM->specular <= 0.950f)
-		S_ELEM->specular = R((S_ELEM->specular + 0.050f) * 100) / 100;
+	else if (AC == 2 && S_ELEM->specular != 1)
+		S_ELEM->specular = 1;
 	else if (AC > 2 && AC < 12)
 		update_se_object_box_part2(rt);
 	else if ((AC == 12 || (AC == -1 && CK_DOWN == SDLK_RIGHT && (AC = 12) &&

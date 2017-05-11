@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 19:02:51 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/10 10:21:55 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 11:07:15 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,9 @@ void		draw_selected_object(t_rt *rt, t_obj *obj)
 	tmp = (!obj->texture && obj->p_texture == -1) ?
 	ft_strf("-- NONE --") : ft_strf("--- YES ---");
 	D_P(rt, tmp, (SDL_Rect){1173, 187, 85, 21}, 1);
-	D_P(rt, ft_dtoa(obj->specular, 0, 1), rt->ui->obj_b_rect[2], 2);
+	tmp = (obj->specular == 0) ?
+	ft_strf("NO") : ft_strf("YES");
+	D_P(rt, tmp, rt->ui->obj_b_rect[2], 2);
 	D_P(rt, ft_dtoa(obj->reflex, 0, 1), rt->ui->obj_b_rect[3], 2);
 	D_P(rt, ft_dtoa(obj->refrac, 0, 1), rt->ui->obj_b_rect[4], 2);
 	if (obj->forme == T_SPHERE || obj->forme == T_CYLINDER ||
