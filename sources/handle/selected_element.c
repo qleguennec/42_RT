@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 21:18:20 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/09 16:46:52 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 19:33:13 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void		handle_selected_light(t_rt *rt)
 static void		handle_selected_object(t_rt *rt, t_obj *o)
 {
 	rt->ui->t_c = 0;
-	while (rt->ui->t_c < 18 &&
+	while (rt->ui->t_c < 19 &&
 	!fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[(int)rt->ui->t_c]))
 		rt->ui->t_c++;
 	if (fsdl_pt_in_rect(&rt->m_pos, rt->ui->obj_b_rect[5]) &&
@@ -74,7 +74,7 @@ static void		handle_selected_object(t_rt *rt, t_obj *o)
 	(o->forme == T_SPHERE || o->forme == T_CONE || o->forme == T_CYLINDER ||
 	o->forme == T_TORUS))
 		return ;
-	if ((rt->ui->t_c == 18 || rt->ui->t_c == rt->ui->case_active) &&
+	if ((rt->ui->t_c == 19 || rt->ui->t_c == rt->ui->case_active) &&
 	(rt->ui->b_se_hover = -1) != 0)
 		return ;
 	rt->ui->b_se_hover = rt->ui->t_c;

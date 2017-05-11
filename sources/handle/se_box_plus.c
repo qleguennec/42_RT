@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 15:37:50 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/11 13:48:08 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 20:17:28 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ static void	update_se_object_box(t_rt *rt)
 	else if ((AC == 17 || (AC == -1 && CK_DOWN == SDLK_e && (AC = 17) &&
 	(rt->ui->k_edit = 1))) && S_ELEM->rot.z <= 719.50f)
 		S_ELEM->rot.z = R((S_ELEM->rot.z + 0.50f) * 100) / 100;
+	else if ((AC == 18 && S_ELEM->shader <= 20))
+		++S_ELEM->shader;
 	redraw_case_active(rt, 1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 11:31:03 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/05/11 18:15:06 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 20:21:25 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ void	save(t_data *data)
 	data->save_pos = data->ray_pos;
 	data->save_inter = data->intersect;
 	if (data->objs[data->id].shader != 0)
+	{
+		data->objs[data->id].shader += (data->objs[data->id].shader & 1) ? 1 : 0;
 		data->save_clr = get_shaders(data->intersect,
-		data->objs[data->id].shader, data->objs[data->id].clr);
+		data->objs[data->id].shader / 2, data->objs[data->id].clr);
+	}
 	else
 		data->save_clr = data->objs[data->id].clr;
 }

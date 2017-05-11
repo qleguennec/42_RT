@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/11 17:36:40 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 19:21:28 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ typedef struct		s_ui
 	SDL_Rect		b_rect[20];
 	SDL_Rect		cam_b_rect[8];
 	SDL_Rect		lgt_b_rect[12];
-	SDL_Rect		obj_b_rect[18];
+	SDL_Rect		obj_b_rect[19];
 	SDL_Rect		param_b_rect[3];
 	SDL_Rect		*b_se_rect;
 	SDL_Rect		*case_rect;
