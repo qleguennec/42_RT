@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 15:13:44 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/11 10:50:33 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 13:45:07 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	set_default_parameters_part2(t_obj *obj)
 	obj->shiness = 0.0;
 	obj->mshiness = 0.0;
 	obj->reflex = 0.0;
-	obj->refrac = 0.0;
+	obj->refrac = 0;
 	obj->specular = 0;
 	obj->texture = NULL;
 	obj->p_texture = -1;
