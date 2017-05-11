@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cpy_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 09:31:07 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/10 10:41:56 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 18:05:29 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void
 	CPY(height);
 	CPY(radius);
 	CPY(specular);
+	CPY(shader);
 	CPY(reflex);
 	CPY(refrac);
 	CPY(shiness);

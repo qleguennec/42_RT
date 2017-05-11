@@ -6,7 +6,7 @@
 /*   By: erodrigu <erodrigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:00 by erodrigu          #+#    #+#             */
-/*   Updated: 2017/05/11 15:32:48 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:37:10 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,7 @@ float3		calcul_refract_ray(t_data *data, float refract1, float refract2);
 unsigned	get_lighting(t_data * data);
 unsigned	calcul_rendu_light(t_data *data);
 float3	twocolor_lerp(float3 a, float3 b, float pc);
+float3	set_biosphere(float3 pos);
+double smooth_noise_1d(float3 pos);
+
 #endif

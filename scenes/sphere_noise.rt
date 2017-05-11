@@ -21,21 +21,22 @@
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>True</visibility>
-	<position>0.00 0.00 10.00</position>
+	<position>0.00 0.00 0.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
 
 <!------------ Object(s) ------------->
 
+
 <object>
-	<name>Sphere 4</name>
+	<name>Sphere</name>
 	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>-25.00 0.00 150.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>4.00 5.00 6.00</color-rgb>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>12.00</radius>
 	<width>50.00</width>
@@ -44,87 +45,17 @@
 </object>
 
 <object>
-	<name>Sphere 4</name>
+	<name>Sphere</name>
 	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>-25.00 0.00 150.50</position>
+	<position>0.00 0.00 10.0</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>1.00 2.00 3.00</color-rgb>
+	<color-rgb>255.00 25.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>12.00</radius>
+	<radius>250.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
-	<lenght>50.00</lenght>
-</object>
-
-<object>
-	<name>Plane fond</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 0.00 1000.00</position>
-	<rotation>90.00 0.00 0.00</rotation>
-	<color-rgb>5.00 8.00 9.00</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>50.00</lenght>
-</object>
-
-<object>
-	<name>Plane arriere</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 0.00 -1000.50</position>
-	<rotation>90.00 0.00 0.00</rotation>
-	<color-rgb>255.00 0.00 255.00</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>50.00</lenght>
-</object>
-
-<object>
-	<name>Plane gauche</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>-200.00 0.00 0.00</position>
-	<rotation>0.00 0.00 90.00</rotation>
-	<color-rgb>1.0 3.0 5.0</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>50.00</lenght>
-</object>
-
-<object>
-	<name>Plane droit</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>200.00 0.00 0.00</position>
-	<rotation>0.00 0.00 -90.00</rotation>
-	<color-rgb>2.0 4.0 6.0</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>50.00</lenght>
-</object>
-
-<object>
-	<name>Plane haut</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 -200.00 0.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>8.0 8.00 8.50</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
 	<lenght>50.00</lenght>
 </object>
 
@@ -135,9 +66,9 @@
 	<visibility>True</visibility>
 	<position>0.00 200.00 0.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>0.0 0.0 0.0</color-rgb>
+	<color-rgb>255.0 30.2 30.2</color-rgb>
 	<opacity>1.00</opacity>
 	<width>0.00</width>
 	<height>0.00</height>
-	<lenght>50.00</lenght>
+	<lenght>0.00</lenght>
 </object>

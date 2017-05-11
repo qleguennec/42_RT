@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/11 13:47:17 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 18:06:32 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct		s_obj
 	cl_short		visibility;
 	cl_short		flare_v;
 	cl_float		intensity;
+	cl_short		shader;
 	cl_float		shiness;
 	cl_float		mshiness;
 	cl_short		specular;

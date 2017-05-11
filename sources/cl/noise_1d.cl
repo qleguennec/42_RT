@@ -2,7 +2,6 @@ double smooth_noise_1d(float3 pos)
 {
 	int3 integer;
 	double3 fractional;
-	double3	face_up;
 
 	integer.x = (int)pos.x;
 	integer.y = (int)pos.y;
@@ -18,8 +17,5 @@ double smooth_noise_1d(float3 pos)
 	double a0 = rand_noise(integer.x);
 	double a1 = rand_noise(integer.x + 1);
 
-
-	face_up.x = cosine_interpolate(a0, a1, fractional.x);
-	face_up.y = cosine_interpolate(b0, b1, fractional.x);
-	return(cosine_interpolate(face_up.x, face_up.y, fractional.y));
+	return(cosine_interpolate(a0, a1, fractional.x));
 }

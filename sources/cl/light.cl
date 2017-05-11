@@ -15,10 +15,6 @@
 #include "shiness.cl"
 #include "light.h"
 #include "color.cl"
-#include "noise.h"
-#include "noise.cl"
-#include "wood.cl"
-#include "marbre.cl"
 #include "shaders.cl"
 
 unsigned	get_lighting(t_data *data)
@@ -30,6 +26,11 @@ unsigned	get_lighting(t_data *data)
 	float3	save_intersect = data->intersect;
 	float3	save_clr = data->save_clr;
 
+	if (data->id == 1)
+	{
+		data->rd_light = set_biosphere(data->intersect);
+		return(calcul_rendu_light(data));
+	}
 	opacity = 0;
 	data->normale = calcul_normale(data);
 	while (data->reflex-- > 0 && data->light_pow > 0.0f)
