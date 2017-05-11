@@ -23,7 +23,17 @@
 	<type>Diffuse</type>
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>0.00 0.00 0.00</position>
+	<position>100.00 0.00 100.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
+<light>
+	<name>Prout</name>
+	<type>Diffuse</type>
+	<visibility>True</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>-100.00 0.00 100.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -39,19 +49,6 @@
 	<rotation>-10.00 0.00 0.00</rotation>
 	<color-rgb>0.00 255.00 .00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>90.00</radius>
+	<radius>40.00</radius>
 	<height>20</height>
-</object>
-
-<object>
-	<name>plan fond</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>true</visibility>
-	<position>0.00 0.00 400.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>128.00 0.00 0.00</color-rgb>
-	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
 </object>
