@@ -20,6 +20,9 @@
 #include "calc_normal.cl"
 #include "init.cl"
 #include "save.cl"
+#include "noise.h"
+
+#include "shaders.cl"
 
 float			calc_delta(float3 *disc, t_data *data)
 {
@@ -112,7 +115,7 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		data.rd_light = data.objs[data.id].clr;
 		*pixel = calcul_rendu_light(&data);
 	}
-	else 
+	else
 	if (COLOR && data.id > -1)
 	{
 		save(&data);
