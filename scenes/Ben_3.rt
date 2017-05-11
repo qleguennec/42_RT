@@ -138,7 +138,7 @@
 	<width>0.00</width>
 	<height>0.00</height>
 	<lenght>50.00</lenght>
-	<reflection>1.00</reflection>
+	<reflection>0.00</reflection>
 	<refraction>0.00</refraction>
 </object>
 
@@ -206,7 +206,7 @@
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>.10</refraction>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -222,7 +222,7 @@
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>.10</refraction>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -238,7 +238,7 @@
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>.10</refraction>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -254,7 +254,7 @@
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>.10</refraction>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -270,7 +270,7 @@
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>.10</refraction>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -286,6 +286,6 @@
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>.10</refraction>
+	<refraction>0.00</refraction>
 </object>
 
