@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:36:46 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/11 16:15:27 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/11 16:51:39 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@
 # define MARBRE5		7
 # define MARBRE6		8
 # define MARBRE7		9
+# define SKYSTAR		10
+# define SKYDAY			11
 
 #endif
