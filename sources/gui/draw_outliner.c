@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 18:43:06 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/05 17:10:16 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 10:49:31 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,29 @@
 
 void		draw_outliner(t_rt *rt, int i, int max)
 {
-	t_obj	*list;
+	t_obj	*lst;
 
-	list = rt->scn->b_outliner;
+	lst = rt->scn->b_outliner;
 	rt->ui->area[12].y = 233;
 	fsdl_fill_rect(rt->s_back, (SDL_Rect){13, 233, 188, 409}, INFO_BG);
 	(rt->scn->n_elms >= 12) ? (rt->ui->nav_state = 1) : 1;
 	if (rt->ui->nav_state == 1)
-		draw_top_nav_button(rt, (list->id == rt->scn->o->id) ? -1 : 0);
+		draw_top_nav_button(rt, (lst->id == rt->scn->o->id) ? -1 : 0);
 	max = (rt->ui->nav_state == 1) ? 12 : 13;
-	while (i < max && list)
+	while (i < max && lst)
 	{
-		if (list->title != 0)
-			draw_outliner_title(rt, list->title);
+		if (lst->title != 0)
+			draw_outliner_title(rt, lst->title);
 		else
 		{
-			list->r_ol = rt->ui->area[12];
-			list->r_ol.h = 29;
-			draw_outliner_element(rt, list, 0);
+			lst->r_ol = rt->ui->area[12];
+			lst->r_ol.h = 29;
+			draw_outliner_element(rt, lst, 0);
 		}
 		rt->ui->area[12].y += 29;
-		if (i < max - 1)
-			list = list->next;
+		(i < max - 1) ? (lst = lst->next) : 0;
 		i++;
 	}
 	if (rt->ui->nav_state == 1)
-		draw_bottom_nav_button(rt, (list->next == NULL) ? -1 : 0);
+		draw_bottom_nav_button(rt, (lst == NULL || lst->next == NULL) ? -1 : 0);
 }

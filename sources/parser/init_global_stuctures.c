@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 13:55:32 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/11 19:45:09 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/08 19:38:26 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_elements(t_rt *rt)
 	rt->scn->n_cams = 0;
 	rt->scn->n_lgts = 0;
 	rt->scn->n_objs = 0;
+	rt->scn->n_elms = 0;
 	rt->scn->sp_mode = 0;
 	rt->scn->o = NULL;
 	while (rt->prs->t_i < 15)

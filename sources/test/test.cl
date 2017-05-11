@@ -1,14 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   test.cl                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/10 11:47:35 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/10 11:51:03 by qle-guen         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    test.cl                                            :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/02/10 11:47:35 by qle-guen          #+#    #+#              #
+#    Updated: 2017/05/10 10:42:10 by bsouchet         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 #include "obj_def.h"
 
@@ -29,9 +29,9 @@ void
 	printf("\trot: %f %f %f\n", obj.rot.x, obj.rot.y, obj.rot.z);
 	printf("\tclr: %f %f %f\n", obj.clr.x, obj.clr.y, obj.clr.z);
 	printf("\topacity: %f\n", obj.opacity);
-	printf("\tspecolor: %f\n", obj.specolor);
+	printf("\tspecular: %f\n", obj.specular);
 	printf("\treflex: %f\n", obj.reflex);
-	printf("\trefract: %f\n", obj.refract);
+	printf("\trefrac: %f\n", obj.refrac);
 	if (obj.type == TYPE_SPHERE)
 	{
 		printf("\ttype: sphere\n");

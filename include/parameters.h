@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:35:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/04/30 15:07:35 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 17:23:05 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@
 # define WIN_W_MID		640
 # define WIN_H_MID		360
 
+# define PX_SIZE		12
+# define PX_SIZE_SQRD	144
+
+/*
+** Others good Values for PX_SIZE : 4, 6, 7, 12, 14, 21, 28, 42, 49, 84, 98
+*/
+
 # define N_CAMS			40
 # define N_LGTS			15
 # define N_OBJS			80
@@ -65,7 +72,8 @@
 
 # define CK_DOWN		rt->event.key.keysym.sym
 
-# define DRAW_C			draw_case_active
+# define D_C			draw_case_active
+# define D_P			draw_parameter
 
 # define DELETE_RECT	&(SDL_Rect){874, 370, 170, 22}
 

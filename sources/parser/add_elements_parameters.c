@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 14:58:09 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/03/02 19:39:44 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 14:00:36 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@ int			add_global_parameters_obj(t_rt *rt, t_parser *p, t_obj *obj, int e)
 		(get_v(rt, e, BO_R, BC_R)) ? (vc(&obj->rot, p->vec)) : i(&e, -1);
 	else if (e > -1 && (e = check_tags(rt, BO_V, BC_V)) > 1 && ++p->t[4])
 		(get_b(rt, e, BO_V, BC_V)) ? (obj->visibility = p->t_i) : i(&e, -1);
+	else if (e > -1 && (e = check_tags(rt, BO_T, BC_T)) > 1 && ++p->t[8])
+		(get_t(rt, e, BO_T, BC_T)) ? (obj->forme = p->t_i) : i(&e, -1);
+	else if (e > -1 && (e = check_tags(rt, BO_OP, BC_OP)) > 1 && ++p->t[7])
+		(get_d(rt, e, BO_OP, BC_OP)) ? (obj->opacity = p->t_d) : i(&e, -1);
+	else if (e > -1 && (e = check_tags(rt, BO_RA, BC_RA)) > 1 && ++p->t[9])
+		(get_d(rt, e, BO_RA, BC_RA)) ? (obj->radius = p->t_d) : i(&e, -1);
+	else if (e > -1 && (e = check_tags(rt, BO_LT, BC_LT)) > 1 && ++p->t[14])
+		(get_d(rt, e, BO_LT, BC_LT)) ? (obj->lenght = p->t_d) : i(&e, -1);
+	else if (e > -1 && (e = check_tags(rt, BO_WT, BC_WT)) > 1 && ++p->t[10])
+		(get_d(rt, e, BO_WT, BC_WT)) ? (obj->width = p->t_d) : i(&e, -1);
+	else if (e > -1 && (e = check_tags(rt, BO_HT, BC_HT)) > 1 && ++p->t[11])
+		(get_d(rt, e, BO_HT, BC_HT)) ? (obj->height = p->t_d) : i(&e, -1);
 	return (e);
 }
 
@@ -101,28 +113,14 @@ int			add_object_parameters(t_rt *rt, t_obj *obj, int b_end, int e)
 		e = add_global_parameters_obj(rt, rt->prs, rt->prs->obj_tmp, e);
 		if (e != e_tmp)
 			;
-		else if (e > -1 && (e = check_tags(rt, BO_T, BC_T)) > 1 && ++p->t[8])
-			(get_t(rt, e, BO_T, BC_T)) ? (obj->forme = p->t_i) : i(&e, -1);
-		else if (e > -1 && (e = check_tags(rt, BO_OP, BC_OP)) > 1 && ++p->t[7])
-			(get_d(rt, e, BO_OP, BC_OP)) ? (obj->opacity = p->t_d) : i(&e, -1);
-		else if (e > -1 && (e = check_tags(rt, BO_RA, BC_RA)) > 1 && ++p->t[9])
-			(get_d(rt, e, BO_RA, BC_RA)) ? (obj->radius = p->t_d) : i(&e, -1);
-		else if (e > -1 && (e = check_tags(rt, BO_LT, BC_LT)) > 1 && ++p->t[14])
-			(get_d(rt, e, BO_LT, BC_LT)) ? (obj->lenght = p->t_d) : i(&e, -1);
-		else if (e > -1 && (e = check_tags(rt, BO_WT, BC_WT)) > 1 && ++p->t[10])
-			(get_d(rt, e, BO_WT, BC_WT)) ? (obj->width = p->t_d) : i(&e, -1);
-		else if (e > -1 && (e = check_tags(rt, BO_HT, BC_HT)) > 1 && ++p->t[11])
-			(get_d(rt, e, BO_HT, BC_HT)) ? (obj->height = p->t_d) : i(&e, -1);
 		else if (e > -1 && (e = check_tags(rt, BO_M, BC_M)) > 1 && ++p->t[12])
 			(get_m(rt, e, BO_M, BC_M)) ? (obj->material = p->t_i) : i(&e, -1);
 		else if (e > -1 && (e = check_tags(rt, BO_RE, BC_RE)) > 1 && ++p->t[15])
 			(get_d(rt, e, BO_RE, BC_RE)) ? (obj->reflex = p->t_d) : i(&e, -1);
 		else if (e > -1 && (e = check_tags(rt, BO_RI, BC_RI)) > 1 && ++p->t[16])
-			(get_d(rt, e, BO_RI, BC_RI)) ? (obj->refrac_i = p->t_d) : i(&e, -1);
-		else if (e > -1 && (e = check_tags(rt, BO_RY, BC_RY)) > 1 && ++p->t[17])
-			(get_d(rt, e, BO_RY, BC_RY)) ? (obj->refrac_y = p->t_d) : i(&e, -1);
+			(get_d(rt, e, BO_RI, BC_RI)) ? (obj->refrac = p->t_d) : i(&e, -1);
 		else if (e > -1 && (e = check_tags(rt, BO_SP, BC_SP)) > 1 && ++p->t[18])
-			(get_d(rt, e, BO_SP, BC_SP)) ? (obj->specular = p->t_d) : i(&e, -1);
+			(get_i(rt, e, BO_SP, BC_SP)) ? (obj->specular = p->t_i) : i(&e, -1);
 		else if (e > -1 && s(&rt->prs->b_o, BO_O) && (rt->prs->b_c = BC_O))
 			return (error(rt, 10));
 	}

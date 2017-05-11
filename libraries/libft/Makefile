@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/02 15:48:09 by bsouchet          #+#    #+#              #
-#    Updated: 2017/04/30 15:24:23 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/05/08 19:13:07 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ HEADER = include
 
 SOURCES = ft_atoi.c \
 		  ft_atof.c \
+		  ft_free.c \
 		  ft_shtoi.c \
 		  ft_ftoa.c \
 		  ft_clr.c \
@@ -87,6 +88,7 @@ SOURCES = ft_atoi.c \
 		  ft_printf/ft_sitoa.c\
 		  ft_printf/ft_maths.c\
 		  ft_printf/ft_nbrlen.c\
+		  ft_hsv_editon.c \
 		  gnl/get_next_line.c \
 		  ft_malloc_err.c \
 		  ft_isdigit.c

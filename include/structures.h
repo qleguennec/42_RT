@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/02 18:15:38 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 13:47:17 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,11 @@ typedef struct		s_obj
 	cl_short		visibility;
 	cl_short		flare_v;
 	cl_float		intensity;
-	cl_float		shiness; // Will Be Useless One Day
-	cl_float		mshiness; // Will Be Useless One Day
-	cl_float		specular;
-	cl_float		specolor; // Will Be Useless One Day
+	cl_float		shiness;
+	cl_float		mshiness;
+	cl_short		specular;
 	cl_float		reflex;
-	cl_float		refract; // Will Be Useless One Day
-	cl_float		refrac_i;
-	cl_float		refrac_y;
+	cl_short		refrac;
 	cl_short		p_texture;
 	SDL_Surface		*texture;
 	SDL_Rect		r_ol;
@@ -103,6 +100,8 @@ typedef struct		s_ui
 {
 	short			t_c;
 	cl_float3		t_v;
+	cl_float3		t_v2;
+	t_hsv			hsv;
 	char			c_num;
 	char			*tmp;
 	char			*c_name;
@@ -130,7 +129,7 @@ typedef struct		s_ui
 	SDL_Rect		t_rect;
 	SDL_Color		c_clr[3];
 	SDL_Rect		area[16];
-	SDL_Rect		ra_rect[7];
+	SDL_Rect		ra_rect[11];
 	SDL_Rect		b_rect[20];
 	SDL_Rect		cam_b_rect[8];
 	SDL_Rect		lgt_b_rect[12];

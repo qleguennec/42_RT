@@ -6,13 +6,13 @@
 /*   By: lgatibel <lgatibel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:37 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/05/09 14:27:13 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/11 15:31:08 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CALC_H
-#define CALC_H
-// structure for image computing
+# define CALC_H
+
 typedef struct			s_data
 {
 	global t_obj		*objs;
@@ -21,79 +21,54 @@ typedef struct			s_data
 	global unsigned int	*pixel;
 	short				n_objs;
 	short				n_lgts;
-
 	float3				ray_pos;
 	float3				ray_dir;
-	float3				intersect;
 
-	float3				normal;
+	float3				intersect;
 	float3				save_pos;
 	float3				save_dir;
 	float3				save_inter;
 	float3				save_clr;
+
 	short				save_id;
 
+	short				through;
 	short				test;
-
-	float				ambiant;
 	float				light_pow;
-	float3				rd_light;
+	float				light_refract_pow;
+	float				light_reflex_pow;
 	short				id;
-	short				safe;
+	short				reflex;
 	short				type;
+	float3				rd_light;
 	float3				pos;
-
-	short				is_light;
 	float3				inter;
-	// float3				clr;
-
+	float3				clr;
+	float3				offset;
+	float3				normale;
+	short				is_light;
 	short				nl;
-	float3				rot;
 	float				t;
 	float				t0;
 	float				t1;
-
-	float3				offset;
 }						t_data;
 
-float			calc_delta(float3 *disc, t_data *data);
-
-void			calc_intersect(float *delta, t_data *data);
-
+void   			save(t_data *data);
+void    		load(t_data *data);
 void			touch_object(t_data *data);
-void			touch_object2(t_data *data);//
-
-short			plane_intersection(t_data *data, short *index);
-
-short			cone_intersection(t_data *data, short *index);
-short			cone_caps(t_data *data, float3 *rot, short *index, float m);
-
-short			cylinder_caps(t_data *data, float3 *rot, short *index, float m);
-
-
-
-short			cylinder_intersection(t_data *data, short *index);
-
-short			sphere_intersection(t_data *data, short *index);
-
-short			disk_intersection(t_data *data, short *index);
-/////////////////////
-
-// entry function
+void			touch_object2(t_data *data);
+void			calc_intersect(t_data *data);
 void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
  global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir,
   global t_cam *cam, short x, short y);
-/////////////////////
-
-// rotate function
-float3			rotate_ray(float3 *ray, t_data *data, short *index);
-/////////////////////
-float3		calcul_normale(t_data *data);
-
-void		init(t_data *data, global t_obj *objs,
-global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
-float3 ray_dir, float ambiant, global unsigned int *pixel);
-
-float3			rotate_cam(float3 *ray, float3 rot);
-
+float			calc_delta(float3 *disc, t_data *data);
+short			cone_intersection(t_data *data, short *index);
+short			plane_intersection(t_data *data, short *index);
+short			sphere_intersection(t_data *data, short *index);
+short			cylinder_intersection(t_data *data, short *index);
+short			cone_caps(t_data *data, float3 *rot, short *index, float m);
+short			cylinder_caps(t_data *data, float3 *rot, short *index, float m);
+float3			rotate_cam(float3 rot);
+float3			calcul_normale(t_data *data);
+float3			rotate_ray(t_data *data, short *index);
 #endif
