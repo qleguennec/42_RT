@@ -49,10 +49,9 @@ static float3		reflex_check_all_light(t_data *data)
 }
 void	calcul_reflex_ray(t_data *data)
 {
-	// if (data->light_reflex_pow > 0.0f)
-		data->light_reflex_pow = REFLEX;
+	data->light_reflex_pow = REFLEX;
 	// data->light_reflex_pow = data->objs[data->id].reflex;
-	data->light_pow -= REFLEX;
+	data->light_light_pow -= REFLEX;
 	// data->light_pow -= data->objs[data->id].reflex;
 	if (data->light_reflex_pow <= 0.0f)
 		return;

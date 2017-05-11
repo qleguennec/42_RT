@@ -35,7 +35,7 @@
 	<type>Cylinder</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>20.00 0.00 490.00</position>
+	<position>20.00 0.00 -90.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
