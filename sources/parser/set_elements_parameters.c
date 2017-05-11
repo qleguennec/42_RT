@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 15:13:44 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/11 17:45:42 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 18:08:08 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	set_element_parameters_part2(t_obj *obj, t_obj *tmp)
 	obj->reflex = tmp->reflex;
 	obj->refrac = tmp->refrac;
 	obj->specular = tmp->specular;
+	obj->shader = tmp->shader;
 	obj->texture = tmp->texture;
 	obj->p_texture = tmp->p_texture;
 }
