@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:36:46 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/10 15:06:32 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/11 16:16:53 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,5 @@
 # define MARBRE5		7
 # define MARBRE6		8
 # define MARBRE7		9
-# define GRANIT			10
 
 #endif
