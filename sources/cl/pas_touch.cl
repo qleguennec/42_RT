@@ -37,7 +37,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt, float3 normal
 		data->nl++;
 		return (calcul_clr(lightdir, normale, light_clr, &data->objs[index]));
 	}
-	return (data->ambiant * data->objs[index].clr);
+	return (AMBIANT * data->objs[index].clr);
 }
 
 unsigned	calcul_rendu_light(t_data *data)

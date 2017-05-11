@@ -12,9 +12,17 @@
 
 #ifndef OBJ_DEF_H
 # define OBJ_DEF_H
+# ifndef M_PI
+# define M_PI 3.14f
+# endif
 # define PREC 0.01f
+# define PREC2 0.02f
+# define PREC3 0.0002f
+# define AMBIANT 0.2f
 # define MAX_REFLECTION 10
 # define MAX_TRANSPARANCY 1
+# define FONT 0x000000FF
+
 # include "../../include/obj_types.h"
 
 typedef struct		s_obj
@@ -27,7 +35,7 @@ typedef struct		s_obj
 	float			width;
 	float			height;
 	float			radius;
-	float			specolor;
+	float			specular;
 	float			reflex;
 	float			refrac;
 	float			shiness;

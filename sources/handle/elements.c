@@ -92,9 +92,9 @@ void		add_new_shader(t_obj *obj, short type)
 	else
 		obj->mshiness = (1) ? 0. : 0.;
 	if (type < 2)
-		obj->specolor = (1) ? 0. : 0.;
+		obj->specular = (1) ? 0. : 0.;
 	else
-		obj->specolor = (1) ? 0. : 0.;
+		obj->specular = (1) ? 0. : 0.;
 	if (type < 2)
 		obj->reflex = (1) ? 0. : 0.;
 	else

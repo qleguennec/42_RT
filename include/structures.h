@@ -45,7 +45,6 @@ typedef struct		s_obj
 	cl_float		shiness;
 	cl_float		mshiness;
 	cl_float		specular;
-	cl_float		specolor;
 	cl_float		reflex;
 	cl_float		refrac;
 	cl_short		p_texture;
