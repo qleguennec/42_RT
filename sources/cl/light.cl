@@ -90,7 +90,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt)
 	touch_object(data);
 	if ((data->id == data ->save_id &&
 		fast_distance(data->save_inter, lgt->pos) <
-		fast_distance(data->intersect, lgt->pos) + PREC2))
+		fast_distance(data->intersect, lgt->pos) + PREC))
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, data->normale,
@@ -99,9 +99,9 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt)
 			light_clr += is_shining(data->normale, -lightdir, lgt->clr);
 		return (light_clr);
 	}
-	if (fast_distance(data->save_inter, data->save_pos) <
-	fast_distance(data->intersect, data->save_pos) + PREC3 &&
-	 dot(data->ray_dir,	data->save_dir) +PREC2 <= 0.0f)
+	if (fast_distance(data->save_inter, data->save_pos) + PREC <
+	fast_distance(data->intersect, data->save_pos) &&
+	 dot(data->ray_dir,	data->save_dir) + PREC3 <= 0.0f)
 		data->test++;
 	return (0);
 }

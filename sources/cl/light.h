@@ -26,11 +26,11 @@ void		calcul_reflex_ray(t_data * data);
 void		calcul_light(float3 *light_clr, global t_obj *obj);
 float3		calcul_normale(t_data *data);
 float3		check_all_light(t_data *data);
+float3		twocolor_lerp(float3 a, float3 b, float pc);
 float3		calcul_clr(float3 ray, float3 normale, float3 light);
 float3		is_light(t_data * data, float3 lightdir, global t_lgt *lgt);
 float3		is_shining(float3 normale, float3 lightdir, float3 lightcolor);
 float3		calcul_refract_ray(t_data *data, float refract1, float refract2);
 unsigned	get_lighting(t_data * data);
 unsigned	calcul_rendu_light(t_data *data);
-float3	twocolor_lerp(float3 a, float3 b, float pc);
 #endif

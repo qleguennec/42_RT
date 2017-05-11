@@ -10,9 +10,30 @@
 <!------------ Camera(s) ------------->
 
 <camera>
-	<name>0123456789012345678</name>
+	<name>Avant 0123456789012345678</name>
 	<position>0.00 0.00 0.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
+	<focal>55</focal>
+</camera>
+
+<camera>
+	<name>Arriere</name>
+	<position>0.00 0.00 0.00</position>
+	<rotation>180.00 0.00 0.00</rotation>
+	<focal>55</focal>
+</camera>
+
+<camera>
+	<name>Gauche</name>
+	<position>0.00 0.00 0.00</position>
+	<rotation>-90.00 0.00 0.00</rotation>
+	<focal>55</focal>
+</camera>
+
+<camera>
+	<name>Droite</name>
+	<position>0.00 0.00 0.00</position>
+	<rotation>90.00 0.00 0.00</rotation>
 	<focal>55</focal>
 </camera>
 
@@ -23,7 +44,7 @@
 	<type>Diffuse</type>
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>100.00 0.00 100.00</position>
+	<position>0.00 0.00 60.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -33,7 +54,7 @@
 	<type>Spot</type>
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>-100.00 0.00 100.00</position>
+	<position>50.00 0.00 0.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -41,35 +62,18 @@
 <!------------ Object(s) ------------->
 
 <object>
-	<name>Cone 1</name>
-	<type>Cone</type>
+	<name>Sphere 1</name>
+	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 300.00</position>
-	<rotation>-71.50 0.00 0.00</rotation>
-	<color-rgb>0.00 255.00 0.00</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>40.00</radius>
-	<width>50.00</width>
-	<height>20.00</height>
-	<lenght>50.00</lenght>
-	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
-</object>
-
-<object>
-	<name>Fond</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 0.00 1000.00</position>
-	<rotation>90.00 0.00 0.00</rotation>
-	<color-rgb>128.00 0.00 0.00</color-rgb>
-	<opacity>1.00</opacity>
+	<position>0.00 0.00 60.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<opacity>.80</opacity>
+	<radius>50.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
-	<reflection>0.00</reflection>
+	<reflection>.45</reflection>
 	<refraction>0.00</refraction>
 </object>
-

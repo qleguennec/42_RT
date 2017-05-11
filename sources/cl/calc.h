@@ -58,6 +58,7 @@ void    		load(t_data *data);
 void			touch_object(t_data *data);
 void			touch_object2(t_data *data);
 void			calc_intersect(t_data *data);
+void 			set_offset(t_data *data, short *index);
 void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
  global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir,
   global t_cam *cam, short x, short y);
