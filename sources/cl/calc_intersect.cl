@@ -10,10 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void static		set_offset(t_data *data, short *index)
+void 			set_offset(t_data *data, short *index)
 {
 	data->offset = data->ray_pos - data->objs[(int)*index].pos;
 }
+
 void			calc_intersect(t_data *data)
 {
 	data->intersect = data->ray_pos + (data->ray_dir * data->t);
@@ -61,20 +62,13 @@ short			cone_intersection(t_data *data, short *index)
 	pow(dot(data->offset, rot), 2));
 	if (calc_delta(&disc, data) == -1)
 		return (0);
-	m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
-	// calc_intersect(&data->t, data);
-	// if (data->objs[(int)*index].height > 0.0f && 
-	// 	(m > 0 ||
-	// 	 m < -data->objs[(int)*index].height))
-	// {
-	// 	rad = (data->t0 > data->t1) ? data->t0 : data->t1;
-	// 	if ((res = cone_caps(data, &rot, index, m)) == 1)
-	// 		return (1);
-	// 	else if (res == 0)
-	// 		return (0);
-	// // calc_intersect(&rad, data);
-	// 	return (1);
-	// }
+	calc_intersect(data);
+	if (data->objs[(int)*index].height > 0.0f)
+	{
+		m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
+		if (m > data->objs[(int)*index].height || m < -data->objs[(int)*index].height)
+	 	return (cone_caps(data, &rot, index, m));
+	}
 	calc_intersect(data);
 	return (1);
 }

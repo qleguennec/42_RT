@@ -15,7 +15,7 @@
 # ifndef M_PI
 # define M_PI 3.14f
 # endif
-# define PREC 0.01f
+# define PREC 0.03f
 # define PREC2 0.02f
 # define PREC3 0.2f
 # define AMBIANT 0.2f
