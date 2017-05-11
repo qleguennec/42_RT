@@ -21,7 +21,6 @@
 #include "init.cl"
 #include "save.cl"
 #include "noise.h"
-
 #include "shaders.cl"
 
 float			calc_delta(float3 *disc, t_data *data)
@@ -122,5 +121,8 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		*pixel = get_lighting(&data);
 	}
 	else
-		*pixel = FONT;
+	{
+		data.rd_light = get_font(data.ray_dir);
+		*pixel = calcul_rendu_light(&data);
+	}
 }
