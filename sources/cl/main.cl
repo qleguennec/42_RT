@@ -32,7 +32,8 @@ kernel void
 	, global t_obj *objs
 	, global t_lgt *lgts
 	, short nobjs
-	, short nlgts)
+	, short nlgts
+	, float2 offs)
 {
 	float2	basis;
 	float2	indent;
@@ -54,7 +55,7 @@ kernel void
 	rot = rotate_cam(cam->rot);
 	origin.x = cam->pos.x + (cam->focal / 27.5f * rot.y) - basis.x / 2.0f;
 	origin.y = cam->pos.y + (cam->focal / 27.5f * rot.x) - basis.y / 2.0f;
-	origin.z = cam->pos.z + (cam->focal / 27.5f * rot.z);
+	origin.z = cam->pos.z + (cam->focal / 27.5f * 1.0f);
 	direction.x = origin.x + ((float)x * indent.x) - cam->pos.x;
 	direction.y = origin.y + ((float)y * indent.y) - cam->pos.y;
 	direction.z = origin.z - cam->pos.z;
