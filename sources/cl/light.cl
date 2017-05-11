@@ -15,6 +15,11 @@
 #include "shiness.cl"
 #include "light.h"
 #include "color.cl"
+#include "noise.h"
+#include "noise.cl"
+#include "wood.cl"
+#include "marbre.cl"
+#include "shaders.cl"
 
 unsigned	get_lighting(t_data *data)
 {
@@ -26,7 +31,6 @@ unsigned	get_lighting(t_data *data)
 	float3	save_clr = data->save_clr;
 
 	opacity = 0;
-	data->reflex = 3;//a supprimer
 	data->normale = calcul_normale(data);
 	while (data->reflex-- > 0 && data->light_pow > 0.0f)
 	{
@@ -39,16 +43,15 @@ unsigned	get_lighting(t_data *data)
 		}
 		// printf("tours[%u] light_power[%f]\n",3 - data->reflex , data->light_pow);
 	// printf("reflex[%f]\n",REFLEX);
-	
 		if (REFLEX > 0.0f)
-		{	
+		{
 			calcul_reflex_ray(data);
 		}
 		else
 			break ;
 	}
 	// return(calcul_rendu_light(data));
-	
+
 	// printf("2light_power[%f]\n\n",data->light_pow);
 	if (data->light_pow > 0.0f)
 	{
@@ -95,7 +98,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt)
 	data->ray_dir = lightdir;
 	touch_object(data);
 	if ((data->id == data ->save_id &&
-		fast_distance(data->save_inter, lgt->pos) < 
+		fast_distance(data->save_inter, lgt->pos) <
 		fast_distance(data->intersect, lgt->pos) + PREC2))
 	{
 		data->nl++;
@@ -105,7 +108,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt)
 			light_clr += is_shining(data->normale, -lightdir, lgt->clr);
 		return (light_clr);
 	}
-	if (fast_distance(data->save_inter, data->save_pos) < 
+	if (fast_distance(data->save_inter, data->save_pos) <
 	fast_distance(data->intersect, data->save_pos) + PREC2)
 		data->test++;
 	return (0);

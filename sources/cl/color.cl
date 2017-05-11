@@ -47,3 +47,13 @@ unsigned	calcul_rendu_light(t_data *data)
 	return ((((unsigned)clr.x & 0xff) << 24) + (((unsigned)clr.y & 0xff) << 16)
 		+ (((unsigned)clr.z & 0xff) << 8) + ((unsigned)255 & 0xff));
 }
+
+float3	twocolor_lerp(float3 a, float3 b, float pc)
+{
+	float3 color;
+
+	color.x = a.x * (1.0f - pc) + b.x * pc;
+	color.y = a.y * (1.0f - pc) + b.y * pc;
+	color.z = a.z * (1.0f - pc) + b.z * pc;
+	return(color);
+}

@@ -13,7 +13,6 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 		touch_object(data);
 		data->ray_pos = data->intersect + data->ray_dir;
 	}
-		// printf("test, id[%u], through[%u]\n", data->id, data->through);
 	if ((data->id == data->through && fast_distance(save_intersect, lgt->pos) < 
 	fast_distance(data->intersect, lgt->pos) + PREC))
 	{
@@ -42,7 +41,7 @@ static float3		transparancy_check_all_light(t_data *data)
 		lightdir = fast_normalize(data->intersect - data->lights[i].pos);
 		rd_light += transparancy_is_light(data, lightdir, &data->lights[i]);
 	}
-	// rd_light += AMBIANT * clr;// a surement retirer
+	rd_light += AMBIANT * clr;// a surement retirer
 			// rd_light += calcul_clr(data->save_dir, -data->normale, AMBIANT * data->save_clr);
 
 	if (!data->nl)
@@ -76,7 +75,6 @@ void 	clearness_color(t_data *data)
 	if (data->id > -1)
 	{
 		data->normale = calcul_normale(data);////il faudrait penser a calculer la normale de l'objet derirriere l'objet transparent
-
 		data->through = data->id;
 		data->rd_light += transparancy_check_all_light(data);
 		data->test = 0;

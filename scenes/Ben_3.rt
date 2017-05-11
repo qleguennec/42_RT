@@ -100,7 +100,7 @@
 	<type>Spot</type>
 	<visibility>False</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>34.00 39.50 990.00</position>
+	<position>34.00 39.50 800.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>10.00</intensity>
 </light>

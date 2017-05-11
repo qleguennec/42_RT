@@ -19,7 +19,7 @@
 # define PREC2 0.02f
 # define PREC3 0.0002f
 # define AMBIANT 0.2f
-# define MAX_REFLECTION 10
+# define MAX_REFLECTION 1
 # define MAX_TRANSPARANCY 1
 # define FONT 0x000000FF
 
