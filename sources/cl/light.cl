@@ -26,7 +26,6 @@ unsigned	get_lighting(t_data *data)
 	float3	save_clr = data->save_clr;
 
 	opacity = 0;
-	data->reflex = 3;//a supprimer
 	data->normale = calcul_normale(data);
 	while (data->reflex-- > 0 && data->light_pow > 0.0f)
 	{
@@ -39,7 +38,6 @@ unsigned	get_lighting(t_data *data)
 		}
 		// printf("tours[%u] light_power[%f]\n",3 - data->reflex , data->light_pow);
 	// printf("reflex[%f]\n",REFLEX);
-	
 		if (REFLEX > 0.0f)
 		{	
 			calcul_reflex_ray(data);
