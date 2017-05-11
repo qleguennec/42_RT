@@ -18,7 +18,7 @@ static float3		reflex_is_light(t_data *data, float3 lightdir,
 		return (light_clr);
 	}
 	if (fast_distance(data->save_inter, data->save_pos) < 
-	fast_distance(data->intersect, data->save_pos)+ PREC)
+	fast_distance(data->intersect, data->save_pos) + PREC2)
 		data->test++;
 	return (0);
 }
@@ -33,19 +33,19 @@ static float3		reflex_check_all_light(t_data *data)
 	i = -1;
 	rd_light = 0.0f;
 	clr = data->objs[data->id].clr;
+	data->normale = calcul_normale(data);
 	while (++i < data->n_lgts)
 	{
 		lightdir = fast_normalize(data->intersect - data->lights[i].pos);
 		rd_light += reflex_is_light(data, lightdir, &data->lights[i]);
 	}
-	rd_light += AMBIANT * clr * data->light_obj_pow;
+	rd_light += AMBIANT * clr;
+		// PRINT3(rd_light,"light");
 	if (!data->nl)
-	 	return (rd_light);
-	else if (data->n_lgts == 1)
-		return (rd_light / (1.0f + AMBIANT));
-		// return (rd_light / (1.0f + AMBIANT) * data->light_pow);
-	return (rd_light  / (data->n_lgts - data->test + AMBIANT));
-	// return (rd_light  / (data->n_lgts - data->test + AMBIANT) * data->light_pow);
+	 	return (rd_light * data->light_obj_pow);
+	else if (data->n_lgts == 1)// || data->n_lgts - data->test == 1)
+		return (rd_light / (1.0f + AMBIANT) * data->light_obj_pow);
+	return (rd_light  / (data->n_lgts - data->test + AMBIANT) * data->light_obj_pow);
 }
 void	calcul_reflex_ray(t_data *data)
 {
