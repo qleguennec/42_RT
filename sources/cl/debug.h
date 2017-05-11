@@ -11,7 +11,7 @@
 
 // #define FONT 0xFFFFFFFF
 
-#define REFLEX data->objs[data->id].refrac //  a remplacer par le vrai code
+#define REFLEX data->objs[data->save_id].reflex //  a remplacer par le vrai code
 
 /*active l'affichage des define _PRINT...*/
 #define _DEBUG 0

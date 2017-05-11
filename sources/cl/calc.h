@@ -34,7 +34,8 @@ typedef struct			s_data
 	short				through;
 	short				test;
 	float				light_pow;
-	float				light_obj_pow;
+	float				light_refract_pow;
+	float				light_reflex_pow;
 	short				id;
 	short				reflex;
 	short				type;

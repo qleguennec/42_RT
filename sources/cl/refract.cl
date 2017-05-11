@@ -46,35 +46,37 @@ static float3		transparancy_check_all_light(t_data *data)
 			// rd_light += calcul_clr(data->save_dir, -data->normale, AMBIANT * data->save_clr);
 
 	if (!data->nl)
-	 	return (rd_light /(1.0f + AMBIANT) * data->light_obj_pow);
+	 	return (rd_light /(1.0f + AMBIANT) * data->light_refract_pow);
 	else if (data->n_lgts == 1)
-		return ((rd_light / (1.0f + AMBIANT)) * data->light_obj_pow);
-	return (rd_light  / (data->n_lgts - data->test + AMBIANT) * data->light_obj_pow);
+		return ((rd_light / (1.0f + AMBIANT)) * data->light_refract_pow);
+	return (rd_light  / (data->n_lgts - data->test + AMBIANT) * data->light_refract_pow);
 }
 
 void 	clearness_color(t_data *data)
 {
-	data->light_obj_pow = data->light_pow - data->objs[data->id].opacity;
-	data->light_pow -= data->light_obj_pow;
+	data->light_refract_pow = data->light_pow - data->objs[data->id].opacity;
+	data->light_pow -= data->light_refract_pow;
 
-	if (data->light_obj_pow <= 0.0f)
+	if (data->light_refract_pow <= 0.0f)
 		return ;
 	if (data->id == data->save_id)
 	{
-		data->ray_pos = data->intersect + data->ray_dir;
+		data->ray_pos = data->intersect + data->ray_dir * PREC2;
 		if (data->objs[data->id].refrac > 0.0f)
 			data->ray_dir = calcul_refract_ray(data, 1.0f, 1.43f);
 		touch_object(data);
 	}
 	if (data->id == data->save_id)
 	{
-		data->ray_pos = data->intersect + data->ray_dir;
+		data->ray_pos = data->intersect + data->ray_dir * PREC3;
 		if (data->objs[data->id].refrac > 0.0f)
 			data->ray_dir = calcul_refract_ray(data, 1.43f, 1.0f);
 		touch_object(data);
 	}
 	if (data->id > -1)
 	{
+		data->normale = calcul_normale(data);////il faudrait penser a calculer la normale de l'objet derirriere l'objet transparent
+
 		data->through = data->id;
 		data->rd_light += transparancy_check_all_light(data);
 		data->test = 0;

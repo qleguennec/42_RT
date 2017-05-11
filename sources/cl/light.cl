@@ -26,23 +26,30 @@ unsigned	get_lighting(t_data *data)
 	float3	save_clr = data->save_clr;
 
 	opacity = 0;
+	data->reflex = 3;//a supprimer
 	data->normale = calcul_normale(data);
-	data->reflex = 1;//a supprimer
 	while (data->reflex-- > 0 && data->light_pow > 0.0f)
 	{
 		if (opacity < MAX_TRANSPARANCY &&
 			data->objs[data->id].opacity < 1.0f && REFLEX < 1.0f)
 		{
 			clearness_color(data);
+			load(data);
 			opacity++;
 		}
-		// if (REFLEX > 0.0f)
-		// {	
-		// 	calcul_reflex_ray(data);
-		// }
+		// printf("tours[%u] light_power[%f]\n",3 - data->reflex , data->light_pow);
+	// printf("reflex[%f]\n",REFLEX);
+	
+		if (REFLEX > 0.0f)
+		{	
+			calcul_reflex_ray(data);
+		}
 		else
 			break ;
 	}
+	// return(calcul_rendu_light(data));
+	
+	// printf("2light_power[%f]\n\n",data->light_pow);
 	if (data->light_pow > 0.0f)
 	{
 		data->save_id = save_id;
@@ -50,6 +57,7 @@ unsigned	get_lighting(t_data *data)
 		data->save_pos = save_pos;
 		data->save_inter = save_intersect;
 		data->save_clr = save_clr;
+		data->normale = calcul_normale(data);
 		data->rd_light += check_all_light(data);
 	}
 	return(calcul_rendu_light(data));
