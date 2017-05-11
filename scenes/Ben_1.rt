@@ -52,7 +52,7 @@
 <light>
 	<name>Prout</name>
 	<type>Spot</type>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<flare-visibility>True</flare-visibility>
 	<position>50.00 0.00 200.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
@@ -79,6 +79,23 @@
 </object>
 
 <object>
+	<name>Cylinder</name>
+	<type>Cylinder</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>-20.00 0.00 -20.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>128.00 50.00 200.00</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>10.00</radius>
+	<width>0.00</width>
+	<height>0.00</height>
+	<lenght>10.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>1.00</refraction>
+</object>
+
+<object>
 	<name>Sphere 1</name>
 	<type>Sphere</type>
 	<material>Lambert</material>
@@ -86,12 +103,12 @@
 	<position>0.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
-	<opacity>1.00</opacity>
+	<opacity>0.00</opacity>
 	<radius>50.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
-	<reflection>.10</reflection>
+	<reflection>.90</reflection>
 	<refraction>0.00</refraction>
 </object>
 

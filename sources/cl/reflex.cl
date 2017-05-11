@@ -42,18 +42,19 @@ static float3		reflex_check_all_light(t_data *data)
 	rd_light += AMBIANT * clr;
 		// PRINT3(rd_light,"light");
 	if (!data->nl)
-	 	return (rd_light * data->light_obj_pow);
+	 	return (rd_light * data->light_reflex_pow);
 	else if (data->n_lgts == 1)// || data->n_lgts - data->test == 1)
-		return (rd_light / (1.0f + AMBIANT) * data->light_obj_pow);
-	return (rd_light  / (data->n_lgts - data->test + AMBIANT) * data->light_obj_pow);
+		return (rd_light / (1.0f + AMBIANT) * data->light_reflex_pow);
+	return (rd_light  / (data->n_lgts - data->test + AMBIANT) * data->light_reflex_pow);
 }
 void	calcul_reflex_ray(t_data *data)
 {
-	data->light_obj_pow = REFLEX;
-	// data->light_obj_pow = data->objs[data->id].reflex;
+	// if (data->light_reflex_pow > 0.0f)
+		data->light_reflex_pow = REFLEX;
+	// data->light_reflex_pow = data->objs[data->id].reflex;
 	data->light_pow -= REFLEX;
 	// data->light_pow -= data->objs[data->id].reflex;
-	if (data->light_obj_pow <= 0.0f)
+	if (data->light_reflex_pow <= 0.0f)
 		return;
 	data->ray_pos = data->intersect;// - data->ray_dir;
 	data->ray_dir = fast_normalize(data->ray_dir - (2.0f * data->normale *
