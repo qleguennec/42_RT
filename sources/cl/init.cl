@@ -10,29 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-static void     init_laputain_desamere(t_data *data)
-{
-	data->objs[0].reflex = 1.0f;
-	data->objs[1].reflex = 0.0f;
-	data->objs[2].reflex = 0.0f;
-	data->objs[3].reflex = 0.0f;
-	data->objs[4].reflex = 0.0f;
-	data->objs[5].reflex = 0.0f;
-	data->objs[6].reflex = 0.0f;
-
-	data->objs[0].refrac = 0.0f;
-	data->objs[1].refrac = 0.0f;
-	data->objs[2].refrac = 0.0f;
-	data->objs[3].refrac = 0.0f;
-	data->objs[4].refrac = 0.0f;
-	data->objs[5].refrac = 0.0f;
-	data->objs[6].refrac = 0.0f;
-	
-}
-
 static void		init_data(t_data *data, global t_obj *objs,
 global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
-float3 ray_dir, float ambiant, global unsigned int *pixel)
+float3 ray_dir, global unsigned int *pixel)
 {
 	data->objs = objs;
 	data->lights = lgts;
@@ -52,21 +32,11 @@ float3 ray_dir, float ambiant, global unsigned int *pixel)
 	data->test = 0;
 
 	// data->clr = 0.0f;
-	data->ambiant = ambiant;
 	data->light_pow = 1.0f;
-	data->light_obj_pow = data->light_pow;
+	data->light_obj_pow = 0.0f;
 	data->rd_light = 0.0f;
 	data->id = -1;
 	data->reflex = MAX_REFLECTION;
 	data->nl = 0;
-}
-
-void		init(t_data *data, global t_obj *objs, global t_lgt *lgts,
- short n_objs, short n_lgts, float3 ray_pos, float3 ray_dir, float ambiant,
-  global unsigned int *pixel)
-{
-	init_data(data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, ambiant,
-     pixel);
-	init_laputain_desamere(data);
-	
+	data->normale = 0;
 }

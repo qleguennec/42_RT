@@ -39,8 +39,11 @@
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
+	<width>0.00</width>
+	<height>0.00</height>
+	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -50,10 +53,13 @@
 	<visibility>True</visibility>
 	<position>0.00 0.00 200.00</position>
 	<rotation>-90.00 0.00 0.00</rotation>
-	<color-rgb>.00 255.00 128.00</color-rgb>
+	<color-rgb>0.00 255.00 128.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
+	<width>0.00</width>
+	<height>0.00</height>
+	<lenght>50.00</lenght>
+	<reflection>1.00</reflection>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -65,8 +71,11 @@
 	<rotation>90.00 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
+	<width>0.00</width>
+	<height>0.00</height>
+	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -78,8 +87,11 @@
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>150.00 185.00 240.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
+	<width>0.00</width>
+	<height>0.00</height>
+	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -91,8 +103,11 @@
 	<rotation>0.00 0.00 90.00</rotation>
 	<color-rgb>0.00 255.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
+	<width>0.00</width>
+	<height>0.00</height>
+	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -104,6 +119,10 @@
 	<rotation>0.00 0.00 90.00</rotation>
 	<color-rgb>255.00 255.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<height>0</height>
-	<width>0</width>
+	<width>0.00</width>
+	<height>0.00</height>
+	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>0.00</refraction>
 </object>
+
