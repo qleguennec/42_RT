@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:28:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/10 10:19:41 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:35:06 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 # define MSG36	"error: Invalid value in <color-rgb> inside <light>.\n"
 # define MSG37	"error: Invalid value in <color-rgb> inside <object>.\n"
 
-# define MSG38	"error: <radius> value must be set between 0.0 and 500.0.\n"
+# define MSG38	"error: <radius> value must be set between 0.0 and 2000.0.\n"
 # define MSG39	"error: <width> value must be set between 0.0 and 1000.0.\n"
 # define MSG40	"error: <height> value must be set between 0.0 and 1000.0.\n"
 

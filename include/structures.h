@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/11 13:47:17 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:36:40 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct		s_obj
 	cl_short		specular;
 	cl_float		reflex;
 	cl_short		refrac;
+	cl_short		shader;
 	cl_short		p_texture;
 	SDL_Surface		*texture;
 	SDL_Rect		r_ol;

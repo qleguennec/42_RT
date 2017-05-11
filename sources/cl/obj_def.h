@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/10 10:42:03 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:37:54 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct		s_obj
 	float			specular;
 	float			reflex;
 	float			refrac;
+	short			shader;
 	float			shiness;
 	float			mshiness;
 	float3			offset;
