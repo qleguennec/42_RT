@@ -1,4 +1,4 @@
-// #include "noise.h"
+#include "noise.h"
 
 /* fonction qui renvois un nombre pseudo aleatoire entre 0 et 1 */
 

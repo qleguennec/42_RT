@@ -1,4 +1,6 @@
-#include "noise.h"
+#include "noise.cl"
+#include "wood.cl"
+#include "marbre.cl"
 
 float3	get_shaders(float3 pos, int shader, float3 col)
 {

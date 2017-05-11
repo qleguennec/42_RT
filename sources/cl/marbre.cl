@@ -33,9 +33,6 @@ void	set_color_marbre(float3 obj_col, t_shader *colors)
 	colors->col1 = choose_color(obj_int_color.x) / 255.0f;
 	colors->col2 = choose_color(obj_int_color.y) / 255.0f;
 	colors->col3 = choose_color(obj_int_color.z) / 255.0f;
-	// colors->col1 = choose_color(4) / 255.0f;
-	// colors->col2 = choose_color(5) / 255.0f;
-	// colors->col3 = choose_color(6) / 255.0f;
 }
 
 float3	choose_color(int color)
@@ -60,6 +57,5 @@ float3	choose_color(int color)
 		return ((float3){105.0f, 105.0f, 105.0f});
 	if (color == 0)
 		return ((float3){255.0f, 255.0f, 255.0f});
-	printf("merde\n");
 	return (0);
 }

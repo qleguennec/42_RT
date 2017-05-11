@@ -10,14 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "noise.h"
+
 void	save(t_data *data)
 {
 	data->save_id = data->id;
 	data->save_dir = data->ray_dir;
 	data->save_pos = data->ray_pos;
 	data->save_inter = data->intersect;
-	if (data->objs[data->id].type == T_SPHERE)
-		data->save_clr = get_shaders(data->intersect, MARBRE1, data->objs[data->id].clr);
+	if (data->objs[data->id].shader != 0)
+		data->save_clr = get_shaders(data->intersect,
+		data->objs[data->id].shader, data->objs[data->id].clr);
 	else
 		data->save_clr = data->objs[data->id].clr;
 }

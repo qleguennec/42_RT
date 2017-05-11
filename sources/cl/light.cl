@@ -15,11 +15,7 @@
 #include "shiness.cl"
 #include "light.h"
 #include "color.cl"
-#include "noise.h"
-#include "noise.cl"
-#include "wood.cl"
-#include "marbre.cl"
-#include "shaders.cl"
+
 
 unsigned	get_lighting(t_data *data)
 {
@@ -41,8 +37,8 @@ unsigned	get_lighting(t_data *data)
 			load(data);
 			opacity++;
 		}
-		if (REFLEX > 0.0f) 
-		{	
+		if (REFLEX > 0.0f)
+		{
 			calcul_reflex_ray(data);
 		}
 		else
