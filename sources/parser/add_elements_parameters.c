@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 14:58:09 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 17:07:00 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 19:27:44 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int			add_object_parameters(t_rt *rt, t_obj *obj, int b_end, int e)
 		if (e != e_tmp)
 			;
 		else if (e > -1 && (e = check_tags(rt, BO_M, BC_M)) > 1 && ++p->t[12])
-			(get_m(rt, e, BO_M, BC_M)) ? (obj->material = p->t_i) : i(&e, -1);
+			(get_m(rt, e, BO_M, BC_M)) ? (obj->preset = p->t_i) : i(&e, -1);
 		else if (e > -1 && (e = check_tags(rt, BO_RE, BC_RE)) > 1 && ++p->t[15])
 			(get_d(rt, e, BO_RE, BC_RE)) ? (obj->reflex = p->t_d) : i(&e, -1);
 		else if (e > -1 && (e = check_tags(rt, BO_RI, BC_RI)) > 1 && ++p->t[16])

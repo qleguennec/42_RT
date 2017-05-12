@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 16:54:10 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/12 19:30:48 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct		s_obj
 	cl_short		title;
 	cl_char			type;
 	cl_short		forme;
-	cl_short		material;
+	cl_short		preset;
 	cl_float3		pos;
 	cl_float3		rot;
 	cl_float3		clr;

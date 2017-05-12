@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 22:09:34 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/22 18:22:53 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 19:29:46 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,15 @@ char		*shape_object_ws(short shape)
 
 int			export_material_object(short material, int fd)
 {
-	if (material == T_LAMBERT)
-		return (write(fd, "Lambert", 7));
-	else if (material == T_BLINN)
-		return (write(fd, "Blinn", 5));
-	else if (material == T_PHONG)
-		return (write(fd, "Phong", 5));
-	else if (material == T_CUSTOM)
-		return (write(fd, "Custom", 6));
-	return (write(fd, "Custom", 6));
+	if (material == 0)
+		return (write(fd, "Earth", 5));
+	else if (material == 1)
+		return (write(fd, "Sun", 3));
+	else if (material == 2)
+		return (write(fd, "Moon", 4));
+	else if (material == 3)
+		return (write(fd, "Jupiter", 7));
+	return (write(fd, "No Preset", 6));
 }
 
 char		*light_type(short type)

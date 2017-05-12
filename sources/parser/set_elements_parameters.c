@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 15:13:44 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/11 18:08:08 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 19:35:55 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_obj		*set_default_parameters(t_obj *obj, char type, int title)
 	obj->lenght = 50.0;
 	obj->width = 50.0;
 	obj->height = 50.0;
-	obj->material = 0;
+	obj->preset = -1;
 	obj->visibility = 1;
 	obj->flare_v = 1;
 	obj->intensity = 10.;
@@ -52,7 +52,7 @@ static void	set_element_parameters_part2(t_obj *obj, t_obj *tmp)
 {
 	obj->shiness = tmp->shiness;
 	obj->mshiness = tmp->shiness;
-	obj->material = tmp->material;
+	obj->preset = tmp->preset;
 	obj->reflex = tmp->reflex;
 	obj->refrac = tmp->refrac;
 	obj->specular = tmp->specular;
