@@ -43,6 +43,8 @@ short			cone_intersection(t_data *data, short *index)
 	float3	rot;
 	// float	res;
 	float	m;
+	float	m0;
+	float	m1;
 	float	tanj;
 	float	k;
 
@@ -61,12 +63,25 @@ short			cone_intersection(t_data *data, short *index)
 	disc.z = dot(data->offset, data->offset) - (tanj *
 	pow(dot(data->offset, rot), 2));
 	if (calc_delta(&disc, data) == -1)
+	{
+		if (data->objs[(int)*index].height > 0.0f)
+		{
+			m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
+			m0 = dot(data->ray_dir, rot * data->t0) + dot(rot, data->offset);
+			m1 = dot(data->ray_dir, rot * data->t1) + dot(rot, data->offset);
+			if (m > data->objs[(int)*index].height ||
+			 m < -data->objs[(int)*index].height)
+			return (cone_caps(data, &rot, index, m));
+		}
 		return (0);
-	calc_intersect(data);
+	}
 	if (data->objs[(int)*index].height > 0.0f)
 	{
 		m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
-		if (m > data->objs[(int)*index].height || m < -data->objs[(int)*index].height)
+		m0 = dot(data->ray_dir, rot * data->t0) + dot(rot, data->offset);
+		m1 = dot(data->ray_dir, rot * data->t1) + dot(rot, data->offset);
+		if ((m > data->objs[(int)*index].height ||
+		m < -data->objs[(int)*index].height) )
 	 	return (cone_caps(data, &rot, index, m));
 	}
 	calc_intersect(data);
@@ -89,13 +104,22 @@ short			cylinder_intersection(t_data *data, short *index)
 		dot(data->offset, rot) * dot(data->offset, rot) -
 		data->objs[(int)*index].radius * data->objs[(int)*index].radius;
 	if (calc_delta(&disc, data) == -1)
+	{
+		if (data->objs[(int)*index].height > 0.0f)
+		{
+			m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
+			if (m < 0.0f || m > data->objs[(int)*index].height)
+				return (cylinder_caps(data, &rot, index, m));
+		}
 		return (0);
+	}
 	if (data->objs[(int)*index].height > 0.0f)
 	{
 		m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
 		if (m < 0.0f || m > data->objs[(int)*index].height)
 			return (cylinder_caps(data, &rot, index, m));
 	}
+	
 	calc_intersect(data);
 	return (1);
 }

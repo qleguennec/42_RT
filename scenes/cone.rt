@@ -3,7 +3,6 @@
 <scene>
 	<name>420 blaze it</name>
 	<ambient>.20</ambient>
-	<anti-aliasing>1</anti-aliasing>
 	<max-reflexion>1</max-reflexion>
 </scene>
 
@@ -28,6 +27,36 @@
 	<intensity>5.00</intensity>
 </light>
 
+<light>
+	<name>Prout</name>
+	<type>Spot</type>
+	<visibility>True</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>-100.00 0.00 100.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
+<light>
+	<name>Prout</name>
+	<type>Spot</type>
+	<visibility>True</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>0.00 0.00 0.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
+<light>
+	<name>Prout</name>
+	<type>Spot</type>
+	<visibility>True</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>0.00 100.00 0.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
 <!------------ Object(s) ------------->
 
 <object>
@@ -35,13 +64,13 @@
 	<type>Cone</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 -10.00 300.00</position>
-	<rotation>-37.00 0.00 0.00</rotation>
+	<position>0.00 0.00 300.00</position>
+	<rotation>-127.50 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>93.00</radius>
+	<radius>88.00</radius>
 	<width>50.00</width>
-	<height>43.00</height>
+	<height>31.50</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>
