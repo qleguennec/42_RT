@@ -53,14 +53,15 @@ static float3		transparancy_check_all_light(t_data *data)
 	 	return (rd_light /(1.0f + AMBIANT) * data->light_refract_pow);
 	else if (data->n_lgts == 1 || (data->n_lgts - data->test == 1))
 		return ((rd_light / (1.0f + AMBIANT)) * data->light_refract_pow);
-	return (rd_light  / (data->n_lgts - data->test + AMBIANT) * data->light_refract_pow);
+	return (rd_light  / (data->n_lgts - data->test + AMBIANT) *
+	 data->light_refract_pow);
 }
 
 void 	clearness_color(t_data *data)
 {
+	data->opacity++;
 	data->light_refract_pow = data->light_pow - data->objs[data->id].opacity;
 	data->light_pow -= data->light_refract_pow;
-
 	if (data->light_refract_pow <= 0.0f)
 		return ;
 	if (data->id == data->save_id)
@@ -79,12 +80,7 @@ void 	clearness_color(t_data *data)
 	}
 	if (data->id < 0)
 		return ;	
-	// if (data->objs[data->id].reflex)
-	// {
-	// 	calcul_reflex_ray(data);
-	// 	return;
-	// }
-	data->normale = calcul_normale(data);////il faudrait penser a calculer la normale de l'objet derirriere l'objet transparent
+	data->normale = calcul_normale(data);
 	data->through = data->id;
 	data->rd_light += transparancy_check_all_light(data);
 	data->test = 0;

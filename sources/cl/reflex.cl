@@ -13,7 +13,7 @@ static float3		reflex_is_light(t_data *data, float3 lightdir,
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr *
 			data->clr);
-		if (data->objs[data->save_id].specular != 0.0f)
+		if (data->objs[data->id].specular)
 			light_clr += is_shining(data->normale, -lightdir, lgt->clr);
 		return (light_clr);
 	}
@@ -28,7 +28,6 @@ static float3		reflex_check_all_light(t_data *data)
 	short	i;
 	float3	lightdir;
 	float3	rd_light;
-	// float3	clr;
 
 	i = -1;
 	rd_light = 0.0f;
@@ -40,12 +39,12 @@ static float3		reflex_check_all_light(t_data *data)
 	}
 	rd_light += calcul_clr(data->ray_dir, -data->normale,
 	AMBIANT * data->clr);
-	// rd_light += AMBIANT * clr;
 	if (!data->nl || data->test >= data->n_lgts)
 	 	return (rd_light);
 	else if (data->n_lgts == 1 || (data->n_lgts - data->test == 1))
 		return (rd_light / (1.0f + AMBIANT) * data->light_reflex_pow);
-	return (rd_light  / (data->n_lgts - data->test + AMBIANT) * data->light_reflex_pow);
+	return (rd_light  / (data->n_lgts - data->test + AMBIANT) *
+	 data->light_reflex_pow);
 }
 
 void	calcul_reflex_ray(t_data *data)
@@ -53,8 +52,9 @@ void	calcul_reflex_ray(t_data *data)
 	data->reflex++;
 	data->test = 0;
 	data->nl = 0;
-	data->light_reflex_pow = data->light_pow - (1.0f - REFLEX);
-	data->light_pow -= REFLEX;
+	data->light_reflex_pow = data->light_pow -
+	 (1.0f - data->objs[data->save_id].reflex);
+	data->light_pow -= data->objs[data->save_id].reflex;
 	if (data->light_reflex_pow <= 0.0f)
 		return;
 	data->normale = calcul_normale(data);
@@ -63,8 +63,6 @@ void	calcul_reflex_ray(t_data *data)
 	dot(data->normale, data->ray_dir)));
 	touch_object(data);
 	data->normale = calcul_normale(data);
-	
 	data->rd_light += reflex_check_all_light(data);
-	// reflex_check_all_light(data);
 	load(data);
 }

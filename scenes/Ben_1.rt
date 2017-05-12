@@ -85,7 +85,9 @@
 	<height>0.00</height>
 	<lenght>10.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>4</shader>
 </object>
 
 <object>
@@ -102,7 +104,9 @@
 	<height>0.00</height>
 	<lenght>10.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>1.00</refraction>
+	<refraction>1</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
 <object>
@@ -119,7 +123,9 @@
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
 <object>
@@ -135,7 +141,9 @@
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
 <object>
@@ -151,7 +159,9 @@
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
 <object>
@@ -167,7 +177,9 @@
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
 <object>
@@ -183,7 +195,9 @@
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
 <object>
@@ -199,7 +213,9 @@
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
 <object>
@@ -215,6 +231,8 @@
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 

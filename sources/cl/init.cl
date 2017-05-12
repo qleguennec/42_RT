@@ -38,5 +38,6 @@ float3 ray_dir, global unsigned int *pixel)
 	data->rd_light = 0.0f;
 	data->id = -1;
 	data->reflex = 0;
+	data->opacity = 0;
 	data->nl = 0;
 }
