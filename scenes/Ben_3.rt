@@ -16,7 +16,7 @@
 </camera>
 
 <camera>
-	<name>0123456789012345678</name>
+	<name>skynight</name>
 	<position>0.00 0.00 2.00</position>
 	<rotation>720.00 0.00 1.00</rotation>
 	<focal>55</focal>
@@ -49,12 +49,13 @@
 <object>
 	<name>Sphere 2</name>
 	<type>Sphere</type>
+	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>-50.50 -55.00 394.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>130.00 80.00 25.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>30.00</radius>
+	<radius>104.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
@@ -67,6 +68,7 @@
 <object>
 	<name>Sphere 3</name>
 	<type>Sphere</type>
+	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>33.50 63.50 200.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -85,6 +87,7 @@
 <object>
 	<name>Sphere 4</name>
 	<type>Sphere</type>
+	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>-25.00 0.00 150.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -103,6 +106,7 @@
 <object>
 	<name>Sphere 4</name>
 	<type>Sphere</type>
+	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>13.50 -5.00 89.50</position>
 	<rotation>0.00 0.00 0.00</rotation>

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:35:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 11:47:33 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/12 20:49:55 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@
 # define N_OBJS			80
 
 # define SDL_PF			373694468
+
+# define SDL_PF2		386930691
 
 # define IMG			"Image"
 
