@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/11 19:52:26 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 16:21:26 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int					add_object_parameters(t_rt *rt, t_obj *obj, int b_e, int e);
 */
 
 void				init_gui_structure(t_rt *rt);
+void				init_buttons(t_rt *rt);
 void				init_gui_selected_camera_buttons(t_ui *ui);
 void				init_gui_selected_light_buttons(t_ui *ui);
 void				init_gui_selected_object_buttons(t_ui *ui);
@@ -165,6 +166,10 @@ void				draw_materials(t_rt *rt, char type);
 void				draw_special_mode(t_rt *rt, int r_num, int type);
 
 void				save_to_png(t_rt *rt);
+
+void				draw_parameter_static(t_rt *rt, char *tmp, int y, int mode);
+void				redraw_aa(t_rt *rt);
+
 /*
 ** -----------------------------------------------------------------------------
 ** --------------------------------- OpenCL ------------------------------------

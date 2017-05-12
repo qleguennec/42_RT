@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/05/11 19:52:58 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/05/12 15:44:59 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SOURCES		= \
 			gui/draw_dimensions_parameters.c \
 			gui/draw_special_mode.c \
 			gui/init_structures.c \
+			gui/init_buttons.c \
 			gui/init_structures_selected_element.c \
 			gui/save_to_png.c \
 			handle/buttons.c \
