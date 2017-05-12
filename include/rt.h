@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 16:26:22 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/12 17:06:59 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ void				redraw_aa(t_rt *rt);
 
 bool				cl_main_krl_init(t_cl *cl);
 
-bool				cl_main_krl_exec(t_cl *cl);
+bool				cl_main_krl_exec(t_cl *cl, short *n_aa);
 
 bool				cl_main_krl_update_camera(t_cl *cl, t_obj *obj);
 bool				cl_main_krl_update_buffers(t_cl *cl, t_scene *scene);

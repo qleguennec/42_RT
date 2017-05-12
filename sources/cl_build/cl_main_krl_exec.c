@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 12:07:51 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/12 15:27:09 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/12 17:04:49 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static double
 
 bool
 	cl_main_krl_exec
-	(t_cl *cl)
+	(t_cl *cl
+	, short *n_aa)
 {
 	double			total;
 	int				ret;
@@ -58,7 +59,7 @@ bool
 
 	cluster_strategy(cl);
 	cpy_kernel_args(cl);
-	cluster_send_command_all(cl, 'r', NULL, 0);
+	*n_aa = cluster_send_command_all(cl, 'r', NULL, 0);
 	if (BENCHMARK_KRL == 1)
 	{
 		i = -1;

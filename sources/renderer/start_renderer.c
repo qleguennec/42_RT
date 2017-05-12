@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 09:27:29 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/12 17:00:42 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int			create_window(t_rt *rt, t_cl *cl)
 	init_renderer(rt);
 	if (!(cl_main_krl_update_buffers(cl, rt->scn)
 		&& cl_main_krl_update_camera(cl, rt->scn->c_cam)
-		&& cl_main_krl_exec(cl)
+		&& cl_main_krl_exec(cl, &rt->scn->aa)
 		&& cl_copy_image_buffer(cl, rt->s_rend->pixels)))
 		return (error(rt, 42));
 	cluster_init(cl);
