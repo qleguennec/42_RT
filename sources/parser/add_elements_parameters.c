@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 14:58:09 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/11 20:22:40 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 17:07:00 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ int			add_object_parameters(t_rt *rt, t_obj *obj, int b_end, int e)
 		else if (e > -1 && (e = check_tags(rt, BO_SP, BC_SP)) > 1 && ++p->t[18])
 			(get_i(rt, e, BO_SP, BC_SP)) ? (obj->specular = p->t_i) : i(&e, -1);
 		else if (e > -1 && (e = check_tags(rt, BO_SH, BC_SH)) > 1 && ++p->t[19])
-			(get_i(rt, e, BO_SH, BC_SH)) ? (obj->shader = p->t_i * 2) : i(&e, -1);
+			(get_i(rt, e, BO_SH, BC_SH)) ?
+			(obj->shader = p->t_i * 2) : i(&e, -1);
 		else if (e > -1 && s(&rt->prs->b_o, BO_O) && (rt->prs->b_c = BC_O))
 			return (error(rt, 10));
 	}
