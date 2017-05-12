@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 12:17:28 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/03/01 21:42:26 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 15:09:41 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ void
 	, t_obj *src)
 {
 	ft_bzero(dest, sizeof(*dest));
+	if (ft_strlcmp((void *)src->n, "skyday") == 0)
+		dest->skytype = CAM_SKYDAY;
+	else if (ft_strlcmp((void *)src->n, "skynight") == 0)
+		dest->skytype = CAM_SKYDAY;
+	else
+		dest->skytype = CAM_OTHER;
 	CPY(pos);
 	CPY(rot);
 	CPY(focal);

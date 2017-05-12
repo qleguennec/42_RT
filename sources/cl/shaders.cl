@@ -2,6 +2,9 @@
 #include "wood.cl"
 #include "marbre.cl"
 #include "noise_1d.cl"
+#include "earth_shader.cl"
+#include "moon.cl"
+#include "noise.h"
 
 float3	get_shaders(float3 pos, int shader, float3 col)
 {
@@ -12,6 +15,10 @@ float3	get_shaders(float3 pos, int shader, float3 col)
 		(float3){255.0 / 255, 204.0 / 255, 40.0/255}, perlin(OCTAVE, FREQUENCY, PERSIS, pos)));
 	if (shader >= MARBRE1 && shader <= MARBRE7)
 		return (marbre_shaders(pos, shader, col));
+	if (shader == SKYSTAR)
+		return (moon_shaders(pos));
+	if (shader == SKYDAY)
+		return (earth_shaders(pos));
 	return (0);
 }
 

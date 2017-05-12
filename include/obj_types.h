@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:36:46 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/11 16:56:02 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/12 14:41:48 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,9 @@
 # define MARBRE7		9
 # define SKYSTAR		10
 # define SKYDAY			11
+
+# define CAM_OTHER 0
+# define CAM_SKYDAY 1
+# define CAM_SKYNIGHT 2
 
 #endif
