@@ -17,8 +17,9 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 		fast_distance(save_intersect, lgt->pos) < 
 		fast_distance(data->intersect, lgt->pos) + PREC))
 	{
+		data->clr = get_obj_color(data);
 		data->nl++;
-		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr * (data->objs[data->id].clr));
+		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr * data->clr);
 		if (data->objs[data->id].specular != 0.0f)
 			light_clr += is_shining(data->normale, -lightdir, lgt->clr);
 		return (light_clr);
@@ -34,18 +35,17 @@ static float3		transparancy_check_all_light(t_data *data)
 	short	i;
 	float3	lightdir;
 	float3	rd_light;
-	float3	clr;
 
 	i = -1;
 	rd_light = 0.0f;
-	clr = data->objs[data->id].clr;
+	data->clr = get_obj_color(data);
 	while (++i < data->n_lgts)
 	{
 		lightdir = fast_normalize(data->intersect - data->lights[i].pos);
 		rd_light += transparancy_is_light(data, lightdir, &data->lights[i]);
 	}
 	rd_light += calcul_clr(data->ray_dir, -data->normale,
-	AMBIANT * data->objs[data->id].clr);
+	AMBIANT * data->clr);
 	// rd_light += AMBIANT * clr;// a surement retirer
 			// rd_light += calcul_clr(data->save_dir, -data->normale, AMBIANT * data->save_clr);
 

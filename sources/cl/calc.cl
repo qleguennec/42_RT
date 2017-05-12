@@ -21,7 +21,13 @@
 #include "init.cl"
 #include "save.cl"
 #include "noise.h"
+#include "get_obj_color.cl"
 #include "shaders.cl"
+#include "reflex.cl"
+#include "refract.cl"
+#include "shiness.cl"
+#include "light.h"
+#include "color.cl"
 
 float			calc_delta(float3 *disc, t_data *data)
 {

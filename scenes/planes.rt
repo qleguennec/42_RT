@@ -49,12 +49,12 @@
 
 <object>
 	<name>Cylinder</name>
-	<type>sphere</type>
+	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>-20.00 0.00 -90.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>0.00 255.00 .00</color-rgb>
+	<color-rgb>0.00 255.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>10.00</radius>
 	<width>0.00</width>

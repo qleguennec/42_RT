@@ -10,13 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reflex.cl"
-#include "refract.cl"
-#include "shiness.cl"
-#include "light.h"
-#include "color.cl"
-
-
 unsigned	get_lighting(t_data *data)
 {
 	short	opacity;
@@ -42,16 +35,12 @@ unsigned	get_lighting(t_data *data)
 		else
 			break ;
 	}
-	// return(calcul_rendu_light(data));
-	
 		// data->save_id = save_id;
 		// data->save_dir = save_dir;
 		// data->save_pos = save_pos;
 		// data->save_inter = save_intersect;
 		// data->save_clr = save_clr;
 		// data->save_t
-		// save(data);
-		// load(data);
 		data->normale = calcul_normale(data);
 		data->rd_light += check_all_light(data);
 	return(calcul_rendu_light(data));

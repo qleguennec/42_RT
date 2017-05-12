@@ -10,7 +10,7 @@
 <!------------ Camera(s) ------------->
 
 <camera>
-	<name>Avant 0123456789012345678</name>
+	<name>avant 0123456789012345678</name>
 	<position>0.00 0.00 0.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<focal>55</focal>
@@ -42,7 +42,7 @@
 <light>
 	<name>Prout</name>
 	<type>Diffuse</type>
-	<visibility>False</visibility>
+	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
 	<position>0.00 0.00 100.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
@@ -52,7 +52,7 @@
 <light>
 	<name>Prout</name>
 	<type>Spot</type>
-	<visibility>False</visibility>
+	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
 	<position>50.00 0.00 100.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
@@ -62,7 +62,7 @@
 <light>
 	<name>Prout</name>
 	<type>Spot</type>
-	<visibility>False</visibility>
+	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
 	<position>50.00 0.00 200.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
@@ -113,7 +113,7 @@
 	<position>0.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
-	<opacity>1.00</opacity>
+	<opacity>.75</opacity>
 	<radius>50.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>

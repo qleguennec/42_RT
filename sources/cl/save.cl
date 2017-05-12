@@ -19,14 +19,7 @@ void	save(t_data *data)
 	data->save_pos = data->ray_pos;
 	data->save_inter = data->intersect;
 	data->save_t = data->t;
-	if (data->objs[data->id].shader > 0)
-	{
-		data->objs[data->id].shader += (data->objs[data->id].shader & 1) ? 1 : 0;
-		data->save_clr = get_shaders(data->intersect,
-		data->objs[data->id].shader / 2, data->objs[data->id].clr);
-	}
-	else
-		data->save_clr = data->objs[data->id].clr;
+	data->save_clr = get_obj_color(data);
 }
 
 void	load(t_data *data)
