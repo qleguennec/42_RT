@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 17:26:10 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/11 19:52:26 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 09:30:06 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -342,5 +342,18 @@ void				export_config_file(t_rt *rt);
 void				print_verbose(t_rt *rt);
 
 int					free_elements(t_rt *rt);
+
+/*
+** -----------------------------------------------------------------------------
+** ------------------------------- Clustering ----------------------------------
+** -----------------------------------------------------------------------------
+*/
+
+int					cluster_init(t_cl *cl);
+int					cluster_send_command
+	(t_client *client, char command, void *arg, size_t arg_size);
+int					cluster_send_command_all
+	(t_cl *cl, char command, void *arg, size_t arg_size); 
+void				cluster_strategy(t_cl *cl);
 
 #endif

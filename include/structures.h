@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 14:40:08 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/12 15:26:49 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,14 @@ struct				s_rt
 	char			render;
 };
 
+typedef struct		s_client
+{
+	int				fd;
+	int				*buffer;
+	struct s_client	*next;
+	char			status;
+}					t_client;
+
 typedef struct		s_cl
 {
 	t_cl_info		info;
@@ -197,6 +205,10 @@ typedef struct		s_cl
 	cl_mem			lgts;
 	short			n_objs;
 	short			n_lgts;
+	int				sockfd;
+	cl_float2		offs;
+	pthread_t		accept_thread;
+	t_client		*cli_list;
 }					t_cl;
 
 #endif
