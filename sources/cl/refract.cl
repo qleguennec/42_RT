@@ -44,7 +44,9 @@ static float3		transparancy_check_all_light(t_data *data)
 		lightdir = fast_normalize(data->intersect - data->lights[i].pos);
 		rd_light += transparancy_is_light(data, lightdir, &data->lights[i]);
 	}
-	rd_light += AMBIANT * clr;// a surement retirer
+	rd_light += calcul_clr(data->ray_dir, -data->normale,
+	AMBIANT * data->objs[data->id].clr);
+	// rd_light += AMBIANT * clr;// a surement retirer
 			// rd_light += calcul_clr(data->save_dir, -data->normale, AMBIANT * data->save_clr);
 
 	if (!data->nl || data->test >= data->n_lgts)

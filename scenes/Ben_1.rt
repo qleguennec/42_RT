@@ -42,7 +42,7 @@
 <light>
 	<name>Prout</name>
 	<type>Diffuse</type>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<flare-visibility>True</flare-visibility>
 	<position>0.00 0.00 100.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
@@ -52,7 +52,7 @@
 <light>
 	<name>Prout</name>
 	<type>Spot</type>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<flare-visibility>True</flare-visibility>
 	<position>50.00 0.00 100.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
@@ -62,7 +62,7 @@
 <light>
 	<name>Prout</name>
 	<type>Spot</type>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<flare-visibility>True</flare-visibility>
 	<position>50.00 0.00 200.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
@@ -118,7 +118,7 @@
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
-	<reflection>.75</reflection>
+	<reflection>0.00</reflection>
 	<refraction>0.00</refraction>
 </object>
 
