@@ -40,6 +40,7 @@ typedef struct			s_data
 	short				id;
 	short				reflex;
 	short				opacity;
+	short				skytype;
 	short				type;
 	float3				rd_light;
 	float3				pos;

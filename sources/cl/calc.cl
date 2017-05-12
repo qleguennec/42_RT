@@ -13,7 +13,6 @@
 #include "obj_def.h"
 #include "calc.h"
 #include "light.h"
-#include "light.cl"
 #include "caps.cl"
 #include "calc_intersect.cl"
 #include "rotate.cl"
@@ -23,6 +22,7 @@
 #include "noise.h"
 #include "get_obj_color.cl"
 #include "shaders.cl"
+#include "light.cl"
 #include "reflex.cl"
 #include "refract.cl"
 #include "shiness.cl"
@@ -108,7 +108,8 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 {
 	t_data	data;
 	// printf("skytype = %d\n", cam->skytype);
-	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, pixel);
+	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, pixel,
+	 cam->skytype);
 	touch_object(&data);
 	if (!COLOR && data.id > -1)
 	{

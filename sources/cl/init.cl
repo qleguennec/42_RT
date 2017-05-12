@@ -12,7 +12,7 @@
 
 static void		init_data(t_data *data, global t_obj *objs,
 global t_lgt *lgts, short n_objs, short n_lgts, float3 ray_pos,
-float3 ray_dir, global unsigned int *pixel)
+float3 ray_dir, global unsigned int *pixel, short skytype)
 {
 	data->objs = objs;
 	data->lights = lgts;
@@ -40,4 +40,5 @@ float3 ray_dir, global unsigned int *pixel)
 	data->reflex = 0;
 	data->opacity = 0;
 	data->nl = 0;
+	data->skytype = skytype;
 }
