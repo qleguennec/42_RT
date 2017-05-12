@@ -6,7 +6,7 @@
 /*   By: erodrigu <erodrigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 16:38:12 by erodrigu          #+#    #+#             */
-/*   Updated: 2017/05/10 18:18:13 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/11 19:00:12 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ float3	get_shaders(float3 pos, int shader, float3 col);
 void	get_bumpmapping(t_data *data);
 
 double	rand_noise(int t);
+float3	get_font(float3 pos);
+
 double	noise_3d(int x, int y, int z);
 double	smooth_noise_3d(float3 pos);
+double smooth_noise_1d(float3 pos);
 double	cosine_interpolate(double a, double b, double t);
 double	perlin(int octaves, float frequency, double persistence, float3 pos);
 #endif

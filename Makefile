@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/05/09 16:47:58 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/05/11 19:52:58 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,6 +99,7 @@ SOURCES		= \
 			handle/se_box_plus.c \
 			handle/delete_element.c \
 			handle/special_mode.c \
+			handle/shaders.c \
 			main.c \
 			misc/free_elements.c \
 			misc/verbose_mode.c \
