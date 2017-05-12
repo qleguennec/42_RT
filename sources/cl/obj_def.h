@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/11 17:37:54 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 14:52:03 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct		s_cam
 	float3			pos;
 	float3			rot;
 	short			focal;
+	short			skytype;
 }					t_cam;
 
 #endif
