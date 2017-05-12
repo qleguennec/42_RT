@@ -3,7 +3,7 @@
 <scene>
 	<name>420 blaze it</name>
 	<ambient>.20</ambient>
-	<anti-aliasing>2</anti-aliasing>
+	<anti-aliasing>1</anti-aliasing>
 	<max-reflexion>1</max-reflexion>
 </scene>
 
@@ -35,15 +35,17 @@
 	<type>Cone</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 -76.00 300.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
+	<position>0.00 -10.00 300.00</position>
+	<rotation>-37.00 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>16.00</radius>
+	<radius>93.00</radius>
 	<width>50.00</width>
-	<height>144.50</height>
+	<height>43.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
