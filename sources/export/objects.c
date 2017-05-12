@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 22:06:56 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/10 10:38:26 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 15:58:24 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,23 @@ static void	export_object_dimensions(t_obj *obj, int fd)
 	write(fd, "</lenght>\n", 10);
 }
 
+static void	export_object_part3(t_obj *obj, int fd)
+{
+	write(fd, "\t<reflection>", 13);
+	ft_putfloat_fd((float)obj->reflex, fd);
+	write(fd, "</reflection>\n", 14);
+	write(fd, "\t<refraction>", 13);
+	ft_putint_fd((int)obj->refrac, fd);
+	write(fd, "</refraction>\n", 14);
+	write(fd, "\t<specular>", 11);
+	ft_putint_fd((int)obj->specular, fd);
+	write(fd, "</specular>\n", 12);
+	write(fd, "\t<shader>", 9);
+	ft_putint_fd((int)obj->shader, fd);
+	write(fd, "</shader>\n", 10);
+	write(fd, "</object>\n\n", 11);
+}
+
 static void	export_object_part2(t_obj *obj, int fd)
 {
 	ft_putfloat_fd((float)obj->rot.x, fd);
@@ -76,13 +93,7 @@ static void	export_object_part2(t_obj *obj, int fd)
 		write(fd, "</radius>\n", 10);
 	}
 	export_object_dimensions(obj, fd);
-	write(fd, "\t<reflection>", 13);
-	ft_putfloat_fd((float)obj->reflex, fd);
-	write(fd, "</reflection>\n", 14);
-	write(fd, "\t<refraction>", 13);
-	ft_putfloat_fd((float)obj->refrac, fd);
-	write(fd, "</refraction>\n", 14);
-	write(fd, "</object>\n\n", 11);
+	export_object_part3(obj, fd);
 }
 
 void		export_object(t_obj *obj, int fd)

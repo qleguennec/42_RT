@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/23 02:51:31 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/02/08 10:27:19 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/12 15:21:44 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void
 {
 	char	*d;
 
-	if (!((d = ft_memchr(s, '%', n)) || (d = ft_memchr(s, '*', n))))
+	if (!((d = ft_memchr(s, '%', n))
+		|| (d = ft_memchr(s, '*', n))))
 	{
 		vect_add(a, s, n);
 		return ;

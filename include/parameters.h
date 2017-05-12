@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:35:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/09 17:23:05 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 11:47:33 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,13 @@
 # define R				round
 
 # define DTOA			ft_dtoa
+
+# define CLUSTER_PORT 4242
+# define CLUSTER_MAX_CLIENTS 64
+# define CLIENT_MINCAPA 100
+# define CLIENT_MAXCAPA 10000000
+# define CLIENT_CAM_OK 1
+# define CLIENT_LGT_OK 2
+# define CLIENT_OBJ_OK 4
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 18:46:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/09 11:17:21 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 16:21:22 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void	draw_parameter_static(t_rt *rt, char *tmp, int y, int mode)
+void		draw_parameter_static(t_rt *rt, char *tmp, int y, int mode)
 {
 	if (mode == 2)
 		rt->ui->s_tmp = TTF_RenderText_Shaded(rt->ui->font[1], tmp,
@@ -26,6 +26,19 @@ static void	draw_parameter_static(t_rt *rt, char *tmp, int y, int mode)
 	rt->ui->s_tmp->w, rt->ui->s_tmp->h});
 	SDL_FreeSurface(rt->ui->s_tmp);
 	free(tmp);
+}
+
+void		redraw_aa(t_rt *rt)
+{
+	char	*tmp;
+
+	if (rt->ui->b_state[15] == 2)
+	{
+		tmp = ft_itoa(rt->scn->aa);
+		draw_parameter_static(rt, tmp, (rt->ui->area[3].y + 30), 0);
+		add_render_frame(rt);
+	}
+	add_render_frame(rt);
 }
 
 void		draw_scene_parameters(t_rt *rt)
