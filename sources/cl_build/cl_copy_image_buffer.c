@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 16:35:42 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/12 10:13:49 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/12 12:01:06 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool
 	buffer_aggregate_samples
 	(t_cl *cl
 	, void *buffer
-	, int nsamples)
+	, int n)
 {
 	size_t		i;
 	t_client	*cli;
@@ -33,16 +33,16 @@ static bool
 		if (cli)
 		{
 			ft_memcpy((char *)buffer + i, &(((char *)cli->buffer)[i])
-				, cl->main_krl.sizes[0] / nsamples);
+				, cl->main_krl.sizes[0] / n);
 			cli = cli->next;
 		}
 		else
 		{
 			clFinish(cl->info.cmd_queue);
-			printf("%lu %lu\n", i, cl->main_krl.sizes[0] / nsamples);
+			printf("%lu %lu\n", i, cl->main_krl.sizes[0] / n);
 			break ;
 		}
-		i += cl->main_krl.sizes[0] / nsamples;
+		i += cl->main_krl.sizes[0] / n;
 	}
 	assert(cli == NULL);
 	return (true);
@@ -52,36 +52,31 @@ static bool
 static bool
 	buffer_average_samples
 	(t_cl *cl
-	, int *buffer
-	, int nsamples)
+	, unsigned int *buffer
+	, int n)
 {
-	unsigned int	channels[4];
+	unsigned int	tmp[3];
 	size_t			i;
 	t_client		*cli;
 
 	i = 0;
 	while (i < REND_W * REND_H)
 	{
-		ft_bzero(channels, sizeof(channels));
+		*(long *)tmp = 0;
+		tmp[2] = 0;
 		cli = cl->cli_list;
 		while (cli)
 		{
-			channels[1] += (cli->buffer[i] >> 8) & 0xFF;
-			channels[2] += (cli->buffer[i] >> 16) & 0xFF;
-			channels[3] += (cli->buffer[i] >> 24) & 0xFF;
+			tmp[0] += (cli->buffer[i] >> 8) & 0xFF;
+			tmp[1] += (cli->buffer[i] >> 16) & 0xFF;
+			tmp[2] += (cli->buffer[i] >> 24) & 0xFF;
 			cli = cli->next;
 		}
-		channels[1] += (buffer[i] >> 8) & 0xFF;
-		channels[2] += (buffer[i] >> 16) & 0xFF;
-		channels[3] += (buffer[i] >> 24) & 0xFF;
-		channels[1] /= nsamples;
-		channels[2] /= nsamples;
-		channels[3] /= nsamples;
-		buffer[i] = 0xFF;
-		buffer[i] |= (channels[1]) << 8;
-		buffer[i] |= (channels[2]) << 16;
-		buffer[i] |= (channels[3]) << 24;
-		i++;
+		tmp[0] = (tmp[0] + (buffer[i] >> 8 & 0xFF))/ n;
+		tmp[1] = (tmp[1] + (buffer[i] >> 16 & 0xFF)) / n;
+		tmp[2] = (tmp[2] + (buffer[i] >> 24 & 0xFF)) / n;
+		buffer[i++] = 0xFF 
+			| (tmp[0] << 8) | (tmp[1] << 16) | (tmp[2] << 24);
 	}
 	return (true);
 }
@@ -91,24 +86,22 @@ bool
 	(t_cl *cl
 	, void *buffer)
 {
-	int			nsamples;
+	int			n;
 	int			ret;
 	t_client	*cli;
 
 	ret = 0;
-	nsamples = 1;
+	n = 1;
 	cli = cl->cli_list;
 	while (cli)
 	{
-		nsamples++;
+		n++;
 		cli = cli->next;
 	}
-	printf("AA: x%d\n", nsamples);
+	printf("AA: x%d\n", n);
 	if ((ret = clEnqueueReadBuffer(cl->info.cmd_queue
 		, cl->main_krl.args[0], CL_TRUE, 0
 		, cl->main_krl.sizes[0], buffer, 0, NULL, NULL)) != CL_SUCCESS)
 		return (ERR("cannot read image buffer, err %a", false, ret));
-	if (nsamples == 1)
-		return (true);
-	return (buffer_average_samples(cl, buffer, nsamples));
+	return (buffer_average_samples(cl, buffer, n));
 }
