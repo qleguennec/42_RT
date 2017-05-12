@@ -120,9 +120,17 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		save(&data);
 		*pixel = get_lighting(&data);
 	}
+	else if
+	{
+		data.rd_light = twocolor_lerp((float3){240.0/255, 10.0/255, 10.0/255},
+		(float3){255.0 / 255, 204.0 / 255, 40.0/255}, perlin(OCTAVE, FREQUENCY, PERSIS, pos));
+		*pixel = calcul_rendu_light(&data);
+	}
 	else
 	{
 		data.rd_light = get_font(data.ray_dir);
 		*pixel = calcul_rendu_light(&data);
 	}
+	else
+		*pixel = FONT;
 }

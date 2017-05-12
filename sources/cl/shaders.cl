@@ -22,7 +22,7 @@ float3	get_shaders(float3 pos, int shader, float3 col)
 	return (0);
 }
 
-float3	get_font(float3 pos)
+float3	get_font_night(float3 pos)
 {
 	double	v;
 
