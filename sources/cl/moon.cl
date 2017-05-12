@@ -6,8 +6,8 @@ float3	moon_shaders(float3 pos)
 	t_shader	colors;
 
 	colors.col1 = (float3){210.0f, 210.0f, 210.0f};
-	colors.col2 = (float3){105.0f, 105.0f, 105.0f};
-	colors.col3 = (float3){50.0f, 50.0f, 50.0f};
+	colors.col2 = (float3){155.0f, 155.0f, 155.0f};
+	colors.col3 = (float3){105.0f, 105.0f, 105.0f};
 	colors.col1 /= 255.0f;
 	colors.col2 /= 255.0f;
 	colors.col3 /= 255.0f;
