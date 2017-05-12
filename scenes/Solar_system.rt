@@ -55,14 +55,14 @@
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>130.00 80.00 25.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>30.00</radius>
+	<radius>38.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>
 	<specular>0</specular>
-	<shader>21</shader>
+	<shader>11</shader>
 </object>
 
 <object>
@@ -70,18 +70,18 @@
 	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>33.50 63.50 100.00</position>
+	<position>30.00 62.00 99.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>130.05 130.05 129.03</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>46.00</radius>
+	<radius>50.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>
 	<specular>0</specular>
-	<shader>2</shader>
+	<shader>1</shader>
 </object>
 
 <object>
@@ -100,7 +100,7 @@
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>
 	<specular>0</specular>
-	<shader>19</shader>
+	<shader>10</shader>
 </object>
 
 <object>
@@ -119,5 +119,6 @@
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>
 	<specular>0</specular>
-	<shader>12</shader>
+	<shader>6</shader>
 </object>
+

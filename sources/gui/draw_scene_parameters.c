@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 18:46:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 17:26:17 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 18:27:08 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		draw_parameter_static(t_rt *rt, char *tmp, int y, int mode)
 {
 	fsdl_fill_rect(rt->s_back,
-	(SDL_Rect){rt->ui->area[3].x, y, rt->ui->area[3].w, 20},
+	(SDL_Rect){rt->ui->area[3].x, y - 3, rt->ui->area[3].w, 21},
 	0xFF29323e);
 	if (mode == 2)
 		rt->ui->s_tmp = TTF_RenderText_Shaded(rt->ui->font[1], tmp,
