@@ -120,13 +120,13 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		save(&data);
 		*pixel = get_lighting(&data);
 	}
-	else if
+	else if (cam->skytype == CAM_SKYDAY)
 	{
-		data.rd_light = twocolor_lerp((float3){240.0/255, 10.0/255, 10.0/255},
-		(float3){255.0 / 255, 204.0 / 255, 40.0/255}, perlin(OCTAVE, FREQUENCY, PERSIS, pos));
+		data.rd_light = twocolor_lerp((float3){240.0/255, 240.0/255, 240.0/255},
+		(float3){0.4235, 0.851, 0.98}, perlin(OCTAVE, FREQUENCY, PERSIS, data.ray_dir));
 		*pixel = calcul_rendu_light(&data);
 	}
-	else
+	else if (cam->skytype == CAM_SKYNIGHT)
 	{
 		data.rd_light = get_font(data.ray_dir);
 		*pixel = calcul_rendu_light(&data);

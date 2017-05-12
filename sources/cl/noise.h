@@ -6,7 +6,7 @@
 /*   By: erodrigu <erodrigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 16:38:12 by erodrigu          #+#    #+#             */
-/*   Updated: 2017/05/12 12:00:40 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/12 16:15:18 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ float3	wood_shaders(float3 pos);
 float3	lerp_wood(float v, t_shader colors);
 
 float3	get_shaders(float3 pos, int shader, float3 col);
-void	get_bumpmapping(t_data *data);
+float3	get_font_night(float3 pos);
 
 double	rand_noise(int t);
 float3	get_font(float3 pos);
