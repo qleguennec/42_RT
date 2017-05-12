@@ -47,6 +47,16 @@
 	<intensity>5.00</intensity>
 </light>
 
+<light>
+	<name>Prout</name>
+	<type>Spot</type>
+	<visibility>True</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>0.00 100.00 0.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
 <!------------ Object(s) ------------->
 
 <object>
@@ -55,12 +65,12 @@
 	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 300.00</position>
-	<rotation>135.50 0.00 0.00</rotation>
+	<rotation>-127.50 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>77.00</radius>
+	<radius>88.00</radius>
 	<width>50.00</width>
-	<height>43.00</height>
+	<height>31.50</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>

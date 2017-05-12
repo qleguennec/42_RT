@@ -15,10 +15,10 @@
 # ifndef M_PI
 # define M_PI 3.14f
 # endif
-# define PREC 0.03f
+# define PREC 0.02f
 # define PREC2 0.02f
 # define PREC3 0.2f
-# define PREC4 0.00001f
+# define PREC4 0.02f
 
 # define AMBIANT 0.2f
 # define MAX_REFLECTION 1
