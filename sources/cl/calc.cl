@@ -101,6 +101,7 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	float3 ray_dir, global t_cam *cam, short x, short y)
 {
 	t_data	data;
+	// printf("skytype = %d\n", cam->skytype);
 	init_data(&data, objs, lgts, n_objs, n_lgts, ray_pos, ray_dir, pixel);
 	touch_object(&data);
 	if (!COLOR && data.id > -1)
@@ -120,10 +121,18 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		save(&data);
 		*pixel = get_lighting(&data);
 	}
-	else
+	else if (cam->skytype == CAM_SKYDAY)
 	{
-		//data.rd_light = get_font(data.ray_dir);
-		data.rd_light = FONT;
+		data.rd_light = twocolor_lerp((float3){240.0/255, 240.0/255, 240.0/255},
+		(float3){0.4235, 0.851, 0.98}, perlin(OCTAVE, FREQUENCY, PERSIS,
+			data.ray_dir * 100.0f));
 		*pixel = calcul_rendu_light(&data);
 	}
+	else if (cam->skytype == CAM_SKYNIGHT)
+	{
+		data.rd_light = get_font(data.ray_dir);
+		*pixel = calcul_rendu_light(&data);
+	}
+	else
+		*pixel = FONT;
 }
