@@ -128,7 +128,8 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	}
 	else if (cam->skytype == CAM_SKYNIGHT)
 	{
-		data.rd_light = get_font(data.ray_dir);
+		//data.rd_light = get_font(data.ray_dir);
+		data.rd_light = FONT;
 		*pixel = calcul_rendu_light(&data);
 	}
 	else
