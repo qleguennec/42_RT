@@ -15,10 +15,12 @@
 # ifndef M_PI
 # define M_PI 3.14f
 # endif
-# define PREC 0.01f
+# define PREC 0.03f
 # define PREC2 0.02f
 # define PREC3 0.2f
-# define AMBIANT 0.25f
+# define PREC4 0.00001f
+
+# define AMBIANT 0.2f
 # define MAX_REFLECTION 1
 # define MAX_TRANSPARANCY 1
 # define FONT 0x000000FF

@@ -62,7 +62,7 @@
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>
 	<specular>0</specular>
-	<shader>4</shader>
+	<shader>2</shader>
 </object>
 
 <object>
