@@ -49,12 +49,32 @@
 <object>
 	<name>Sphere 2</name>
 	<type>Sphere</type>
+	<preset>Sun</preset>
 	<visibility>True</visibility>
 	<position>-50.50 -55.00 390.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>130.00 130.00 129.00</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>90.00</radius>
+	<width>50.00</width>
+	<height>50.00</height>
+	<lenght>50.00</lenght>
+	<reflection>.95</reflection>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>1</shader>
+</object>
+
+<object>
+	<name>Sphere 3</name>
+	<type>Sphere</type>
+	<preset>Earth</preset>
+	<visibility>False</visibility>
+	<position>30.00 62.00 99.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>130.00 80.00 25.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>38.00</radius>
+	<radius>40.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
@@ -65,27 +85,9 @@
 </object>
 
 <object>
-	<name>Sphere 3</name>
-	<type>Sphere</type>
-	<visibility>True</visibility>
-	<position>30.00 62.00 99.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>130.05 130.05 129.03</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>50.00</radius>
-	<width>50.00</width>
-	<height>50.00</height>
-	<lenght>50.00</lenght>
-	<reflection>0.00</reflection>
-	<refraction>0</refraction>
-	<specular>0</specular>
-	<shader>1</shader>
-</object>
-
-<object>
 	<name>Sphere 4</name>
 	<type>Sphere</type>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<position>-25.00 0.00 150.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>252.96 255.00 255.00</color-rgb>
@@ -97,24 +99,25 @@
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>
 	<specular>0</specular>
-	<shader>10</shader>
+	<shader>1</shader>
 </object>
 
 <object>
 	<name>Sphere 8</name>
 	<type>Sphere</type>
-	<visibility>True</visibility>
+	<preset>Moon</preset>
+	<visibility>False</visibility>
 	<position>13.50 -5.00 89.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>138.72 124.44 129.03</color-rgb>
+	<color-rgb>253.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>9.00</radius>
+	<radius>25.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>
 	<specular>0</specular>
-	<shader>6</shader>
+	<shader>10</shader>
 </object>
 

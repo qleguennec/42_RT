@@ -79,7 +79,19 @@ void 	clearness_color(t_data *data)
 		touch_object(data);
 	}
 	if (data->id < 0)
+	{
+		if (data->skytype == CAM_SKYDAY)
+		{
+			data->rd_light += twocolor_lerp((float3){240.0/255, 240.0/255, 240.0/255},
+			(float3){0.4235f, 0.851f, 0.98f}, perlin(OCTAVE, FREQUENCY, PERSIS,
+			data->ray_dir * 100.0f)) * data->light_refract_pow * data->light_refract_pow;
+		}
+		else if (data->skytype == CAM_SKYNIGHT)
+		{
+			data->rd_light += get_font(data->ray_dir) * data->light_refract_pow;
+		}
 		return ;	
+	}
 	data->normale = calcul_normale(data);
 	data->through = data->id;
 	data->rd_light += transparancy_check_all_light(data);

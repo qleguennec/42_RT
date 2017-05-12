@@ -45,18 +45,6 @@ float3		check_all_light(t_data *data)
 	rd_light = 0.0f;
 	data->nl = 0;
 	data->test = 0;
-	if (data->skytype == CAM_SKYDAY)
-	{
-		data->rd_light = twocolor_lerp((float3){240.0/255, 240.0/255, 240.0/255},
-		(float3){0.4235, 0.851, 0.98}, perlin(OCTAVE, FREQUENCY, PERSIS,
-			data->ray_dir * 100.0f));
-		return (calcul_rendu_light(data));
-	}
-	else if (data->skytype == CAM_SKYNIGHT)
-	{
-		data->rd_light = get_font(data->ray_dir);
-		return (calcul_rendu_light(data));
-	}
 	while (++i < data->n_lgts)
 	{
 		lightdir = fast_normalize(data->save_inter - data->lights[i].pos);

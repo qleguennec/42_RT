@@ -32,6 +32,16 @@ static float3		reflex_check_all_light(t_data *data)
 	i = -1;
 	rd_light = 0.0f;
 	data->clr = get_obj_color(data);
+	if (data->id < 0 && data->skytype == CAM_SKYDAY)
+	{
+		return (twocolor_lerp((float3){240.0/255, 240.0/255, 240.0/255},
+		(float3){0.4235f, 0.851f, 0.98f}, perlin(OCTAVE, FREQUENCY, PERSIS,
+		data->ray_dir * 100.0f)) * data->light_reflex_pow);
+	}
+	else if (data->id < 0 && data->skytype == CAM_SKYNIGHT)
+	{
+		return (get_font(data->ray_dir) * data->light_reflex_pow);
+	}
 	while (++i < data->n_lgts)
 	{
 		lightdir = fast_normalize(data->intersect - data->lights[i].pos);
