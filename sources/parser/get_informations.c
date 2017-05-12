@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:56:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 19:32:49 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 20:12:57 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			get_m(t_rt *rt, int b_end, char *s, char *e)
 {
 	char	*str;
 
-	rt->prs->t_i = -1;
+	rt->prs->t_i = -2;
 	rt->prs->b_o = s;
 	rt->prs->b_c = e;
 	str = ft_getstr(rt->prs->buf, rt->prs->i, b_end);
@@ -45,9 +45,11 @@ int			get_m(t_rt *rt, int b_end, char *s, char *e)
 		rt->prs->t_i = 2;
 	else if (ft_strlcmp(str, "jupiter"))
 		rt->prs->t_i = 3;
+	else
+		rt->prs->t_i = -1;
 	free(str);
 	rt->prs->i = b_end + ft_strlen(e);
-	return ((rt->prs->t_i == -1) ? (error(rt, 14) + 1) : 1);
+	return ((rt->prs->t_i == -2) ? (error(rt, 14) + 1) : 1);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 22:09:34 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 19:29:46 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 20:11:50 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int			export_material_object(short material, int fd)
 		return (write(fd, "Moon", 4));
 	else if (material == 3)
 		return (write(fd, "Jupiter", 7));
-	return (write(fd, "No Preset", 6));
+	return (write(fd, "No Preset", 9));
 }
 
 char		*light_type(short type)
