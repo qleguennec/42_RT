@@ -13,8 +13,8 @@ static float3		reflex_is_light(t_data *data, float3 lightdir,
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr *
 			(data->objs[data->id].clr));
-		if (data->objs[data->save_id].specular != 0.0f)
-			light_clr += is_shining(data->normale, -lightdir, lgt->clr);
+		// if (data->objs[data->save_id].specular != 0.0f)
+		// 	light_clr += is_shining(data->normale, -lightdir, lgt->clr);
 		return (light_clr);
 	}
 	if (fast_distance(data->save_inter, data->save_pos) < 
@@ -33,7 +33,7 @@ static float3		reflex_check_all_light(t_data *data)
 	i = -1;
 	rd_light = 0.0f;
 	clr = data->objs[data->id].clr;
-	data->normale = calcul_normale(data);
+	// data->normale = calcul_normale(data);
 	while (++i < data->n_lgts)
 	{
 		lightdir = fast_normalize(data->intersect - data->lights[i].pos);
@@ -49,14 +49,21 @@ static float3		reflex_check_all_light(t_data *data)
 
 void	calcul_reflex_ray(t_data *data)
 {
+	data->reflex++;
+	data->test = 0;
+	data->nl = 0;
 	data->light_reflex_pow = data->light_pow - (1.0f - REFLEX);
 	data->light_pow -= REFLEX;
 	if (data->light_reflex_pow <= 0.0f)
 		return;
+	data->normale = calcul_normale(data);
 	data->ray_pos = data->intersect;
 	data->ray_dir = fast_normalize(data->ray_dir - (2.0f * data->normale *
 	dot(data->normale, data->ray_dir)));
 	touch_object(data);
-	save(data);
+	data->normale = calcul_normale(data);
+	
 	data->rd_light += reflex_check_all_light(data);
+	load(data);
+	// reflex_check_all_light(data);
 }

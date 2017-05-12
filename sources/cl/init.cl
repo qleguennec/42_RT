@@ -37,6 +37,6 @@ float3 ray_dir, global unsigned int *pixel)
 	data->light_reflex_pow = 1.0f;
 	data->rd_light = 0.0f;
 	data->id = -1;
-	data->reflex = MAX_REFLECTION;
+	data->reflex = 0;
 	data->nl = 0;
 }

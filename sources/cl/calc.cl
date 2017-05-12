@@ -117,7 +117,6 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	else
 	if (COLOR && data.id > -1)
 	{
-		save(&data);
 		*pixel = get_lighting(&data);
 	}
 	else

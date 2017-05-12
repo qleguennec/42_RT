@@ -54,6 +54,16 @@
 	<type>Spot</type>
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
+	<position>50.00 0.00 100.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
+<light>
+	<name>Prout</name>
+	<type>Spot</type>
+	<visibility>True</visibility>
+	<flare-visibility>True</flare-visibility>
 	<position>50.00 0.00 200.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
@@ -75,7 +85,7 @@
 	<height>0.00</height>
 	<lenght>10.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>1.00</refraction>
+	<refraction>0.00</refraction>
 </object>
 
 <object>
@@ -83,7 +93,7 @@
 	<type>Cylinder</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>-20.00 0.00 -20.00</position>
+	<position>20.00 0.00 -10.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>128.00 50.00 200.00</color-rgb>
 	<opacity>1.00</opacity>
@@ -103,12 +113,12 @@
 	<position>0.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
-	<opacity>.80</opacity>
+	<opacity>1.00</opacity>
 	<radius>50.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
-	<reflection>.45</reflection>
+	<reflection>.10</reflection>
 	<refraction>0.00</refraction>
 </object>
 
@@ -117,7 +127,7 @@
 	<type>Plane</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 1000.00</position>
+	<position>50.00 0.00 1000.00</position>
 	<rotation>90.00 0.00 0.00</rotation>
 	<color-rgb>0.00 255.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
@@ -140,7 +150,7 @@
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
-	<reflection>.90</reflection>
+	<reflection>0.00</reflection>
 	<refraction>0.00</refraction>
 </object>
 

@@ -18,6 +18,8 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr * (data->objs[data->id].clr));
+		if (data->objs[data->id].specular != 0.0f)
+			light_clr += is_shining(data->normale, -lightdir, lgt->clr);
 		return (light_clr);
 	} 
 	if (fast_distance(save_intersect, data->save_pos) < 
@@ -72,13 +74,17 @@ void 	clearness_color(t_data *data)
 			data->ray_dir = calcul_refract_ray(data, 1.43f, 1.0f);
 		touch_object(data);
 	}
-	if (data->id > -1)
-	{
-		data->normale = calcul_normale(data);////il faudrait penser a calculer la normale de l'objet derirriere l'objet transparent
-		data->through = data->id;
-		data->rd_light += transparancy_check_all_light(data);
-		data->test = 0;
-	}
+	if (data->id < 0)
+		return ;	
+	// if (data->objs[data->id].reflex)
+	// {
+	// 	calcul_reflex_ray(data);
+	// 	return;
+	// }
+	data->normale = calcul_normale(data);////il faudrait penser a calculer la normale de l'objet derirriere l'objet transparent
+	data->through = data->id;
+	data->rd_light += transparancy_check_all_light(data);
+	data->test = 0;
 }
 
 float3	calcul_refract_ray(t_data *data, float refract1, float refract2)
