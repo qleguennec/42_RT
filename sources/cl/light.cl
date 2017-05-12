@@ -20,6 +20,7 @@
 unsigned	get_lighting(t_data *data)
 {
 	short	opacity;
+	short	reflex;
 	short	save_id = data->id;
 	float3	save_dir = data->ray_dir;
 	float3	save_pos = data->ray_pos;
@@ -27,8 +28,10 @@ unsigned	get_lighting(t_data *data)
 	float3	save_clr = data->save_clr;
 
 	opacity = 0;
+	reflex = 0;
 	data->normale = calcul_normale(data);
-	while (data->reflex-- > 0 && data->light_pow > 0.0f)
+	while (reflex < MAX_REFLEX && opacity < MAX_TRANSPARANCY > 0 &&
+	 data->light_pow > 0.0f)
 	{
 		if (opacity < MAX_TRANSPARANCY &&
 			data->objs[data->id].opacity < 1.0f && REFLEX < 1.0f)
@@ -37,9 +40,10 @@ unsigned	get_lighting(t_data *data)
 			load(data);
 			opacity++;
 		}
-		if (REFLEX > 0.0f)
+		if (reflex < MAX_REFLEX && REFLEX > 0.0f)
 		{
 			calcul_reflex_ray(data);
+			reflex++;
 		}
 		else
 			break ;
