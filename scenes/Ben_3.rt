@@ -81,7 +81,7 @@
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>
 	<specular>0</specular>
-	<shader>8</shader>
+	<shader>4</shader>
 </object>
 
 <object>
@@ -100,7 +100,7 @@
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>
 	<specular>0</specular>
-	<shader>6</shader>
+	<shader>4</shader>
 </object>
 
 <object>
@@ -119,6 +119,6 @@
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>
 	<specular>0</specular>
-	<shader>2</shader>
+	<shader>6</shader>
 </object>
 

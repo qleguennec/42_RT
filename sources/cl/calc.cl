@@ -21,7 +21,13 @@
 #include "init.cl"
 #include "save.cl"
 #include "noise.h"
+#include "get_obj_color.cl"
 #include "shaders.cl"
+#include "reflex.cl"
+#include "refract.cl"
+#include "shiness.cl"
+#include "light.h"
+#include "color.cl"
 
 float			calc_delta(float3 *disc, t_data *data)
 {
@@ -118,7 +124,6 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 	else
 	if (COLOR && data.id > -1)
 	{
-		save(&data);
 		*pixel = get_lighting(&data);
 	}
 	else if (cam->skytype == CAM_SKYDAY)

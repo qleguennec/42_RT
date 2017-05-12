@@ -21,9 +21,29 @@
 <light>
 	<name>Point 1</name>
 	<type>Diffuse</type>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<flare-visibility>True</flare-visibility>
-	<position>0.00 0.00 0.00</position>
+	<position>0.00 0.00 150.00</position>
+	<color-rgb>255.00 250.00 250.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
+<light>
+	<name>Point 1</name>
+	<type>Spot</type>
+	<visibility>False</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>10.00 0.00 150.00</position>
+	<color-rgb>255.00 250.00 250.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
+<light>
+	<name>Point 1</name>
+	<type>Spot</type>
+	<visibility>False</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>20.00 0.00 0.00</position>
 	<color-rgb>255.00 250.00 250.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -34,17 +54,38 @@
 	<name>Cylinder</name>
 	<type>Cylinder</type>
 	<material>Lambert</material>
-	<visibility>False</visibility>
+	<visibility>True</visibility>
 	<position>20.00 0.00 -90.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>0.00 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>10.00</radius>
 	<width>0.00</width>
+	<height>0.00</height>
+	<lenght>10.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>1</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
+</object>
+
+<object>
+	<name>Cylinder</name>
+	<type>Sphere</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>-20.00 0.00 -90.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>0.00 255.00 0.00</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>10.00</radius>
+	<width>0.00</width>
 	<height>40.00</height>
 	<lenght>10.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>1.00</refraction>
+	<refraction>1</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
 <object>
@@ -60,7 +101,9 @@
 	<height>0.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
 <object>
@@ -75,8 +118,10 @@
 	<width>0.00</width>
 	<height>0.00</height>
 	<lenght>50.00</lenght>
-	<reflection>.40</reflection>
-	<refraction>0.00</refraction>
+	<reflection>1.00</reflection>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
 <object>
@@ -92,7 +137,9 @@
 	<height>0.00</height>
 	<lenght>50.00</lenght>
 	<reflection>1.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
 <object>
@@ -108,7 +155,9 @@
 	<height>0.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
 <object>
@@ -124,7 +173,9 @@
 	<height>0.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
 <object>
@@ -140,6 +191,8 @@
 	<height>0.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>0.00</refraction>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 

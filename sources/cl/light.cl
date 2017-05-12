@@ -10,50 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reflex.cl"
-#include "refract.cl"
-#include "shiness.cl"
-#include "light.h"
-#include "color.cl"
-
-
 unsigned	get_lighting(t_data *data)
 {
-	short	opacity;
-	short	save_id = data->id;
-	float3	save_dir = data->ray_dir;
-	float3	save_pos = data->ray_pos;
-	float3	save_intersect = data->intersect;
-	float3	save_clr = data->save_clr;
-
-	opacity = 0;
-	data->normale = calcul_normale(data);
-	while (data->reflex-- > 0 && data->light_pow > 0.0f)
+	save(data);
+	while ((data->reflex < MAX_REFLECTION || data->opacity < MAX_TRANSPARANCY) > 0 &&
+	 data->light_pow > 0.0f)
 	{
-		if (opacity < MAX_TRANSPARANCY &&
-			data->objs[data->id].opacity < 1.0f && REFLEX < 1.0f)
+		if (data->opacity < MAX_TRANSPARANCY &&
+			data->objs[data->id].opacity < 1.0f &&
+			 data->objs[data->save_id].reflex < 1.0f)
 		{
 			clearness_color(data);
 			load(data);
-			opacity++;
 		}
-		if (REFLEX > 0.0f)
-		{
+		if (data->reflex < MAX_REFLECTION &&
+		 data->objs[data->save_id].reflex > 0.0f)
 			calcul_reflex_ray(data);
-		}
 		else
 			break ;
 	}
-	if (data->light_pow > 0.0f)
-	{
-		data->save_id = save_id;
-		data->save_dir = save_dir;
-		data->save_pos = save_pos;
-		data->save_inter = save_intersect;
-		data->save_clr = save_clr;
-		data->normale = calcul_normale(data);
-		data->rd_light += check_all_light(data);
-	}
+	
+	data->normale = calcul_normale(data);
+	data->rd_light += check_all_light(data);
 	return(calcul_rendu_light(data));
 }
 
@@ -65,16 +43,25 @@ float3		check_all_light(t_data *data)
 
 	i = -1;
 	rd_light = 0.0f;
-	data->normale = calcul_normale(data);
+	data->nl = 0;
+	data->test = 0;
 	while (++i < data->n_lgts)
 	{
 		lightdir = fast_normalize(data->save_inter - data->lights[i].pos);
 		rd_light += is_light(data, lightdir, &data->lights[i]);
 	}
-	rd_light += calcul_clr(data->save_dir, -data->normale,
+	if (data->light_pow <= 0.0f)
+	{
+		 rd_light = calcul_clr(data->save_dir, -data->normale,
+		 AMBIANT * rd_light);
+		 data->light_pow = .20f;
+	}
+	else
+		rd_light += calcul_clr(data->save_dir, -data->normale,
 		 AMBIANT * data->save_clr);
+
 	if (!data->nl || data->test >= data->n_lgts)
-	 	return (rd_light * data->light_pow);
+	 	return (rd_light);
 	else if (data->n_lgts == 1 || (data->n_lgts - data->test == 1))
 		return ((rd_light / (1.0f + AMBIANT)) * data->light_pow);
 	return (rd_light / (data->n_lgts - data->test + AMBIANT) *
@@ -101,7 +88,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt)
 	}
 	if (fast_distance(data->save_inter, data->save_pos) + PREC <
 	fast_distance(data->intersect, data->save_pos) &&
-	 dot(data->ray_dir,	data->save_dir) + PREC3 <= 0.0f)
+	 dot(data->ray_dir,	data->save_dir) + PREC2 < 0.0f)
 		data->test++;
 	return (0);
 }
