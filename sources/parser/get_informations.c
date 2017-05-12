@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:56:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/28 22:05:07 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 19:32:49 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char		*get_s(t_parser *r, int b_end, int b_size)
 }
 
 /*
-** Function to get the material of an object from a position in my buffer
+** Function to get the preset of an object from a position in my buffer
 */
 
 int			get_m(t_rt *rt, int b_end, char *s, char *e)
@@ -37,14 +37,14 @@ int			get_m(t_rt *rt, int b_end, char *s, char *e)
 	rt->prs->b_o = s;
 	rt->prs->b_c = e;
 	str = ft_getstr(rt->prs->buf, rt->prs->i, b_end);
-	if (ft_strlcmp(str, "lambert"))
-		rt->prs->t_i = T_LAMBERT;
-	else if (ft_strlcmp(str, "blinn"))
-		rt->prs->t_i = T_BLINN;
-	else if (ft_strlcmp(str, "phong"))
-		rt->prs->t_i = T_PHONG;
-	else if (ft_strlcmp(str, "custom"))
-		rt->prs->t_i = T_CUSTOM;
+	if (ft_strlcmp(str, "earth"))
+		rt->prs->t_i = 0;
+	else if (ft_strlcmp(str, "sun"))
+		rt->prs->t_i = 1;
+	else if (ft_strlcmp(str, "moon"))
+		rt->prs->t_i = 2;
+	else if (ft_strlcmp(str, "jupiter"))
+		rt->prs->t_i = 3;
 	free(str);
 	rt->prs->i = b_end + ft_strlen(e);
 	return ((rt->prs->t_i == -1) ? (error(rt, 14) + 1) : 1);

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 22:06:56 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 18:10:06 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 19:30:40 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ void		export_object(t_obj *obj, int fd)
 	write(fd, "\t<type>", 7);
 	export_shape_object(obj->forme, fd);
 	write(fd, "</type>\n", 8);
-	write(fd, "\t<material>", 11);
-	export_material_object(obj->material, fd);
-	write(fd, "</material>\n", 12);
+	write(fd, "\t<preset>", 9);
+	export_material_object(obj->preset, fd);
+	write(fd, "</preset>\n", 10);
 	write(fd, "\t<visibility>", 13);
 	(obj->visibility == 1) ? write(fd, "True", 4) : write(fd, "False", 5);
 	write(fd, "</visibility>\n", 14);

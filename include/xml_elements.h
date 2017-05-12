@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:31:43 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/11 17:31:00 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 19:26:14 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@
 # define BO_T	"<type>"
 # define BC_T	"</type>"
 
-# define BO_M	"<material>"
-# define BC_M	"</material>"
+# define BO_M	"<preset>"
+# define BC_M	"</preset>"
 
 # define BO_OP	"<opacity>"
 # define BC_OP	"</opacity>"

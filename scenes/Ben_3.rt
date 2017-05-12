@@ -49,7 +49,6 @@
 <object>
 	<name>Sphere 2</name>
 	<type>Sphere</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>-50.50 -55.00 394.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -68,7 +67,6 @@
 <object>
 	<name>Sphere 3</name>
 	<type>Sphere</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>33.50 63.50 200.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -87,7 +85,6 @@
 <object>
 	<name>Sphere 4</name>
 	<type>Sphere</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>-25.00 0.00 150.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -106,7 +103,6 @@
 <object>
 	<name>Sphere 4</name>
 	<type>Sphere</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>13.50 -5.00 89.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
