@@ -3,7 +3,6 @@
 <scene>
 	<name>420 blaze it</name>
 	<ambient>.20</ambient>
-	<anti-aliasing>1</anti-aliasing>
 	<max-reflexion>1</max-reflexion>
 </scene>
 
@@ -24,6 +23,16 @@
 	<visibility>True</visibility>
 	<flare-visibility>True</flare-visibility>
 	<position>100.00 0.00 100.00</position>
+	<color-rgb>255.00 255.00 255.00</color-rgb>
+	<intensity>5.00</intensity>
+</light>
+
+<light>
+	<name>Prout</name>
+	<type>Diffuse</type>
+	<visibility>True</visibility>
+	<flare-visibility>True</flare-visibility>
+	<position>-100.00 0.00 100.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
