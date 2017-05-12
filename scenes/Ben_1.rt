@@ -118,7 +118,7 @@
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
-	<reflection>1.00</reflection>
+	<reflection>.75</reflection>
 	<refraction>0.00</refraction>
 </object>
 

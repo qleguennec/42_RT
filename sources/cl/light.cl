@@ -83,7 +83,7 @@ float3		check_all_light(t_data *data)
 		 AMBIANT * data->save_clr);
 
 	if (!data->nl || data->test >= data->n_lgts)
-	 	return (rd_light * data->light_pow);
+	 	return (rd_light);
 	else if (data->n_lgts == 1 || (data->n_lgts - data->test == 1))
 		return ((rd_light / (1.0f + AMBIANT)) * data->light_pow);
 	return (rd_light / (data->n_lgts - data->test + AMBIANT) *
@@ -99,7 +99,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt)
 	touch_object(data);
 	if ((data->id == data ->save_id &&
 		fast_distance(data->save_inter, lgt->pos) <
-		fast_distance(data->inter, lgt->pos) + PREC))
+		fast_distance(data->intersect, lgt->pos) + PREC))
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, data->normale,
@@ -110,7 +110,7 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt)
 	}
 	if (fast_distance(data->save_inter, data->save_pos) + PREC <
 	fast_distance(data->intersect, data->save_pos) &&
-	 dot(data->ray_dir,	data->save_dir) + PREC3 <= 0.0f)
+	 dot(data->ray_dir,	data->save_dir) + PREC2 < 0.0f)
 		data->test++;
 	return (0);
 }

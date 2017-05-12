@@ -13,8 +13,9 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 		touch_object(data);
 		data->ray_pos = data->intersect + data->ray_dir;
 	}
-	if ((data->id == data->through && fast_distance(save_intersect, lgt->pos) < 
-	fast_distance(data->intersect, lgt->pos) + PREC))
+	if ((data->id == data->through &&
+		fast_distance(save_intersect, lgt->pos) < 
+		fast_distance(data->intersect, lgt->pos) + PREC))
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr * (data->objs[data->id].clr));
@@ -23,7 +24,7 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 		return (light_clr);
 	} 
 	if (fast_distance(save_intersect, data->save_pos) < 
-	fast_distance(data->intersect, data->save_pos)+ PREC)
+	fast_distance(data->intersect, data->save_pos)+ PREC )
 		data->test++;
 	return (0);
 }
@@ -46,9 +47,9 @@ static float3		transparancy_check_all_light(t_data *data)
 	rd_light += AMBIANT * clr;// a surement retirer
 			// rd_light += calcul_clr(data->save_dir, -data->normale, AMBIANT * data->save_clr);
 
-	if (!data->nl)
+	if (!data->nl || data->test >= data->n_lgts)
 	 	return (rd_light /(1.0f + AMBIANT) * data->light_refract_pow);
-	else if (data->n_lgts == 1)
+	else if (data->n_lgts == 1 || (data->n_lgts - data->test == 1))
 		return ((rd_light / (1.0f + AMBIANT)) * data->light_refract_pow);
 	return (rd_light  / (data->n_lgts - data->test + AMBIANT) * data->light_refract_pow);
 }
