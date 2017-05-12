@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:28:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 15:45:03 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 18:04:19 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	init_gui_areas(t_ui *ui, short lol)
 
 void		init_gui_structure(t_rt *rt)
 {
+	rt->scn->aa = 1;
 	rt->ui->t_c = 0;
 	rt->ui->b_down = -1;
 	rt->ui->b_hover = -1;

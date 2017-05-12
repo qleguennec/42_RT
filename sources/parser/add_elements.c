@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 02:06:16 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/13 11:47:33 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 18:03:44 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ int			set_scene(t_rt *rt, int b_end, int e)
 		else if (e > -1 && (e = check_tags(rt, BO_A, BC_A)) > 1)
 			(get_d(rt, e, BO_A, BC_A)) ?
 			cf(&rt->scn->ambient, rt->prs->t_d) : (e = -1);
-		else if (e > -1 && (e = check_tags(rt, BO_AA, BC_AA)) > 1)
-			(get_i(rt, e, BO_AA, BC_AA)) ?
-			ci(&rt->scn->aa, rt->prs->t_i) : (e = -1);
 		else if (e > -1 && (e = check_tags(rt, BO_MR, BC_MR)) > 1)
 			(get_i(rt, e, BO_MR, BC_MR)) ?
 			ci(&rt->scn->m_ref, rt->prs->t_i) : (e = -1);

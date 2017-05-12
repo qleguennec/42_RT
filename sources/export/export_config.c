@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 15:10:20 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/22 13:52:10 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 18:10:52 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ static void	export_scene_parameters(t_scene *scn, int fd)
 	write(fd, "\t<ambient>", 10);
 	ft_putfloat_fd((float)scn->ambient, fd);
 	write(fd, "</ambient>\n", 11);
-	write(fd, "\t<anti-aliasing>", 16);
-	ft_putint_fd((int)scn->aa, fd);
-	write(fd, "</anti-aliasing>\n", 17);
 	write(fd, "\t<max-reflexion>", 16);
 	ft_putint_fd((int)scn->m_ref, fd);
 	write(fd, "</max-reflexion>\n", 17);

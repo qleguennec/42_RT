@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 22:06:56 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 15:58:24 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 18:10:06 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static void	export_object_part3(t_obj *obj, int fd)
 	ft_putint_fd((int)obj->specular, fd);
 	write(fd, "</specular>\n", 12);
 	write(fd, "\t<shader>", 9);
-	ft_putint_fd((int)obj->shader, fd);
+	obj->shader += (obj->shader & 1) ? 1 : 0;
+	ft_putint_fd((int)(obj->shader / 2), fd);
 	write(fd, "</shader>\n", 10);
 	write(fd, "</object>\n\n", 11);
 }
