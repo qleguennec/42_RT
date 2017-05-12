@@ -40,27 +40,23 @@ static float3		reflex_check_all_light(t_data *data)
 		rd_light += reflex_is_light(data, lightdir, &data->lights[i]);
 	}
 	rd_light += AMBIANT * clr;
-		// PRINT3(rd_light,"light");
 	if (!data->nl)
 	 	return (rd_light * data->light_reflex_pow);
 	else if (data->n_lgts == 1)// || data->n_lgts - data->test == 1)
 		return (rd_light / (1.0f + AMBIANT) * data->light_reflex_pow);
 	return (rd_light  / (data->n_lgts - data->test + AMBIANT) * data->light_reflex_pow);
 }
+
 void	calcul_reflex_ray(t_data *data)
 {
-	data->light_reflex_pow = REFLEX;
-	// data->light_reflex_pow = data->objs[data->id].reflex;
-	data->light_light_pow -= REFLEX;
-	// data->light_pow -= data->objs[data->id].reflex;
+	data->light_reflex_pow = data->light_pow - (1.0f - REFLEX);
+	data->light_pow -= REFLEX;
 	if (data->light_reflex_pow <= 0.0f)
 		return;
-	data->ray_pos = data->intersect;// - data->ray_dir;
+	data->ray_pos = data->intersect;
 	data->ray_dir = fast_normalize(data->ray_dir - (2.0f * data->normale *
 	dot(data->normale, data->ray_dir)));
-	// data->ray_pos = data->intersect + data->ray_dir;
 	touch_object(data);
 	save(data);
 	data->rd_light += reflex_check_all_light(data);
-	// load(data);
 }

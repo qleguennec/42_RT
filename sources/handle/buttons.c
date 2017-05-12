@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:56:06 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/08 19:22:22 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 20:44:47 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static int	check_buttons(t_rt *rt)
 	while (rt->ui->t_c < 18 &&
 	!fsdl_pt_in_rect(&rt->m_pos, rt->ui->b_rect[(int)rt->ui->t_c]))
 		rt->ui->t_c++;
+	if (rt->ui->t_c == 3 || rt->ui->t_c == 4 || rt->ui->t_c == 10)
+		return (-1);
 	rt->ui->b_hover = (rt->ui->t_c == 18) ? -1 : rt->ui->t_c;
 	return (rt->ui->b_hover);
 }

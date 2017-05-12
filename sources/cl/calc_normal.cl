@@ -47,7 +47,7 @@ float3		        calcul_normale(t_data *data)
         normale = cylinder_normal(data, rot);
 	else if (data->objs[data->save_id].type == T_SPHERE)
         normale = sphere_normal(data);
-    else 
+    else
         normale = 0.0f;
     return (fast_normalize(normale));
 }

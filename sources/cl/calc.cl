@@ -20,24 +20,26 @@
 #include "calc_normal.cl"
 #include "init.cl"
 #include "save.cl"
+#include "noise.h"
+#include "shaders.cl"
 
 float			calc_delta(float3 *disc, t_data *data)
 {
 	float	tmp;
 
-	tmp = (disc->y * disc->y) - (4.0f * disc->x * disc->z);
+	tmp = (disc->y * disc->y) - (disc->x * disc->z);
 	if(tmp < 0.0f)
 		return (-1);
 	else if (tmp == 0.0f)
 	{
-		if ((data->t = -disc->y / (2.0f * disc->x)) < 0.0f)
+		if ((data->t = -disc->y / (disc->x)) < 0.0f)
 			return (-1);
 		return (0);
 	}
 	tmp = sqrt(tmp);
-	data->t0 = ((-disc->y + tmp) / (2.0f * disc->x));
-	data->t1 = ((-disc->y - tmp) / (2.0f * disc->x));
-	if ((data->t = (data->t0 > 0.0f && data->t0 < data->t1)
+	data->t0 = ((-disc->y + tmp) / disc->x);
+	data->t1 = ((-disc->y - tmp) / disc->x);
+	if ((data->t = (data->t0 >= 0.0f && data->t0 < data->t1)
 	 ? data->t0 : data->t1) < 0.0f)
 		return (-1);
 	return (1);
@@ -112,12 +114,15 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		data.rd_light = data.objs[data.id].clr;
 		*pixel = calcul_rendu_light(&data);
 	}
-	else 
+	else
 	if (COLOR && data.id > -1)
 	{
 		save(&data);
 		*pixel = get_lighting(&data);
 	}
 	else
-		*pixel = FONT;
+	{
+		data.rd_light = get_font(data.ray_dir);
+		*pixel = calcul_rendu_light(&data);
+	}
 }

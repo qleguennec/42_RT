@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 16:35:42 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/10 15:26:21 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/12 10:13:49 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,32 +66,21 @@ static bool
 		cli = cl->cli_list;
 		while (cli)
 		{
-			channels[0] += (cli->buffer[i] >> 0) & 0xFF;
 			channels[1] += (cli->buffer[i] >> 8) & 0xFF;
 			channels[2] += (cli->buffer[i] >> 16) & 0xFF;
 			channels[3] += (cli->buffer[i] >> 24) & 0xFF;
 			cli = cli->next;
 		}
-		channels[0] += (buffer[i] >> 0) & 0xFF;
 		channels[1] += (buffer[i] >> 8) & 0xFF;
 		channels[2] += (buffer[i] >> 16) & 0xFF;
 		channels[3] += (buffer[i] >> 24) & 0xFF;
-		channels[0] /= nsamples;
 		channels[1] /= nsamples;
 		channels[2] /= nsamples;
 		channels[3] /= nsamples;
-		/*
-		assert(!printf("%u\n", channels[0]) || channels[0] <= 0xFF);
-		assert(!printf("%u\n", channels[1]) || channels[1] <= 0xFF);
-		assert(!printf("%u\n", channels[2]) || channels[2] <= 0xFF);
-		assert(!printf("%u\n", channels[3]) || channels[3] <= 0xFF);
-		*/
-		buffer[i] = 0;
-		buffer[i] |= (channels[0]) << 0;
+		buffer[i] = 0xFF;
 		buffer[i] |= (channels[1]) << 8;
 		buffer[i] |= (channels[2]) << 16;
 		buffer[i] |= (channels[3]) << 24;
-		buffer[i] |= 0x000000FF;
 		i++;
 	}
 	return (true);
@@ -114,6 +103,7 @@ bool
 		nsamples++;
 		cli = cli->next;
 	}
+	printf("AA: x%d\n", nsamples);
 	if ((ret = clEnqueueReadBuffer(cl->info.cmd_queue
 		, cl->main_krl.args[0], CL_TRUE, 0
 		, cl->main_krl.sizes[0], buffer, 0, NULL, NULL)) != CL_SUCCESS)

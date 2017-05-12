@@ -12,7 +12,7 @@
 <camera>
 	<name>0123456789012345678</name>
 	<position>0.00 0.00 0.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
+	<rotation>0.00 0.00 1.00</rotation>
 	<focal>55</focal>
 </camera>
 <!------------ Light(s) -------------->
@@ -21,16 +21,7 @@
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>True</visibility>
-	<position>0.00 0.00 100.00</position>
-	<color-rgb>255.00 255.00 255.00</color-rgb>
-	<intensity>5.00</intensity>
-</light>
-
-<light>
-	<name>Prout</name>
-	<type>Diffuse</type>
-	<visibility>True</visibility>
-	<position>50.00 0.00 200.00</position>
+	<position>0.00 0.00 10.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
 </light>
@@ -38,13 +29,30 @@
 <!------------ Object(s) ------------->
 
 <object>
-	<name>Sphere 1</name>
-	<type>sphere</type>
+	<name>Sphere 4</name>
+	<type>Sphere</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>0.00 0.00 290.00</position>
+	<position>-25.00 0.00 150.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>255.00 255.00 255.00</color-rgb>
-	<opacity>1</opacity>
-	<radius>50</radius>
+	<color-rgb>4.00 5.00 6.00</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>12.00</radius>
+	<width>50.00</width>
+	<height>50.00</height>
+	<lenght>50.00</lenght>
+</object>
+
+<object>
+	<name>Plane bas</name>
+	<type>Plane</type>
+	<material>Lambert</material>
+	<visibility>True</visibility>
+	<position>0.00 200.00 0.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>0.0 0.0 0.0</color-rgb>
+	<opacity>1.00</opacity>
+	<width>0.00</width>
+	<height>0.00</height>
+	<lenght>50.00</lenght>
 </object>

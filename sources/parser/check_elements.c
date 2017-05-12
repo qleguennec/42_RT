@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:19:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/10 10:21:32 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:35:12 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int			check_object(t_rt *rt, t_obj *t, short i)
 		return (error(rt, 27));
 	if (rt->prs->t[7] != 0 && (t->opacity < .0 || t->opacity > 1.0))
 		return (error(rt, 10));
-	if (rt->prs->t[9] != 0 && (t->radius < .0 || t->radius > 500.0))
+	if (rt->prs->t[9] != 0 && (t->radius < .0 || t->radius > 2000.0))
 		return (error(rt, 38));
 	if (rt->prs->t[14] != 0 && (t->lenght < .0 || t->lenght > 1000.0))
 		return (error(rt, 43));

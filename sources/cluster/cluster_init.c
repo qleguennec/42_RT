@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 14:50:25 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/09 14:08:49 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/11 14:01:17 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void
 	self = arg;
 	while (42)
 	{
-		printf("accept\n");
 		fd = accept(self->sockfd, NULL, NULL);
-		printf("accepted\n");
 		new = malloc(sizeof(*new));
 		ft_bzero(new, sizeof(*new));
 		new->fd = fd;
@@ -52,7 +50,6 @@ int
 	self_addr.sin_addr.s_addr = INADDR_ANY;
 	while (bind(cl->sockfd, (void *)&self_addr, sizeof(self_addr)) == -1)
 		self_addr.sin_port++;
-	printf("listening from port %d\n", self_addr.sin_port);
 	if (listen(cl->sockfd, CLUSTER_MAX_CLIENTS) == -1)
 		perror("listen");
 	pthread_create(&cl->accept_thread, NULL, &accept_routine, cl);

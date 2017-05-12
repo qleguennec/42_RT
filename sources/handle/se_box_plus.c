@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 15:37:50 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/10 10:20:36 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 20:17:28 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ static void	update_se_object_box_part2(t_rt *rt)
 {
 	if (AC == 3 && S_ELEM->reflex <= 0.950f)
 		S_ELEM->reflex = R((S_ELEM->reflex + 0.050f) * 100) / 100;
-	else if (AC == 4 && S_ELEM->refrac <= 0.950f)
-		S_ELEM->refrac = R((S_ELEM->refrac + 0.050f) * 100) / 100;
+	else if (AC == 4 && S_ELEM->refrac != 1)
+		S_ELEM->refrac = 1;
 	else if (AC == 5 && S_ELEM->radius <= 499.0f)
 		S_ELEM->radius += 1.0f;
 	else if (AC == 6 && S_ELEM->width <= 999.50f)
@@ -87,8 +87,8 @@ static void	update_se_object_box(t_rt *rt)
 {
 	if (AC == 1 && S_ELEM->opacity <= 0.950f)
 		S_ELEM->opacity = R((S_ELEM->opacity + 0.050f) * 100) / 100;
-	else if (AC == 2 && S_ELEM->specular <= 0.950f)
-		S_ELEM->specular = R((S_ELEM->specular + 0.050f) * 100) / 100;
+	else if (AC == 2 && S_ELEM->specular != 1)
+		S_ELEM->specular = 1;
 	else if (AC > 2 && AC < 12)
 		update_se_object_box_part2(rt);
 	else if ((AC == 12 || (AC == -1 && CK_DOWN == SDLK_RIGHT && (AC = 12) &&
@@ -108,6 +108,8 @@ static void	update_se_object_box(t_rt *rt)
 	else if ((AC == 17 || (AC == -1 && CK_DOWN == SDLK_e && (AC = 17) &&
 	(rt->ui->k_edit = 1))) && S_ELEM->rot.z <= 719.50f)
 		S_ELEM->rot.z = R((S_ELEM->rot.z + 0.50f) * 100) / 100;
+	else if ((AC == 18 && S_ELEM->shader <= 20))
+		++S_ELEM->shader;
 	redraw_case_active(rt, 1);
 }
 

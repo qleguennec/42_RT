@@ -6,12 +6,14 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:36:46 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/02 15:20:15 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/11 16:56:02 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJ_TYPES_H
 # define OBJ_TYPES_H
+
+/* define des type d'objets */
 
 # define T_SPHERE		1
 # define T_CUBE			2
@@ -34,5 +36,20 @@
 # define T_BLINN    	1
 # define T_PHONG		2
 # define T_CUSTOM		3
+
+/* define des type de shaders */
+
+# define NONE			0
+# define STAR			1
+# define WOOD			2
+# define MARBRE1		3
+# define MARBRE2		4
+# define MARBRE3		5
+# define MARBRE4		6
+# define MARBRE5		7
+# define MARBRE6		8
+# define MARBRE7		9
+# define SKYSTAR		10
+# define SKYDAY			11
 
 #endif

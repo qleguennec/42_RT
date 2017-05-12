@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 19:02:51 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/10 10:21:55 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 20:36:21 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,15 @@ void		draw_selected_object(t_rt *rt, t_obj *obj)
 	tmp = ft_strf("%s", shape_object_ws(obj->forme));
 	D_P(rt, tmp, (SDL_Rect){1147, 133, 111, 21}, 1);
 	D_P(rt, ft_dtoa(obj->opacity, 0, 1), rt->ui->obj_b_rect[1], 2);
-	tmp = (!obj->texture && obj->p_texture == -1) ?
-	ft_strf("-- NONE --") : ft_strf("--- YES ---");
-	D_P(rt, tmp, (SDL_Rect){1173, 187, 85, 21}, 1);
-	D_P(rt, ft_dtoa(obj->specular, 0, 1), rt->ui->obj_b_rect[2], 2);
+	tmp = get_shader_name(obj);
+	D_P(rt, tmp, (SDL_Rect){1173, 187, 85, 21}, 2);
+	tmp = (obj->specular == 0) ?
+	ft_strf("NO") : ft_strf("YES");
+	D_P(rt, tmp, rt->ui->obj_b_rect[2], 2);
 	D_P(rt, ft_dtoa(obj->reflex, 0, 1), rt->ui->obj_b_rect[3], 2);
-	D_P(rt, ft_dtoa(obj->refrac, 0, 1), rt->ui->obj_b_rect[4], 2);
+	tmp = (obj->refrac == 0) ?
+	ft_strf("NO") : ft_strf("YES");
+	D_P(rt, tmp, rt->ui->obj_b_rect[4], 2);
 	if (obj->forme == T_SPHERE || obj->forme == T_CYLINDER ||
 	obj->forme == T_CONE || obj->forme == T_TORUS)
 		D_P(rt, ft_dtoa(obj->radius, 0, 1), rt->ui->obj_b_rect[5], 2);

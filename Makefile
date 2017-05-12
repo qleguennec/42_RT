@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/05/10 12:34:47 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/05/12 09:42:12 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,6 +105,7 @@ SOURCES		= \
 		handle/se_box_minus.c \
 		handle/se_box_plus.c \
 		handle/selected_element.c \
+		handle/shaders.c \
 		handle/special_mode.c \
 		main.c \
 		misc/free_elements.c \

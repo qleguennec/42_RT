@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:31:43 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/10 10:16:06 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:31:00 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@
 # define BO_SP	"<specular>"
 # define BC_SP	"</specular>"
 
-# define BO_PT	"<procedural-texture>"
-# define BC_PT	"</procedural-texture>"
+# define BO_SH	"<shader>"
+# define BC_SH	"</shader>"
 
 # define BO_TX	"<texture-file>"
 # define BC_TX	"</texture-file>"

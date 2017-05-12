@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/10 12:31:51 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/12 09:28:36 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ typedef struct		s_obj
 	cl_float		intensity;
 	cl_float		shiness;
 	cl_float		mshiness;
-	cl_float		specular;
+	cl_short		specular;
 	cl_float		reflex;
-	cl_float		refrac;
+	cl_short		refrac;
+	cl_short		shader;
 	cl_short		p_texture;
 	SDL_Surface		*texture;
 	SDL_Rect		r_ol;
@@ -133,7 +134,7 @@ typedef struct		s_ui
 	SDL_Rect		b_rect[20];
 	SDL_Rect		cam_b_rect[8];
 	SDL_Rect		lgt_b_rect[12];
-	SDL_Rect		obj_b_rect[18];
+	SDL_Rect		obj_b_rect[19];
 	SDL_Rect		param_b_rect[3];
 	SDL_Rect		*b_se_rect;
 	SDL_Rect		*case_rect;

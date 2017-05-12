@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:28:36 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/09 16:20:04 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 20:40:18 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ static void	init_buttons(t_rt *rt)
 	init_gui_selected_light_buttons(rt->ui);
 	init_gui_selected_object_buttons(rt->ui);
 	init_gui_selected_scene_parameters(rt->ui);
+	draw_button(rt, 3, 3);
+	draw_button(rt, 4, 3);
+	draw_button(rt, 10, 3);
 	draw_button(rt, 11, 3);
 	draw_button(rt, 12, 3);
 	draw_button(rt, 13, 3);

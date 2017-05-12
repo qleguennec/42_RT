@@ -16,6 +16,7 @@
 #include "light.h"
 #include "color.cl"
 
+
 unsigned	get_lighting(t_data *data)
 {
 	short	opacity;
@@ -26,7 +27,6 @@ unsigned	get_lighting(t_data *data)
 	float3	save_clr = data->save_clr;
 
 	opacity = 0;
-	data->reflex = 3;//a supprimer
 	data->normale = calcul_normale(data);
 	while (data->reflex-- > 0 && data->light_pow > 0.0f)
 	{
@@ -37,19 +37,13 @@ unsigned	get_lighting(t_data *data)
 			load(data);
 			opacity++;
 		}
-		// printf("tours[%u] light_power[%f]\n",3 - data->reflex , data->light_pow);
-	// printf("reflex[%f]\n",REFLEX);
-	
 		if (REFLEX > 0.0f)
-		{	
+		{
 			calcul_reflex_ray(data);
 		}
 		else
 			break ;
 	}
-	// return(calcul_rendu_light(data));
-	
-	// printf("2light_power[%f]\n\n",data->light_pow);
 	if (data->light_pow > 0.0f)
 	{
 		data->save_id = save_id;
@@ -79,11 +73,11 @@ float3		check_all_light(t_data *data)
 	}
 	rd_light += calcul_clr(data->save_dir, -data->normale,
 		 AMBIANT * data->save_clr);
-	if (!data->nl)
+	if (!data->nl || data->test >= data->n_lgts)
 	 	return (rd_light * data->light_pow);
-	else if (data->n_lgts == 1)
+	else if (data->n_lgts == 1 || (data->n_lgts - data->test == 1))
 		return ((rd_light / (1.0f + AMBIANT)) * data->light_pow);
-	return (rd_light  / (data->n_lgts - data->test + AMBIANT) *
+	return (rd_light / (data->n_lgts - data->test + AMBIANT) *
 	 data->light_pow);
 }
 
@@ -95,18 +89,19 @@ float3		is_light(t_data *data, float3 lightdir, global t_lgt *lgt)
 	data->ray_dir = lightdir;
 	touch_object(data);
 	if ((data->id == data ->save_id &&
-		fast_distance(data->save_inter, lgt->pos) < 
-		fast_distance(data->intersect, lgt->pos) + PREC2))
+		fast_distance(data->save_inter, lgt->pos) <
+		fast_distance(data->intersect, lgt->pos) + PREC))
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, data->normale,
-			lgt->clr * (data->save_clr));
+			lgt->clr * data->save_clr);
 		if (data->objs[data->save_id].specular != 0.0f)
 			light_clr += is_shining(data->normale, -lightdir, lgt->clr);
 		return (light_clr);
 	}
-	if (fast_distance(data->save_inter, data->save_pos) < 
-	fast_distance(data->intersect, data->save_pos) + PREC2)
+	if (fast_distance(data->save_inter, data->save_pos) + PREC <
+	fast_distance(data->intersect, data->save_pos) &&
+	 dot(data->ray_dir,	data->save_dir) + PREC3 <= 0.0f)
 		data->test++;
 	return (0);
 }

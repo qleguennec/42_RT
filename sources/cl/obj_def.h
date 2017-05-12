@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/10 10:42:03 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:37:54 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 # ifndef M_PI
 # define M_PI 3.14f
 # endif
-# define PREC 0.01f
+# define PREC 0.03f
 # define PREC2 0.02f
-# define PREC3 0.0002f
+# define PREC3 0.2f
 # define AMBIANT 0.2f
-# define MAX_REFLECTION 10
+# define MAX_REFLECTION 1
 # define MAX_TRANSPARANCY 1
 # define FONT 0x000000FF
 
@@ -38,6 +38,7 @@ typedef struct		s_obj
 	float			specular;
 	float			reflex;
 	float			refrac;
+	short			shader;
 	float			shiness;
 	float			mshiness;
 	float3			offset;

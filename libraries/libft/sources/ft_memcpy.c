@@ -3,24 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/21 14:35:47 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/09 14:36:38 by qle-guen         ###   ########.fr       */
+/*   Created: 2015/11/25 10:00:20 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/01/16 15:59:31 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdint.h>
 
-void	*ft_memcpy(void *dst, const void *src, size_t len)
+#define INC(x)	d += x; s += x;
+
+static void	memcpy_carry(unsigned char *d, unsigned char *s, size_t n)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < len)
+	if (n & 16)
 	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-		i++;
+		*(unsigned long *)(d + 0) = *(unsigned long *)(s + 0);
+		*(unsigned long *)(d + 8) = *(unsigned long *)(s + 8);
+		INC(16);
 	}
-	return (dst);
+	if (n & 8)
+	{
+		*(unsigned long *)d = *(unsigned long *)s;
+		INC(8);
+	}
+	if (n & 4)
+	{
+		*(unsigned int *)d = *(unsigned int *)s;
+		INC(4);
+	}
+	if (n & 2)
+	{
+		*(unsigned short *)d = *(unsigned short *)s;
+		INC(2);
+	}
+	if (n & 1)
+		*d = *s;
+}
+
+void		*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	unsigned char		*d;
+	unsigned char		*s;
+
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	while (n && (uintptr_t)d % 8)
+	{
+		*d++ = *s++;
+		n--;
+	}
+	while (n >= 32)
+	{
+		*(unsigned long *)(d + 0) = *(unsigned long *)(s + 0);
+		*(unsigned long *)(d + 8) = *(unsigned long *)(s + 8);
+		*(unsigned long *)(d + 16) = *(unsigned long *)(s + 16);
+		*(unsigned long *)(d + 24) = *(unsigned long *)(s + 24);
+		INC(32);
+		n -= 32;
+	}
+	memcpy_carry(d, s, n);
+	return (dest);
 }

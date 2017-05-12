@@ -61,7 +61,7 @@ kernel void
 	direction.z = origin.z - cam->pos.z;
 	*(img_buffer + WIDTH * y + x) = -1;
 	// if ((x > XCENTER - 10 && y > YCENTER - 10 && x < XCENTER + 10 && y < YCENTER + 10))
-	// if ((x == XCENTER && y == YCENTER)) 
+	// if ((x == XCENTER && y == YCENTER))
 	// PRINT3(fast_normalize(direction),"direction");
 	calc_picture((DEBUG && ((x == XCENTER && y == YCENTER) || (x == XCENTER && y == YCENTER)))
 		, img_buffer + WIDTH * y + x

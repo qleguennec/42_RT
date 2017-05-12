@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 16:41:53 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/09 16:46:49 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/11 14:23:47 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	edit_begin_outliner(t_rt *rt, t_obj *nav)
 		nav = nav->next;
 	rt->scn->b_outliner = nav;
 	rt->ui->nav_state = (rt->scn->n_elms >= 12) ? 1 : 0;
+	if (rt->scn->n_elms <= 12)
+		rt->scn->b_outliner = rt->scn->o;
 }
 
 void		delete_current_element(t_rt *rt, t_cl *cl,

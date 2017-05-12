@@ -6,7 +6,7 @@
 /*   By: lgatibel <lgatibel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:37:37 by lgatibel          #+#    #+#             */
-/*   Updated: 2017/04/07 11:46:31 by lgatibel         ###   ########.fr       */
+/*   Updated: 2017/05/11 15:31:08 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct			s_data
 	float3				save_clr;
 
 	short				save_id;
+
 	short				through;
 	short				test;
 	float				light_pow;
@@ -57,6 +58,7 @@ void    		load(t_data *data);
 void			touch_object(t_data *data);
 void			touch_object2(t_data *data);
 void			calc_intersect(t_data *data);
+void 			set_offset(t_data *data, short *index);
 void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
  global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir,
   global t_cam *cam, short x, short y);
