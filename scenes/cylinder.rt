@@ -35,31 +35,15 @@
 	<type>Cylinder</type>
 	<material>Lambert</material>
 	<visibility>True</visibility>
-	<position>25.00 0.00 400.00</position>
-	<rotation>45.00 0.00 0.00</rotation>
+	<position>-3.00 0.00 400.00</position>
+	<rotation>23.50 82.00 -5.50</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>20.00</radius>
+	<radius>43.00</radius>
 	<width>50.00</width>
 	<height>40.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>.10</refraction>
+	<refraction>0.00</refraction>
 </object>
 
-<object>
-	<name>Cylinder</name>
-	<type>Cylinder</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>-25.00 0.00 400.00</position>
-	<rotation>-45.00 0.00 0.00</rotation>
-	<color-rgb>255.00 0.00 0.00</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>20.00</radius>
-	<width>50.00</width>
-	<height>40.00</height>
-	<lenght>50.00</lenght>
-	<reflection>.45</reflection>
-	<refraction>-.90</refraction>
-</object>

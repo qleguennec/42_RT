@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/08 19:05:13 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/09 11:48:33 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static int	execute(t_rt *rt, t_cl *cl, int fd)
 
 int			main(int ac, char **av)
 {
-	t_cl	cl;
-	t_rt	rt;
+	t_cl		cl;
+	t_rt		rt;
 
 	init_errors(&rt, 0);
 	if (init_structures(&rt) != 0)
