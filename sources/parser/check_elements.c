@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 01:19:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/11 17:35:12 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/12 18:05:04 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ int			check_scene(t_rt *rt)
 {
 	if (rt->scn->ambient < 0. || rt->scn->ambient > 1.)
 		return (error(rt, 11));
-	if (rt->scn->aa != 0 && rt->scn->aa != 2 && rt->scn->aa != 4
-		&& rt->scn->aa != 8 && rt->scn->aa != 16)
-		return (error(rt, 12));
 	if (rt->scn->m_ref < 0 || rt->scn->m_ref > 10)
 		return (error(rt, 13));
 	rt->prs->i += 8;

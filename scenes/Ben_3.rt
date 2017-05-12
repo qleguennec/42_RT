@@ -3,14 +3,13 @@
 <scene>
 	<name>420 blaze it</name>
 	<ambient>.20</ambient>
-	<anti-aliasing>4</anti-aliasing>
 	<max-reflexion>1</max-reflexion>
 </scene>
 
 <!------------ Camera(s) ------------->
 
 <camera>
-	<name>0123456789012345678</name>
+	<name>skyday</name>
 	<position>0.00 0.00 2.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<focal>55</focal>
