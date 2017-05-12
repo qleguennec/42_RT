@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#*   Updated: 2017/05/12 09:42:12 by qle-guen         ###   ########.fr       *#
+#*   Updated: 2017/05/12 16:31:22 by qle-guen         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ HEADER		= include \
 BENCHMARK_KRL	?=	0
 
 SOURCES		= \
-		cl_build/cl_copy_image_buffer.c \
+ 		cl_build/cl_copy_image_buffer.c \
 		cl_build/cl_main_krl_exec.c \
 		cl_build/cl_main_krl_init.c \
 		cl_build/cl_main_krl_update_buffers.c \
@@ -86,6 +86,7 @@ SOURCES		= \
 		gui/draw_selected_element.c \
 		gui/draw_selected_panel.c \
 		gui/draw_special_mode.c \
+		gui/init_buttons.c \
 		gui/init_structures.c \
 		gui/init_structures_selected_element.c \
 		gui/save_to_png.c \
@@ -131,17 +132,7 @@ SOURCES		= \
 		special_modes/sobel.c \
 		test/cl_test_krl.c \
 
-SUB_FOLDERS	= \
-	cl_build \
-	cluster \
-	export \
-	gui \
-	handle \
-	misc \
-	parser \
-	renderer \
-	special_modes \
-	test \
+SUB_FOLDERS	= test gui handle misc parser renderer special_modes cl_build export cluster
 
 BUILD_DIR	= $(addprefix $(DIR_O)/,$(SUB_FOLDERS))
 
