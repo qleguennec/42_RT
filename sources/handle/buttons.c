@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:56:06 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 17:23:01 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/12 18:24:10 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void		execute_button(t_rt *rt, int button, t_cl *cl)
 		add_new_light(rt, rt->prs->obj_tmp, T_DIRECTIONAL);
 	else if (button == 4 && (rt->n_info = 4) != 0)
 		add_new_light(rt, rt->prs->obj_tmp, T_SPOT);
-	else if (button >= 5 && button <= 10 && (rt->n_info = (button - 2)) != 0)
-		add_new_object(rt, rt->prs->obj_tmp, (button - 5));
+	else if (button >= 5 && button <= 10 && (rt->n_info = (button)) != 0)
+		add_new_object(rt, rt->prs->obj_tmp, (button - 4));
 	else if (button >= 11 && button <= 14 && (rt->n_info = (button + 2)) != 0)
 		add_new_shader(rt->scn->s_elem, (button - 11));
 	else if (button == 17 && (rt->n_info = 21) != 0)
