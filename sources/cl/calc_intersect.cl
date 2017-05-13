@@ -50,15 +50,11 @@ short			cone_intersection(t_data *data, short *index)
 	k = tan((data->objs[(int)*index].radius / 2.0f) * (float)(M_PI / 180.0f));
 	tanj = 1.0f + pow(k, 2);
 	rot = rotate_ray(data, index);
-
 	set_offset(data, index);
-
 	disc.x = dot(data->ray_dir, data->ray_dir) - (tanj *
 	pow(dot(data->ray_dir, rot), 2));
-
 	disc.y = dot(data->ray_dir, data->offset) - (tanj *
 		(dot(data->ray_dir, rot) * dot(data->offset, rot)));
-
 	disc.z = dot(data->offset, data->offset) - (tanj *
 	pow(dot(data->offset, rot), 2));
 	if (calc_delta(&disc, data) == -1)
@@ -118,7 +114,6 @@ short			cylinder_intersection(t_data *data, short *index)
 		if (m < 0.0f || m > data->objs[(int)*index].height)
 			return (cylinder_caps(data, &rot, index, m));
 	}
-	
 	calc_intersect(data);
 	return (1);
 }
