@@ -73,6 +73,5 @@ short			cone_caps(t_data *data, float3 *rot, short *index, float m);
 short			cylinder_caps(t_data *data, float3 *rot, short *index, float m);
 float3			rotate_cam(float3 rot);
 float3			calcul_normale(t_data *data);
-float3          get_obj_color(t_data *data);
 float3			rotate_ray(t_data *data, short *index);
 #endif

@@ -23,7 +23,7 @@
 # define AMBIANT 0.2f
 # define MAX_REFLECTION 1
 # define MAX_TRANSPARANCY 1
-# define FONT 0x000000FF
+# define FONT 0.0f
 
 # include "../../include/obj_types.h"
 
