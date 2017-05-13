@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 17:29:24 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/11 19:58:32 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:27:30 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ static void	redraw_case_box_light(t_rt *rt, t_obj *obj, int m)
 	if (rt->ui->case_active == 1)
 		D_C(rt, ft_itoa(obj->intensity), rt->ui->lgt_b_rect[1], m);
 	else if (rt->ui->case_active == 2)
-		D_C(rt, (obj->flare_v == 0) ? ft_strf("NO") : ft_strf("YES"),
-		rt->ui->lgt_b_rect[2], m);
+		D_C(rt, ft_strf("YES"), rt->ui->lgt_b_rect[2], m);
 	else if (rt->ui->case_active == 3)
 		D_C(rt, DTOA(R(obj->clr.x * 255.0f), 0, 1), rt->ui->lgt_b_rect[3], m);
 	else if (rt->ui->case_active == 4)

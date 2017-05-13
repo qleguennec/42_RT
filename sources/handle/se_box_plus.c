@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 15:37:50 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/13 12:18:30 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:39:48 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ static void	update_se_light_box(t_rt *rt)
 {
 	if (AC == 1 && S_ELEM->intensity < 50)
 		S_ELEM->intensity += 1;
-	else if (AC == 2 && S_ELEM->flare_v < 1)
-		S_ELEM->flare_v += 1;
 	else if (AC == 3 && S_ELEM->clr.x <= 0.9980f)
 		S_ELEM->clr.x = R((S_ELEM->clr.x + 0.0020f) * 1000) / 1000;
 	else if (AC == 4 && S_ELEM->clr.y <= 0.9980f)
@@ -125,5 +123,5 @@ void		update_se_box_plus(t_rt *rt, t_cl *cl)
 		cl_main_krl_update_camera(cl, rt->scn->c_cam);
 	else
 		cl_main_krl_update_buffers(cl, rt->scn);
-	rt->scn->redraw = 1;
+	//rt->scn->redraw = 1;
 }
