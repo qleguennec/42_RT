@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 18:43:50 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/06 00:05:53 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:07:28 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,5 @@ void		draw_panel(t_rt *rt, int p, int type)
 	draw_current_camera_name(rt, 2);
 	draw_info_bar(rt);
 	if (type == 0)
-		add_render_frame(rt);
+		rt->ui->test = 1;
 }

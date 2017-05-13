@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 19:30:48 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 11:29:45 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ struct				s_scene
 
 typedef struct		s_ui
 {
+	short			test;
 	short			t_c;
 	cl_float3		t_v;
 	cl_float3		t_v2;
