@@ -10,8 +10,8 @@
 
 <camera>
 	<name>skyday</name>
-	<position>0.00 0.00 2.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
+	<position>14.00 0.00 2.00</position>
+	<rotation>0.00 22.50 0.00</rotation>
 	<focal>55</focal>
 </camera>
 
@@ -23,7 +23,7 @@
 </camera>
 
 <camera>
-	<name>Camera 2</name>
+	<name>camera 2</name>
 	<position>0.00 0.00 2.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<focal>55</focal>
@@ -56,20 +56,20 @@
 <object>
 	<name>Sphere 2</name>
 	<type>Sphere</type>
-	<preset>No Preset</preset>
+	<preset>Sun</preset>
 	<visibility>True</visibility>
 	<position>-50.50 -55.00 394.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>130.00 80.00 25.00</color-rgb>
+	<color-rgb>130.05 130.05 127.50</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>104.00</radius>
+	<radius>90.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
-	<reflection>0.00</reflection>
+	<reflection>1.00</reflection>
 	<refraction>0</refraction>
 	<specular>0</specular>
-	<shader>2</shader>
+	<shader>1</shader>
 </object>
 
 <object>
@@ -138,6 +138,44 @@
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>127.50 127.50 127.50</color-rgb>
 	<opacity>1.00</opacity>
+	<width>50.00</width>
+	<height>50.00</height>
+	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
+</object>
+
+<object>
+	<name>Sphere 5</name>
+	<type>Sphere</type>
+	<preset>Moon</preset>
+	<visibility>True</visibility>
+	<position>5.00 0.00 65.50</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>253.98 211.14 205.53</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>7.00</radius>
+	<width>50.00</width>
+	<height>50.00</height>
+	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>0</refraction>
+	<specular>1</specular>
+	<shader>9</shader>
+</object>
+
+<object>
+	<name>Cylinder 1</name>
+	<type>Cylinder</type>
+	<preset>No Preset</preset>
+	<visibility>False</visibility>
+	<position>0.00 0.00 83.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>127.50 127.50 127.50</color-rgb>
+	<opacity>1.00</opacity>
+	<radius>4.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
