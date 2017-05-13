@@ -6,7 +6,7 @@
 #    By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 22:13:23 by bsouchet          #+#    #+#              #
-#    Updated: 2017/05/13 15:17:29 by bsouchet         ###   ########.fr        #
+#    Updated: 2017/05/13 17:15:02 by bsouchet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -145,13 +145,80 @@ opti:
 all: temporary $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(FSDL)
-	make -C $(LIBFT)
-	make -C $(LIBVECT)
-	make -C $(LIBGNL)
-	make -C $(LIBCL)
-	make -C $(LIBFMT)
-	$(CC) $(FLAGS) -L $(LIBFT) -lft -L $(FSDL) -lfsdl -lpthread -L $(LIBVECT) -lvect -L $(LIBFMT) -lfmt -L $(LIBGNL) -lgnl -L $(LIBCL) -lcl -o $@ $^ $(OPENCL_F) $(SDL2_P) $(SDL2_F) $(SDL2_I) $(SDL2_TTF_I) $(SDL2_IMG_I)
+	@make -C $(FSDL)
+	@make -C $(LIBFT)
+	@make -C $(LIBVECT)
+	@make -C $(LIBGNL)
+	@make -C $(LIBCL)
+	@make -C $(LIBFMT)
+	@echo "                           \033[34mcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\033[0m"
+	@echo "                          \033[34m/ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\033[0m"
+	@echo "                          \033[34mccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\033[0m"
+	@echo "                          \033[34mccccc\033[36m.................................................................\033[34m::ccccccccccccccccccccccccccccccc\033[0m"
+	@echo "                         \033[34m/ccccc\033[36m.........................................................................\033[34m:cccccccccccccccccccccccccccc\033[0m"
+	@echo "                         \033[34mccccc:\033[36m...............................................................................\033[34mccccccccccccccccccccccccc\033[0m"
+	@echo "                         \033[34mccccc\033[36m...................................................................................\033[34mcccccccccccccccccccccccc\033[0m"
+	@echo "                        \033[34m/ccccc\033[36m......................................................................................\033[34mooccccccccccccccccccccc\033[0m"
+	@echo "                        \033[34mcccccc\033[36m........................................................................................\033[34m:oooccccccccccccccccccc\033[0m"
+	@echo "                        \033[34mccccc\033[36m...........................................................................................\033[34mcooooccccccccccccccccc\033[0m"
+	@echo "                       \033[34m/ccccc\033[36m............................................................................................\033[34m:ooooooccccccccccccccc\033[0m"
+	@echo "                       \033[34mccccc:\033[36m..............................................................................................\033[34mooooooccccccccccccccc\033[0m"
+	@echo "                       \033[34mccccc\033[36m................................................................................................\033[34mooooooocccccccccccccc\033[0m"
+	@echo "                      \033[34m/ccccc\033[36m................................................................................................\033[34m:ooooooocccccccccccccc\033[0m"
+	@echo "                      \033[34mccccc:\033[36m..........................:::::::::::::::........................................................\033[34mcoooooocccccccccccccc\033[0m"
+	@echo "                      \033[34mccccc\033[36m...........................\033[34mooooooooooococcccccccccccccccccccc:\033[36m.....................................\033[34moooooooccccccccccccc\033[0m"
+	@echo "                     \033[34m/ccccc\033[36m..........................\033[34mcoooooooooocccccccccccccccccccccccccccc:\033[36m.................................\033[34mooooooooccccccccccccc\033[0m"
+	@echo "                     \033[34mccccc:\033[36m..........................\033[34mooooooooooccccccccccc      ~:ccccccccccccc\033[36m...............................\033[34mooooooooocccccccccccc\033[0m"
+	@echo "                     \033[34mccccc\033[36m..........................\033[34m:oooooooooocccccccccc               cccccccc:\033[36m.............................\033[34mooooooooocccccccccccc\033[0m"
+	@echo "                    \033[34m/cccc:\033[36m..........................\033[34moooooooooocccccccccc:                  ccccccc\033[36m............................\033[34mooooooooccccccccccccc\033[0m"
+	@echo "                    \033[34mccccc\033[36m...........................\033[34moooooooooccccccccccc                    :ccccc:\033[36m...........................\033[34mooooooooocccccccccccc\033[0m"
+	@echo "                    \033[34mccccc\033[36m..........................\033[34m:oooooooooccccccccccc                     ccccc:\033[36m...........................\033[34mooooooooocccccccccccc\033[0m"
+	@echo "                   \033[34m/ccccc\033[36m..........................\033[34moooooooooocccccccccc:                     ccccc:\033[36m...........................\033[34moooooooocccccccccccc\033[0m"
+	@echo "                   \033[34mccccc:\033[36m..........................\033[34moooooooooocccccccccc                     .ccccc\033[36m...........................\033[34mcoooooooocccccccccccc\033[0m"
+	@echo "                   \033[34mccccc\033[36m..........................\033[34mcoooooooooccccccccccc                     cccccc\033[36m...........................\033[34mooooooooccccccccccccc\033[0m"
+	@echo "                  \033[34m/cccc:\033[36m..........................\033[34moooooooooocccccccccc                     cccccc\033[36m...........................\033[34mooooooooccccccccccccc\033[0m"
+	@echo "                  \033[34mccccc\033[36m...........................\033[34moooooooooocccccccccc                   ccccccc\033[36m...........................\033[34mcooooooocccccccccccccc\033[0m"
+	@echo "                  \033[34mccccc\033[36m..........................\033[34m:ooooooooooccccccccc:                 cccccccc\033[36m............................\033[34mooooooocccccccccccccc\033[0m"
+	@echo "                 \033[34m/ccccc\033[36m..........................\033[34moooooooooooccccccccc               cccccccccc\033[36m............................\033[34mooooooocccccccccccccc\033[0m"
+	@echo "                 \033[34mccccc\033[36m...........................\033[34moooooooooooccccccccc      .:cccccccccccccc\033[36m..............................\033[34mooooooccccccccccccccc\033[0m"
+	@echo "                 \033[34mccccc\033[36m..........................\033[34moooooooooooocccccccccccccccccccccccccccc:\033[36m..............................\033[34m:ooooooccccccccccccccc\033[0m"
+	@echo "                \033[34m/cccc:\033[36m..........................\033[34mooooooooooooocccccccccccccccccccccc:\033[36m..................................\033[34m:ooooccocccccccccccccc\033[0m"
+	@echo "                \033[34mccccc\033[36m................................................................................................\033[34moooooccccccccccccccccc\033[0m"
+	@echo "                \033[34mccccc\033[36m..............................................................................................\033[34m:oooccccccccccccccccccc\033[0m"
+	@echo "               \033[34m/cccc\033[36m..............................................................................................\033[34moococccccccccccccccccc\033[0m"
+	@echo "               \033[34mccccc\033[36m...........................................................................................\033[34m:oococccccccccccccccccc\033[0m"
+	@echo "               \033[34mccccc\033[36m.........................................................................................\033[34mcoococcccccccccccccccccc\033[0m"
+	@echo "              \033[34m/cccc:\033[36m.......................................................................................\033[34mooococcccccccccccccccccc\033[0m"
+	@echo "              \033[34mccccc\033[36m.....................................................................................\033[34m:ooooccccccccccccccccccc\033[0m"
+	@echo "              \033[34mccccc\033[36m..................................................................................\033[34mcoooooocccccccccccccccccc\033[0m"
+	@echo "             \033[34m/cccc\033[36m................................................................................\033[34mooooooooocccccccccccccccc\033[0m"
+	@echo "             \033[34mccccc\033[36m...........................................................................\033[34m:oooooooooooocccccccccccccc\033[0m"
+	@echo "             \033[34mccccc\033[36m...........................................................................\033[34moooooooooooooccccccccccc\033[0m"
+	@echo "            \033[34m/cccc:\033[36m............................................................................\033[34mooooooooooooccccccccc\033[0m"
+	@echo "            \033[34mccccc\033[36m..........................\033[34m:ooooooooooococcccccccc\033[36m.............................\033[34mooooooooooocccccccccc\033[0m"
+	@echo "            \033[34mcccc:\033[36m..........................\033[34moooooooooooccccccccccccc\033[36m.............................\033[34mooooooooooocccccccccc\033[0m"
+	@echo "           \033[34m/cccc\033[36m...........................\033[34mooooooooooccccccccccccccc\033[36m.............................\033[34moooooooooooccccccccccc\033[0m"
+	@echo "           \033[34mccccc\033[36m..........................\033[34mooooooooooccccccccccccccccc\033[36m..............................\033[34mooooooooooccccccccccccccccc\033[0m"
+	@echo "           \033[34mcccc:\033[36m..........................\033[34mooooooooooccccccccc/ :ccccc:\033[36m..............................\033[34mooooooooooccccccccccccccccccccc\033[0m"
+	@echo "          \033[34m/cccc\033[36m...........................\033[34mooooooooooccccccccc   cccccc:\033[36m..............................\033[34mooooooooooccccccccccccccccccccc\033[0m"
+	@echo "          \033[34mccccc\033[36m..........................\033[34moooooooooccccccccccc    :cccccc\033[36m........................................\033[34m:cccccccccccccccccccc\033[0m"
+	@echo "          \033[34mcccc:\033[36m..........................\033[34mooooooooocccccccccc/     :ccccc:\033[36m........................................\033[34moocccccccccccccccccc\033[0m"
+	@echo "         \033[34m/cccc\033[36m..........................\033[34moooooooooocccccccccc       cccccc:\033[36m.......................................\033[34moooccccccccccccccccc\033[0m"
+	@echo "         \033[34mccccc\033[36m..........................\033[34moooooooooccccccccccc        :ccccc:\033[36m......................................\033[34moooocccccccccccccccc\033[0m"
+	@echo "         \033[34mcccc:\033[36m..........................\033[34mooooooooccccccccccc/         cccccc:\033[36m.....................................\033[34moooocccccccccccccccc\033[0m"
+	@echo "        \033[34m/cccc\033[36m..........................\033[34moooooooooccccccccccc           cccccc:\033[36m....................................\033[34moooocccccccccccccccc\033[0m"
+	@echo "        \033[34mccccc\033[36m..........................\033[34moooooooocccccccccccc            cccccc\033[36m....................................\033[34moooocccccccccccccccc\033[0m"
+	@echo "        \033[34mcccc:\033[36m.........................\033[34mcooooooocccccccccccc/             cccccc:\033[36m.................................\033[34mooooccccccccccccccccc\033[0m"
+	@echo "       \033[34m/cccc\033[36m..........................\033[34moooooccccccccccccccc               cccccc\033[36m................................\033[34mooocccccccccccccccccc\033[0m"
+	@echo "       \033[34mccccc\033[36m.........................\033[34mccocccccccccccccccccc                cccccc:\033[36m.............................\033[34moccoccccccccccccccccc\033[0m"
+	@echo "       \033[34mcccc:\033[36m.........................\033[34mcccccccccccccccccccc                  ccccccc\033[36m...........................\033[34mccccccccccccccccccccc\033[0m"
+	@echo "      \033[34m/cccc\033[36m..........................\033[34mcccccccccccccccccccc                   .cccccc\033[36m.......................\033[34mccccccccccccccccccccccc\033[0m"
+	@echo "      \033[34mcccc:\033[36m.........................\033[34m:ccccccccccccccccccc/                    .cccccccc\033[36m................\033[34m:cccccccccccccccccccccccc\033[0m"
+	@echo "     \033[34m.cccccccccccccccccccccccccccccccccccccccccccccccccc                      .ccccccccccccccccccccccccccccccccccccccccccccccc\033[0m"
+	@echo "     \033[34m.cccccccccccccccccccccccccccccccccccccccccccccccccc                       .cccccccccccccccccccccccccccccccccccccccccccc\033[0m"
+	@echo "     \033[34mCccccccccccccccccccccccccccccccccccccccccccccccccc/                        .ccccccccccccccccccccccccccccccccccccccc\033[0m"
+	@echo "     \033[34m.cccccccccccccccccccccccccccccccccccccccccccccccc/                          .ccccccccccccccccccccccccccccccccccc\033[0m\n\n"
+	@$(CC) $(FLAGS) -L $(LIBFT) -lft -L $(FSDL) -lfsdl -lpthread -L $(LIBVECT) -lvect -L $(LIBFMT) -lfmt -L $(LIBGNL) -lgnl -L $(LIBCL) -lcl -o $@ $^ $(OPENCL_F) $(SDL2_P) $(SDL2_F) $(SDL2_I) $(SDL2_TTF_I) $(SDL2_IMG_I)
 
 temporary: $(BUILD_DIR)
 

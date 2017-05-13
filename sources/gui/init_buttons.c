@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/12 15:43:42 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 15:45:22 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 16:04:56 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ static void	init_buttons_state(t_ui *ui)
 
 static void	disable_buttons(t_rt *rt)
 {
-	draw_button(rt, 3, 3);
-	draw_button(rt, 4, 3);
 	draw_button(rt, 6, 3);
 	draw_button(rt, 10, 3);
 	draw_button(rt, 11, 3);
