@@ -42,8 +42,6 @@ short			cone_intersection(t_data *data, short *index)
 	float3	disc;
 	float3	rot;
 	float	m;
-	float	m0;
-	float	m1;
 	float	tanj;
 	float	k;
 
@@ -59,25 +57,25 @@ short			cone_intersection(t_data *data, short *index)
 	pow(dot(data->offset, rot), 2));
 	if (calc_delta(&disc, data) == -1)
 	{
+		m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
 		if (data->objs[(int)*index].height > 0.0f)
 		{
 			m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
-			m0 = dot(data->ray_dir, rot * data->t0) + dot(rot, data->offset);
-			m1 = dot(data->ray_dir, rot * data->t1) + dot(rot, data->offset);
-			if (m > data->objs[(int)*index].height ||
-			 m < -data->objs[(int)*index].height)
-			return (cone_caps(data, &rot, index, m1));
+			if (m < 0.0f)
+				data->t = data->t0 > data->t1 ? data->t0 : data->t1;
+			if (m < 0.0f || m > data->objs[(int)*index].height)
+		 		return (cone_caps(data, &rot, index, m));
 		}
 		return (0);
 	}
 	if (data->objs[(int)*index].height > 0.0f)
 	{
 		m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
-		m0 = dot(data->ray_dir, rot * data->t0) + dot(rot, data->offset);
-		m1 = dot(data->ray_dir, rot * data->t1) + dot(rot, data->offset);
-		if ((m > data->objs[(int)*index].height ||
-		m < -data->objs[(int)*index].height) )
-	 	return (cone_caps(data, &rot, index, m1));
+		if (m < 0.0f)
+			data->t = data->t0 > data->t1 ? data->t0 : data->t1;
+		m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
+		if (m < 0.0f || m > data->objs[(int)*index].height)
+	 		return (cone_caps(data, &rot, index, m));
 	}
 	calc_intersect(data);
 	return (1);
@@ -93,7 +91,7 @@ short			cylinder_intersection(t_data *data, short *index)
 	set_offset(data, index);
 	disc.x = dot(data->ray_dir, data->ray_dir) -
 		dot(data->ray_dir, rot) * dot(data->ray_dir, rot);
-	disc.y = dot(data->ray_dir, data->offset) - 
+	disc.y = dot(data->ray_dir, data->offset) -
 		dot(data->ray_dir, rot) * dot(data->offset, rot);
 	disc.z = dot(data->offset, data->offset) -
 		dot(data->offset, rot) * dot(data->offset, rot) -
@@ -132,4 +130,3 @@ short			sphere_intersection(t_data *data, short *index)
 	calc_intersect(data);
 	return (1);
 }
-
