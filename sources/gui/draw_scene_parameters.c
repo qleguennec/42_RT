@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 18:46:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 18:27:08 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 11:00:57 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void		redraw_aa(t_rt *rt)
 	{
 		tmp = ft_itoa(rt->scn->aa);
 		draw_parameter_static(rt, tmp, (rt->ui->area[3].y + 30), 0);
-		add_render_frame(rt);
 	}
-	add_render_frame(rt);
 }
 
 void		draw_scene_parameters(t_rt *rt)

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:56:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 19:47:40 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 10:40:25 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,25 +85,25 @@ void		add_new_shader(t_obj *obj, short type)
 	obj->preset = type;
 	if (type == 0)
 	{
-		obj->clr = (cl_float3){{(130. / 255.), (80. / 255.), (25. / 255.), 1.0f}};
+		obj->clr = (cl_float3){{0.51, 0.314, 0.098, 1.0f}};
 		obj->radius = 40;
 		obj->shader = 22;
 	}
 	else if (type == 1)
 	{
-		obj->clr = (cl_float3){{(130. / 255.), (130. / 255.), (129. / 255.), 1.0f}};
+		obj->clr = (cl_float3){{0.51, 0.51, 0.50, 1.0f}};
 		obj->radius = 90;
 		obj->shader = 2;
 	}
 	else if (type == 2)
 	{
-		obj->clr = (cl_float3){{(253. / 255.), 1.0f, 1.0f, 1.0f}};
+		obj->clr = (cl_float3){{0.992, 1.0f, 1.0f, 1.0f}};
 		obj->radius = 25;
 		obj->shader = 20;
 	}
 	else if (type == 3)
 	{
-		obj->clr = (cl_float3){{(138.72 / 255.), (124.44 / 255.), (129. / 255.), 1.0f}};
+		obj->clr = (cl_float3){{0.544, 0.488, 0.5058, 1.0f}};
 		obj->radius = 75;
 		obj->shader = 12;
 	}

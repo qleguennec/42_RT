@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 17:08:04 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 16:55:10 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 10:49:32 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	hide_object_scene(t_rt *rt, t_cl *cl)
 	draw_outliner_element(rt, rt->scn->s_elem, 1);
 	cl_main_krl_update_buffers(cl, rt->scn);
 	cl_main_krl_exec(cl, &rt->scn->aa);
-	redraw_aa(rt);
 	cl_copy_image_buffer(cl, rt->s_rend->pixels);
 	add_render_frame(rt);
 	draw_info_bar(rt);
