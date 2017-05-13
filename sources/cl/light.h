@@ -15,7 +15,6 @@
 # define SPECUL 0.75f
 # define POW_SPECUL 250
 # include "calc.h"
-# include "obj_def.h"
 
 void		get_color(t_data *data);
 float		my_dot(float3 v1, float3 v2);
