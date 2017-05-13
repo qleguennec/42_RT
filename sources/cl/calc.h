@@ -24,7 +24,6 @@ typedef struct			s_data
 	short				n_lgts;
 	float3				ray_pos;
 	float3				ray_dir;
-
 	float3				intersect;
 	float3				save_pos;
 	float3				save_dir;
@@ -32,7 +31,6 @@ typedef struct			s_data
 	float3				save_clr;
 	short				save_id;
 	short				save_t;
-
 	short				through;
 	short				test;
 	float				light_pow;

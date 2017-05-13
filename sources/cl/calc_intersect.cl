@@ -67,7 +67,7 @@ short			cone_intersection(t_data *data, short *index)
 		return (0);
 	}
 	if (data->objs[(int)*index].height > 0.0f)
-	{
+	{ 
 		m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
 		if (m < 0.0f)
 			data->t = data->t0 > data->t1 ? data->t0 : data->t1;
