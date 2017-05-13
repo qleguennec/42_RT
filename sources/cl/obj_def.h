@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 10:34:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/13 16:19:26 by erodrigu         ###   ########.fr       */
+/*   Updated: 2017/05/13 16:31:18 by erodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 #  define M_PI 3.14f
 # endif
 # define PREC 0.02f
-# define PREC2 0.02f
-# define PREC3 0.2f
-# define PREC4 0.02f
-# define PREC_REFLEX 0.02f
-# define PREC_DIST 0.02f
 # define AMBIANT 0.2f
 # define MAX_REFLECTION 1
 # define MAX_TRANSPARANCY 1

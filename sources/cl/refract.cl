@@ -14,7 +14,7 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 		data->ray_pos = data->intersect + data->ray_dir;
 	}
 	if ((data->id == data->through &&
-		fast_distance(save_intersect, lgt->pos) < 
+		fast_distance(save_intersect, lgt->pos) <
 		fast_distance(data->intersect, lgt->pos) + PREC))
 	{
 		data->clr = get_obj_color(data);
@@ -23,8 +23,8 @@ static float3		transparancy_is_light(t_data *data, float3 lightdir, global t_lgt
 		if (data->objs[data->id].specular != 0.0f)
 			light_clr += is_shining(data->normale, -lightdir, lgt->clr);
 		return (light_clr);
-	} 
-	if (fast_distance(save_intersect, data->save_pos) < 
+	}
+	if (fast_distance(save_intersect, data->save_pos) <
 	fast_distance(data->intersect, data->save_pos)+ PREC )
 		data->test++;
 	return (0);
@@ -66,14 +66,14 @@ void 	clearness_color(t_data *data)
 		return ;
 	if (data->id == data->save_id)
 	{
-		data->ray_pos = data->intersect + data->ray_dir * PREC2;
+		data->ray_pos = data->intersect + data->ray_dir * PREC;
 		if (data->objs[data->id].refrac > 0.0f)
 			data->ray_dir = calcul_refract_ray(data, 1.0f, 1.43f);
 		touch_object(data);
 	}
 	if (data->id == data->save_id)
 	{
-		data->ray_pos = data->intersect + data->ray_dir * PREC3;
+		data->ray_pos = data->intersect + data->ray_dir * PREC;
 		if (data->objs[data->id].refrac > 0.0f)
 			data->ray_dir = calcul_refract_ray(data, 1.43f, 1.0f);
 		touch_object(data);
@@ -81,7 +81,7 @@ void 	clearness_color(t_data *data)
 	if (data->id < 0)
 	{
 		data->rd_light += get_font_color(data, &data->light_refract_pow);
-		return ;	
+		return ;
 	}
 	data->normale = calcul_normale(data);
 	data->through = data->id;

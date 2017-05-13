@@ -8,7 +8,7 @@ static float3		reflex_is_light(t_data *data, float3 lightdir,
 	touch_object(data);
 	if ((data->id == data->save_id &&
 		fast_distance(data->save_inter, lgt->pos) <
-		fast_distance(data->intersect, lgt->pos) + PREC_REFLEX))
+		fast_distance(data->intersect, lgt->pos) + PREC))
 	{
 		data->nl++;
 		light_clr = calcul_clr(-lightdir, data->normale, lgt->clr *
@@ -18,7 +18,7 @@ static float3		reflex_is_light(t_data *data, float3 lightdir,
 		return (light_clr);
 	}
 	if (fast_distance(data->save_inter, data->save_pos) <
-	fast_distance(data->intersect, data->save_pos) + PREC_REFLEX)
+	fast_distance(data->intersect, data->save_pos) + PREC)
 		data->test++;
 	return (0);
 }
@@ -60,7 +60,7 @@ void	calcul_reflex_ray(t_data *data)
 	if (data->light_reflex_pow >= 0.0f)
 	{
 	data->normale = calcul_normale(data);
-	data->ray_pos = data->intersect;
+	data->ray_pos = data->intersect - PREC * data->ray_dir;
 	data->ray_dir = fast_normalize(data->ray_dir - (2.0f * data->normale *
 	dot(data->normale, data->ray_dir)));
 	touch_object(data);
