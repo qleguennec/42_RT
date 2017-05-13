@@ -66,7 +66,7 @@ short			cone_intersection(t_data *data, short *index)
 			m1 = dot(data->ray_dir, rot * data->t1) + dot(rot, data->offset);
 			if (m > data->objs[(int)*index].height ||
 			 m < -data->objs[(int)*index].height)
-			return (cone_caps(data, &rot, index, m));
+			return (cone_caps(data, &rot, index, m1));
 		}
 		return (0);
 	}
@@ -77,7 +77,7 @@ short			cone_intersection(t_data *data, short *index)
 		m1 = dot(data->ray_dir, rot * data->t1) + dot(rot, data->offset);
 		if ((m > data->objs[(int)*index].height ||
 		m < -data->objs[(int)*index].height) )
-	 	return (cone_caps(data, &rot, index, m));
+	 	return (cone_caps(data, &rot, index, m1));
 	}
 	calc_intersect(data);
 	return (1);
