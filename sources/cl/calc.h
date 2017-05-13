@@ -12,6 +12,7 @@
 
 #ifndef CALC_H
 # define CALC_H
+# include "./obj_def.h"
 
 typedef struct			s_data
 {
@@ -55,22 +56,23 @@ typedef struct			s_data
 	float				t1;
 }						t_data;
 
-void   			save(t_data *data);
-void    		load(t_data *data);
+void			save(t_data *data);
+void			load(t_data *data);
 void			touch_object(t_data *data);
 void			touch_object2(t_data *data);
 void			calc_intersect(t_data *data);
-void 			set_offset(t_data *data, short *index);
-void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
- global t_lgt *lgts, short nobjs, short nlgts, float3 ray_pos, float3 ray_dir,
-  global t_cam *cam, short x, short y);
+void			set_offset(t_data *data, short *index);
+void			calc_picture(int debug, global unsigned int *pixel,
+	global t_obj *objs, global t_lgt *lgts, short nobjs, short nlgts,
+	float3 ray_pos, float3 ray_dir, global t_cam *cam, short x, short y);
 float			calc_delta(float3 *disc, t_data *data);
 short			cone_intersection(t_data *data, short *index);
 short			plane_intersection(t_data *data, short *index);
 short			sphere_intersection(t_data *data, short *index);
 short			cylinder_intersection(t_data *data, short *index);
 short			cone_caps(t_data *data, float3 *rot, short *index, float m);
-short			cylinder_caps(t_data *data, float3 *rot, short *index, float m);
+short			cylinder_caps(t_data *data, float3 *rot, short *index,
+	float m);
 float3			rotate_cam(float3 rot);
 float3			calcul_normale(t_data *data);
 float3			rotate_ray(t_data *data, short *index);
