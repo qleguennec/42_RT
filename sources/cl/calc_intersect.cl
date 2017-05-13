@@ -41,7 +41,6 @@ short			cone_intersection(t_data *data, short *index)
 {
 	float3	disc;
 	float3	rot;
-	// float	res;
 	float	m;
 	float	m0;
 	float	m1;
