@@ -58,7 +58,7 @@
 	<type>Sphere</type>
 	<preset>No Preset</preset>
 	<visibility>True</visibility>
-	<position>-50.50 -55.00 394.50</position>
+	<position>5.50 -55.00 394.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>130.00 80.00 25.00</color-rgb>
 	<opacity>1.00</opacity>
