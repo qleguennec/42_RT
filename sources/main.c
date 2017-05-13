@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 17:38:13 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/13 12:29:51 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 15:47:11 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,10 @@ static int	check(t_rt *rt, int end)
 
 static int	execute(t_rt *rt, t_cl *cl, int fd)
 {
+	rt->prs->copy = 1;
 	if (!(rt->prs->buf = (char *)malloc(sizeof(char))))
 		return (error(rt, 0));
 	rt->prs->buf[0] = 0;
-	rt->prs->line = (char *)malloc(sizeof(char) + 1);
-	rt->prs->line[0] = ' ';
-	rt->prs->line[1] = 0;
 	while (get_next_line(fd, &rt->prs->line) > 0)
 		if ((rt->prs->line =
 		clear_line(rt->prs, rt->prs->line, 0, -1)) != NULL)

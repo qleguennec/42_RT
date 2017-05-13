@@ -131,7 +131,7 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		data.rd_light = get_font_color(&data, &data.light_pow);
 		*pixel = calcul_rendu_light(&data);
 	}
-	
+
 	// if (cam->skytype == CAM_SKYDAY)
 	// {
 	// 	data.rd_light = twocolor_lerp((float3){240.0/255, 240.0/255, 240.0/255},

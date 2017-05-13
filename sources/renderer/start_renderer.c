@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/13 12:37:50 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 15:49:06 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			lol_cat(void *data, SDL_Event *event)
 		if (((t_rt *)data)->ui->case_active != -1)
 			((t_rt *)data)->scn->redraw = 1;
 	}
-	if (event->type == 0x402 /*&& ((t_rt *)data)->ui->case_active != -1*/)
+	if (event->type == 0x402)
 		((t_rt *)data)->scn->redraw = 1;
 	return (1);
 }
