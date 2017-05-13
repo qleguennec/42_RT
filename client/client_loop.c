@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 13:49:49 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/11 14:00:29 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 09:54:52 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ void
 	size_t	data_size;
 
 	if ((ret = recv(sockfd, &cmd, 1, 0)) != 1)
+	{
+		perror("recv");
 		return ;
+	}
 	data->used = 0;
 	if ((ret = recv(sockfd, &data_size, 8, 0)) <= 0)
 		return ;

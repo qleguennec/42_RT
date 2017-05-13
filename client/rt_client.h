@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 12:10:27 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/13 08:08:08 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 09:55:11 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@
 # include "libcl/libcl.h"
 # include "../include/parameters.h"
 
-// TODO remove debug includes
-# include <stdio.h>
-# include <assert.h>
-
 typedef struct		s_cl
 {
 	t_cl_info		info;
@@ -42,8 +38,8 @@ typedef struct		s_cl
 	cl_float2		offs;
 }					t_cl;
 
-void				client_loop(int sockfd , t_vect *data , t_cl *cl); 
-int					client_init(char *host_ip , int port);
+void				client_loop(int sockfd, t_vect *data, t_cl *cl);
+int					client_init(char *host_ip);
 bool				cl_main_krl_init(t_cl *cl);
 bool				cl_main_krl_exec(t_cl *cl);
 

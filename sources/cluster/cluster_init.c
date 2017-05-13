@@ -6,14 +6,13 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 14:50:25 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/13 08:27:50 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 09:53:48 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cluster.h"
 #include "parameters.h"
-
-#define MAX_CLIENTS 16
+#include "libfmt.h"
 
 void
 	*accept_routine
@@ -26,7 +25,7 @@ void
 
 	self = arg;
 	nclients = 0;
-	while (nclients < MAX_CLIENTS)
+	while (nclients < CLUSTER_MAX_CLIENTS)
 	{
 		fd = accept(self->sockfd, NULL, NULL);
 		nclients++;
@@ -44,18 +43,26 @@ int
 	cluster_init
 	(t_cl *cl)
 {
+	int					ret;
+	int					port_offs;
 	struct sockaddr_in	self_addr;
 
 	if ((cl->sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
-		perror("socket");
+		return (ERR("cant create socket", 0, 0));
 	setsockopt(cl->sockfd, SOL_SOCKET, SO_REUSEADDR, NULL, 4);
+	ft_bzero(&self_addr, sizeof(self_addr));
 	self_addr.sin_family = AF_INET;
 	self_addr.sin_port = CLUSTER_PORT;
 	self_addr.sin_addr.s_addr = INADDR_ANY;
-	while (bind(cl->sockfd, (void *)&self_addr, sizeof(self_addr)) == -1)
-		self_addr.sin_port++;
+	port_offs = 0;
+	while (port_offs <= 5 && (ret = bind(cl->sockfd
+		, (void *)&self_addr, sizeof(self_addr))) == -1)
+		self_addr.sin_port = CLUSTER_PORT + ++port_offs;
+	if (ret == -1)
+		return (ERR("bind error, all ports used", 0, 0));
+	printf("PORT %d\n", self_addr.sin_port);
 	if (listen(cl->sockfd, CLUSTER_MAX_CLIENTS) == -1)
-		perror("listen");
+		return (ERR("listen error", 0, 0));
 	pthread_create(&cl->accept_thread, NULL, &accept_routine, cl);
 	return (0);
 }

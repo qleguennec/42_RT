@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:35:11 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 20:49:55 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 09:28:18 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,8 @@
 
 # define DTOA			ft_dtoa
 
-# define CLUSTER_PORT 4242
-# define CLUSTER_MAX_CLIENTS 64
-# define CLIENT_MINCAPA 100
-# define CLIENT_MAXCAPA 10000000
+# define CLUSTER_PORT 60000
+# define CLUSTER_MAX_CLIENTS 16
 # define CLIENT_CAM_OK 1
 # define CLIENT_LGT_OK 2
 # define CLIENT_OBJ_OK 4
