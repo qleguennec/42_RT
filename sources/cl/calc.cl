@@ -28,6 +28,7 @@
 #include "shiness.cl"
 #include "light.h"
 #include "color.cl"
+#include "get_font_color.cl"
 
 float			calc_delta(float3 *disc, t_data *data)
 {
@@ -122,23 +123,26 @@ void			calc_picture(int debug, global unsigned int *pixel, global t_obj *objs,
 		data.rd_light = data.objs[data.id].clr;
 		*pixel = calcul_rendu_light(&data);
 	}
-	else
-	if (COLOR && data.id > -1)
+	else if (COLOR && data.id > -1)
 	{
 		*pixel = get_lighting(&data);
 	}
-	else if (cam->skytype == CAM_SKYDAY)
-	{
-		data.rd_light = twocolor_lerp((float3){240.0/255, 240.0/255, 240.0/255},
-		(float3){0.4235, 0.851, 0.98}, perlin(OCTAVE, FREQUENCY, PERSIS,
-			data.ray_dir * 100.0f));
-		*pixel = calcul_rendu_light(&data);
-	}
-	else if (cam->skytype == CAM_SKYNIGHT)
-	{
-		data.rd_light = get_font(data.ray_dir);
-		*pixel = calcul_rendu_light(&data);
-	}
 	else
-		*pixel = FONT;
+	{
+		data.rd_light = get_font_color(&data, &data.light_pow);
+		*pixel = calcul_rendu_light(&data);
+	}
+	
+	// if (cam->skytype == CAM_SKYDAY)
+	// {
+	// 	data.rd_light = twocolor_lerp((float3){240.0/255, 240.0/255, 240.0/255},
+	// 	(float3){0.4235, 0.851, 0.98}, perlin(OCTAVE, FREQUENCY, PERSIS,
+	// 		data.ray_dir * 100.0f));
+	// 	*pixel = calcul_rendu_light(&data);
+	// }
+	// else if (cam->skytype == CAM_SKYNIGHT)
+	// {
+	// 	data.rd_light = get_font(data.ray_dir);
+	// 	*pixel = calcul_rendu_light(&data);
+	// }
 }
