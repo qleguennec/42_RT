@@ -28,7 +28,7 @@
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>True</visibility>
-	<flare-visibility>True</flare-visibility>
+	<flare-visibility>False</flare-visibility>
 	<position>0.00 0.00 20.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
@@ -38,7 +38,7 @@
 	<name>Prout2</name>
 	<type>Spot</type>
 	<visibility>True</visibility>
-	<flare-visibility>True</flare-visibility>
+	<flare-visibility>False</flare-visibility>
 	<position>8.50 0.00 20.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
@@ -53,8 +53,8 @@
 	<visibility>True</visibility>
 	<position>-50.50 -55.00 390.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>130.00 130.00 129.00</color-rgb>
-	<opacity>0.00</opacity>
+	<color-rgb>130.05 130.05 127.50</color-rgb>
+	<opacity>1.00</opacity>
 	<radius>90.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
@@ -70,9 +70,9 @@
 	<type>Sphere</type>
 	<preset>Earth</preset>
 	<visibility>True</visibility>
-	<position>30.00 62.00 99.00</position>
+	<position>30.00 62.00 155.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>130.00 80.00 25.00</color-rgb>
+	<color-rgb>130.00 80.00 9.18</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>40.00</radius>
 	<width>50.00</width>
@@ -81,7 +81,7 @@
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>
 	<specular>0</specular>
-	<shader>11</shader>
+	<shader>10</shader>
 </object>
 
 <object>
@@ -89,36 +89,17 @@
 	<type>Sphere</type>
 	<preset>No Preset</preset>
 	<visibility>True</visibility>
-	<position>-25.00 0.00 150.50</position>
+	<position>36.00 0.00 166.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>252.96 255.00 255.00</color-rgb>
 	<opacity>1.00</opacity>
-	<radius>4.00</radius>
+	<radius>10.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
 	<reflection>0.00</reflection>
 	<refraction>0</refraction>
 	<specular>0</specular>
-	<shader>1</shader>
-</object>
-
-<object>
-	<name>Sphere 8</name>
-	<type>Sphere</type>
-	<preset>Moon</preset>
-	<visibility>False</visibility>
-	<position>13.50 -5.00 89.50</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>253.00 255.00 255.00</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>25.00</radius>
-	<width>50.00</width>
-	<height>50.00</height>
-	<lenght>50.00</lenght>
-	<reflection>0.00</reflection>
-	<refraction>0</refraction>
-	<specular>0</specular>
-	<shader>10</shader>
+	<shader>11</shader>
 </object>
 
