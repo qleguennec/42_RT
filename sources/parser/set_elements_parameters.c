@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 15:13:44 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 19:35:55 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:32:49 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,10 @@
 
 static void	set_default_parameters_part2(t_obj *obj)
 {
-	obj->shiness = 0.0;
-	obj->mshiness = 0.0;
 	obj->reflex = 0.0;
 	obj->refrac = 0;
 	obj->shader = 0;
 	obj->specular = 0;
-	obj->texture = NULL;
-	obj->p_texture = -1;
 	obj->r_ol = (SDL_Rect){0, 0, 0, 0};
 }
 
@@ -42,7 +38,6 @@ t_obj		*set_default_parameters(t_obj *obj, char type, int title)
 	obj->height = 50.0;
 	obj->preset = -1;
 	obj->visibility = 1;
-	obj->flare_v = 1;
 	obj->intensity = 10.;
 	set_default_parameters_part2(obj);
 	return (obj);
@@ -50,15 +45,11 @@ t_obj		*set_default_parameters(t_obj *obj, char type, int title)
 
 static void	set_element_parameters_part2(t_obj *obj, t_obj *tmp)
 {
-	obj->shiness = tmp->shiness;
-	obj->mshiness = tmp->shiness;
 	obj->preset = tmp->preset;
 	obj->reflex = tmp->reflex;
 	obj->refrac = tmp->refrac;
 	obj->specular = tmp->specular;
 	obj->shader = tmp->shader;
-	obj->texture = tmp->texture;
-	obj->p_texture = tmp->p_texture;
 }
 
 t_obj		*set_element_parameters(t_obj *obj, t_obj *tmp, char t, int title)
@@ -79,7 +70,6 @@ t_obj		*set_element_parameters(t_obj *obj, t_obj *tmp, char t, int title)
 	obj->width = tmp->width;
 	obj->height = tmp->height;
 	obj->visibility = tmp->visibility;
-	obj->flare_v = tmp->flare_v;
 	obj->intensity = tmp->intensity;
 	set_element_parameters_part2(obj, tmp);
 	return (obj);

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 19:02:51 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/13 10:49:35 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:28:13 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void		redraw_current_element(t_rt *rt, t_cl *cl, char *str)
 	(rt->ui->b_state[15] == 2) ? draw_outliner(rt, -1, 0) : 1;
 	draw_selected_element(rt);
 	cl_main_krl_update_buffers(cl, rt->scn);
-	cl_main_krl_exec(cl, &rt->scn->aa);
-	cl_copy_image_buffer(cl, rt->s_rend->pixels);
-	add_render_frame(rt);
+	rt->scn->redraw = 1;
 	draw_info_bar(rt);
 	free(rt->ui->tmp);
 	draw_current_camera_name(rt, 1);
@@ -68,7 +66,7 @@ void		draw_selected_light(t_rt *rt, t_obj *obj)
 		ft_strf("Directionnal") : ft_strf("Spot");
 	D_P(rt, tmp, (SDL_Rect){1147, 133, 111, 21}, 1);
 	D_P(rt, ft_itoa(obj->intensity), rt->ui->lgt_b_rect[1], 2);
-	tmp = (obj->flare_v == 0) ? ft_strf("NO") : ft_strf("YES");
+	tmp = ft_strf("NO");
 	D_P(rt, tmp, rt->ui->lgt_b_rect[2], 2);
 	D_P(rt, ft_dtoa(obj->clr.x * 255.0f, 0, 1), rt->ui->lgt_b_rect[3], 2);
 	D_P(rt, ft_dtoa(obj->clr.y * 255.0f, 0, 1), rt->ui->lgt_b_rect[4], 2);

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 19:30:48 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:24:46 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,11 @@ typedef struct		s_obj
 	cl_float		width;
 	cl_float		height;
 	cl_short		visibility;
-	cl_short		flare_v;
 	cl_float		intensity;
-	cl_float		shiness;
-	cl_float		mshiness;
 	cl_short		specular;
 	cl_float		reflex;
 	cl_short		refrac;
 	cl_short		shader;
-	cl_short		p_texture;
-	SDL_Surface		*texture;
 	SDL_Rect		r_ol;
 	struct s_obj	*next;
 }					t_obj;
@@ -77,6 +72,7 @@ typedef struct		s_parser
 
 struct				s_scene
 {
+	cl_short		redraw;
 	cl_short		aa;
 	cl_float		ambient;
 	cl_short		m_ref;
@@ -150,7 +146,6 @@ struct				s_rt
 {
 	char			*filename;
 	char			*w_title;
-	char			verbose;
 	char			**err;
 	char			**inf;
 

@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 22:06:23 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/02/23 20:06:45 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:26:43 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		export_light(t_obj *light, int fd)
 	(light->visibility == 1) ? write(fd, "True", 4) : write(fd, "False", 5);
 	write(fd, "</visibility>\n", 14);
 	write(fd, "\t<flare-visibility>", 19);
-	(light->flare_v == 1) ? write(fd, "True", 4) : write(fd, "False", 5);
+	write(fd, "False", 5);
 	write(fd, "</flare-visibility>\n", 20);
 	export_light_part2(light, fd);
 }

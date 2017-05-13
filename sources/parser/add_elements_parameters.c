@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 14:58:09 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 19:27:44 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:33:23 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int			add_light_parameters(t_rt *rt, t_obj *obj, int b_end, int e)
 		else if (e > -1 && (e = check_tags(rt, BO_I, BC_I)) > 1 && ++p->t[6])
 			(get_d(rt, e, BO_I, BC_I)) ? (obj->intensity = p->t_d) : i(&e, -1);
 		else if (e > -1 && (e = check_tags(rt, BO_F, BC_F)) > 1 && ++p->t[13])
-			(get_b(rt, e, BO_F, BC_F)) ? (obj->flare_v = p->t_i) : i(&e, -1);
+			(get_b(rt, e, BO_F, BC_F)) ? 1 : i(&e, -1);
 		else if (e > -1 && s(&rt->prs->b_o, BO_L) && (rt->prs->b_c = BC_L))
 			return (error(rt, 10));
 	}
