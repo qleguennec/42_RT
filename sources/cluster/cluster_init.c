@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 14:50:25 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/13 09:53:48 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 09:56:53 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int
 		self_addr.sin_port = CLUSTER_PORT + ++port_offs;
 	if (ret == -1)
 		return (ERR("bind error, all ports used", 0, 0));
-	printf("PORT %d\n", self_addr.sin_port);
 	if (listen(cl->sockfd, CLUSTER_MAX_CLIENTS) == -1)
 		return (ERR("listen error", 0, 0));
 	pthread_create(&cl->accept_thread, NULL, &accept_routine, cl);
