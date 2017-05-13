@@ -21,7 +21,7 @@
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>True</visibility>
-	<flare-visibility>True</flare-visibility>
+	<flare-visibility>False</flare-visibility>
 	<position>100.00 0.00 100.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
@@ -31,7 +31,7 @@
 	<name>Prout</name>
 	<type>Spot</type>
 	<visibility>True</visibility>
-	<flare-visibility>True</flare-visibility>
+	<flare-visibility>False</flare-visibility>
 	<position>-100.00 0.00 100.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
@@ -41,7 +41,7 @@
 	<name>Prout</name>
 	<type>Spot</type>
 	<visibility>True</visibility>
-	<flare-visibility>True</flare-visibility>
+	<flare-visibility>False</flare-visibility>
 	<position>0.00 0.00 0.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
@@ -51,7 +51,7 @@
 	<name>Prout</name>
 	<type>Spot</type>
 	<visibility>True</visibility>
-	<flare-visibility>True</flare-visibility>
+	<flare-visibility>False</flare-visibility>
 	<position>0.00 100.00 0.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
@@ -65,7 +65,7 @@
 	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>35.00 0.00 300.00</position>
-	<rotation>-45.00 0.00 0.00</rotation>
+	<rotation>224.50 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
 	<opacity>1.00</opacity>
 	<radius>88.00</radius>
@@ -82,7 +82,7 @@
 	<name>Cone 1</name>
 	<type>Cone</type>
 	<preset>No Preset</preset>
-	<visibility>True</visibility>
+	<visibility>False</visibility>
 	<position>-35.00 0.00 300.00</position>
 	<rotation>40.00 0.00 0.00</rotation>
 	<color-rgb>255.00 0.00 0.00</color-rgb>
@@ -96,3 +96,4 @@
 	<specular>0</specular>
 	<shader>0</shader>
 </object>
+
