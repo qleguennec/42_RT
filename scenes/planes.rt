@@ -1,198 +1,172 @@
 <!--------- Global Settings ---------->
-
 <scene>
-	<name>420 blaze it</name>
-	<ambient>.20</ambient>
-	<anti-aliasing>2</anti-aliasing>
-	<max-reflexion>1</max-reflexion>
+    <name>420 blaze it</name>
+    <ambient>.20</ambient>
+    <max-reflexion>1</max-reflexion>
 </scene>
-
 <!------------ Camera(s) ------------->
-
 <camera>
-	<name>0123456789012345678</name>
-	<position>0.00 0.00 0.00</position>
-	<rotation>0.00 0.00 1.00</rotation>
-	<focal>55</focal>
+    <name>0123456789012345678</name>
+    <position>0.00 0.00 0.00</position>
+    <rotation>0.00 0.00 1.00</rotation>
+    <focal>55</focal>
 </camera>
-
 <!------------ Light(s) -------------->
-
 <light>
-	<name>Point 1</name>
-	<type>Diffuse</type>
-	<visibility>False</visibility>
-	<flare-visibility>True</flare-visibility>
-	<position>0.00 0.00 150.00</position>
-	<color-rgb>255.00 250.00 250.00</color-rgb>
-	<intensity>5.00</intensity>
+    <name>Point 1</name>
+    <type>Diffuse</type>
+    <visibility>True</visibility>
+    <flare-visibility>True</flare-visibility>
+    <position>0.00 0.00 150.00</position>
+    <color-rgb>255.00 250.00 250.00</color-rgb>
+    <intensity>5.00</intensity>
 </light>
-
 <light>
-	<name>Point 1</name>
-	<type>Spot</type>
-	<visibility>False</visibility>
-	<flare-visibility>True</flare-visibility>
-	<position>10.00 0.00 150.00</position>
-	<color-rgb>255.00 250.00 250.00</color-rgb>
-	<intensity>5.00</intensity>
+    <name>Point 1</name>
+    <type>Spot</type>
+    <visibility>False</visibility>
+    <flare-visibility>True</flare-visibility>
+    <position>10.00 0.00 150.00</position>
+    <color-rgb>255.00 250.00 250.00</color-rgb>
+    <intensity>5.00</intensity>
 </light>
-
 <light>
-	<name>Point 1</name>
-	<type>Spot</type>
-	<visibility>False</visibility>
-	<flare-visibility>True</flare-visibility>
-	<position>20.00 0.00 0.00</position>
-	<color-rgb>255.00 250.00 250.00</color-rgb>
-	<intensity>5.00</intensity>
+    <name>Point 1</name>
+    <type>Spot</type>
+    <visibility>False</visibility>
+    <flare-visibility>True</flare-visibility>
+    <position>20.00 0.00 0.00</position>
+    <color-rgb>255.00 250.00 250.00</color-rgb>
+    <intensity>5.00</intensity>
 </light>
-
 <!------------ Object(s) ------------->
-
 <object>
-	<name>Cylinder</name>
-	<type>Cylinder</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>20.00 0.00 -90.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>0.00 255.00 255.00</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>10.00</radius>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>10.00</lenght>
-	<reflection>0.00</reflection>
-	<refraction>1</refraction>
-	<specular>0</specular>
-	<shader>0</shader>
+    <name>Cylinder</name>
+    <type>Cylinder</type>
+    <visibility>True</visibility>
+    <position>20.00 0.00 -90.00</position>
+    <rotation>0.00 0.00 0.00</rotation>
+    <color-rgb>0.00 255.00 255.00</color-rgb>
+    <opacity>1.00</opacity>
+    <radius>10.00</radius>
+    <width>0.00</width>
+    <height>0.00</height>
+    <lenght>10.00</lenght>
+    <reflection>0.00</reflection>
+    <refraction>1</refraction>
+    <specular>0</specular>
+    <shader>0</shader>
 </object>
-
 <object>
-	<name>Cylinder</name>
-	<type>Sphere</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>-20.00 0.00 -90.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>0.00 255.00 0.00</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>10.00</radius>
-	<width>0.00</width>
-	<height>40.00</height>
-	<lenght>10.00</lenght>
-	<reflection>0.00</reflection>
-	<refraction>1</refraction>
-	<specular>0</specular>
-	<shader>0</shader>
+    <name>Cylinder</name>
+    <type>Sphere</type>
+    <visibility>True</visibility>
+    <position>-20.00 0.00 -90.00</position>
+    <rotation>0.00 0.00 0.00</rotation>
+    <color-rgb>0.00 255.00 0.00</color-rgb>
+    <opacity>1.00</opacity>
+    <radius>10.00</radius>
+    <width>0.00</width>
+    <height>40.00</height>
+    <lenght>10.00</lenght>
+    <reflection>0.00</reflection>
+    <refraction>1</refraction>
+    <specular>0</specular>
+    <shader>0</shader>
 </object>
-
 <object>
-	<name>plan sol</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 20.00 290.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>255.00 0.00 0.00</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>50.00</lenght>
-	<reflection>0.00</reflection>
-	<refraction>0</refraction>
-	<specular>0</specular>
-	<shader>0</shader>
+    <name>plan sol</name>
+    <type>Plane</type>
+    <visibility>True</visibility>
+    <position>0.00 20.00 290.00</position>
+    <rotation>0.00 0.00 0.00</rotation>
+    <color-rgb>255.00 0.00 0.00</color-rgb>
+    <opacity>1.00</opacity>
+    <width>0.00</width>
+    <height>0.00</height>
+    <lenght>50.00</lenght>
+    <reflection>0.00</reflection>
+    <refraction>0</refraction>
+    <specular>0</specular>
+    <shader>0</shader>
 </object>
-
 <object>
-	<name>plan fond</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 0.00 200.00</position>
-	<rotation>-90.00 0.00 0.00</rotation>
-	<color-rgb>0.00 255.00 128.00</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>50.00</lenght>
-	<reflection>1.00</reflection>
-	<refraction>0</refraction>
-	<specular>0</specular>
-	<shader>0</shader>
+    <name>plan fond</name>
+    <type>Plane</type>
+    <visibility>True</visibility>
+    <position>0.00 0.00 200.00</position>
+    <rotation>-90.00 0.00 0.00</rotation>
+    <color-rgb>0.00 255.00 128.00</color-rgb>
+    <opacity>1.00</opacity>
+    <width>0.00</width>
+    <height>0.00</height>
+    <lenght>50.00</lenght>
+    <reflection>1.00</reflection>
+    <refraction>0</refraction>
+    <specular>0</specular>
+    <shader>0</shader>
 </object>
-
 <object>
-	<name>plan Arriere</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>0.00 0.00 -200.00</position>
-	<rotation>90.00 0.00 0.00</rotation>
-	<color-rgb>255.00 0.00 255.00</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>50.00</lenght>
-	<reflection>1.00</reflection>
-	<refraction>0</refraction>
-	<specular>0</specular>
-	<shader>0</shader>
+    <name>plan Arriere</name>
+    <type>Plane</type>
+    <visibility>True</visibility>
+    <position>0.00 0.00 -200.00</position>
+    <rotation>90.00 0.00 0.00</rotation>
+    <color-rgb>255.00 0.00 255.00</color-rgb>
+    <opacity>1.00</opacity>
+    <width>0.00</width>
+    <height>0.00</height>
+    <lenght>50.00</lenght>
+    <reflection>1.00</reflection>
+    <refraction>0</refraction>
+    <specular>0</specular>
+    <shader>0</shader>
 </object>
-
 <object>
-	<name>plan plafond</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>10.00 -20.00 290.00</position>
-	<rotation>0.00 0.00 0.00</rotation>
-	<color-rgb>150.00 185.00 240.00</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>50.00</lenght>
-	<reflection>0.00</reflection>
-	<refraction>0</refraction>
-	<specular>0</specular>
-	<shader>0</shader>
+    <name>plan plafond</name>
+    <type>Plane</type>
+    <visibility>True</visibility>
+    <position>10.00 -20.00 290.00</position>
+    <rotation>0.00 0.00 0.00</rotation>
+    <color-rgb>150.00 185.00 240.00</color-rgb>
+    <opacity>1.00</opacity>
+    <width>0.00</width>
+    <height>0.00</height>
+    <lenght>50.00</lenght>
+    <reflection>0.00</reflection>
+    <refraction>0</refraction>
+    <specular>0</specular>
+    <shader>0</shader>
 </object>
-
 <object>
-	<name>plan droit</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>40.00 0.00 290.00</position>
-	<rotation>0.00 0.00 90.00</rotation>
-	<color-rgb>0.00 255.00 0.00</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>50.00</lenght>
-	<reflection>0.00</reflection>
-	<refraction>0</refraction>
-	<specular>0</specular>
-	<shader>0</shader>
+    <name>plan droit</name>
+    <type>Plane</type>
+    <visibility>True</visibility>
+    <position>40.00 0.00 290.00</position>
+    <rotation>0.00 0.00 90.00</rotation>
+    <color-rgb>0.00 255.00 0.00</color-rgb>
+    <opacity>1.00</opacity>
+    <width>0.00</width>
+    <height>0.00</height>
+    <lenght>50.00</lenght>
+    <reflection>0.00</reflection>
+    <refraction>0</refraction>
+    <specular>0</specular>
+    <shader>0</shader>
 </object>
-
 <object>
-	<name>plan gauche</name>
-	<type>Plane</type>
-	<material>Lambert</material>
-	<visibility>True</visibility>
-	<position>-40.00 0.00 290.00</position>
-	<rotation>0.00 0.00 90.00</rotation>
-	<color-rgb>255.00 255.00 0.00</color-rgb>
-	<opacity>1.00</opacity>
-	<width>0.00</width>
-	<height>0.00</height>
-	<lenght>50.00</lenght>
-	<reflection>0.00</reflection>
-	<refraction>0</refraction>
-	<specular>0</specular>
-	<shader>0</shader>
+    <name>plan gauche</name>
+    <type>Plane</type>
+    <visibility>True</visibility>
+    <position>-40.00 0.00 290.00</position>
+    <rotation>0.00 0.00 90.00</rotation>
+    <color-rgb>255.00 255.00 0.00</color-rgb>
+    <opacity>1.00</opacity>
+    <width>0.00</width>
+    <height>0.00</height>
+    <lenght>50.00</lenght>
+    <reflection>0.00</reflection>
+    <refraction>0</refraction>
+    <specular>0</specular>
+    <shader>0</shader>
 </object>
-

@@ -22,13 +22,20 @@
 	<focal>55</focal>
 </camera>
 
+<camera>
+	<name>Camera 2</name>
+	<position>0.00 0.00 2.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<focal>55</focal>
+</camera>
+
 <!------------ Light(s) -------------->
 
 <light>
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>True</visibility>
-	<flare-visibility>True</flare-visibility>
+	<flare-visibility>False</flare-visibility>
 	<position>0.00 0.00 20.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
@@ -38,7 +45,7 @@
 	<name>Prout2</name>
 	<type>Spot</type>
 	<visibility>True</visibility>
-	<flare-visibility>True</flare-visibility>
+	<flare-visibility>False</flare-visibility>
 	<position>8.50 0.00 20.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
@@ -111,8 +118,8 @@
 	<position>13.50 -5.00 89.50</position>
 	<rotation>0.00 0.00 0.00</rotation>
 	<color-rgb>130.56 119.34 124.95</color-rgb>
-	<opacity>1.00</opacity>
-	<radius>9.00</radius>
+	<opacity>.70</opacity>
+	<radius>4.00</radius>
 	<width>50.00</width>
 	<height>50.00</height>
 	<lenght>50.00</lenght>
@@ -120,5 +127,23 @@
 	<refraction>0</refraction>
 	<specular>0</specular>
 	<shader>6</shader>
+</object>
+
+<object>
+	<name>Plane 1</name>
+	<type>Plane</type>
+	<preset>No Preset</preset>
+	<visibility>True</visibility>
+	<position>0.00 0.00 0.00</position>
+	<rotation>0.00 0.00 0.00</rotation>
+	<color-rgb>127.50 127.50 127.50</color-rgb>
+	<opacity>1.00</opacity>
+	<width>50.00</width>
+	<height>50.00</height>
+	<lenght>50.00</lenght>
+	<reflection>0.00</reflection>
+	<refraction>0</refraction>
+	<specular>0</specular>
+	<shader>0</shader>
 </object>
 
