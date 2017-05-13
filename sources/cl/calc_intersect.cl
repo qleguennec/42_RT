@@ -64,20 +64,42 @@ short			cone_intersection(t_data *data, short *index)
 			m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
 			m0 = dot(data->ray_dir, rot * data->t0) + dot(rot, data->offset);
 			m1 = dot(data->ray_dir, rot * data->t1) + dot(rot, data->offset);
-			if (m > data->objs[(int)*index].height ||
-			 m < -data->objs[(int)*index].height)
-			return (cone_caps(data, &rot, index, m1));
+
+
+		if ((m0 > data->objs[(int)*index].height ||
+			m0 < -data->objs[(int)*index].height) && 
+			  (m1 > data->objs[(int)*index].height ||
+			m1 < -data->objs[(int)*index].height ))
+			 return (cone_caps(data, &rot, index, m));
+			// if (m0 > data->objs[(int)*index].height ||
+			//   m0 < -data->objs[(int)*index].height )
+			//  return (cone_caps(data, &rot, index, m0));
+			//  if (m1 > data->objs[(int)*index].height ||
+			//   m1 < -data->objs[(int)*index].height )
+			//  return (cone_caps(data, &rot, index, m1));
+
+			// if (m > data->objs[(int)*index].height ||
+			//  m < -data->objs[(int)*index].height)
+			// return (cone_caps(data, &rot, index, m1));
 		}
 		return (0);
 	}
 	if (data->objs[(int)*index].height > 0.0f)
-	{
+	{ 
 		m = dot(data->ray_dir, rot * data->t) + dot(rot, data->offset);
 		m0 = dot(data->ray_dir, rot * data->t0) + dot(rot, data->offset);
 		m1 = dot(data->ray_dir, rot * data->t1) + dot(rot, data->offset);
-		if ((m > data->objs[(int)*index].height ||
-		m < -data->objs[(int)*index].height) )
-	 	return (cone_caps(data, &rot, index, m1));
+			if ((m0 > data->objs[(int)*index].height ||
+			m0 < -data->objs[(int)*index].height) && 
+			  (m1 > data->objs[(int)*index].height ||
+			m1 < -data->objs[(int)*index].height ))
+			 return (cone_caps(data, &rot, index, m));
+			//  if (m1 > data->objs[(int)*index].height ||
+			//   m1 < -data->objs[(int)*index].height )
+			//  return (cone_caps(data, &rot, index, m1));
+		// if ((m > data->objs[(int)*index].height ||
+		// m < -data->objs[(int)*index].height) )
+	 	// return (cone_caps(data, &rot, index, m1));
 	}
 	calc_intersect(data);
 	return (1);
