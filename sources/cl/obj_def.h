@@ -13,13 +13,12 @@
 #ifndef OBJ_DEF_H
 # define OBJ_DEF_H
 # ifndef M_PI
-# define M_PI 3.14f
+#  define M_PI 3.14f
 # endif
 # define PREC 0.02f
 # define PREC2 0.02f
 # define PREC3 0.2f
 # define PREC4 0.02f
-
 # define AMBIANT 0.2f
 # define MAX_REFLECTION 1
 # define MAX_TRANSPARANCY 1
@@ -61,5 +60,4 @@ typedef struct		s_cam
 	short			focal;
 	short			skytype;
 }					t_cam;
-
 #endif
