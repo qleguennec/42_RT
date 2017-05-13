@@ -3,7 +3,6 @@
 <scene>
 	<name>420 blaze it</name>
 	<ambient>.20</ambient>
-	<anti-aliasing>2</anti-aliasing>
 	<max-reflexion>1</max-reflexion>
 </scene>
 
@@ -43,7 +42,7 @@
 	<name>Prout</name>
 	<type>Diffuse</type>
 	<visibility>True</visibility>
-	<flare-visibility>True</flare-visibility>
+	<flare-visibility>False</flare-visibility>
 	<position>0.00 0.00 100.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
@@ -53,7 +52,7 @@
 	<name>Prout</name>
 	<type>Spot</type>
 	<visibility>True</visibility>
-	<flare-visibility>True</flare-visibility>
+	<flare-visibility>False</flare-visibility>
 	<position>50.00 0.00 100.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
@@ -63,7 +62,7 @@
 	<name>Prout</name>
 	<type>Spot</type>
 	<visibility>True</visibility>
-	<flare-visibility>True</flare-visibility>
+	<flare-visibility>False</flare-visibility>
 	<position>50.00 0.00 200.00</position>
 	<color-rgb>255.00 255.00 255.00</color-rgb>
 	<intensity>5.00</intensity>
@@ -74,7 +73,7 @@
 <object>
 	<name>Cylinder</name>
 	<type>Cylinder</type>
-	<material>Lambert</material>
+	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>20.00 0.00 490.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -93,7 +92,7 @@
 <object>
 	<name>Cylinder</name>
 	<type>Cylinder</type>
-	<material>Lambert</material>
+	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>20.00 0.00 -10.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -104,7 +103,7 @@
 	<height>0.00</height>
 	<lenght>10.00</lenght>
 	<reflection>0.00</reflection>
-	<refraction>1</refraction>
+	<refraction>0</refraction>
 	<specular>0</specular>
 	<shader>4</shader>
 </object>
@@ -112,7 +111,7 @@
 <object>
 	<name>Sphere 1</name>
 	<type>Sphere</type>
-	<material>Lambert</material>
+	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>0.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -131,7 +130,7 @@
 <object>
 	<name>Fond</name>
 	<type>Plane</type>
-	<material>Lambert</material>
+	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>50.00 0.00 1000.00</position>
 	<rotation>90.00 0.00 0.00</rotation>
@@ -149,7 +148,7 @@
 <object>
 	<name>Arriere</name>
 	<type>Plane</type>
-	<material>Lambert</material>
+	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>0.00 0.00 -600.00</position>
 	<rotation>90.00 0.00 0.00</rotation>
@@ -167,7 +166,7 @@
 <object>
 	<name>Gauche</name>
 	<type>Plane</type>
-	<material>Lambert</material>
+	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>-100.00 0.00 0.00</position>
 	<rotation>0.00 0.00 90.00</rotation>
@@ -185,7 +184,7 @@
 <object>
 	<name>Droite</name>
 	<type>Plane</type>
-	<material>Lambert</material>
+	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>100.00 0.00 0.00</position>
 	<rotation>0.00 0.00 90.00</rotation>
@@ -203,7 +202,7 @@
 <object>
 	<name>Haut</name>
 	<type>Plane</type>
-	<material>Lambert</material>
+	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>0.00 -100.00 0.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -221,7 +220,7 @@
 <object>
 	<name>Bas</name>
 	<type>Plane</type>
-	<material>Lambert</material>
+	<preset>No Preset</preset>
 	<visibility>True</visibility>
 	<position>0.00 100.00 0.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -235,4 +234,3 @@
 	<specular>0</specular>
 	<shader>0</shader>
 </object>
-
