@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:37 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/13 11:30:04 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:18:18 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	init_window_elements(t_rt *rt)
 {
-	rt->ui->test = 0;
+	rt->scn->redraw = 0;
 	rt->r_view = (SDL_Rect){232, 84, 816, 588};
 	rt->r_info = (SDL_Rect){215, 690, 850, 30};
 	rt->cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);

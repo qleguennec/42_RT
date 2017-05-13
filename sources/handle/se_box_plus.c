@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 15:37:50 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/13 12:08:00 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:18:30 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,5 @@ void		update_se_box_plus(t_rt *rt, t_cl *cl)
 		cl_main_krl_update_camera(cl, rt->scn->c_cam);
 	else
 		cl_main_krl_update_buffers(cl, rt->scn);
-	rt->ui->test = 1;
+	rt->scn->redraw = 1;
 }

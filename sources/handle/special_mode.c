@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 12:55:32 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/13 12:07:56 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:18:18 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		handle_special_modes_down(t_rt *rt)
 	rt->scn->sp_mode = rt->ui->ra_down - 3;
 	rt->ui->ra_hover = -1;
 	rt->n_info = 24 + rt->scn->sp_mode;
-	rt->ui->test = 1;
+	rt->scn->redraw = 1;
 	draw_info_bar(rt);
 }
 

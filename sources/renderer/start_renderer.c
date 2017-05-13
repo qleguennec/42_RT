@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/13 12:12:02 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:18:16 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int			lol_cat(void *data, SDL_Event *event)
 	if (event->type == SDL_KEYUP)
 	{
 		SDL_FlushEvent(SDL_KEYDOWN);
-		((t_rt *)data)->ui->test = 1;
+		((t_rt *)data)->scn->redraw = 1;
 	}
 	if (event->type == 0x402)
-		((t_rt *)data)->ui->test = 1;
+		((t_rt *)data)->scn->redraw = 1;
 	return (1);
 }
 
@@ -62,12 +62,12 @@ static int	global_loop(t_rt *rt, t_cl *cl)
 		{
 			SDL_AddEventWatch(lol_cat, rt);
 			handle_events(rt, cl);
-			if (rt->ui->test)
+			if (rt->scn->redraw)
 			{
 				cl_main_krl_exec(cl, &rt->scn->aa);
 				cl_copy_image_buffer(cl, rt->s_rend->pixels);
 				(rt->scn->sp_mode) ? add_sp_mode(rt) : add_render_frame(rt);
-				rt->ui->test = 0;
+				rt->scn->redraw = 0;
 			}
 		}
 		SDL_UpdateWindowSurface(rt->win);

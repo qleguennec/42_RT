@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:33:17 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/13 11:29:45 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:18:17 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct		s_parser
 
 struct				s_scene
 {
+	cl_short		redraw;
 	cl_short		aa;
 	cl_float		ambient;
 	cl_short		m_ref;

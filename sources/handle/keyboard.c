@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 17:08:04 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/13 12:08:08 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:18:27 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	hide_object_scene(t_rt *rt, t_cl *cl)
 		rt->ui->tmp = ft_strf(INF34, rt->scn->s_elem->n);
 	draw_outliner_element(rt, rt->scn->s_elem, 1);
 	cl_main_krl_update_buffers(cl, rt->scn);
-	rt->ui->test = 1;
+	rt->scn->redraw = 1;
 	draw_info_bar(rt);
 	free(rt->ui->tmp);
 }

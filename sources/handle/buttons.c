@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 15:56:06 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/13 12:08:26 by bsouchet         ###   ########.fr       */
+/*   Updated: 2017/05/13 12:18:24 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void		execute_button(t_rt *rt, int button, t_cl *cl)
 	if (button > 0 && button < 15)
 	{
 		cl_main_krl_update_buffers(cl, rt->scn);
-		rt->ui->test = 1;
+		rt->scn->redraw = 1;
 	}
-	(button == 15 || button == 16) ? (rt->ui->test = 1) : 1;
+	(button == 15 || button == 16) ? (rt->scn->redraw = 1) : 1;
 	draw_info_bar(rt);
 }
 
