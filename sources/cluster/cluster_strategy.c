@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 11:32:49 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/11 14:00:01 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 08:19:19 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ void
 
 	nclients = 1;
 	cli = cl->cli_list;
-	while (cli)
-	{
-		nclients++;
+	while (cli && (nclients++ | 42))
 		cli = cli->next;
-	}
 	theta = 2 * M_PI / nclients;
 	cli = cl->cli_list;
 	while (nclients--)

@@ -6,48 +6,13 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 16:35:42 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/12 15:27:20 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 08:16:36 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libfmt.h"
 #include <sys/socket.h>
-
-/*
-static bool
-	buffer_aggregate_samples
-	(t_cl *cl
-	, void *buffer
-	, int n)
-{
-	size_t		i;
-	t_client	*cli;
-	int			ret;
-
-	ret = 0;
-	cli = cl->cli_list;
-	i = 0;
-	while (42)
-	{
-		if (cli)
-		{
-			ft_memcpy((char *)buffer + i, &(((char *)cli->buffer)[i])
-				, cl->main_krl.sizes[0] / n);
-			cli = cli->next;
-		}
-		else
-		{
-			clFinish(cl->info.cmd_queue);
-			printf("%lu %lu\n", i, cl->main_krl.sizes[0] / n);
-			break ;
-		}
-		i += cl->main_krl.sizes[0] / n;
-	}
-	assert(cli == NULL);
-	return (true);
-}
-*/
 
 static bool
 	buffer_average_samples
@@ -72,10 +37,10 @@ static bool
 			tmp[2] += (cli->buffer[i] >> 24) & 0xFF;
 			cli = cli->next;
 		}
-		tmp[0] = (tmp[0] + (buffer[i] >> 8 & 0xFF))/ n;
+		tmp[0] = (tmp[0] + (buffer[i] >> 8 & 0xFF)) / n;
 		tmp[1] = (tmp[1] + (buffer[i] >> 16 & 0xFF)) / n;
 		tmp[2] = (tmp[2] + (buffer[i] >> 24 & 0xFF)) / n;
-		buffer[i++] = 0xFF 
+		buffer[i++] = 0xFF
 			| (tmp[0] << 8) | (tmp[1] << 16) | (tmp[2] << 24);
 	}
 	return (true);

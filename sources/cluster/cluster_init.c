@@ -6,14 +6,14 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 14:50:25 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/11 14:01:17 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 08:27:50 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cluster.h"
 #include "parameters.h"
 
-#define SEND(fd, msg) send(fd, msg, sizeof(msg) - 1, 0)
+#define MAX_CLIENTS 16
 
 void
 	*accept_routine
@@ -22,17 +22,21 @@ void
 	t_cl		*self;
 	int			fd;
 	t_client	*new;
+	int			nclients;
 
 	self = arg;
-	while (42)
+	nclients = 0;
+	while (nclients < MAX_CLIENTS)
 	{
 		fd = accept(self->sockfd, NULL, NULL);
+		nclients++;
 		new = malloc(sizeof(*new));
 		ft_bzero(new, sizeof(*new));
 		new->fd = fd;
 		new->next = self->cli_list;
 		self->cli_list = new;
 	}
+	close(self->sockfd);
 	return (NULL);
 }
 

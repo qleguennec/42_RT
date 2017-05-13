@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 12:10:27 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/10 11:57:18 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 08:08:08 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include "libvect/libvect.h"
 # include "cl_interface.h"
 # include "libcl/libcl.h"
-# include "parameters.h"
+# include "../include/parameters.h"
 
 // TODO remove debug includes
 # include <stdio.h>

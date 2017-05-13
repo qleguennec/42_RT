@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 12:07:51 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/12 17:04:49 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 08:11:24 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ bool
 		while (++i < N_BENCH)
 			total += main_krl_exec_benchmark(cl, work_size);
 		total /= N_BENCH;
-		printf("render time: %lfs ", total);
-		printf("fps: %lf\n", 1.0 / total);
 	}
 	else
 	{

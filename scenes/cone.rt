@@ -62,7 +62,6 @@
 <object>
 	<name>Cone 1</name>
 	<type>Cone</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 300.00</position>
 	<rotation>-127.50 0.00 0.00</rotation>

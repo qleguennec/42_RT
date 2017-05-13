@@ -3,8 +3,6 @@
 <scene>
 	<name>420 blaze it</name>
 	<ambient>.20</ambient>
-	<anti-aliasing>2</anti-aliasing>
-	<max-reflexion>1</max-reflexion>
 </scene>
 
 <!------------ Camera(s) ------------->
@@ -74,7 +72,6 @@
 <object>
 	<name>Cylinder</name>
 	<type>Cylinder</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>20.00 0.00 490.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -93,7 +90,6 @@
 <object>
 	<name>Cylinder</name>
 	<type>Cylinder</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>20.00 0.00 -10.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -112,7 +108,6 @@
 <object>
 	<name>Sphere 1</name>
 	<type>Sphere</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 290.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -131,7 +126,6 @@
 <object>
 	<name>Fond</name>
 	<type>Plane</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>50.00 0.00 1000.00</position>
 	<rotation>90.00 0.00 0.00</rotation>
@@ -149,7 +143,6 @@
 <object>
 	<name>Arriere</name>
 	<type>Plane</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 0.00 -600.00</position>
 	<rotation>90.00 0.00 0.00</rotation>
@@ -167,7 +160,6 @@
 <object>
 	<name>Gauche</name>
 	<type>Plane</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>-100.00 0.00 0.00</position>
 	<rotation>0.00 0.00 90.00</rotation>
@@ -185,7 +177,6 @@
 <object>
 	<name>Droite</name>
 	<type>Plane</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>100.00 0.00 0.00</position>
 	<rotation>0.00 0.00 90.00</rotation>
@@ -203,7 +194,6 @@
 <object>
 	<name>Haut</name>
 	<type>Plane</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 -100.00 0.00</position>
 	<rotation>0.00 0.00 0.00</rotation>
@@ -221,7 +211,6 @@
 <object>
 	<name>Bas</name>
 	<type>Plane</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>0.00 100.00 0.00</position>
 	<rotation>0.00 0.00 0.00</rotation>

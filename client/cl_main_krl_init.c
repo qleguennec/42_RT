@@ -6,13 +6,13 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:08:54 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/26 15:10:39 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 08:08:38 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_client.h"
 
-#define FILENAME	"cl/main.cl"
+#define FILENAME	"../sources/cl/main.cl"
 #define KRLNAME		"kernel_entry"
 
 static void
@@ -21,7 +21,7 @@ static void
 {
 	vect_init(build_line);
 	VECT_STRADD(build_line, KRLNAME ":");
-	VECT_STRADD(build_line, "-I cl ");
+	VECT_STRADD(build_line, "-I ../sources/cl/ ");
 	FMT_VECT(build_line, "-D WIDTH=%a ", REND_W);
 	FMT_VECT(build_line, "-D HEIGHT=%a ", REND_H);
 	FMT_VECT(build_line, "-D AREA=%a ", REND_W * REND_H);

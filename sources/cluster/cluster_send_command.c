@@ -1,20 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_send_command.c                             :+:      :+:    :+:   */
+/*   cluster_send_command.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/21 11:18:52 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/05/12 17:07:54 by qle-guen         ###   ########.fr       */
+/*   Created: 2017/05/13 08:29:54 by qle-guen          #+#    #+#             */
+/*   Updated: 2017/05/13 08:30:03 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cluster.h"
 #include "../cl_build/cl_interface.h"
-
-// TODO remove debug includes
-# include <assert.h>
 
 int
 	cluster_send_command
@@ -81,8 +78,6 @@ void
 	size_t	size;
 
 	ret = NULL;
-	// TODO norm
-	// TODO this is really bad
 	if (cmd == 'c')
 	{
 		ret = malloc(sizeof(t_cl_cam));
@@ -112,33 +107,30 @@ static int
 	, t_client *cli)
 {
 	void	*buffer;
-	int		alive;
 
-	alive = 1;
 	buffer = NULL;
-	// TODO this is really really bad
 	if ((cli->status & CLIENT_CAM_OK) == 0)
 	{
 		if (!(buffer = dup_kernel_data(cl, 'c')))
 			return (0);
-		alive = cluster_send_command(cli, 'c', buffer, sizeof(t_cl_cam));
+		cluster_send_command(cli, 'c', buffer, sizeof(t_cl_cam));
 	}
 	if ((cli->status & CLIENT_OBJ_OK) == 0)
 	{
 		if (!(buffer = dup_kernel_data(cl, 'o')))
 			return (0);
-		alive = cluster_send_command(cli, 'o', buffer
+		cluster_send_command(cli, 'o', buffer
 			, cl->n_objs * sizeof(t_cl_obj));
 	}
 	if ((cli->status & CLIENT_LGT_OK) == 0)
 	{
 		if (!(buffer = dup_kernel_data(cl, 'l')))
 			return (0);
-		alive = cluster_send_command(cli, 'l', buffer
+		cluster_send_command(cli, 'l', buffer
 			, cl->n_lgts * sizeof(t_cl_lgt));
 	}
 	free(buffer);
-	return (alive);
+	return (1);
 }
 
 int

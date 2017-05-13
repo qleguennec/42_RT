@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 09:18:16 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/26 14:48:50 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 08:25:32 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int
 		return (usage(1));
 	if (!get_host_info(argv[1], &host_ip, &port))
 		return (usage(2));
-	sockfd = client_init(host_ip, port);
 	if (sockfd <= 0)
 		return (0);
 	vect_init(&data);

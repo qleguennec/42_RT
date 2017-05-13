@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 08:51:33 by qle-guen          #+#    #+#             */
-/*   Updated: 2017/04/28 14:17:37 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 08:16:15 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 ** needs to be called each time the scene is changed
 */
 
-# define OBJSIZE sizes[0]
-# define NOBJS sizes[1]
+#define OBJSIZE sizes[0]
+#define NOBJS sizes[1]
 
 static void
 	krl_cpy_lst
@@ -74,10 +74,8 @@ static cl_mem
 		ERR("cl_write error %a", 0, ret);
 		return (NULL);
 	}
-	cluster_send_command_all(cl
-		, OBJSIZE == sizeof(t_cl_lgt) ? 'l' : 'o'
-		, buf.data
-		, buf.used);
+	cluster_send_command_all(cl, OBJSIZE == sizeof(t_cl_lgt) ? 'l' : 'o'
+		, buf.data, buf.used);
 	free(buf.data);
 	return (mem);
 }
@@ -93,14 +91,14 @@ bool
 	NOBJS = scn->n_lgts;
 	if (cl->n_lgts)
 		clReleaseMemObject(cl->lgts);
-	cl->lgts = krl_get_mem((void (*) (void *, void *))&cpy_lgt
+	cl->lgts = krl_get_mem((void (*)(void *, void *))&cpy_lgt
 		, cl, scn->b_lgts->next, sizes);
 	cl->n_lgts = NOBJS;
 	OBJSIZE = sizeof(t_cl_obj);
 	NOBJS = scn->n_objs;
 	if (cl->n_objs)
 		clReleaseMemObject(cl->objs);
-	cl->objs = krl_get_mem((void (*) (void *, void *))&cpy_obj
+	cl->objs = krl_get_mem((void (*)(void *, void *))&cpy_obj
 		, cl, scn->b_objs->next, sizes);
 	cl->n_objs = NOBJS;
 	return (true);
