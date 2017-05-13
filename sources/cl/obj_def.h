@@ -23,7 +23,6 @@
 # define MAX_REFLECTION 1
 # define MAX_TRANSPARANCY 1
 # define FONT 0.0f
-
 # include "../../include/obj_types.h"
 
 typedef struct		s_obj
