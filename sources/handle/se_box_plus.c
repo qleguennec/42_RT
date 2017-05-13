@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 15:37:50 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 16:56:10 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 10:53:28 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ static void	update_se_object_box_part2(t_rt *rt)
 		S_ELEM->clr.y = R((S_ELEM->clr.y + 0.0020f) * 1000) / 1000;
 	else if (AC == 11 && S_ELEM->clr.z <= 0.9980f)
 		S_ELEM->clr.z = R((S_ELEM->clr.z + 0.0020f) * 1000) / 1000;
+	else if ((AC == 12 || (AC == -1 && CK_DOWN == SDLK_RIGHT && (AC = 12) &&
+	(rt->ui->k_edit = 1))) && S_ELEM->pos.x <= 999.50f)
+		S_ELEM->pos.x = R((S_ELEM->pos.x + 0.50f) * 100) / 100;
 }
 
 static void	update_se_object_box(t_rt *rt)
@@ -89,11 +92,8 @@ static void	update_se_object_box(t_rt *rt)
 		S_ELEM->opacity = R((S_ELEM->opacity + 0.050f) * 100) / 100;
 	else if (AC == 2 && S_ELEM->specular != 1)
 		S_ELEM->specular = 1;
-	else if (AC > 2 && AC < 12)
+	else if (AC > 2 && AC < 13)
 		update_se_object_box_part2(rt);
-	else if ((AC == 12 || (AC == -1 && CK_DOWN == SDLK_RIGHT && (AC = 12) &&
-	(rt->ui->k_edit = 1))) && S_ELEM->pos.x <= 999.50f)
-		S_ELEM->pos.x = R((S_ELEM->pos.x + 0.50f) * 100) / 100;
 	else if ((AC == 13 || (AC == -1 && CK_DOWN == SDLK_UP && (AC = 13) &&
 	(rt->ui->k_edit = 1))) && S_ELEM->pos.y <= 999.50f)
 		S_ELEM->pos.y = R((S_ELEM->pos.y + 0.50f) * 100) / 100;
@@ -126,7 +126,6 @@ void		update_se_box_plus(t_rt *rt, t_cl *cl)
 	else
 		cl_main_krl_update_buffers(cl, rt->scn);
 	cl_main_krl_exec(cl, &rt->scn->aa);
-	redraw_aa(rt);
 	cl_copy_image_buffer(cl, rt->s_rend->pixels);
 	add_render_frame(rt);
 }

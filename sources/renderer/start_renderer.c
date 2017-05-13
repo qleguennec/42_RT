@@ -6,7 +6,7 @@
 /*   By: bsouchet <bsouchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:13:35 by bsouchet          #+#    #+#             */
-/*   Updated: 2017/05/12 17:00:42 by qle-guen         ###   ########.fr       */
+/*   Updated: 2017/05/13 10:48:19 by bsouchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int			add_render_frame(t_rt *rt)
 {
+	redraw_aa(rt);
 	if (rt->scn->sp_mode)
 	{
 		if (rt->scn->sp_mode == 1)
