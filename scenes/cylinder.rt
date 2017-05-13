@@ -3,7 +3,6 @@
 <scene>
 	<name>420 blaze it</name>
 	<ambient>.20</ambient>
-	<anti-aliasing>2</anti-aliasing>
 	<max-reflexion>1</max-reflexion>
 </scene>
 
@@ -33,7 +32,6 @@
 <object>
 	<name>Cylinder</name>
 	<type>Cylinder</type>
-	<material>Lambert</material>
 	<visibility>True</visibility>
 	<position>-3.00 0.00 400.00</position>
 	<rotation>23.50 82.00 -5.50</rotation>
@@ -46,4 +44,3 @@
 	<reflection>0.00</reflection>
 	<refraction>0.00</refraction>
 </object>
-
